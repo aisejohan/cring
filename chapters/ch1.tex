@@ -209,7 +209,8 @@ commutative ring, called the \textbf{group ring}. The case of $G =
 \mathbb{Z}_{\geq 0}$ is the polynomial ring. 
 \end{exercise} 
 
-\begin{exercise} 
+\begin{exercise}
+\label{integersinitial}
 The ring $\mathbb{Z}$ is an \emph{initial object} in the category of rings.
 That is, for any ring $R$, there is a \emph{unique} morphism of rings
 $\mathbb{Z} \to R$.
@@ -718,7 +719,8 @@ An ideal $I \subset R$ is said to be \textbf{prime} if
 \end{enumerate}
 \end{definition} 
 
-\begin{example} 
+\begin{example}
+\label{integerprimes}
 If $R = \mathbb{Z}$ and $p \in R$, then $(p) \subset \mathbb{Z}$ is a prime ideal iff $p$ is a
 prime number (or the opposite of a prime number) or zero.
 \end{example} 
@@ -950,4 +952,42 @@ Prove that $\mathbb{Z}[i]$ is principal. (Use the previous exercise.)
 Prove that the polynomial ring $F[t]$ for $F$ a field is principal. 
 \end{exercise} 
 
+\subsection{A bit more about fields}
+\label{more-fields}
+
+\noindent
+Let $F$ be a field. As $\mathbf{Z}$ is the intial object of the category of
+rings, there is a ring map $f : \mathbf{Z} \to F$, see
+Exercise~\ref{integersinitial}.
+The image of this ring map is an integral domain (as a subring of a field)
+hence the kernel of $f$ is a prime ideal in $\mathbf{Z}$, see
+Proposition~\ref{primeifdomain}.
+Hence the kernel of $f$ is either $(0)$ or $(p)$ for some prime number $p$, see
+Example~\ref{integerprimes}.
+
+In the first case we see that $f$ is injective, and in this case
+we think of $\mathbf{Z}$ as a subring of $F$. Moreover, since every
+nonzero element of $F$ is invertible we see that it makes sense to
+talk about $p/q \in F$ for $p, q \in \mathbf{Z}$ with $q \not = 0$.
+Hence in this case we may and we do think of $\mathbf{Q}$ as a subring of $F$.
+You can easily see that this is the smallest subfield of $F$ in this case.
+
+In the second case, i.e., when $\text{Ker}(f) = (p)$ we see that
+$\mathbf{Z}/(p) = \mathbf{Z}/p\mathbf{Z}$ is a subring of $F$. Since
+$\mathbf{Z}$ is a principal ideal domain the ideal $(p)$ is maximal
+and $\mathbf{Z}/p\mathbf{Z}$ is a field too. This field is always denoted
+$\mathbf{F}_p$ and as before we think of $\mathbf{F}_p \subset F$
+as a subfield. Clearly it is the smallest subfield of $F$.
+
+Arguing in this way we see that every field contains a smallest subfield
+which is either $\mathbf{Q}$ or finite equal to $\mathbf{F}_p$ for some
+prime number $p$.
+
+\begin{definition}
+The \textbf{characteristic} of a field $F$ is $0$ if
+$\mathbf{Z} \subset F$, or is a prime $p$ if $p = 0$ in $F$.
+The \textbf{prime subfield of $F$} is the smallest subfield of $F$
+which is either $\mathbf{Q} \subset F$ if the characteristic is zero, or
+$\mathbf{F}_p \subset F$ if the characteristic is $p > 0$.
+\end{definition}
 
