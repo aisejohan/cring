@@ -789,8 +789,17 @@ the operations of $\hom$ and $\otimes$ are dual to each other.
 
 \begin{proposition} 
 Tensoring commutes with colimits.
-\end{proposition} 
+\end{proposition}
+
+In particular, it follows that if $\left\{N_\alpha\right\}$ is a family of
+modules, and $M$ is a module, then
+\[ M \otimes_R \bigoplus N_\alpha = \bigoplus M \otimes_R N_\alpha.  \]
+\begin{exercise} 
+Give an explicit proof of the above relation. 
+\end{exercise} 
+
 \begin{proof} 
+This is a formal consequence
 \add{proof}
 \end{proof} 
 
@@ -803,30 +812,33 @@ get natural functors between  \emph{different} module categories.
 
 Suppose we have a
 ring-homomorphism $\phi:R \to R'$.  In this case, any $R'$-module can be regarded as
-an $R$-module.  
-Let $M'$ be an $R'$-module and $M$ an $R$-module; we can talk about 
+an $R$-module. 
+In particular, there is a canonical functor of \emph{restriction}
+\[ R'-\mathrm{modules} \to R-\mathrm{modules}.  \]
+
+We shall see that the tensor product provides an \emph{adjoint} to this functor. 
+Namely, if $M$ has an $R$-module
+structure, then $M \otimes_R R'$ has an $R'$ module structure where $R'$ acts
+on the right. Since the tensor product is functorial, this gives a functor in the opposite direction:
+\[ R-\mathrm{modules} \to R'-\mathrm{modules}.  \]
+
+
+Let $M'$ be an $R'$-module and $M$ an $R$-module. In view of the above, we can talk about 
 \[ \hom_R(M, M')  \]
 by thinking of $M'$ as an $R$-module.
 
 \begin{proposition} 
-There is a canonical morphism between
+There is a canonical isomorphism between
 \[ \hom_R(M, M') \simeq \hom_{R'}(M \otimes_R R', M').  \]
+In particular, the restriction functor and the functor $M \to M \otimes_R R'$
+are adjoints to each other.
 \end{proposition} 
 
-Last time, we mentioned at the very end that if $M$ has an $R$-module
-structure, then $M \otimes_R R'$ has an $R'$ module structure where $R'$ acts
-on the right. 
-
-This proposition has a formulation in terms of category theory. If $F$ is the
-forgetful
-functor mapping $R'$-modules to $R$-modules, namely the procedure of using the
-morphism $R \to R'$, then this functor has a left-adjoint
-\[ M \to M \otimes_R R'.  \]
 
 \begin{proof} 
 We can describe the bijection explicitly. Given an $R'$-homomorphism $f:M
-\otimes_R R' \to M'$, we get a map $f_0$
-\[ M \to M'  \]
+\otimes_R R' \to M'$, we get a map 
+\[ f_0:M \to M'  \]
 sending
 \[ m \to m \otimes 1 \to f(m \otimes 1).  \]
 This is easily seen to be an $R$-module-homomorphism. Indeed, 
@@ -843,31 +855,45 @@ This is well-defined because $f_0$ is  a homomorphism of $R$-modules. We leave
 some details to the reader.
 \end{proof} 
 
+\begin{example} 
+In the representation theory of finite groups, the operation of tensor product
+corresponds to the procedure of \emph{inducing} a representation. Namely, if
+$H \subset G$ is a subgroup of a group $G$, then there is an obvious
+restriction functor from $G$-representations to $H$-representations. 
+The adjoint to this is the induction operator. Since a $H$-representation
+(resp. a $G$-representation) is just a module over the group ring, the
+operation of induction is really a special case of the tensor product. Note
+that the group rings are generally not commutative, so this should be
+interpreted with some care. 
+\end{example} 
+
 \section{Exactness properties of the tensor product}
 
 In general, the tensor product is not exact; it is only exact on the right,
-but can fail to preserve injections. Yet in some important cases it \emph{is}
+but it can fail to preserve injections. Yet in some important cases it \emph{is}
 exact. We study that in the present section.
 
 \subsection{Right-exactness of the tensor product}
 
-We will start by talking about the exactness properties of the tensor product.
-First, let's recall what we did last time. If $M,N$ are $R$-modules over the
-commutative ring $R$, we defined another $R$-module $\hom_R(M,N)$ of morphisms
+We will start by talking about extent to which tensor products do preserve
+exactness under any circumstance.
+First, let's recall what is going on. If $M,N$ are $R$-modules over the
+commutative ring $R$, we have defined another $R$-module $\hom_R(M,N)$ of morphisms
 $M \to N$. This is left-exact as a functor of $N$. In other words, if we fix
 $M$ and let $N$ vary, then the construction of homming out of $M$ preserves
 kernels. 
 
 In the language of category theory, this construction $N \to \hom_R(M,N)$ has
-an adjoint. The other construction we discussed last time was the tensor
+an adjoint. The other construction we discussed last time was this adjoint,
+and it is  the tensor
 product. Namely, given $M,N$ we defined a \textbf{tensor product} $M \otimes_R
-N$ such that giving a map $M \otimes_R N \to P$ is the same as giving a
+N$ such that giving a map $M \otimes_R N \to P$ into some $R$-module $P$ is the same as giving a
 bilinear map $\lambda: M \times N \to P$, which in turn is the same as giving
 an $R$-linear map
-\[ M \to \hom_R(N, R).  \]
+\[ M \to \hom_R(N, P).  \]
 So we have a functorial isomorphism
 \[ \hom_R(M \otimes_R N, P) \simeq \hom_R(M, \hom_R(N,P)).  \]
-The category-theoretic language is that tensoring is the left-adjoint to the
+Alternatively, tensoring is the left-adjoint to the
 hom functor. By abstract nonsense, it follows that since $\hom(M, \cdot)$
 preserves cokernels, the left-adjoint preserves cokernels and is right-exact.
 We shall see this directly.

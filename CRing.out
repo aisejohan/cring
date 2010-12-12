@@ -1,0 +1,100 @@
+\BOOKMARK [0][-]{chapter.1}{Foundations}{}
+\BOOKMARK [1][-]{section.1.1}{Basic definitions}{chapter.1}
+\BOOKMARK [2][-]{subsection.1.1.1}{Historical remarks: unique factorization}{section.1.1}
+\BOOKMARK [2][-]{subsection.1.1.2}{Basic definitions}{section.1.1}
+\BOOKMARK [2][-]{subsection.1.1.3}{Another example: rings of holomorphic functions}{section.1.1}
+\BOOKMARK [2][-]{subsection.1.1.4}{Ideals and varieties}{section.1.1}
+\BOOKMARK [1][-]{section.1.2}{Modules over a commutative ring}{chapter.1}
+\BOOKMARK [2][-]{subsection.1.2.1}{Definitions}{section.1.2}
+\BOOKMARK [2][-]{subsection.1.2.2}{Some categorical constructions}{section.1.2}
+\BOOKMARK [2][-]{subsection.1.2.3}{Exactness}{section.1.2}
+\BOOKMARK [2][-]{subsection.1.2.4}{Free modules}{section.1.2}
+\BOOKMARK [1][-]{section.1.3}{Ideals}{chapter.1}
+\BOOKMARK [2][-]{subsection.1.3.1}{Prime and maximal ideals}{section.1.3}
+\BOOKMARK [2][-]{subsection.1.3.2}{Fields and integral domains}{section.1.3}
+\BOOKMARK [2][-]{subsection.1.3.3}{Principal ideal domains}{section.1.3}
+\BOOKMARK [0][-]{chapter.2}{Three important functors}{}
+\BOOKMARK [1][-]{section.2.1}{Localization}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.1.1}{Localization at a multiplicative subset}{section.2.1}
+\BOOKMARK [2][-]{subsection.2.1.2}{Local rings}{section.2.1}
+\BOOKMARK [2][-]{subsection.2.1.3}{Localization is exact}{section.2.1}
+\BOOKMARK [2][-]{subsection.2.1.4}{Nakayama's lemma}{section.2.1}
+\BOOKMARK [1][-]{section.2.2}{The functor Hom}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.2.1}{Exactness}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.2}{Projective modules}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.3}{Injective modules}{section.2.2}
+\BOOKMARK [1][-]{section.2.3}{The tensor product}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.3.1}{Bilinear maps}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.2}{The tensor product}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.3}{The adjoint property}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.4}{The tensor product as base-change}{section.2.3}
+\BOOKMARK [1][-]{section.2.4}{Exactness properties of the tensor product}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.4.1}{Right-exactness of the tensor product}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.2}{Flatness}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.3}{Tensor products of algebras}{section.2.4}
+\BOOKMARK [0][-]{chapter.3}{The Spec of a ring}{}
+\BOOKMARK [1][-]{section.3.1}{The spectrum of a ring}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.1.1}{Definition and examples}{section.3.1}
+\BOOKMARK [2][-]{subsection.3.1.2}{The radical ideal-closed subset correspondence}{section.3.1}
+\BOOKMARK [2][-]{subsection.3.1.3}{Functoriality of Spec}{section.3.1}
+\BOOKMARK [1][-]{section.3.2}{Basic open sets}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.2.1}{A basis for the Zariski topology}{section.3.2}
+\BOOKMARK [0][-]{chapter.4}{Integrality and valuation rings}{}
+\BOOKMARK [1][-]{section.4.1}{Integrality}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.1.1}{Fundamentals}{section.4.1}
+\BOOKMARK [1][-]{section.4.2}{Integral closure}{chapter.4}
+\BOOKMARK [1][-]{section.4.3}{Valuation rings}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.3.1}{General remarks}{section.4.3}
+\BOOKMARK [2][-]{subsection.4.3.2}{Valuation rings, continued}{section.4.3}
+\BOOKMARK [2][-]{subsection.4.3.3}{Some useful tools}{section.4.3}
+\BOOKMARK [2][-]{subsection.4.3.4}{Back to the goal}{section.4.3}
+\BOOKMARK [0][-]{chapter.5}{Noetherian rings and modules}{}
+\BOOKMARK [1][-]{section.5.1}{Basics}{chapter.5}
+\BOOKMARK [2][-]{subsection.5.1.1}{The noetherian condition}{section.5.1}
+\BOOKMARK [2][-]{subsection.5.1.2}{Stability properties}{section.5.1}
+\BOOKMARK [2][-]{subsection.5.1.3}{The basis theorem}{section.5.1}
+\BOOKMARK [2][-]{subsection.5.1.4}{More on noetherian rings}{section.5.1}
+\BOOKMARK [1][-]{section.5.2}{Associated primes}{chapter.5}
+\BOOKMARK [2][-]{subsection.5.2.1}{The support}{section.5.2}
+\BOOKMARK [2][-]{subsection.5.2.2}{Associated primes}{section.5.2}
+\BOOKMARK [2][-]{subsection.5.2.3}{The case of one associated prime}{section.5.2}
+\BOOKMARK [2][-]{subsection.5.2.4}{A loose end}{section.5.2}
+\BOOKMARK [2][-]{subsection.5.2.5}{Primary modules}{section.5.2}
+\BOOKMARK [1][-]{section.5.3}{Primary decomposition}{chapter.5}
+\BOOKMARK [0][-]{chapter.6}{Unique factorization and the class group}{}
+\BOOKMARK [1][-]{subsection.6.0.1}{Unique factorization}{chapter.6}
+\BOOKMARK [2][-]{subsection.6.0.2}{A ring-theoretic criterion}{subsection.6.0.1}
+\BOOKMARK [2][-]{subsection.6.0.3}{Locally factorial domains}{subsection.6.0.1}
+\BOOKMARK [2][-]{subsection.6.0.4}{The Picard group}{subsection.6.0.1}
+\BOOKMARK [2][-]{subsection.6.0.5}{Cartier divisors}{subsection.6.0.1}
+\BOOKMARK [2][-]{subsection.6.0.6}{Weil divisors and Cartier divisors}{subsection.6.0.1}
+\BOOKMARK [2][-]{subsection.6.0.7}{Recap and a loose end}{subsection.6.0.1}
+\BOOKMARK [2][-]{subsection.6.0.8}{Further remarks on Weil\(R\) and Cart\(R\)}{subsection.6.0.1}
+\BOOKMARK [2][-]{subsection.6.0.9}{Discrete valuation rings and Dedekind rings}{subsection.6.0.1}
+\BOOKMARK [0][-]{chapter.7}{Dimension theory}{}
+\BOOKMARK [1][-]{subsection.7.0.10}{Some definitions}{chapter.7}
+\BOOKMARK [2][-]{subsection.7.0.11}{Introduction to dimension theory}{subsection.7.0.10}
+\BOOKMARK [2][-]{subsection.7.0.12}{Hilbert polynomials}{subsection.7.0.10}
+\BOOKMARK [2][-]{subsection.7.0.13}{Back to dimension theory}{subsection.7.0.10}
+\BOOKMARK [2][-]{subsection.7.0.14}{Recap}{subsection.7.0.10}
+\BOOKMARK [2][-]{subsection.7.0.15}{The dimension of an affine ring}{subsection.7.0.10}
+\BOOKMARK [2][-]{subsection.7.0.16}{Dimension in general}{subsection.7.0.10}
+\BOOKMARK [2][-]{subsection.7.0.17}{A topological characterization}{subsection.7.0.10}
+\BOOKMARK [2][-]{subsection.7.0.18}{Recap}{subsection.7.0.10}
+\BOOKMARK [2][-]{subsection.7.0.19}{Another notion of dimension}{subsection.7.0.10}
+\BOOKMARK [2][-]{subsection.7.0.20}{Yet another definition}{subsection.7.0.10}
+\BOOKMARK [2][-]{subsection.7.0.21}{Consequences of the notion of dimension}{subsection.7.0.10}
+\BOOKMARK [2][-]{subsection.7.0.22}{Further remarks}{subsection.7.0.10}
+\BOOKMARK [2][-]{subsection.7.0.23}{Change of rings}{subsection.7.0.10}
+\BOOKMARK [0][-]{chapter.8}{GNU Free Documentation License}{}
+\BOOKMARK [1][-]{section.8.1}{APPLICABILITY AND DEFINITIONS}{chapter.8}
+\BOOKMARK [1][-]{section.8.2}{VERBATIM COPYING}{chapter.8}
+\BOOKMARK [1][-]{section.8.3}{COPYING IN QUANTITY}{chapter.8}
+\BOOKMARK [1][-]{section.8.4}{MODIFICATIONS}{chapter.8}
+\BOOKMARK [1][-]{section.8.5}{COMBINING DOCUMENTS}{chapter.8}
+\BOOKMARK [1][-]{section.8.6}{COLLECTIONS OF DOCUMENTS}{chapter.8}
+\BOOKMARK [1][-]{section.8.7}{AGGREGATION WITH INDEPENDENT WORKS}{chapter.8}
+\BOOKMARK [1][-]{section.8.8}{TRANSLATION}{chapter.8}
+\BOOKMARK [1][-]{section.8.9}{TERMINATION}{chapter.8}
+\BOOKMARK [1][-]{section.8.10}{FUTURE REVISIONS OF THIS LICENSE}{chapter.8}
+\BOOKMARK [1][-]{section.8.11}{ADDENDUM: How to use this License for your documents}{chapter.8}
