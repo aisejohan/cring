@@ -1,1 +1,10 @@
 \chapter{Completions}
+Completions are used in geometry and number theory in order to give a finer picture of local structure; for example, taking completions of rings allows for the recovery of a topology that looks more like the Euclidean topology as it has more open sets than the Zariski topology. Completions are also used in algebraic number theory to allow for the study of fields around a prime number (or prime ideal). 
+
+\subsection{Completions of Local Rings}
+\begin{definition} Let $R$ be a local ring and $\mathfrak{m}$ its maximal ideal. Then the completion of $R$ with respect to $\mathfrak{m}$ denoted $\hat{R}$ is the inverse limit 
+\begin{equation}
+\hat{R}=\lim_{\leftarrow}(R/\mathfrak{m}^nR)\end{equation} We then topologize $\hat{R}$ by setting powers of $\mathfrak{m}$ to be basic open sets around $0$. The topology formed by these basic open sets is called the ``Krull'' or ``$\mathfrak{m}$-adic topology.''
+
+\subsection{Number Fields}
+Recall that in algebraic number theory, a number field is a finite dimensional algebraic extension of $\mathbb{Q}$. Sitting inside of $\mathbb{Q}$ is the ring of integers, $\mathbb{Z}$. For any prime number $p\in \mathbb{Z}$, we can localize $\mathbb{Z}$ to the prime ideal $(p)$ giving us a local ring $\mathbb{Z}_(p)$. If we take the completion of this local ring we get the $p$-adic numbers $\mathbb{Q}_p$. Notice that since $\mathbb{Z}_(p)/p^n\cong\mathbb{Z}/p$, this is really the same as taking the inverse limit $\lim_{\leftarrow}\mathbb{Z}/p^n$.
