@@ -2,21 +2,33 @@
 Recall that a field is an integral domain for which all non-zero elements are
 invertible. Equivalently, the only two ideals of a field are $(0)$ and $(1)$
 since any nonzero element is a unit.
+
+
 \begin{example}
-One of the most familiar examples of a field is $\mathbb{Q}$. \end{example}
+One of the most familiar examples of a field is $\mathbb{Q}$.
+\end{example}
+
 \begin{example}
 Another common field class of fields is the class of finite fields, for example
-$\mathbb{Z}/(2)$.\end{example}
+$\mathbb{Z}/(2)$.
+\end{example}
+
 \begin{exercise} In fact, for any maximal ideal $\mathfrak{m}\subseteq R$, the
-quotient $R/\mathfrak{m}$ is a field. \end{exercise}
+quotient $R/\mathfrak{m}$ is a field. 
+\end{exercise}
+
 \begin{example} If $F$ is a field, then any ring homomorphism $f:F\rightarrow
 R$is either injective or the zero map; this is because $ker(f)$ is an ideal in
-$F$but there are only two ideals, $(0)$ and $(1)$. \end{example}
+$F$but there are only two ideals, $(0)$ and $(1)$.
+\end{example}
 
 \begin{definition} If $F$ is a field contained in a field $G$, then $G$ is said
-to be a field extension of $F$. \end{definition}
+to be a field extension of $F$.
+\end{definition}
+
 There are plenty of field extensions coming from both number theory and
 geometry.
+
 \begin{example} For example let $X$ be a Riemann surface. Let $k(X)$ denote the
 set of meromorphic functions on $X$; clearly $k(X)$ is a ring under
 multiplication and addition of functions. It turns out that in fact $k(X)$ is a
@@ -35,7 +47,8 @@ $\mathbb{C}[z]$.
 \begin{example} The previous example is a more specific case of a general
 phenomenon in geometry; let $C_1$ and $C_2$ be smooth projective curves (over a
 field $k$). Then a morphism $f:C_1\rightarrow C_2$ makes $k(C_1)$ into a field
-extension $k(C_2)$ \end{example}
+extension $k(C_2)$ 
+\end{example}
 
 \begin{definition}An element $\alpha\in F$ is said to be algebraic over $E$ if
 $\alpha$ is the root of some polynomial with coefficients in $E$. If all
@@ -45,12 +58,14 @@ $E\subseteq F$ is a field extension then $F$ is also a vector space over $E$
 considered as an $E$-vector space is called the degree of the extension and is
 denoted $[F:E]$. If $[F:E]<\infty$ then $F$ is said to be a finite extension
 (note that all finite extensions are algebraic). Field extensions are sometimes
-denoted $F/E$ for $E\subseteq F$. \end{definition}
+denoted $F/E$ for $E\subseteq F$.
+\end{definition}
+
 Algebraic number theory is in fact the study of algebraic extensions, in
 particular, a field extensions $K$ of $\mathbb{Q}$ is said to be a number field
 if it is a finite extension of $\mathbb{Q}$.
 
-Since field extensions $F/E$ are always vector spaces, there is a basis $B$ for$
+Since field extensions $F/E$ are always vector spaces, there is a basis $B$ for
 $F$ such that any element of $F$ is the linear combination of elements of $B$
 with coefficients in $E$. Returning to the previous example, if $K$ is the
 smallest field that contains $\mathbb{Q}$ and an algebraic number $\alpha$, then
