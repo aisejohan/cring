@@ -104,7 +104,7 @@ mean that there are $n$ coordinates at the point $x$. The point $x$ is defined
 by the zero locus of $n$ points on the space.
 
 \begin{definition}[Proposal] We could try defining $\dim_{\mathfrak{m}} R$
-to be the number of gnerators of $\mathfrak{m}$.
+to be the number of generators of $\mathfrak{m}$.
 \end{definition} 
 
 This is a bad definition, as $\mathfrak{m}$ may not have the same number of
@@ -113,10 +113,10 @@ local.
 So this leads us to:
 \begin{definition} 
 If $R$ is a (noetherian) \emph{local} ring with maximal ideal $\mathfrak{m}$, then the \textbf{embedding dimension} of $R$ is
-the minimal number of gnerators for $\mathfrak{m}$.
+the minimal number of generators for $\mathfrak{m}$.
 \end{definition} 
 
-By Nakayama's lemma, this is the minimal number of gnerators of
+By Nakayama's lemma, this is the minimal number of generators of
 $\mathfrak{m}/\mathfrak{m}^2$, or the $R/\mathfrak{m}$-dimension of that vector
 space.
 However, this isn't going to coincide with the dimension of an algebraic
@@ -373,7 +373,7 @@ The \textbf{dimension} of $R$ is the degree of $f_M^+$.
 \end{definition} 
 
 \begin{remark} 
-As we have seen, the dimension is at most the number of gnerators of
+As we have seen, the dimension is at most the number of generators of
 $\mathfrak{m}$. So the dimension is at most the embedding dimension.
 \end{remark} 
 
@@ -795,12 +795,11 @@ $\krdim R \leq \sup \krdim R/(x) + 1$.
 
 There is thus a combinatorial definition of definition.
 
-\begin{remark} 
 Geometrically, let $X = \spec R$ for $R$ an affine ring over $\mathbb{C}$ (a
 polynomial ring mod some ideal). Then $R$ has Krull dimension $\geq k$ iff there is a
 chain of irreducible subvarieties of $X$,
 \[ X_0 \supset X_1 \supset \dots \supset X_k . \]
-\end{remark} 
+You will meet justification for this in \ref{subsectiondimension} below.
 
 \begin{remark}[\textbf{Warning!}] Let $R$ be a local noetherian ring of dimension $k$. This
 means that there is a chain of prime ideals of length $k$, and no longer
@@ -824,6 +823,113 @@ An easier way all maximal chains could fail to be of the same length is if
 $\spec R$ has two components (in which case $R = R_0 \times R_1$ for rings
 $R_0, R_1$). 
 \end{example} 
+
+\subsection{Dimension theory for topological spaces}
+\label{subsectiondimension}
+The present subsection (which consists mostly of exercises) is a digression   that may illuminate the notion of
+Krull dimension.
+
+\begin{definition} 
+Let $X$ be a topological space.\footnote{We do not include the empty space.} Recall that $ X$ is
+\textbf{irreducible} if  cannot be written as the union of
+two proper closed subsets $F_1, F_2 \subsetneq X$.
+
+We say that a subset of $X$ is irreducible if it is irreducible with respect
+to the induced topology.
+\end{definition} 
+
+In general, this notion is not valid from the topological spaces familiar from
+analysis. For instance:
+
+\begin{exercise} 
+Points are the only irreducible subsets of $\mathbb{R}$.
+\end{exercise} 
+
+Nonetheless, irreducible sets behave very nicely with respect to certain
+operations. As you will now prove, if $U \subset X$ is an open subset, then
+the irreducible closed subsets of $U$ are in bijection with the irreducible
+closed subsets of $X$ that intersect $U$. 
+\begin{exercise} \label{irredifeveryopenisdense}
+A space is irreducible if and only if every open set is dense, or
+alternatively if every open set is connected.
+\end{exercise} 
+
+\begin{exercise} 
+Let $X$ be a space, $Y \subset X$ an irreducible subset. Then 
+$\overline{Y} \subset X$ is irreducible.
+\end{exercise} 
+
+\begin{exercise} 
+Let $X$ be a space, $U \subset X$ an open subset. 
+Then the map $Z \to Z \cap U$ gives a bijection between the irreducible
+closed subsets of $X$ meeting $U$ and the irreducible closed subsets of $U$.
+The inverse is given by $Z' \to \overline{Z'}$.
+\end{exercise} 
+
+As stated above, the  notion of irreducibility is useless for spaces
+like manifolds. In fact, by Exercise \ref{irredifeveryopenisdense}, a
+Hausdorff space cannot be irreducible unless it consists of one point.
+However, for the highly non-Hausdorff spaces encountered in algebraic geometry, this notion is very
+useful.
+
+Let $R$ be a commutative ring, and $X = \spec R$.
+
+\begin{exercise} 
+A closed subset $F \subset \spec R$ is irreducible if and only if it can be
+written in the form $F = V(\mathfrak{p})$ for $\mathfrak{p} \subset R$ prime.
+In particular, $\spec R$ is irreducible if and only if $R$ has one minimal
+prime. 
+\end{exercise} 
+
+In fact, spectra of rings are particularly nice: they are \textbf{sober
+spaces.}
+\begin{definition} 
+A space $X$ is called \textbf{sober} if to every irreducible closed $F \subset
+X$, there is a unique point $\xi \in F$ such that $F = \overline{ \left\{\xi\right\}}$. 
+This point is called the \textbf{generic point.}
+\end{definition} 
+
+\begin{exercise} 
+Check that if $X$ is any topological space and $\xi  \in X$, then the closure
+$\overline{\left\{\xi\right\}}$ of the point $\xi$ is irreducible.
+\end{exercise} 
+
+\begin{exercise} 
+Show that $\spec R$ for $R$ a ring is sober.
+\end{exercise} 
+
+\begin{exercise} 
+Let $X$ be a space with a cover $\left\{X_\alpha\right\}$ by open subsets,
+each of which is a sober space. Then $X$ is a sober space. (Hint: any
+irreducible closed subset must intersect one of the $X_\alpha$, so is the
+closure of its intersection with that one.)
+\end{exercise} 
+
+We now come to the main motivation of this subsection, and the reason for its
+inclusion here.
+
+\begin{definition} 
+Let $X$ be a topological space. Then the \textbf{dimension} (or
+\textbf{combinatorial dimension}) of $X$ is the maximal $k$ such that a chain
+\[ F_0 \subsetneq F_1 \subsetneq \dots \subsetneq F_k \subset X  \]
+with the $F_i$ irreducible, exists. This number is denoted $\dim X$ and may be
+infinite.
+\end{definition} 
+
+\begin{exercise} 
+What is the Krull dimension of $\mathbb{R}$?
+\end{exercise} 
+
+\begin{exercise} 
+Let $X = \bigcup X_i$ be the finite union of subsets $X_i \subset X$. 
+
+\end{exercise} 
+
+\begin{exercise} 
+Let $R$ be a ring. Then $\dim \spec R$ is equal to the Krull dimension of $R$. 
+\end{exercise} 
+
+
 
 
 \subsection{Yet another definition}
@@ -875,7 +981,7 @@ As a result, we find:
 $\dim \supp M$ is the minimal integer $n$ such that there exist elements $x_1,
 \dots, x_n \in \mathfrak{m}$ with $M/(x_1 , \dots, x_n) M$ has finite length. 
 \end{proposition} 
-Note that $n$ always exists, since we can look at a bunch of gnerators of the
+Note that $n$ always exists, since we can look at a bunch of generators of the
 maximal ideal, and $M/\mathfrak{m}M $ is a finite-dimensional vector space and
 is thus of finite length.
 \begin{proof} 
@@ -1171,8 +1277,5 @@ The proof of the fiber dimension theorem is now complete.
 
 \end{proof} 
 
-
-We are done with the syllabus, and will now do ``bonus'' material.
-\lecture{11/8}
 
 
