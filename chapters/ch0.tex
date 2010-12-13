@@ -1,143 +1,111 @@
-\setcounter{chapter}{-1}
-\chapter{Categories}
+\setcounter{chapter}{-1} \chapter{Categories}
 
 N.B. This is a very rough, preliminary chapter. Currently it consists of notes
 taken in an algebraic topology class. Serious editing is still needed.
 
-\section{Introduction}
-\newcommand{\ob}{\mathrm{ob}}
-Categories are supposed to be places where mathematical objects live. 
+\section{Introduction} \newcommand{\ob}{\mathrm{ob}} Categories are supposed
+to be places where mathematical objects live.
 
-\begin{definition} 
-A \textbf{category} $\mathcal{C}$ consists of a collection of \textbf{objects},
-$\mathrm{ob}\mathcal{C}$, and for each pair of objects $X, Y \in
-\mathrm{ob}\mathcal{C}$, a set
-of \textbf{morphisms} $\mathcal{C}(X, Y)$. 
+\begin{definition} A \textbf{category} $\mathcal{C}$ consists of a collection
+of \textbf{objects}, $\mathrm{ob}\mathcal{C}$, and for each pair of objects
+$X, Y \in \mathrm{ob}\mathcal{C}$, a set of \textbf{morphisms} $\mathcal{C}(X,
+Y)$.
 
 For each object $X \in \ob\mathcal{C}$, there is an \textbf{identity morphism}
 $1 \in \mathcal{C}(X, X)$. Next, there is a \textbf{composition law}
-$\mathcal{C}(X, Y) \times \mathcal{C}(Y, Z) \to \mathcal{C}(X, Z), (g, f) \to g
-\circ f$ for every
-triple $X, Y, Z$ of objects, which is unital and associative. 
+$\mathcal{C}(X, Y) \times \mathcal{C}(Y, Z) \to \mathcal{C}(X, Z), (g, f) \to
+g \circ f$ for every triple $X, Y, Z$ of objects, which is unital and
+associative.
 
 We write $X \to Y$ to denote an element of $\mathcal{C}(X, Y)$.
-\end{definition} 
+\end{definition}
 
-$\mathcal{C}$ is the storehouse for mathematical objects: groups, Lie algebras,
-rings, etc.
+$\mathcal{C}$ is the storehouse for mathematical objects: groups, Lie
+algebras, rings, etc.
 
-\begin{remark} 
-Some people use $\hom(X, Y)$  to denote the set of morphisms between $X, Y$.
-\end{remark} 
+\begin{remark} Some people use $\hom(X, Y)$ to denote the set of morphisms
+between $X, Y$. \end{remark}
 
-\begin{remark} 
-When we write $X \in \mathcal{C}$, it means $X \in \ob \mathcal{C}$. This is a
-convenient convention. 
-\end{remark} 
+\begin{remark} When we write $X \in \mathcal{C}$, it means $X \in \ob
+\mathcal{C}$. This is a convenient convention. \end{remark}
 
-\begin{remark} 
-The objects don't have to form a set; they can be large. But the things
-$\mathcal{C}(X, Y)$ are sets.
-\end{remark} 
+\begin{remark} The objects don't have to form a set; they can be large. But
+the things $\mathcal{C}(X, Y)$ are sets. \end{remark}
 
 Now, we do a bunch of examples.
 
-\begin{example} 
-\begin{enumerate}
-\item $\mathcal{C}  = \mathbf{Sets}$; the objects are sets, and the morphisms
-are maps of sets. 
-\item $\mathcal{C} = \mathbf{Grps}$; the objects are groups, and the morphisms
-are maps of groups (i.e. homomorphisms).
-\item $\mathcal{C} = \mathbf{LieAlg}$; the objects are Lie algebras, and the
-morphisms are maps of Lie algebras (i.e. homomorphisms). 
-\end{enumerate}
-\end{example} 
+\begin{example} \begin{enumerate} \item $\mathcal{C} = \mathbf{Sets}$; the
+objects are sets, and the morphisms are maps of sets. \item $\mathcal{C} =
+\mathbf{Grps}$; the objects are groups, and the morphisms are maps of groups
+(i.e. homomorphisms). \item $\mathcal{C} = \mathbf{LieAlg}$; the objects are
+Lie algebras, and the morphisms are maps of Lie algebras (i.e. homomorphisms).
+\end{enumerate} \end{example}
 
 There is \textbf{nothing} in the language of categories that lets you look
 \emph{inside} an object. We think of vector spaces having elements, spaces
 having points, etc. Categories treat these kinds of things as invisible. There
-is nothing ``inside'' of $X \in \mathcal{C}$. The only way to understand $X$ is
-to understand the homs into and out of $X$. 
+is nothing ``inside'' of $X \in \mathcal{C}$. The only way to understand $X$
+is to understand the homs into and out of $X$.
 
 We will elaborate on this in the future.
 
+\begin{example} Let $G$ be a finite group. Then we an make a category $B_G$
+where the objects just consist of one point $\ast$ and the maps $\ast \to
+\ast$ are the elements of $G$. The identity is the identity of $G$ and
+composition is multiplication in the group.
 
-\begin{example} 
-Let $G$ be a finite group. Then we an make a category $B_G$ where the objects
-just consist of one point $\ast$ and the maps $\ast \to \ast$ are the elements
-of $G$. The identity is the identity of $G$ and composition is multiplication
-in the group. 
+In this case, the category doesn't represent so much of a class of objects,
+but instead we think of the composition law as the key thing. So a group is a
+special kind of category. \end{example}
 
-In this case, the category doesn't represent so much of a class of objects, but
-instead we think of the composition law as the key thing. So a group is a
-special kind of category.
-\end{example} 
-
-\begin{example} 
-A monoid is precisely a category with one object. Recall that a \textbf{monoid}
-has an associative and unital multiplication (not necessarily inverses).
-\end{example} 
-
+\begin{example} A monoid is precisely a category with one object. Recall that
+a \textbf{monoid} has an associative and unital multiplication (not
+necessarily inverses). \end{example}
 
 Figures... ADD THEM
 
-\begin{remark} 
-A lot of people said that they've seen this before in commutative algebra, but not necessarily
-thoroughly.  So we will keep talking about this.
-\end{remark} 
+\begin{remark} A lot of people said that they've seen this before in
+commutative algebra, but not necessarily thoroughly. So we will keep talking
+about this. \end{remark}
 
+\subsection{Functors} Let $\mathcal{C}, \mathcal{D}$ be categories.
 
-\subsection{Functors}
-Let $\mathcal{C}, \mathcal{D}$ be categories.
+\begin{definition} A \textbf{functor} $F: \mathcal{C} \to \mathcal{D}$
+consists of a function $F: \ob \mathcal{C} \to \ob \mathcal{D}$ and, for each
+pair $X, Y \in \mathcal{C}$, a map $F: \mathcal{C}(X, Y) \to \mathcal{D}(FX,
+FY)$, which preserves the identity maps and composition. \end{definition}
 
-\begin{definition} 
-A \textbf{functor} $F: \mathcal{C} \to \mathcal{D}$ consists of a function $F:
-\ob \mathcal{C} \to \ob \mathcal{D}$ and, for each pair $X, Y \in \mathcal{C}$,
-a map
-$F: \mathcal{C}(X, Y) \to \mathcal{D}(FX, FY)$, which preserves the identity
-maps and composition. 
-\end{definition} 
+\begin{example} There is a functor from $\mathbf{Sets} \to
+\mathbf{AbelianGrp}$ sending a set $S$ to a free abelian group on the set.
+\end{example}
 
-\begin{example} 
-There is a functor from $\mathbf{Sets} \to \mathbf{AbelianGrp}$ sending a set
-$S$ to a free abelian group on the set.
-\end{example} 
+\begin{example} There is a functor from $\mathbf{TopSpaces} \to
+\mathbf{GradedAbGrp}$ (categories of topological spaces and graded abelian
+groups) sending a space $X$ to its homology groups $H_*(X)$. We know that
+given a map of spaces, we get a map of graded abelian groups. \end{example}
 
-\begin{example} 
-There is a functor from $\mathbf{TopSpaces} \to \mathbf{GradedAbGrp}$
-(categories of topological spaces and graded abelian groups) sending a
-space $X$ to its homology groups $H_*(X)$. We know that given a map of spaces,
-we get a map of graded abelian groups. 
-\end{example} 
-
-
-\begin{example} 
-What is a functor $B_G \stackrel{}{\to} \mathbf{Sets}$? Here $B_G$ is the
-category alluded to above. 
+\begin{example} What is a functor $B_G \stackrel{}{\to} \mathbf{Sets}$? Here
+$B_G$ is the category alluded to above.
 
 The unique object $\ast$ goes to some set $X$. For each element $g \in G$, we
 get a map $g: \ast \to \ast$ and thus a map $X \to X$. This is supposed to
 preserve the composition law (which in $G$ is just multiplication), as well as
-identities. 
+identities.
 
-In particular, we get maps $i_G: X \to X$ corresponding to each $g \in G$, such
-that the following diagram commutes:
-\[ \xymatrix{
-X \ar[r]^{i_{g_1}} \ar[rd]^{i_{g_1g_2}} & X \ar[d]^{i_{g_2}} \\ & X 
-}\]
-So a functor $B_G \to \mathbf{Sets}$ is just a left $G$-action on a set $X$.
-\end{example} 
+In particular, we get maps $i_G: X \to X$ corresponding to each $g \in G$,
+such that the following diagram commutes: \[ \xymatrix{ X \ar[r]^{i_{g_1}}
+\ar[rd]^{i_{g_1g_2}} & X \ar[d]^{i_{g_2}} \\ & X }\] So a functor $B_G \to
+\mathbf{Sets}$ is just a left $G$-action on a set $X$. \end{example}
 
-``I never liked the idea of left and right action.  What about aliens on
+``I never liked the idea of left and right action. What about aliens on
 another planet that didn't have left and right hands?''
 
 Sometimes these are called \textbf{covariant functors}. Indeed:
 
-\begin{definition} 
-A \textbf{contravariant functor} from $\mathcal{C} \stackrel{F}{\to}\mathcal{D}$ is similar
-data except that now a map $X \to Y$ now goes to a map $FY \to FX$. Composites
-are required to be preserved, albeit in the other direction. 
-\end{definition} 
+\begin{definition} A \textbf{contravariant functor} from $\mathcal{C}
+\stackrel{F}{\to}\mathcal{D}$ is similar data except that now a map $X \to Y$
+now goes to a map $FY \to FX$. Composites are required to be preserved, albeit
+in the other direction. \end{definition}
 
 ``The reason we have shiny objects in nature is so that we will think of
 contravariant functors. If you look in a mirror, it's like applying a
@@ -145,404 +113,282 @@ contravariant functor to yourself. This is kind of a myopic view of mankind.''
 
 As you might guess:
 
-\begin{example} 
-A \textbf{contravariant} functor from $B_G$ to $\mathbf{Sets}$ corresponds to a
-set with a \emph{right} $G$-action. 
-\end{example} 
+\begin{example} A \textbf{contravariant} functor from $B_G$ to $\mathbf{Sets}$
+corresponds to a set with a \emph{right} $G$-action. \end{example}
 
 We will, in a week or so, define a contravariant version of homology when we
 start studying cohomology.
 
-\begin{example} 
-On the category $\mathbf{Vect}$ of vector spaces, we have the contravariant
-functor
-\[ V \to V^{\ast}.  \]
-\end{example} 
+\begin{example} On the category $\mathbf{Vect}$ of vector spaces, we have the
+contravariant functor \[ V \to V^{\ast}. \] \end{example}
 
-\begin{example} 
-If we map $B_G \to B_G$ sending $\ast \to \ast$ and $g \to g^{-1}$, we get a
-contravariant functor. 
-\end{example} 
+\begin{example} If we map $B_G \to B_G$ sending $\ast \to \ast$ and $g \to
+g^{-1}$, we get a contravariant functor. \end{example}
 
 There is room, nevertheless, for something else. You could have something that
-sent an object to a map. 
-This is, I think, the reason for Maclane and Eilenberg to describe the next
-property.
+sent an object to a map. This is, I think, the reason for Maclane and
+Eilenberg to describe the next property.
 
 \subsection{Natural transformations}
 
-The original paper of Eilenberg and Maclane was called ``On a general theory of
-natural transformations.'' Maclane was a great guy, incidentally, besides
-inventing homological algebra; there was a
-picture in his office of someone holding a ray gun like a sci-fi movie yelling Tor, Tor, Tor. 
-
+The original paper of Eilenberg and Maclane was called ``On a general theory
+of natural transformations.'' Maclane was a great guy, incidentally, besides
+inventing homological algebra; there was a picture in his office of someone
+holding a ray gun like a sci-fi movie yelling Tor, Tor, Tor.
 
 Suppose $F, G: \mathcal{C} \to \mathcal{D}$ are functors.
 
-\begin{definition} 
-A \textbf{natural transformation} $T: F \to G$ consists of the following data.
-For each $X \in C$, there is a morphism $TX: FX \to GX$ satisfying the following
-condition. Whenever $f: X \to Y$ is a morphism, the following diagram must
-commute:
-\[ \xymatrix{
-FX \ar[d]^{TX }\ar[r] &  FY \ar[d]^{TY}  \\
-GX \ar[r] &  GY
-}.\]
-\end{definition} 
+\begin{definition} A \textbf{natural transformation} $T: F \to G$ consists of
+the following data. For each $X \in C$, there is a morphism $TX: FX \to GX$
+satisfying the following condition. Whenever $f: X \to Y$ is a morphism, the
+following diagram must commute: \[ \xymatrix{ FX \ar[d]^{TX }\ar[r] & FY
+\ar[d]^{TY} \\ GX \ar[r] & GY }.\] \end{definition}
 
 When we say that things are ``natural'' in the future, we will mean that the
-transformation between functors is natural in this sense. 
+transformation between functors is natural in this sense.
 
-\begin{example} 
-The \textbf{connecting homomorphism} $H_n(X, A) \to H_{n-1}(A)$ is  natural. This is going to be a little rocky, but let's say what this
-means.
+\begin{example} The \textbf{connecting homomorphism} $H_n(X, A) \to
+H_{n-1}(A)$ is natural. This is going to be a little rocky, but let's say what
+this means.
 
-If we have pairs $(X, A) \to (Y, B)$, then the following diagram commutes
-\[ \xymatrix{
-H_n(X, A) \ar[d]  \ar[r] &  H_{n-1}(A) \ar[d] \\
-H_n(Y, B) \ar[r] &  H_{n-1}(B)
-}.\]
-This identity is very important in the axiomatic characterization of homology,
-due to Eilenberg-Steenrod. 
+If we have pairs $(X, A) \to (Y, B)$, then the following diagram commutes \[
+\xymatrix{ H_n(X, A) \ar[d] \ar[r] & H_{n-1}(A) \ar[d] \\ H_n(Y, B) \ar[r] &
+H_{n-1}(B) }.\] This identity is very important in the axiomatic
+characterization of homology, due to Eilenberg-Steenrod.
 
-This is a little funny, and one has to think about which category we're talking
-about. We can use the category of \textbf{pairs of topological spaces}. So the
-objects here are pairs $(X, A)$ and morphisms are morphisms of pairs. 
-\end{example} 
+This is a little funny, and one has to think about which category we're
+talking about. We can use the category of \textbf{pairs of topological
+spaces}. So the objects here are pairs $(X, A)$ and morphisms are morphisms of
+pairs. \end{example}
 
-\begin{remark} 
-``I'm here to put the 'funk' in functor.'' (Dick Gross came in to say hello.)
-\end{remark} 
+\begin{remark} ``I'm here to put the 'funk' in functor.'' (Dick Gross came in
+to say hello.) \end{remark}
 
-Some people don't like this. They don't like to use the language of categories.
-If you really try to go in and examine things, it can be hard to figure out
-what things really mean.
-However, we will use it to state theorems conveniently. 
+Some people don't like this. They don't like to use the language of
+categories. If you really try to go in and examine things, it can be hard to
+figure out what things really mean. However, we will use it to state theorems
+conveniently.
 
+\begin{exercise} Work this out for yourselves. Suppose you have two functors
+$B_G \to \mathbf{Sets}$, i.e. $G$-sets. What's a natural transformation
+between them? \end{exercise}
 
-\begin{exercise} 
-Work this out for yourselves. Suppose you have two functors $B_G \to
-\mathbf{Sets}$, i.e. $G$-sets. What's a natural transformation between them?
-\end{exercise} 
-
-Now I want to prove a theorem.
-\begin{theorem} 
-If $f: X \to Y$ is a map in $\mathcal{C}$, and $F: \mathcal{C} \to \mathcal{D}$
-is a functor, then $F(f): FX \to FY$ is an isomorphism. 
-\end{theorem} 
-This is going to have a really stupid proof, but there is an important point
-lurking here.
-\begin{example} 
+Now I want to prove a theorem. \begin{theorem} If $f: X \to Y$ is a map in
+$\mathcal{C}$, and $F: \mathcal{C} \to \mathcal{D}$ is a functor, then $F(f):
+FX \to FY$ is an isomorphism. \end{theorem} This is going to have a really
+stupid proof, but there is an important point lurking here. \begin{example}
 Let $\mathcal{C}$ be the homotopy category of topological spaces
 $\mathbf{hoT}$. The objects are topological spaces and the morphisms between
 $X, Y$ are the continuous maps $X \to Y$ modulo the relation of being
 homotopic. Homology is actually a functor from $\mathbf{hoT}$ to the category
-of graded abelian groups.
-\end{example} 
-
+of graded abelian groups. \end{example}
 
 Hold on. Wait a second. Do we even know what an isomorphism in a category even
 is? No, we don't.
 
-\begin{definition} 
-An \textbf{isomorphism} between objects $X, Y$ in a category $\mathcal{C}$ is a
-map $f: X \to Y$ such that there exists $g: Y \to X$ with 
-\[ g \circ f = 1_X, \quad f \circ g = 1_Y.  \]
-\end{definition} 
+\begin{definition} An \textbf{isomorphism} between objects $X, Y$ in a
+category $\mathcal{C}$ is a map $f: X \to Y$ such that there exists $g: Y \to
+X$ with \[ g \circ f = 1_X, \quad f \circ g = 1_Y. \] \end{definition}
 
-This is more correct than the idea of being one-to-one and onto. A bijection of
-topological spaces is not necessarily a homeomorphism.
+This is more correct than the idea of being one-to-one and onto. A bijection
+of topological spaces is not necessarily a homeomorphism.
 
-
-\begin{proof} 
-If we have maps $f: X \to Y$ and $g : Y \to X$ such that the composites both
-ways are identities, then we can apply the functor $F$ to the whole dog and
-pony show, and we find that since
-\[ f \circ g = 1_Y, \quad g \circ f = 1_X,   \]
-that
-\[ F(f) \circ F(g) = 1_{F(Y)}, \quad F(g) \circ F(f) = 1_{F(X)}.  \]
-We have used the fact that functors preserve composition and identities. This
-implies that $F(f)$ is an isomorphism. 
-\end{proof} 
+\begin{proof} If we have maps $f: X \to Y$ and $g : Y \to X$ such that the
+composites both ways are identities, then we can apply the functor $F$ to the
+whole dog and pony show, and we find that since \[ f \circ g = 1_Y, \quad g
+\circ f = 1_X, \] that \[ F(f) \circ F(g) = 1_{F(Y)}, \quad F(g) \circ F(f) =
+1_{F(X)}. \] We have used the fact that functors preserve composition and
+identities. This implies that $F(f)$ is an isomorphism. \end{proof}
 
 Categories have a way of making things so general that they're trivial. Hence,
 it is called general abstract nonsense. The things that become meaningful in
-category theory are \textbf{not} the proofs. They are the \textbf{definitions}.
-What we just did is very much in the spirit I was describing of categories. The
-notion of isomorphism was defined in terms of properties of maps, not in terms
-of things intrinsic (like injections and surjections). 
+category theory are \textbf{not} the proofs. They are the
+\textbf{definitions}. What we just did is very much in the spirit I was
+describing of categories. The notion of isomorphism was defined in terms of
+properties of maps, not in terms of things intrinsic (like injections and
+surjections).
 
 What's important here is not the theorem, but the \emph{definition of an
 isomorphism.}
 
-
-
 A lot of it for this course, though, is just getting used to the language and
-the definitions.  
+the definitions.
 
 \section{Various universal constructions}
 
 Last time, we introduced the idea of a category, and showed that a functor
-takes isomorphisms to isomorphisms.  This was an amazing result with a trivial
-proof.  Today, we will characterize objects in terms of maps.
+takes isomorphisms to isomorphisms. This was an amazing result with a trivial
+proof. Today, we will characterize objects in terms of maps.
 \subsection{Initial and terminal objects}
 
+\begin{definition} Let $\mathcal{C}$ be a category. An \textbf{initial object}
+in a category is an object $X \in \mathcal{C}$ with the property that
+$\mathcal{C}(X, Y)$ has one element for all $Y \in \mathcal{C}$.
 
-\begin{definition} 
-Let $\mathcal{C}$ be a category. An \textbf{initial object} in a category is an
-object $X \in \mathcal{C}$ with the property that $\mathcal{C}(X, Y)$ has one
-element for all $Y \in \mathcal{C}$. 
+So there is a unique map out of $X$ into each $Y \in \mathcal{C}$.
+\end{definition}
 
-So there is a unique map out of $X$ into each $Y \in \mathcal{C}$. 
-\end{definition} 
+\begin{example} If $\mathcal{C}$ is $\mathbf{Sets}$, then the empty set
+$\emptyset$ is an initial object. The empty set is the set for indecisive
+people. To map out of the indecisive set, you never have to decide where
+anything goes---it just goes. There is a unique map from the empty set into
+any other set. \end{example}
 
-
-\begin{example} 
-If $\mathcal{C}$ is $\mathbf{Sets}$, then the empty set $\emptyset$ is an
-initial object. The empty set is the set for indecisive people. To map out of
-the indecisive set, you never have to decide where anything goes---it just
-goes. There is a unique map from the empty set into any other set. 
-\end{example} 
-
-It seems too abstract to be useful. But it is. 
+It seems too abstract to be useful. But it is.
 
 There is a dual notion, called a \textbf{terminal object}, where every object
-can map into it in precisely one way. 
-\begin{definition} 
-A \textbf{terminal object} in a category $\mathcal{C}$ is an object $Y \in
-\mathcal{C}$ such that $\mathcal{C}(X, Y) = \ast$ for each $X \in \mathcal{C}$.
-\end{definition} 
+can map into it in precisely one way. \begin{definition} A \textbf{terminal
+object} in a category $\mathcal{C}$ is an object $Y \in \mathcal{C}$ such that
+$\mathcal{C}(X, Y) = \ast$ for each $X \in \mathcal{C}$. \end{definition}
 
-\begin{example} 
-The one point set is a terminal object in $\mathbf{Sets}$. 
-\end{example} 
+\begin{example} The one point set is a terminal object in $\mathbf{Sets}$.
+\end{example}
 
 The important thing about the next ``theorems'' is the conceptual framework.
-\begin{theorem} 
-Any two initial (resp. terminal) objects in $\mathcal{C}$ are isomorphic by a
-unique isomorphism.
-\end{theorem} 
-\begin{proof} 
-The proof is really easy. We do it for terminal objects. Say $Y, Y'$ are
-terminal objects. Then $\mathcal{C}(Y, Y')$ and $\mathcal{C}(Y', Y)$ are one
-point sets. So there are unique maps $Y \to Y', Y' \to Y$, whose composites
-must be the identities: we know that $\mathcal{C}(Y, Y) , \mathcal{C}(Y', Y')$
-are one-point sets. This means that the maps $Y \to Y', Y' \to Y$ are
-isomorphisms. 
-\end{proof} 
+\begin{theorem} Any two initial (resp. terminal) objects in $\mathcal{C}$ are
+isomorphic by a unique isomorphism. \end{theorem} \begin{proof} The proof is
+really easy. We do it for terminal objects. Say $Y, Y'$ are terminal objects.
+Then $\mathcal{C}(Y, Y')$ and $\mathcal{C}(Y', Y)$ are one point sets. So
+there are unique maps $Y \to Y', Y' \to Y$, whose composites must be the
+identities: we know that $\mathcal{C}(Y, Y) , \mathcal{C}(Y', Y')$ are
+one-point sets. This means that the maps $Y \to Y', Y' \to Y$ are
+isomorphisms. \end{proof}
 
-There is a philosophical point to be made here. We have characterized an object
-uniquely in terms of mapping properties. We have characterized it
+There is a philosophical point to be made here. We have characterized an
+object uniquely in terms of mapping properties. We have characterized it
 \emph{uniquely up to unique isomorphism,} which is really the best you can do
 in mathematics. Two sets aren't generally the ``same,'' but they may be
 isomorphism up to unique isomorphism. Like the sets of your father and Darth
 Vader: they're different (unless you're Luke), but the sets are isomorphic up
-to unique isomorphism. 
+to unique isomorphism.
 
 Now we're going to talk about a bunch of other examples, which can all be
 phrased via initial or terminal objects in some weird category. This,
 therefore, is the proof for \emph{everything} we will do today.
 
-Say we have a diagram
-\[ 
-\xymatrix{
-A \ar[d] \ar[r] &  B \ar[d] \\
-C \ar[r] &  X}.
-\]
-We can say what it means for this to be a \textbf{push-out}.
+Say we have a diagram \[ \xymatrix{ A \ar[d] \ar[r] & B \ar[d] \\ C \ar[r] &
+X}. \] We can say what it means for this to be a \textbf{push-out}.
 
-\begin{definition} 
-A square like this,
-\[ 
-\xymatrix{
-A \ar[d] \ar[r] &  B \ar[d] \\
-C \ar[r] &  X}.
-\]
-is a \textbf{pushout square} (and $X$ is called the \textbf{push-out}) if, given a diagram
-\[ \xymatrix{
-A \ar[r] \ar[d]  &  B \ar[dd] \\ 
-C \ar[rd] & \\
-& Y
-}\]
-there is a unique map $X \to Y$ making the diagram
-\[ \xymatrix{
-A \ar[r] \ar[d]  &  B \ar[d] \\ 
-C \ar[rd] \ar[r] & X  \ar[d]  \\
-& Y
-}.\]
-\end{definition} 
+\begin{definition} A square like this, \[ \xymatrix{ A \ar[d] \ar[r] & B
+\ar[d] \\ C \ar[r] & X}. \] is a \textbf{pushout square} (and $X$ is called
+the \textbf{push-out}) if, given a diagram \[ \xymatrix{ A \ar[r] \ar[d] & B
+\ar[dd] \\ C \ar[rd] & \\ & Y }\] there is a unique map $X \to Y$ making the
+diagram \[ \xymatrix{ A \ar[r] \ar[d] & B \ar[d] \\ C \ar[rd] \ar[r] & X
+\ar[d] \\ & Y }.\] \end{definition}
 
-\begin{example} 
-The following is a pushout square in the category of abelian groups:
-\[ \xymatrix{
-\mathbb{Z}/2 \ar[r] \ar[d]  &  \mathbb{Z}/4 \ar[d]  \\ 
-\mathbb{Z}/6 \ar[r] &  \mathbb{Z}/12
-}.\]
-In the category of groups, the push-out is actually
-$\mathrm{SL}_2(\mathbb{Z})$---this is a cool theorem. The point is that being a
-push-out is actually dependent on the category.
-\end{example} 
+\begin{example} The following is a pushout square in the category of abelian
+groups: \[ \xymatrix{ \mathbb{Z}/2 \ar[r] \ar[d] & \mathbb{Z}/4 \ar[d] \\
+\mathbb{Z}/6 \ar[r] & \mathbb{Z}/12 }.\] In the category of groups, the
+push-out is actually $\mathrm{SL}_2(\mathbb{Z})$---this is a cool theorem. The
+point is that being a push-out is actually dependent on the category.
+\end{example}
 
-\begin{proposition} 
-If the push-out of 
-\[ \xymatrix{
-A \ar[d] \ar[r] & B \\
-C
-}\]
-exists, it is unique up to unique isomorphism. 
-\end{proposition} 
-\begin{proof} 
-We can prove this in two ways. One is that suppose I had two pushout squares
-\[ 
-\xymatrix{
-A \ar[d] \ar[r] &  B \ar[d] \ar[rdd] \\
-C \ar[r] \ar[rrd] &  X \\
-& & X'}.
-\]
-Then there are unique maps $X \to X', X' \to X$ from the universal property,
-which have to be isomorphisms. 
+\begin{proposition} If the push-out of \[ \xymatrix{ A \ar[d] \ar[r] & B \\ C
+}\] exists, it is unique up to unique isomorphism. \end{proposition}
+\begin{proof} We can prove this in two ways. One is that suppose I had two
+pushout squares \[ \xymatrix{ A \ar[d] \ar[r] & B \ar[d] \ar[rdd] \\ C \ar[r]
+\ar[rrd] & X \\ & & X'}. \] Then there are unique maps $X \to X', X' \to X$
+from the universal property, which have to be isomorphisms.
 
 Alternatively, we can phrase push-outs in terms of initial objects. We could
 consider the category of all cartesian diagrams as above with $A,B,C$ and
-mapping into something else; then the initial
-object in this category is the push-out.
-\end{proof} 
+mapping into something else; then the initial object in this category is the
+push-out. \end{proof}
 
 Now we abstract on this idea further.
 
 \subsection{Colimits}
 
-
-We now want to generalize the push-out. 
-Instead of a shape with $A,B,C$, we do something more general.
+We now want to generalize the push-out. Instead of a shape with $A,B,C$, we do
+something more general.
 
 Start with a \textbf{small} category $I$: this is not meant in a pejorative
 sense, but that the objects of $I$ form a set. What you're supposed to picture
-is that $I$ is something like the category
-\[ 
-\xymatrix{
-\ast \ar[d] \ar[r] &  \ast \\
-\ast
-}
-\]
-or the category
-\[ \ast \rightrightarrows \ast.  \]
-We will formulate the notion of a \textbf{colimit} which will specialize to the
+is that $I$ is something like the category \[ \xymatrix{ \ast \ar[d] \ar[r] &
+\ast \\ \ast } \] or the category \[ \ast \rightrightarrows \ast. \] We will
+formulate the notion of a \textbf{colimit} which will specialize to the
 push-out when $I$ is the first case. $I$ is to be called the \textbf{indexing
-category}. 
+category}.
 
-So we will look at functors 
-\[ F: I \to \mathcal{C},  \]
-which in the case of the three-element category, will just correspond to
-diagrams
-\[ \xymatrix{A \ar[d]  \ar[r] &  B \\ C}.  \]
+So we will look at functors \[ F: I \to \mathcal{C}, \] which in the case of
+the three-element category, will just correspond to diagrams \[ \xymatrix{A
+\ar[d] \ar[r] & B \\ C}. \]
 
 We will call a \textbf{cone} on $F$ (this is an ambiguous term) an object $X
-\in \mathcal{C}$ equip'd\footnote{Imagine I wrote that with an English accent.}
-with maps $F_i \to X, \forall i \in I$ such that for all maps $i \to i' \in I$,
-the diagram below commutes:
-\[ \xymatrix{
-F_i \ar[d] \ar[r] &  X \\
-F_{i'} \ar[ru]
-}.\]
+\in \mathcal{C}$ equip'd\footnote{Imagine I wrote that with an English
+accent.} with maps $F_i \to X, \forall i \in I$ such that for all maps $i \to
+i' \in I$, the diagram below commutes: \[ \xymatrix{ F_i \ar[d] \ar[r] & X \\
+F_{i'} \ar[ru] }.\]
 
 An example would be a cone on the three-element category above: then this is
-just a commutative diagram
-\[ \xymatrix{
-A \ar[r]\ar[d]  &  B \ar[d]  \\
-C \ar[r] &  D
-}.\]
+just a commutative diagram \[ \xymatrix{ A \ar[r]\ar[d] & B \ar[d] \\ C \ar[r]
+& D }.\]
 
 \newcommand{\colim}{\mathrm{colim}}
 
-\begin{definition} 
-The \textbf{colimit} of the diagram $F: I \to \mathcal{C}$, written as $\colim
-F$ or $\colim_I F $ or $\varinjlim_I F$, if it exists, is a cone $F \to X$ with
-the property that if $F \to Y$ is any other cone, then there is a unique map $X
-\to Y$ making the diagram
-\[ \xymatrix{
-F  \ar[rd] \ar[r] &  X \ar[d]  \\
-& Y
-}\]
-commute. (This means that the corresponding diagram with $F_i$ replacing $F$
-commutes for each $i \in I$.)
-\end{definition} 
+\begin{definition} The \textbf{colimit} of the diagram $F: I \to \mathcal{C}$,
+written as $\colim F$ or $\colim_I F $ or $\varinjlim_I F$, if it exists, is a
+cone $F \to X$ with the property that if $F \to Y$ is any other cone, then
+there is a unique map $X \to Y$ making the diagram \[ \xymatrix{ F \ar[rd]
+\ar[r] & X \ar[d] \\ & Y }\] commute. (This means that the corresponding
+diagram with $F_i$ replacing $F$ commutes for each $i \in I$.)
+\end{definition}
 
 We could think of some weird category where cones are objects and the colimit
 is initial. In any case, we see:
 
-\begin{proposition} 
-$\colim F$, if it exists, is unique up to unique isomorphism. 
-\end{proposition} 
+\begin{proposition} $\colim F$, if it exists, is unique up to unique
+isomorphism. \end{proposition}
 
-Let us go through some examples. We already looked at push-outs. 
+Let us go through some examples. We already looked at push-outs.
 
-\begin{example} 
-Consider the category $I$ described by
-\[ \ast, \ast, \ast, \ast.  \]
-A functor $F: I \to \mathbf{Sets}$ is just a list of four sets $A, B, C, D$. 
-The colimit is just the disjoint union $A \sqcup B \sqcup C \sqcup D$. This is
-the universal property of the disjoint union. To hom out of the disjoint union
-is the same thing as homming out of each piece.
-\end{example} 
+\begin{example} Consider the category $I$ described by \[ \ast, \ast, \ast,
+\ast. \] A functor $F: I \to \mathbf{Sets}$ is just a list of four sets $A, B,
+C, D$. The colimit is just the disjoint union $A \sqcup B \sqcup C \sqcup D$.
+This is the universal property of the disjoint union. To hom out of the
+disjoint union is the same thing as homming out of each piece. \end{example}
 
+\begin{example} Suppose we had the same category $I$ but we went into abelian
+groups. Then $F$ corresponds, again, to a list of four abelian groups. The
+colimit is the direct sum. Again, the direct sum is characterized by the same
+universal property. \end{example}
 
-\begin{example} 
-Suppose we had the same category $I$ but we went into abelian groups. Then $F$
-corresponds, again, to a list of four abelian groups. The colimit is the direct
-sum. Again, the direct sum is characterized by the same universal property. 
-\end{example} 
+\begin{example} Suppose we had the same $I$ ($\ast, \ast, \ast, \ast$) but the
+category of groups was $\mathcal{C}$. Then the colimit is the free product of
+the four groups. \end{example}
 
-\begin{example} 
-Suppose we had the same $I$ ($\ast, \ast, \ast, \ast$) but the category of
-groups was $\mathcal{C}$. Then the colimit is the
-free product of the four groups. 
-\end{example} 
+\begin{example} Suppose we had the same $I$ and the category $\mathcal{C}$ was
+of commutative rings with unit. Then the colimit is the tensor product.
+\end{example}
 
-\begin{example} 
-Suppose we had the same $I$ and the category $\mathcal{C}$ was of commutative
-rings with unit. Then the colimit is the tensor product. 
-\end{example} 
-
-So the idea unifies a whole bunch of constructions. 
+So the idea unifies a whole bunch of constructions.
 
 Now let us take a different example.
 
-\begin{example} 
-Take 
-\[ I = \ast \rightrightarrows \ast.  \]
-So a functor $I \to \mathbf{Sets}$ is a diagram
-\[ A \rightrightarrows B.  \]
-Call the two maps $f,g: A \to B$. To get the colimit, we take $B$ and mod out
-by the equivalence relation generated by $f(a) \sim g(a)$. 
-To hom out of this is the same thing as homming  out of $B$ such that the
-pullbacks to $A$ are the same. 
+\begin{example} Take \[ I = \ast \rightrightarrows \ast. \] So a functor $I
+\to \mathbf{Sets}$ is a diagram \[ A \rightrightarrows B. \] Call the two maps
+$f,g: A \to B$. To get the colimit, we take $B$ and mod out by the equivalence
+relation generated by $f(a) \sim g(a)$. To hom out of this is the same thing
+as homming out of $B$ such that the pullbacks to $A$ are the same.
 
-This is the relation \textbf{generated} as above, not just as above. It can get
-tricky.
-\end{example} 
+This is the relation \textbf{generated} as above, not just as above. It can
+get tricky. \end{example}
 
-\begin{definition} 
-When $I$ is just a bunch of points  $\ast, \ast, \ast, \dots$ with no nonidentity morphisms, then the
-colimit over $I$ is called the \textbf{coproduct}.
-\end{definition} 
+\begin{definition} When $I$ is just a bunch of points $\ast, \ast, \ast,
+\dots$ with no nonidentity morphisms, then the colimit over $I$ is called the
+\textbf{coproduct}. \end{definition}
 
 We use the coproduct to mean things like direct sums, disjoint unions, and
-tensor products. 
+tensor products.
 
-\begin{definition} 
-When $I$ is $\ast \rightrightarrows \ast$, the colimit is called the
-\textbf{coequalizer}.
-\end{definition} 
+\begin{definition} When $I$ is $\ast \rightrightarrows \ast$, the colimit is
+called the \textbf{coequalizer}. \end{definition}
 
-\begin{theorem} 
-If $\mathcal{C}$ has all coproducts and coequalizers, then it has all colimits. 
-\end{theorem} 
+\begin{theorem} If $\mathcal{C}$ has all coproducts and coequalizers, then it
+has all colimits. \end{theorem}
 
-\begin{proof} 
-Exercise. It's not too hard, but it is---I don't know, I'll talk about it on
-Monday. It's worth racking your brain over.
-\end{proof} 
+\begin{proof} Exercise. It's not too hard, but it is---I don't know, I'll talk
+about it on Monday. It's worth racking your brain over. \end{proof}
 
 One of the reasons I talked about colimits is that we can talk about it in
 class and use the language. Also, there are a lot of examples we haven't done
@@ -553,180 +399,137 @@ in class as we haven't studied filtered colimits.
 These are really useful, especially in algebraic topology. These are colimits
 over special $I$.
 
-\begin{definition} 
-An indexing category is \textbf{filtered} if the following hold:
-\begin{enumerate}
-\item Given $i_0, i_1 \in I$, there is a third object $i \in I$ such that both
-$i_0, i_1$ map into $i$. 
-\item Given any two maps $i_0 \rightrightarrows i_1$, there exists $i$ and $i_1
-\to i$ such that the two maps $i_0 \rightrightarrows i$ are equal. Any two ways
-of pushing an object into another can be made into the same eventually. 
-\end{enumerate}
-\end{definition} 
+\begin{definition} An indexing category is \textbf{filtered} if the following
+hold: \begin{enumerate} \item Given $i_0, i_1 \in I$, there is a third object
+$i \in I$ such that both $i_0, i_1$ map into $i$. \item Given any two maps
+$i_0 \rightrightarrows i_1$, there exists $i$ and $i_1 \to i$ such that the
+two maps $i_0 \rightrightarrows i$ are equal. Any two ways of pushing an
+object into another can be made into the same eventually. \end{enumerate}
+\end{definition}
 
-\begin{example} 
-If $I$ is the category
-\[ \ast \to \ast \to \ast \to \dots,  \]
+\begin{example} If $I$ is the category \[ \ast \to \ast \to \ast \to \dots, \]
 i.e. the category generated by the poset $\mathbb{Z}_{\geq 0}$, then that is
-filtered.
-\end{example} 
+filtered. \end{example}
 
-\begin{example} 
-If $G$ is a torsion-free abelian group, the category $I$ of finitely generated
-subgroups of $G$ and inclusion maps is filtered. We don't actually need the
-lack of torsion. 
-\end{example} 
+\begin{example} If $G$ is a torsion-free abelian group, the category $I$ of
+finitely generated subgroups of $G$ and inclusion maps is filtered. We don't
+actually need the lack of torsion. \end{example}
 
-\begin{definition} 
-Colimts over a filtered category are called \textbf{filtered colimits}.
-\end{definition} 
+\begin{definition} Colimts over a filtered category are called
+\textbf{filtered colimits}. \end{definition}
 
-\begin{example} 
-Any torsion-free abelian group is the filtered colimit of its finitely
-generated subgroups, which are free abelian groups.  
-\end{example} 
+\begin{example} Any torsion-free abelian group is the filtered colimit of its
+finitely generated subgroups, which are free abelian groups. \end{example}
 This gives a simple approach for showing that a torsion-free abelian group is
 flat.
 
-\begin{proposition} 
-If $I$ is filtered\footnote{Some people say filtering.} and $\mathcal{C} =
-\mathbf{Sets}, \mathbf{Abgrp}, \mathbf{Grps}$, etc., and $F: I \to \mathcal{C}$
-is a functor, then $\colim_I F$ exists and is given by the disjoint union of
-$F_i, i \in I$ modulo the relation $x \in F_i$ is equivalent to $x' \in F_{i'}$
-if $x$ maps to $x'$ under $F_i \to F_{i'}$. This is already an equivalence
-relation. 
-\end{proposition} 
+\begin{proposition} If $I$ is filtered\footnote{Some people say filtering.}
+and $\mathcal{C} = \mathbf{Sets}, \mathbf{Abgrp}, \mathbf{Grps}$, etc., and
+$F: I \to \mathcal{C}$ is a functor, then $\colim_I F$ exists and is given by
+the disjoint union of $F_i, i \in I$ modulo the relation $x \in F_i$ is
+equivalent to $x' \in F_{i'}$ if $x$ maps to $x'$ under $F_i \to F_{i'}$. This
+is already an equivalence relation. \end{proposition}
 
 The fact that the relation given above is transitive uses the filtering of the
-indexing set. Otherwise, we would need to use the relation generated by it. 
+indexing set. Otherwise, we would need to use the relation generated by it.
 
-\begin{example} 
-Take $\mathbb{Q}$. This is the filtered colimit of the free submodules
-$\mathbb{Z}(1/n)$.
+\begin{example} Take $\mathbb{Q}$. This is the filtered colimit of the free
+submodules $\mathbb{Z}(1/n)$.
 
 Alternatively, choose a sequence of numbers $m_1 , m_2, \dots, $ such that for
 all $p, n$, we have $p^n \mid m_i$ for $i \gg 0$. Then we have a sequence of
-maps
-\[ \mathbb{Z} \stackrel{m_1}{\to} \mathbb{Z} \stackrel{m_2}{\to}\mathbb{Z}
-\to \dots.   \]
-The colimit of this is $\mathbb{Q}$. There is a quick way of seeing this, which
-is left to the reader.
-\end{example} 
-\lecture{10/18}
+maps \[ \mathbb{Z} \stackrel{m_1}{\to} \mathbb{Z}
+\stackrel{m_2}{\to}\mathbb{Z} \to \dots. \] The colimit of this is
+$\mathbb{Q}$. There is a quick way of seeing this, which is left to the
+reader. \end{example} \lecture{10/18}
 
-\subsection{Filtered colimits}
-Last time, we talked about something called \emph{filtered colimits}. In this,
-we had a special property of the indexing category $I$. It had the property
-that given any two $i_0, i_1 \in I$, there was a third one into which they
-mapped; moreover, given any two maps $i_0 \rightrightarrows i_1$, there was a
-third one which coequalized them. Filtered colimits were defined as colimits
-over a filtered category. 
+\subsection{Filtered colimits} Last time, we talked about something called
+\emph{filtered colimits}. In this, we had a special property of the indexing
+category $I$. It had the property that given any two $i_0, i_1 \in I$, there
+was a third one into which they mapped; moreover, given any two maps $i_0
+\rightrightarrows i_1$, there was a third one which coequalized them. Filtered
+colimits were defined as colimits over a filtered category.
 
 When we have a functor $F: I \to \mathbf{Sets}, \mathbf{Grps},
 \mathbf{Modules}$ taking values in a ``nice'' category (e.g. the category of
 sets, modules, etc.), you can construct the colimit by taking the union of the
 $F_i, i \in I$ and quotienting by the equivalence relation $x \in F_i \sim x'
 \in F_{i'}$ if $f: i \to i'$ sends $x$ into $x'$. This is already an
-equivalence relation, as one can check. 
+equivalence relation, as one can check.
 
 Another way of saying this is that we have the disjoint union of the $F_i$
 modulo the relation that $a \in F_i$ and $b \in F_{i'}$ are equivalent if and
 only if there is a later $i''$ with maps $i \to i'', i' \to i''$ such that
-$a,b$ both map to the same thing in $F_{i''}$. 
+$a,b$ both map to the same thing in $F_{i''}$.
 
+Suppose $F: I \to \mathbf{Ch}$ is a functor from a filtered category $I$ to
+the category of chain complexes. For instance, $I$ could be the category $\ast
+\to \ast \to \ast \to \dots$, leading to a sequence of chain complexes
+$C_*^{(0)}\to C_{*}^{(1)} \to \dots$. This is the standard example you're
+supposed to keep in mind.
 
-Suppose $F: I \to \mathbf{Ch}$ is a functor from a filtered category $I$ to the
-category of chain complexes. For instance, $I$ could be the category $\ast \to
-\ast \to \ast \to \dots$, leading to  a sequence of chain complexes
-$C_*^{(0)}\to C_{*}^{(1)} \to \dots$.  This is the standard example you're
-supposed to keep in mind. 
+Then: \begin{proposition} The homology of the colimit $\varinjlim_I F$ is the
+colimit of the homologies $H(F_i)_{i \in F}$. \end{proposition}
 
-Then:
-\begin{proposition} 
-The homology of the colimit $\varinjlim_I F$ is the colimit of the homologies
-$H(F_i)_{i \in F}$.
-\end{proposition} 
+\begin{proof} This is easy to prove. The deep idea is the formulation, not the
+proof.
 
-\begin{proof} 
-This is easy to prove. The deep idea is the formulation, not the proof. 
-
-We will first prove that the  natural map
-\[ \colim_I (H_*F) \to H_* \colim_I F   \]
-is onto. Suppose we have something in $H_*(\colim F)$. Then this element $x$ is
-represented by a $n$-cycle $z$ in $(\colim_I F)_n$ for some $n$. The colimit
-$(\colim_I F)_n$ is just $\sqcup (F_i)_n$ modulo the equivalence relation. 
-So $z$ is represented by some $z' \in (F_i)_n$. We don't, a priori, know that
-$z'$ is a cycle, i.e. that $dz' = 0$. If this were the case, then we would have
-a class in $\colim_I (H_* F)$ mapping onto $x$.
+We will first prove that the natural map \[ \colim_I (H_*F) \to H_* \colim_I F
+\] is onto. Suppose we have something in $H_*(\colim F)$. Then this element
+$x$ is represented by a $n$-cycle $z$ in $(\colim_I F)_n$ for some $n$. The
+colimit $(\colim_I F)_n$ is just $\sqcup (F_i)_n$ modulo the equivalence
+relation. So $z$ is represented by some $z' \in (F_i)_n$. We don't, a priori,
+know that $z'$ is a cycle, i.e. that $dz' = 0$. If this were the case, then we
+would have a class in $\colim_I (H_* F)$ mapping onto $x$.
 
 However, $dz'$ does go to zero in the colimit $\colim_I F$ as $z'$ is a cycle
 in this colimit. Because it is filtered, we know that there is a map $f:i \to
-i'$ such that $dz'$ goes to zero in $i'$. 
-In $F_{i'}$, $z'$ becomes a cycle.  So the homology class of $x$ is in the
-image of $H_n(F_{i'})$, which maps into the colimit $\colim_I H_n(F_i)$, which
-in turn maps into the homology of the colimit. We have thus seen that
-\[ \colim_I H_n(F_i) \to H_n(\colim_I F_i)  \]
-is surjective. 
+i'$ such that $dz'$ goes to zero in $i'$. In $F_{i'}$, $z'$ becomes a cycle.
+So the homology class of $x$ is in the image of $H_n(F_{i'})$, which maps into
+the colimit $\colim_I H_n(F_i)$, which in turn maps into the homology of the
+colimit. We have thus seen that \[ \colim_I H_n(F_i) \to H_n(\colim_I F_i) \]
+is surjective.
 
-Now let us prove that it is one-to-one. Suppose $x \in \colim_I H_n(F)$ 
-goes to zero in the homology of the colimit $\colim_I F$. So $x$ is represented
-by some cycle $z \in Z_n(F_i)$.  In the colimit $\colim_I F$, $x$ is a
-boundary $x = dy$. There is thus $\overline{y} \in F_{i'}$ representing $y$. 
-By pushing forward into some mutually larger $i''$, we might as well suppose that $x = d
-\overline{y}$ in
-$F_i$ itself. This means that $x$ was zero in $H_n(F_i)$ itself.
-\end{proof} 
+Now let us prove that it is one-to-one. Suppose $x \in \colim_I H_n(F)$ goes
+to zero in the homology of the colimit $\colim_I F$. So $x$ is represented by
+some cycle $z \in Z_n(F_i)$. In the colimit $\colim_I F$, $x$ is a boundary $x
+= dy$. There is thus $\overline{y} \in F_{i'}$ representing $y$. By pushing
+forward into some mutually larger $i''$, we might as well suppose that $x = d
+\overline{y}$ in $F_i$ itself. This means that $x$ was zero in $H_n(F_i)$
+itself. \end{proof}
 
 I hope that made sense. If it didn't, it's one of those things that's more
 complicated when you say it out loud than when you think it through for
-yourself. I can't remember whether this was in Hatcher or not.
-But then you'll just get what I said here in a less entertaining way. I find
-these kinds of things hard to digest when someone is standing there telling it
-to me. 
+yourself. I can't remember whether this was in Hatcher or not. But then you'll
+just get what I said here in a less entertaining way. I find these kinds of
+things hard to digest when someone is standing there telling it to me.
 
 But anyway, this is one of the main uses of filtered colimits---or directed
-colimits, as some people say.  
-\lecture{[Section] 10/18}
+colimits, as some people say. \lecture{[Section] 10/18}
 
+The key observation made in class is that any diagram of the form \[
+\xymatrix{ X \ar[r]\ar[rd] & Y \ar[d] \\ & Z } \] can be interpreted as a
+\emph{functor} from a suitable \emph{diagram category}. A \emph{cone} on a
+functor $F: I \to \mathcal{C}$ can be defined as a collection of maps $Fi \to
+Z$. There is a category of cones one can define, and in this category, the
+initial object is the \emph{colimit}.
 
-The key observation made in class is that any diagram of the form
-\[ 
-\xymatrix{
-X \ar[r]\ar[rd] &  Y \ar[d]  \\ 
-& Z
-}
-\]
-can be interpreted as a \emph{functor} from a suitable \emph{diagram category}. 
-A \emph{cone} on a functor $F: I \to \mathcal{C}$ can be defined as a
-collection of maps $Fi \to Z$.  There is a category of cones one can define,
-and in this category, the initial object is the \emph{colimit}.  
+Colimits don't have to exist.
 
-Colimits don't have to exist.  
+\begin{remark} Given a functor $F: I \to \mathcal{C}$ where $\mathcal{C}$ has
+a terminal object, you can always consider the trivial cone over the functor
+mapping each object $Fi, i \in I$ into the terminal object. \end{remark}
 
-\begin{remark} 
-Given a functor $F: I \to \mathcal{C}$ where $\mathcal{C}$ has a terminal
-object, you can always consider the trivial cone over the functor mapping each
-object  $Fi, i \in I$ into the terminal object. 
-\end{remark} 
+For limits, one reverses the arrows and defines a \emph{co-cone} over a
+functor and considers the terminal object in the category of co-cones.
 
-For limits, one reverses the arrows and defines a \emph{co-cone} over a functor
-and considers the terminal object in the category of co-cones.
+As we saw in class, given a functor $G$, we can always define a natural map \[
+G(\colim_I F) \to \colim_I GF. \] Here is an example. Given the category $J:
+\ast \to \ast$, a functor $J \to \mathbf{Top}$ is just a morphism $X \to Y$. A
+colimit of this $X \to Y$ is just a space (the cone) $C_F$ with maps \[ X \to
+C_F, Y \to C_F. \] If $G$ is a functor from $\mathbf{Top}$ to some other
+category, we have a commutative diagram \[ \xymatrix{ G(X) \ar[rd] \ar[rr] & &
+G(Y) \ar[ld] \\ & G(C_F) \ar[ru] }\]
 
-
-As we saw in class, given a functor $G$, we can always define a natural map
-\[ G(\colim_I F) \to \colim_I GF.  \]
-Here is an example. Given the category $J: \ast \to \ast$, a functor $J \to
-\mathbf{Top}$ is just a morphism $X \to Y$. A colimit of this $X \to Y$ is just
-a space (the cone) $C_F$ with maps 
-\[ X \to C_F, Y \to C_F.  \]
-If $G$ is a functor from $\mathbf{Top}$ to some other category, we have a
-commutative diagram
-\[ \xymatrix{
-G(X) \ar[rd] \ar[rr] &  &  G(Y) \ar[ld] \\
-& G(C_F)  \ar[ru]
-}\]
-	
 From this, we get a map from this cone into the universal cone $C_{GF}$ over
-$CG(X) \to CG(Y)$. In particular, we get a map
-\[ G(C_F) \to C_{GF}.  \]
-
+$CG(X) \to CG(Y)$. In particular, we get a map \[ G(C_F) \to C_{GF}. \]

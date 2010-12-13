@@ -1,11 +1,10 @@
 \chapter{Foundations}
 
-Before beginning a proper study of commutative algebra, there is a set of
-basic definitions and general formalism (e.g. tensor products, projective
-modules, etc.)	 that one needs to assimilate, and the
-exposition of that is the purpose of the present chapter. It is assumed that
-the reader has at least some prior acquaintance with algebra, so the
-exposition will be occasionally quick.
+Before beginning a proper study of commutative algebra, there is a set of basic
+definitions and general formalism (e.g. tensor products, projective modules,
+etc.) that one needs to assimilate, and the exposition of that is the purpose
+of the present chapter. It is assumed that the reader has at least some prior
+acquaintance with algebra, so the exposition will be occasionally quick.
 
 \section{Basic definitions}
 
@@ -13,232 +12,233 @@ exposition will be occasionally quick.
 
 \subsection{Historical remarks: unique factorization}
 
-We shall begin with a few historical remarks to motivate the subject. Since they will occasionally
-refer terms that have not yet been defined, the reader may wish to skip ahead
-occasionally.
-
+We shall begin with a few historical remarks to motivate the subject. Since
+they will occasionally refer terms that have not yet been defined, the reader
+may wish to skip ahead occasionally.
 
 \textbf{Fermat's last theorem} states that the equation
-\begin{equation} \label{ft} x^n  + y^n = z^n  \end{equation}
+  \[ \label{ft} x^n + y^n = z^n \]
 has no nontrivial solutions in the integers.
 
-This result has a long history, and there
-have been many incorrect proofs. For instance, we could  try to prove this by
-factoring the expression \eqref{ft} for $n$ odd. Let $\zeta$ be a
-primitive $n$th root of unity; then we find
-\[ (x+y)(x+ \zeta y) (x+ \zeta^2y) \dots (x+ \zeta^{n-1}y) = z^n.  \]
+This result has a long history, and there have been many incorrect proofs. For
+instance, we could try to prove this by factoring the expression \eqref{ft} for
+$n$ odd. Let $\zeta$ be a primitive $n$th root of unity; then we find
+  \[ (x+y)(x+ \zeta y) (x+ \zeta^2y) \dots (x+ \zeta^{n-1}y) = z^n. \]
 We are tempted to ask how the product decomposition interacts with the power
-decomposition. The caveat is that though $x,y,z$ are integers, the terms in
-the factorization actually live in $\mathbb{Z}[\zeta]$. 
+decomposition. The caveat is that though $x,y,z$ are integers, the terms in the
+factorization actually live in $\mathbb{Z}[\zeta]$.
 
-The problem is  $\mathbb{Z}[\zeta]$.  This is a legitimate ``ring,'' as we
-shall see below. We can still talk about ``primes''  and ``factorization''
-as we do over the integers. However, things go wrong.  Over $\mathbb{Z}$, factorization is unique up to
-permuting the factors.  Over $\mathbb{Z}[\zeta]$, you can still get a
-decomposition into irreducible factors, but in general it is not unique.
-The ring does not always have unique factorization. 
+The problem is $\mathbb{Z}[\zeta]$. This is a legitimate ``ring,'' as we shall
+see below. We can still talk about ``primes'' and ``factorization'' as we do
+over the integers. However, things go wrong. Over $\mathbb{Z}$, factorization
+is unique up to permuting the factors. Over $\mathbb{Z}[\zeta]$, you can still
+get a decomposition into irreducible factors, but in general it is not unique.
+The ring does not always have unique factorization.
 
-Let us look at a failure of unique factorization.  Consider the set
-$\mathbb{Z}[\sqrt{-5}]$ of 
-complex numbers that look like $a+\sqrt{-5}b, a , b \in \mathbb{Z}$.
-We can write
-\[ 6 = 2 \times 3 = (1 + \sqrt{-5 })(1 - \sqrt{-5}); \]
-you can convince yourself (see Exercise \ref{}) that these are two fundamentally different
-factorizations, even though the elements in question are irreducible. So 6 admits a nonunique
-factorization into irreducibles in $\mathbb{Z}[\sqrt{-5}]$.
+Let us look at a failure of unique factorization. Consider the set
+$\mathbb{Z}[\sqrt{-5}]$ of complex numbers that look like $a+\sqrt{-5}b, a, b
+\in \mathbb{Z}$. We can write
+  \[ 6 = 2 \times 3 = (1 + \sqrt{-5 })(1 - \sqrt{-5}); \]
+you can convince yourself (see Exercise \ref{}) that these are two
+fundamentally different factorizations, even though the elements in question
+are irreducible. So 6 admits a nonunique factorization into irreducibles in
+$\mathbb{Z}[\sqrt{-5}]$.
 
+In order to think about the failure of unique factorization, Dedekind
+introduced the theory of ideal numbers, now called \textbf{ideals}. Dedekind
+was trying to get to the bottom of what was going on. Let us look at the
+problem. Ideally, if you have a prime factor of $6$, and a decomposition $6 =
+ab$, then that prime factor must divide $a$ or $b$. This is not true, however.
+There is a new idea that one must introduce.
 
+One should imagine an \textbf{ideal number} $x$ such that $x$ divides both 2
+and $1+\sqrt{-5}$, but manages not to be 1. This mysterious $x$ doesn't live in
+the ring $\mathbb{Z}[\sqrt{-5}]$; it can't, because they have no common factor.
+Yet we can talk about what ought to divide $x$. We know that $2$ and
+$1+\sqrt{-5}$ are divisible by $x$. For instance, $2 + 1+ \sqrt{-5}$ should be
+divisible by $x$, whatever this means. More generally, all linear combinations
+of $2$ and $1+\sqrt{-5}$ should be divisible by $x$.
 
-In order to think about the
-failure of unique factorization, Dedekind introduced the theory of ideal
-numbers, now called \textbf{ideals.}
-Dedekind was trying to get to the bottom of what was going on.  Let us look at
-the problem.
-Ideally, if you have a prime factor of $6$, and a decomposition $6 = ab$, then
-that prime factor must divide $a$ or $b$.  This is not true, however. There is
-a new idea that one must introduce.
+It is not clear what this ``$x$'' should refer to. In fact, as we will see, $x$
+is really best identified with the set of elements that we have just said are
+divisible by it, according to the above rules. So, to avoid some kind of weird
+mysticism, we will think of $x$ as a \emph{subset} of $R$. This subset is what
+leads to \emph{ideal} theory.
 
-
-One should imagine an \textbf{ideal number} $x$ such that $x$
-divides both  2 and $1+\sqrt{-5}$, but manages not to be 1.
-This mysterious $x$ doesn't live in the ring $\mathbb{Z}[\sqrt{-5}]$; it can't, because they
-have no common factor. Yet we can talk about what ought to divide $x$. We know that $2$ and
-$1+\sqrt{-5}$ are divisible by $x$.  For instance, $2 + 1+ \sqrt{-5}$ should be
-divisible by $x$, whatever this means.
-More generally, all linear combinations of $2$ and $1+\sqrt{-5}$ should be
-divisible by $x$.
-
-It is not clear what this ``$x$'' should refer to.
-In fact, as we will see, $x$ is really best identified with the set of
-elements that we have just said are divisible by it, according to the above
-rules. So, to avoid some kind of
-weird mysticism, we will think of $x$ as a \emph{subset} of $R$. This
-subset is what leads to \emph{ideal} theory.
 \subsection{Basic definitions}
+
 Most fundamental is:
-\begin{definition} 
+
+\begin{definition}
 A \textbf{commutative ring} is a set $R$ with an addition map $+:R \times R \to
-R$ and a multiplication map $\times: R \times R \to R$ that satisfy all the usual
-identities.  
+R$ and a multiplication map $\times: R \times R \to R$ that satisfy all the
+usual identities.
+
 \begin{enumerate}[\textbf{R} 1]
-\item  $R$ is a group under addition.
-\item  The multiplication map is commutative and distributes over addition,
-\item  There is a \textbf{unit} (or \textbf{identity}) $1$ such that $1x = 1 \cdot x = x$ for all $x \in R$.
+  \item $R$ is a group under addition.
+  \item The multiplication map is commutative and distributes over addition.
+  \item There is a \textbf{unit} (or \textbf{identity}) $1$ such that $1x = 1
+        \cdot x = x$ for all $x \in R$.
 \end{enumerate}
 
 Given a ring, a \textbf{subring} is a subset containing the identity which is
 closed under addition and multiplication.
-\end{definition} 
+\end{definition}
 
-\begin{example} 
+\begin{example}
 $\mathbb{Z}$ is a ring. This is the simplest example, but we shall have many
 more in the future.
-\end{example} 
+\end{example}
 
 The class of rings forms a \emph{category}. Indeed, we can define a
-\textbf{homomorphism} (or \textbf{morphism}) of rings $R \stackrel{f}{\to} S$ as a map $f: R \to S$
-that respects addition and multiplication. This means that
+\textbf{homomorphism} (or \textbf{morphism}) of rings $R \stackrel{f}{\to} S$
+as a map $f: R \to S$ that respects addition and multiplication. This means
+that
+
 \begin{enumerate}
-\item $f(1) = 1$ for $1,1$ the respective identity elements. 
-\item $f(a+b) = f(a)+f(b)$ for $a,b \in R$.
-\item  $f(ab) = f(a)f(b)$ for $a,b \in R$.
+  \item $f(1) = 1$ for $1, 1$ the respective identity elements.
+  \item $f(a+b) = f(a)+f(b)$ for $a,b \in R$.
+  \item $f(ab) = f(a)f(b)$ for $a,b \in R$.
 \end{enumerate}
+
 To compose two morphisms, just compose them as functions.
 
 The philosophy of Grothendieck, as expounded in his EGA, is that one should
-always do things in a relative context. This means that instead of working
-with objects, one should work with \emph{morphisms} of objects. Motivated by
-this, we introduce:
+always do things in a relative context. This means that instead of working with
+objects, one should work with \emph{morphisms} of objects. Motivated by this,
+we introduce the following definition.
 
-\begin{definition} 
+\begin{definition}
 Given a ring $A$, an \textbf{$A$-algebra} is a ring $R$ together with a
-morphism of rings (a \emph{structure morphism}) $A \to R$. There is a category of $A$-algebras, where a
-morphism between $A$-algebras is required to commute with the structure
-morphisms. 
-\end{definition} 
+morphism of rings (a \emph{structure morphism}) $A \to R$. There is a category
+of $A$-algebras, where a morphism between $A$-algebras is required to commute
+with the structure morphisms.
+\end{definition}
 
-\begin{example} 
+\begin{example}
 Every ring is a $\mathbb{Z}$-algebra in a natural and unique way.
-\end{example} 
+\end{example}
 
 Now we move to something slightly less formal.
 
-\begin{definition} 
-Let $R$ be a ring.  An \textbf{ideal} in $R$ is a subset $I \subset R$ satisfying
+\begin{definition}
+Let $R$ be a ring. An \textbf{ideal} in $R$ is a subset $I \subset R$
+satisfying
+
 \begin{enumerate}
-\item  $0 \in I$
-\item $x,y \in I$ implies $x+y \in I$
-\item $x \in I, y \in R$, then $xy \in I$.
+  \item $0 \in I$,
+  \item $x,y \in I$ implies $x+y \in I$,
+  \item $x \in I, y \in R$, then $xy \in I$.
 \end{enumerate}
+\end{definition}
 
 One ought to think of an ideal as somehow generalizing the notion of
-``divisibility.'' This motivation is provided by:
-\begin{example} 
-If $R$ is a ring and  $x \in R$, then the set of things divisible by $x$ (i.e.
-the set $xR$ of multiples of $x$) is an ideal. This is denoted $(x)$. It is in fact the smallest ideal
-containing $x$. Such ideals are called \textbf{principal.}
+divisibility. This motivation is provided by the following example.
+
+\begin{example}
+If $R$ is a ring and $x \in R$, then the set of things divisible by $x$ (i.e.
+the set $xR$ of multiples of $x$) is an ideal. This is denoted $(x)$. It is in
+fact the smallest ideal containing $x$. Such ideals are called
+\textbf{principal}.
 
 More generally, if $x_1, \dots, x_n \in R$, we denote by $(x_1, \dots, x_n)
 \subset R$ the ideal consisting of elements of the form $\sum s_i r_i$ where
 the $s_i \in R$. This is the smallest ideal containing the
-$\left\{x_i\right\}$, and is called the ideal \textbf{generated by the $x_i$.}
-
-\end{example} 
-
-
-
+$\left\{x_i\right\}$, and is called the ideal \textbf{generated by the $x_i$}.
+\end{example}
 
 You can do some of the same things with ideals as you can do with numbers. For
 instance, you can multiply them:
-\begin{definition} 
-If $I,J$ are ideals in a ring $R$, the product $IJ$ is defined as the smallest
-ideal containing the products $xy$ for all $x \in I, y \in J$. More explicitly, this is the
-set of all expressions
-\[  \sum x_i y_i  \]
+
+\begin{definition}
+If $I, J$ are ideals in a ring $R$, the product $IJ$ is defined as the smallest
+ideal containing the products $xy$ for all $x \in I, y \in J$. More explicitly,
+this is the set of all expressions
+  \[ \sum x_i y_i \]
 for $x_i \in I, y_i \in J$.
-\end{definition} 
+\end{definition}
 
-\begin{example} 
+\begin{example}
 We have $(x)(y) = (xy)$. This is straightforward.
-\end{example} 
+\end{example}
 
-
-\begin{example} 
-Let $R = \mathbb{Z}[\sqrt{-5}]$. The ideal 
-\[ (2, 1+\sqrt{-5})  \]
+\begin{example}
+Let $R = \mathbb{Z}[\sqrt{-5}]$. The ideal
+  \[ (2, 1+\sqrt{-5}) \]
 generated by both of them is the mysterious ``$x$'' we were talking about
-earlier in \ref{}. 
+earlier in \ref{}.
 
 This is not the trivial unit ideal $(1)$; this is easy to check. However, it is
 also not principal.
-\end{example} 
-\begin{exercise} 
+\end{example}
+
+\begin{exercise}
 Show that $(2, 1 + \sqrt{-5}) \subset \mathbb{Z}[\sqrt{-5}]$ is not principal.
-\end{exercise} 
+\end{exercise}
 
 The theory of ideals saves unique factorization. In the sequel, we shall prove:
-\begin{theorem}[Dedekind]\label{ded1} Let $R = \mathbb{Z}[\sqrt{-5}]$ or
-$\mathbb{Z}[\zeta]$ (or more generally, any ring of integers in a finite
-extension of $\mathbb{Q}$).  Let $I \subset R$ be an ideal, nonzero.
 
-Then $I$ factors uniquely $I = \mathfrak{p}_1 \dots \mathfrak{p}_n$, where the
-$\mathfrak{p}_i$ are ideals that cannot be factored further, i.e.
-\textbf{prime}.
-\end{theorem} 
+\begin{theorem}[Dedekind]\label{ded1}
+Let $R = \mathbb{Z}[\sqrt{-5}]$ or $\mathbb{Z}[\zeta]$ (or more generally, any
+ring of integers in a finite extension of $\mathbb{Q}$). Let $I \subset R$ be
+a nonzero ideal. Then $I$ factors uniquely as $I = \mathfrak{p}_1 \dots
+\mathfrak{p}_n$, where $\mathfrak{p}_i$ are \textbf{prime ideals}, i.e. cannot
+be factored further.
+\end{theorem}
 
 This is a theorem that belongs to a number theory class, but we will talk about
 it too.
 
 After this series of technical definitions and discussion of unique
-factorization, we shall give several more  examples.
+factorization, we shall give several more examples.
 
-\begin{exercise}\label{polynomial} Let $R$ be a commutative ring.
-Show that the set of polynomials in one variable over $R$ is a commutative
-ring $R[x]$. Give a rigorous definition of this.
-\end{exercise} 
-\begin{exercise} 
-If $R$ is a commutative ring, recall that an \textbf{invertible element} (or, somewhat
-confusingly, a \textbf{unit}) $u \in R$ is an element such
-that there exists $v \in R$ with $uv = 1$. Prove that $v$ is necessarily
-unique.
+\begin{exercise}\label{polynomial}
+Let $R$ be a commutative ring. Show that the set of polynomials in one variable
+over $R$ is a commutative ring $R[x]$. Give a rigorous definition of this.
 \end{exercise}
-\begin{exercise} 
+
+\begin{exercise}
+If $R$ is a commutative ring, recall that an \textbf{invertible element} (or,
+somewhat confusingly, a \textbf{unit}) $u \in R$ is an element such that there
+exists $v \in R$ with $uv = 1$. Prove that $v$ is necessarily unique.
+\end{exercise}
+
+\begin{exercise}
 More generally, if $R$ is a ring and $G$ a commutative monoid, then the set
 $R[G]$ of formal finite sums $\sum r_i g_i$ with $r_i \in R, g_i \in G$ is a
 commutative ring, called the \textbf{group ring}. The case of $G =
-\mathbb{Z}_{\geq 0}$ is the polynomial ring. 
-\end{exercise} 
+\mathbb{Z}_{\geq 0}$ is the polynomial ring.
+\end{exercise}
 
-\begin{exercise}
-\label{integersinitial}
+\begin{exercise} \label{integersinitial}
 The ring $\mathbb{Z}$ is an \emph{initial object} in the category of rings.
 That is, for any ring $R$, there is a \emph{unique} morphism of rings
 $\mathbb{Z} \to R$.
-\end{exercise} 
+\end{exercise}
 
-\begin{exercise} 
-The ring where $0=1$ (the \textbf{zero ring}) is a \emph{final object} in the category of rings. That
-is, every ring admits a unique map to the zero ring.	
-\end{exercise} 
+\begin{exercise}
+The ring where $0=1$ (the \textbf{zero ring}) is a \emph{final object} in the
+category of rings. That is, every ring admits a unique map to the zero ring.
+\end{exercise}
 
-\begin{exercise} 
+\begin{exercise}
 Let $X$ be a set and $R$ a ring. The set $R^X$ of functions $f:X \to R$ is a
 ring. If $S \subset X$, then the set of functions $f: X \to R$ that vanish on
 $S$ is an ideal.
 \end{exercise}
 
-\begin{exercise}
-\label{corepresentable}
-Let $\mathcal{C}$ be a category and $F: \mathcal{C} \to \mathbf{Sets}$  a
+\begin{exercise} \label{corepresentable}
+Let $\mathcal{C}$ be a category and $F: \mathcal{C} \to \mathbf{Sets}$ a
 covariant functor. Recall that $F$ is said to be \textbf{corepresentable} if
-$F$ is naturally isomorphic to $X \to \hom_{\mathcal{C}}(U, X)$ for some
-object $U \in \mathcal{C}$. For instance, the functor sending everything to a
-one-point set is corepresentable if and only if $\mathcal{C}$ admits an
-initial object.
+$F$ is naturally isomorphic to $X \to \hom_{\mathcal{C}}(U, X)$ for some object
+$U \in \mathcal{C}$. For instance, the functor sending everything to a
+one-point set is corepresentable if and only if $\mathcal{C}$ admits an initial
+object.
 
-Prove that the functor  $\mathbf{Rings} \to \mathbf{Sets}$ assigning to each ring its underlying set is
-representable. (Hint: use a suitable polynomial ring.)
-\end{exercise} 
+Prove that the functor $\mathbf{Rings} \to \mathbf{Sets}$ assigning to each
+ring its underlying set is representable. (Hint: use a suitable polynomial
+ring.)
+\end{exercise}
 
 \subsection{Another example: rings of holomorphic functions}
 
@@ -246,80 +246,75 @@ The following subsection may be omitted without impairing understanding.
 
 There is a fruitful analogy in number theory between the rings $\mathbb{Z}$ and
 $\mathbb{C}[t]$, the latter being the polynomial ring over $\mathbb{C}$ in one
-variable (Exercise \ref{polynomial}).  Why are they analogous? Both of these rings have a theory of unique
-factorization:  that is, factorization into primes or irreducible polynomials. (In the
-latter, the irreducible polynomials have degree one.)
-Indeed we know:
+variable (Exercise \ref{polynomial}). Why are they analogous? Both of these
+rings have a theory of unique factorization: that is, factorization into primes
+or irreducible polynomials. (In the latter, the irreducible polynomials have
+degree one.) Indeed we know:
+
 \begin{enumerate}
-\item Any nonzero integer factors as a product of primes (possibly times $-1$). 
-\item Any  nonzero polynomial factors as a product of an element of
-$\mathbb{C}^* =\mathbb{C} - \left\{0\right\}$ and polynomials of the form $t -
-a, a \in \mathbb{C}$.
+  \item Any nonzero integer factors as a product of primes (possibly times
+        $-1$).
+  \item Any nonzero polynomial factors as a product of an element of
+        $\mathbb{C}^* =\mathbb{C} - \left\{0\right\}$ and polynomials of the
+        form $t - a, a \in \mathbb{C}$.
 \end{enumerate}
 
-
 There is another way of thinking of $\mathbb{C}[t]$ in terms of complex
-analysis.  This is equal to the ring of holomorphic functions on $\mathbb{C}$
-which are meromorphic at infinity.  
-Alternatively, consider the Riemann sphere $\mathbb{C} \cup \{ \infty\}$; then the ring $\mathbb{C}[t]$
-consists of meromorphic functions on the sphere whose poles (if any) are at
-$\infty$. 
+analysis. This is equal to the ring of holomorphic functions on $\mathbb{C}$
+which are meromorphic at infinity. Alternatively, consider the Riemann sphere
+$\mathbb{C} \cup \{ \infty\}$; then the ring $\mathbb{C}[t]$ consists of
+meromorphic functions on the sphere whose poles (if any) are at $\infty$.
 
-This description admits generalizations. 
-Let $X$ be a
-Riemann surface.  (Example: take the complex numbers modulo a lattice, i.e. an
-elliptic curve.)
-Suppose that $x \in X$. Define $R_x$ to be the ring of meromorphic functions on $X$
-which are allowed poles only at $x$ (so are everywhere else holomorphic).
+This description admits generalizations. Let $X$ be a Riemann surface.
+(Example: take the complex numbers modulo a lattice, i.e. an elliptic curve.)
+Suppose that $x \in X$. Define $R_x$ to be the ring of meromorphic functions on
+$X$ which are allowed poles only at $x$ (so are everywhere else holomorphic).
 
-\end{definition} 
+\begin{example}
+Fix the notations of the previous discussion. Fix $y \neq x \in X$. Let $R_x$
+be the ring of meromorphic functions on the Riemann surface $X$ which are
+holomorphic on $X - \left\{x\right\}$, as before. Then the collection of
+functions that vanish at $y$ forms an \emph{ideal} in $R_x$.
 
-\begin{example} Fix the notations of the previous discussion. 
-Fix $y \neq x \in X$. Let $R_x$ be the ring of meromorphic functions on the
-Riemann surface $X$ which are holomorphic on $X - \left\{x\right\}$, as before.
-Then the collection of functions that vanish at $y$ forms an
-\emph{ideal} in $R_x$. 
+There are lots of other ideals. For instance, fix two points $y_0, y_1 \neq x$;
+we look at the ideal of $R_x$ that vanish at both $y_0, y_1$.
+\end{example}
 
-There are lots of other ideals. For instance, fix two
-points $y_0, y_1 \neq x$; we look at the ideal of $R_x$ that vanish at both $y_0, y_1$.
+\textbf{For any Riemann surface $X$, the conclusion of Dedekind's theorem
+\ref{ded1} applies.} In other words, the ring $R_x$ as defined in the example
+admits unique factorization of ideals. We shall call such rings
+\textbf{Dedekind domains} in the future.
 
-\end{example} 
+\begin{example}
+Keep the preceding notation.
 
-
-\textbf{For any Riemann surface $X$, the conclusion of Dedekind's theorem  \ref{ded1} applies.  } In other
-words, the ring  $R_x$ as defined in the example admits  unique factorization of
-ideals. We shall call such rings \textbf{Dedekind domains} in the future.
-
-\begin{example} Keep the preceding notation.
-
-Let $f \in R_x$, nonzero. By definition, $f$ may have a pole at $x$, but no poles elsewhere. $f$ vanishes
-at finitely many points $y_1, \dots, y_m$. When $X$ was the Riemann sphere,
-knowing the zeros of $f$ told us something about $f$. Indeed, in this case
-$f$ is just a
-polynomial, and we have a nice factorization of $f$ into functions in $R_x$ that vanish only
-at one point. In general Riemann surfaces, this
-is not generally possible.  This failure turns out to be very interesting.
+Let $f \in R_x$, nonzero. By definition, $f$ may have a pole at $x$, but no
+poles elsewhere. $f$ vanishes at finitely many points $y_1, \dots, y_m$. When
+$X$ was the Riemann sphere, knowing the zeros of $f$ told us something about
+$f$. Indeed, in this case $f$ is just a polynomial, and we have a nice
+factorization of $f$ into functions in $R_x$ that vanish only at one point. In
+general Riemann surfaces, this is not generally possible. This failure turns
+out to be very interesting.
 
 Let $X = \mathbb{C}/\Lambda$ be an elliptic curve (for $\Lambda \subset
-\mathbb{C}^2$ a lattice), and suppose $x = 0$. Suppose we
-are given $y_1, y_2, \dots, y_m \in X$ that are nonzero; we ask whether there
-exists a function $f \in R_x$ having simple zeros at $y_1, \dots, y_m$ and nowhere else.
-The answer is interesting, and turns out to recover the group structure on the
-lattice.
+\mathbb{C}^2$ a lattice), and suppose $x = 0$. Suppose we are given $y_1, y_2,
+\dots, y_m \in X$ that are nonzero; we ask whether there exists a function $f
+\in R_x$ having simple zeros at $y_1, \dots, y_m$ and nowhere else. The answer
+is interesting, and turns out to recover the group structure on the lattice.
 
-\begin{proposition} 
-A function $f \in R_x$ with simple zeros only at the $\left\{y_i\right\}$ exists if and only if $y_1 + y_2 + \dots + y_n = 0$ (modulo $\Lambda$).
+\begin{proposition}
+A function $f \in R_x$ with simple zeros only at the $\{ y_i \}$ exists if and
+only if $y_1 + y_2 + \dots + y_n = 0$ (modulo $\Lambda$).
+\end{proposition}
 
-\end{proposition} 
 So this problem of finding a function with specified zeros is equivalent to
 checking that the specific zeros add up to zero with the group structure.
 
 In any case, there might not be such a nice function, but we have at least an
 ideal $I$ of functions that have zeros (not necessarily simple) at $y_1, \dots,
-y_n$.  This ideal has unique factorization into the ideals of functions
-vanishing at $y_1$, functions vanishing at $y_2$, so on.  
-\end{example} 
-
+y_n$. This ideal has unique factorization into the ideals of functions
+vanishing at $y_1$, functions vanishing at $y_2$, so on.
+\end{example}
 
 \subsection{Ideals and varieties}
 
@@ -327,667 +322,502 @@ We saw in the previous subsection that ideals can be thought of as the
 vanishing of functions. This, like divisibility, is another interpretation,
 which is particularly interesting in algebraic geometry.
 
-
-Recall the  ring $\mathbb{C}[t]$ of complex polynomials discussed in the
-last subsection. More generally, if $R$ is a ring,  we saw in
+Recall the ring $\mathbb{C}[t]$ of complex polynomials discussed in the last
+subsection. More generally, if $R$ is a ring, we saw in
 Exercise~\ref{polynomial} that the set $R[t]$ of polynomials with coefficients
-in $R$
-is a ring.  This is a construction that
-can be iterated, to get a polynomial ring in several variables over $R$.
+in $R$ is a ring. This is a construction that can be iterated, to get a
+polynomial ring in several variables over $R$.
 
-\begin{example} 
-Consider the polynomial ring $\mathbb{C}[x_1, \dots, x_n]$. Recall that before
-we thought of the ring $\mathbb{C}[t]$ as a ring of meromorphic functions.  
-Similarly each element of the polynomial ring $\mathbb{C}[x_1, \dots, x_n]$
-gives a function $\mathbb{C}^n \to \mathbb{C}$; we can think of the polynomial
-ring as sitting inside the ring of all functions $\mathbb{C}^n \to \mathbb{C}$.
+\begin{example} Consider the polynomial ring $\mathbb{C}[x_1, \dots, x_n]$.
+Recall that before we thought of the ring $\mathbb{C}[t]$ as a ring of
+meromorphic functions. Similarly each element of the polynomial ring
+$\mathbb{C}[x_1, \dots, x_n]$ gives a function $\mathbb{C}^n \to \mathbb{C}$;
+we can think of the polynomial ring as sitting inside the ring of all functions
+$\mathbb{C}^n \to \mathbb{C}$.
 
-A question you might ask: What are the ideals in this ring?  One way to get an
+A question you might ask: What are the ideals in this ring? One way to get an
 ideal is to pick a point $x=(x_1, \dots, x_n) \in \mathbb{C}^n$; consider the
 collection of all functions $f \in \mathbb{C}[x_1, \dots, x_n]$ which vanish on
 $x$; by the usual argument, this is an ideal.
 
 There are, of course, other ideals. More generally, if $Y \subset
-\mathbb{C}^n$, consider the collection of polynomial functions $f:
-\mathbb{C}^n \to \mathbb{C}$ such that $f \equiv 0$ on
-$Y$.  This is easily seen to be an ideal in the polynomial ring. We thus have a
-way of taking a subset of $\mathbb{C}^n$ and producing an ideal.
-Let $I_Y$ be the ideal corresponding to $Y$.  
+\mathbb{C}^n$, consider the collection of polynomial functions $f: \mathbb{C}^n
+\to \mathbb{C}$ such that $f \equiv 0$ on $Y$. This is easily seen to be an
+ideal in the polynomial ring. We thus have a way of taking a subset of
+$\mathbb{C}^n$ and producing an ideal. Let $I_Y$ be the ideal corresponding to
+$Y$.
 
-This construction is not injective. One can have $Y \neq Y'$ but $I_Y = I_{Y'}$. For instance, if $Y$ is dense in
-$\mathbb{C}^n$, then $I_Y = (0)$, because the only way a continuous function on
-$\mathbb{C}^n$ can vanish on $Y$ is for it to be zero.
+This construction is not injective. One can have $Y \neq Y'$ but $I_Y =
+I_{Y'}$. For instance, if $Y$ is dense in $\mathbb{C}^n$, then $I_Y = (0)$,
+because the only way a continuous function on $\mathbb{C}^n$ can vanish on $Y$
+is for it to be zero.
 
 There is a much closer connection in the other direction. You might ask whether
-all ideals can arise in this way. The quick answer is no---not even when $n=1$. The ideal $(x^2) \subset \mathbb{C}[x]$ cannot be obtained
-in this way.  It is easy to see that the only way we could get this as $I_Y$ is
-for $Y=\left\{0\right\}$, but $I_Y$ in this case is just $(x)$, not $(x^2)$.
-What's going wrong in this example is that $(x^2)$ is not a \emph{radical}
-ideal.
-\end{example} 
+all ideals can arise in this way. The quick answer is no---not even when $n=1$.
+The ideal $(x^2) \subset \mathbb{C}[x]$ cannot be obtained in this way. It is
+easy to see that the only way we could get this as $I_Y$ is for
+$Y=\left\{0\right\}$, but $I_Y$ in this case is just $(x)$, not $(x^2)$. What's
+going wrong in this example is that $(x^2)$ is not a \emph{radical} ideal.
+\end{example}
 
-\begin{definition} 
-An ideal $I \subset R$ is \textbf{radical} if whenever $x^2 \in I$, then $x \in
-I$.
-\end{definition} 
+\begin{definition} An ideal $I \subset R$ is \textbf{radical} if whenever $x^2
+\in I$, then $x \in I$. \end{definition}
 
-The ideals $I_Y$ in the polynomial ring are all radical.  This is obvious.
-You might now ask whether this is the only obstruction. We now state a theorem
-that we will prove later in this class.
+The ideals $I_Y$ in the polynomial ring are all radical. This is obvious. You
+might now ask whether this is the only obstruction. We now state a theorem that
+we will prove later in this class.
 
 \begin{theorem}[Hilbert's Nullstellensatz] If $I \subset \mathbb{C}[x_1, \dots,
 x_n]$ is a radical ideal, then $I = I_Y$ for some $Y \subset \mathbb{C}^n$. In
 fact, the canonical choice of $Y$ is the set of points where all the functions
 in $Y$ vanish.\footnote{Such a subset is called an algebraic variety.}
-\end{theorem} 
+\end{theorem}
 
+This will be one of the highlights of the present course. But before we can get
+to it, there is much to do.
 
-This will be one of the highlights of the present course. But before we can
-get to it, there is much to do.
-
-\begin{exercise} 
-Assuming the Nullstellensatz, show that any \emph{maximal} ideal in the
-polynomial ring $\mathbb{C}[x_1, \dots, x_n]$ is of the form 
+\begin{exercise} Assuming the Nullstellensatz, show that any \emph{maximal}
+ideal in the polynomial ring $\mathbb{C}[x_1, \dots, x_n]$ is of the form
 $(x_1-a_1, \dots, x_n-a_n)$ for $a_1, \dots, a_n \in \mathbb{C}$. An ideal of a
-ring is called \textbf{maximal} if the only ideal that contains it is the
-whole ring (and it itself is not the whole ring).
-\end{exercise} 
+ring is called \textbf{maximal} if the only ideal that contains it is the whole
+ring (and it itself is not the whole ring). \end{exercise}
 
 \section{Modules over a commutative ring}
 
-
-
 We will now establish some basic terminology about modules.
 
-\subsection{Definitions}
-Suppose $R$ is a commutative ring.  
+\subsection{Definitions} Suppose $R$ is a commutative ring.
 
-\begin{definition} 
-An \textbf{$R$-module $M$} is an abelian group $M$ with a map $R \times M \to
-M$ (written $(a,m) \to am$) such that
-\begin{enumerate}[\textbf{M} 1]
-\item  $(ab) m = a(bm)$ for $a,b \in R, m \in M$, i.e. there is an associative law. 
-\item $1m
-= m$; the unit acts as the identity. 
-\item There are distributive laws
-on both sides:
-$(a+b)m = am + bm$ and $a(m+n) = am + an$ for $a,b \in R, \ m,n \in M$.
+\begin{definition} An \textbf{$R$-module $M$} is an abelian group $M$ with a
+map $R \times M \to M$ (written $(a,m) \to am$) such that
+\begin{enumerate}[\textbf{M} 1] \item $(ab) m = a(bm)$ for $a,b \in R, m \in
+M$, i.e. there is an associative law. \item $1m = m$; the unit acts as the
+identity. \item There are distributive laws on both sides: $(a+b)m = am + bm$
+and $a(m+n) = am + an$ for $a,b \in R, \ m,n \in M$.
 
-\end{enumerate} \end{definition} 
+\end{enumerate} \end{definition}
 
-Another definition can be given  as follows.
-\begin{definition} 
-If $M$ is an abelian group, $End(M)$ is the set of homomorphisms $f: M \to M$.  
-This can be made into a (noncommutative) \emph{ring}.\footnote{A
-noncommutative ring is one satisfying all the usual axioms of a ring except
-that multiplication is not required to be commutative.} Addition is defined pointwise, and
-multiplication is by composition. The identity element is the identity
-function $1_M$.
-\end{definition} 
+Another definition can be given as follows. \begin{definition} If $M$ is an
+abelian group, $End(M)$ is the set of homomorphisms $f: M \to M$. This can be
+made into a (noncommutative) \emph{ring}.\footnote{A noncommutative ring is one
+satisfying all the usual axioms of a ring except that multiplication is not
+required to be commutative.} Addition is defined pointwise, and multiplication
+is by composition. The identity element is the identity function $1_M$.
+\end{definition}
 
-We made the following definition earlier for commutative rings, but for
-clarity we re-state it:
-\begin{definition} 
-If $R, R'$ are rings (possibly noncommutative) then a function $f: R \to R'$ is a
-\textbf{ring-homomorphism}  or \textbf{morphism} if it is compatible with the
-ring structures, i.e
-\begin{enumerate}
-\item  $f(x+y) = f(x) + f(y)$
-\item $f(xy) = f(x)f(y)$
-\item  $f(1) = 1$.
-\end{enumerate}
-\end{definition} 
+We made the following definition earlier for commutative rings, but for clarity
+we re-state it: \begin{definition} If $R, R'$ are rings (possibly
+noncommutative) then a function $f: R \to R'$ is a \textbf{ring-homomorphism}
+or \textbf{morphism} if it is compatible with the ring structures, i.e
+\begin{enumerate} \item $f(x+y) = f(x) + f(y)$ \item $f(xy) = f(x)f(y)$ \item
+$f(1) = 1$. \end{enumerate} \end{definition}
 
 The last condition is not redundant because otherwise the zero map would
-automatically be a homomorphism.
-The alternative definition of a module is left to the reader in the following
-exercise.
-\begin{exercise}
-If $R$ is a ring and $R \to End(M)$ a homomorphism, then $M$ is made into an
-$R$-module, and vice versa.  
-\end{exercise}
+automatically be a homomorphism. The alternative definition of a module is left
+to the reader in the following exercise. \begin{exercise} If $R$ is a ring and
+$R \to End(M)$ a homomorphism, then $M$ is made into an $R$-module, and vice
+versa. \end{exercise}
 
+\begin{example} if $R$ is a ring, then $R$ is an $R$-module by multiplication
+on the left. \end{example} \begin{example} A $\mathbb{Z}$-module is the same
+thing as an abelian group. \end{example}
 
-\begin{example} 
-if $R$ is a ring, then $R$ is an $R$-module by multiplication on the left. 
-\end{example} 
-\begin{example} 
-A $\mathbb{Z}$-module is the same thing as an abelian group.
-\end{example} 
+\begin{definition} If $M$ is an $R$-module, a subset $M_0 \subset M$ is a
+\textbf{submodule} if it is a subgroup (closed under addition and inversion)
+and is closed under multiplication by elements of $R$, i.e. $aM_0 \subset M_0$
+for $a \in R$. A submodule is a module in its own right. If $M_0 \subset M$ is
+a submodule, there is a commutative diagram: \[ \xymatrix{ R \times M_0 \ar[d]
+\ar[r] & M_0 \ar[d] \\ R \times M \ar[r] & M }.\] Here the horizontal maps are
+multiplication. \end{definition}
 
-\begin{definition} 
-If $M$ is an $R$-module, a subset $M_0 \subset M$ is a \textbf{submodule} if it
-is a subgroup (closed under addition and inversion) and is closed under
-multiplication by elements of $R$, i.e. $aM_0 \subset M_0$ for $a \in R$. A
-submodule is a module in its own right. If $M_0 \subset M$ is a submodule,
-there is a commutative diagram:
-\[ \xymatrix{
-R \times M_0 \ar[d] \ar[r] &  M_0 \ar[d] \\ R \times M \ar[r] &  M
-}.\]
-Here the horizontal maps are multiplication.
-\end{definition} 
+\begin{example} Let $R$ be a (\textbf{commutative}) ring; then an ideal in $R$
+is the same thing as a submodule of $R$. \end{example}
 
-\begin{example} 
-Let $R$ be a (\textbf{commutative}) ring; then an ideal in $R$ is the same thing as a
-submodule of $R$.
-\end{example} 
+\begin{example} If $A$ is a ring, an $A$-algebra is an $A$-module in an obvious
+way. More generally, if $A$ is a ring and $R$ is an $A$-algebra, any $R$-module
+becomes an $A$-module by pulling back the multiplication map via $A \to R$.
+\end{example}
 
-\begin{example} 
-If $A$ is a ring, an $A$-algebra is an $A$-module in an obvious way. More
-generally, if $A$ is a ring and $R$ is an $A$-algebra, any $R$-module becomes
-an $A$-module by pulling back the multiplication map via $A \to R$. 
-\end{example} 
+Dual to submodules is the notion of a \emph{quotient module}, which we define
+next: \begin{definition} Suppose $M$ is an $R$-module and $M_0$ a submodule.
+Then the abelian group $M/M_0$ (of cosets) is an $R$-module, called the
+\textbf{quotient module} by $M_0$.
 
-
-
-Dual to submodules  is the notion of a \emph{quotient module}, which we define
-next:
-\begin{definition} Suppose $M$ is an $R$-module and $M_0$  a
-submodule.  Then the abelian group $M/M_0$ (of cosets)  is an $R$-module,
-called the \textbf{quotient module} by $M_0$.  
-
-Multiplication is as follows. If
-one has a coset $x  + M_0 \in M/M_0$, one  multiplies this by $a \in R$ to
-get the coset $ax
-+ M_0$. This does not depend on the coset representative.  
-\end{definition} 
+Multiplication is as follows. If one has a coset $x + M_0 \in M/M_0$, one
+multiplies this by $a \in R$ to get the coset $ax + M_0$. This does not depend
+on the coset representative. \end{definition}
 
 We shall next see that when one quotients by an \emph{ideal}, one gets not
 merely a module but actually another \emph{ring.}
 
+\begin{example} If $R$ is a ring and $I \subset R$ an ideal, then $R/I$ is an
+$R$-module. The multiplication is $a(b+I) = ab + I$.
 
-\begin{example} 
-If $R$ is a ring and $I \subset R$ an ideal, then $R/I$ is an $R$-module. The
-multiplication is $a(b+I) = ab + I$. 
+As one easily checks, this descends further to a multiplication \[ R/I \times
+R/I \to R/I \] such that there is a commutative diagram \[ \xymatrix{ R \times
+R/I \ar[rd] \ar[rr] & & R/I \\ & R/I \times R/I \ar[ru] }.\] In particular,
+$R/I$ is a ring, under multiplication $(a+I)(b+I) = ab+I$. \begin{definition}
+$R/I$ is called the \textbf{quotient ring} by the ideal $I$. \end{definition}
 
-As one easily checks, this descends further to a multiplication 
-\[ R/I \times R/I \to R/I  \] such that there is a commutative diagram
-\[ \xymatrix{
-R \times R/I \ar[rd] \ar[rr] & &  R/I \\
-& R/I \times R/I \ar[ru] 
-}.\]
-In particular, $R/I$ is a ring, under multiplication $(a+I)(b+I) = ab+I$. 
-\begin{definition} 
-$R/I$ is called the \textbf{quotient ring} by the ideal $I$.
-\end{definition} 
-
-The
-reduction map $\phi \colon R \to R/I$ is a ring-homomorphism with a
-\emph{universal
-property}.
-Namely, for any ring $B$, there is a map
- \[ \hom(R/I, B) \to \hom(R, B)  \]
- on the hom-sets
- by composing with the ring-homomorphism $\phi$; this map is injective and the
- image consists of all homomorphisms $R \to B$ which vanish on $I$.  
-Stated alternatively, to map out of $R/I$ (into some ring $B$) is the same thing as mapping out of
-$R$ while killing the ideal $I \subset R$.
+The reduction map $\phi \colon R \to R/I$ is a ring-homomorphism with a
+\emph{universal property}. Namely, for any ring $B$, there is a map \[
+\hom(R/I, B) \to \hom(R, B) \] on the hom-sets by composing with the
+ring-homomorphism $\phi$; this map is injective and the image consists of all
+homomorphisms $R \to B$ which vanish on $I$. Stated alternatively, to map out
+of $R/I$ (into some ring $B$) is the same thing as mapping out of $R$ while
+killing the ideal $I \subset R$.
 
 This is best thought out for oneself, but here is the detailed justification.
 The reason is that any map $R/I \to B$ pulls back to a map $R \to R/I \to B$
 which annihilates $I$ since $R \to R/I$ annihilates $I$. Conversely, if we have
-a map 
-\[ f: R \to B  \]
-killing $I$, then we can define $R/I \to B$ by sending $a+I$ to $f(a)$; this is
-uniquely defined since $f$ annihilates $I$.
-\end{example} 
+a map \[ f: R \to B \] killing $I$, then we can define $R/I \to B$ by sending
+$a+I$ to $f(a)$; this is uniquely defined since $f$ annihilates $I$.
+\end{example}
 
-\begin{exercise} 
- If $R$ is a commutative
-ring, an element $e \in R$ is said to be \textbf{idempotent} if $e^2 =
-e$. Define a covariant functor $\mathbf{Rings} \to \mathbf{Sets}$ sending a
-ring to its idempotents. Prove that it is corepresentable.
-\end{exercise} 
+\begin{exercise} If $R$ is a commutative ring, an element $e \in R$ is said to
+be \textbf{idempotent} if $e^2 = e$. Define a covariant functor $\mathbf{Rings}
+\to \mathbf{Sets}$ sending a ring to its idempotents. Prove that it is
+corepresentable. \end{exercise}
 
-\begin{exercise} 
-Show that the functor assigning to each ring the set of elements annihilated
-by 2 is corepresentable. 
-\end{exercise} 
+\begin{exercise} Show that the functor assigning to each ring the set of
+elements annihilated by 2 is corepresentable. \end{exercise}
 
-\begin{exercise}
-If $I \subset J \subset R$, then $J/I$ is an ideal of $R/I$, and there is a
-canonical isomorphism
-\[ (R/I)/(J/I) \simeq R/J.  \]
-\end{exercise} 
+\begin{exercise} If $I \subset J \subset R$, then $J/I$ is an ideal of $R/I$,
+and there is a canonical isomorphism \[ (R/I)/(J/I) \simeq R/J. \]
+\end{exercise}
 
+\subsection{Some categorical constructions} So far, we have talked about
+modules, but we have not discussed morphisms between modules, and have yet to
+make the class of modules over a given ring into a category. This we do next.
 
-\subsection{Some categorical constructions}
-So far, we have talked about modules, but we have not discussed morphisms
-between modules, and have yet to make the class of modules over a given ring
-into a category. This we do next.
+Let us introduce a few more basic notions.
 
-Let us introduce a  few more basic notions.
-
-\begin{definition} 
-Let $R$ be a ring.  Suppose $M,N$ are $R$-modules.  A map $f: M \to N$
-is a \textbf{module-homomorphism} if it preserves all the relevant structures.
+\begin{definition} Let $R$ be a ring. Suppose $M,N$ are $R$-modules. A map $f:
+M \to N$ is a \textbf{module-homomorphism} if it preserves all the relevant
+structures.
 
 Namely, it must be a homomorphism of abelian groups, $f(x+y) = f(x) + f(y)$,
-and second it must
-preserve multiplication:
-$f(ax)  = af(x)$ for $a \in R, x \in M$. 
-\end{definition}
-
+and second it must preserve multiplication: $f(ax) = af(x)$ for $a \in R, x \in
+M$. \end{definition}
 
 Thus, for any commutative ring $R$, the class of $R$-modules and
 module-homomorphsims forms a \textbf{category.}
 
-\begin{example} 
-If $a \in R$, then multiplication by $a$ is a module-homomorphism $M
-\stackrel{a}{\to} M$ for any $R$-module $M$.
-\end{example} 
+\begin{example} If $a \in R$, then multiplication by $a$ is a
+module-homomorphism $M \stackrel{a}{\to} M$ for any $R$-module $M$.
+\end{example}
 
-\begin{definition} Let $f: M \to N$ be a module homomorphism.
-In this case, the \textbf{kernel} $\ker f$ of $f$ is  the set of elements $m
-\in M$ with $f(m)=0$. This is
-a submodule of $M$, as is easy to see. 
+\begin{definition} Let $f: M \to N$ be a module homomorphism. In this case, the
+\textbf{kernel} $\ker f$ of $f$ is the set of elements $m \in M$ with $f(m)=0$.
+This is a submodule of $M$, as is easy to see.
 
-The \textbf{image} $\im f$ of $f$ (the set-theoretic
-image, i.e. the collection of all $f(x), x \in M$) is also a submodule of $N$. 
+The \textbf{image} $\im f$ of $f$ (the set-theoretic image, i.e. the collection
+of all $f(x), x \in M$) is also a submodule of $N$.
 
-The
-\textbf{cokernel} of $f$ is defined by
-\(  N/\im(f).  \) 
-\end{definition}
+The \textbf{cokernel} of $f$ is defined by \( N/\im(f). \) \end{definition}
 
-\begin{exercise} \label{univpropertykernel} 
-The universal property of the kernel is as follows. Let $M \stackrel{f}{\to }
-N$ be a morphism with kernel $K \subset M$. Let $T \to M$ be a map. Then $T \to M$ factors through the
-kernel $K \to M$ if and only if its composition with $f$ (a morphism $T \to N$) is zero. 
-In particular, if we think of the hom-sets as abelian groups (i.e.
-$\mathbb{Z}$-modules)
-\[ \hom( T,K) = \ker\left( \hom(T, M) \to \hom(T, N) \right). \]
-\end{exercise} 
-\begin{exercise} 
-What is the universal property of the cokernel?
-\end{exercise} 
+\begin{exercise} \label{univpropertykernel} The universal property of the
+kernel is as follows. Let $M \stackrel{f}{\to } N$ be a morphism with kernel $K
+\subset M$. Let $T \to M$ be a map. Then $T \to M$ factors through the kernel
+$K \to M$ if and only if its composition with $f$ (a morphism $T \to N$) is
+zero. In particular, if we think of the hom-sets as abelian groups (i.e.
+$\mathbb{Z}$-modules) \[ \hom( T,K) = \ker\left( \hom(T, M) \to \hom(T, N)
+\right). \] \end{exercise} \begin{exercise} What is the universal property of
+the cokernel? \end{exercise}
 
-\begin{exercise} 
-On the category of modules, the functor assigning to each module $M$ its
-underlying set is corepresentable (cf.\ Exercise \ref{corepresentable}).
-\end{exercise} 
+\begin{exercise} On the category of modules, the functor assigning to each
+module $M$ its underlying set is corepresentable (cf.\ Exercise
+\ref{corepresentable}). \end{exercise}
 
 We shall now introduce the notions of \emph{direct sum} and \emph{direct
 product}. Let $I$ be a set, and suppose that for each $i \in I$, we are given
 an $R$-module $M_i$.
 
-\begin{definition} 
-The \textbf{direct product} $\prod M_i$ is set-theoretically the cartesian product. It is given
-the structure of an $R$-module by addition and multiplication pointwise on
-each factor. 
-\end{definition} 
-\begin{definition} 
-The \textbf{direct sum} $\bigoplus_I M_i$ is the set of elements in the direct
-product such that all but finitely many entries are zero. The direct sum is a
-submodule of the direct product.
-\end{definition} 
+\begin{definition} The \textbf{direct product} $\prod M_i$ is set-theoretically
+the cartesian product. It is given the structure of an $R$-module by addition
+and multiplication pointwise on each factor. \end{definition}
+\begin{definition} The \textbf{direct sum} $\bigoplus_I M_i$ is the set of
+elements in the direct product such that all but finitely many entries are
+zero. The direct sum is a submodule of the direct product. \end{definition}
 
-
-\begin{exercise} 
-The direct product is a product in the category of modules, and the direct sum
-is a coproduct.
-\end{exercise} 
+\begin{exercise} The direct product is a product in the category of modules,
+and the direct sum is a coproduct. \end{exercise}
 
 \add{filtered colimits}
 
-\subsection{Exactness}
-Finally, we introduce the notion of \emph{exactness}. 
-\begin{definition} 
-Let $f: M \to N$ be a morphism of $R$-modules.  Suppose $g: N \to P$ is another morphism of
-$R$-modules.  
+\subsection{Exactness} Finally, we introduce the notion of \emph{exactness}.
+\begin{definition} Let $f: M \to N$ be a morphism of $R$-modules. Suppose $g: N
+\to P$ is another morphism of $R$-modules.
 
 The pair of maps is a \textbf{complex} if $g \circ f = 0$. So $M \to N \to P$
-is zero.
-In particular, $\im(f) \subset \ker(g)$. 
+is zero. In particular, $\im(f) \subset \ker(g)$.
 
 This complex is \textbf{exact} (or exact at $N$) if $\im(f) = \ker(g)$. So
 anything that is killed when you map to $P$ actually comes from something in
-$M$. 
+$M$.
 
-\end{definition} 
+\end{definition}
 
+We shall often write pairs of maps as sequences \[ A \stackrel{f}{\to} B
+\stackrel{g}{\to} C \] and say that the sequence is \textbf{exact} if the image
+of the map $f:A \to B$ is the same as the kernel of the map $g: B \to C$. A
+longer (possibly infinite) sequence of modules \[ A_0 \to A_1 \to A_2 \to \dots
+\] will be called \textbf{exact} if it is exact at each step.
 
-We shall often write pairs of maps as sequences
-\[ A \stackrel{f}{\to} B \stackrel{g}{\to} C  \]
-and say that the sequence is \textbf{exact} if the image of the map $f:A
-\to B$ is the same as the kernel of the map $g: B \to C$.
-A longer (possibly infinite) sequence of modules
-\[ A_0 \to A_1 \to A_2 \to \dots  \]
-will be called \textbf{exact} if it is exact at each step.
+\begin{example} The sequence $0 \to A \stackrel{f}{\to} B$ is exact if and only
+if the map $f$ is injective. Similarly, $A \stackrel{f}{\to} B \to 0$ is exact
+if and only if $f$ is surjective. \end{example}
 
-\begin{example} 
-The sequence $0 \to A \stackrel{f}{\to} B$ is exact if and only if the map $f$
-is injective. Similarly, $A \stackrel{f}{\to} B \to 0$ is exact if and only if
-$f$ is surjective. 
-\end{example} 
+One typically sees this definition applied to sequences of the form \[ 0 \to
+M'\stackrel{f}{ \to} M \stackrel{g}{\to} M'' \to 0, \] which, if exact, is
+called a \textbf{short exact sequence}. Exactness here means that $f$ is
+injective, $g$ is surjective, and $f$ maps onto the image of $g$. So $M''$ can
+be thought of as the quotient $M/M'$.
 
-One typically sees this definition applied to sequences of the form
-\[ 0 \to M'\stackrel{f}{ \to} M \stackrel{g}{\to} M'' \to 0,  \]
-which, if exact, is called a \textbf{short exact sequence}. 
-Exactness here means that $f$ is injective, $g$ is surjective, and $f$ maps
-onto the image of $g$.  So $M''$ can be thought of as the quotient $M/M'$.
+Suppose you have a functor $F$ from the category of $R$-modules to the category
+of $S$-modules, where $R, S$ are rings. Then:
 
-Suppose you have a functor  $F$ from the category of $R$-modules to the
-category of  $S$-modules, where $R, S$ are rings.  Then:
+\begin{definition} \begin{enumerate} \item $F$ is called \textbf{additive} if
+$F$ preserves direct sums. \item $F$ is called \textbf{exact} if $F$ is
+additive and preserves exact sequences. \item $F$ is called \textbf{left exact}
+if $F$ is additive and preserves exact sequences of the form $0 \to M' \to M
+\to M''$. In particular, $F$ preserves kernels. \item $F$ is \textbf{right
+exact} if $F$ is additive and $F$ preserves exact sequences of the form $M' \to
+M \to M'' \to 0$, i.e. $F$ preserves cokernels. \end{enumerate}
+\end{definition}
 
-\begin{definition} 
-\begin{enumerate}
-\item  $F$ is called \textbf{additive} if $F$ preserves direct sums.  
-\item  $F$ is called \textbf{exact} if $F$ is additive and preserves exact sequences.  
-\item  $F$ is called \textbf{left exact} if $F$ is additive and preserves exact sequences of the form
-$0 \to M' \to M \to M''$.  In particular, $F$ preserves kernels.  
-\item  $F$ is \textbf{right exact} if $F$ is additive and $F$ preserves exact
-sequences of the form $M' \to M \to M'' \to 0$, i.e. $F$ preserves cokernels.  
-\end{enumerate}
-\end{definition} 
-
-A functor is exact if and only if it is both left and right exact.  
-
+A functor is exact if and only if it is both left and right exact.
 
 \add{further explanation, exactness of filtered colimits}
 
 \subsection{Free modules}
 
-\begin{definition} 
-A module $M$ is \textbf{free} if it is isomorphic to $\bigoplus_I R$ for some
-index set $I$. 
-\end{definition} 
-
-
-
+\begin{definition} A module $M$ is \textbf{free} if it is isomorphic to
+$\bigoplus_I R$ for some index set $I$. \end{definition}
 
 \section{Ideals}
 
-The notion of an \emph{ideal} has already been defined. Now we will introduce additional terminology related to the theory of ideals.
+The notion of an \emph{ideal} has already been defined. Now we will introduce
+additional terminology related to the theory of ideals.
 
 \subsection{Prime and maximal ideals}
 
 If $R$ is any commutative ring, there are two obvious ideals. These obvious
-ones are the zero ideal $(0)$
-consisting only of the zero element, and the unit element $(1)$ consisting of all of
-$R$.
+ones are the zero ideal $(0)$ consisting only of the zero element, and the unit
+element $(1)$ consisting of all of $R$.
 
+The notion of a ``prime ideal'' is intended to generalize the familiar idea of
+a prime number.
 
-The notion of a ``prime ideal'' is intended to generalize the familiar idea of a prime
-number.
+\begin{definition} An ideal $I \subset R$ is said to be \textbf{prime} if
+\begin{enumerate}[\textbf{P} 1] \item $1 \notin I$ (by convention, 1 is not a
+prime number) \item If $xy \in I$, either $x \in I$ or $y \in I$.
+\end{enumerate} \end{definition}
 
-\begin{definition} 
-An ideal $I \subset R$ is said to be \textbf{prime} if
-\begin{enumerate}[\textbf{P} 1]
-\item  $1 \notin I$ (by convention, 1 is not a prime number)
-\item If $xy \in I$, either $x \in I$ or $y \in I$.
-\end{enumerate}
-\end{definition} 
+\begin{example} \label{integerprimes} If $R = \mathbb{Z}$ and $p \in R$, then
+$(p) \subset \mathbb{Z}$ is a prime ideal iff $p$ is a prime number (or the
+opposite of a prime number) or zero. \end{example}
 
-\begin{example}
-\label{integerprimes}
-If $R = \mathbb{Z}$ and $p \in R$, then $(p) \subset \mathbb{Z}$ is a prime ideal iff $p$ is a
-prime number (or the opposite of a prime number) or zero.
-\end{example} 
-
-\begin{definition} 
-An ideal $I \subset R$ is called \textbf{maximal}\footnote{Maximal with
-respect to not being the unit ideal.} if 
-\begin{enumerate}[\textbf{M} 1]
-\item  $1 \notin I$
-\item Any larger ideal contains $1$ (i.e., is all of $R$).
-\end{enumerate}
-\end{definition} 
+\begin{definition} An ideal $I \subset R$ is called
+\textbf{maximal}\footnote{Maximal with respect to not being the unit ideal.} if
+\begin{enumerate}[\textbf{M} 1] \item $1 \notin I$ \item Any larger ideal
+contains $1$ (i.e., is all of $R$). \end{enumerate} \end{definition}
 
 So a maximal ideal is a maximal element in the partially ordered set of proper
 ideals (an ideal is \textbf{proper} if it does not contain 1).
 
-\begin{exercise} 
-Find the maximal ideals in $\mathbb{C}[t]$.
-\end{exercise} 
+\begin{exercise} Find the maximal ideals in $\mathbb{C}[t]$. \end{exercise}
 
-
-\begin{proposition} 
-A maximal ideal is prime.
-\end{proposition} 
-\begin{proof} 
+\begin{proposition} A maximal ideal is prime. \end{proposition} \begin{proof}
 First, a maximal ideal does not contain 1.
 
-Let $I \subset R$ be a maximal ideal.
-We need to show that if $xy \in I$,
-then one of $x,y \in I$.  If $x \notin I$, then $(I,x) = I + (x)$ (the ideal
-generated by $I$ and $x$) strictly contains $I$, so by maximality contains
-$1$.  In particular, $1 \in I+(x)$, so we can write
-\[ 1 = a + xb  \]
-where $a \in I, b \in R$. Multiply both sides by $y$:
-\[ y = ay  + bxy.  \]
-Both terms on the right here are in $I$ ($a \in I$ and $xy \in I$), so we find
-that $y \in I$.
+Let $I \subset R$ be a maximal ideal. We need to show that if $xy \in I$, then
+one of $x,y \in I$. If $x \notin I$, then $(I,x) = I + (x)$ (the ideal
+generated by $I$ and $x$) strictly contains $I$, so by maximality contains $1$.
+In particular, $1 \in I+(x)$, so we can write \[ 1 = a + xb \] where $a \in I,
+b \in R$. Multiply both sides by $y$: \[ y = ay + bxy. \] Both terms on the
+right here are in $I$ ($a \in I$ and $xy \in I$), so we find that $y \in I$.
 
-\end{proof} 
+\end{proof}
 
-Given a ring $R$, what can we say about the collection of ideals in $R$?
-There
-are two obvious ideals in $R$, namely $(0)$ and $ (1)$.  These are the same if and
-only if $0=1$, i.e. $R$ is the zero ring.
-So for any nonzero commutative ring, we have at least two distinct ideals.  
+Given a ring $R$, what can we say about the collection of ideals in $R$? There
+are two obvious ideals in $R$, namely $(0)$ and $ (1)$. These are the same if
+and only if $0=1$, i.e. $R$ is the zero ring. So for any nonzero commutative
+ring, we have at least two distinct ideals.
 
-Next, we show that maximal ideals always \emph{do} exist, except in the case
-of the zero ring. 
-\begin{proposition} \label{anycontainedinmaximal}
-Let $R$ be a commutative ring. Then $I \subset R$ be a proper ideal.  Then $I$
-is contained in a maximal ideal.
-\end{proposition} 
+Next, we show that maximal ideals always \emph{do} exist, except in the case of
+the zero ring. \begin{proposition} \label{anycontainedinmaximal} Let $R$ be a
+commutative ring. Then $I \subset R$ be a proper ideal. Then $I$ is contained
+in a maximal ideal. \end{proposition}
 
-\begin{proof} 
-This requires the axiom of choice in the form of Zorn's lemma.  Let
-$P$ be the collection of all ideals $J \subset R$ such that $I
-\subset J$ and $J \neq R$.  Then $P$ is a poset with respect to  inclusion.  $P$ is
-nonempty because it contains $I$.  Note that given a (nonempty) linearly ordered
+\begin{proof} This requires the axiom of choice in the form of Zorn's lemma.
+Let $P$ be the collection of all ideals $J \subset R$ such that $I \subset J$
+and $J \neq R$. Then $P$ is a poset with respect to inclusion. $P$ is nonempty
+because it contains $I$. Note that given a (nonempty) linearly ordered
 collection of ideals $J_{\alpha} \in P$, the union $\bigcup J_{\alpha} \subset
-R$ is an ideal: this is easily seen in view of the linear ordering (if $x,y
-\in \bigcup J_{\alpha}$, then both $x,y$ belong to some $J_{\gamma}$, so $x+y
-\in J_{\gamma}$; multiplicative closure is even easier). The union is not all
-of $R$ because it does not contain $1$.  
+R$ is an ideal: this is easily seen in view of the linear ordering (if $x,y \in
+\bigcup J_{\alpha}$, then both $x,y$ belong to some $J_{\gamma}$, so $x+y \in
+J_{\gamma}$; multiplicative closure is even easier). The union is not all of
+$R$ because it does not contain $1$.
 
-This implies that $P$ has a maximal element by Zorn's lemma.  This maximal element may
-be called $\mathfrak{M}$; it's a proper element containing $I$. I claim that
-$\mathfrak{M}$ is a maximal ideal, because if it were contained in a larger
- ideal, that would  be in $P$ (which can't happen by maximality) unless it were all of $R$.
-\end{proof} 
+This implies that $P$ has a maximal element by Zorn's lemma. This maximal
+element may be called $\mathfrak{M}$; it's a proper element containing $I$. I
+claim that $\mathfrak{M}$ is a maximal ideal, because if it were contained in a
+larger ideal, that would be in $P$ (which can't happen by maximality) unless it
+were all of $R$. \end{proof}
 
-\begin{corollary} 
-Let $R $ be a nonzero commutative ring.  Then $R$ has a maximal ideal.
-\end{corollary} 
-\begin{proof} 
-Apply the lemma to the zero ideal.  
-\end{proof} 
+\begin{corollary} Let $R $ be a nonzero commutative ring. Then $R$ has a
+maximal ideal. \end{corollary} \begin{proof} Apply the lemma to the zero ideal.
+\end{proof}
 
-\begin{corollary} 
-Let $R$ be a nonzero commutative ring. Then $x \in R$ is invertible if and
-only if it belongs to no maximal ideal $\mathfrak{m} \subset R$.
-\end{corollary} 
-\begin{proof} 
-Indeed, $x$ is invertible if and only if $(x) = 1$. That is, if and only if
-$(x)$ is not a proper ideal; now Proposition~\ref{anycontainedinmaximal}
-finishes the argument.
-\end{proof} 
+\begin{corollary} Let $R$ be a nonzero commutative ring. Then $x \in R$ is
+invertible if and only if it belongs to no maximal ideal $\mathfrak{m} \subset
+R$. \end{corollary} \begin{proof} Indeed, $x$ is invertible if and only if $(x)
+= 1$. That is, if and only if $(x)$ is not a proper ideal; now
+Proposition~\ref{anycontainedinmaximal} finishes the argument. \end{proof}
 
 \subsection{Fields and integral domains}
 
 Recall:
 
-\begin{definition} 
-A commutative ring $R$ is called a  \textbf{field} if $1 \neq 0$ and for every $x \in R -
-\left\{0\right\}$ there exists an \textbf{inverse} $x^{-1} \in R$ such that $xx^{-1} =
-1$.
-
+\begin{definition} A commutative ring $R$ is called a \textbf{field} if $1 \neq
+0$ and for every $x \in R - \left\{0\right\}$ there exists an \textbf{inverse}
+$x^{-1} \in R$ such that $xx^{-1} = 1$.
 
 \end{definition}
 
-
 This condition has an obvious interpretation in terms of ideals.
-\begin{proposition} 
-A commutative ring with $1 \neq 0$ is a field iff it has only the two ideals $(1),
-(0)$.
-\end{proposition} 
+\begin{proposition} A commutative ring with $1 \neq 0$ is a field iff it has
+only the two ideals $(1), (0)$. \end{proposition}
 
 Alternatively, a ring is a field if and only if $(0)$ is a maximal ideal.
 
-\begin{proof} 
-Assume $R$ is a field.  Suppose $I \subset R$.  If $I \neq (0)$, then there is
-a nonzero $x \in I$. Then there is an inverse $x^{-1}$. We have $x^{-1} x =1
-\in I$, so $I = (1)$.
-In a field, there is thus 	no room for ideals other than $(0)$ and $(1)$.
+\begin{proof} Assume $R$ is a field. Suppose $I \subset R$. If $I \neq (0)$,
+then there is a nonzero $x \in I$. Then there is an inverse $x^{-1}$. We have
+$x^{-1} x =1 \in I$, so $I = (1)$. In a field, there is thus no room for ideals
+other than $(0)$ and $(1)$.
 
 To prove the converse, assume every ideal of $R$ is $(0)$ or $(1)$. Then for
 each $x \in R$, $(x) = (0)$ or $(1)$. If $x \neq 0$, the first can't happen, so
 that means that the ideal generated by $x$ is the unit ideal. So $1$ is a
-multiple of $x$, implying that $x$ has a multiplicative inverse.
-\end{proof} 
+multiple of $x$, implying that $x$ has a multiplicative inverse. \end{proof}
 
 So fields also have an uninteresting ideal structure.
 
-\begin{corollary} 
-If $R$ is a ring and $I \subset R$ is an ideal, then $I$ is maximal if and only
-if $R/I$ is a field.
-\end{corollary} 
+\begin{corollary} If $R$ is a ring and $I \subset R$ is an ideal, then $I$ is
+maximal if and only if $R/I$ is a field. \end{corollary}
 
-\begin{proof}
-The basic point here is that there is a bijection between the ideals of $R/I$
-and ideals of $R$ containing $I$. 
+\begin{proof} The basic point here is that there is a bijection between the
+ideals of $R/I$ and ideals of $R$ containing $I$.
 
-Denote  by $\phi: R \to R/I$ the reduction map. There is a
-construction mapping ideals of $R/I$ to ideals of $R$. This sends an ideal in
-$R/I$ to
-its inverse image.  This is easily seen to map to ideals of $R$ containing $I$.
-The map from ideals of $R/I$ to ideals of $R$ containing $I$ is a bijection,
-as one checks easily.
+Denote by $\phi: R \to R/I$ the reduction map. There is a construction mapping
+ideals of $R/I$ to ideals of $R$. This sends an ideal in $R/I$ to its inverse
+image. This is easily seen to map to ideals of $R$ containing $I$. The map from
+ideals of $R/I$ to ideals of $R$ containing $I$ is a bijection, as one checks
+easily.
 
-It follows that $R/I$ is a field precisely if
-$R/I$ has precisely two ideals, i.e. precisely if there are precisely two
-ideals in $R$ containing $I$. These ideals must be $(1)$ and $I$, so this
-holds if and only if $I$ is maximal.
+It follows that $R/I$ is a field precisely if $R/I$ has precisely two ideals,
+i.e. precisely if there are precisely two ideals in $R$ containing $I$. These
+ideals must be $(1)$ and $I$, so this holds if and only if $I$ is maximal.
 
-\end{proof} 
+\end{proof}
 
 There is a similar characterization of prime ideals.
 
-\begin{definition} 
-A commutative ring $R$ is an \textbf{integral domain} if for all $ x,y \in R$,
-$x \neq 0 $ and $y \neq 0$ imply $xy \neq 0$.
-\end{definition} 
+\begin{definition} A commutative ring $R$ is an \textbf{integral domain} if for
+all $ x,y \in R$, $x \neq 0 $ and $y \neq 0$ imply $xy \neq 0$.
+\end{definition}
 
-\begin{proposition}\label{primeifdomain} 
-An ideal $I \subset R$ is prime iff $R/I$ is a domain.
-\end{proposition} 
+\begin{proposition}\label{primeifdomain} An ideal $I \subset R$ is prime iff
+$R/I$ is a domain. \end{proposition}
 
-\begin{exercise} 
-Prove Proposition~\ref{primeifdomain}.
-\end{exercise} 
+\begin{exercise} Prove Proposition~\ref{primeifdomain}. \end{exercise}
 
 Any field is an integral domain. This is because in a field, nonzero elements
 are invertible, and the product of two invertible elements is invertible. This
 statement translates in ring theory to the statement that a maximal ideal is
 prime.
 
-\begin{exercise} 
-Let $R$ be a domain. Consider the set of formal quotients $a/b, a, b \in R$
-with $b \neq 0$. Define addition and multiplication using usual rules. Show
-that the resulting object $K(R)$ is a ring, and in fact a \emph{field}. The
-natural map $R \to K(R)$, $r \to r/1$, has a universal property. If $R
-\hookrightarrow L$ is an injection of $R$ into a field $L$, then there is a
-unique morphism $K(R) \to L$ of fields extending $R \to L$. This construction
-will be generalized when we consider \emph{localization.}
+\begin{exercise} Let $R$ be a domain. Consider the set of formal quotients
+$a/b, a, b \in R$ with $b \neq 0$. Define addition and multiplication using
+usual rules. Show that the resulting object $K(R)$ is a ring, and in fact a
+\emph{field}. The natural map $R \to K(R)$, $r \to r/1$, has a universal
+property. If $R \hookrightarrow L$ is an injection of $R$ into a field $L$,
+then there is a unique morphism $K(R) \to L$ of fields extending $R \to L$.
+This construction will be generalized when we consider \emph{localization.}
 
 Note that a non-injective map $R\to L$ will \emph{not} factor through the
-quotient field!
-\end{exercise} 
+quotient field! \end{exercise}
 
-
-\begin{exercise}\label{Jacobson} 
-Let $R$ be a commutative ring. Then the \textbf{Jacobson radical} of $R$ is
-the intersection $\bigcap \mathfrak{m}$ of all maximal ideals $\mathfrak{m}
-\subset R$. Prove that an element $x$ is in the Jacobson radical if and only
-if $1 - yx$ is invertible for all $y \in R$.
-\end{exercise} 
+\begin{exercise}\label{Jacobson} Let $R$ be a commutative ring. Then the
+\textbf{Jacobson radical} of $R$ is the intersection $\bigcap \mathfrak{m}$ of
+all maximal ideals $\mathfrak{m} \subset R$. Prove that an element $x$ is in
+the Jacobson radical if and only if $1 - yx$ is invertible for all $y \in R$.
+\end{exercise}
 
 \subsection{Principal ideal domains}
 
-\begin{definition} 
-A ring $R$ is a \textbf{principal ideal domain} or \textbf{PID} if $R \neq 0$, $R$ is not a
-field, $R$ is a domain, and every ideal of $R$ is principal.
-\end{definition} 
+\begin{definition} A ring $R$ is a \textbf{principal ideal domain} or
+\textbf{PID} if $R \neq 0$, $R$ is not a field, $R$ is a domain, and every
+ideal of $R$ is principal. \end{definition}
 
-These have the next simplest theory of ideals.
-Each ideal is very simple---it's principal---though there might be a lot of ideals.
+These have the next simplest theory of ideals. Each ideal is very simple---it's
+principal---though there might be a lot of ideals.
 
-\begin{example} 
-$\mathbb{Z}$ is a PID. The only nontrivial fact to check here is that:
-\begin{proposition} 
-Any nonzero ideal $I \subset \mathbb{Z}$ is principal.
-\end{proposition} 
-\begin{proof} 
-If $I = (0)$, then this is obvious.  Else there is $n \in I -
-\left\{0\right\}$; we can assume $n>0$.  Choose $n \in I$ as small as possible and
-positive. Then  I claim that the ideal $I$ is generated by $(n)$. Indeed, we have $(n)
-\subset I$ obviously. If $m \in I$ is another integer, then divide $m$ by $n$,
-to find $m = nb + r$ for $r \in [0, n)$. We find that $r \in I$ and $0 \leq r <
-n$, so $r=0$, and $m$ is divisible by $n$. And $I \subset (n)$. 
+\begin{example} $\mathbb{Z}$ is a PID. The only nontrivial fact to check here
+is that: \begin{proposition} Any nonzero ideal $I \subset \mathbb{Z}$ is
+principal. \end{proposition} \begin{proof} If $I = (0)$, then this is obvious.
+Else there is $n \in I - \left\{0\right\}$; we can assume $n>0$. Choose $n \in
+I$ as small as possible and positive. Then I claim that the ideal $I$ is
+generated by $(n)$. Indeed, we have $(n) \subset I$ obviously. If $m \in I$ is
+another integer, then divide $m$ by $n$, to find $m = nb + r$ for $r \in [0,
+n)$. We find that $r \in I$ and $0 \leq r < n$, so $r=0$, and $m$ is divisible
+by $n$. And $I \subset (n)$.
 
-So $I = (n)$.
-\end{proof} 
-\end{example} 
+So $I = (n)$. \end{proof} \end{example}
 
+\begin{exercise} A domain $R$ is \textbf{euclidean} if there is a map $v: R \to
+\mathbb{Z}_{\geq 0}$ such that $v(xy) = v(x)v(y)$ and such that a type of
+division algorithm holds: if $a,b \in R$ with $b \neq 0$, there are $q,r \in R$
+such that \[ a = qb + r \] and $v(r)< v(b)$. Prove that a euclidean domain is
+principal. \end{exercise}
 
-\begin{exercise} 
-A domain $R$ is \textbf{euclidean} if there is a map $v: R \to
-\mathbb{Z}_{\geq 0}$
-such that $v(xy) = v(x)v(y)$ and such that a type of division algorithm
-holds: if $a,b \in R$ with $b \neq 0$, there are $q,r \in R$ such that
-\[ a = qb + r  \]
-and $v(r)< v(b)$. Prove that a euclidean domain is principal.
-\end{exercise} 
+\begin{exercise} Prove that $\mathbb{Z}[i]$ is principal. (Use the previous
+exercise.) \end{exercise}
 
-\begin{exercise} 
-Prove that $\mathbb{Z}[i]$ is principal. (Use the previous exercise.)
-\end{exercise} 
+\begin{exercise} \label{polyringisprincipal} Prove that the polynomial ring
+$F[t]$ for $F$ a field is principal. \end{exercise}
 
-\begin{exercise} \label{polyringisprincipal}
-Prove that the polynomial ring $F[t]$ for $F$ a field is principal. 
-\end{exercise} 
+\subsection{A bit more about fields} \label{more-fields}
 
-\subsection{A bit more about fields}
-\label{more-fields}
-
-\noindent
-Let $F$ be a field. As $\mathbf{Z}$ is the intial object of the category of
-rings, there is a ring map $f : \mathbf{Z} \to F$, see
-Exercise~\ref{integersinitial}.
-The image of this ring map is an integral domain (as a subring of a field)
-hence the kernel of $f$ is a prime ideal in $\mathbf{Z}$, see
-Proposition~\ref{primeifdomain}.
-Hence the kernel of $f$ is either $(0)$ or $(p)$ for some prime number $p$, see
+\noindent Let $F$ be a field. As $\mathbf{Z}$ is the intial object of the
+category of rings, there is a ring map $f : \mathbf{Z} \to F$, see
+Exercise~\ref{integersinitial}. The image of this ring map is an integral
+domain (as a subring of a field) hence the kernel of $f$ is a prime ideal in
+$\mathbf{Z}$, see Proposition~\ref{primeifdomain}. Hence the kernel of $f$ is
+either $(0)$ or $(p)$ for some prime number $p$, see
 Example~\ref{integerprimes}.
 
-In the first case we see that $f$ is injective, and in this case
-we think of $\mathbf{Z}$ as a subring of $F$. Moreover, since every
-nonzero element of $F$ is invertible we see that it makes sense to
-talk about $p/q \in F$ for $p, q \in \mathbf{Z}$ with $q \not = 0$.
-Hence in this case we may and we do think of $\mathbf{Q}$ as a subring of $F$.
-You can easily see that this is the smallest subfield of $F$ in this case.
+In the first case we see that $f$ is injective, and in this case we think of
+$\mathbf{Z}$ as a subring of $F$. Moreover, since every nonzero element of $F$
+is invertible we see that it makes sense to talk about $p/q \in F$ for $p, q
+\in \mathbf{Z}$ with $q \not = 0$. Hence in this case we may and we do think of
+$\mathbf{Q}$ as a subring of $F$. You can easily see that this is the smallest
+subfield of $F$ in this case.
 
 In the second case, i.e., when $\text{Ker}(f) = (p)$ we see that
 $\mathbf{Z}/(p) = \mathbf{Z}/p\mathbf{Z}$ is a subring of $F$. Since
-$\mathbf{Z}$ is a principal ideal domain the ideal $(p)$ is maximal
-and $\mathbf{Z}/p\mathbf{Z}$ is a field too. This field is always denoted
-$\mathbf{F}_p$ and as before we think of $\mathbf{F}_p \subset F$
-as a subfield. Clearly it is the smallest subfield of $F$.
+$\mathbf{Z}$ is a principal ideal domain the ideal $(p)$ is maximal and
+$\mathbf{Z}/p\mathbf{Z}$ is a field too. This field is always denoted
+$\mathbf{F}_p$ and as before we think of $\mathbf{F}_p \subset F$ as a
+subfield. Clearly it is the smallest subfield of $F$.
 
-Arguing in this way we see that every field contains a smallest subfield
-which is either $\mathbf{Q}$ or finite equal to $\mathbf{F}_p$ for some
-prime number $p$.
+Arguing in this way we see that every field contains a smallest subfield which
+is either $\mathbf{Q}$ or finite equal to $\mathbf{F}_p$ for some prime number
+$p$.
 
-\begin{definition}
-The \textbf{characteristic} of a field $F$ is $0$ if
-$\mathbf{Z} \subset F$, or is a prime $p$ if $p = 0$ in $F$.
-The \textbf{prime subfield of $F$} is the smallest subfield of $F$
-which is either $\mathbf{Q} \subset F$ if the characteristic is zero, or
-$\mathbf{F}_p \subset F$ if the characteristic is $p > 0$.
-\end{definition}
-
+\begin{definition} The \textbf{characteristic} of a field $F$ is $0$ if
+$\mathbf{Z} \subset F$, or is a prime $p$ if $p = 0$ in $F$. The \textbf{prime
+subfield of $F$} is the smallest subfield of $F$ which is either $\mathbf{Q}
+\subset F$ if the characteristic is zero, or $\mathbf{F}_p \subset F$ if the
+characteristic is $p > 0$. \end{definition}
