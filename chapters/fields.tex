@@ -112,5 +112,10 @@ $B\in\mathcal{B}$. Now we claim $F$ is algebraic over $E(B)$. This is because if
 it wasn't then there would be a transcendental element $f\in G$ (since $E(G)=F$)
 such that $B\cup\{f\}$ wold be algebraically independent contradicting the
 maximality of $B$. Thus $B$ is our transcendence basis. \end{proof}
-
+Now we prove that the transcendence degree of a field extension is independent of choice of basis.
+\begin{theorem} Let $F/E$ be a field extension. Any two transcendence bases for $F/E$ have the same cardinality. \end{theorem}
+\begin{proof} Omitted for now; need to look it up.
+\end{proof}
+\begin{example} Consider the field extension $\mathbb{Q}(e,\pi)$ formed by adjoining the numbers $e$ and $\pi$. This field extension has transcendence degree at least $1$ since both $e$ and $\pi$ are transcendental over the rationals. However, this field extension might have transcendence degree $2$ if $e$ and $\pi$ are algebraically independent. Whether or not this is true is unknown and the problem of determining $trdeg(\mathbb{Q}(e,\pi))$ is an open problem.\end{example}
+\begin{example} let $E$ be a field and $F=E(t)/E$. Then $\{t\}$ is a transcendence basis since $F=E(t)$. However, $\{t^2\}$ is also a transcendence basis since $E(t)/E(t^2)$ is algebraic. This illustrates that while we can always decompose an extension $F/E$ into an algebraic extension $F/E'$ and a purely transcendental extension $E'/E$, this decomposition is not unique and depends on choice of transcendence basis. \end{example}
 
