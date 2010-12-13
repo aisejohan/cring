@@ -1,0 +1,1659 @@
+\documentclass{article}
+
+\usepackage{amssymb}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{url}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\renewcommand{\b}[1]{\overline{#1}}
+\newtheorem{example}{Example}
+\newtheorem{proposition}{Proposition}
+
+
+\newcommand{\depth}{\mathrm{depth}}
+\newcommand{\ann}{\mathrm{Ann}}
+\newcommand{\rad}{\mathrm{rad}}
+
+\title{Koszul complexes, regular sequences, and sheaf cohomology}
+\author{Akhil Mathew}
+\date{\today}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+These are an incoherent set of notes that arose out of a blogging experience
+called ``MaBloWriMo'' where one promises to post once a day for a month. I
+announced that I was going to talk about the homological theory of local rings
+and then drifted off topic. 
+\end{abstract}
+
+\section{Regular sequences and Koszul complexes}
+For the next few posts, we shall always assume that \textbf{all rings are
+commutative and noetherian.} Commutativity is always needed. Noetherianness
+won't be needed for now, but it will soon become indispensable. 
+
+So let $R$ be a ring, and $M$ an $R$-module. We want to talk about the
+definition of a \textbf{regular sequence} on $M$. This is going to be a
+sequence of elements of $R$ that act ``independently'' on $M$ in some sense. We
+are going to make this precise below when we interpret a consequence of this
+condition via associated graded modules.
+
+This definition is basically the groundwork for everything that follows, as you
+need it for the definitions of notions such as Cohen-Macaulayness and
+regularity.
+
+Let us start by stating the definition.
+\begin{definition} 
+A sequence $x_1, \dots, x_n \in M$ is \textbf{$M$-regular} (or is an
+\textbf{$M$-sequence} if for each $k \leq n$, $x_k$ is a nonzerodivisor on the
+$R$-module $M/(x_1, \dots, x_{k-1}) M$ and also $(x_1, \dots, x_n) M \neq M$. 	\end{definition} 
+
+So $x_1$ is a nonzerodivisor on $M$, by the first part. That is, the homothety
+$M \stackrel{x_1}{\to} M$ is injective. 
+The last condition is also going to turn out to be necessary for us.
+
+\begin{example} 
+The basic example one is supposed to keep in mind is the polynomial ring $R =
+R_0[x_1, \dots, x_n]$ and $M = R$. Then the sequence $x_1, \dots, x_n$ is
+regular in $R$.
+\end{example} 
+
+Suppose now that $M$ is \emph{finitely generated}. Things become the nicest
+in this context. Then it is  a basic fact of commutative algebra that if $N$ is
+any $R$-module, the guys in $R$ that are zerodivisors on $N$ are precisely
+those that lie in the union of the associated primes of $N$. 
+This fact will become crucial to us as we attempt to construct regular
+sequences.
+
+
+The property of being a regular sequence is inherently an inductive one. Note
+that $x_1, \dots, x_n$ is a regular sequence on $M$ if and only if $x_1$ is a
+zerodivisor on $M$ and $x_2, \dots, x_n$ is an $M/x_1 M$-sequence.
+
+\subsection{Basic properties}
+
+The first observation to make is that regular sequences are \textbf{not}
+preserved by permutation. This is one nice characteristic that we would like
+but is not satisfied.
+
+Nonetheless, 
+\begin{proposition} 
+Let $R$ be a noetherian local ring and $M$ a finite $R$-module. Then if $x_1,
+\dots, x_n$ is a $M$-sequence contained in the maximal ideal, so is any permutation $x_{\sigma(1)}, \dots,
+x_{\sigma(n)}$.
+\end{proposition} 
+\begin{proof} 
+It is clearly enough to check this for a transposition. Namely, if we have an
+$M$-sequence
+\[ x_1, \dots, x_i, x_{i+1}, \dots x_n  \]
+we would like to check that so is
+\[ x_1, \dots, x_{i+1}, x_i, \dots, x_n.  \]
+It is here that we use the inductive nature. Namely, all we need to do is check
+that
+\[ x_{i+1}, x_i, \dots,x_n  \]
+is regular on $M/(x_1, \dots,x_{i-1}) M$, since the first part of the sequence
+will automatically be regular. Now $x_{i+2}, \dots, x_n$ will automatically be
+regular on $M/(x_1, \dots, x_{i+1})M$. So all we need to show is that
+$x_{i+1}, x_i$ is regular on $M/(x_1, \dots, x_{i-1})M$.
+
+The moral of the story is that we have reduced to the following lemma.
+\textbf{Let $N$
+be a finite $R$-module and 
+$a,b \in R$ an $N$-sequence contained in the maximal ideal. Then so is $b,a$.}
+We can prove this as follows. First, $a$ will be a nonzerodivisor on $N/bN$.
+Indeed, if not then we can write
+\[ an = bn'  \]
+for some $n,n' \in N$ with $n \notin bN$. But $b$ is a nonzerodivisor on
+$N/aN$, which means that $bn' \in aN$ implies $n' \in aN$. Say $n' = an''$. So
+$an = ba n''$. As $a$ is a nonzerodivisor on $N$, we see that $n = bn''$. Thus
+$n \in bN$, contradiction.
+This part has not used the fact that $R$ is local.
+
+Now I claim that $b$ is a nonzerodivisor on $N$. Suppose $n \in N$ and $bn =
+0$. Since $b$ is a nonzerodivisor on $N/aN$, we have that $n \in aN$, say $n =
+an'$. Thus 
+\[ b(an') = a(bn') = 0.  \]
+The fact that $N \stackrel{a}{\to} N$ is injective implies that $bn' = 0$. So
+we can do the same and get $n' = an''$, $n'' = a n^{(3)}, n^{(3)} =a n^{(4)}$, and
+so on. It follows that $n$ is a multiple of $a, a^2,a^3, \dots$, and hence in
+$\mathfrak{m}^j N$ for each $j$ where $\mathfrak{m} \subset R$ is the maximal
+ideal. The Krull intersection theorem now implies that $n = 0$. 
+
+Together, these arguments imply that $b,a$ is an $N$-sequence, proving the
+lemma.
+\end{proof} 
+
+
+One might wonder what goes wrong; after all, oftentimes we can reduce results
+to their analogs for local rings. Yet the fact that regularity is preserved by
+permutations for local rings does not extend to arbitrary rings.
+The problem is that regular sequences do \emph{not} localize. Well, they almost
+do, but the final condition that $(x_1, \dots, x_n) M \neq M$ doesn't get
+preserved.
+We can state:
+
+\begin{proposition} 
+Suppose $x_1, \dots, x_n$ is an $M$-sequence. Let $N$ be a flat $R$-module.
+Then if $(x_1, \dots, x_n)M \otimes N \neq M \otimes N$, then $x_1, \dots, x_n$
+is an $M \otimes N$-sequence.
+\end{proposition} 
+\begin{proof} 
+This is actually very easy now. The fact that $x_i: M/(x_1, \dots, x_{i-1})M
+\to M/(x_1, \dots, x_{i-1})M$ is injective is preserved when $M$ is replaced by
+$M \otimes N$ because the functor $- \otimes N$ is exact. 
+\end{proof} 
+
+In particular, it follows that if we have a good reason for supposing that
+$(x_1,\dots, x_n) M \otimes N \neq M \otimes N$, then we'll already be
+done. For instance, if $N$ is the localization of $R$ at a prime ideal
+containing the $x_i$. Then we see that automatically $x_1, \dots, x_n$ is an
+$M_{\mathfrak{p}} = M \otimes_R R_{\mathfrak{p}}$-sequence. 
+
+\subsection{Powers of regular sequences}
+
+Regular sequences don't necessarily behave well with respect to permutation or
+localization under additional hypotheses. However, in all cases they behave
+well with respect to taking powers. The upshot of this is that the invariant
+called \textbf{depth} that we will soon introduce is invariant under passing to
+the radical.
+
+We shall deduce this from the following easy fact.
+\begin{lemma} 
+Suppose we have an exact sequence of $R$-modules
+\[  0 \to M' \to M \to M'' \to 0.  \]
+Suppose the sequence $x_1, \dots, x_n \in R$ is $M'$-regular and $M''$-regular.
+Then it is $M$-regular.
+\end{lemma} 
+The converse is not true, of course.
+\begin{proof} 
+Morally, this is the snake lemma. For instance, the fact that multiplication by
+$x_1$ is injective on $M', M''$ implies by the snake diagram that $M
+\stackrel{x_1}{\to} M$ is injective. However, we don't a priori know that a
+simple inductive argument on $n$ will work to prove this. The reason is that it needs
+to be seen that quotienting each term by $(x_1, \dots, x_{n-1})$ will preserve
+exactness. However, a general fact will tell us that this is indeed the case.
+See below.
+
+Anyway, this general fact now lets us induct on $n$. If we assume
+that $x_1, \dots, x_{n-1}$ is $M$-regular, we need only prove that $x_{n}:
+M/(x_1, \dots, x_{n-1})M
+\to M/(x_1, \dots, x_{n-1})$ is injective. (It is not surjective or the
+sequence would not be $M''$-regular.) But we have the exact sequence by the
+next lemma,
+\[ 0 \to M'/(x_1 \dots x_{n-1})M' \to M/(x_1 \dots x_{n-1})M \to  M''/(x_1
+\dots x_{n-1})M'' \to 0 \]
+and the injectivity of $x_n$ on the two ends implies it at the middle by the
+snake lemma.
+\end{proof} 
+
+So we need to prove:
+\begin{lemma} 
+Suppose $0 \to M' \to M \to M' \to 0$ is a short exact sequence. Let $x_1,
+\dots, x_m$ be an $M''$-sequence. Then the sequence
+\[ 0 \to M'/(x_1 \dots x_m)M' \to M/(x_1 \dots x_m)M \to   M''/(x_1 \dots
+x_m)M'' \to 0\]
+is exact as well.
+\end{lemma} 
+One argument here uses the fact that the Tor functors vanish when you have a
+regular sequence like this. We can give a direct argument. It is really just
+pure diagram-chasing though...
+\begin{proof} 
+By induction, this needs only be proved when $m=1$, since we have the recursive
+description of regular sequences: in general, $x_2 \dots x_m$ will be regular
+on $M''/x_1 M''$. 
+In any case, we have exactness except possibly at the left as the tensor
+product is right-exact. So let $m' \in M'$; suppose $m'$ maps to a multiple of
+$x_1$ in $M$. We need to show that $m'$ is a multiple of $x_1$ in $M'$. 
+
+Suppose $m'$ maps to $x_1 m$. Then $x_1m$ maps to zero in $M''$, so by regularity $m$
+maps to zero in $M''$. Thus $m$ comes from something, $\overline{m}'$, in $M'$. In particular
+$m' - x_1 \overline{m}'$ maps to zero in $M$, so it is zero in $M'$. Thus
+indeed $m'$ is a multiple of $x_1$ in $M'$.
+\end{proof} 
+So here is the result:
+
+\begin{proposition} 
+Let $M$ be an $R$-module and $x_1, \dots, x_n$ an $M$-sequence. Then $x_1^{a_1}
+,\dots, x_n^{a_n}$ is an $M$-sequence for any $a_1, \dots, a_n \in
+\mathbb{Z}_{>0}$.
+\end{proposition} 
+
+\begin{proof}
+
+The clearest way I know to see this is to use the following lemma, which tells
+you that regular sequences are stable under certain reasonable actions.
+
+\begin{lemma} 
+Suppose $x_1, \dots, x_i, \dots, x_n$ and $x_1, \dots, x_i', \dots, x_n$ are
+$M$-sequences for some $M$. Then so is $x_1, \dots, x_i x_i', \dots, x_n$.
+\end{lemma} 
+
+\begin{proof} 
+As usual, we can mod out by $(x_1 \dots x_{i-1})$ and thus assume that $i=1$.
+We have to show that if $x_1, \dots, x_n$ and $x_1', \dots, x_n$ are
+$M$-sequences, then so is $x_1 x_1', \dots, x_n$.
+
+We have an exact sequence
+\[ 0 \to x_1 M/x_1 x_1' M \to M/x_1 x_1' M \to  M/x_1  M \to 0.  \]
+Now $x_2, \dots, x_n$ is regular  on the last term by assumption, and also on
+the first term, which is isomorphic to $M/x_1' M$ as $x_1$ acts as a
+nonzerodivisor on $M$. So $x_2, \dots, x_n$ is regular on both ends, and thus
+in the middle. This means that 
+\[ x_1 x_1', \dots, x_n  \]
+is $M$-regular. That proves the lemma. 
+\end{proof} 
+
+So we now can prove the proposition. It is trivial if $\sum a_i = n$ (i.e. if
+all are $1$) it is clear. In general, we can use complete induction on $\sum
+a_i$. Suppose we know the result for smaller values of $\sum a_i$. We can
+assume that some $a_j >1$. 
+Then  the sequence
+\[ x_1^{a_1}, \dots x_j^{a_j} , \dots x_n^{a_n} \]
+is obtained from the sequences
+\[  x_1^{a_1}, \dots,x_j^{a_j - 1}, \dots, x_n^{a_n} \]
+and
+\[  x_1^{a_1}, \dots,x_j^{1}, \dots, x_n^{a_n} \]
+by multiplying the middle terms. But the complete induction hypothesis implies
+that both those two sequences are $M$-regular, so we can apply the lemma. 
+\end{proof} 
+
+In general, the product of two regular sequences is not a regular sequence. For
+instance, consider a regular sequence $x,y$ in some f.g. module $M$ over a
+noetherian local ring. Then $y,x$ is regular, but the product sequence $xy, xy$
+is \emph{never} regular.
+
+
+\subsection{Depth}
+
+Constructing regular sequences sequences is a useful task. We often want to ask
+how long we can make them subject to some constraint. For instance, 
+
+\begin{definition} 
+Suppose $I$ is an ideal such that $IM \neq M$. Then we define the
+\textbf{$I$-depth of $M$} to be the maximum length of a maximal $M$-sequence contained
+in $I$. When $R$ is a local ring and $I$ the maximal ideal, then that number is
+simply called the \textbf{depth} of $M$.
+
+The \textbf{depth} of a proper ideal $I \subset R$ is its depth on $R$.
+\end{definition} 
+
+
+The definition is slightly awkward, but it turns out that all maximal
+$M$-sequences in $I$ have the same length. So we can use any of them to compute
+the depth. 
+
+The first thing we can prove using the above machinery is that depth is really
+a ``geometric'' invariant, in that it depends only on the radical of $I$.
+
+\begin{proposition} 
+Let $R$ be a ring, $I \subset R$ an ideal, and $M$ an $R$-module
+with $IM \neq M$. Then $\mathrm{depth}_I M = \mathrm{depth}_{\mathrm{Rad}(I)} M$.
+\end{proposition} 
+\begin{proof} 
+The inequality $\mathrm{depth}_I M \leq \mathrm{depth}_{\mathrm{Rad} I} M$ is trivial, so we need only
+show that if $x_1, \dots, x_n$ is an $M$-sequence in $\mathrm{Rad}(I)$, then there is
+an $M$-sequence of length $n$ in $I$. For this we just take a high power
+\[ x_1^N, \dots, x_n^{N}  \]
+where $N$ is large enough such that everything is in $I$. We can do this as
+powers of $M$-sequences are $M$-sequences.
+\end{proof} 
+
+This was a fairly easy consequence of the above result on powers of regular
+sequences. On the other hand, we want to give another proof, because it will
+let us do more. Namely, we will show that depth is really a function of prime
+ideals.
+
+For convenience, we set the following condition: if $IM = M$, we define
+\[ \mathrm{depth}_I (M) = \infty.  \]
+
+\begin{proposition} 
+Let $R$ be a noetherian ring, $I \subset R$ an ideal, and $M$ a f.g. $R$-module. 
+Then
+\[ \mathrm{depth}_I M = \min_{\mathfrak{p} \in V(I)} \mathrm{depth}_{\mathfrak{p}} M .  \]
+\end{proposition} 
+
+So the depth of $I$ on $M$ can be calculated  if you know the depths at each
+prime containing $I$. In this sense, it is clear that $\mathrm{depth}_I (M)$ depends
+only on $V(I)$ (and the depths on those primes), so clearly it depends only on
+$I$ \emph{up to radical}.
+
+\begin{proof} 
+In this proof, we shall \textbf{use the fact that the length of every maximal
+$M$-sequence is the same}, something which we will prove below.
+
+It is obvious that we have an inequality
+\[ \mathrm{depth}_I \leq  \min_{\mathfrak{p} \in V(I)} \mathrm{depth}_{\mathfrak{p}} M \]
+as each of those primes contains $I$. 
+We are to prove that there is 
+a prime $\mathfrak{p}$ containing $I$ with
+\[ \mathrm{depth}_I M = \mathrm{depth}_{\mathfrak{p}} M . \]
+But we shall actually prove the stronger statement that there is $\mathfrak{p}
+\supset I$ with $\mathrm{depth}_{\mathfrak{p}} M_{\mathfrak{p}} = \mathrm{depth}_I M$. Note
+that localization at a prime can only increase depth because an $M$-sequence in
+$\mathfrak{p}$ leads to an $M$-sequence in $M_{\mathfrak{p}}$ thanks to
+Nakayama's lemma and the flatness of localization.
+
+So let $x_1, \dots, x_n \in I$ be a $M$-sequence of maximum length. Then $I$
+acts by zerodivisors on 
+$M/(x_1 , \dots, x_n) M$ or we could extend the sequence further. 
+In particular, $I$ is contained in an associated prime of $M/(x_1, \dots, x_n)
+M$ by elementary commutative algebra (basically, prime avoidance).
+
+Call this associated prime $\mathfrak{p} \in V(I)$. Then $\mathfrak{p}$ is an
+associated prime of $M_{\mathfrak{p}}/(x_1, \dots, x_n) M_{\mathfrak{p}}$,
+and in particular acts only by zerodivisors on this module. 
+Thus the $M_{\mathfrak{p}}$-sequence $x_1, \dots, x_n$ can be extended no
+further in $\mathfrak{p}$. In particular, since as we will see soon, the depth
+can be computed as the length of any maximal $M_{\mathfrak{p}}$-sequence,
+\[ \mathrm{depth}_{\mathfrak{p}} M_{\mathfrak{p}} = \mathrm{depth}_I M. \]
+\end{proof} 
+
+Perhaps we should note a corollary of the argument above:
+\begin{corollary} 
+Hypotheses as above, we have $\mathrm{depth}_I M  \leq \mathrm{depth}_\mathfrak{p} M_{\mathfrak{p}}$ for
+any prime $\mathfrak{p} \supset I$. However, there is at least one $\mathfrak{p}
+\supset I$ where equality holds. \end{corollary}
+
+\newcommand{\ext}{\mathrm{Ext}}
+
+\newcommand{\ass}{\mathrm{Ass}}
+\subsection{$\mathrm{Ext}$ and depth}
+One of the first really nontrivial facts we need to prove is that the lengths
+of maximal $M$-sequences are all the same. This is a highly useful fact.
+More precisely, let $I \subset R$ be an ideal, and $M$ a finitely generated
+module. Assume $R$ is noetherian.
+
+\begin{theorem} Suppose $M$ is a f.g. $R$-module and $IM \neq M$.
+All maximal $M$-sequences in $I$ have the same length. This length is the
+smallest value of $r$ such that $\mathrm{Ext}^r(R/I, M) \neq 0$.
+\end{theorem} 
+
+I don't really have time to define the $\mathrm{Ext}$ functors in any detail here
+beyond the fact that they are the derived functors of $\hom$. So for instance,
+$\mathrm{Ext}(P, M)=0$ if $P$ is projective, and $\mathrm{Ext}(N, Q) = 0$ if $Q$ is injective.
+These $\mathrm{Ext}$ functors can be defined in any abelian category, and measure the
+``extensions'' in a certain technical sense (irrelevant for the present
+discussion).
+
+
+So the goal is to prove this theorem. 
+In the first case, let us suppose $r = 0$, that is there is a nontrivial $R/I
+\to M$. The image of this must be annihilated by $I$. Thus no element in $I$
+can act as a zerodivisor on $M$. So when $r = 0$, there are no $M$-sequences
+(except the ``empty'' one of length zero). 
+
+Conversely, if all $M$-sequences are
+of length zero, then no element of $I$ can act as a nonzerodivisor on $M$. It
+follows that each $x \in I$ is contained in an associated prime of $M$, and
+hence by the prime avoidance lemma, that $I$ itself is contained in an
+associated prime $\mathfrak{p}$ of $M$. Then there is an injection
+$R/\mathfrak{p} \rightarrowtail  M$, which when composed with reduction $R/I
+\to R/\mathfrak{p}$ shows that $\hom(R/I, M) \neq 0$.
+
+Note that we have used the fact that $R$ is noetherian and $M$ finitely
+generated here, or otherwise the whole business of associated primes wouldn't
+work.
+
+Now I want to claim that if $x_1, \dots, x_s$ is any $M$-sequence in $I$, then
+$\mathrm{Ext}^q( R/I, M) = 0$ for $q < s$. We have shown this for $s=1$; the conclusion
+is then simply $\hom(R/I, M)=0$. Namely, I want to claim that the length of any
+maximal $M$-sequence is \emph{at most} the minimal $r$ as in the theorem.
+\begin{lemma} 
+If $x_1, \dots, x_s$ is any $M$-sequence in $I$, then
+$\mathrm{Ext}^q( R/I, M) = 0$ for $q < s$.
+\end{lemma} 
+\begin{proof} 
+As I have said, this is true for $s=0$. We want to prove this by induction on
+$s$. So suppose it true for $s-1$. Then we know that $\mathrm{Ext}^q(R/I, M)=0$ for $q
+< s-1$. We are left to showing that
+\[ \mathrm{Ext}^{s-1} (R/I, M) = 0. \]
+
+Well, we can apply the inductive hypothesis again to conclude that $\mathrm{Ext}^q(R/I,
+M/x_1 M) = 0$ for $q < s-1$ as there is a $s-1$-length $M/x_1 M$ sequence $x_2,
+\dots, x_s$.
+There is an exact sequence
+\[ 0 \to M \stackrel{x_1}{\to} M \to M/x_1 M \to 0,  \]
+by definition of regularity. The standard argument in these proofs is to get
+from here a long exact sequence and use induction. Here the long exact sequence
+looks like
+\[  \mathrm{Ext}^{s-2}(R/I, M/x_1 M)  \to \mathrm{Ext}^{s-1}(R/I, M) \stackrel{x_1}{\to}
+\mathrm{Ext}^{s-1}(R/I, M) \to \dots  \]
+The first term is zero by the inductive assumption. So multiplication by $x_1$
+is injective on $\mathrm{Ext}^{s-1}(R/I, M)$. But $x_1$ acts by zero on $R/I$. Thus it
+acts by zero on $\mathrm{Ext}^{s-1}(R/I, M)$ by the interpretation as a derived
+functor. This means that $\mathrm{Ext}^{s-1}(R/I, M) =0$. And that proves the lemma. 
+\end{proof} 
+
+
+So we have gotten one direction. We need to do the other. Namely, we need to
+show that if $x_1, \dots, x_r$ is an $M$-sequence which cannot be extended in
+$I$, then 
+\[ \mathrm{Ext}^r(R/I, M) \neq 0.  \]
+
+\begin{comment}
+This will imply the other inequality and prove the theorem. 
+For this we prove:
+\begin{lemma} If $x_1, \dots, x_r$ is an $M$-sequence, then
+$$\mathrm{Ext}^r(R/I, M) \simeq \hom(R/I, M/(x_1, \dots, x_r)M).$$
+\end{lemma} 
+This is actually more general than the previous lemma. In that case, we knew
+that $x_1 \dots x_r$ could be extended, so there was an element of $I$ which
+was a nonzerodivisor on $M/(x_1 \dots x_r) M$, so the hom-set on the left was
+zero. 
+\end{comment}
+\begin{proof} 
+Though this is really a generalization of the previous result, the argument is
+very similar (and there was basically no need for the previous result
+therefore, if we showed a slightly more general result). Anyway, let's induct
+on $r$. We know it for $r=0$ by the initial discussion.
+ Draw the exact sequence
+$0 \to M \stackrel{x_1}{\to} M \to M/x_1 M\to 0$.  
+
+
+
+This leads to the exact sequence
+\[ \mathrm{Ext}^{r-1}(R/I, M/x_1 M) \to \mathrm{Ext}^r(R/I, M) \stackrel{x_1}{\to}
+\mathrm{Ext}^r(R/I, M).  \]
+As before, the last multiplication is zero, so we find an isomorphism
+\[ \mathrm{Ext}^{r-1}(R/I, M/x_1 M) \simeq \mathrm{Ext}^r(R/I, M).  \]
+Given the $M/x_1 M$-sequence $x_2, \dots, x_r$ which can be extended no
+further, we see that $\mathrm{Ext}^{r-1}(R/I, M/x_1 M) \neq 0$, which proves the result.
+\end{proof} 
+
+\subsection{Depth and dimension}
+
+Consider an $R$-module $M$, which is always assumed to be finitely generated.
+Let $I \subset R$ be an ideal with $IM \neq M$. We know
+that if $x \in I$ is a nonzerodivisor on $M$, then $x$ is part of a maximal
+$M$-sequence in $I$, which has length $\mathrm{depth}_I M$ necessarily.
+It follows that $M/xM$ has a $M$-sequence of length $\mathrm{depth}_I M - 1$ (because
+the initial $x$ is thrown out) which can be extended no further.
+
+In particular, we find
+\begin{proposition} 
+Hypotheses as above, let $x \in I$ be a nonzerodivisor on $M$. Then 
+\[ \mathrm{depth}_I (M/xM) = \mathrm{depth} M - 1.  \]
+\end{proposition} 
+
+\newcommand{\supp}{\mathrm{supp}}
+This is strikingly analogous to the dimension of the module $M$. 
+Recall that $\dim M$ is defined to be the Krull dimension of the topological
+space  $\supp M = V( \mathrm{Ann} M)$ for $\mathrm{Ann} M$ the annihilator of $M$.
+But the ``generic points'' of the topological space $V(\mathrm{Ann} M)$, or the
+smallest primes in $\supp M$, are precisely the associated primes of $M$. 
+So if $x$ is a nonzerodivisor on $M$, we have that $x$ is not contained
+in any associated primes of $M$, so that $\supp(M/xM)$ must have smaller
+dimension than $\supp M$. That is,
+\[ \dim M/xM \leq \dim M - 1.  \]
+But I claim that we have in fact equality. 
+
+\begin{lemma} 
+For any f.g. $R$-module $M$, we have $\dim M /xM \geq \dim M - 1$.
+\end{lemma} 
+\begin{proof} 
+If you use the interpretation of $\dim $ via systems of parameters, this is not
+very interesting. For consistency, I will assume that everyone thinks of $\dim
+$ as defined as the combinatorial (i.e. Krull) dimension of $\supp M=V(\mathrm{Ann}
+M)$.  
+In particular, I will give a proof using the principal ideal theorem. 
+
+Then I claim that $\supp(M/xM) = \supp M \cap V(x)$. Indeed, this is easily
+seen by localization: if $\mathfrak{p}$ is such that $M_{\mathfrak{p}}/x
+M_{\mathfrak{p}} \neq 0$, then $M_{\mathfrak{p}} \neq 0$ and $\mathfrak{p} \in
+\supp M$. Similarly, $x$ is a non-unit in $R_\mathfrak{p}$ and thus $x \in
+\mathfrak{p}$, so $\mathfrak{p} \in V(x)$. The converse is proved the same way
+using Nakayama's lemma.
+
+But we know that Krull's principal ideal theorem says that the dimension of a
+closed set intersected with a ``hypersurface'' like $V(x)$ is at least the
+initial dimension minus one. So this gives the other inequality. 
+\end{proof} 
+
+In particular, we deduce:
+\begin{proposition} 
+Let $M$ be a f.g. module over the noetherian ring $R$. Then
+\[ \mathrm{depth}_I M \leq \dim M  \]
+for any ideal $I \subset R$ with $IM \neq M$.
+\end{proposition} 
+\begin{proof} 
+Indeed, if $x_1, \dots, x_r$ is a maximal $M$-sequence in $I$, then 
+\[ \dim M/(x_1 , \dots, x_r) M = \dim M - r  \]
+by the above remarks. 
+This implies that $r \leq \dim M$. That proves the result. 
+\end{proof} 
+
+This does not tell us much about how $\mathrm{depth}_I M$ depends on $I$, though; it
+just says something about how it depends on $M$. In particular, it is not very
+helpful when trying to estimate $\mathrm{depth} I = \mathrm{depth}_I R$.
+Nonetheless, there is a somewhat stronger result, which we will need in the
+future.
+
+\begin{proposition} 
+Hypotheses as above, $\mathrm{depth}_I M$ is at most the length of every  chain
+of primes in $\mathrm{Spec} R$ that starts at an associated prime of $M$ and
+ends at a prime containing $I$.
+\end{proposition} 
+
+\begin{proof} Consider a chain of primes $\mathfrak{p}_0 \subset \dots \subset
+\mathfrak{p}_k$ where $\mathfrak{p}_0$ is an associated prime and
+$\mathfrak{p}_k$ contains $I$. 
+The goal is to show that 
+\[ k \leq \mathrm{depth}_I M.  \]
+By localization, we can assume that $\mathfrak{p}_k$ is the maximal ideal of
+$R$; recall that localization can only increase the depth.
+
+In this case, the argument has become:
+\begin{lemma} 
+Let $(R,\mathfrak{m})$ be a noetherian local ring. Let $M$ be a finite
+$R$-module. Then the depth of $\mathfrak{m}$ on $M$ is at most the dimension of
+$R/\mathfrak{p}$ for $\mathfrak{p}$ an associated prime of $M$.
+\end{lemma} 
+
+To prove this, first assume that the depth is zero. In that case, the result is
+immediate. We shall now argue inductively.
+Assume that that this is true for modules of smaller depth. 
+We will quotient out appropriately to shrink the
+support and change the associated 
+primes. Namely, choose a $M$-regular (nonzerodivisor on $M$) $x \in R$. 
+Then $\mathrm{depth}_I M/xM = \mathrm{depth}_I M -1$. 
+
+Let $\mathfrak{p}_0$ be an associated prime of $R$.
+I claim that $\mathfrak{p}_0$ is properly contained in an associated prime of
+$M/xM$. Indeed, $x \notin \mathfrak{p}_0$, so $\mathfrak{p}_0$ cannot itself be
+an associated prime. 
+However, $\mathfrak{p}_0$ annihilates a nonzero element of $M/xM$. To see this,
+consider maximal principal submodule of $M$ annihilated by $\mathfrak{p}_0$.
+Let this submodule be $Rz$ for some $z \in M$. Then if $z$ is a multiple of
+$x$, say $z = xz'$, then $Rz'$ would be a larger
+submodule of $M$ annihilated by $\mathfrak{p}_0$---here we are using the fact
+that $x$ is a nonzerodivisor on $M$. So the image of this $z$ in $M/xM$ is
+nonzero and is clearly annihilated by $\mathfrak{p}_0$. 
+Thus $\mathfrak{p}_0$ is contained in an associated prime of $M/xM$. Call this
+prime $\mathfrak{q}_0$. 
+
+Now we know that $\mathrm{depth}_I M/xM = \mathrm{depth}_I M -1$. Also, by the inductive
+hypothesis, we know that $\dim R/\mathfrak{q}_0 \geq \mathrm{depth}_I M/xM = \mathrm{depth}_I M
+-1$. But the dimension of $R/\mathfrak{q}_0$ is strictly greater than that of
+$R/\mathfrak{p}_0$, so at least $\dim R/\mathfrak{q}_0 +1 = \mathrm{depth}_I M$. This
+proves the lemma.
+\end{proof} 
+
+\subsection{The Koszul complex} 
+We are now going to 
+discuss another mechanism for determining the length of maximal $M$-sequences,
+namely the Koszul complex.
+
+Let $L$ be  a finitely generated $R$-module. Consider the graded commutative
+algebra $K = \bigwedge L = \bigoplus \wedge^i L$ with the product given by the
+wedge product; the graded commutativity is
+similar to the cup-product in cohomology, and implies that
+\[ x \wedge y = (-1)^{\deg x \deg y} y \wedge x.  \]
+Given $\lambda: L \to R$, we can 
+define a \emph{differential} on $K$ as follows. Namely, we define
+\[ d( x_1 \wedge \dots \wedge x_n) = \sum_i (-1)^i\lambda(x_i) x_1 \wedge
+\dots \wedge \hat{x_i} \wedge \dots \wedge x_n. \]
+(More precisely, this clearly defines an alternating map $L^n \to \wedge^{n-1}
+L$, and this thus factors through the alternating product by the universal
+property.) It is very easy to see that $d \circ d = 0$.
+
+Moreover, $d$ is an anti-derivation. If $x,y \in K$ are homogeneous elements
+of the graded algebra, then
+\[ d(x\wedge y) = d(x)\wedge  y + (-1)^x x \wedge d(y)  \]
+
+\begin{definition} 
+The complex, together with the multiplicative structure, just defined is called the \textbf{Koszul complex} and is denoted
+$K_*(\lambda)$.
+\end{definition} 
+
+The special case we shall care the most about is when $L = R^n$ and 
+$\lambda: R^n \to R$ is given by the dot product with a vector $\mathbf{f}=(f_1, \dots,
+f_n) \in R^n$. Then we shall write
+\[ K_*(\mathbf{f})  \]
+for the Koszul complex.
+
+Now that we have a complex, we can define its homology (and cohomology).
+\begin{definition} 
+Let $M$ be an $R$-module. We write $K_*(\lambda, M)$ for the complex $K(\lambda)
+\otimes M$ (and similarly $K_*(\mathbf{f}, M)$ when $\mathbf{f}: R^n \to R$ is
+$\lambda$). The homology of this complex is called the \textbf{Koszul homology}
+of $M$ and is denoted $H_i(\lambda, M)$ (or $H_i(\mathbf{f}, M)$).
+\end{definition} 
+
+
+One of the basic facts about this is that $K_*(\lambda, \cdot)$ is an exact
+functor if $L$ is flat. In particular, $K_*(\mathbf{f}, \cdot)$ is an exact
+functor as each of the terms of the complex are free.
+In particular,
+\begin{theorem} 
+If $L$ is a flat module, then $H_i(\lambda, M)$ is a $\delta$-functor.
+\end{theorem} 
+
+We can also dualize everything. 
+\begin{definition} 
+Let $M$ be an $R$-module. We write $K^*(\lambda, M)$ for the complex
+$\hom(K(\lambda), M)$. The cohomology of this cochain complex is called the
+\textbf{Koszul cohomology} with $M$ coefficients and is denoted $H^i(\lambda,
+M)$. (Similarly we define
+$K^*(\mathbf{f}, M)$ when $L$ is a free module, and write $H^i(\mathbf{f}, M)$
+for the Koszul cohomology.)
+\end{definition} 
+
+It is similarly easy to see that when $L$ is projective, then $K^*(\lambda, M)$
+will be an exact functor in $M$, and the Koszul 
+cohomology will be a $\delta$-functor where the connecting homomorphisms raise
+the degree. 
+
+
+So what can we do with this? Well, as we will see the Koszul complex detects
+the regularity of sequences. This is a nontrivial fact, and it will basically
+rely on the fact that, first of all, the Koszul complex $K(f)$ for $f \in R$
+(i.e. the complex of the free module $R$ together with the functional $R
+\stackrel{f}{\to} R$) is very simple; it's
+\[ 0 \to R \stackrel{f}{\to} R \to 0.  \]
+It will rely on this simple observation and the fact, proved next, that Koszul
+complexes behave nicely with respect to tensoring.
+
+Given graded $R$-algebras $A, B$, we can form the \emph{graded tensor product} $A
+\otimes_R B$. By definition, this is just $A \otimes_R B$ as a graded module,
+but the multiplicative structure is slightly different. Namely, we define the
+product of $a \otimes b, a' \otimes b'$ as 
+\[ (-1)^{\deg a' \deg b} aa' \otimes bb'  \]
+if the elements in question are homogeneous. This is a fairly common
+construction. When one has finite-dimensional CW
+complexes $X,Y$, for instance, the cohomology ring of $X \times Y$ with
+coefficients in a field is the graded tensor product of the cohomology rings of
+$X$ and $Y$. 
+
+Another example, more relevant here, is that if $N,N'$ are two modules, then
+the exterior algebra $\bigwedge (N \oplus N')$ is the graded tensor product of
+$\bigwedge N $ and $\bigwedge N'$. 
+
+\begin{proposition} 
+Let $\lambda: L \to R, \lambda': L' \to R$ be linear functionals. Then the
+Koszul complex $K_*(\lambda \oplus \lambda')$ is the tensor product
+$K_*(\lambda) \otimes K_*(\lambda')$ as differential graded algebras.
+\end{proposition} 
+So in other words, not only is the algebra structure preserved by taking the
+tensor product, but when you think of them as chain complexes, $K_*(\lambda
+\oplus \lambda') \simeq K_*(\lambda) \oplus K_*(\lambda')$. This is a condition
+on the differentials.
+
+Here $\lambda \oplus \lambda'$ is the functional $L \oplus L' \stackrel{\lambda
+\oplus \lambda'}{\to} R \oplus R \to R$ where the last map is addition. So for
+instance this implies that $K_*(\mathbf{f}) \otimes K_*(\mathbf{f}') \simeq
+K_*(\mathbf{f}, \mathbf{f}')$ for two tuples $\mathbf{f} = (f_1, \dots, f_i),
+\mathbf{f}' = (f'_1, \dots, f'_j)$. This implies that in the case we care about
+most, catenation of lists of elements corresponds to the tensor product.
+
+Before starting the proof, let us talk about differential graded algebras. This
+is not really necessary, but the Koszul complex is a special case of a
+differential graded algebra.
+
+\begin{definition} 
+A \textbf{differential graded algebra} is a graded  unital associative algebra
+$A$ together with a derivation $d: A \to A$ of degree one (i.e. increasing the
+degree by one). 
+This derivation is required to satisfy a graded version of the usual Leibnitz
+rule: $d(ab) = (da)b + (-1)^{\mathrm{deg} a} a (db) $.
+Moreover, $A$ is required to be a complex: $d^2=0$. So the derivation is a
+differential.
+\end{definition} 
+
+So the basic example to keep in mind here is the case of the Koszul complex.
+This is an algebra  (it's the exterior algebra). The derivation $d$ was
+immediately checked to be a differential. 
+There is apparently a category-theoretic interpretation of DGAs, but I have not
+studied this. 
+
+\begin{proof} 
+As already stated, the \emph{graded algebra} structures on $K_*(\lambda),
+K_*(\lambda')$ are the same. This is, I suppose, a piece of linear algebra,
+about exterior products, and
+I won't prove it here. The point is that the \emph{differentials } coincide. 
+The differential on $K_*(\lambda \oplus \lambda')$ is given by extending the
+homomorphism $L
+\oplus L' \stackrel{\lambda \oplus \lambda'}{\to} R$ to a derivation. This
+extension is unique. 
+Now I claim that  tensor product of two differential graded algebras with the
+product differential is a DGA itself. This says that the tensor product of the
+differentials is itself not only a differential, but a \emph{derivation}  on
+the tensor product. 
+
+This is what we want, because then the product differential on $K_*(\lambda)
+\otimes K_(\lambda')$ is a derivation, and since the differential induced by
+$\lambda + \lambda'$ is one too, the two must coincide as they coincide in
+degree one. 
+
+This is a routine computation, which is not suitable to blogging. So one should
+check that if $(A, d_A), (B, d_B)$ are DGAs, then $(A \otimes B, d_{A \otimes
+B})$, where $A \otimes B$ has the \emph{graded} algebra structure and $d_{A
+\otimes B}$ is the product differential, is indeed a DGA. 
+\end{proof} 
+
+
+\subsection{Koszul homology and regular sequences} 
+
+In general, the Koszul complex is not exact. The degree to which its homology
+vanishes does, however, say something. It tells you the length of regular
+sequences, or alternatively the depth. 
+
+First, we can compute the Koszul homology at the end. Let $f_1, \dots, f_r \in
+R$ for $R$ a commutative ring, and let $M$ be an $R$-module. Then
+$K_1(\mathbf{f}) = R^r$ and $K_0(\mathbf{f}) = R$ from the definitions. The
+differential $K_1(\mathbf{f}) \to K_0(\mathbf{f})$ is simply $(a_i) \to \sum
+a_i r_i$. In particular, we see that the homology of the Koszul complex at
+dimension zero is $R/(f_1, \dots, f_r) R$. More generally, this argument and
+the right-exactness of the tensor product shows that:
+
+\begin{proposition} 
+We have
+\[ H_0(\mathbf{f}, M) = M/(f_1, \dots, f_r) M.  \]
+\end{proposition} 
+
+So in general, the zeroth Koszul homology $H_0$ will be nonzero. But the higher
+ones vanish for regular sequences. 
+We are aiming for:
+
+\begin{proposition} 
+Let $f_1, \dots, f_r$ be an $M$-regular sequence. Then $H_s(\mathbf{f}, M) = 0$
+for $s \neq 0$.
+\end{proposition} 
+\begin{proof} 
+The argument, as expected, will be inductive. The first step is the core of the
+idea, though. The Koszul complex for $\mathbf{f}$ consisting of one element  is
+\[ 0 \to M \stackrel{f}{\to} M \to 0.  \]
+It is clear that the homology of this complex detects the nonzerodivisorness of
+$f$ on $M$. In general, the result is an inductivization of the above
+observation.
+
+When $r=1$, the above proposition is true. Let us assume it true for $r-1$, and
+we prove it for $r$. So let $f_1, \dots, f_r$ be an $M$-regular sequence, and
+let $\mathbf{f}' = (f_1, \dots, f_{r-1})$. We
+know that the homology of the complex
+\[ K(\mathbf{f}', M)  \]
+vanishes in dimension $\neq 0$, and is $M/(\mathbf{f}'M)$ for dimension zero.
+This is ``close'' to what we want as $K(\mathbf{f}', M)$ and $K(\mathbf{f}, M)$
+are ``similar,'' but we need a way of going between them.
+So far, we know that 
+\[ K(\mathbf{f}, M) = K(\mathbf{f}',M) \otimes K(f_r, M),  \]
+and that $f_r$ is a nonzerodivisor on $H_0(K(\mathbf{f}', M))$.
+That way is provided by:
+
+\begin{lemma} 
+Let $\left\{C_n\right\}_{n \geq 0}$ be a chain complex of $R$-modules such that $C_*$ is exact in
+positive dimension. Suppose $y \in R$ is a nonzerodivisor on $H_0(C)$. 
+Then $C_* \otimes K(y, R)$ is acyclic in positive dimension.
+\end{lemma} 
+\begin{proof} 
+Because I'm in the mood to use a sledgehammer, let's deduce this from a
+spectral sequence. We know that there is a double complex $\left\{C_p \otimes
+K_q(y, R)\right\}_{p,q \geq 0}$. There are two spectral sequences that converge
+to the same thing. For the first homology, we take the horizontal homology, and
+then the vertical homology of the horizontal homology.  But since $K(y,R)$ is
+just $R$ and zero, the horizontal homology is zero except in dimension zero,
+where it's $H_0(C)$ located at $(0,0)$ and $(0,1)$. The vertical differential
+is multiplication by $y$. When we take the next page in this spectral sequence,
+the fact that $y$ is $H_0(C)$-regular implies that it is $H_0(C)/y H_0(C)$ at the origin
+and nothing elsewhere. In particular, the second $E_2$ page of this spectral
+sequence is centered at the origin.
+
+This spectral sequence converges to the total homology of the double complex.
+That total homology is $H_*(C \otimes K(y,R))$. But the spectral sequence
+obviously collapses at $E_2$, and the convergent limit $E_\infty = E_2$ as a
+result. But from the  thus calculated $E_\infty$ page of the
+spectral sequence, we find that there is nothing about the nonzero diagonals,
+and consequently since the sequence converges $H_*(C \otimes K(y,R))$, we see
+that $C \otimes K(y,R)$ is acyclic in positive dimensions.
+\end{proof}
+
+Now, with the lemma established, the result is clear. I should note that the
+lemma can be proved slightly less conceptually but more elementarily (without
+spectral sequences) if one writes some exact sequences. 
+
+\end{proof} 
+
+
+This result is very far from the best we can do. The Koszul homology may very
+well be zero without the initial sequence being a regular sequence. The more
+natural result, which can be proved using more sophisticated refinements of the
+above reasoning, is that Koszul homology $H_*(\mathbf{f}, M)$ detects the length of a maximal
+$M$-sequence in the ideal $(\mathbf{f}) \subset R$. I want to get to this
+result, but first there are some interesting things one can do with what's been
+proved alone in algebraic geometry.	
+
+\section{The Koszul complex in elementary algebraic geometry}
+
+\subsection{The Koszul complex and Cech cohomology}
+
+What we now want to show is that on a reasonable scheme, Cech cohomology of a
+quasi-coherent sheaf is really a type of Koszul cohomology. 
+Namely, let's start with a scheme $X$, which I will take to be quasi-compact
+and quasi-separated. (If you are what Ravi Vakil calls a noetherian person,
+then you can ignore the previous remark.) Let $\mathcal{F}$ be a quasi-coherent
+sheaf on $X$. Let $f_1, \dots, f_r \in \Gamma(X, \mathcal{O}_X)$ be 
+global regular functions on $X$. Then we can define the sets $X_{f_i}$ where
+the functions $f_i$ ``don't vanish'' (more precisely, are units in the local
+ring). 
+
+One of the basic results one proves is that taking sections over these basic
+open sets corresponds to localization:
+\begin{proposition} 
+$\Gamma(X_f, \mathcal{F}) = \Gamma(X, \mathcal{F})_f$ if $\mathcal{F}$ is
+quasi-coherent.
+\end{proposition} 
+
+\newcommand{\spec}{\mathrm{Spec}}
+\begin{proof} 
+This is a general fact about quasi-coherent sheaves, and one way to see it is
+to use the fact that if $A = \Gamma(X, \mathcal{O}_X)$ is the ring of global
+functions, there is a morphism $g: X \to \mathrm{Spec} A$. This is a quasi-separated,
+quasi-compact morphism by hypothesis. Thus the direct image $g_*(\mathcal{F})$
+is quasi-coherent. In particular, this means that
+\[ \Gamma(\mathrm{Spec} A, g_*(\mathcal{F}))_f = \Gamma(D(f), g_*(\mathcal{F}))  \]
+where $D(f) \subset \mathrm{Spec} A$ is the basic open set. When one translates this
+back via the definition of $f_*$, one gets the proposition.
+
+\end{proof} 
+
+We now continue with the original question.
+So let $M = \Gamma(X, \mathcal{F})$ be the global sections of the sheaf
+$\mathcal{F}$. We have seen that $M_{f_i}$ is $\Gamma(X_{f_i}, \mathcal{F})$
+for each $i$. Similarly, $M_{f_{i_1} \dots f_{i_k}}$ is $\Gamma(X_{f_{i_1}}
+\cap \dots \cap X_{f_{i_k}}, \mathcal{F})$ for any $k$-tuple of the $f_i$.
+To avoid triple subscripts, let us write $U_{i_k}$ instead of $X_{f_{i_k}}$.
+
+This is precisely what we need to consider the Cech cohomology with respect to
+the open sets $\mathfrak{A} = \left\{X_{f_i}\right\}$. A priori, note that the
+$X_{f_i}$ won't cover $X$, so we shouldn't immediately expect that the Cech
+cohomology will resemble the derived functor cohomology.
+
+Well, so what is it? Recall that the $k-1$-th part of the Cech complex is the set
+of cochains which associate to every ordered tuple $i_1, \dots, i_k$ 
+an element in $\Gamma(U_{i_1} \cap \dots U_{i_k}, \mathcal{F}) = M_{f_{i_1}
+\dots f_{i_k}}$. This cochain is required to be \emph{alternating}, i.e. a swap
+in $i_1, \dots, i_k$ should flip a sign. 
+
+In other words, the $k-1$-th part is the subset of the product
+\[ \prod_{i_1 \dots i_k} M_{f_{i_1}}  \]
+consisting of alternating tuples. 
+
+Let $[1,r]$ be the set of integers between $1$ and $r$, and  let $\phi$ be a
+$k-1$-cochain in the Cech complex, so $\phi$ is an alternating function out of $[1,
+r]^k$. The value on $(i_1, \dots, i_k)$ lies in the localization $M_{f_{i_1}
+\dots f_{i_k}}$.
+The \emph{boundary } of $\phi$ on a $k+1$-tuple $(i_1, \dots, i_{k+1})$ is defined
+as 
+\[ \partial \phi(i_1, \dots, i_{k+1}) =  \sum (-1)^s \phi(i_1, \dots, \hat{i_s},
+\dots, i_{k+1}).    \]
+So we have a fairly explicit description of the Cech complex in our case. This
+doesn't look very much like a Koszul complex. For one thing, there are all
+sorts of localizations floating around.
+We can deal with this by the following result.
+
+\begin{lemma} 
+Let $A$ be a ring, and $M$ an $A$-module. Let $f \in A$. Then $M_f$ is the
+direct limit of the system
+\[ M \stackrel{f}{\to} M \stackrel{f}{\to} M \dots.  \]
+\end{lemma} 
+\begin{proof} 
+I'm only going to sketch the proof. The idea is that some $m$ in the $i$th
+copy of $M$ should map to $m/f^i$ in $M_f$. This is clearly compatible with the
+maps between the directed system, and one can check that the induced map is
+injective and surjective.
+\end{proof} 
+
+
+One amusing corollary, incidentally, is that a cocontinuous (or even one
+commuting with \emph{filtered} colimits) functor from
+$A$-modules to $A$-modules preserves localization. Indeed, the above argument
+shows that it preserves localization at an element, and localization at a
+multiplicative set  is a filtered colimit of localizations at various elements.
+
+So, let's see what this entails for the Cech complex. Instead of thinking of
+cochains $\phi: [1,r]^k \to \sqcup \left\{\mathrm{various localizations}\right\}$,
+we now think of alternating cochains taking values in $M$. Rather, we should
+take a direct limit over $m$.
+
+Let's state this again. For each $m$, we have a map $M \to M_{f_{i_1} \dots
+f_{i_k}}$ sending $m \to m/(f_{i_1} \dots f_{i_k})^m$. There is a system of maps $M
+\to M \to M$ where each is multiplication by $f_{i_1} \dots f_{i_k}$. At the
+$m$-th stage, the natural inclusion $M_{f_{i_1} \dots f_{i_k}}  \to M_{f_{i_1}
+\dots f_{i_k} f}$ corresponds to multiplication by $f^m$, for any $f \in R$.
+The direct limit of all these modules $M$ and all these morphisms gives the
+localizations $M_{f_{i_1} \dots f_{i_r}}$ and the natural maps between the
+localizations.
+
+For each $m$, let us consider the $R$-module of alternating maps  $\overline{\phi}: [1,r]^k \to
+M$, which maps into the $k-1$-th Cech cochain complex by identifying $\overline{\phi}$
+with the  $k-1$-Cech cochain $\phi$ defined via $\phi(i_1, \dots, i_r) =
+\overline{\phi}(i_1, \dots, i_r)/ (f_{i_1}\dots f_{i_r})^m$.
+Clearly the $k$th cochain module is the limit of these.  Note, however, that
+the differential has to be described differently. 
+Namely, using the above identifications, we must have
+\[ \partial \overline{\phi}(i_1, \dots, i_{r+1}) = \sum (-1)^s f_{i_s}^m 
+\overline{\phi}(i_1, \dots, \hat{i_s}, \dots, i_{r+1}).
+\]
+
+To put everything together:
+\begin{proposition} 
+The Cech complex of $\mathcal{F}$ with respect to the open cover $\mathfrak{A}
+= \left\{X_{f_i}\right\}$ is isomorphic (up to a shift) to the direct limit of the  complexes
+$C_m$  whose $k$th term
+consists of alternating maps $\overline{\phi}: [1, \dots, r]^k \to M$ and such
+that the boundary is 
+\[ \partial \overline{\phi}(i_1, \dots, i_{r+1} ) = \sum (-1)^s f_{i_s}^m 
+\overline{\phi}(i_1, \dots, \hat{i_s}, \dots, i_{r+1}). \]
+The morphisms $\psi_m: C_m \to C_{m+1}$ between the complexes are given by 
+\[ (\psi \overline{\phi})(i_1, \dots, i_r) = f_{i_1}\dots f_{i_r}
+\overline{\phi}(i_1, \dots, i_r).   \]
+\end{proposition} 
+\begin{proof} 
+This requires a little checking, which is probably best done at least partially
+for oneself. We have shown that the Cech complex is indeed the direct limit of
+this whole system, so all that is left to check is that these maps $C_m \to
+C_{m+1}$ are indeed maps of complexes. We shall show in fact that these are
+maps of complexes.
+\end{proof} 
+
+In other words, what we need to see is:
+
+\begin{proposition} 
+$C_m$ as described is the Koszul complex $K^*( f_1^m, \dots, f_r^m,M)$ shifted by
+one, with the zero term removed. The maps $C_m \to C_{m+1}$ are natural maps of complexes.
+\end{proposition} 
+
+\begin{proof} 
+Notice that the $k$th term of the Koszul complex $K_*(f_1^m, \dots, f_r^m, R)$
+is the free $R$-module on objects $e_{i_1} \wedge \dots \wedge e_{i_k}$. So a
+map from $K^k(f_1^m, \dots, f_r^m)$ into $M$ is just the same thing as an alternating
+map $\phi: [1, r]^k \to M$. Since the boundary on the Koszul complex
+is defined via
+\[ \partial (e_1 \wedge \dots \wedge e_r) = \sum f_i^m e_1 \wedge \dots
+\hat{e_i} \wedge \dots e_r,   \]
+it is easy to see that the boundary described above on $C_m$ is just the dualized Koszul
+boundary map. 
+
+Finally, we must describe the morphism $C_m \to C_{m+1}$  and show that it is a
+morphism of complexes, in terms of the Koszul complex.
+Let $\mathbf{f}, \mathbf{g}$ be $r$-tuples of elements in $R$. 
+I claim that there is a morphism of differential graded algebras
+\[ K_*(\mathbf{fg}) \to K_*(\mathbf{f})  \]
+(which induces a morphism on Koszul complexes with coefficients in any module
+$M$). This morphism is given
+by the natural extension of the diagonal morphism $R^r \stackrel{(g_1, \dots,
+g_r)}{\to} R^r$. One can see directly that this commutes with the boundary map.
+Dualizing this gives a map
+\[ K^*(\mathbf{f}, M) \to K^*(\mathbf{fg}, M),  \]
+which is just the map $C_m \to C_{m+1}$.
+\end{proof} 
+
+I realize that I've been a little loose with the proofs, since they are nothing
+but straightforward verification, but I think I have sketched all the main
+ideas. Anyway, the main idea to take away from this is that Cech cohomology
+over the open cover $\mathfrak{A}$ is
+a direct limit of Koszul cohomologies $H^*(\mathbf{f}^m, M)$, with the
+dimension shifted by one. In particular, for $k \geq 2$, $H^{k-1}(\mathfrak{A}, \mathcal{F}) =
+\varinjlim_m H^{k}(\mathbf{f}^m, M)$. (We need this hypothesis because the Cech
+complex vanishes in dimension $-1$ but the Koszul complex won't vanish in
+dimension zero.)
+
+This will allow us to prove results in algebraic geometry using properties of
+the Koszul complex.
+
+\subsection{A chain-homotopy on the Koszul complex}
+
+Before proceeding, we need to invoke a basic fact about the Koszul complex. If
+$K_*(\mathbf{f})$ is a Koszul complex, then multiplication by anything in
+$(\mathbf{f})$ is chain-homotopic to zero.
+In particular, if $\mathbf{f}$ generates the unit ideal, then $K_*(\mathbf{f})$
+is homotopically trivial, thus exact.
+This is one reason we should restrict our definition of ``regular sequence''
+(as we do) to sequences that do not generate the unit ideal, or the connection
+with the exactness of the Koszul complex wouldn't work as well.
+
+\begin{proposition} 
+Let $g \in (\mathbf{f})$. Then the multiplication by $g$ map $K_*(\mathbf{f})
+\to K_*(\mathbf{f})$ is chain-homotopic to zero.
+\end{proposition} 
+\begin{proof} 
+Let $\mathbf{f} = (f_1, \dots, f_r)$ and let $g = \sum g_i f_i$. Then there is
+a vector $q_g = (g_1, \dots, g_r) \in R^r$. We can define a map of degree one 
+\[ H: K_*(\mathbf{f}) \to K_*(\mathbf{f})  \]
+which is the \emph{interior product} with $q_g$, i.e. sending $v \in
+K_*(\mathbf{f}) = \bigwedge R^r$ to $q_g \wedge v$. 
+
+Now, however, we know that the differential, which we'll call $d$, is a \emph{derivation} on the
+Koszul algebra $K_*(\mathbf{f})$. In particular,
+\[ d Hx  = d (q_g \wedge x) =( d q_g) \wedge x + (-1) q_g \wedge dx .  \]
+as $q_g$ has degree one.
+But $dq_g$, from its definition, is just $g$ times the unit of the Koszul algebra and $-q_g \wedge dx
+= Hdx$. In particular, we find
+\[ dHx + Hdx =  gx. \]
+This implies that multiplication by $g$ is homotopically trivial.
+\end{proof} 
+
+As an example, let $(R, \mathfrak{m})$ be a local ring. Let $x_1, \dots, x_r$
+generate $\mathfrak{m}$. Then any element acts in a way that is homotopically
+trivial on $K_*(\mathbf{x})$. In particular, the homology groups are vector
+spaces (finite dimensional!) over the residue field $R/\mathfrak{m}$.
+
+From this, we can easily prove:
+\begin{corollary} 
+If $M$ is any $R$-module, and $g \in (\mathbf{f})$, then $g$ acts by zero on
+$H_*(\mathbf{f}, M)$ and $H^*(\mathbf{f}, M)$. In particular, if
+$(\mathbf{f})=1$, then the Koszul homology and cohomology vanish identically
+for any module.
+\end{corollary}
+\begin{proof} 
+
+\end{proof} 
+
+
+
+
+
+\subsection{The cohomology of affine space}
+
+We are now going to prove the first fundamental theorem on the cohomology of
+quasi-coherent sheaves:
+\begin{theorem}[Cohomology of an affine]
+Let $R$ be a ring, and let $\mathcal{F}$ be a quasi-coherent sheaf on $X=\mathrm{Spec}
+R$.  Then 
+\[ H^k(  X, \mathcal{F})=0, \quad k \geq 1.\]
+\end{theorem} 
+
+I have earlier discussed a proof due to Kempf. What we will now sketch is a
+much less elementary and significantly more complicated argument. Nonetheless,
+it has the virtue of being general, and telling us something about projective
+space too, as we shall see.
+
+\begin{proof} 
+This proof proceeds first by analyzing the Cech cohomology. We will show that
+this is zero. Then, we shall appeal to some highfalutin sheaf-theoretic
+business to prove the result for standard cohomology.
+
+In particular, we are going to prove:
+\begin{theorem} 
+Let $\mathcal{F}$ be a quasi-coherent sheaf on $X=\mathrm{Spec} R$. Let $\left\{f_i\right\}
+\subset R$ be a finite set of elements generating the unit ideal. Then the
+higher Cech
+cohomology of $\mathcal{F}$ with respect to the open cover $D(f_i)$ vanishes.
+\end{theorem} 
+\begin{proof} 
+Let $M = \Gamma(X, \mathcal{F})$; then $\mathcal{F}$ is the sheaf
+$\widetilde{M}$ on $\mathrm{Spec} R$, by Hartshorne's chapter II terminology. 
+Now $\mathrm{Spec} R$ is a quasi-compact, quasi-separated scheme. (It's even
+separated!) Moreover, the $D(f_i)$ are equal to what we called the
+$X_{f_i}$---the sets of ``nonvanishing'' of the global ``functions''  $f_i \in
+\Gamma(X, \mathcal{O}_X)$. In particular, the earlier result goes in force. The
+$k$th Cech cohomology (for $k \geq 1$) of $\mathcal{F}$ with respect to $\left\{D(f_i)\right\}$
+is the direct limit of the Koszul cohomologies,
+\[ H^k(\mathfrak{A}, \mathcal{F})=\varinjlim_m K^{k+1}(\mathbf{f}^m , M). \]
+But $\mathbf{f}$ generates the unit ideal, and so does $\mathbf{f}^m$ as a
+result. Thus the Koszul cohomology is trivial, and we find
+\[  H^k(\mathfrak{A}, \mathcal{F}) = 0 \]
+for $k \geq 1$. This proves the result.
+\end{proof} 
+
+The rest of this proof requires some work. Namely, we are going to have to show
+the following useful result of Cartan:
+
+\begin{theorem}[Cartan]
+Let $X$ be a space, $\mathcal{F}$  a sheaf on $X$. Suppose there is a family of
+open sets $\mathfrak{A} $ of $X$ such that the following conditions are
+satisfied.
+
+First, $\mathfrak{A}$ is a basis, and it is closed under finite intersections.
+
+If $\mathfrak{B} \subset \mathfrak{A}$ is a finite open covering of $U \in
+\mathfrak{A}$, then the Cech cohomology in positive dimension vanishes,
+\[ H^k(\mathfrak{B}, \mathcal{F})=0.  \]
+
+Then the usual cohomology vanishes:
+\[ H^k(X, \mathcal{F}) = 0, \ k \geq 1.  \]
+\end{theorem} 
+
+The theorem of Cartan immediately implies the vanishing of quasi-coherent
+cohomology on an affine from what we have seen. Indeed, we use the basic open
+sets $D(f)$ as the basis for $\mathrm{Spec} A$; this is closed under intersection. We
+have seen that the Cech cohomology of this (on any open subset) vanishes. Hence
+the same is true for derived functor cohomology.
+
+The proof of Cartan's theorem is a long story in itself, and I shall defer it.
+
+\subsection{Cartan's theorem and the spectral sequence} We shall now approach
+the proof of the Cartan theorem. First, however, it will be necessary to
+describe a spectral sequence between Cech cohomology and derived functor
+cohomology. This has another useful application to be covered later, to
+``bootstrapping arguments'' when one can prove something in a restricted case
+for Cech cohomology, but wants to deduce it for general cohomology.
+
+
+
+Let $X$ be a topological space covered by an open cover $\mathfrak{A} =
+\left\{U_i\right\}_{i \in I}$, and consider the category $\mathfrak{C}$ of
+presheaves of abelian groups on $X$. Let $\mathfrak{C}'$ be the subcategory of sheaves.
+The spectral sequence will be the \emph{Grothendieck spectral sequence} of the
+composite of functors
+\[ \mathfrak{C}' \stackrel{F}{\to} \mathfrak{C} \stackrel{G}{\to} \mathbf{Ab}. \]
+Here $F$ is the inclusion of the subcategory, and $G$ is the functor sending a
+presheaf to its zeroth Cech cohomology.
+
+\begin{comment}
+The first thing to note is that the functor
+\[ \mathcal{F} \to \mathcal{F}(U),  \mathfrak{C} \to \mathbf{Ab} \]
+is an exact functor as we are working with \emph{presheaves}. For presheaves,
+exactness can be checked on open sets instead of stalks. 
+
+Let $\mathfrak{D}$ be the category of abelian groups. 
+We have a functor that sends a presheaf $\mathcal{F}$ to its zeroth Cech
+cohomology. \end{comment}
+
+One ought to note that Cech cohomology makes sense in a presheaf. To recall
+what this means, note that the cochains in dimension $r-1$ are the same thing
+as alternating maps $\phi$ out of $I^r$ 
+such that $\phi(i_1, \dots, i_r)$ takes values in $\mathcal{F}(U_{i_1} \cap
+\dots U_{i_r})$. 
+The coboundary map is the usual: $\partial \phi(i_1, \dots, i_{r+1}) = \sum
+(-1)^j \phi(i_1, \dots, \hat{i_j}, \dots, i_{r+1}).$
+For a sheaf, the zeroth Cech cohomology is---as is easy to check---the space of
+global sections. This is not necessarily true for a presheaf, because the proof
+for sheaves uses the glueability of sections. 
+
+
+To compute the spectral sequence, we will have to find the derived functors of
+$F,G$. This will take a bit of checking.
+
+
+\begin{proposition} 
+The $i$th derived functor of $F$ sends a sheaf $\mathcal{F}$ into the presheaf
+$\mathcal{H}^i(\mathcal{F}) = \left\{U \to H^i(U, \mathcal{F})\right\}$.
+\end{proposition} 
+\begin{proof} 
+The functor as described is a $\delta$-functor from sheaves to presheaves.
+Indeed, this follows from the fact that for a short exact sequence of sheaves
+\[ 0 \to \mathcal{F}' \to \mathcal{F} \to \mathcal{F}'' \to 0,  \]
+there is an associated long exact sequence, for each open set $U$, 
+\[ H^i(U,\mathcal{F}' ) \to H^i(U, \mathcal{F}) \to H^i(U, \mathcal{F}'') \to
+H^{i+1}(\mathcal{F}', U) \to \dots. \]
+Since exactness of \emph{presheaves} is equivalent to exactness of the sections
+over each open set, we find that
+\[ \mathcal{H}^i(\mathcal{F}') \to  \mathcal{H}^i(\mathcal{F}) \to 
+\mathcal{H}^i(\mathcal{F}'') \to \mathcal{H}^{i+1}(\mathcal{F}') \to \dots. \]
+I claim that this is an \emph{effaceable} $\delta$-functor. It isn't that
+important to know the precise definition (I'm pretty sure it's in
+Grothendieck's Tohoku paper), but the point is that it vanishes on injectives.
+Then, from the universal property of derived functors, and the fact that
+$\mathcal{H}^0$ is the inclusion functor $F$, it will follow that the $i$th
+derived functor of $F$ is $\mathcal{H}^i$. 
+
+But if $\mathcal{I}$ is an injective sheaf, then it is injective over every
+open set, so $H^i(U, \mathcal{I})=0$ for $i >0$. (Alternatively, this follows
+because an injective sheaf is flabby.) In particular,
+$\mathcal{H}^i(\mathcal{I})=0$ for $i>0$. So these are the derived functors of
+$F$.
+\end{proof} 
+
+So we know what the derived functors of $F$ look like. Now, we need to get a
+picture of the derived functors of $G$. We will show that these are just the
+higher Cech cohomologies. I should add a caveat that this is \emph{not} true
+for the category of sheaves! It is important here that we are working for $G$
+as a functor on the category of \textbf{presheaves}. On the category of
+sheaves, the Cech functors don't generally form a $\delta$-functor. The derived
+functors of the zeroth Cech functor $H^0(\mathfrak{A}, -)$ are just the usual
+cohomologies because $H^0(\mathfrak{A}, -)$ is the set of global sections.
+
+\begin{proposition} 
+The derived functors of $G$ are the functors $H^i(\mathfrak{A}, -)$ on the
+category of sheaves.
+\end{proposition} 
+\begin{proof} 
+The first thing to check is that the $H^i(\mathfrak{A}, -)$ form a
+$\delta$-functor. Again, this is all because we are on the category of
+presheaves. So say 
+\[ 0 \to \mathcal{F}' \to \mathcal{F} \to \mathcal{F}'' \to 0 \]
+is an exact sequence of presheaves. Then 
+\[ 0 \to \mathcal{F'}(U)  \to \mathcal{F}(U) \to \mathcal{F}''(U) \to 0  \]
+is exact. So in particular by taking products of this, we get an exact sequence
+of Cech complexes. Thus taking cohomology, we get a natural long exact sequence
+in the Cech cohomology.
+
+Finally, we need to check that the $H^i(\mathfrak{A}, -)$ form a
+\emph{universal} $\delta$-functor. In particular, by the Tohoku nonsense, we
+need to show that these vanish (for $i>0$) on injective objects in the category
+of presheaves. 
+But it is true that the higher Cech cohomologies are zero on flabby presheaves.
+The proof of this is the same for sheaves, which may be found in Hartshorne. 
+Moreover, an injective presheaf is flabby, by the same proof for sheaves. So we
+are done.
+\end{proof} 
+
+All right. We're almost there. We have the two functors $F, G $ between fairly
+nice abelian categories, and we have computed the derived functors of each of
+them. The composite $G \circ F$ is the global section functor on the category
+of sheaves, and its derived functors are the usual sheaf cohomology. So we will
+be able to write down a spectral sequence to compute the usual sheaf
+cohomology. 
+
+But before that, we have to check a technical condition that one
+needs before applying the Grothendieck spectral sequence.
+Fortunately, it is fairly easy.
+\begin{proposition} 
+$F$ sends injectives into $G$-acyclics.
+\end{proposition} 
+
+\begin{proof} 
+An injective sheaf is flabby, and a flabby sheaf has trivial Cech cohomology,
+as we have seen.
+\end{proof} 
+
+In particular, this means that the Grothendieck spectral sequence applies.
+
+\begin{theorem} 
+There is a convergent spectral sequence whose $E^2$ page is
+\[ {H}^p(\mathfrak{A}, \mathcal{H}^q(\mathcal{F})) \to H^{p+q}(X,
+\mathcal{F}).  \]
+Here $\mathcal{H}^q(\mathcal{F})$ is the presheaf $U \to H^q(U, \mathcal{F})$.
+\end{theorem} 
+This is now immediate from the Grothendieck spectral sequence, because, if $R$
+denotes the operator of taking a derived functor, we have seen:
+\[ R^{p+q}(G \circ F) = H^{p+q}(X, -)  \]
+and
+\[ R^p(F) = H^p(\mathfrak{A}, -), \quad R^q(G) = \mathcal{H}^q(-).  \]
+
+\end{proof} 
+
+\subsection{Cartan's vanishing theorem}
+
+Earlier, our proof of the vanishing of higher quasi-coherent cohomology on an
+affine was actually very incomplete. We actually computed only Cech cohomology,
+and waved our hands while pointing to a fancy sheaf-theoretic result of Cartan.
+I would like to prove this result today, following Godement's \emph{Theorie des
+faisceaux.}
+
+The problem with Cech cohomology, while it's (comparatively) easy to compute,
+is that we don't a priori know if coincides with derived functor cohomology.
+Cartan's theorem gives a sufficient criterion for this to be the case.
+The result is:
+
+\begin{theorem} 
+Let $X$ be a space, $\mathcal{F}$  a sheaf on $X$. Suppose there is a basis
+$\mathfrak{A} $ of open sets on $X$, closed under finite intersections,
+satisfying the following condition.
+
+If $\mathfrak{B} \subset \mathfrak{A}$ is a finite open covering of $U \in
+\mathfrak{A}$, then the Cech cohomology in positive dimension vanishes,
+\[ H^k(\mathfrak{B}, \mathcal{F})=0.  \]
+
+Then the natural map:
+\[ H^k(\mathfrak{A}, \mathcal{F}) \to H^k(X, \mathcal{F})  \]
+is an isomorphism, for any $k \in \mathbb{Z}_{\geq 0}.$
+\end{theorem} 
+
+I confess to having stated the result earlier incorrectly, when I claimed that
+the conclusion was $H^k(X, \mathcal{F})=0$ for $k \geq 1$. But in any case,
+this will finally(!) complete the proof of the vanishing of the higher
+quasi-coherent cohomology of an affine. For then we just take $\mathfrak{A}$ to
+be the collection of basic open affines. We have shown that the Cech cohomology
+with respect to this family covers vanishes (on the whole space and on any
+basic open set, which is also affine!).
+
+The proof is an inductive argument and a reduction to the theorem of Leray.
+Namely, we are going to show that the (derived functor) cohomology of $\mathcal{F}$ on any
+element in this basis $\mathfrak{A}$ vanishes. 
+This means that the theorem of Leray goes into effect and gives us the
+conclusion, since you can always compute derived functor cohomology by Cech
+cohomology on an \emph{acyclic covering.}
+
+Consider the following statement, which I'll call $S_k$. 
+For any $1<i \leq  k$, and $U \in \mathfrak{A}$,
+\[  H^i(U, \mathcal{F}) = 0 . \]
+$S_1$ is trivial. If we prove all the $S_k$, then we will see that
+$\mathfrak{A}$ is an acyclic cover of $X$, and we can use it to compute sheaf
+cohomology for $\mathcal{F}$.
+
+Suppose $S_{k-1}$ is true. So $\mathcal{H}^i, i < k$ is identically zero on 
+the basis $\mathfrak{A}$. Fix $U \in \mathfrak{A}$.
+Then in the spectral sequence for
+Cech-to-derived-functor cohomology, things degenerate at $E_2$, and we find that
+\[ \boxed{H^k(U, \mathcal{F}) = H^k(\mathfrak{A}, U, \mathcal{F}).}  \]
+(Here $H^k(\mathfrak{A}, U, \mathcal{F})$ denotes Cech cohomology of
+$\mathcal{F}$ over the open set $U$---this can be computed 
+using sets in the basis $\mathfrak{A}$.)
+
+More precisely, on and below the $a+b = k$ diagonal of the $E_2$ page,
+everything in the spectral sequence is zero except on the horizontal row.
+This is because $\mathcal{H}^i$ is zero on open sets in $\mathfrak{A}$ and the
+spectral sequence looks like
+\[ H^a(\mathfrak{A}, U, \mathcal{H}^b) \to H^{a+b}(U, \mathcal{F})  \]
+
+Anyway, from the boxed equation, we find from the hypotheses about
+$\mathcal{F}$ that $H^k(U, \mathcal{F})=0$. Since $U \in \mathfrak{A}$ was
+arbitrary, this proves $S_k$. We can now climb up the natural numbers and see
+that the Leray theorem applies. 
+This completes the proof.
+
+
+\newcommand{\proj}{\mathrm{Proj}}
+\renewcommand{\P}{\mathbb{P}}
+\renewcommand{\O}{\mathcal{O}}
+\subsection{The cohomology of projective space}
+
+The next big application of the Koszul complex and this general machinery that
+I have in mind is to projective space. 
+Namely, consider a ring $A$, and an integer $n \in \mathbb{Z}_{\geq 0}$. 
+We have the $A$-scheme $\P^n_A = \mathrm{Proj} A[x_0, \dots, x_n]$. Recall that on it, we have
+canonical line bundles $\mathcal{O}(m)$ for each $m \in \mathbb{Z}$, which come from
+homogeneous localization of the $A[x_0, \dots, x_n]$-modules obtained from
+$A[x_0, \dots, x_n]$ itself by twisting the degrees by $m$.
+When $A$ is a field, the only line bundles on it are of
+this form. 	(I am not sure if this is true in general. I think it will be true,
+but perhaps someone can confirm.) 
+
+It will be useful to compute the cohomology of these line bundles. For one
+thing, this will lead to Serre duality, from a very convenient isomorphism that
+will spring up. For another, we will see that they are \emph{finitely
+generated} over $A$. This is far from obvious. The scheme  $\P^n_A$ is not
+finite over $A$, and a priori this is not expected.
+
+But to start, let's think more abstractly. Let $X$ be any quasi-compact,
+quasi-separated scheme; we'll assume this for reasons below. Let $\mathcal{L}$
+be a line bundle on $X$, and $\mathcal{F}$ an arbitrary quasi-coherent sheaf.
+We can consider the twists $\mathcal{F} \otimes \mathcal{L}^{\otimes m}$ for any $m \in
+\mathbb{Z}$. This is a bunch of sheaves, but it is something more. 
+
+Let us package these sheaves together. Namely, let us consider the sheaves:
+\[ \bigoplus \mathcal{L}^{\otimes m}, \quad \mathcal{H}=\bigoplus \mathcal{F} \otimes \mathcal{L}^{\otimes m}  \]
+Here the former is a quasi-coherent sheaf of algebras, while the latter is a
+quasi-coherent sheaf of modules over the sheaf of algebras. The point is that
+this extra structure will come in handy while computing cohomology. 
+Then to compute the cohomology of $\mathcal{F}$, we just read off the right
+piece. 
+
+Let $S = \Gamma(X, \bigoplus \mathcal{L}^{\otimes m})$; it is a ring, and indeed a
+graded ring, because by quasi-compactness $S =\bigoplus \Gamma(X, \mathcal{L}^{\otimes
+m})$. 
+Since $S$ acts on the sheaf $\mathcal{H}$---in fact, $\mathcal{H}$ is a sheaf
+of graded $\mathcal{H}$-modules, we see that 
+\[ H^k(X,\mathcal{H})  \]
+is a graded $S$-module for any $k$. 
+
+\emph{Now suppose further} that $f_1, \dots, f_r \in \Gamma(X, \mathcal{L})$. We are
+going to use these to define a collection $X_{f_i} \subset X$, as we did when
+talking about the Koszul complex and Cech cohomology.
+Now $X_{f_i}$ will denote the set of points where $f_i$ does not generate the
+stalk of $\mathcal{L}$; this is clearly the generalization when the $f_i$ are functions.
+The point is that we are going to play the same game with these $f_i$ and show
+that Cech cohomology is Koszul cohomology.
+We need a few preliminaries. 
+
+Fix $f \in \mathcal{L}$ arbitary.
+Since $X$ is
+quasi-compact and quasi-separated, we have the following. Namely, if $s \in
+\mathcal{F}(X_f)$, there is a tensor power $s \otimes f^N$ which extends to
+$X$. Also, if $s \in \mathcal{F}(X)$ is zero on $X_f$, then a power $s \otimes
+f^N$ is zero in $\mathcal{F}(X)$.
+What this all says is that
+
+\begin{proposition} 
+As a graded $S$-module, we have
+\[ \Gamma(X_f, \mathcal{H}) = \Gamma(X, \mathcal{H} )_f.  \]
+\end{proposition} 
+
+This is awfully similar to what we had earlier when $\mathcal{L} = \mathcal{O}_X$ and
+$f$ was a global regular function. Here, however, it is really necessary to
+consider all the ``twists'' $\mathcal{F} \otimes \mathcal{L}^{\otimes m}$ to even make
+sense of the localization. So the business is slightly more complicated. But is
+unavoidable when we want to deal with projective space. There are very few
+global sections of the structure sheaf, but there are sections of certain
+invertible sheaves.
+
+Let us now compute the Cech complex $C_*$ for $\mathcal{H}$ with respect to
+the open cover $\left\{X_{f_i}\right\}$.
+Let $M = \Gamma(X, \mathcal{H})$---the previous result suggests that this will
+play an important role in the sequel. This is an $S$-module.
+
+\begin{proposition} 
+For each $k$, the $k$th term $C_k$ of the Cech complex $C_*$ is isomorphic to
+the $k-1$st term of the direct limit of the Koszul complexes $\varinjlim_t K_*(f_1^t, \dots,
+f_r^t, M)$ as a graded object. 
+\end{proposition} 
+
+This is a big deal because it shows that we can apply the same reasoning as
+before! On the other hand, it also means that the argument is really the
+same---the fact that localization corresponds to restricting to $X_{f_i}$, the interpretation of localization as a direct limit, and the checking
+that the Cech boundary is the Koszul boundary.
+The fact that this is a graded isomorpism comes from paying attention to how
+the gradings work out. I am reluctant to spend too much time on picking
+technical nits since this is a blog.
+
+I will thus omit the proof.
+
+Now, let us compute the cohomology of projective space $X = \P^n_A$ over a ring
+$A$. Note that $X$ is quasi-compact and separated, so we can compute the Cech
+cohomology by the above machinery.
+In particular, we will consider the quasi-coherent sheaf
+\[ \mathcal{H}=\bigoplus_{m \in \mathbb{Z}} \mathcal{O}(m)  \]
+(So here $\mathcal{L} = \mathcal{O}(1)$.) We have the sections $x_i \in \mathcal{O}(1)$ for $ 0 \leq i
+\leq n$. It is a basic fact that the sets $X_{x_i}$ are affine subsets of
+$\P^n_A$; in fact they are sometimes called basic open affines. Each is
+isomorphic to $ \mathbb{A}^n_A$. 
+
+In order to apply the machinery, we will need to first find $\Gamma(X,
+\mathcal{H})$. 
+\begin{lemma} 
+The global sections of $\mathcal{O}(m)$ are precisely the degree $m$ polynomials. (When
+$m <0$, there are none.)
+\end{lemma} 
+\begin{proof} 
+$\mathcal{O}(m)$ is the sheaf associated to the graded $S=A[x_0, \dots, x_n]$-module
+$S(m)$ whose graded part is defined by $S(m)_k = S_{k+m}$. The sections over
+$X_{x_i}$ are isomorphic to $S(m)_{(x_i)}$. But $S$ is the intersection of the
+localizations,
+\[ S = \bigcap S_{x_i} \subset A[x_0, \dots, x_n, (x_0 \dots x_n)^{-1}]  \]
+This identity makes sense as graded rings. Thus if something lies in
+$S(m)_{(x_i)}$ for all $i$, then it must lie in $S$, and is obviously of degree
+$m$.
+\end{proof} 
+
+
+In particular, the lemma tells us that
+\[ \Gamma(X, \mathcal{H}) = S  \]
+as, in fact, a ring!
+
+\begin{proposition} 
+The Cech cohomology $H^k(\mathfrak{A}, \mathcal{H})$ is as follows. 
+It is zero if $k \neq 0, n$. For $k=0$, it is isomorphic as a graded $A$-module to
+$S$. For $k=n$, it is a free $A$-module on rational functions $x_0^{-a_0} \dots
+x_n^{-a_n}$ where $a_0, \dots, a_n>0$.
+\end{proposition} 
+
+\begin{proof} 
+Indeed, we know that Cech cohomology is a direct limit of Koszul cohomologies. 
+In particular, we have for $k \geq 1$,
+\[ H^k(\mathfrak{A}, \mathcal{H})  =\varinjlim_m H^{k+1}( \mathbf{x}^m, S)  \]
+where $\mathbf{x} = (x_0, \dots, x_n)$. However, 
+the sequence $\mathbf{x}$, and consequently all powers $\mathbf{x}^m$, are
+\emph{regular sequences} on $S$ of length $n+1$. This implies that in Koszul cohomology, by a
+lemma below, that
+\[ H^i( \mathbf{x}^m, S) = 0  \]
+for $i \neq 0,n+1$. 
+This implies the vanishing of $H^k(\mathfrak{A}, \mathcal{H})$ for $k \neq
+0,n$. 
+
+Last, but not least, we have to do $H^{n}(\mathfrak{A}, \mathcal{H})$. Here
+again we can use Koszul cohomology. We know that this is the direct limit $\varinjlim
+H^{n+1}( \mathbf{x}^m, S)$. As we will see below, this is the direct limit of the $S/(x_1^m, \dots,
+x_n^m)$ over $m$ getting larger, where the maps $S/(x_1^m, \dots, x_n^m) \to
+S/(x_1^{m+1}, \dots, x_1^{m+1})$ are multiplication by $x_1 \dots x_n$.
+To compute the colimit of this, note that at any element in the colimit is
+measured by ``its distance from the end.'' In particular, the elements are
+spanned by  the negative monomials $x_1^{-a_1} \dots x_n^{-a_n}$ for $a_1,
+\dots, a_n>0$. For each $m$ large, this negative monomial corresponds to the
+element
+\[ x_1^{m-a_1} \dots x_n^{m-a_n} \in S/(x_1^m, \dots, x_n^m)  \]
+in a way that is manifestly compatible with the maps in the colimit diagram.
+
+\end{proof} 
+
+
+\begin{theorem} 
+Let $A$ be a ring. The cohomology of the line bundle $\mathcal{O}(m)$ on projective
+space $X=\P^n_A$ is as follows.
+
+If $k = 0$, then $H^0(X,\mathcal{O}(m))$ is the collection of polynomials of degree $m$
+if $m  \geq 0$, and $0$ otherwise.
+
+If $ 0< k < n-1$, then $H^k(X, \mathcal{O}(m)) = 0$. 
+
+If $k=n-1$, then $H^{n-1}(X, \mathcal{O}(m))$ is zero for $m > -n-1$, but for other $m$
+is free on the set of negative monomials $x_1^{-a_1} \dots x_n^{-a_n}$ for $a_1
++ \dots + a_n  = m$.
+\end{theorem} 
+\begin{proof} 
+This now follows from the previous result, if we split the gradings. Note that
+we are using the fact that derived functor cohomology coincides with Cech
+cohomology for an affine covering on a separated scheme.
+\end{proof} 
+
+
+It is an interesting and important fact that all the cohomology groups here are
+\emph{finitely generated}, which is a special property of projective space.
+It is also a curious fact that if $\mathcal{L}$ is any line bundle of this form, then for $m \gg 0$, 
+we have 
+\[ H^i(X, \mathcal{L}(m))=0, \quad \forall i >0.  \]
+These will figure in the future.
+
+
+\subsection{ A loose end: self-duality of the Koszul complex}
+Earlier, we saw that if $x_1, \dots, x_n$ is an $M$-sequence, then the complex
+$K_*(\mathbf{x}, M)$ is acyclic in dimension not zero. But in the above
+computation, we used a dual analog:
+
+\begin{proposition} 
+Let $\mathbf{x}=(x_1, \dots, x_n)$ be an $M$-sequence. Then the complex
+$K^*(\mathbf{x},M)$ is acyclic in dimension not $n$. 
+\end{proposition} 
+\begin{proof} 
+This will now follow from a dualization of the argument. Namely, the claim is
+that the Koszul chain complexes and cochain complexes are dual to each other.
+That is, $K^*(\mathbf{x}) $ is the cochain complex $\hom(K_*(\mathbf{x}, R)$
+with the degrees reversed.
+\end{proof} 
+
+In fact, let us state this more carefully. Let $F$ be a free module of rank $n$.
+Let $\mathbf{x} = (x_1, \dots,x_n) \in R^n = F$.
+Then $\wedge^p F$ is isomorphic to $\wedge^{n-p} F$. In fact, if 
+$e_1, \dots, e_n$ is a basis for $F$, then the map can be taken to be
+\[ e_{i_1} \wedge \dots \wedge e_{i_p} \to e_{j_1} \wedge \dots \wedge
+e_{j_{n-p}}\]
+where the $\left\{j_k\right\}$ are the complementary set to the $i_k$ and the
+$j_k,i_k$ are ordered appropriately. Anyway, the point is that we have an
+isomorphism
+\[ K_p(\mathbf{x}, F) \simeq K_{n-p}(\mathbf{x}, F).   \]
+One can show that the differential on $K_p$ is the transpose of the 
+differential on $K_{n-p}$. This is what was said about self-duality.
+
+\begin{corollary} 
+Let $M$ be an $R$-module and $\mathbf{x} = (x_1, \dots, x_n)$ be a sequence.
+Then $H^n(\mathbf{x}, M) = M/\mathbf{x}M$.
+\end{corollary} 
+
+This is now clear from the computation of $H_0(\mathbf{x}, M)$ and the
+self-duality.
+
+\section{Local cohomology}
+\subsection{Two functors}
+
+Local cohomology is another sheaf-theoretic idea; it's a variant on the usual
+cohomology that takes the derived functors of a slightly different functor:
+sections with \emph{supports} instead of sections in general. 
+In fact, though, it is intellectually nothing new, as the local cohomology
+functors are a type of sheaf-theoretic Ext's. But they will have a different
+flavor from the usual cohomology.
+
+So let us begin with the sheaf theory. Given a topological space $X$, and a
+sheaf $\mathcal{F}$ of abelian groups on $X$, we define the \textbf{support} of
+a section $s \in \Gamma(X)$ to be the set of points $x \in X$ such that $s_x
+\neq 
+0 \in \mathcal{F}_x$. This is a closed set. When we are working with sheaves of
+functions, it is the closure of the nonvanishing set. 
+
+So given a closed set $Z \subset X$, we define
+\[ \Gamma_{Z}(X) = \left\{\mathrm{sections \ supported \ in \ }Z\right\}  .\]
+One can check that this is a left-exact functor and jump ahead and talk about
+derived functors. But first we need to introduce more generality. We would like
+to define this when $Z$ is only \emph{locally closed}. 
+
+So suppose $Z$ is merely closed in an open set $U \subset X$. We define
+$\Gamma_Z(X)$ to be the set of sections $s \in \Gamma(U)$ such that $s$ is
+supported in $Z$; this makes sense as $Z \subset U$ is closed. If $U' \supset U$ is another set in which $Z$ is closed, then
+we can extend any section in $\Gamma(U)$ supported in $Z$ by zero to $U'$. So 
+this definition is independent of the set $U$. 
+
+The upshot is that we have defined a functor
+\[ \Gamma_Z: \mathrm{Sheaves} \to \mathrm{Ab. groups}.  \]
+But there's more. 
+
+We can define ``sheafified versions'' of these functors. Suppose $Z$ is closed
+in $U$ as above.
+Given an open set $V$, we can consider the set of sections $s \in \Gamma(U \cap
+V)$ which are supported in the set $V \cap Z$ (which is closed in $U \cap V$).
+This is an abelian group. It is immediate that the following defines a sheaf,
+which will be denoted $\underline{\Gamma_Z}(\mathcal{F})$.
+
+\begin{definition} 
+As above, we have defined two functors $\Gamma_Z$ and $\underline{\Gamma_Z}$
+from sheaves into, respectively, abelian groups and sheaves.
+\end{definition} 
+
+Perhaps it is worth an example of how this behaves when $Z$ is not a closed
+set, but instead an open set $U$. Then $\Gamma_Z(X)$ is just the set $\Gamma(U,
+\mathcal{F})$ and $\underline{\Gamma_Z}(\mathcal{F})$ is the sheaf $V \to
+\Gamma_{}(V \cap U, \mathcal{F})$. In other words, if $i: U \to X$ is the
+inclusion, this is the sheaf $ i^* \mathcal{F}$ \emph{extended by zero} in
+the sense of one of Hartshorne's exercises. 
+
+It is possible to interpret $\Gamma_Z, \underline{\Gamma_Z}$ as types of
+$\hom$'s. In particular, these functors are \emph{representable}.
+
+Let the locally closed set $Z $ be closed in the open set $U \supset Z$. Then
+we have a sheaf $\mathbb{Z}'_Z$ on $U$: this is the constant sheaf on $Z$,
+extended by zero to $U$. The stalks are $\mathbb{Z}$ on $Z$ and zero on $U -
+Z$. This sheaf is extended by zero to $X$; we call the result
+$\mathbb{Z}_Z$.  
+We have, by the universal property of extension by zero (or you can convince
+yourself of this directly),
+\[ \hom(\mathbb{Z}_Z, \mathcal{F}) = \hom_U(i_* \mathbb{Z}_Z', \mathcal{F})
+= \hom(  \mathbb{Z}_Z', \mathcal{F}|_U),\]
+and to give a map this way is the same thing as giving a global section of
+$\mathcal{F}|_U$ supported in $Z$. In particular, we find
+\[ \hom(\mathbb{Z}_Z, \mathcal{F}) \simeq \Gamma_Z(\mathcal{F})  \]
+and similarly
+\[ \mathcal{\hom}(\mathbb{Z}_Z, \mathcal{F}) \simeq
+\underline{\Gamma_Z}(\mathcal{F}) . \]
+In particular:
+\begin{proposition} 
+The functors $\Gamma_Z, \underline{\Gamma_Z}$ are representable.
+\end{proposition} 
+
+\subsection{The local cohomology functors}
+
+We can now define the local cohomology functors:
+\begin{definition} 
+We write $H^i_Z(X, -)$ for the derived functors of $\Gamma_Z$, and
+$\underline{H}^i_Z(X, -)$ for the derived functors of $\underline{\Gamma_Z}$.
+So $H^i_Z$ is always an abelian group and $\underline{\Gamma_Z}$ a sheaf of
+abelian groups. 
+\end{definition} 
+
+As we have seen, $\Gamma_Z$ and $\underline{\Gamma_Z}$ are representable. This
+means that their derived functors are $\ext$ functors.
+
+\end{document}
+
