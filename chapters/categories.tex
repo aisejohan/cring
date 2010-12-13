@@ -1,21 +1,40 @@
 \setcounter{chapter}{-1}
 \chapter{Categories}
 \label{categorychapter}
-N.B. This is a very rough, preliminary chapter. Currently it consists of notes
-taken in an algebraic topology class. Serious editing is still needed.
+
+
+The language of categories is not strictly necessary to understand the basics
+of  commutative
+algebra. Nonetheless, it is extremely convenient and powerful. It will clarify
+many of the constructions made in the future when we can freely use terms like
+``universal property'' or ``adjoint functor.'' As a result, we begin this book
+with a brief introduction to their theory. We only scratch the surface; the
+interested reader can pursue further study in \cite{Ma98}.
+
+Nonetheless, the reader is advised not to take the present chapter too
+seriously; skipping it for the moment to chapter 1 and returning here as a
+reference could be quite reasonable. 
 
 \section{Introduction}
 \newcommand{\ob}{\mathrm{ob}}
-Categories are supposed to be places where mathematical objects live. 
+
+
+Categories are supposed to be places where mathematical objects live. For
+instance, meta-mathematically, to any given type of structure, there should be a
+category of objects with that structure. These are not, of course, the only
+type of categories, but they will be the primary ones of concern to us in this
+book.
 
 \begin{definition} 
 A \textbf{category} $\mathcal{C}$ consists of a collection of \textbf{objects},
-$\mathrm{ob}\mathcal{C}$, and for each pair of objects $X, Y \in
+$\mathrm{ob} \ \mathcal{C}$, and for each pair of objects $X, Y \in
 \mathrm{ob}\mathcal{C}$, a set
-of \textbf{morphisms} $\mathcal{C}(X, Y)$. 
+of \textbf{morphisms} $\hom_{\mathcal{C}}(X, Y)$ (abbreviated $\hom(X,Y)$). 
 
 For each object $X \in \ob\mathcal{C}$, there is an \textbf{identity morphism}
-$1 \in \mathcal{C}(X, X)$. Next, there is a \textbf{composition law}
+$1 \in \mathcal{C}(X, X)$. 
+
+Next, there is a \textbf{composition law}
 $\mathcal{C}(X, Y) \times \mathcal{C}(Y, Z) \to \mathcal{C}(X, Z), (g, f) \to g
 \circ f$ for every
 triple $X, Y, Z$ of objects, which is unital and associative. 
@@ -25,23 +44,6 @@ We write $X \to Y$ to denote an element of $\mathcal{C}(X, Y)$.
 
 $\mathcal{C}$ is the storehouse for mathematical objects: groups, Lie algebras,
 rings, etc.
-
-\begin{remark} 
-Some people use $\hom(X, Y)$  to denote the set of morphisms between $X, Y$.
-\end{remark} 
-
-\begin{remark} 
-When we write $X \in \mathcal{C}$, it means $X \in \ob \mathcal{C}$. This is a
-convenient convention. 
-\end{remark} 
-
-\begin{remark} 
-The objects don't have to form a set; they can be large. But the things
-$\mathcal{C}(X, Y)$ are sets.
-\end{remark} 
-
-Now, we do a bunch of examples.
-
 \begin{example} 
 \begin{enumerate}
 \item $\mathcal{C}  = \mathbf{Sets}$; the objects are sets, and the morphisms
@@ -49,18 +51,24 @@ are maps of sets.
 \item $\mathcal{C} = \mathbf{Grps}$; the objects are groups, and the morphisms
 are maps of groups (i.e. homomorphisms).
 \item $\mathcal{C} = \mathbf{LieAlg}$; the objects are Lie algebras, and the
-morphisms are maps of Lie algebras (i.e. homomorphisms). 
+morphisms are maps of Lie algebras (i.e. homomorphisms).\footnote{Feel free to
+omit if the notion of Lie algebra is unfamiliar.}
+\item  $\mathcal{C} = \mathbf{Vect}_k$; the objects are vector spaces over a
+field $k$, and the morphisms are linear maps. 
 \end{enumerate}
 \end{example} 
 
-There is \textbf{nothing} in the language of categories that lets you look
-\emph{inside} an object. We think of vector spaces having elements, spaces
-having points, etc. Categories treat these kinds of things as invisible. There
-is nothing ``inside'' of $X \in \mathcal{C}$. The only way to understand $X$ is
-to understand the homs into and out of $X$. 
 
-We will elaborate on this in the future.
 
+\begin{remark} 
+The objects don't have to form a set; they can be too large for
+that.
+For instance, the collection of objects in $\mathbf{Sets}$ does not form a set. 
+\end{remark} 
+
+The standard examples of categories are the ones above: structured sets
+together with structure-preserving maps. Nonetheless, one can easily give
+other examples that do not fall into this category.
 
 \begin{example} 
 Let $G$ be a finite group. Then we an make a category $B_G$ where the objects
@@ -79,6 +87,15 @@ has an associative and unital multiplication (not necessarily inverses).
 \end{example} 
 
 
+There is \textbf{nothing} in the language of categories that lets you look
+\emph{inside} an object. We think of vector spaces having elements, spaces
+having points, etc. Categories treat these kinds of things as invisible. There
+is nothing ``inside'' of $X \in \mathcal{C}$. The only way to understand $X$ is
+to understand the homs into and out of $X$. 
+
+We will elaborate on this in the future.
+
+
 Figures... ADD THEM
 
 \begin{remark} 
@@ -87,16 +104,18 @@ thoroughly.  So we will keep talking about this.
 \end{remark} 
 
 
-\subsection{Functors}
+\section{Functors}
 Let $\mathcal{C}, \mathcal{D}$ be categories.
 
 \begin{definition} 
 A \textbf{functor} $F: \mathcal{C} \to \mathcal{D}$ consists of a function $F:
-\ob \mathcal{C} \to \ob \mathcal{D}$ and, for each pair $X, Y \in \mathcal{C}$,
+\mathcal{C} \to  \mathcal{D}$ (that is, a rule that assigns to each object
+in $\mathcal{C}$ an object of $\mathcal{D}$) and, for each pair $X, Y \in \mathcal{C}$,
 a map
-$F: \mathcal{C}(X, Y) \to \mathcal{D}(FX, FY)$, which preserves the identity
+$F: \hom_{\mathcal{C}}(X, Y) \to \hom_{\mathcal{D}}(FX, FY)$, which preserves the identity
 maps and composition. 
 \end{definition} 
+
 
 \begin{example} 
 There is a functor from $\mathbf{Sets} \to \mathbf{AbelianGrp}$ sending a set
@@ -109,6 +128,10 @@ There is a functor from $\mathbf{TopSpaces} \to \mathbf{GradedAbGrp}$
 space $X$ to its homology groups $H_*(X)$. We know that given a map of spaces,
 we get a map of graded abelian groups. 
 \end{example} 
+
+\begin{exercise} 
+What is the category of categories? (Ignore set-theoretic issues.)
+\end{exercise} 
 
 
 \begin{example} 
@@ -128,9 +151,6 @@ X \ar[r]^{i_{g_1}} \ar[rd]^{i_{g_1g_2}} & X \ar[d]^{i_{g_2}} \\ & X
 So a functor $B_G \to \mathbf{Sets}$ is just a left $G$-action on a set $X$.
 \end{example} 
 
-``I never liked the idea of left and right action.  What about aliens on
-another planet that didn't have left and right hands?''
-
 Sometimes these are called \textbf{covariant functors}. Indeed:
 
 \begin{definition} 
@@ -139,10 +159,6 @@ data except that now a map $X \to Y$ now goes to a map $FY \to FX$. Composites
 are required to be preserved, albeit in the other direction. 
 \end{definition} 
 
-``The reason we have shiny objects in nature is so that we will think of
-contravariant functors. If you look in a mirror, it's like applying a
-contravariant functor to yourself. This is kind of a myopic view of mankind.''
-
 As you might guess:
 
 \begin{example} 
@@ -150,13 +166,14 @@ A \textbf{contravariant} functor from $B_G$ to $\mathbf{Sets}$ corresponds to a
 set with a \emph{right} $G$-action. 
 \end{example} 
 
-We will, in a week or so, define a contravariant version of homology when we
-start studying cohomology.
-
 \begin{example} 
-On the category $\mathbf{Vect}$ of vector spaces, we have the contravariant
+On the category $\mathbf{Vect}$ of vector spaces over a field $k$, we have the contravariant
 functor
 \[ V \to V^{\ast}.  \]
+sending a vector space to its dual $V^{\ast} = \hom(V,k)$. 
+Given a map $V \to W$ of vector spaces, there is an induced map
+\[ W^{\ast} \to V^{\ast}  \]
+given by the transpose.
 \end{example} 
 
 \begin{example} 
@@ -169,7 +186,7 @@ sent an object to a map.
 This is, I think, the reason for Maclane and Eilenberg to describe the next
 property.
 
-\subsection{Natural transformations}
+\section{Natural transformations}
 
 The original paper of Eilenberg and Maclane was called ``On a general theory of
 natural transformations.'' Maclane was a great guy, incidentally, besides
@@ -192,28 +209,6 @@ GX \ar[r] &  GY
 
 When we say that things are ``natural'' in the future, we will mean that the
 transformation between functors is natural in this sense. 
-
-\begin{example} 
-The \textbf{connecting homomorphism} $H_n(X, A) \to H_{n-1}(A)$ is  natural. This is going to be a little rocky, but let's say what this
-means.
-
-If we have pairs $(X, A) \to (Y, B)$, then the following diagram commutes
-\[ \xymatrix{
-H_n(X, A) \ar[d]  \ar[r] &  H_{n-1}(A) \ar[d] \\
-H_n(Y, B) \ar[r] &  H_{n-1}(B)
-}.\]
-This identity is very important in the axiomatic characterization of homology,
-due to Eilenberg-Steenrod. 
-
-This is a little funny, and one has to think about which category we're talking
-about. We can use the category of \textbf{pairs of topological spaces}. So the
-objects here are pairs $(X, A)$ and morphisms are morphisms of pairs. 
-\end{example} 
-
-\begin{remark} 
-``I'm here to put the 'funk' in functor.'' (Dick Gross came in to say hello.)
-\end{remark} 
-
 Some people don't like this. They don't like to use the language of categories.
 If you really try to go in and examine things, it can be hard to figure out
 what things really mean.
@@ -256,8 +251,7 @@ topological spaces is not necessarily a homeomorphism.
 
 \begin{proof} 
 If we have maps $f: X \to Y$ and $g : Y \to X$ such that the composites both
-ways are identities, then we can apply the functor $F$ to the whole dog and
-pony show, and we find that since
+ways are identities, then we can apply the functor $F$ to this, and we find that since
 \[ f \circ g = 1_Y, \quad g \circ f = 1_X,   \]
 that
 \[ F(f) \circ F(g) = 1_{F(Y)}, \quad F(g) \circ F(f) = 1_{F(X)}.  \]
@@ -571,6 +565,7 @@ i.e. the category generated by the poset $\mathbb{Z}_{\geq 0}$, then that is
 filtered.
 \end{example} 
 
+
 \begin{example} 
 If $G$ is a torsion-free abelian group, the category $I$ of finitely generated
 subgroups of $G$ and inclusion maps is filtered. We don't actually need the
@@ -612,7 +607,6 @@ maps
 The colimit of this is $\mathbb{Q}$. There is a quick way of seeing this, which
 is left to the reader.
 \end{example} 
-\lecture{10/18}
 
 \subsection{Filtered colimits}
 Last time, we talked about something called \emph{filtered colimits}. In this,
@@ -686,7 +680,6 @@ to me.
 
 But anyway, this is one of the main uses of filtered colimits---or directed
 colimits, as some people say.  
-\lecture{[Section] 10/18}
 
 
 The key observation made in class is that any diagram of the form
