@@ -1,9 +1,29 @@
 \chapter{Unique factorization and the class group}
 
 
-Today, we will talk about unique factorization.
+Commutative rings in general do not admit unique factorization. 
+Nonetheless, for many rings (``integrally closed'' rings), which
+includes the affine coordinate rings one obtains in algebraic geometry when
+one studies smooth varieties, there is an invariant called the ``class
+group'' that measures the failure of unique factorization. This ``class
+group'' is a certain quotient of codimension one primes (geometrically,
+codimension one subvarieties) modulo rational equivalence.
 
-\subsection{Unique factorization}
+Many even nicer rings have the convenient property that their localizations at prime
+ideals \emph{factorial}, a key example being the coordinate ring of an affine
+nonsingular variety. 
+For these even nicer rings, an alternative method of defining the class group
+can be given: the class group corresponds to the group of isomorphism
+classes of \emph{invertible modules}. Geometrically, such invertible modules
+are line bundles on the associated variety (or scheme).
+
+\section{Unique factorization}
+
+\subsection{Definition}
+We begin with the nicest of all possible cases, when the ring itself admits
+unique factorization.
+
+
 
 Let $R$ be a domain.  
 \begin{definition} 
@@ -39,7 +59,21 @@ The motivating example is of course:
 $\mathbb{Z}$ is factorial. This is the fundamental theorem of arithmetic. 
 \end{example} 
 
-\subsection{A ring-theoretic criterion}
+\subsection{Gauss's lemma}
+
+\begin{theorem} 
+If $R$ is factorial, so is the polynomial ring $R[X]$.
+\end{theorem} 
+\begin{proof} 
+\add{proof}
+\end{proof} 
+
+
+\begin{corollary} 
+The polynomial ring $k[X_1, \dots, X_n]$ for $k$ a field is factorial.
+\end{corollary} 
+
+\subsection{Factoriality and height one primes}
 
 \begin{definition} 
 Let $R$ be a domain. A prime ideal $\mathfrak{p} \subset R$ is said to be of
@@ -91,7 +125,14 @@ which is impossible by noetherianness.
 We have seen that unique factorization can be formulated in terms of prime
 ideals.
 
-\subsection{Locally factorial domains}
+\subsection{Nagata's lemma}
+
+Another criterion for proving factoriality --- \add{later}.
+
+
+\section{Locally factorial domains}
+
+\subsection{Definition}
 \begin{definition} 
 A noetherian domain $R$ is said to be \textbf{locally factorial} if
 $R_{\mathfrak{p}}$ is factorial for each $\mathfrak{p}$ prime.
@@ -249,16 +290,12 @@ be the set of isomorphism classes of invertible $R$-modules. This is an abelian 
 under the tensor product; the identity element is given by $R$. 
 \end{definition} 
 
-Next time, we will continue talking about the Picard group and how it controls
-the failure of unique factorization.
 
-\lecture{10/8}
-
+\subsection{Cartier divisors}
 Last time, for a commutative ring $R$, we defined the \textbf{Picard group}
 $\pic(R)$ as the set of isomorphism classes of invertible $R$-modules. The
 group structure is given by the tensor product.
 
-\subsection{Cartier divisors}
 
 Assume furthermore that $R$ is a domain. We now introduce:
 
@@ -595,7 +632,10 @@ ideals.
 
 Let us now give an example.
 
-\subsection{Discrete valuation rings and Dedekind rings}
+\section{Dedekind rings}
+
+\add{stuff on number theory}
+
 \begin{example} 
 Let $R$ be a noetherian local domain whose prime ideals are $(0)$ and the maximal
 ideal 
