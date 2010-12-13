@@ -1,0 +1,990 @@
+\chapter{\'Etale, unramified, and smooth morphisms}
+
+(The following code was contributed by the Stacks Project authors.)
+\section{Formally unramified maps}
+\label{section-formally-unramified}
+
+\noindent
+It turns out to be logically more efficient to define
+the notion of a formally unramified map before introducing
+the notion of a formally \'etale one.
+
+\begin{definition}
+\label{definition-formally-unramified}
+Let $R \to S$ be a ring map.
+We say $S$ is {\it formally unramified over $R$} if for every
+commutative solid diagram
+$$
+\xymatrix{
+S \ar[r] \ar@{-->}[rd] & A/I \\
+R \ar[r] \ar[u] & A \ar[u]
+}
+$$
+where $I \subset A$ is an ideal of square zero, there exists
+at most one dotted arrow making the diagram commute.
+\end{definition}
+
+\begin{lemma}
+\label{lemma-characterize-formally-unramified}
+Let $R \to S$ be a ring map.
+The following are equivalent:
+\begin{enumerate}
+\item $R \to S$ is formally unramified,
+\item the module of differentials $\Omega_{S/R}$ is zero.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Let $J = \text{Ker}(S \otimes_R S \to S)$ be the kernel of
+the multiplication map. Let $A_{univ} = S \otimes_R S/J^2$. Recall
+that $I_{univ} = J/J^2$ is isomorphic to $\Omega_{S/R}$, see
+Lemma \ref{lemma-differentials-diagonal}. Moreover, the two $R$-algebra maps
+$\sigma_1, \sigma_2 : S \to A_{univ}$, $\sigma_1(s) = s \otimes 1 \bmod J^2$,
+and $\sigma_2(s) = 1 \otimes s \bmod J^2$ differ by the
+universal derivation $\text{d} : S \to \Omega_{S/R} = I_{univ}$.
+
+\medskip\noindent
+Assume $R \to S$ formally unramified.
+Then we see that $\sigma_1 = \sigma_2$.
+Hence $\text{d}(s) = 0$ for all $s \in S$.
+Hence $\Omega_{S/R} = 0$.
+
+\medskip\noindent
+Assume that $\Omega_{S/R} = 0$. Let $A, I, R \to A, S \to A/I$
+be a solid diagram as in Definition \ref{definition-formally-unramified}.
+Let $\tau_1, \tau_2 : S \to A$ be two dotted arrows making the
+diagram commute. Consider the $R$-algebra map $A_{univ} \to A$
+defined by the rule $s_1 \otimes s_2 \mapsto \tau_1(s_1)\tau_2(s_2)$.
+We omit the verification that this is well defined. Since $A_{univ} \cong S$
+as $I_{univ} = \Omega_{S/R} = 0$ we conclude that $\tau_1 = \tau_2$.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-formally-unramified-local}
+Let $R \to S$ be a ring map.
+The following are equivalent:
+\begin{enumerate}
+\item $R \to S$ is formally unramified,
+\item $R \to S_{\mathfrak q}$ is formally unramified for all
+primes $\mathfrak q$ of $S$, and
+\item $R_{\mathfrak p} \to S_{\mathfrak q}$ is formally unramified
+for all primes $\mathfrak q$ of $S$ with $\mathfrak p = R \cap \mathfrak q$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We have seen in
+Lemma \ref{lemma-characterize-formally-unramified}
+that (1) is equivalent to
+$\Omega_{S/R} = 0$. Similarly, by
+Lemma \ref{lemma-differentials-localize}
+we see that (2) and (3)
+are equivalent to $(\Omega_{S/R})_{\mathfrak q} = 0$ for all
+$\mathfrak q$. Hence the equivalence follows from
+Lemma \ref{lemma-characterize-zero-local}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-formally-unramified-localize}
+Let $A \to B$ be a formally unramified ring map.
+\begin{enumerate}
+\item For $S \subset A$ a multiplicative subset,
+$S^{-1}A \to S^{-1}B$ is formally unramified.
+\item For $S \subset B$ a multiplicative subset,
+$A \to S^{-1}B$ is formally unramified.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Follows from
+Lemma \ref{lemma-formally-unramified-local}.
+(You can also deduce it from
+Lemma \ref{lemma-characterize-formally-unramified}
+combined with
+Lemma \ref{lemma-differentials-localize}.)
+\end{proof}
+
+
+
+\section{Conormal modules and universal thickenings}
+\label{section-conormal}
+
+\noindent
+It turns out that one can define the first infinitesimal neighbourhood
+not just for a closed immersion of schemes, but already for any formally
+unramified morphism. This is based on the following algebraic fact.
+
+\begin{lemma}
+\label{lemma-universal-thickening}
+Let $R \to S$ be a formally unramified ring map. There exists a surjection of
+$R$-algebras $S' \to S$ whose kernel is an ideal of square zero with the
+following universal property: Given any commutative diagram
+$$
+\xymatrix{
+S \ar[r]_{a} & A/I \\
+R \ar[r]^b \ar[u] & A \ar[u]
+}
+$$
+where $I \subset A$ is an ideal of square zero, there is a unique $R$-algebra
+map $a' : S' \to A$ such that $S' \to A \to A/I$ is equal to $S' \to S \to A$.
+\end{lemma}
+
+\begin{proof}
+Choose a set of generators $z_i \in S$, $i \in I$ for $S$ as an $R$-algebra.
+Let $P = R[\{x_i\_{i \in I}]$ denote the polynomial ring on generators
+$x_i$, $i \in I$. Consider the $R$-algebra map $P \to S$ which maps
+$x_i$ to $z_i$. Let $J = \text{Ker}(P \to S)$. Consider the map
+$$
+\text{d} : J/J^2 \longrightarrow \Omega_{P/R} \otimes_P S
+$$
+see
+Lemma \ref{lemma-differential-seq}.
+This is surjective since $\Omega_{S/R} = 0$ by assumption, see
+Lemma \ref{lemma-characterize-formally-unramified}.
+Note that $\Omega_{P/R}$ is free on $\text{d}x_i$, and hence the module
+$\Omega_{P/R} \otimes_P S$ is free over $S$. Thus we may choose a splitting
+of the surjection above and write
+$$
+J/J^2 = K \oplus \Omega_{P/R} \otimes_P S
+$$
+Let $J^2 \subset J' \subset J$ be the ideal of $P$ such that
+$J'/J^2$ is the second summand in the decomposition above.
+Set $S' = P/J'$. We obtain a short exact sequence
+$$
+0 \to J/J' \to S' \to S \to 0
+$$
+and we see that $J/J' \cong K$ is a square zero ideal in $S'$. Hence
+$$
+\xymatrix{
+S \ar[r]_1 & S \\
+R \ar[r] \ar[u] & S' \ar[u]
+}
+$$
+is a diagram as above. In fact we claim that this is an initial object in
+the category of diagrams. Namely, let $(I \subset A, a, b)$ be an arbitrary
+diagram. We may choose an $R$-algebra map $\beta : P \to A$ such that
+$$
+\xymatrix{
+S \ar[r]_1 & S \ar[r]_a & A/I \\
+R \ar[r] \ar@/_/[rr]_b \ar[u] & P \ar[u] \ar[r]^\beta & A \ar[u]
+}
+$$
+is commutative. Now it may not be the case that $\beta(J') = 0$, in other
+words it may not be true that $\beta$ factors through $S' = P/J'$.
+But what is clear is that $\beta(J') \subset I$ and
+since $\beta(J) \subset I$ and $I^2 = 0$ we have $\beta(J^2) = 0$.
+Thus the ``obstruction'' to finding a morphism from
+$(J/J' \subset S', 1, R \to S')$ to $(I \subset A, a, b)$ is
+the corresponding $S$-linear map $\overline{\beta} : J'/J^2 \to I$.
+The choice in picking $\beta$ lies in the choice of $\beta(x_i)$.
+A different choice of $\beta$, say $\beta'$, is gotten by taking
+$\beta'(x_i) = \beta(x_i) + \delta_i$ with $\delta_i \in I$.
+In this case, for $g \in J'$, we obtain
+$$
+\beta'(g) =
+\beta(g) + \sum\nolimits_i \delta_i \frac{\partial g}{\partial x_i}.
+$$
+Since the map $\text{d}|_{J'/J^2} : J'/J^2 \to \Omega_{P/R} \otimes_P S$
+given by $g \mapsto \frac{\partial g}{\partial x_i}\text{d}x_i$
+is an isomorphism by construction, we see that there is a unique choice
+of $\delta_i \in I$ such that $\beta'(g) = 0$ for all $g \in J'$.
+(Namely, $\delta_i$ is $-\overline{\beta}(g)$ where $g \in J'/J^2$
+is the unique element with $\frac{\partial g}{\partial x_j} = 1$ if
+$i = j$ and $0$ else.) The uniqueness of the solution implies the
+uniqueness required in the lemma.
+\end{proof}
+
+\noindent
+In the situation of
+Lemma \ref{lemma-universal-thickening}
+the $R$-algebra map $S' \to S$ is unique up to unique isomorphism.
+
+\begin{definition}
+\label{definition-universal-thickening}
+Let $R \to S$ be a formally unramified ring map.
+\begin{enumerate}
+\item The {\it universal first order thickening} of $S$ over $R$ is
+the surjection of $R$-algebras $S' \to S$ of
+Lemma \ref{lemma-universal-thickening}.
+\item The {\it conormal module} of $R \to S$ is the kernel $I$ of the
+universal first order thickening $S' \to S$, seen as a $S$-module.
+\end{enumerate}
+We often denote the conormal module {\it $C_{S/R}$} in this situation.
+\end{definition}
+
+\begin{lemma}
+\label{lemma-universal-thickening-quotient}
+Let $I \subset R$ be an ideal of a ring.
+The universal first order thickening of $R/I$ over $R$
+is the surjection $R/I^2 \to R/I$. The conormal module
+of $R/I$ over $R$ is $C_{(R/I)/R} = I/I^2$.
+\end{lemma}
+
+\begin{proof}
+Omitted.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-universal-thickening-localize}
+Let $A \to B$ be a formally unramified ring map.
+Let $\varphi : B' \to B$ be the universal first order thickening of
+$B$ over $A$.
+\begin{enumerate}
+\item Let $S \subset A$ be a multiplicative subset.
+Then $S^{-1}B' \to S^{-1}B$ is the universal first order thickening of
+$S^{-1}B$ over $S^{-1}A$. In particular $S^{-1}C_{B/A} = C_{S^{-1}B/S^{-1}A}$.
+\item Let $S \subset B$ be a multiplicative subset.
+Then $S' = \varphi^{-1}(S)$ is a multiplicative subset in $B'$
+and $(S')^{-1}B' \to S^{-1}B$ is the universal first order thickening
+of $S^{-1}B$ over $A$. In particular $S^{-1}C_{B/A} = C_{S^{-1}B/A}$.
+\end{enumerate}
+Note that the lemma makes sense by
+Lemma \ref{lemma-formally-unramified-localize}.
+\end{lemma}
+
+\begin{proof}
+With notation and assumptions as in (1). Let $(S^{-1}B)' \to S^{-1}B$
+be the universal first order thickening of $S^{-1}B$ over $S^{-1}A$.
+Note that $S^{-1}B' \to S^{-1}B$ is a surjection of $S^{-1}A$-algebras
+whose kernel has square zero. Hence by definition we obtain a map
+$(S^{-1}B)' \to S^{-1}B'$ compatible with the maps towards $S^{-1}B$.
+Consider any commutative diagram
+$$
+\xymatrix{
+B \ar[r] & S^{-1}B \ar[r] & D/I \\
+A \ar[r] \ar[u] & S^{-1}A \ar[r] \ar[u] & D \ar[u]
+}
+$$
+where $I \subset D$ is an ideal of square zero. Since $B'$ is the universal
+first order thickening of $B$ over $A$ we obtain an $A$-algebra map
+$B' \to D$. But it is clear that the image of $S$ in $D$ is mapped to
+invertible elements of $D$, and hence we obtain a compatible map
+$S^{-1}B' \to D$. Applying this to $D = (S^{-1}B)'$ we see that we get
+a map $S^{-1}B' \to (S^{-1}B)'$. We omit the verification that this map
+is inverse to the map described above.
+
+\medskip\noindent
+With notation and assumptions as in (2). Let $(S^{-1}B)' \to S^{-1}B$
+be the universal first order thickening of $S^{-1}B$ over $A$.
+Note that $(S')^{-1}B' \to S^{-1}B$ is a surjection of $A$-algebras
+whose kernel has square zero. Hence by definition we obtain a map
+$(S^{-1}B)' \to (S')^{-1}B'$ compatible with the maps towards $S^{-1}B$.
+Consider any commutative diagram
+$$
+\xymatrix{
+B \ar[r] & S^{-1}B \ar[r] & D/I \\
+A \ar[r] \ar[u] & A \ar[r] \ar[u] & D \ar[u]
+}
+$$
+where $I \subset D$ is an ideal of square zero. Since $B'$ is the universal
+first order thickening of $B$ over $A$ we obtain an $A$-algebra map
+$B' \to D$. But it is clear that the image of $S'$ in $D$ is mapped to
+invertible elements of $D$, and hence we obtain a compatible map
+$(S')^{-1}B' \to D$. Applying this to $D = (S^{-1}B)'$ we see that we get
+a map $(S')^{-1}B' \to (S^{-1}B)'$. We omit the verification that this map
+is inverse to the map described above.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-differentials-universal-thickening}
+Let $R \to A  \to B$ be ring maps. Assume $A \to B$ formally unramified.
+Let $B' \to B$ be the universal first order thickening of $B$ over $A$.
+Then $B'$ is formally unramified over $A$, and the canonical map
+$\Omega_{A/R} \otimes_A B \to \Omega_{B'/R} \otimes_{B'} B$ is an
+isomorphism.
+\end{lemma}
+
+\begin{proof}
+We are going to use the construction of $B'$ from the proof of
+Lemma \ref{lemma-universal-thickening}
+allthough in principle it should be possible to deduce these results
+formally from the definition. Namely, we choose a presentation
+$B = P/J$, where $P = A[x_i]$ is a polynomial ring over $A$.
+Next, we choose elements $f_i \in J$ such that
+$\text{d}f_i = \text{d}x_i \otimes 1$ in $\Omega_{P/A} \otimes_P B$.
+Having made these choices we have
+$B' = P/J'$ with $J' = (f_i) + J^2$, see proof of
+Lemma \ref{lemma-universal-thickening}.
+
+\medskip\noindent
+Consider the canonical exact sequence
+$$
+J'/(J')^2 \to \Omega_{P/A} \otimes_P B' \to \Omega_{B'/A} \to 0
+$$
+see
+Lemma \ref{lemma-differential-seq}.
+By construction the classes of the $f_i \in J'$ map to elements of
+the module $\Omega_{P/A} \otimes_P B'$ which generate it modulo
+$J'/J^2$ by construction. Since $J'/J^2$ is a nilpotent ideal, we see
+that these elements generate the module alltogether (by
+Nakayama's Lemma \ref{lemma-NAK}). This proves that $\Omega_{B'/A} = 0$
+and hence that $B'$ is formally unramified over $A$, see
+Lemma \ref{lemma-characterize-formally-unramified}.
+
+\medskip\noindent
+Since $P$ is a polynomial ring over $A$ we have
+$\Omega_{P/R} = \Omega_{A/R} \otimes_A P \oplus \bigoplus P\text{d}x_i$.
+We are going to use this decomposition.
+Consider the following exact sequence
+$$
+J'/(J')^2 \to
+\Omega_{P/R} \otimes_P B' \to
+\Omega_{B'/R} \to 0
+$$
+see
+Lemma \ref{lemma-differential-seq}.
+We may tensor this with $B$ and obtain the exact sequence
+$$
+J'/(J')^2 \otimes_{B'} B \to
+\Omega_{P/R} \otimes_P B \to
+\Omega_{B'/R} \otimes_{B'} B \to 0
+$$
+If we remember that $J' = (f_i) + J^2$
+then we see that the first arrow annihilates the submodule $J^2/(J')^2$.
+In terms of the direct sum decomposition
+$\Omega_{P/R} \otimes_P B =
+\Omega_{A/R} \otimes_A B \oplus \bigoplus B\text{d}x_i $ given
+we see that the submodule $(f_i)/(J')^2 \otimes_{B'} B$ maps
+isomorphically onto the summand $\bigoplus B\text{d}x_i$. Hence what is
+left of this exact sequence is an isomorphism
+$\Omega_{A/R} \otimes_A B \to \Omega_{B'/R} \otimes_{B'} B$
+as desired.
+\end{proof}
+
+
+
+
+
+
+
+
+
+\section{Formally \'etale maps}
+\label{section-formally-etale}
+
+\begin{definition}
+\label{definition-formally-etale}
+Let $R \to S$ be a ring map.
+We say $S$ is {\it formally \'etale over $R$} if for every
+commutative solid diagram
+$$
+\xymatrix{
+S \ar[r] \ar@{-->}[rd] & A/I \\
+R \ar[r] \ar[u] & A \ar[u]
+}
+$$
+where $I \subset A$ is an ideal of square zero, there exists
+a unique dotted arrow making the diagram commute.
+\end{definition}
+
+\noindent
+Clearly a ring map is formally \'etale if and only if
+it is booth formally smooth and formally unramified.
+
+\begin{lemma}
+\label{lemma-formally-etale-etale}
+Let $R \to S$ be a ring map of finite presentation.
+The following are equivalent:
+\begin{enumerate}
+\item $R \to S$ is formally \'etale,
+\item $R \to S$ is \'etale.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Assume that $R \to S$ is formally \'etale.
+Then $R \to S$ is smooth by Lemma \ref{lemma-formally-smooth-smooth}.
+By Lemma \ref{lemma-characterize-formally-unramified}
+we have $\Omega_{S/R} = 0$.
+Hence $R \to S$ is \'etale by definition.
+
+\medskip\noindent
+Assume that $R \to S$ is \'etale.
+Then $R \to S$ is formally smooth by
+Lemma \ref{lemma-smooth-formally-smooth}.
+By Lemma \ref{lemma-characterize-formally-unramified}
+it is formally unramified. Hence $R \to S$ is formally \'etale.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-colimit-formally-etale}
+Let $R$ be a ring. Let $I$ be a directed partially ordered set.
+Let $(S_i, \varphi_{ii'})$ be a system of $R$-algebras
+over $I$. If each $R \to S_i$ is formally \'etale, then
+$S = \text{colim}_{i \in I}\ S_i$ is formally \'etale over $R$
+\end{lemma}
+
+\begin{proof}
+Consider a diagram as in Definition \ref{definition-formally-etale}.
+By assumption we get unique $R$-algebra maps $S_i \to A$ lifting
+the compositions $S_i \to S \to A/I$. Hence these are compatible
+with the transition maps $\varphi_{ii'}$ and define a lift
+$S \to A$. This proves existence.
+The uniqueness is clear by restricting to each $S_i$.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-localization-formally-etale}
+Let $R$ be a ring. Let $S \subset R$ be any multiplicative subset.
+Then the ring map $R \to S^{-1}R$ is formally \'etale.
+\end{lemma}
+
+\begin{proof}
+Let $I \subset A$ be an ideal of square zero. What we are saying
+here is that given a ring map $\varphi : R \to A$ such that
+$\varphi(f) \mod I$ is invertible for all $f \in S$ we have also that
+$\varphi(f)$ is invertible in $A$ for all $f \in S$. This is true because
+$A^*$ is the inverse image of $(A/I)^*$ under the canonical map
+$A \to A/I$.
+\end{proof}
+
+
+
+
+
+\section{Unramified ring maps}
+\label{section-unramified}
+
+\noindent
+The definition of a G-unramified ring map is the one from EGA.
+The definition of an unramified ring map is the one from \cite{Henselian}.
+
+\begin{definition}
+\label{definition-unramified}
+Let $R \to S$ be a ring map.
+\begin{enumerate}
+\item We say $R \to S$ is {\it unramified} if $R \to S$ is of
+finite type and $\Omega_{S/R} = 0$.
+\item We say $R \to S$ is {\it G-unramified} if $R \to S$ is of finite
+presentation and $\Omega_{S/R} = 0$.
+\item Given a prime $\mathfrak q$ of $S$ we say that $S$ is
+{\it unramified at $\mathfrak q$} if there exists a
+$g \in S$, $g \not \in \mathfrak q$ such that $R \to S_g$ is unramified.
+\item Given a prime $\mathfrak q$ of $S$ we say that $S$ is
+{\it G-unramified at $\mathfrak q$} if there exists a
+$g \in S$, $g \not \in \mathfrak q$ such that $R \to S_g$ is G-unramified.
+\end{enumerate}
+\end{definition}
+
+\noindent
+Of course a G-unramified map is unramified.
+
+\begin{lemma}
+\label{lemma-formally-unramified-unramified}
+Let $R \to S$ be a ring map. The following are equivalent
+\begin{enumerate}
+\item $R \to S$ is formally unramified and of finite type, and
+\item $R \to S$ is unramified.
+\end{enumerate}
+Moreover, also the following are equivalent
+\begin{enumerate}
+\item $R \to S$ is formally unramified and of finite presentation, and
+\item $R \to S$ is G-unramified.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Follows from Lemma \ref{lemma-characterize-formally-unramified}
+and the definitions.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-unramified}
+Properties of unramified and G-unramified ring maps.
+\begin{enumerate}
+\item The base change of an unramified ring map is unramified.
+The base change of a G-unramified ring map is G-unramified.
+\item The composition of unramified ring maps is unramified.
+The composition of G-unramified ring maps is G-unramified.
+\item Any principal localization $R \to R_f$ is G-unramified and
+unramified.
+\item If $I \subset R$ is an ideal, then $R \to R/I$ is unramified.
+If $I \subset R$ is a finitely generated ideal, then $R \to R/I$ is
+G-unramified.
+\item An \'etale ring map is G-unramified and unramified.
+\item If $R \to S$ is of finite type (resp.\ finite presentation),
+$\mathfrak q \subset S$ is a prime and $(\Omega_{S/R})_{\mathfrak q} = 0$,
+then $R \to S$ is unramified (resp.\ G-unramified) at $\mathfrak q$.
+\item If $R \to S$ is of finite type (resp.\ finite presentation),
+$\mathfrak q \subset S$ is a prime and
+$\Omega_{S/R} \otimes_S \kappa(\mathfrak q) = 0$, then
+$R \to S$ is unramified (resp.\ G-unramified) at $\mathfrak q$.
+\item If $R \to S$ is of finite type (resp.\ finite presentation),
+$\mathfrak q \subset S$ is a prime lying over $\mathfrak p \subset R$ and
+$(\Omega_{S \otimes_R \kappa(\mathfrak p)/\kappa(\mathfrak p)})_{\mathfrak q}
+= 0$, then $R \to S$ is unramified (resp.\ G-unramified) at $\mathfrak q$.
+\item If $R \to S$ is of finite type (resp.\ presentation),
+$\mathfrak q \subset S$ is a prime lying over $\mathfrak p \subset R$ and
+$(\Omega_{S \otimes_R \kappa(\mathfrak p)/\kappa(\mathfrak p)})
+\otimes_{S \otimes_R \kappa(\mathfrak p)} \kappa(\mathfrak q) = 0$,
+then $R \to S$ is unramified (resp.\ G-unramified) at $\mathfrak q$.
+\item If $R \to S$ is a ring map, $g_1, \ldots, g_m \in S$ generate
+the unit ideal and $R \to S_{g_j}$ is unramified (resp.\ G-unramified) for
+$j = 1, \ldots, m$, then $R \to S$ is unramified (resp.\ G-unramified).
+\item If $R \to S$ is a ring map which is unramified (resp.\ G-unramified)
+at every prime of $S$, then $R \to S$ is unramified (resp.\ G-unramified).
+\item If $R \to S$ is G-unramified, then there exists a finite type
+$\mathbf{Z}$-algebra $R_0$ and a G-unramified ring map $R_0 \to S_0$
+and a ring map $R_0 \to R$ such that $S = R \otimes_{R_0} S_0$.
+\item If $R \to S$ is unramified, then there exists a finite type
+$\mathbf{Z}$-algebra $R_0$ and an unramified ring map $R_0 \to S_0$
+and a ring map $R_0 \to R$ such that $S$ is a quotient of
+$R \otimes_{R_0} S_0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We prove each point, in order.
+
+\medskip\noindent
+Ad (1). Follows from Lemmas \ref{lemma-differentials-base-change}
+and \ref{lemma-base-change-finiteness}.
+
+\medskip\noindent
+Ad (2). Follows from Lemmas \ref{lemma-exact-sequence-differentials}
+and \ref{lemma-base-change-finiteness}.
+
+\medskip\noindent
+Ad (3). Follows by direct computation of $\Omega_{R_f/R}$ which we omit.
+
+\medskip\noindent
+Ad (4). We have $\Omega_{(R/I)/R} = 0$, see
+Lemma \ref{lemma-trivial-differential-surjective},
+and the ring map $R \to R/I$
+is of finite type. If $I$ is a finitely generated ideal then $R \to R/I$
+is of finite presentation.
+
+\medskip\noindent
+Ad (5). See discussion following Definition \ref{definition-etale}.
+
+\medskip\noindent
+Ad (6). In this case $\Omega_{S/R}$ is a finite $S$-module (see
+Lemma \ref{lemma-differentials-finitely-generated}) and hence there
+exists a $g \in S$, $g \not \in \mathfrak q$ such that
+$(\Omega_{S/R})_g = 0$. By Lemma \ref{lemma-differentials-localize}
+this means that $\Omega_{S_g/R} = 0$ and hence $R \to S_g$ is
+unramified as desired.
+
+\medskip\noindent
+Ad (7). Use Nakayama's lemma (Lemma \ref{lemma-NAK}) to see that
+the condition is equivalent to the condition of (6).
+
+\medskip\noindent
+Ad (8) \& (9). These are equivalent in the same manner that (6) and (7)
+are equivalent. Moreover
+$\Omega_{S \otimes_R \kappa(\mathfrak p)/\kappa(\mathfrak p)} =
+\Omega_{S/R} \otimes_S (S \otimes_R \kappa(\mathfrak p))$ by
+Lemma \ref{lemma-differentials-base-change}.
+Hence we see that (9) is equivalent to (7) since
+the $\kappa(\mathfrak q)$ vector spaces in both are canonically
+isomorphic.
+
+\medskip\noindent
+Ad (10). Follows from from Lemmas \ref{lemma-cover}
+and \ref{lemma-differentials-localize}.
+
+\medskip\noindent
+Ad (11). Follows from (6) and (7) and the fact that the spectrum of $S$
+is quasi-compact.
+
+\medskip\noindent
+Ad (12). Write $S = R[x_1, \ldots, x_n]/(g_1, \ldots, g_m)$.
+As $\Omega_{S/R} = 0$ we can write
+$$
+\text{d}x_i = \sum h_{ij}\text{d}g_j + \sum a_{ijk}g_j\text{d}x_k
+$$
+in $\Omega_{R[x_1, \ldots, x_n]/R}$
+for some $h_{ij}, a_{ijk} \in R[x_1, \ldots, x_n]$.
+Choose a finitely generated
+$\mathbf{Z}$-subalgebra $R_0 \subset R$ containing all the coefficients of the
+polynomials $g_i, h_{ij}, a_{ijk}$. Set
+$S_0 = R_0[x_1, \ldots, x_n]/(g_1, \ldots, g_m)$. This works.
+
+\medskip\noindent
+Ad (13). Write $S = R[x_1, \ldots, x_n]/I$.
+As $\Omega_{S/R} = 0$ we can write
+$$
+\text{d}x_i = \sum h_{ij}\text{d}g_{ij} + \sum g'_{ik}\text{d}x_k
+$$
+in $\Omega_{R[x_1, \ldots, x_n]/R}$
+for some $h_{ij} \in R[x_1, \ldots, x_n]$ and $g_{ij}, g'_{ik} \in I$.
+Choose a finitely generated $\mathbf{Z}$-subalgebra $R_0 \subset R$
+containing all the coefficients of the
+polynomials $g_{ij}, h_{ij}, g'_{ik}$. Set
+$S_0 = R_0[x_1, \ldots, x_n]/(g_{ij}, g'_{ik})$. This works.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-diagonal-unramified}
+Let $R \to S$ be a ring map.
+If $R \to S$ is unramified, then there exists an idempotent
+$e \in S \otimes_R S$ such that $S \otimes_R S \to S$ is isomorphic
+to $S \otimes_R S \to (S \otimes_R S)_e$.
+\end{lemma}
+
+\begin{proof}
+Let $J = \text{Ker}(S \otimes_R S \to S)$. By assumption
+$J/J^2 = 0$, see
+Lemma \ref{lemma-differentials-diagonal}.
+Since $S$ is of finite type over $R$ we
+see that $J$ is finitely generated, namely by
+$x_i \otimes 1 - 1 \otimes x_i$, where $x_i$ generate $S$ over $R$.
+We win by Lemma \ref{lemma-ideal-is-squared-union-connected}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-unramified-at-prime}
+Let $R \to S$ be a ring map.
+Let $\mathfrak q \subset S$ be
+a prime lying over $\mathfrak p$ in $R$.
+If $S/R$ is unramified at $\mathfrak q$ then
+\begin{enumerate}
+\item we have $\mathfrak p S_{\mathfrak q} = \mathfrak qS_{\mathfrak q}$
+is the maximal ideal of the local ring $S_{\mathfrak q}$, and
+\item the field extension $\kappa(\mathfrak p) \subset \kappa(\mathfrak q)$
+is finite separable.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We may first replace $S$ by $S_g$ for some $g \in S$, $g \not \in \mathfrak q$
+and assume that $R \to S$ is unramified.
+The base change $S \otimes_R \kappa(\mathfrak p)$
+is unramified over $\kappa(\mathfrak p)$ by
+Lemma \ref{lemma-unramified}.
+By
+Lemma \ref{lemma-characterize-smooth-over-field}
+it is smooth hence \'etale over $\kappa(\mathfrak p)$.
+Hence we see that
+$S \otimes_R \kappa(\mathfrak p) =
+(R \setminus \mathfrak p)^{-1} S/\mathfrak pS$
+is a product of finite separable field extensions of
+$\kappa(\mathfrak p)$ by Lemma \ref{lemma-etale-over-field}.
+This implies the lemma.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-unramified-quasi-finite}
+Let $R \to S$ be a finite type ring map.
+Let $\mathfrak q$ be a prime of $S$.
+If $R \to S$ is unramified at $\mathfrak q$ then
+$R \to S$ is quasi-finite at $\mathfrak q$.
+In particular, an unramified ring map is quasi-finite.
+\end{lemma}
+
+\begin{proof}
+An unramified ring map is of finite type.
+Thus it is clear that the second statement follows from the first.
+To see the first statement apply the characterization of
+Lemma \ref{lemma-isolated-point-fibre} part (2) using
+Lemma \ref{lemma-unramified-at-prime}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-characterize-unramified}
+Let $R \to S$ be a ring map. Let $\mathfrak q$ be a prime of $S$
+lying over a prime $\mathfrak p$ of $R$. If
+\begin{enumerate}
+\item $R \to S$ is of finite type,
+\item $\mathfrak p S_{\mathfrak q}$ is the maximal ideal
+of the local ring $S_{\mathfrak q}$, and
+\item the field extension $\kappa(\mathfrak p) \subset \kappa(\mathfrak q)$
+is finite separable,
+\end{enumerate}
+then $R \to S$ is unramified at $\mathfrak q$.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-unramified} (8) it suffices to show that
+$\Omega_{S \otimes_R \kappa(\mathfrak p) / \kappa(\mathfrak p)}$
+is zero when localized at $\mathfrak q$. Hence we may replace $S$
+by $S \otimes_R \kappa(\mathfrak p)$ and $R$ by $\kappa(\mathfrak p)$.
+In other words, we may assume that $R = k$ is a field and $S$
+is a finite type $k$-algebra.
+In this case the hypotheses imply that
+$S_{\mathfrak q} \cong \kappa(\mathfrak q)$
+and hence $S = \kappa(\mathfrak q) \times S'$ (see
+Lemma \ref{lemma-isolated-point}).
+Hence $(\Omega_{S/k})_{\mathfrak q} = \Omega_{\kappa(\mathfrak q)/k}$
+which is zero as desired.
+\end{proof}
+
+\begin{proposition}
+\label{proposition-unramified-locally-standard}
+Let $R \to S$ be a ring map. Let $\mathfrak q \subset S$ be a prime.
+If $R \to S$ is unramified at $\mathfrak q$, then there exist
+\begin{enumerate}
+\item a $g \in S$, $g \not \in \mathfrak q$,
+\item a standard \'etale ring map $R \to S'$, and
+\item a surjective $R$-algebra map $S' \to S_g$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+This proof is the ``same'' as the proof of
+Proposition \ref{proposition-etale-locally-standard}.
+The proof is a little roundabout and there may be ways to
+shorten it.
+
+\medskip\noindent
+Step 1. By Definition \ref{definition-unramified}
+there exists a $g \in S$, $g \not \in \mathfrak q$
+such that $R \to S_g$ is unramified. Thus we may assume that $S$ is
+unramified over $R$.
+
+\medskip\noindent
+Step 2. By Lemma \ref{lemma-unramified}
+there exists an unramified ring map $R_0 \to S_0$
+with $R_0$ of finite type over $\mathbf{Z}$, and a ring map
+$R_0 \to R$ such that $S$ is a quotient of $R \otimes_{R_0} S_0$. Denote
+$\mathfrak q_0$ the prime of $S_0$ corresponding to $\mathfrak q$.
+If we show the result for $(R_0 \to S_0, \mathfrak q_0)$ then the
+result follows for $(R \to S, \mathfrak q)$ by base change. Hence
+we may assume that $R$ is Noetherian.
+
+\medskip\noindent
+Step 3.
+Note that $R \to S$ is quasi-finite by
+Lemma \ref{lemma-unramified-quasi-finite}.
+By Lemma \ref{lemma-quasi-finite-open-integral-closure}
+there exists a finite ring map $R \to S'$, an $R$-algebra map
+$S' \to S$, an element $g' \in S'$ such that
+$g' \not \in \mathfrak q$ such that $S' \to S$ induces
+an isomorphism $S'_{g'} \cong S_{g'}$.
+(Note that $S'$ may not unramified over $R$.)
+Thus we may assume that (a) $R$ is Noetherian, (b) $R \to S$ is finite
+and (c) $R \to S$ is unramified at $\mathfrak q$
+(but no longer necessarily unramified at all primes).
+
+\medskip\noindent
+Step 4. Let $\mathfrak p \subset R$ be the prime corresponding
+to $\mathfrak q$. Consider the fibre ring
+$S \otimes_R \kappa(\mathfrak p)$. This is a finite algebra over
+$\kappa(\mathfrak p)$. Hence it is Artinian
+(see Lemma \ref{lemma-finite-dimensional-algebra}) and
+so a finite product of local rings
+$$
+S \otimes_R \kappa(\mathfrak p) = \prod\nolimits_{i = 1}^n A_i
+$$
+see Proposition \ref{proposition-dimension-zero-ring}. One of the factors,
+say $A_1$, is the local ring $S_{\mathfrak q}/\mathfrak pS_{\mathfrak q}$
+which is isomorphic to $\kappa(\mathfrak q)$,
+see Lemma \ref{lemma-unramified-at-prime}. The other factors correspond to
+the other primes, say $\mathfrak q_2, \ldots, \mathfrak q_n$ of
+$S$ lying over $\mathfrak p$.
+
+\medskip\noindent
+Step 5. We may choose a nonzero element $\alpha \in \kappa(\mathfrak q)$ which
+generates the finite separable field extension
+$\kappa(\mathfrak p) \subset \kappa(\mathfrak q)$ (so even if the
+field extension is trivial we do not allow $\alpha = 0$).
+Note that for any $\lambda \in \kappa(\mathfrak p)^*$ the
+element $\lambda \alpha$ also generates $\kappa(\mathfrak q)$
+over $\kappa(\mathfrak p)$. Consider the element
+$$
+\overline{t} =
+(\alpha, 0, \ldots, 0) \in
+\prod\nolimits_{i = 1}^n A_i =
+S \otimes_R \kappa(\mathfrak p).
+$$
+After possibly replacing $\alpha$ by $\lambda \alpha$ as above
+we may assume that $\overline{t}$ is the image of $t \in S$.
+Let $I \subset R[x]$ be the kernel of the $R$-algebra
+map $R[x] \to S$ which maps $x$ to $t$. Set $S' = R[x]/I$,
+so $S' \subset S$. Here is a diagram
+$$
+\xymatrix{
+R[x] \ar[r] & S' \ar[r] & S \\
+R \ar[u] \ar[ru] \ar[rru] & &
+}
+$$
+By construction the primes $\mathfrak q_j$, $j \geq 2$ of $S$ all
+lie over the prime $(\mathfrak p, x)$ of $R[x]$, whereas
+the prime $\mathfrak q$ lies over a different prime of $R[x]$
+because $\alpha \not = 0$.
+
+\medskip\noindent
+Step 6. Denote $\mathfrak q' \subset S'$ the prime of $S'$
+corresponding to $\mathfrak q$. By the above $\mathfrak q$ is
+the only prime of $S$ lying over $\mathfrak q'$. Thus we see that
+$S_{\mathfrak q} = S_{\mathfrak q'}$, see
+Lemma \ref{lemma-unique-prime-over-localize-below} (we have
+going up for $S' \to S$ by Lemma \ref{lemma-integral-going-up}
+since $S' \to S$ is finite as $R \to S$ is finite).
+It follows that $S'_{\mathfrak q'} \to S_{\mathfrak q}$ is finite
+and injective as the localization of the finite injective ring map
+$S' \to S$. Consider the maps of local rings
+$$
+R_{\mathfrak p} \to S'_{\mathfrak q'} \to S_{\mathfrak q}
+$$
+The second map is finite and injective. We have
+$S_{\mathfrak q}/\mathfrak pS_{\mathfrak q} = \kappa(\mathfrak q)$,
+see Lemma \ref{lemma-unramified-at-prime}.
+Hence a fortiori
+$S_{\mathfrak q}/\mathfrak q'S_{\mathfrak q} = \kappa(\mathfrak q)$.
+Since
+$$
+\kappa(\mathfrak p) \subset \kappa(\mathfrak q') \subset \kappa(\mathfrak q)
+$$
+and since $\alpha$ is in the image of $\kappa(\mathfrak q')$ in
+$\kappa(\mathfrak q)$
+we conclude that $\kappa(\mathfrak q') = \kappa(\mathfrak q)$.
+Hence by Nakayama's Lemma \ref{lemma-NAK} applied to the
+$S'_{\mathfrak q'}$-module map $S'_{\mathfrak q'} \to S_{\mathfrak q}$,
+the map $S'_{\mathfrak q'} \to S_{\mathfrak q}$ is surjective.
+In other words,
+$S'_{\mathfrak q'} \cong S_{\mathfrak q}$.
+
+\medskip\noindent
+Step 7. By Lemma \ref{lemma-local-isomorphism} there exists a $g' \in S'$,
+$g' \not \in \mathfrak q'$ such that $S'_{g'} \cong S_{g'}$.
+As $R$ is Noetherian the ring $S'$ is finite over $R$ as it is an $R$-submodule
+of the finite $R$-module $S$. Hence after replacing $S$ by $S'$ we may
+assume that (a) $R$ is Noetherian, (b) $S$ finite over $R$, (c)
+$S$ is unramified over $R$ at $\mathfrak q$, and (d) $S = R[x]/I$.
+
+\medskip\noindent
+Step 8. Consider the ring
+$S \otimes_R \kappa(\mathfrak p) = \kappa(\mathfrak p)[x]/\overline{I}$
+where $\overline{I} = I \cdot \kappa(\mathfrak p)[x]$ is the ideal generated
+by $I$ in $\kappa(\mathfrak p)[x]$. As $\kappa(\mathfrak p)[x]$ is a PID
+we know that $\overline{I} = (\overline{h})$ for some monic
+$\overline{h} \in \kappa(\mathfrak p)$. After replacing $\overline{h}$
+by $\lambda \cdot \overline{h}$ for some $\lambda \in \kappa(\mathfrak p)$
+we may assume that $\overline{h}$ is the image of some $h \in R[x]$.
+(The problem is that we do not know if we may choose $h$ monic.)
+Also, as in Step 4 we know that
+$S \otimes_R \kappa(\mathfrak p) = A_1 \times \ldots \times A_n$ with
+$A_1 = \kappa(\mathfrak q)$ a finite separable extension of
+$\kappa(\mathfrak p)$ and $A_2, \ldots, A_n$ local. This implies
+that
+$$
+\overline{h} = \overline{h}_1 \overline{h}_2^{e_2} \ldots \overline{h}_n^{e_n}
+$$
+for certain pairwise coprime irreducible monic polynomials
+$\overline{h}_i \in \kappa(\mathfrak p)[x]$ and certain
+$e_2, \ldots, e_n \geq 1$. Here the numbering is chosen so that
+$A_i = \kappa(\mathfrak p)[x]/(\overline{h}_i^{e_i})$ as
+$\kappa(\mathfrak p)[x]$-algebras. Note that $\overline{h}_1$ is
+the minimal polynomial of $\alpha \in \kappa(\mathfrak q)$ and hence
+is a separable polynomial (its derivative is prime to itself).
+
+\medskip\noindent
+Step 9. Let $m \in I$ be a monic element; such an element exists
+because the ring extension $R \to R[x]/I$ is finite hence integral.
+Denote $\overline{m}$ the image in $\kappa(\mathfrak p)[x]$.
+We may factor
+$$
+\overline{m} = \overline{k}
+\overline{h}_1^{d_1} \overline{h}_2^{d_2} \ldots \overline{h}_n^{d_n}
+$$
+for some $d_1 \geq 1$, $d_j \geq e_j$, $j = 2, \ldots, n$ and
+$\overline{k} \in \kappa(\mathfrak p)[x]$ prime to all the $\overline{h}_i$.
+Set $f = m^l + h$ where $l \deg(m) > \deg(h)$, and $l \geq 2$.
+Then $f$ is monic as a polynomial over $R$. Also, the image $\overline{f}$
+of $f$ in $\kappa(\mathfrak p)[x]$ factors as
+$$
+\overline{f} =
+\overline{h}_1 \overline{h}_2^{e_2} \ldots \overline{h}_n^{e_n}
++
+\overline{k}^l \overline{h}_1^{ld_1} \overline{h}_2^{ld_2}
+\ldots \overline{h}_n^{ld_n}
+=
+\overline{h}_1(\overline{h}_2^{e_2} \ldots \overline{h}_n^{e_n}
++
+\overline{k}^l
+\overline{h}_1^{ld_1 - 1} \overline{h}_2^{ld_2} \ldots \overline{h}_n^{ld_n})
+= \overline{h}_1 \overline{w}
+$$
+with $\overline{w}$ a polynomial relatively prime to $\overline{h}_1$.
+Set $g = f'$ (the derivative with respect to $x$).
+
+\medskip\noindent
+Step 10. The ring map $R[x] \to S = R[x]/I$ has the properties:
+(1) it maps $f$ to zero, and
+(2) it maps $g$ to an element of $S \setminus \mathfrak q$.
+The first assertion is clear since $f$ is an element of $I$.
+For the second assertion we just have to show that $g$ does
+not map to zero in
+$\kappa(\mathfrak q) = \kappa(\mathfrak p)[x]/(\overline{h}_1)$.
+The image of $g$ in $\kappa(\mathfrak p)[x]$ is the derivative
+of $\overline{f}$. Thus (2) is clear because
+$$
+\overline{g} =
+\frac{\text{d}\overline{f}}{\text{d}x} =
+\overline{w}\frac{\text{d}\overline{h}_1}{\text{d}x} +
+\overline{h}_1\frac{\text{d}\overline{w}}{\text{d}x},
+$$
+$\overline{w}$ is prime to $\overline{h}_1$ and
+$\overline{h}_1$ is separable.
+
+\medskip\noindent
+Step 11.
+We conclude that $\varphi : R[x]/(f) \to S$ is a surjective ring map,
+$R[x]_g/(f)$ is \'etale over $R$ (because it is standard \'etale,
+see Lemma \ref{lemma-standard-etale}) and $\varphi(g) \not \in \mathfrak q$.
+Thus the map $(R[x]/(f))_g \to S_{\varphi(g)}$ is the desired
+surjection.
+\end{proof}
+
+
+
+\begin{lemma}
+\label{lemma-etale-makes-unramfied-closed-at-prime}
+Let $R \to S$ be a ring map.
+Let $\mathfrak q$ be a prime of $S$ lying over $\mathfrak p \subset R$.
+Assume that $R \to S$ is of finite type and unramified at $\mathfrak q$.
+Then there exist
+\begin{enumerate}
+\item an \'etale ring map $R \to R'$,
+\item a prime $\mathfrak p' \subset R'$ lying over $\mathfrak p$.
+\item a product decomposition
+$$
+R' \otimes_R S = A \times B
+$$
+\end{enumerate}
+with the following properties
+\begin{enumerate}
+\item $R' \to A$ is surjective, and
+\item $\mathfrak p'A$ is a prime of $A$ lying over $\mathfrak p'$ and
+over $\mathfrak q$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We may replace $(R \to S, \mathfrak p, \mathfrak q)$
+with any base change $(R' \to R'\otimes_R S, \mathfrak p', \mathfrak q')$
+by a \'etale ring map $R \to R'$ with a prime $\mathfrak p'$
+lying over $\mathfrak p$, and a choice of $\mathfrak q'$ lying over
+both $\mathfrak q$ and $\mathfrak p'$. Note also that given
+$R \to R'$ and $\mathfrak p'$ a suitable $\mathfrak q'$ can always
+be found.
+
+\medskip\noindent
+The assumption that $R \to S$ is of finite type means that we may apply
+Lemma \ref{lemma-etale-makes-quasi-finite-finite-variant}. Thus we may
+assume that $S = A_1 \times \ldots \times A_n \times B$, that
+each $R \to A_i$ is finite with exactly one prime $\mathfrak r_i$
+lying over $\mathfrak p$ such that
+$\kappa(\mathfrak p) \subset \kappa(\mathfrak r_i)$ is purely inseparable
+and that $R \to B$ is not quasi-finite at any prime lying over $\mathfrak p$.
+Then clearly $\mathfrak q = \mathfrak r_i$ for some $i$, since
+an unramified morphism is quasi-finite
+(see Lemma \ref{lemma-unramified-quasi-finite}).
+Say $\mathfrak q = \mathfrak r_1$.
+By Lemma \ref{lemma-unramified-at-prime} we see that
+$\kappa(\mathfrak p) \subset \kappa(\mathfrak r_1)$
+is separable hence the trivial field extension, and that
+$\mathfrak p(A_1)_{\mathfrak r_1}$ is the maximal ideal.
+Also, by Lemma \ref{lemma-unique-prime-over-localize-below}
+(which applies to $R \to A_1$ because a finite ring map satisfies going up by
+Lemma \ref{lemma-integral-going-up})
+we have $(A_1)_{\mathfrak r_1} = (A_1)_{\mathfrak p}$.
+It follows from Nakayama's Lemma \ref{lemma-NAK}
+that the map of local rings
+$R_{\mathfrak p} \to (A_1)_{\mathfrak p} = (A_1)_{\mathfrak r_1}$
+is surjective. Since $A_1$ is finite over $R$ we see that there
+exists a $f \in R$, $f \not \in \mathfrak p$ such that
+$R_f \to (A_1)_f$ is surjective. After replacing $R$ by $R_f$ we win.
+\end{proof}
+
