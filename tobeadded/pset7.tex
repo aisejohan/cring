@@ -1,0 +1,215 @@
+\documentclass[12pt, reqno]{amsart}
+
+\input{other/preamble.tex}
+
+\begin{document}
+
+\title{Math 210A Problem Set 7}
+\input{other/amsdata.tex}
+
+\subsection*{1}
+
+We want to show that $\cdot \otimes_R S^{-1}R$ is an exact functor. 
+
+Suppose that $0 \to M' \to M \to M'' \to 0$ is a short exact sequence. 
+In problem 6 of problem set 6, we proved that localization is exact, so hence
+$0 \to S^{-1}M' \to S^{-1}M \to S^{-1}M'' \to 0$ is a short exact sequence.
+
+We proved in problem 5 of problem set 5 that 
+$S^{-1}R \otimes_R M \cong S^{-1}M$, and it was stated in class that 
+$M \otimes_R N \cong N \otimes_R M$, so therefore
+$M \otimes_R S^{-1}R \cong S^{-1}M$. Hence, we can conclude that
+$0 \to M' \otimes_R S^{-1}R \to M \otimes_R S^{-1}R \to M''
+\otimes_R S^{-1}R \to 0$ is a short exact sequence, and therefore we have shown
+that $\cdot \otimes_R S^{-1}R$ is a short exact sequence.
+
+
+\subsection*{2 (DF 17.1.5)}
+\[ 
+\xymatrix{
+ & 0 \ar[d] & 0 \ar[d] & 0 \ar[d] & \\
+\cdots \ar[r] & P_1 \ar[r] \ar[d] 
+	& P_0 \ar[r]^h \ar[d]_{\f} & L \ar[r] \ar[d]^f & 0 \\
+\cdots \ar[r] & P_1 \oplus \ol{P_1} \ar[r] \ar[d] 
+	& P_0 \oplus \ol{P_0} \ar[r]^\pi \ar[d]_\psi & M \ar[r] \ar[d]^g & 0 \\
+\cdots \ar[r] & \ol{P_1} \ar[r] \ar[d] 
+	& \ol{P_0} \ar[r]^{h'} \ar[d] \ar[ur]^\m & N \ar[r] \ar[d] & 0 \\
+& 0 & 0 & 0 &
+}
+\] 
+
+We want to show that the two squares on the right commute.
+
+Here, $\m : \ol{P_0} \to M$ is defined as a lifting of the map $\ol{P_0} \to N$
+via the definition of projective module, so that $h' = g \circ \m$. 
+Let $\l$ be the map $P_0 \to L \to M$
+given by $\l = f \circ h$. Define $\pi : P_0 \otimes \ol{P_0}$ via
+$\pi(x, y) = \l(x) + \m(y)$. 
+
+Now, for any $x \in P_0$, 
+$(\pi \circ \f)(x) = \pi(x, 0) = \l(x) + \m(0) = \l(x) = (f \circ h)(x)$, so
+therefore $f \circ h = \pi \circ \f$ and the top square commutes.
+
+For any $(x, y) \in P_0 \oplus \ol{P_0}$, 
+$(g \circ \pi)(x, y) = g(\l(x) + \m(y)) = g(f(h(x)) + g(\m(y)) = g(\m(y))$ 
+because
+$g \circ f = 0$ by exactness at $M$.
+In addition, 
+$(h' \circ \psi)(x, y) = h'(y) = g(\m(y))$, so therefore $g \circ \pi = h'
+\circ \psi$, so the bottom square commutes as well.
+
+
+\subsection*{3 (DF 17.1.9)}
+
+We want to show that 
+\[ 
+\xymatrix{
+0 \ar[r] & \ZZ/d\ZZ \ar[r] & \ZZ/m\ZZ \ar[r]^d & \ZZ/m\ZZ \ar[r]^{m/d} &
+	\ZZ/m\ZZ \ar[r]^d & \ZZ/m\ZZ \ar[r]^{m/d} & \cdots
+}
+\] 
+is an injective resolution of $\ZZ / d\ZZ$ as a $\ZZ / m \ZZ$-module.
+Here, exactness is obvious because 
+$(m/d) \cdot d = d \cdot (m/d) = m$ sends every element of
+$\ZZ/m\ZZ$ to $0$. 
+
+Baer's Criterion states that a module $Q$ is injective if and only if for every
+ideal $I$ of $R$, every $R$-module homomorphism $g : I \to Q$ can be extended to
+an $R$-module homomorphism $G : R \to Q$. This is clearly true for $\ZZ /
+m\ZZ$, so therefore $\ZZ / m\ZZ$ is an injective $\ZZ/m\ZZ$-module, and hence
+we indeed have an injective resolution.
+
+%explain why it is clear?
+
+Now apply $\Hom(A, \cdot)$ and truncate to get the complex
+\[ 
+\xymatrix{
+0 \ar[r] & \Hom_{\ZZ/m\ZZ}(A, \ZZ/m\ZZ) \ar[r]^d & 
+	\Hom_{\ZZ/m\ZZ}(A, \ZZ/m\ZZ) \ar[r]^{m/d} &
+	\Hom_{\ZZ/m\ZZ}(A, \ZZ/m\ZZ) \ar[r] &  \cdots
+}
+\] 
+The groups $\Ext_{\ZZ/m\ZZ}^n (A, \ZZ/d\ZZ)$ are the homology groups of this
+complex.
+
+Since $\Hom_{\ZZ/m\ZZ}(A, \ZZ/m\ZZ) \cong A$, we see that we actually have a
+complex  % I don't believe this
+\[ 
+\xymatrix{
+0 \ar[r] & A \ar[r]^d & 
+	A \ar[r]^{m/d} &
+	A \ar[r]^d  & 
+	A \ar[r]^{m/d}  &  \cdots
+}
+\] 
+In the case of $m = p^2$ and $d=p$, we get the complex
+\[ 
+\xymatrix{
+0 \ar[r] & \ZZ/p^2\ZZ \ar[r]^p & 
+	\ZZ/p^2\ZZ \ar[r]^p &
+	\ZZ/p^2\ZZ \ar[r]^p & 
+	\ZZ/p^2\ZZ \ar[r]^p &  \cdots
+}
+\]
+This has homology $\ZZ / p\ZZ$ at each point of the sequence, so therefore, 
+$\Ext_{\ZZ/p^2\ZZ}^n (\ZZ / p\ZZ, \ZZ/p\ZZ) \cong \ZZ / p \ZZ$.
+%make clearer... am i sure about this?
+
+
+\subsection*{4 (DF 17.1.18)}
+
+Consider the diagram
+\[ 
+\xymatrix{
+\ZZ/2\ZZ \ar[d]^{\exists!}_h \ar[rd]^f & \\
+N & M \ar[l]^g
+}
+\] 
+We want to show that  $\ZZ / 2\ZZ$ is a projective $\ZZ / 6\ZZ$-module. Suppose
+that there exists a map $f : \ZZ / 2\ZZ \to M$. This is uniquely determined
+by the image of 1, since $f(0) = 0$. Suppose that $f(1) = m$. 
+Then, given a map $g : M \to N$, we can
+consider the composition $g \circ f : \ZZ / 2\ZZ \to M \to N$ defined via
+$(g \circ f) (1) = g(m)$. Here, multiplication by even elements of 
+$\ZZ / 6\ZZ$ acts on $1 \in \ZZ / 2\ZZ$ by sending it to zero and
+multiplication by odd elements of $\ZZ / 6\ZZ$ leaves $1 \in \ZZ / 2\ZZ$
+unchanged.
+
+Therefore, there exists a map $h : \ZZ / 2\ZZ \to N$ that is defined via
+$h = g \circ f$.
+%Suppose there were another such map $h' : \ZZ / 2\ZZ \to N$. Both are uniquely
+%determined by the image of $1$, so suppose $h(1) = n$ and $h'(1) = n'$. Then 
+%$h(1) - h'(1) = (h - h')(1) = n - n'$.
+%why uniqueness???
+
+Now, consider a projective resolution of $\ZZ / 2\ZZ$, i.e.
+\[ 
+\cdots \to P_2 \to P_1 \to P_0 \to \ZZ / 2\ZZ \to 0,
+\] 
+apply $\cdot \otimes \ZZ / 2\ZZ$, and truncate to get
+\[ 
+\cdots \to P_2 \otimes \ZZ /2\ZZ \to P_1 \otimes \ZZ / 2\ZZ 
+	\to P_0 \otimes \ZZ/2\ZZ \to 0,
+\] 
+Because $\ZZ / 2\ZZ$ was projective, it is therefore flat, so this sequence is
+exact and therefore the homology group is 
+$\Tor_1^{\ZZ/6\ZZ} (\ZZ / 2\ZZ , \ZZ / 2\ZZ) = 0$.
+
+\subsection*{5 (DF 17.1.20)}
+
+Consider the projective resolution
+\[ 
+\xymatrix{
+\cdots \ar[r]^{m/d} & \ZZ/m\ZZ \ar[r]^d & \ZZ/m\ZZ \ar[r]^{m/d} 
+	%& \ZZ/m\ZZ \ar[r]^d & \ZZ/m\ZZ \ar[r]^{m/d} 
+	& \ZZ/m\ZZ \ar[r]^{d} & \ZZ/m\ZZ \ar[r] & \ZZ/d\ZZ \ar[r] & 0.
+}
+\]
+We apply $A \otimes_{\ZZ/m\ZZ} \cdot$ and truncate. Since 
+$S \otimes_R R \cong S$, we see that $A \otimes_{\ZZ/m\ZZ} \ZZ /m\ZZ \cong A$ and
+hence we obtain the complex
+\[ 
+\xymatrix{
+\cdots \ar[r]^{m/d} & A \ar[r]^d & A \ar[r]^{m/d} 
+	& A \ar[r]^{d} & A \ar[r] & 0.
+}
+\]
+The groups $\Tor_n^{\ZZ/m\ZZ} (A, \ZZ/d\ZZ)$ are simply the homology groups
+(ker/im) of
+the complex, which are simply 
+\begin{align*} 
+\Tor_0^{\ZZ / m\ZZ} (A, \ZZ/d\ZZ) &\cong A / dA \\
+\Tor_n^{\ZZ / m\ZZ} (A, \ZZ/d\ZZ) &\cong {}_dA/(m/d)A 
+			\quad \text{$n$ odd, $n \ge 1$} \\
+\Tor_n^{\ZZ / m\ZZ} (A, \ZZ/d\ZZ) &\cong {}_{m/d}A/dA 
+			\quad \text{$n$ even, $n \ge 2$},
+\end{align*} 
+where ${}_kA = \{ a \in A \mid ka = 0 \}$ denotes the set of elements of $A$
+killed by $k$.
+
+\subsection*{6 (DF 17.1.22)}
+
+Consider a projective resolution of $A$, i.e.
+\[ 
+\cdots \to P_2 \to P_1 \to P_0 \to A \to 0.
+\] 
+Assume that $S$ is a flat $R$-module. Apply $S \otimes_R \cdot$ and truncate to
+get the sequence
+\[ 
+\cdots \to S \otimes_R P_2 \to S \otimes_R P_1 \to S\otimes_R P_0  \to 0.
+\] 
+We want to show that this is an $S$-module projective resolution of $S
+\otimes_R A$. First, each $S \otimes_R P_n$ is an $S$-module since this is a
+change of base. 
+
+Since $S$ is flat, the sequence remains exact when viewed as $R$-modules.
+In addition, each $S \otimes_R P_n$ is projective because the tensor product of
+a flat module and a projective module is projective.
+%why? The last statement is nontrivial.
+
+Therefore, the projective resolution of $A$ did indeed
+give a projective resolution of $S \otimes_R A$.
+
+\end{document}
+his is an $S$-module projective resolution of $S
+\otimes_R A$. First, each $S \
