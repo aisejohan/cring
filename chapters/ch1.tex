@@ -35,35 +35,45 @@ Both of these are factorizations of $6$ into irreducible factors, but they
 are fundamentally different.
 
 \subsection{Basic definitions}
-Most fundamental is:
+
 \begin{definition} 
-A \textbf{commutative ring} is a set $R$ with an addition map $+:R \times R \to
-R$ and a multiplication map $\times: R \times R \to R$ that satisfy all the usual
-identities.  
-\begin{enumerate}[\textbf{R} 1]
-\item  $R$ is a group under addition.
-\item  The multiplication map is commutative and distributes over addition,
-\item  There is a \textbf{unit} (or \textbf{identity}) $1$ such that $1x = 1 \cdot x = x$ for all $x \in R$.
+A \textbf{commutative ring} is a set $R$ with an addition map
+$+ : R \times R \to R$ and a multiplication map $\times : R \times R \to R$
+that satisfy the following conditions.
+
+\begin{enumerate}
+  \item  $R$ is a group under addition.
+  \item  The multiplication map is commutative and distributes over addition.
+  \item  There is a \textbf{unit} (or \textbf{identity element}), denoted by
+         $1$, such that $1 \times x = x$ for all $x \in R$.
 \end{enumerate}
 
-Given a ring, a \textbf{subring} is a subset containing the identity which is
-closed under addition and multiplication.
+Given a ring, a \textbf{subring} is a subset that contains the identity
+element and is closed under addition and multiplication.
 \end{definition} 
 
 \begin{example} 
-$\mathbb{Z}$ is a ring. This is the simplest example, but we shall have many
-more in the future.
+$\mathbb{Z}$ is the simplest example of a ring.
 \end{example} 
 
-The class of rings forms a \emph{category}. Indeed, we can define a
-\textbf{homomorphism} (or \textbf{morphism}) of rings $R \stackrel{f}{\to} S$ as a map $f: R \to S$
-that respects addition and multiplication. This means that
+\begin{example}
+For any ring $R$, we can consider the polynomial ring $R[x_1, \ldots, x_n]$
+which consists of all polynomials in $n$ variables with coefficients in $R$.
+\end{example}
+
+The class of rings forms a category. Its morphisms are defined as follows.
+
+\begin{definition}
+Indeed, we can define a \textbf{ring homomorphism} between two rings $R$ and
+$S$ as a map $f : R \to S$ that respects addition and multiplication. That is,
+
 \begin{enumerate}
-\item $f(1) = 1$ for $1,1$ the respective identity elements. 
-\item $f(a+b) = f(a)+f(b)$ for $a,b \in R$.
-\item  $f(ab) = f(a)f(b)$ for $a,b \in R$.
+  \item $f(1_R) = 1_S$, where $1_R$ and $1_S$ are the respective identity
+        elements.
+  \item $f(a + b) = f(a) + f(b)$ for $a, b \in R$.
+  \item $f(ab) = f(a)f(b)$ for $a, b \in R$.
 \end{enumerate}
-To compose two morphisms, just compose them as functions.
+\end{definition}
 
 The philosophy of Grothendieck, as expounded in his EGA, is that one should
 always do things in a relative context. This means that instead of working
