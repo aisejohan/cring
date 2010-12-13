@@ -1,0 +1,43 @@
+\chapter{Fields and Extensions}
+Recall that a field is an integral domain for which all non-zero elements are
+invertible. Equivalently, the only two ideals of a field are $(0)$ and $(1)$
+since any nonzero element is a unit.
+\begin{example}
+One of the most familiar examples of a field is $\mathbb{Q}$. \end{example}
+\begin{example}
+Another common field class of fields is the class of finite fields, for example
+$\mathbb{Z}/(2)$.\end{example}
+\begin{exercise} In fact, for any maximal ideal $\mathfrak{m}\subseteq R$, the
+quotient $R/\mathfrak{m}$ is a field. \end{exercise}
+\begin{example} If $F$ is a field, then any ring homomorphism $f:F\rightarrow R$
+is either injective or the zero map; this is because $ker(f)$ is an ideal in $F$
+but there are only two ideals, $(0)$ and $(1)$. \end{example}
+
+\begin{definition} If $F$ is a field contained in a field $G$, then $G$ is said
+to be a field extension of $F$. \end{definition}
+There are plenty of field extensions coming from both number theory and
+geometry.
+\begin{example} For example let $X$ be a Riemann surface. Let $k(X)$ denote the
+set of meromorphic functions on $X$; clearly $k(X)$ is a ring under
+multiplication and addition of functions. It turns out that in fact $k(X)$ is a
+field, this is because if $f(z)$ is meromorphic, so is $1/f(z)$. For example,
+let $\mathbb{C}_{\infty}$ be the Riemann sphere; then we know from complex
+analysis that the ring of meromorphic functions $k(\mathbb{C}_{\infty}$ is the
+field of rational functions $\mathbb{C}(z)$. More is true. In fact, there is
+always a holomorphic function $X\rightarrow \mathbb{C}_{\infty}$ obtained by
+taking a meromorphic function $f\in k(X)$ and considering it as a holomorphic
+function $f:X\rightarrow\mathbb{C}_{\infty}$. In this case, $f$ induces a map
+$k(\mathbb{C}_{\infty})\rightarrow k(X)$ by composing with $f$. In particular,
+this map is an injection meaning that $k(X)$ is a field extension of
+$\mathbb{C}[z]$.
+\end{example}
+
+\begin{example} The previous example is a more specific case of a general
+phenomenon in geometry; let $C_1$ and $C_2$ be smooth projective curves (over a
+field $k$). Then a morphism $f:C_1\rightarrow C_2$ makes $k(C_1)$ into a field
+extension $k(C_2)$ \end{example}
+
+\begin{definition}An element $\alpha\in F$ is said to be algebraic over $E$ if $\alpha$ is the root of some polynomial with coefficients in $E$. If all elements of $F$ are algebraic then $F$ is said to be an algebraic extension. If $E\subseteq F$ is a field extension then $F$ is also a vector space over $E$ (the scalar action is just multiplication in $F$). The dimension of $F$ considered as an $E$-vector space is called the degree of the extension and is denoted $[E:F]$. If $[E:F]<\infty$ then $F$ is said to be a finite extension (note that all finite extensions are algebraic). \end{definition}
+Algebraic number theory is in fact the study of algebraic extensions, in particular, a field extensions $K$ of $\mathbb{Q}$ is said to be a number field if it is a finite extension of $\mathbb{Q}$.
+\subsection{Transcendental Extensions}
+
