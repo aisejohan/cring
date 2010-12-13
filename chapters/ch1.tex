@@ -28,34 +28,12 @@ factorization, just as in $\mathbb{Z}$, we will see that prime factorization
 is not always unique in $\mathbb{Z}[\zeta]$.
 
 Here is another case where unique factorization fails.  Consider the ring
-$\mathbb{Z}[\sqrt{-5}]$ of numbers of the form $a + b\sqrt{-5}$, where
+$\mathbb{Z}[\sqrt{-5}]$ of complex numbers of the form $a + b\sqrt{-5}$, where
 $a, b \in \mathbb{Z}$.  Then we have the two factorizations
-  \[ 6 = 2 \cdot 3 = (1 + \sqrt{-5 })(1 - \sqrt{-5}). \]
+  \[ 6 = 2 \cdot 3 = (1 + \sqrt{-5})(1 - \sqrt{-5}). \]
 Both of these are factorizations of $6$ into irreducible factors, but they
-are fundamentally different factorizations.
+are fundamentally different.
 
-In order to think about the failure of unique factorization, Dedekind
-introduced the theory of ideal numbers, now called \textbf{ideals}. Dedekind
-was trying to get to the bottom of what was going on.  Let us look at the
-problem. Ideally, if you have a prime factor of $6$, and a decomposition $6 =
-ab$, then that prime factor must divide $a$ or $b$.  This is not true,
-however. There is a new idea that one must introduce.
-
-One should imagine an \textbf{ideal number} $x$ such that $x$
-divides both  2 and $1+\sqrt{-5}$, but manages not to be 1.
-This mysterious $x$ doesn't live in the ring $\mathbb{Z}[\sqrt{-5}]$; it can't, because they
-have no common factor. Yet we can talk about what ought to divide $x$. We know that $2$ and
-$1+\sqrt{-5}$ are divisible by $x$.  For instance, $2 + 1+ \sqrt{-5}$ should be
-divisible by $x$, whatever this means.
-More generally, all linear combinations of $2$ and $1+\sqrt{-5}$ should be
-divisible by $x$.
-
-It is not clear what this ``$x$'' should refer to.
-In fact, as we will see, $x$ is really best identified with the set of
-elements that we have just said are divisible by it, according to the above
-rules. So, to avoid some kind of
-weird mysticism, we will think of $x$ as a \emph{subset} of $R$. This
-subset is what leads to \emph{ideal} theory.
 \subsection{Basic definitions}
 Most fundamental is:
 \begin{definition} 
