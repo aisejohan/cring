@@ -870,6 +870,47 @@ that the group rings are generally not commutative, so this should be
 interpreted with some care. 
 \end{example} 
 
+\subsection{Some concrete examples}
+
+We now present several concrete computations of tensor products in explicit
+cases to illuminate what is happening.
+
+\begin{example} Let us compute $\mathbb{Z}/10 \otimes_{\mathbb{Z}}
+\mathbb{Z}/12$.
+Since $1$ spans $\mathbb{Z} / (10)$ and $1$ spans $\mathbb{Z} / (12)$, 
+we see that $1 \otimes 1$ spans $\mathbb{Z} / (10) \otimes \mathbb{Z} / (12)$ and this tensor
+product is a cyclic group. 
+
+Note that 
+$1 \otimes 0 = 1 \otimes (10 \cdot 0) = 10 \otimes 0 = 0 \otimes 0 = 0$
+and 
+$0 \otimes 1 = (12 \cdot 0) \otimes 1 = 0 \otimes 12 = 0 \otimes 0 = 0$.
+Now,
+$10 (1 \otimes 1) = 10 \otimes 1 = 0 \otimes 1 = 0$
+and 
+$12 (1 \otimes 1) = 1 \otimes 12 = 1 \otimes 0 = 0$,
+so the cyclic group $\mathbb{Z} / (10) \otimes \mathbb{Z} / (12)$ has order dividing both
+$10$ and $12$. This means that the cyclic group has order dividing 
+$\gcd(10, 12) = 2$.
+
+To show that the order of $\mathbb{Z} / (10) \otimes \mathbb{Z} / (12)$, define a bilinear map
+$g: \mathbb{Z} / (10) \times \mathbb{Z} / (12) \to \mathbb{Z} / (2)$ via
+$g : (x, y) \mapsto xy$. The universal property of tensor products then
+says that there is a unique linear map 
+$f: \mathbb{Z} / (10) \otimes \mathbb{Z} / (12) \to \mathbb{Z} / (2)$ making the diagram
+\[ 
+\xymatrix{
+\mathbb{Z} / (10) \times \mathbb{Z} / (12) \ar[r]^\otimes \ar[rd]_g
+	& \mathbb{Z} / (10) \otimes \mathbb{Z} / (12) \ar[d]^f \\
+& \mathbb{Z} / (2).
+}
+\] 
+commute. In particular, this means that $f (x \otimes y) = g(x, y) = xy$.
+Hence, $f(1 \otimes 1) = 1$, so $f$ is surjective, and therefore, 
+$\mathbb{Z} / (10) \otimes \mathbb{Z} / (12)$ has size at least two. This allows us to
+conclude that $\mathbb{Z} / (10) \otimes \mathbb{Z} / (12) = \mathbb{Z} / (2)$.
+\end{example} 
+
 \section{Exactness properties of the tensor product}
 
 In general, the tensor product is not exact; it is only exact on the right,
