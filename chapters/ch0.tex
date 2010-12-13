@@ -1,11 +1,10 @@
-\lecture{10/13}
+\setcounter{chapter}{-1}
+\chapter{Categories}
 
-We're going to deviate from Hatcher for a while. The natural follow-up as in 
-Hatcher would be talk about cup products and cohomology. However, we are going
-to talk about categories. 
+N.B. This is a very rough, preliminary chapter. Currently it consists of notes
+taken in an algebraic topology class. Serious editing is still needed.
 
-\subsection{Categories}
-
+\section{Introduction}
 \newcommand{\ob}{\mathrm{ob}}
 Categories are supposed to be places where mathematical objects live. 
 
@@ -239,19 +238,6 @@ $\mathbf{hoT}$. The objects are topological spaces and the morphisms between
 $X, Y$ are the continuous maps $X \to Y$ modulo the relation of being
 homotopic. Homology is actually a functor from $\mathbf{hoT}$ to the category
 of graded abelian groups.
-
-An isomorphism in $\mathbf{hoT}$ is a homotopy equivalence, by definition. We
-thus see:
-
-\begin{corollary} 
-A homotopy equivalence induces isomorphisms in homology.
-\end{corollary} 
-
-It is, incidentally, harder to show that the same is true for the fundamental
-group. Note that the argument is made very slick and convenient by the above
-theorem. We don't have to think about cycles or boundaries. 
-Because of the generality of the theorem, we have no choice but to give a slick
-proof. We can't talk about one-to-one and onto maps are.
 \end{example} 
 
 
@@ -290,24 +276,17 @@ What's important here is not the theorem, but the \emph{definition of an
 isomorphism.}
 
 
-\lecture{10/15}
-
-
-Someone asked where to learn about categories. There is a standard reference by
-Saunders Maclane, called \emph{Categories for the working mathematician.}  It's
-a nice book---thin. But going in and learning about category theory is a
-slippery slope. It's kind of interesting, and you can spend a lot of time doing
-it. 
 
 A lot of it for this course, though, is just getting used to the language and
 the definitions.  
 
+\section{Various universal constructions}
 
 Last time, we introduced the idea of a category, and showed that a functor
 takes isomorphisms to isomorphisms.  This was an amazing result with a trivial
 proof.  Today, we will characterize objects in terms of maps.
-
 \subsection{Initial and terminal objects}
+
 
 \begin{definition} 
 Let $\mathcal{C}$ be a category. An \textbf{initial object} in a category is an
@@ -707,121 +686,6 @@ to me.
 
 But anyway, this is one of the main uses of filtered colimits---or directed
 colimits, as some people say.  
-
-\subsection{Colimits and the singular chain complex} There is a very serious reason for wanting these.  
-
-\begin{proposition} 
-Suppose $I$ is filtered and $F: I \to \mathbf{HSpaces}$ is a functor (to the
-category of Hausdorff topological spaces) with the
-property that every map $F_i \to F_{i'}$ is a closed inclusion.
-
-Then the obvious map
-\[ \colim_I C_* F_i \to C_* (\colim_I F_i)  \]
-is an isomorphism.
-\end{proposition} 
-
-Just to be clear, the ``obvious'' map $\colim_I C_*(F_i) \to C_*(\colim_I F_i)$
-can be explained as follows. Suppose we have functors
-\[ J \stackrel{F}{\to} \mathcal{C} \stackrel{G}{\to} \mathcal{D}. \]
-Then we have natural maps $F_j \to \colim_J F_j$ (assuming the colimit exists),
-so when we apply $G$, we get maps
-\[ G(F_j) \to G(\colim_J F_j).  \]
-Taking the colimit, we get a natural map
-\[ \colim_J GF_j \to G(\colim_J F_j).  \]
-
-
-\begin{example} 
-$X$ might be a CW complex, and  $I$ might be the category with objects the finite
-subcomplexes and inclusion maps.  This is obviously a filtered category, and
-there is an obvious functor $I \to \mathbf{Spaces}$ since $I$ was a subcategory
-of $\mathbf{Spaces}$. $X$ is the colimit of this functor. 
-
-We learn that
-\[ C_*(X) = \colim_I C_*(X_I)  \]
-which implies that\textbf{ the homology of $X$ is the colimit of the homology of the
-finite subcomplexes}. We will come back to giving applications of that. 
-\end{example} 
-\begin{proof} 
-We will give the proof while assuming that the indexing category is 
-\[ 1 \to 2 \to 3 \to \dots.  \]
-The general one is very similar, but I didn't get a chance to think through it
-before I came in today.
-We can leave the little tiny modifications to be made in general to the reader.
-
-So we have  a sequence of closed inclusions of topological spaces
-\[ X_1 \subset X_2 \subset \dots,  \]
-and $X$ is the union $\bigcup X_i$ with the weak topology. 
-We now have to show the following classic lemma in point-set topology, which
-will imply the result:
-
-\begin{lemma} 
-Any map $\Delta^k \to X$ factors through $X_n$ for some $n$. 
-\end{lemma} 
-This isn't special to $\Delta^k$; we just need a compact Hausdorff space. 
-\begin{proof} 
-We have to do something that results in a ridiculous statement---a contradiction, not just something
-goofy.
-
-Let $K = f(\Delta^k)$, which is a compact subset of $X$. Choose $s_n \in K -
-X_n$ for each $n$. We write $S = \left\{s_n\right\} \subset X$.
-I claim that $S$ is discrete.
-For this we must show that any subset $S' \subset S$ is closed. But $S' \cap
-X_n$ is finite for each $n$, hence closed---since we are using the fact that
-each $X_n$ is Hausdorff. Thus $S'$ is closed. This is a property of the
-topology on the colimit.
-
-We have now seen that $S$ is discrete, which is a contradiction, as it is a
-subspace of the compact space $K$.
-\end{proof} 
-
-\begin{remark} 
-There's a nice category-theoretic way of talking about this. Consider the
-\textbf{Sierpinski space} $D = \left\{0, 1\right\}$ with the topology that
-$\left\{0\right\}$ is closed but $\left\{1\right\}$ is not. The closure of
-$\left\{1\right\}$ is thus the whole space $D$. The important thing about the
-Sierpinski space is that the set of continuous maps $X \to D$ is in bijection
-with the set of closed subspaces of $X$. (If $F \subset X$ is closed, we send
-$X \to D$ by sending $F$ to $0$ and $X - F$ to 1.)  You say that the functor
-associating a space to its set of closed subspaces is \textbf{represented} by
-the Sierpinski space. 
-
-
-Suppose $X = \colim X_i$, so to give a closed subspace of $X$ is to
-give a continuous function $X \to D$. That's the same thing as giving a set of
-compatible maps $X_i \to D$. In other words, a collection of compatible closed
-subspaces of $X_i$.  If you think through what this means, it says that a
-subspace of $X$ is closed if and only if the intersection with each $X_i$ is
-closed. 
-\end{remark} 
-
-
-
-\end{proof} 
-
-Here is an example:
-
-
-\begin{proposition} 
-Suppose $X$ is a CW complex. Let $X^{(n)}$ be the $n$-skeleton. Then the
-natural map
-\[ H_n(X^{(n+1)})  \to H_n(X) \]
-is an isomorphism.
-\end{proposition} 
-\begin{proof} 
-For instance, use the long exact sequence
-\[\dots \to H_{n+1}(X^{(n+2)}, X^{(n+1})) \to H_n(X^{(n+1)}) \to H_n(X^{(n+2)}) \to
-H_n(X^{(n+2)}, X^{(n+1)}) \to \dots. \]
-The two ends are zero because those are the homologies of $n+2$-spheres. More
-generally, we learn that the maps $H_n(X^{(n+1)}) \to H_n(X^{(n+2)}) \to
-H_n(X^{(n+3)}) \to \dots$ are all isomorphisms. The colimit is just therefore
-$H_n(X^{(n+1)})$. However, the previous arguments imply that the colimit is
-just $H_n(X)$. 
-\end{proof} 
-
-\begin{corollary} 
-Cellular homology works for arbitrary CW complexes, not just finite-dimensional
-ones. 
-\end{corollary} 
 \lecture{[Section] 10/18}
 
 
