@@ -1,27 +1,16 @@
 \chapter{Completions}
 Completions are used in geometry and number theory in order to give a finer picture of local structure; for example, taking completions of rings allows for the recovery of a topology that looks more like the Euclidean topology as it has more open sets than the Zariski topology. Completions are also used in algebraic number theory to allow for the study of fields around a prime number (or prime ideal). 
 
-\subsection{Completions of Local Rings}
-\begin{definition} Let $R$ be a local ring and $\mathfrak{m}$ its maximal ideal. Then the completion of $R$ with respect to $\mathfrak{m}$ denoted $\hat{R}$ is the inverse limit 
-\begin{equation}
-\hat{R}=\lim_{\leftarrow}(R/\mathfrak{m}^nR)\end{equation} We then topologize $\hat{R}$ by setting powers of $\mathfrak{m}$ to be basic open sets around $0$. The topology formed by these basic open sets is called the ``Krull'' or ``$\mathfrak{m}$-adic topology.''
-\end{definition}
-
-\subsection{Number Fields}
-Recall that in algebraic number theory, a number field is a 
-finite dimensional algebraic extension of $\mathbb{Q}$. 
-Sitting inside of $\mathbb{Q}$ is the ring of integers, $\mathbb{Z}$. For any prime number $p\in \mathbb{Z}$, we can localize $\mathbb{Z}$ to the 
- prime ideal $(p)$ giving us a local ring $\mathbb{Z}_(p)$. 
- If we take the completion of this local ring we get the $p$-adic numbers $\mathbb{Q}_p$. Notice that since $\mathbb{Z}_(p)/p^n\cong\mathbb{Z}/p$, this is really the same as taking the inverse limit $\lim_{\leftarrow}\mathbb{Z}/p^n$.
+\section{Introduction}
 
 \subsection{Motivation}
-Say you have a commutative ring $R$. We can draw $\spec R$, a picture whose
+Let $R$ be a commutative ring. We can draw $\spec R$, a picture whose
 points are the primes of $R$. Consider a maximal ideal $\mathfrak{m} \in \spec
 R$. If you think of $\spec R$ as a space, and $R$ as a collection of functions
 on that space, then $R_{\mathfrak{m}}$ is the collection of ``germs'' of
 functions defined near the point $\mathfrak{m}$. 
 
-The Zariski topology is kind of lousy as far as topologies go, and you can't
+However, the Zariski topology is kind of lousy as far as topologies go, and you can't
 really find small neighborhoods of $\mathfrak{m}$.
 
 \begin{example} 
@@ -47,7 +36,6 @@ $X$, which recovers $X$. Thus $R_y$ remembers too much.
 We would like a variant of localization that would remember much less about the
 global topology.
 
-\subsection{Definition}
 
 \begin{definition} 
 Let $R$ be a commutative ring and $I \subset R$ an ideal. Then we define the
@@ -59,12 +47,31 @@ commutative rings
 whose inverse limit is $R^{\vee}_I$. 
 \end{definition} 
 
+
+
 Let us give some examples.
+\add{Notation needs to be worked out for the completion}
 \begin{example} 
-Let $R = \mathbb{Z}, I = (p)$. Then the completion is denoted $\mathbb{Z}_p$
-and is called the ring of \textbf{$p$-adic integers.} This is the inverse limit
-of the rings $\mathbb{Z}/p^i$. 
-\end{example} 
+Although it is nothing new, the case of a local ring is particularly
+important. Let $R$ be a local ring and $\mathfrak{m}$ its maximal ideal. Then the completion of $R$ with respect to $\mathfrak{m}$ denoted $\hat{R}$ is the inverse limit 
+\begin{equation}
+\hat{R}=\lim_{\leftarrow}(R/\mathfrak{m}^nR)\end{equation} We then topologize $\hat{R}$ by setting powers of $\mathfrak{m}$ to be basic open sets around $0$. The topology formed by these basic open sets is called the ``Krull'' or ``$\mathfrak{m}$-adic topology.''
+
+In fact, the case of local rings is the most important one.
+Usually, we will complete $R$ at \emph{maximal} ideals.
+If we wanted to study $R$ near a prime $\mathfrak{p} \in \spec R$, we might
+first approximate $R$ by $R_{\mathfrak{p}}$, which is a local ring; we might
+make another approximation by completing $R_{\mathfrak{p}}$. Then we get a
+\emph{really} local structure. 
+\end{example}
+
+\begin{example}
+Recall that in algebraic number theory, a number field is a 
+finite dimensional algebraic extension of $\mathbb{Q}$. 
+Sitting inside of $\mathbb{Q}$ is the ring of integers, $\mathbb{Z}$. For any prime number $p\in \mathbb{Z}$, we can localize $\mathbb{Z}$ to the 
+ prime ideal $(p)$ giving us a local ring $\mathbb{Z}_(p)$. 
+ If we take the completion of this local ring we get the $p$-adic numbers $\mathbb{Q}_p$. Notice that since $\mathbb{Z}_(p)/p^n\cong\mathbb{Z}/p$, this is really the same as taking the inverse limit $\lim_{\leftarrow}\mathbb{Z}/p^n$.
+\end{example}
 
 \begin{example} 
 Let $X$ be a Riemann surface. Let $ x \in X$ be as before, and let $R$ be as
@@ -81,18 +88,10 @@ isomorphic, for instance.
 \end{example} 
 
 \begin{remark} 
-Usually, we will complete $R$ at \emph{maximal} ideals.
-If we wanted to study $R$ near a prime $\mathfrak{p} \in \spec R$, we might
-first approximate $R$ by $R_{\mathfrak{p}}$, which is a local ring; we might
-make another approximation by completing $R_{\mathfrak{p}}$. Then we get a
-\emph{really} local structure. 
-\end{remark} 
-
-\begin{remark} 
 There is always a map $R \to \hat{R}_I$ by taking the limit of the maps $R/I^i$.
 \end{remark} 
 
-A priori, you might think you get  a big mess. The amazing thing is that for
+A priori, you might think this operation of completion gives  a big mess. The amazing thing is that for
 noetherian rings, you get well-behaved stuff.
 
 \subsection{Properties of completions}
@@ -139,6 +138,8 @@ variant of the Hilbert basis theorem proved in class. So $\hat{R}_I$ is
 noetherian.
 \end{proof} 
 
+
+\subsection{Completions of modules}
 We want to think of completion as analogous to localization. We would like to
 think of it as an inoffensive operation. One way to say this for localization
 was that localization is an exact functor. This is true for completions too.
@@ -153,10 +154,16 @@ This is an inverse limit of $R$-modules, so it is an $R$-module. Furthermore,
 it is even an $\hat{R}_I$-module, as one easily checks. It is also functorial.
 \end{definition} 
 
-\begin{proposition} \label{completionisexact}
+In fact, we get a functor 
+\[ R-\mathrm{modules} \to \hat{R}_I - \mathrm{modules}.  \]
+
+\section{Exactness properties}
+
+The principal result of this section is:
+\begin{theorem} \label{completionisexact}
 If $R$ is noetherian and $I \subset R$ an ideal, then the construction $M \to
 \hat{M}_I$ is exact when restricted to finitely generated modules.
-\end{proposition} 
+\end{theorem} 
 
 
 Let's be more precise.  If $M$ is finitely generated, and 
@@ -165,6 +172,9 @@ is an exact sequence,\footnote{The ends are finitely generated by noetherianness
 \[ 0 \to \hat{M'}_I \to \hat{M}_I \to \hat{M''}_I \to 0  \]
 is also exact. 
 
+We shall prove this theorem in several pieces.
+
+\subsection{Generalities on inverse limits}
 For a moment, let us step back and think about exact sequences of inverse
 limits of abelian groups. Say we have a tower of exact sequences of abelian
 groups
@@ -242,7 +252,7 @@ construct the family $b_k$ by induction. We have seen surjectivity.
 \end{proof} 
 
 Now, let us study the exactness of completions.
-\begin{proof}[Proof of Proposition~\ref{completionisexact}]
+\begin{proof}[Proof of Theorem~\ref{completionisexact}]
 
 Let us try to apply the general remarks above to studying the sequence 
 \[ 0 \to \hat{M'}_I \to \hat{M}_I \to \hat{M''}_I \to 0.  \]
@@ -265,6 +275,8 @@ where the individual maps are not necessarily isomorphisms. Nonetheless, I
 claim that the map on inverse limits is an isomorphism. This will imply that
 completion is indeed an exact functor.
 
+
+\subsection{The Artin-Rees Lemma}
 Essentially, to say that this map is an isomorphism is to say that the
 filtrations $I^n M'$ and $I^n M \cap M'$ on $M'$ are \emph{comparable.} To
 prove this, and to complete the proof of exactness, it suffices to show:
@@ -380,8 +392,13 @@ which belong to the completion but not to $\hat{R}_I \otimes M = \mathbb{Z}_p
 \end{remark} 
 
 \subsection{The Krull intersection theorem}
-We lied earlier. What we called the Krull intersection theorem is not actually
-called the Krull theorem.
+
+We now prove a useful consequence of the Artin-Rees lemma and Nakayama's
+lemma. This states that the map from a noetherian local ring into its
+completion is an \emph{embedding}. A priori, this might not be obvious. For
+instance, it might be surprising that the inverse limit of the highly torsion
+groups $\mathbb{Z}/p^n$ turns out to be the torsion-free ring of $p$-adic
+integers.
 
 \begin{theorem}[Krull] Let $R$ be a local noetherian ring with maximal ideal
 $\mathfrak{m}$.\footnote{This is a favorite time to complete $R$.} Then the map
@@ -403,7 +420,7 @@ that this limit is zero is to say that $I = \mathfrak{m}I$. So $I = 0$ by
 Nakayama. 
 \end{proof} 
 
-\subsection{Hensel's lemma} One thing that you might be interested in doing is solving
+\section{Hensel's lemma} One thing that you might be interested in doing is solving
 Diophantine equations. Say $R = \mathbb{Z}$; you want to find solutions to a
 polynomial $f(X) \in \mathbb{Z}[X]$. Generally, it is very hard to find
 solutions. However, there are easy tests you can do that will tell you if there
