@@ -1,0 +1,3256 @@
+\documentclass{article}
+\usepackage[left=1.5in, right=1.5in, top=1in, bottom=1in]{geometry}
+\usepackage{amssymb}
+\usepackage{xy}
+\input xy
+\xyoption{all}
+\usepackage{amsthm}
+%\usepackage{times}
+\usepackage{amsmath}
+
+
+\newtheorem{proposition}{Proposition}
+
+\newcommand{\cont}{\mathrm{cont}}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem*{solution}{Solution}
+
+%\newcommand{\mod}{\mathrm{mod}}
+\newcommand{\im}{\mathrm{im}}
+\begin{document}
+
+\title{Problem set 10 for Math 221}
+\author{Akhil Mathew}
+\date{\today}
+
+\maketitle
+
+\begin{solution}[1] 
+Let $R$ be a ring of dimension $n$. 
+
+\begin{lemma} 
+$\dim R[x] \geq \dim R+1$.
+\end{lemma} 
+\begin{proof} 
+Let $\mathfrak{p}_0 \subset \dots \subset \mathfrak{p}_n$ be a chain of primes of
+length $n = \dim R$. Then $\mathfrak{p}_0 R[x] \subset \dots \subset
+\mathfrak{p}_n R[x] \subset (x, \mathfrak{p}_n)R[x]$ is a chain of primes in
+$R[x]$ of length $n+1$ because of the following fact: if $\mathfrak{q} \subset
+R$ is prime, then so is $\mathfrak{q}R[x] \subset R[x]$.\footnote{This is
+because $R[x]/\mathfrak{q}R[x] = (R/\mathfrak{q})[x]$ is a domain.} Note also
+that as $\mathfrak{p}_n \subsetneq R$, we have that $\mathfrak{p}_n R[x]
+\subsetneq (x, \mathfrak{p}_n)$. So this is indeed a legitimate chain. 
+\end{proof} 
+
+Now we need only show:
+\begin{lemma} 
+Let $R$ be noetherian of dimension $n$. Then $\dim R[x] \leq \dim R+1$.
+\end{lemma} 
+\begin{proof} 
+Let $\mathfrak{q}_0 \subset \dots \subset \mathfrak{q}_m \subset R[x]$ be a chain of primes
+in $R[x]$. Let $\mathfrak{m} = \mathfrak{q}_m \cap R$. Then if we localize and
+replace $R$ with $R_{\mathfrak{m}}$, we get a chain of primes of length $m$ in
+$R_{\mathfrak{m}}[x]$. 
+In fact, we get more. We get a chain of primes of length $m$ in
+$(R[x])_{\mathfrak{q}_m}$, and a \emph{local } inclusion of noetherian local rings
+\[ R_{\mathfrak{m}} \hookrightarrow (R[x])_{\mathfrak{q}_m} . \]
+To this we can apply the fiber dimension theorem. In particular, this implies
+that
+\[ m \leq \dim (R[x])_{\mathfrak{q}_m} \leq \dim R_{\mathfrak{m}} + \dim
+(R[x])_{\mathfrak{q}_m} /\mathfrak{m} (R[x])_{\mathfrak{q}_m}. \]
+Here $\dim R_{\mathfrak{m}} \leq \dim R = n$. So if we show that $\dim
+(R[x])_{\mathfrak{q}_m} /\mathfrak{m} (R[x])_{\mathfrak{q}_m} \leq 1$, we will
+have seen that $m \leq n+1$, and will be done. But this last ring is a
+localization of $(R_{\mathfrak{m}}/\mathfrak{m}R_{\mathfrak{m}})[x]$, which is
+a PID by the euclidean algorithm for polynomial rings over a field, and thus of
+dimension  $\leq 1$.
+\end{proof} 
+\end{solution}
+
+\begin{solution}[2] 
+
+This will follow from the following
+\begin{lemma} 
+Let $f: R \to R'$ be an integral morphism of rings (i.e. such that $R'$ is
+integral over $f(R)$). Then if $\mathfrak{q} \subsetneq \mathfrak{q}'$ is a proper
+inclusion of primes in $R'$, we have
+\[ f^{-1}(\mathfrak{q}) \subsetneq f^{-1}(\mathfrak{q}').  \]
+\end{lemma} 
+
+Once we have this, then if there is a prime chain of length $n$ in $R'$, there
+is a chain of length $n$ in $R$. So we get that $\dim R' \leq \dim R$.
+\begin{proof} 
+We can reduce to the case where $\mathfrak{q}=0$ by modding out by
+$\mathfrak{q}$ and $f^{-1}(\mathfrak{q})$, to get an integral morphism
+$R/f^{-1}(\mathfrak{q}) \to R'/\mathfrak{q}$. By this reduction, we can also
+assume that $R, R'$ are domains (because $\mathfrak{q}, f^{-1}(\mathfrak{q})$ is prime, and
+modding out by this will yield a domain).
+So we can assume this. The goal is to prove that a nonzero prime in $R'$
+pulls back to something nonzero in $R$. Suppose that $\mathfrak{q}' \neq 0$ is a
+prime in $R'$. Let $x \neq 0$ be in $\mathfrak{q}'$. We can write
+\[ x^n + a_1 x^{n-1} + \dots + a_0 = 0  \]
+where $a_i \in f(R)$ for each $i$. Since $R'$ is a domain, we can without loss
+of generality assume $a_0 \neq 0$. Then $a_0 \in (x) \subset \mathfrak{q}'$ and
+anything in the inverse image of $a_0$ is in $f^{-1}(\mathfrak{q}')-0$. So we
+have proved the claim in question.
+\end{proof}
+
+\end{solution}
+
+\newcommand{\spec}{\mathrm{Spec}}
+\begin{solution}[3]
+There is an injective map $R/\mathfrak{p} \to R'/\mathfrak{p} R'$. Using the
+commutativity of the diagram
+\[ \xymatrix{
+\spec R'/\mathfrak{p}R' \ar[r] \ar[d]  &  \spec R/\mathfrak{p} \ar[d]  \\
+\spec R' \ar[r] &  \spec R'
+}\]
+we can reduce to the case of $\mathfrak{p}=0$ (replacing $R \to R'$ with
+$R/\mathfrak{p} \to R'/\mathfrak{p}R'$).
+In particular, we need to prove:
+
+\begin{lemma} 
+Let $f: R \to R'$ be an injective homomorphism of rings with $R$ a domain. Then there is
+$\mathfrak{q} \subset R'$ prime with $f^{-1}(\mathfrak{q})=0$.
+\end{lemma} 
+After this, we shall be done. 
+\begin{proof} 
+Let $S \subset R$ be the set of nonzero elements. Then $f(S)$ does not contain
+zero as $f$ is injective, so it is a multiplicative subset $T \subset R'$ such that
+$T^{-1}R' \neq 0$. There is a
+commutative diagram
+\[ 
+\xymatrix{
+\spec T^{-1} R' \ar[d]  \ar[r] &  \spec R' \ar[d]  \\
+\spec S^{-1}R \ar[r] & \spec R
+}
+.\]
+Here we know that the zero ideal in $S^{-1}R$ maps to the zero ideal in $R$ (as
+$R$ is a domain). Any element of $\spec T^{-1}R'$ maps to $(0)$ in $\spec
+S^{-1}R$ as $S^{-1}R$ is a field. Thus $(0)$ is in the map from $\spec T^{-1}R'
+\to \spec R$. Commutativity of the diagram implies that it is in the image of
+$\spec R' \to \spec R$. This is what we wanted to show.
+\end{proof} 
+\end{solution}
+
+\begin{solution}[4] 
+
+We start with
+\begin{proposition} 
+The ring in the statement of the problem is noetherian.
+\end{proposition} 
+
+The proof is slightly messy, so we first prove a few lemmas.
+
+Let $R' = S^{-1}R$ as in the problem statement. We start by proving that every ideal in $R'$ is contained
+in one of the $\mathfrak{p}_n$ (which, by abuse of notation, we identify with
+their localizations in $R' = S^{-1}R$). 
+In particular, the $\mathfrak{p}_n$ are the maximal ideals in $R'$.
+
+\begin{lemma} 
+The $\mathfrak{p}_n$ are the maximal ideals in $R'$.
+\end{lemma} 
+\begin{proof} 
+We start with an observation:
+\begin{quote}
+If $f \neq 0 $, then $f$ belongs to only finitely many $\mathfrak{p}_n$.
+\end{quote}
+To see this, let us use the following notation. If $M$ is a monomial, we let
+$S(M)$ denote the set of subscripts $x_{a,b}$ that occur and $S_2(M)$ the set
+of second subscripts (i.e. the $b$'s). 
+For $f \in R$, we define $S(f)$ to be the intersection of the $S(M)$ for $M$ a
+monomial occurring nontrivially in $f$. Similarly we define $S_2(f)$.
+
+Let us prove:
+\begin{lemma} 
+$f \in \mathfrak{p}_n$ iff $n \in S_2(f)$. Moreover, $S(f)$ and $S_2(f)$ are
+finite for any $f \neq 0$.
+\end{lemma} 
+\begin{proof} 
+Indeed, $f \in \mathfrak{p}_n$ iff every monomial in $f$ is divisible by some
+$x_{i,n}, i \leq n$, as $\mathfrak{p}_n  = (x_{i,n})_{i \leq n}$. From this the first assertion is clear. The second too,
+because $f$ will contain a nonzero monomial, and that can be divisible by only
+finitely many $x_{a,b}$.
+\end{proof} 
+From this, it is clear how to define $ S_2(f)$ for any element in $R'$,
+not necessarily a polynomial in $R$. Namely, it is the set of $n$ such that $f
+\in \mathfrak{p}_n$. 
+It is now clear, from the second statement of the lemma, that any $f \neq 0$ lies in \emph{only finitely many
+$\mathfrak{p}_n$}. In particular, the observation has been proved. 
+
+Let $\mathcal{T} = \left\{ S_2(f), f \in I - 0\right\}$. \emph{I claim that
+$\emptyset \in \mathcal{T}$ iff $I = (1)$.} For $\emptyset \in \mathcal{T}$ iff
+there is a polynomial lying in no $\mathfrak{p}_n$. Since the union $\bigcup
+\mathfrak{p}_n$ is the set of non-units (by construction), we find that the
+assertion is clear.
+
+
+\begin{lemma} 
+$\mathcal{T}$ is closed under finite intersections.
+\end{lemma} 
+\begin{proof} 
+Suppose $T_1, T_2 \in \mathcal{T}$. Without loss of generality, there are
+\emph{polynomials} $F_1, F_2 \in R$ such that $S_2(F_1) = T_1, S_2(F_2) = T_2$.
+A generic linear combination $a F_1 + bF_2$ will involve no cancellation for
+$a, b \in \mathbb{C}$, and
+the monomials in this linear combination will be the union of those in $F_1$
+and those in $F_2$ (scaled appropriately). So $S_2(aF_1 + bF_2) = S_2(F_1) \cap S_2(F_2)$.
+\end{proof} 
+
+Finally, we can prove the result that the $\mathfrak{p}_n$ are the only maximal
+ideals. Suppose $I$ was contained in no $\mathfrak{p}_n$, and form the set
+$\mathcal{T}$ as above. This is a collection of finite sets. Since $I
+\not\subset \mathfrak{p}_n$ for each $n$, we find that $n \notin \bigcap_{T \in
+\mathcal{T}} T$. This intersection is thus empty. It follows that there is a
+\emph{finite} intersection of sets in $\mathcal{T}$
+which is empty as $\mathcal{T}$ consists of finite sets. But $\mathcal{T}$ is closed under intersections. There is thus
+an element in $I$ whose $S_2$ is empty, and is thus a unit. Thus $I = (1)$.
+\end{proof} 
+
+We have proved that the $\mathfrak{p}_n$ are the only maximal ideals. This is
+not enough, though. We need:
+\begin{lemma} 
+$R'_{\mathfrak{p}_n}$ is noetherian for each $n$. 
+\end{lemma} 
+\begin{proof} 
+Indeed, any polynomial involving the variables $x_{a,b}$ for $ b \neq n$ is
+invertible in this ring. We see that this ring contains the field
+\[ \mathbb{C}(\{x_{a,b}, b \neq n\}),  \]
+and over it is contained in the field $\mathbb{C}(\left\{x_{a,b}, \forall
+a,b\right\})$. It is a localization of the algebra $\mathbb{C}(\{x_{a,b}, b
+\neq n\})[x_{1,n} , \dots, x_{n,n}]$ and is consequently noetherian by
+Hilbert's basis theorem.
+\end{proof} 
+
+The proof will be completed with:
+\begin{lemma} 
+Let $R$ be a ring. Suppose every element $x \neq 0$ in the ring belongs to only
+finitely many maximal ideals, and suppose that $R_{\mathfrak{m}}$ is noetherian
+for each $\mathfrak{m} \subset R$ maximal. Then $R$ is noetherian. 
+\end{lemma} 
+\begin{proof} 
+Let $I \subset R$ be a nonzero ideal. We must show that it is finitely generated. We
+know that $I$ is contained in only finitely many maximal ideals $\mathfrak{m}_1
+, \dots , \mathfrak{m}_k$. 
+At each of these maximal ideals, we know that $I_{\mathfrak{m}_i}$ is finitely
+generated. Clearing denominators, we can choose a finite set of generators in
+$R$. So we can collect them together and get a finite set $a_1, \dots, a_N
+\subset I$
+which generate $I_{\mathfrak{m}_i} \subset R_{\mathfrak{m}_i}$ for each $i$. It
+is not necessarily true that $J = (a_1, \dots, a_N) = I$, though we do have
+$\subset$. However, $I_{\mathfrak{m}} = J_{\mathfrak{m}}$ except at finitely
+many maximal ideals $\mathfrak{n}_1, \dots, \mathfrak{n}_M$ because a nonzero
+element is a.e. a unit. However, these $\mathfrak{n}_j$ are not among the
+$\mathfrak{m}_i$. In particular, for each $j$, there is $b_j \in I -
+\mathfrak{n}_j$ as $I \not\subset \mathfrak{n}_j$. Then we find that the ideal
+\[ (a_1, \dots, a_N, b_1, \dots, b_M) \subset I \]
+becomes equal to $I$ in all the localizations. So it is $I$, and $I$ is f.g. 
+
+\end{proof} 
+
+We need only see that the ring $R'$ has infinite dimension. But for each $n$, there
+is a chain of primes $(x_{1,n}) \subset (x_{1,n}, x_{2,n}) \subset
+\dots \subset (x_{1,n}, \dots, x_{n,n})$ of length $n-1$. The supremum of the
+lengths is thus infinite.
+
+\end{solution}
+
+\end{document}
+\documentclass{article}
+\usepackage[left=1.3in, right=1.3in, top=1in, bottom=1in]{geometry}
+\usepackage{amssymb}
+\usepackage{xy}
+\input xy
+\xyoption{all}
+\usepackage{amsthm}
+%\usepackage{times}
+\usepackage{amsmath}
+
+
+\newtheorem{proposition}{Proposition}
+
+\newcommand{\cont}{\mathrm{cont}}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem*{solution}{Solution}
+
+%\newcommand{\mod}{\mathrm{mod}}
+\newcommand{\im}{\mathrm{im}}
+\begin{document}
+
+\title{Problem set 11 for Math 221}
+\author{Akhil Mathew}
+\date{\today}
+
+\maketitle
+\begin{solution}[1] Note that $B$ acts on $B \otimes_A B$ by multiplication on
+the first factor: this is how the latter is a $B$-module.
+
+It is clear that the maps
+\[ b \to 1 \otimes b, b \to b \otimes 1: \quad B \to B \otimes_A B   \]
+are $A$-linear, so their difference is too. The quotient $d:B \to I/I^2$ is thus
+$A$-linear too. 
+
+First, note that if $c,c' \in B$, then $1 \otimes c - c \otimes 1, 1 \otimes c'
+- c' \otimes 1 \in I$. Their product is thus zero in $I/I^2$:
+\[  (1 \otimes c - c \otimes 1)(1 \otimes c'
+- c' \otimes 1) = 1 \otimes cc' + cc' \otimes 1  - c \otimes c' - c' \otimes c
+  \in I^2.\]
+Next
+we must check that $d: B \to I/I^2$ is a derivation. So fix $b, b' \in B$; we
+have
+\[ d(bb') =   1 \otimes bb'- bb' \otimes 1\]
+and
+\[ bdb' = b (   1 \otimes b'-b' \otimes 1), \quad b' db = b'(1
+\otimes b - b \otimes 1  ).  \]
+The second relation shows that
+\[ bdb' + b' db =   b \otimes b' -  bb' \otimes 1+ b' \otimes b - bb' \otimes
+1 . \]
+Modulo $I^2$, we have as above $b \otimes b' + b' \otimes b \equiv 1 \otimes
+bb' + bb' \otimes 1$, so 
+\[   bdb' + b' db \equiv 1 \otimes bb' - bb' \otimes 1 \mod I^2,  \]
+and this last is equal to $d(bb')$ by definition. So we have an $A$-linear
+derivation $d: B \to I/I^2$. It remains to be checked that this is
+\emph{universal}. In particular, we must check that the induced
+\[ \phi: \Omega_{B/A} \to I/I^2  \]
+sending $db \to 1 \otimes b - b \otimes 1$.
+is an isomorphism. We can define the inverse $\psi: I/I^2 \to \Omega_{B/A}$ by sending $\sum b_i \otimes b_i'
+\in I$
+to $\sum b_i db_i'$. This is clearly a $B$-module homomorphism.
+I claim:
+\begin{quote}
+This map is well-defined mod $I^2$.
+\end{quote}
+\begin{proof} 
+
+\end{proof} 
+
+It is clear that $\psi (\phi(db)) = db$ from the definitions, since this
+is
+\[ \psi( 1 \otimes b - b \otimes 1) = 1 (db) - b d1 = db,  \]
+as $d1 = 0$. So $\psi \circ \phi = 1_{\Omega_{B/A}}$. 
+It follows that $\phi$ is injective. 
+We will check now that it is surjective.
+Then we will be done.
+
+\begin{lemma} 
+Any element in $I$ is a $B$-linear combination of elements of the form $1
+\otimes b - b \otimes 1$.
+\end{lemma} 
+
+Every such element is the image of $db$ under $\phi$ by definition of the
+derivation $B \to I/I^2$. So this lemma will complete the proof.
+
+\begin{proof} 
+Let $Q = \sum c_i \otimes d_i \in I$. By assumption, $\sum c_i d_i = 0 \in B$.
+We have by this last identity
+\[Q =  \sum \left( ( c_i \otimes d_i ) - (c_i d_i \otimes 1)\right)
+= \sum c_i (1 \otimes d_i - d_i \otimes 1).
+\]
+So $Q$ is in the submodule spanned by the $\left\{1 \otimes b - b \otimes
+1\right\}_{b \in B}$.
+\end{proof} 
+
+\end{solution}
+
+\newcommand{\chr}{\mathrm{char}}
+
+\begin{solution}[2] Suppose $\chr k = p>0$. (When $\chr k=0$, the extension
+is separable, hence the result is already known from class.)
+
+Then $\Omega_{\overline{k}/k}$ is generated by elements $dy, y \in
+\overline{k}$. But if $y \in \overline{k}$, there is $z \in \overline{k}$ with
+$z^p = y$ by algebraic closedness. So $dy = pz^{p-1}dz = 0$ as $p=0$.
+\end{solution}
+
+\begin{solution}[3] First, I claim:
+
+\begin{lemma} 
+$R$ contains a copy of $\mathbb{Q}$.
+\end{lemma} 
+\begin{proof} 
+In fact, this follows that any $n \in \mathbb{Z} - \left\{0\right\}$ maps into
+$R$ such that the image in $R/\mathfrak{m}$ is nonzero (by the characteristic
+zero assumption), so $n \notin \mathfrak{m}$ and is thus invertible. In particular $R$ contains
+$\mathbb{Q}$.
+\end{proof} 
+
+Let $\mathbf{P}$ be the set of subrings of $R$ which are fields. Such a
+subfield obviously cannot intersect $\mathfrak{m}$, and maps injectively into
+$R/\mathfrak{m}$.
+Under inclusion, $\mathbf{P}$ is a poset.
+
+\begin{lemma} 
+Any chain in $\mathbf{P}$ has an upper bound. 
+\end{lemma} 
+\begin{proof} 
+Indeed, the union of an increasing chain of  fields is a field. If
+$\{F_{\alpha} \}$ is a totally ordered set of fields, then the union is
+closed under addition and multiplication, and any $x \in \bigcup
+F_{\alpha} - \left\{0\right\}$ is invertible as it lies in one of the
+$F_\alpha$. 
+\end{proof} 
+
+So Zorn's lemma now implies that $\mathbf{P}$ has a maximal element.
+Let $F \subset R$ be a maximal field, i.e. a maximal element in $\mathbf{P}$. Then $F \hookrightarrow R/\mathfrak{m}$
+is an injection. 
+
+\begin{lemma} 
+$F \to R/\mathfrak{m}$ is an isomorphism.
+\end{lemma} 
+\begin{proof} We need only show that it is surjective.
+Suppose $\alpha \in R/\mathfrak{m}-F$. Then there are two cases:
+\begin{enumerate}
+\item $\alpha$ is transcendental over $F$.  
+\item $\alpha$ satisfies a separable monic irreducible polynomial $P(x) \in
+F[x]$ (because we are in characteristic zero).
+\end{enumerate}
+
+\subsection*{Case one}
+Choose a lift $\beta \in R$ which maps to $\alpha \in R/\mathfrak{m}$. Then any
+polynomial $Q(\beta)$ for $Q(x) \in F[x] - \left\{0\right\}$ does not map to
+zero in $R/\mathfrak{m}$ because $\alpha$ is transcendental over $F$. In
+particular, $Q(\beta)$ is a unit. So $F(\beta) \subset R$, contradicting
+maximality.
+
+\subsection*{Case two}
+
+Choose a lift $\beta \in R$ of $\alpha$. Then $P(\beta) \equiv 0 \mod
+\mathfrak{m}$. However, by separability $P'(\alpha) \neq 0 \in R/\mathfrak{m}$,
+so $P'(\beta) \in R$ is invertible. There is thus a unique $\gamma \equiv \beta \mod
+\mathfrak{m}$ such that $P(\gamma) =0$ by Hensel's lemma. 
+Now the ideal of polynomials in $F[x]$ that vanish on $\gamma \in R$ must be
+contained in $(P(x))$ as that is the ideal of vanishing on the reduction
+$\alpha \in R/\mathfrak{m}$. However, we have seen that this ideal contains
+$P$. So it is $P$ In particular, the ring $F[\gamma] \subset R$ is isomorphic to
+$F[x]/(P(x))$ and is a field. This field is strictly larger than $F$, a
+contradiction. 
+
+\end{proof} 
+
+
+\begin{solution}[4] 
+We will show that $\Omega_{B'/A'}, \Omega_{B/A} \otimes_B B'$ represent the
+same functor. By Yoneda's lemma, this will be sufficient.
+Consider the category  $\mathfrak{C}'$ of $B'$-modules and the category
+$\mathfrak{C}$ of $B$-modules. 
+We have two functors
+\[ F: \mathfrak{C} \to \mathfrak{C}', M \to M \otimes_B B', \quad
+G: \mathfrak{C}' \to \mathfrak{C}, N \to N
+\]
+where in the latter case, we consider $N$ as a $B$-module. These functors are
+just  extension and restriction of scalars, respectively.
+It is a basic fact that these functors are \emph{adjoint}.
+
+\begin{lemma} For a $B'$-module $N$,
+$\mathrm{Der}_{B/A}(B, N) \simeq \mathrm{Der}_{B'/A'}(B', N)$.
+\end{lemma} 
+\begin{proof} 
+Indeed, given a $A'$-linear derivation $\delta: B' \to N$, we restrict to $B$
+to obtain a derivation $\delta_B: B \to N$, which is manifestly $A$-linear. (In the map
+$B \to B'$, we know that $A$ maps into $A'$.)
+So we get a map in one direction. 
+
+Given an $A$-linear $\partial : B \to N$, we construct $\partial_{B'}: B \otimes_A
+A' \to N$ by sending $b \otimes a' \to a' \partial(b)$. This is well-defined
+since $\partial_{B}$ is $A$-linear. Now $\partial_{B'}$ is  $A'$-linear because
+anything of the form $1 \otimes a'$ is sent to zero.
+
+We need to show that these two constructions are inverse. But this is clear
+from the fact that an $A'$-linear derivation is uniquely determined by its
+restriction to $B$, since $B$ and $A'$ generate $B \otimes_A A'$.
+\end{proof} 
+
+So the two functors on the category of $B'$-modules,
+$\mathrm{Der}_{B/A}(B, N) \simeq \mathrm{Der}_{B'/A'}(B', N)$
+are naturally isomorphic. In the first one, $N$ is considered as a $B$-module,
+so it is isomorphic to 
+\[ \hom_{B}(\Omega_{B/A}, GN)  \]
+by the universal property of K\"ahler differentials.
+By the same reasoning, the second functor is isomorphic to 
+\[ \hom_{B'}(\Omega_{B'/A'}, N).  \]
+But the adjoint property implies that the first functor is isomorphic to 
+\[ \hom_{B'}(F \Omega_{B/A}, N) =   \hom_{B'}(\Omega_{B/A} \otimes_B B', N).\]
+Now Yoneda's lemma applies: the two objects $\Omega_{B'/A'}, \Omega_{B/A}
+\otimes_B B'$ are representing the same functor. So they are naturally
+isomorphic. The isomorphism is given by 
+\[ \Omega_{B/A} \otimes_B B' \to \Omega_{B'/A'}  \]
+sending 
+\[ db \otimes b' \to b' db.  \]
+\end{solution}
+
+
+
+
+\end{solution}
+\end{document}
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{verbatim}
+\usepackage{amsthm}
+%\usepackage{times}
+\usepackage{amsmath}
+
+\theoremstyle{definition}
+\newtheorem*{solution}{Solution}
+
+%\newcommand{\mod}{\mathrm{mod}}
+\newcommand{\im}{\mathrm{im}}
+\begin{document}
+
+\title{Problem set 1 for Math 221}
+\author{Akhil Mathew}
+\date{September 8, 2010}
+
+\maketitle
+
+
+
+\begin{solution}[1]
+First, we show that any ideal properly containing $I=(2, 1+\sqrt{-5})$ is all
+of $R=\mathbb{Z}[\sqrt{-5}]$.  Suppose
+$x \notin I$; I claim that $(x,I)  = R$. We can write $x = a + b\sqrt{-5}$ for
+$a,b \in \mathbb{Z}$.  
+
+If we write $y = x - b(1+\sqrt{-5})$, then $x \equiv y \mod I$ so that $(x,I) =
+(y,I)$.  Now $y \in \mathbb{Z}$.  If $y$ is even, then $y \in I$ so that $x \in
+I$.  So $y$ must necessarily be odd, say $y = 2k+1$. But then $y - k(2) \in
+(I,y)$
+since $2 \in I$, and this is equal to $1$.  So it follows that
+$(I,x)=(I,y)=(1)$. 
+
+It follows now that $I$ is either maximal or itself $(1)$.  We need to show
+that the latter does not happen. In particular, we have to show that $1 \notin
+(2, 1+\sqrt{-5})$.  
+
+This means that for any $a,b \in \mathbb{Z}$ (not both zero), $(a+b\sqrt{-5})(1+\sqrt{-5})$
+does not have the first coordinate (i.e., the coefficient of $1$, or the
+integral part) odd and the second (i.e., the multiple of $\sqrt{-5}$) even. But this product is equal to
+\[ a - 5b + (a+b)\sqrt{-5}.  \]
+If both $a+b$ were even, then $a,b$ would have the same parity.  Then $a, 5b$
+would have the same parity, implying $a-5b$ was even.  So
+$(a+b\sqrt{-5})(1+\sqrt{-5})$ is not one plus something in $2R$. This implies
+that $I \neq (1)$. Thus $I$ is maximal.
+
+Next, we show that $I$ is not principal. Suppose that $x \in I$ was a
+generator. 
+Then we have that $2, 1+\sqrt{-5}$ are multiples of $x$. This means their norms
+are \emph{integral} multiples of $N^{\mathbb{Q}(\sqrt{-5}}_{\mathbb{Q}}(x)$.
+In detail, recall that we have a function $N: R \to
+\mathbb{Z}$ such that:
+
+\begin{enumerate}
+\item $N(yy') = N(y)N(y') $ for $ y,y' \in R$. 
+\item $N(a+b\sqrt{-5}) = (a+b\sqrt{-5})\overline{(a - b \sqrt{-5})} = a^2 +
+5b^2$.  Here $\overline{.}$ denotes complex conjugation since $R \subset
+\mathbb{C}$.
+\end{enumerate}
+
+So in particular, it follows that $N(x) \mid N(2)$ and $N(x) \mid
+N(1+\sqrt{-5})$ as \textbf{ordinary integers}. These  are $4$ and $6$. It follows that $N(x)=1$ or $N(x)=2$.
+
+We look at the two cases:
+\begin{enumerate}
+\item $N(x)=1$.  In this case, $x \overline{x} =1$, but $\overline{x} \in R$
+too, and $x \overline{x}=1$. Thus $x$ is a unit in $R$, which contradicts $x
+\in I$ since $I$ is proper.
+\item $N(x) = 2$. If $x = a + b\sqrt{-5}$, then $a^2 + 5b^2 = 2$ for $a,b
+\in\mathbb{Z}$, which is impossible.
+\end{enumerate}
+
+In either case, we get a contradiction. So no such $x$ exists, and $I$ is not
+principal. 
+
+Finally, we need to describe the residue field $R/I$.  I claim that it is just
+$\mathbb{Z}/2$.  The reasoning is as follows.  
+If $z = a + b\sqrt{-5} \in R$, then $z \equiv a - b \mod I$, as we see by
+subtracting $b(1+\sqrt{-5})$.  
+But $a-b \in \mathbb{Z}$, and any ordinary integer is congruent to either zero
+or one modulo $I$, since $2 \in I$.
+In particular, the map
+\[ \left\{0,1\right\} \to R/I  \]
+is surjective.  Since a field contains at least two elements, it is injective;
+thus $R/I$ is precisely $\mathbb{Z}_2$, as there is no other field of order two.
+
+\begin{comment} Then we could write
+\[ 2 = (a+b\sqrt{-5}) x  \]
+and
+\[ 1+\sqrt{-5} = (a' + b'\sqrt{-5})x  \]
+for some choice of $a,b,a',b' \in \mathbb{Z}$.  We need to show that this is
+impossible.  Write $x = c+d\sqrt{-5}$.  
+We find from the two above equations that
+\[ 2 = ac - 5bd +   \] \begin{gather} 
+
+\end{gather} \end{comment} 
+
+\end{solution} 
+
+\begin{solution}[2]
+Suppose $I \not\subseteq \mathfrak{p}, J \not \subseteq \mathfrak{p}$. This
+implies that there are $i \in I, j \in J$ such that $i,j \notin \mathfrak{p}$.
+But then $ij \in IJ$ and $ij \notin \mathfrak{p}$ since $\mathfrak{p}$ is
+prime. This implies that $IJ \not\subseteq \mathfrak{p}$. 
+
+\end{solution} 
+
+\begin{solution}[3]
+Let $\overline{m} \in M/\ker (f)$ be represented by some $m \in M$. We map this
+$\overline{m}$
+to $f(m) \in N$. Since $m$ is well-defined up to an element of $\ker (f)$,
+$f(m)$ is well-defined as an element of $N$ (i.e., does not depend on the
+choice of $m$).  There is thus a map
+\[ M/\ker(f) \to N,  \]
+whose image is clearly contained in $\im(f) \subset N$.  Thus we get a map
+\[ M/\ker(f) \to \im(f),  \]
+which is an $R$-homomorphism because if $m$ represents $\overline{m}$, then
+$rm $ represents $r \overline{m}$.
+
+First, it is injective. Suppose $\overline{m} \in M/\ker(f)$, represented by
+$m \in M$, maps to zero. This means that $f(m) = 0$ or $m \in \ker(f)$, so
+$\overline{m}$ is the zero residue class $m+\ker(f) = 0+\ker(f) \in M/\ker(f)$.  
+
+Next, we prove surjectivity. Suppose $n \in \im(f)$. Then $n = f(m)$ for some
+$m \in M$. The residue image $\overline{m}$ maps to $n$ under the map
+$ M/\ker(f) \to N $. So we get surjectivity.  This means that the map is an
+isomorphism.
+\end{solution} 
+
+\begin{solution}[4]
+First, $\mathfrak{m}_x$ is a maximal ideal for any $x \in X$. Indeed, there is
+a surjective homomorphism $C(X) \to \mathbb{R}$ sending $f \to f(x)$
+(surjective because we have constant functions).  The kernel is precisely
+$\mathfrak{m}_x$. Since the quotient is a field, $\mathfrak{m}_x$ is maximal.
+
+It remains to be seen that every proper ideal is contained in some
+$\mathfrak{m}_x$. Suppose $I \subset R$ is an ideal not contained in any
+one.  Then for each $x \in X$, there is $f_x \in I$ with $f_x(x) \neq 0$. We
+can find a neighborhood $U_x$ of $x$ such that $f_x(y) \neq 0$ for $y \in U_x$.
+Then $f_x(\cdot)^2$ is nowhere zero on $U_x$, and nonnegative everywhere.
+
+The $\left\{U_x, x \in X\right\}$ form an open cover of $X$ since each contains
+$x$.  It has a finite subcover $\left\{U_{x_0}, \dots, U_{x_n}\right\}$ by
+compactness.
+The sum
+\[ f =  \sum_{i=0}^n f_{x_i}^2 \]
+belongs to $I$, and it is nowhere zero. Hence $f^{-1}$ is a continuous
+function, and 
+\[  1= ff^{-1} \in I,  \]
+so $I$ is not proper.
+This establishes that every proper ideal is contained in some $\mathfrak{m}_x$,
+so these are the only maximal ideals.
+\end{solution} 
+
+\begin{solution}[5]
+Since $X$ is not compact, there is an infinite descending sequence of closed
+sets $X_1 \supset X_2 \supset \dots$, each of which is nonempty, but whose
+intersection is empty.  Let $I$ be the ideal consisting of functions that
+vanish on one of the $X_i$.  
+This is an ideal, since if $f$ vanishes on $X_i$ and $g$ on $X_j$, then $f+g$
+vanishes on $X_{\max(i,j)} = X_i \cap X_j$.  It is also a proper ideal, since it
+does not contain the constant functions.
+
+Moreover, it is not contained in any $\mathfrak{m}_x$.  Suppose $x \in X$;
+choose an $i$ for which $x \notin X_i$, possible since $\bigcap X_i =
+\emptyset$.  Then take a neighborhood $U$ of $x$ with compact closure not intersecting $X_i$ by
+local compactness.  Choose a smaller neighborhood $V \subset U$ of $x$ with
+$\overline{V} \subset U$. Urysohn's lemma gives a continuous $f: X \to
+\mathbb{R}$ such that $f|_V = 1$ (in particular, $f \notin \mathfrak{m}_x$) and
+$f \equiv 0$ outside $U$ (in particular, on $X_i$, so $f \in I$).
+
+We see that $f \in I - \mathfrak{m}_x$, so $I \not\subset \mathfrak{m}_x$ for
+any $x$.
+\end{solution} 
+\end{document}
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{verbatim}
+\usepackage{amsthm}
+%\usepackage{times}
+\usepackage{amsmath}
+
+\theoremstyle{definition}
+\newtheorem*{solution}{Solution}
+
+%\newcommand{\mod}{\mathrm{mod}}
+\newcommand{\im}{\mathrm{im}}
+\begin{document}
+
+\title{Problem set 2 for Math 221}
+\author{Akhil Mathew}
+\date{September 15, 2010}
+\newcommand{\spec}{\mathrm{Spec}} 
+\maketitle
+
+\begin{solution}[1] 
+
+Let $R$ be a commutative ring and $I \subset R$ an ideal. 
+Suppose $\phi: R \to R/I$ is the reduction homomorphism.
+Let $V(I) \subset \spec R$ be the collection of primes containing $I$.
+
+Let $\mathfrak{p}
+\subset R/I$ be a prime ideal. Then $\phi^{-1}(\mathfrak{p}) \subset R$ is
+prime and contains $I$ because $\phi$ annihilates $I$.  In particular, the map
+$\psi: \spec R/I \to \spec R, \psi(\mathfrak{p}) = \phi^{-1}(\mathfrak{p})$ induced by $\phi$ has image in $V(I)$.  
+
+\textbf{Injectivity}
+Suppose $\mathfrak{p}$ is an element in $\spec R/I$. We shall describe how to
+recover $\mathfrak{p}$ from $\psi(\mathfrak{p}) \subset R$; this will imply
+that $\psi$ is injective.
+Namely, I claim that $\mathfrak{p}$ is the image of $\psi(\mathfrak{p}) \subset
+R$ under $\phi: R \to R/I$.  
+Indeed, for  a surjective
+map of sets $f: A \to B$ and $C \subset B$, we have $C = f(f^{-1}(C))$.
+So 
+\[ \mathfrak{p} = \phi(\phi^{-1}(\mathfrak{p})) = \phi(\psi(\mathfrak{p})).  \]
+
+So $\mathfrak{p}$ can be recovered from $\psi(\mathfrak{p})$ by taking the
+image under $\phi$, and $\psi$ is injective. 
+
+\textbf{Surjectivity}
+We now show that $\psi(\spec R/I) = V(I)$, demonstrating that $\psi$ induces  a
+bijection of $\spec R/I$ onto $V(I)$.  Indeed, suppose $\mathfrak{q} \subset R$
+is a prime containing $I$.  Then consider $\phi(\mathfrak{q}) \subset R/I$.
+This is an ideal since $R \to R/I$ is surjective. 
+
+I
+claim that this is prime.
+Indeed, if $\overline{a}, \overline{b} \in R/I$ (represented by $a,b \in R$)
+satisfy $\overline{a}\overline{b} \in \phi(\mathfrak{q})$, then there is a
+representative of $\overline{a}\overline{b}$ which is in $\mathfrak{q}$. This
+representative is congruent modulo $I$ to $ab$, and since $I \subset
+\mathfrak{q}$, we have that $ab \in I+\mathfrak{q} \subset \mathfrak{q}$.
+So one of $a, b \in \mathfrak{q}$ and one of $\overline{a}, \overline{b}$
+belongs to $\phi(\mathfrak{q})$. Thus $\phi(\mathfrak{q})$ is prime. 
+
+Next, I claim that if $\mathfrak{q}$ is as above, then $\mathfrak{q} =
+\psi(\phi(\mathfrak{q}))$. This will prove  surjectivity. Indeed,
+$\phi^{-1}(\phi(S)) = S+I$ for any set $S \subset R$; thus 
+\[ \psi(\phi(\mathfrak{q} )) = \mathfrak{q} +I = \mathfrak{q}.\]
+
+
+\textbf{Homeomorphism}
+So we know that there is a continuous (by what was proved in class) bijection $\spec R/I \to V(I) \subset
+\spec R$ given by $\psi$. In the course of the proof, we have also shown that
+the inverse map $V(I) \to \spec R/I$ is given by
+\[ \mathfrak{q} \to \phi(\mathfrak{q}).  \]
+We only need to show that it is a homeomorphism. 
+For this, we need to show that the image of a closed set $V(\overline{J})$ for
+$\overline{J} \subset R/I$ an ideal is closed. I claim that if $J =
+\phi^{-1}(\overline{J})$, then $
+\psi(V(\overline{J})) = V(J)$.  It is clear that, since $\phi^{-1}$ preserves
+set inclusion, that $\psi$ maps $V(\overline{J})$ into $V(J)$.  By contrast,
+any $\mathfrak{q}$ containing $J$ satisfies that $\phi(\mathfrak{q} ) =
+\psi^{-1}(\mathfrak{q})$ contains $\overline{J}$ since $\phi(J) =
+\overline{J}$.  This proves that the map is a homeomorphism.
+\end{solution}
+
+\begin{solution}[2] 
+Suppose $X$ is a topological space and $x \in X$. I claim that
+$\overline{\left\{x\right\}}$ is irreducible. Suppose $F_1, F_2 \subset
+\overline{\left\{x\right\}}$ were closed. Then if neither $F_1, F_2 =
+\overline{\left\{x\right\}}$, closedness implies that neither can contain $x$.
+So $x \notin F_1 \cup F_2$, and their union cannot fill up
+$\overline{\left\{x\right\}}$. Thus $\overline{\left\{x\right\}}$ is
+irreducible.  
+
+Suppose $V(I) \subset \spec R$ is an irreducible closed set. We will show that
+there is a point $x \in V(I)$ such that $\overline{\left\{x\right\}} = V(I)$. 
+To do this, assume without loss of generality that $I$ is radical. This means
+that if $J \supset I$ and $J \neq I$, then we have, since $\mathrm{rad}(J) \neq
+\mathrm{rad}(I)$,
+\[ V(J) \neq V(I) . \]
+
+Now suppose $I$ is radical and $V(I)$ is irreducible. I claim that $I$ is prime.  
+Indeed, if there were $x,y \in R$ with $xy \in I$ but $x,y \notin I$, then we
+would have
+\[ V((I,x)), V((I,y)) \neq V(I)  \]
+but 
+\[ V((I,x)) \cup V((I,y)) = V((I,x)(I,y)) = V(I)  \]
+since $(I,x)(I,y)$ is between $I$ and $I^2$ so has radical equal to
+$\mathrm{rad}(I)$. This is a contradiction by irredubility, so $I$ must be
+prime. 
+
+So if $V(I)$ is irreducible, and $I$ is radical, then $I$ is prime.  Now the
+smallest closed set containing $I \in \spec R$ is just $V(I)$.  Thus
+$\overline{\left\{I\right\}} = V(I)$. 
+\end{solution}
+
+\begin{solution}[3] 
+Localization is an exact functor, so if $f: M \to N$ is surjective, then $M \stackrel{f}{\to} N \to 0$ is exact,
+implying that $M_{\mathfrak{m}} \stackrel{f_{\mathfrak{m}}}{\to}
+N_{\mathfrak{m}} \to 0$ is exact, implying that $f_{\mathfrak{m}}$ is surjective.
+
+Conversely, suppose each $f_{\mathfrak{m}}$ is surjective. Let $n \in N$. Then,
+for each maximal ideal $\mathfrak{m}$, 
+$n/1 \in N_{\mathfrak{m}}$, so there is $m/s$ with $s \notin \mathfrak{m}$ such
+that $f(m)/s = n/1$. This implies that there is $t \in R - \mathfrak{m}$ with 
+\[ t( sn - f(m)) = 0 \in N.  \]
+In particular, $ts n = f(tm)$ in $N$. But $ts \notin \mathfrak{m}$.
+This means that for each $\mathfrak{m}$, there is $t' \notin \mathfrak{m}$ with
+$t' n \in f(M)$.
+
+Consider the set of $x \in R$ with $x n \in f(M)$. This is clearly an ideal,
+but the above reasoning shows that it is contained in no maximal ideal; thus it
+is the unit ideal, and $1n = n \in f(M)$. So $f$ is surjective. 
+\end{solution}
+
+\begin{solution}[4] 
+Suppose $Z \subset X$ is a closed subset. Then I claim that there is a family
+of functions $f_{\alpha} \in C(X)$ such that $Z$ is the set of common zeros of
+the $f_{\alpha}$. Indeed, for each $x \in X - Z$, find (by Urysohn's lemma), a
+function $f_x$ which vanishes on $Z$ but not on $x$. Then the
+$\left\{f_x\right\}$ are such a family.
+Conversely, every family of continuous functions determines a closed set which
+is the intersection of their zeros.
+
+The closed subsets of $\spec C(X)$ are obtained by considering a family
+$f_\alpha$ of functions of $C(X)$ and taking the set of prime ideals
+$\mathfrak{p}$ that contain each $f_\alpha$.
+
+Now the correspondence between $X$ and the maximal ideals of $C(X)$ sends $x$
+into the maximal ideal $\mathfrak{m}_x$ of functions vanishing at $x$.  Also,
+$f \in C(X)$ belongs to $\mathfrak{m}_x$ if and only if $f(x)=0$. So the closed
+set $Z \subset X$ defined by the equations $\left\{f_\alpha(x) = 0\right\}$ is
+mapped to the intersection of the maximal ideals in $\spec C(X)$ with
+$V(\left\{f_{\alpha}\right\})$.  Thus the map $X \to
+\left\{\mathrm{maximals \ in \ }\spec C(X) \right\}$ is closed and bijective.
+(Bijectivity has been proved earlier.)
+
+It is easy to see, similarly, that it is continuous; the inverse image of
+$V(\left\{f_\alpha\right\})$ is the zero set defined by $f_\alpha(x) =0$,
+which is closed; so our map is also continuous. Thus it is a homeomorphism. 
+
+\end{solution}
+
+\end{document}
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{verbatim}
+\usepackage{amssymb}
+
+\usepackage{xy}
+\input xy
+\xyoption{all}
+\usepackage{amsthm}
+%\usepackage{times}
+\usepackage{amsmath}
+
+\theoremstyle{definition}
+\newtheorem*{solution}{Solution}
+
+%\newcommand{\mod}{\mathrm{mod}}
+\newcommand{\im}{\mathrm{im}}
+\begin{document}
+
+\title{Problem set 3 for Math 221}
+\author{Akhil Mathew}
+\date{September 23, 2010}
+\newcommand{\spec}{\mathrm{Spec}} 
+\maketitle
+
+
+\begin{solution}[1] 
+Let us check that the relation $\sim$ on $\coprod_{\alpha} M_{\alpha}$ is an
+equivalence relation.
+
+\begin{enumerate}
+\item  Reflexivity. If $m \in M_\alpha$, then $\phi_{\alpha,
+\alpha}(m) = \phi_{\alpha, \alpha}(m)$, so $m \sim
+m$. (Note that $\phi_{\alpha, \alpha}$ is defined since $\alpha \leq
+\alpha$ as this is a preordered set.)
+\item Symmetricness. Suppose $m \in M_\alpha, n \in M_\beta$, and $m \sim n$.
+This implies that there is $\gamma \geq \alpha, \beta$ with
+\[ \phi_{\alpha, \gamma}(m) = \phi_{\beta, \gamma}(n)  \]
+which in turn evidently implies that
+\[ \phi_{\beta, \gamma}(n) =\phi_{\alpha, \gamma}(m)   \]
+so that $n \sim m$.
+\item Suppose $m \in M_\alpha, n \in M_\beta, o \in M_\gamma$. Suppose $m \sim
+n, n \sim o$. This means that there exist $\delta_1, \delta_2 \in A$ such that
+$\delta_1 \geq \alpha, \beta$ and
+\[ \phi_{\alpha, \delta_1}(m) = \phi_{\beta, \delta_1}(n)  \]
+while $\delta_2 \geq \beta, \gamma$ and
+\[ \phi_{\beta, \delta_2}(n) = \phi_{\gamma, \delta_2}(o) . \]
+If we take $\delta \geq \delta_1, \delta_2$, then it follows from these two
+equalities that
+\[ \phi_{\alpha, \delta}(m) = \phi_{\beta, \delta}(n) = \phi_{\gamma, \delta}(o)  \]
+so that $m \sim o$. 
+\end{enumerate}
+
+We shall now make $\varinjlim M_\alpha$ into an $R$-module. First, we describe
+the addition. Pick two elements of $\varinjlim M_\alpha$, represented by $x \in
+M_\alpha, y \in M_\beta$. 
+We choose $\gamma \geq \alpha, \beta$ and define the addition of the classes
+represented by $x,y$ to be the class represented by 
+\[ \phi_{\alpha, \gamma}(x) + \phi_\beta, \gamma (y). \]
+It is clear that this does not depend on the choice of $x,y$, or that of
+$\gamma$: if different
+elements were used equivalent up to $\sim$, then the sum would also be
+equivalent up to $\sim$.
+This addition operator is commutative and associative since the addition 
+in each of the $M_\alpha$ is commutative and associative.
+Inverses can be defined in the natural way: the inverse of the class
+represented by $m_\alpha$ is the class represented by $-m_\alpha$.
+
+It is clear that if $x \in M_\alpha$, $y \in M_\beta$, and $x \sim y$, then $rx
+\sim ry$ for all $r \in R$. It follows that we can define a multiplication by
+$R$ on the equivalence classes in $\varinjlim M_\alpha$, which is distributive,
+associative, etc. because the multiplication on each $M_\alpha$ is. 
+
+Moreover, the map $M_\alpha \to \varinjlim M_\beta$ is a homomorphism of
+$R$-modules. The map sends $x \in M_\alpha$ to the image of $x \in \coprod
+M_\alpha$ modulo the equivalence relation. Since multiplication in $\varinjlim
+M_\alpha$ is defined in the obvious manner, $rx$ is sent to $r$ times the image
+of $x$, and we have homomorphisms of $R$-modules.
+
+Note that the $R$-module structure on $\varinjlim M_\alpha$ is uniquely
+determined. This is because every element of $\varinjlim M_\alpha$ is in the
+image of some $M_\beta$. So multiplication on it is determined by
+multiplication on $M_\beta$. 
+
+\end{solution}
+
+\begin{solution}[2]  We define 
+\[ \coprod_\alpha M_\alpha \to N  \]
+by sending $m \in M_\alpha$ to $\psi_\alpha(m)$. Suppose $m \in M_\alpha, n \in
+M_\beta$ become equivalent modulo the relation $\sim$, i.e. they map to the
+same thing in the direct limit.  This means that there is $\gamma \geq \alpha,
+\beta$ with $m, n$ having the same image in $M_\gamma$.
+However, $$\psi_\alpha(m) = \psi_{\gamma}\phi_{\alpha, \gamma}(m),$$ and
+$$\psi_{\beta}(n) = \psi_{\gamma} \phi_{\beta, \gamma}(n)$$
+so it follows from $\phi_{\alpha, \gamma}(n) = \phi_{\beta, \gamma}(n)$ that $m,n$ have the same image in $N$.
+
+It follows that the map $\coprod_\alpha M_\alpha \to N$ thus defined factors
+through a map $\varinjlim M_\alpha \to N$. We must prove that it is a
+homomorphism of $R$-modules.  This is clear from the definition of the
+$R$-module structure.  Indeed, if $x, y \in \varinjlim M_\alpha$, we can assume
+without loss of generality that $x,y$ are represented by elements (still
+denoted $x,y$) in some $M_\beta$. Then $x+y$ is mapped by $\varinjlim M_\alpha$
+to $\psi_{\beta}(x+y)$. But $\psi_{\beta}$ is a homomorphism, so this is
+$\psi_{\beta}(x) + \psi_{\beta}(y)$. The proof for multiplication by elements
+of $R$ is analog.
+It is evident from the definition that this map makes the diagram 
+\[ \xymatrix{
+M_\beta \ar[rd] \ar[r] &  \varinjlim M_\alpha \ar[d] \\
+& N
+}\]
+commutative. The map out of $\varinjlim M_\alpha$ is unique because the maps
+$M_\beta \to \varinjlim M_\alpha$ are jointly surjective.
+\end{solution}
+
+
+\begin{solution}[3] 
+We first show that $\leq$ is a preordering.
+\begin{enumerate}
+\item $s \leq s$ for all $s \in S$, because $s = 1s$  and $1 \in S$. 
+\item Suppose $s \leq t$ and $t  \leq u$. Then we can write $t = ss'$ and $u =
+tt'$ for some $s', t' \in S$. Thus
+\[ u = tt' = ss't' = s(s't'),  \]
+where $s't' \in S$. So $s \leq u$.
+\end{enumerate}
+The preordered set is filtered because if $s, s' \in S$, then $s, s' \leq ss'$. 
+Note that the $S$-indexed family $M_s$ is necessarily well-defined because the
+choice of maps between them are uniquely determined. Namely, if $s \leq s'$,
+there is precisely one $t$ such that $st = s'$, because $S$ is an integral
+domain. It follows that the composite of $M_s \to M_{s'} \to M_{s''}$, which is
+multiplication by $\frac{s'}{s} \frac{s''}{s}$, is the same as $M_s \to
+M_{s''}$. 
+
+We shall first give maps $M_s \to S^{-1}M$ for each $s \in S$. Indeed, this
+sends  $m \in M_s$ to $m/s \in S^{-1}M$. This is evidently a homomorphism.
+The map $M_s \to M_{s'}$ for $s' = st$ sends $m$ to $mt$.  So the diagram
+\[ 
+\xymatrix{
+M_s \ar[r]\ar[rd]  &  M_{s'} \ar[d]  \\
+& S^{-1}M
+}
+\]
+commutes; going left and down around sends $m \in M_s$ to $(mt)/s' = m/s$,
+which is the same as going directly down.
+The universal property of the direct limit implies that there is a map
+\[ \varinjlim M_s \to S^{-1}M.  \]
+commutes.  It is surjective. Indeed, if $m/s \in S^{-1}M$, then this is the
+image of $m \in M_s$.
+It is also injective. Suppose $m \in M_s$ maps to zero in $S^{-1}M$. This means
+that $m/s = 0$, i.e. there is $t $ with $mt =0 \in M$. Then the image of $m$ in $M_s
+\to M_{ts}$ is zero, so $m$ maps to zero in $\varinjlim M_s$. Together, this
+implies that the map $\varinjlim M_s \to S^{-1}M$ is an isomorphism. 
+\end{solution}
+
+
+\begin{solution}[4] 
+By Yoneda, it is sufficient to show that there is a natural isomorphism of
+functors
+\[ \hom( \varinjlim (M_\alpha \otimes N), -) \simeq \hom((\varinjlim
+M_\alpha )\otimes N, -).  \]
+But
+\begin{align*} 
+\hom( \varinjlim (M_\alpha \otimes N), P) &  \simeq \mathrm{directed \
+systems \ of }\  M_\alpha \otimes N \to P \\ 
+& \simeq \left\{\mathrm{directed \ systems\ of\ } M_\alpha \to \hom(N, P)\right\}
+\\
+& \simeq \hom( \varinjlim M_\alpha, \hom(N, P)) \\
+& \simeq \hom( (\varinjlim M_\alpha) \otimes N, P).
+\end{align*}
+Here the isomorphisms of sets are natural. 
+
+So the adjointness is the reason that tensor products commute with direct
+limits. 
+\end{solution}
+
+\begin{solution}[5] 
+We first show that direct limits with respect to filtered preordered sets are
+exact. In particular, if 
+we have a filtered preorded set $A$ and $A$-directed systems $M_\alpha,
+N_\alpha, P_\alpha$ and exact sequences
+\[ M_\alpha \rightarrowtail N_\alpha \twoheadrightarrow P_\alpha   \]
+for each $\alpha$, which commute with the maps between different $\alpha$, i.e. 
+the diagram
+\[ \xymatrix{
+M_\alpha \ar[d]  \ar[r] &  N_\alpha \ar[d] \ar[r] &  P_\alpha \ar[d]  \\
+M_\beta \ar[r] &  N_\beta \ar[r] &  P_\beta}
+\]
+commutes for each $\alpha \leq \beta$.
+Then we will have that
+\[ \varinjlim M_\alpha \rightarrowtail  \varinjlim N_\alpha
+\twoheadrightarrow \varinjlim P_\alpha  \]
+is exact. 
+
+\begin{proof} 
+Indeed, we first prove injectivity of the first map. Suppose a class
+represented by $m \in M_\beta$ goes to zero in $\varinjlim N_\alpha$. Then the
+image of $m$ in $N_\beta$ must go to zero in some $N_\gamma$ ($\gamma \geq
+\beta$). In particular, the image of $m$ in $M_\gamma$ must go to zero in
+$N_\gamma$. It follows by injectivity of $M_\gamma \rightarrowtail  N_\gamma$  that the image of $m$ in $M_\gamma$ is zero and $m$
+represents the zero class in $\varinjlim M_\alpha$. 
+
+Next, we prove surjectivity of the second. Suppose $p \in P_\beta$ represents a
+class of $\varinjlim P_\alpha$. Then $p$ comes from something in $N_\beta$. The
+class represented by this in $\varinjlim N_\alpha$ maps to the class
+represented by $p$. So the map $\varinjlim N_\alpha \to \varinjlim P_\beta$ is
+surjective.
+
+Finally, we prove that the image in $\varinjlim N_\alpha$ is the kernel of the
+map out of it. It is clear that the composite of the two maps is zero.
+Suppose $n \in N_\beta$ represents a class that goes to zero in
+$\varinjlim P_\alpha$. Then the image of $n$ in $P_\beta$ goes to zero in some
+$P_\gamma$. In particular, the image of $n$ in $N_\gamma$ goes to zero in
+$P_\gamma$. So the image of $n$ in $N_\gamma$ comes from something in
+$M_\gamma$. Thus the class represented by $n$ comes from something in
+$M_\gamma$. This proves that the kernel is equal to the image.
+
+
+\end{proof}
+
+Now, let us prove that the filtered direct limit of flat modules is flat.
+Suppose that each $M_\alpha, \alpha \in A$ is flat. Consider a short exact
+sequence
+\[ N' \rightarrowtail  N \twoheadrightarrow N'';  \]
+then for each $\alpha$, we have an exact sequence by flatness
+\[ N' \otimes M_\alpha \rightarrowtail  N \otimes M_\alpha \twoheadrightarrow
+N'' \otimes M_\alpha  \]
+whose direct limit is also exact. But the direct limit is 
+\[ \varinjlim N' \otimes M_\alpha \rightarrowtail  \varinjlim N \otimes
+M_\alpha \twoheadrightarrow \varinjlim N'' \otimes M_\alpha  \]
+and by the previous exercise, this is 
+\[  N' \otimes \varinjlim  M_\alpha \rightarrowtail N \otimes \varinjlim 
+M_\alpha \twoheadrightarrow N'' \otimes \varinjlim M_\alpha  \]
+So tensoring by $\varinjlim M_\alpha$ preserves short exact sequences, and we
+have a flat module on our hands. 
+\end{solution}
+
+\begin{solution}[6] 
+It is clear that $A$ is a partially ordered set (it is a subset of the power
+set on $M$, which is a poset under inclusion). To see that it is filtered, we
+must show that any finitely generated submodules $G, H \in A$ have a common
+finitely generated upper bound. But if $G, H$ are finitely generated, then so
+is $G+H \subset M$ (as the image of $G \oplus H$). So $A$ is filtered.
+
+We now need to show that $\varinjlim M_\alpha \simeq M$. First, since each
+$M_\alpha$ maps into $M$ by the canonical inclusion, we have a map
+\[ \varinjlim M_\alpha \to M,  \]
+which is injective, since a class represented by $m$ is just sent to $m$. It is
+also surjective, since every element of $M$ is contained in a finitely
+generated submodule (e.g. the one generated by that element alone).
+
+\end{solution}
+
+\begin{solution}[7] 
+Let $M$ be a flat abelian group. Then if $a \in \mathbb{Z} - \left\{0\right\}$,
+the exact sequence
+\[ 0 \to \mathbb{Z} \stackrel{a}{\to} \mathbb{Z}  \]
+shows that
+\[ 0 \to M \stackrel{a}{\to} M  \]
+is exact, by flatness. In particular, multiplication by $a$ is a monomorphism,
+so $M$ has no $a$-torsion, hence no torsion ($a$ being arbitrary).
+
+Conversely, suppose $M$ is torsion-free. In any case, $M$ is the direct limit
+of its finitely generated subgroups. But each of these finitely generated
+subgroups is torsion free, hence free by the structure theorem for finitely
+generated abelian groups. But a free module is flat.  So $M$ is the direct
+limit of flat modules, hence flat. 
+\end{solution}
+
+
+
+\end{document}
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{verbatim}
+\usepackage{amssymb}
+\usepackage{xy}
+\input xy
+\xyoption{all}
+\usepackage{amsthm}
+%\usepackage{times}
+\usepackage{amsmath}
+
+
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem*{solution}{Solution}
+
+%\newcommand{\mod}{\mathrm{mod}}
+\newcommand{\im}{\mathrm{im}}
+\begin{document}
+
+\title{Problem set 4 for Math 221}
+\author{Akhil Mathew}
+\date{September 29, 2010}
+\newcommand{\spec}{\mathrm{Spec}} 
+\maketitle
+
+
+\begin{solution}[1] 
+Suppose $I$ is the radical of $(e)$ for an 
+an idempotent $e \in R$. We show that $V(I)$ is open and closed. Since $V$ is
+unaffected by passing to the radical, we will assume wlog that
+\[ I = (e).  \]
+
+I claim that $\spec R - V(I)$ is just $V(1-e) = V((1-e))$. This is a closed
+set, so proving this claim will imply that $V(I)$ is open.  Indeed,
+$V(e)=V((e))$ cannot intersect $V(1-e)$ because if
+\[ \mathfrak{p} \in V(e) \cap V(1-e),  \]
+then $e, 1-e \in \mathfrak{p}$, so $1 \in \mathfrak{p}$. This is a
+contradiction since $\mathfrak{p}$ is necessarily prime.
+
+Conversely, suppose that $\mathfrak{p} \in \spec R$ belongs to neither $V(e)$
+nor $V(1-e)$. Then $e \notin \mathfrak{p}$ and $1-e \notin \mathfrak{p}$. So
+the product
+\[ e(1-e)  = e-e^2 = 0  \]
+cannot lie in $\mathfrak{p}$. But necessarily $0 \in \mathfrak{p}$,
+contradiction. So $V(e) \cup V(1-e) = \spec R$. This implies the claim.
+
+Next, we show that if $V(I)$ is open, then $I$ is the radical of $(e)$ for an
+idempotent $e$. For this it is sufficient to  prove:
+
+\begin{lemma} 
+Let $I \subset R$ be such that $V(I) \subset \spec R$ is open. Then $I$
+is principal, generated by $(e)$ for some idempotent $e \in R$.
+\end{lemma} 
+\begin{proof} 
+Suppose that $\spec R - V(I) = V(J)$ for some ideal $J \subset R$. Then the
+intersection $V(I) \cap V(J) = V(I+J)$ is all of $R$, so $I+J$ cannot be a
+proper ideal (or it would be contained in a prime ideal). In particular, $I+J =
+R$. So we can write
+\[ 1 = x + y, \quad x \in I, y \in J.  \]
+
+Now $V(I) \cup V(J) = V(IJ) = \spec R$. This implies that every element of
+$IJ$  is nilpotent by the next lemma.
+
+\begin{lemma} 
+Suppose $V(X)=\spec R$ for $X \subset R$ an ideal. Then every element of $X$ is
+nilpotent.
+\end{lemma}
+\begin{proof} 
+Indeed, suppose $x \in X$ were non-nilpotent.  Then the ring $R_x$ is not the
+zero ring, so it has a prime ideal. The map $\spec R_x \to \spec R$ is, as
+discussed in class, a homeomorphism of $\spec R_x$ onto $D(x)$.  So $D(x)
+\subset \spec R$ (the collection of primes not containing $x$) is nonempty. In
+particular, there is $\mathfrak{p} \in \spec R$ with $x \notin \mathfrak{p}$,
+so $\mathfrak{p} \notin V(X)$. So $V(X) \neq \spec R$, contradiction.
+\end{proof} 
+
+Return to the proof of the main result.  We have shown that $IJ$ is nilpotent.  
+In particular, in the expression $x+y=1$ we had earlier, we have that $xy$ is
+nilpotent.  Say $(xy)^k = 0$. Then expand
+\[ 1 = (x+y)^{2k} = \sum_{i=0}^{2k} \binom{2k}{i}x^i y^{2k-i} = \sum' + \sum''  \]
+where $\sum'$ is the sum from $i=0$ to $i=k$ and $\sum''$ is the sum from
+$k+1$ to $2k$. Then $\sum' \sum'' = 0$ because in every term occurring in the
+expansion, a multiple of $x^k y^k$ occurs. Also, $\sum' \in I$ and $\sum'' \in
+J$ because $x \in I, y \in J$.
+
+All in all, we find that it is possible to write
+\[ 1 = x' + y', \quad x' \in I, y' \in J, \ x'y' = 0.  \]
+(We take $x' = \sum', y' = \sum''$.)
+Then $x'(1-x') = 0$ so $x' \in I$ is idempotent. Similarly $y' = 1-x'$ is. 
+We have that 
+\[ V(I) \subset V(x'), \quad V(J) \subset V(y')  \]
+and $V(x'), V(y')$ are complementary by the earlier arguments, so necessarily
+\[ V(I) = V(x'), \quad V(J) = V(y').  \]
+Since an ideal generated by an idempotent is automatically radical, it follows
+that:
+\[ I = (x'), \quad, J = (y').  \]
+\end{proof} 
+
+\end{solution}
+
+\begin{solution}[2] It is sufficient to prove the result for injectivity and
+surjectivity separately. More generally, these will both follow from
+
+
+\begin{lemma} 
+Suppose $R$ is a ring and the $\left\{a_i\right\} \subset R$ generate the unit
+ideal. Suppose 
+\[ M' \stackrel{f}{\to} M \stackrel{g}{\to} M''  \]
+is a sequence of $R$-modules such that for each $i$,
+\[ M'_{a_i} \to M_{a_i} \to M''_{a_i}  \]
+is exact.\footnote{For simplicity of \TeX ing, I have used the notational
+convention of $N_{x}$ to denote $N$ localized at the multiplicative subset
+$\left\{x^n, n \in \mathbb{Z}_{\geq 0}\right\}$.}
+Then the initial sequence is exact.
+\end{lemma} 
+\begin{proof} 
+Suppose $m \in M$ and $g(m)=0$. We have to show that $m = f(m')$ for some $m'
+\in M'$. 
+Now this implies that $g(m/1)=0$ in $M''_{a_i}$ for each $a_i$. By exactness of
+the localized sequence, we have that
+\[ m/1 = f(m'_i)/a_i^{n_i}  \]
+for some $m'_i \in M', n_i \in \mathbb{Z}_{\geq 0}$. This means that for a
+still higher power $m_i$, we have
+\[ a_i^{m_i} m \in f(M') \subset M.  \]
+But the $a_i$ generate the unit ideal. So the $a_i^{m_i}$ do as well.
+
+\begin{lemma} 
+Suppose the $\left\{a_i\right\} \subset R$ generate the unit ideal. Then any
+sequence of powers $\left\{a_i^{m_i}\right\}$ does as well.
+\end{lemma} 
+\begin{proof} 
+Indeed, if we have an expression
+\[ \sum r_i a_i = 1  \]
+then we can raise it to a large power to get
+\[ \left( \sum r_i a_i   \right)^N =1.  \]
+If $N$ is large, when we expand out all the terms, each of them is a multiple
+of some $a_i$ to a degree at least $m_i$. As a result, the
+$\left\{a_i^{m_i}\right\}$ generate the unit ideal in $R$.
+\end{proof} 
+
+It follows that if $\sum s_i a_i^{m_i}=1$, we have
+\[ m = \sum s_i (a_i^{m_i} m ) \in \sum s_i f(M') \subset f(M').  \]
+
+It follows that anything in the kernel of $g$ lies in the image of $f$. We need
+to show conversely that $g \circ f = 0$, which is easier. Suppose $m' \in M$.
+Then $g \circ f(m'/1) = 0$ in each $M''_{a_i}$, which implies that there exist
+powers $m_i$ such that
+\[  a_i^{m_i}( g \circ f)(m') = 0 \in M \quad \forall i.  \]
+Since the $a_i^{m_i}$ generate the unit ideal as above, say $\sum s_i a_i^{m_i}
+= 1$, we find that
+\[ g(f(m'))= \sum s_i a_i^{m_i} g(f(m')) = 0 \in M''.   \]
+This proves that $g \circ f =0$. And that implies exactness and finishes the
+solution.
+\end{proof} 
+\end{solution}
+
+
+
+\begin{solution}[3] 
+First, $v(x-y)<\infty$ if $x \neq y$, so $x \neq y$ implies
+\[ d(x,y) = e^{-v(x-y)} >0.  \]
+We know that $d(x,x)=0 \ \forall x$ by definition. Thus, we need only check the
+triangle inequality.
+Let $x, y, z \in K$. Then 
+\[ d(x,z) = e^{-v(x-z)} . \]
+However, $v(x-z) \geq \min( v(x-y), v(y-z))$.  As a result, $-v(x-z) \leq \max
+(-v(x-y), -v(y-z))$. It follows by exponentiation that
+\[ d(x,z) \leq \max( d(x,y), d(y,z)) \leq d(x,y) + d(y,z)  \]
+proving the triangle inequality (actually a stronger form).
+
+We show that addition and multiplication as maps $K^2 \to K$ are
+uniformly continuous, and so extend to the completion $K^\vee$.
+Indeed, by translation-invariance of the metric (i.e. $d(x+a, y+a) = d(x,y)$),
+it is sufficient to show continuity of addition at zero.
+\[ d(x+y, 0) = e^{-v(x+y)} \leq e^{\max (-v(x), -v(y))} = \max (e^{-v(x)},
+e^{-v(y)}) \leq \max (d(x,0), d(y,0)).  \]
+As a result, if $x,y$ lie in the $\epsilon$-ball of zero, so does $x+y$. This
+shows that addition is continuous at $(0,0) \in K^2$. So it is
+uniformly continuous
+everywhere (it follows by translation-invariance that if $d(x,x') ,
+d(y,y')<\epsilon$, then $d(x+y, x'+y')<\epsilon$).
+
+Next we do multiplication.  Suppose $x, y \in K$ and $\epsilon>0$. We shall
+find neighborhoods $N_1, N_2 \subset K$
+of $x,y$ such that the product $N_1 N_2$ is contained in the $\epsilon$-ball
+$B_\epsilon(xy)$. 
+Instead of expressing it in terms of $d$, we may as well express the
+neighborhoods $N_1, N_2$ in terms of $v$. 
+Note that if $x', y' \in K$, then
+\[ v(x'y' - xy) \geq \min ( v(x'y - x' y'), v(x'y - xy)) = \min ( v(x') +
+v(y - y'), v(y) + v(x' - x)).  \]
+So if $M>0$ is larger than $v(x)$, and we have
+\[ v( x' - x) \geq M, \  v(y' - y) \geq M,  \]
+then, first of all, $v(x') = v(x)$ by the nonarchimedean property of the
+valuation. Also,
+the above equation shows
+\[ v(x'y' - xy) \geq \min ( v(x) + M, v(y) + M).  \]
+So if $M$ is sufficiently large, we can make
+\[ e^{-\min (v(x)+M, v(y) + M)}  \]
+less than $\epsilon$. Then the neighborhoods $B_{e^{-M}}(x) \times
+B_{e^{-M}}(y)$ is mapped by multiplication into $B_{\epsilon}(xy)$. This proves
+the continuity of multiplication. However, we want uniform continuity, at least
+on bounded sets. 
+
+Note that the choice of $\delta = e^{-M}$ above depended only on $\epsilon$ and
+$v(x), v(y)$.  In particular, if $\epsilon$ is fixed, then multiplication is
+\emph{uniformly} continuous on any bounded set in $K$. It follows that
+multiplication extends to the completion.
+
+Note that the inverse map $K^{*} \to K^{*}$ is continuous on the complement of each ball
+$B_{r}(0)$.  
+Indeed, this follows from the equality
+\[ \frac{1}{x} - \frac{1}{y} = \frac{ y-x}{xy}.  \]
+So if $d(x,y) < \epsilon$ and $x,y \notin B_{r}(0)$, then  $d(1/x, 1/y) <
+r^{-2} \epsilon$. 
+This implies that the inverse map is uniformly continuous on the complement of
+each ball. So it extends to $(K^{\vee})^*$. All the usual laws (associativity,
+etc.) hold on $K^\vee$ because they hold on $K$, and one can extend by
+continuity.
+
+\end{solution}
+
+\begin{solution}[4] 
+We start with:
+
+\begin{lemma} 
+Let $v: K \to G \cup \left\{\infty\right\}$ be a valuation, where $G$ is an
+ordered group. Let $R$ be the valuation ring of $K$ corresponding to $v$ and
+$\mathfrak{p} \subset R$ a prime ideal. Then $P = v(\mathfrak{p}^*)$ has the
+property that if $a_1, a_2 \in G^+$ are positive elements in $G$ and $a_1 + a_2
+\in P$, then one of $a_1, a_2 \in P$.
+
+$P$ also has the property that if $a \in P$ and $b \geq a$, then $b \in P$.
+\end{lemma} 
+We use $\mathfrak{p}^*$ to denote the set of nonzero elements in $\mathfrak{p}$.
+\begin{proof} 
+Indeed, suppose $a_1, a_2$ are as above. Choose $x,y \in R$ such that
+\[ v(x) = a_1, \quad v(y) = a_2.  \]
+Then the valuation of $xy$ is $a_1 + a_2$, so it is the valuation of something
+in $\mathfrak{p}$. In particular, there is $z \in \mathfrak{p}$ such that
+\[ v(xy/z) = 0  \]
+so $xy$ differs from $z$ by a unit in $R$. Thus $xy \in \mathfrak{p}$. So one
+of $x,y \in \mathfrak{p}$.  
+Then one of $a_1 =v(x), a_2 = v(y)$ is in $\mathfrak{p}$.
+
+For the second property, if $b \geq a$ and $a \in P$, then there are $x,y \in
+R$ with $v(x) = b, v(y) = a$, and $y \in \mathfrak{p}$. Since $x/y$ has
+a nonnegative valuation, we have that $x = (x/y)y \in \mathfrak{p}$, so $b \in
+P$.
+\end{proof} 
+
+\begin{lemma} 
+Let $R$ be a valuation ring with valuation $v$ and valuation group $G$.
+Suppose $I, I'$ are two ideals such that $v(I^*) = v(I'^*) \subset G$. Then $I = I'
+$.
+\end{lemma} 
+We use $I^*$ to denote the nonzero elements in $I$.
+
+\begin{proof} 
+Indeed, by symmetry we need only show that $I \subset I'$. Choose $x \in I$.
+There is $y \in I'$ with $v(x) = v(y)$, so $x = y (x/y) \in I'$ because $x/y
+\in R$, having nonnegative valuation.
+\end{proof} 
+
+We can now show the claim of the exercise. Suppose we have a field $K$ with
+valuation $v: K \to \mathbb{R} \cup \left\{\infty\right\}$, and $R$ is the
+valuation ring. Let $\mathfrak{p} \subset \mathfrak{q}$ be a proper inclusion of
+prime ideals. Suppose $\mathfrak{p} \neq 0$.
+Then $v(\mathfrak{p}^*)$ is a nonempty subset of $\mathbb{R}_{+}$ (it cannot
+contain zero because $\mathfrak{p}$ contains no units). 
+It must be an interval because if it contains $x$, it contains $[x, \infty)$ by
+the first lemma. But in fact it is $(0, \infty)$, because if $x \in
+v(\mathfrak{p}^*)$, then also $x/2 \in v(\mathfrak{p}^*)$. So $v(\mathfrak{p})$
+cannot be bounded below by any positive number, implying that it is $(0,
+\infty)$. The same reasoning shows that $v(\mathfrak{q}^*) = (0, \infty)$, so
+the second lemma implies $\mathfrak{p} = \mathfrak{q}$. 
+\end{solution}
+
+\begin{solution}[5] 
+Suppose $a+b \sqrt{n} \in \mathbb{Q}[\sqrt{n}]$ (for $a,b \in \mathbb{Q}$) is
+an algebraic integer for $n$ square-free. Then so is the conjugate
+\[ a - b \sqrt{n}  \]
+because conjugation preserves algebraic integers (if $a+b\sqrt{n}$ is the root
+of some monic integer polynomial equation, so are its conjugates). Thus the sums
+\[ a-b\sqrt{n} + a + b\sqrt{n} = 2a  \]
+and
+the product
+\[ (a-b\sqrt{n})(a+b\sqrt{n}) = a^2 - nb^2  \]
+are algebraic integers. Since these lie in $\mathbb{Z}$, which is integrally
+closed, we have that $2a, a^2 - nb^2 \in \mathbb{Z}$. 
+
+Suppose now $a \in \mathbb{Z}$. Then $nb^2 \in \mathbb{Z}$. Since $n$ is
+squarefree, this implies that $b \in \mathbb{Z}$.
+
+Suppose $a \notin \mathbb{Z}$. This means that $a = k + 0.5$ for some $k \in
+\mathbb{Z}$. In particular, $a^2$ is an integer (namely, $k^2 + k$) plus $\frac{1}{4}$,
+so $a^2 \equiv \frac{1}{4} \mod \mathbb{Z}$. 
+Now if (as has to then happen) $nb^2 \equiv \frac{1}{4} \mod \mathbb{Z}$, it must be that $b = m +
+\frac{1}{2}$ for some $m \in \mathbb{Z}$. 
+Indeed, it is clear that $b \notin \mathbb{Z}$, but if $b$ were divisible by
+some other prime $p \neq 2$, then the $p$-adic valuation of $nb^2$ would be
+$-1$ or $-2$. But the $p$-adic valuation of $nb^2$ has to be at least zero
+since it is an integer plus $\frac{1}{4}$.
+
+
+Then 
+\[ nb^2 = n (m^2 + m) + \frac{n}{4} \equiv \frac{n}{4} \mod \mathbb{Z}.  \]
+If $n=3$, this cannot happen since this must be congruent to $\frac{1}{4}$. So $a \in \mathbb{Z}$, and by the previous
+paragraph, $b \in \mathbb{Z}$. So every element of $\mathbb{Q}(\sqrt{n})$ which
+is integral over $\mathbb{Z}$ is in $\mathbb{Z}[\sqrt{n}]$, and conversely, it
+is evident that this ring is integral over $\mathbb{Z}$. 
+
+If $n=1$, it can \emph{happen} that an integral element does not have integral
+elements. If $a = k + \frac{1}{2}, b = m +  \frac{1}{2} $ for some $k,m \in
+\mathbb{Z}$, then $a+b\sqrt{n}$ is integral over $\mathbb{Z}$ because in the
+equation 
+\[ (x - (a+b\sqrt{n}))(x - (a-b\sqrt{n})) = 0  \]
+or
+\[ x  - 2a x + (a^2 - nb^2) = 0,  \]
+both coefficients are integral (the last one by the computation above).
+Conversely, the reasoning above shows that the only integral elements that can
+occur with one of $a,b$ not integral is the case with $a,b$ both an integer
+plus one half. So 
+the integral closure of $\mathbb{Z}[\sqrt{n}]$ is 
+\[ \mathbb{Z} \left[ \frac{1+\sqrt{n}}{2} \right]  \]
+
+
+\end{solution}
+\end{document}
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{verbatim}
+\usepackage{amssymb}
+\usepackage{xy}
+\input xy
+\xyoption{all}
+\usepackage{amsthm}
+%\usepackage{times}
+\usepackage{amsmath}
+
+
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem*{solution}{Solution}
+
+%\newcommand{\mod}{\mathrm{mod}}
+\newcommand{\im}{\mathrm{im}}
+\begin{document}
+
+\title{Problem set 5 for Math 221}
+\author{Akhil Mathew}
+\date{October 9, 2010}
+\newcommand{\spec}{\mathrm{Spec}} 
+\maketitle
+
+\begin{solution}[1] 
+Suppose $f: M \to N$ is a module homomorphism with $(R, \mathfrak{m})$ local.
+Suppose $\overline{f}: M/\mathfrak{m}M \to N/\mathfrak{m}N$ is surjective and
+$N$ is finitely generated. Then to say that $\overline{f}$ is surjective is the
+same as saying that $f(M)$ generates $N$ modulo $\mathfrak{m}N$, i.e. that
+\[ f(M) + \mathfrak{m}N = N.  \]
+In particular, if we quotient by $f(M)$, we have
+\[ \mathfrak{m}(N/f(M)) = N/f(M),  \]
+so by Nakayama's lemma applied to the f.g. module $N/f(M)$, we see that
+$N/f(M)$ is zero. So $f(M) = N$. 
+
+(This argument is perhaps simplified by noting that tensoring with
+$R/\mathfrak{m}$ preserves cokernels.)
+
+Now we need a counterexample when $N$ is not finitely generated.  Consider the
+local ring $R = \mathbb{Z}_{(2)}$ of $\mathbb{Z}$ localized at the prime
+$(2)$. The maximal ideal of  $R$ is the principal ideal $(2) \subset R$. We 
+have an $R$-module $\mathbb{Q}$. Note that $2\mathbb{Q} = \mathbb{Q}$. In
+particular, $\mathbb{Q}/2\mathbb{Q} = 0$.  So if $0 \to \mathbb{Q}$ is the
+canonical inclusion, then the map induced by tensoring with $R/(2)$ is
+surjective (it is just $0 \to 0$) though the initial map is not surjective. 
+\end{solution}
+
+\begin{solution}[2] Let $\mathfrak{m} \subset R$ be the maximal ideal. Fix a
+finitely generated projective $R$-module $P$.  Let $\overline{x_1}, \dots, \overline{x_n} \in
+P/\mathfrak{m}P$ be a $R/\mathfrak{m}$-basis for the vector space
+$P/\mathfrak{m}P$. We can lift this to a collection of elements $x_1, \dots, x_n
+\in P$. The map 
+\[ R^n \to P  \]
+sending a vector $(r_i)$ to $\sum r_i x_i$ is surjective by the exercise above
+(it is surjective when you tensor with $R/\mathfrak{m}$).  Consider the kernel
+$K \subset R^n$. We have an exact sequence
+\[ 0 \to K \to R^n \to P \to 0.  \]
+By projectivity, it splits, so there is a surjection $R^n \twoheadrightarrow
+K$. In particular, $K$ is finitely generated.
+
+Now tensor products preserve split exact sequences, as they preserve direct
+sums. So the sequence
+\[ 0 \to K/\mathfrak{m} K \to R^n/\mathfrak{m}R^n \to P/\mathfrak{m}P \to 0  \]
+is exact.
+But the last map is an isomorphism because $\overline{x_1}, \dots,
+\overline{x_n}$ was a basis. So $K/\mathfrak{m}K  = 0$. By Nakayama's lemma,
+$K=0$ and $R^n \simeq P$, proving the result.
+\end{solution}
+\newcommand{\ann}{\mathrm{ann}}
+
+
+\begin{solution}[3] 
+I claim that we can reduce to the case of $R$ local.
+Indeed:
+\newcommand{\ass}{\mathrm{Ass}}
+\newcommand{\supp}{\mathrm{supp}}
+\begin{enumerate}
+\item Localization commutes with the calculation of associated primes:
+$\ass(S^{-1} M) = \left\{S^{-1}\mathfrak{p}, \mathfrak{p} \in \ass(M)
+\mathrm{ \ and \ } \mathfrak{p} \cap S = \emptyset \right\}$.
+\item  In the same way, support commutes with the formation of associated
+primes. 
+\item The functor $\hom$ commutes with localization for finitely generated modules over a
+noetherian ring. That is,
+\[ S^{-1}\hom_R(M, N) \simeq \hom_{S^{-1}R}(S^{-1}M, S^{-1}N).  \]
+\end{enumerate}
+So it is enough to prove the result by localizing at each prime of $R$. 
+In particular, we may assume that $R$ is \emph{local} and $\mathfrak{p}$ is
+the maximal ideal. (Then it will follow that for any ring $R$ and modules
+$M,N$, the result is true for $R_{\mathfrak{p}}, M_{\mathfrak{p}},
+N_{\mathfrak{p}}$, for \emph{every} prime $\mathfrak{p}$.)
+
+We are to show:
+\begin{quote}
+$\mathfrak{p} \in \ass(\hom_R(M,N))$ if and only if $M_{\mathfrak{p}} = M \neq
+0$ and $\mathfrak{p} \in \ass(N)$. 
+\end{quote}
+
+Suppose first that $\mathfrak{p} \in \supp(M) \cap \ass(N)$.
+Now there is an injective map $f: R/\mathfrak{p} \hookrightarrow N$. Moreover
+we have that $M/\mathfrak{p}M \neq 0$ by Nakayama. So there is a surjection of
+vector spaces
+\[ M/\mathfrak{p}M \twoheadrightarrow R/\mathfrak{p},  \]
+which when composing with $M \twoheadrightarrow M/\mathfrak{p}M$ and
+$R/\mathfrak{p} \hookrightarrow N$ leads to a map
+\[ M \to N.  \]
+If multiplication by $a$, i.e.  $a: N \to N$, annihilates this map, then it
+must annihilate $R/\mathfrak{p} \hookrightarrow N$ because the other maps were
+surjective, and conversely. 
+But this happens if and only if $a \in \mathfrak{p}$ because the annihilator of
+$R/\mathfrak{p} \to N$ must be $\mathfrak{p}$ (the map being injective, but
+coming out of $R/\mathfrak{p}$). 
+
+Conversely, let us suppose $\mathfrak{p} \in \ass(\hom_R(M,N))$. Say
+$\mathfrak{p} = \ann(f)$ for $f: M \to N$.  Again, we
+are supposing $R$ local with maximal ideal $\mathfrak{p}$. 
+Let $g_1, \dots, g_r \in M$ be generators. Then the annihilator of $f$ is the
+intersection of the annihilators of the $f(g_i)$:
+\[ \ann(f) = \bigcap \ann(f(g_i)).  \]
+Now $\ann(f)$ is a maximal ideal $\mathfrak{p}$. So the annihilators of
+$f(g_i)$, which contain $\mathfrak{p}$, are either $\mathfrak{p}$ or $R$, and
+at least one must be $\mathfrak{p}$. We have seen thus that $\mathfrak{p} \in
+\ass(N)$. 
+
+It is also clear that $M \neq 0$, or $\hom(M,N)=0$ could have no associated
+primes. This in turn implies that $\mathfrak{p} \in
+\supp(M)$, $R$ being local and $\mathfrak{p}$ being the maximal ideal.
+This shows the reverse inclusion. 
+\begin{comment}
+
+
+Suppose $M ,N$ are f.g. $R$-modul
+es and $\mathfrak{p}$ is an associated prime
+of $N$ and lies in the support of $M$. Then there is an injection
+$R/\mathfrak{p} \to N$, and $M_{\mathfrak{p}} \neq 0$.
+Call this map $f$; then if $af = 0$, we have $a \in \mathfrak{p}$.
+
+Consider $M_{\mathfrak{p}}/\mathfrak{p}M_{\mathfrak{p}}$; this is not zero by
+Nakayama's lemma. But this is a vector space over the field
+$R_{\mathfrak{p}}/\mathfrak{p}R_{\mathfrak{p}}$. So there is a nonzero map
+\[ M_{\mathfrak{p}}/\mathfrak{p} M_{\mathfrak{p}} \to R/\mathfrak{p}. \]
+The composite 
+\[ M \to M_{\mathfrak{p}} \to M_{\mathfrak{p}}/\mathfrak{p}M_{\mathfrak{p}}
+\to R_{\mathfrak{p}}/\mathfrak{p}R_{\mathfrak{p}} \to N_{\mathfrak{p}}   \]
+is not zero.  Call this map
+\[ \phi: M \to N_{\mathfrak{p}}.  \]
+Since $M$ is finitely generated, we can clear denominators. More precisely,
+there is $r \in R - \mathfrak{p}$ such that the composite
+\[ q  \]
+
+there is an element $x \in M$ which is not annihilated by something not in
+$\mathfrak{p}$. That is, for this $x$, we have $\ann(x) \subset \mathfrak{p}$.
+There is thus a nonzero map
+\[ A /\mathfrak{p} \to M.  \]
+
+\end{comment}
+\end{solution}
+
+\begin{solution}[4] 
+Let $R $ be noetherian, and let $I \subset R[[X]]$ be an ideal.
+
+For each $n \in \mathbb{Z}_{\geq 0}$, we consider the set $I_n \subset R$
+consisting of all elements $r \in R$ which occur in the form
+\[ r x^n + \dots \ (\mathrm{higher \ terms}) \in I \subset R[[x]].  \]
+I claim that:
+\begin{enumerate}
+\item Each $I_n$ is an ideal. 
+\item We have $I_n \subset I_{n+1}$ for each $n$.
+\end{enumerate}
+
+Indeed, suppose $r, s \in I_n$. Then there are power series $rx^n + \dots,
+sx^n  + \dots \in I$; then their sum $(r+s) x^n  + \dots \in I$, so $r+s \in
+I_n$. 
+By similar logic, it follows that $I_n$ is an ideal (because $I \subset R[[x]]$
+is and we can multiply power series by constants in $R$).
+
+Next, suppose $x \in I_n$. Then there is a power series $rx^n + \dots \in I$;
+it follows that this multiplied by $x$, i.e. $rx^{n+1} + \dots$, lies in $I$.
+So $r \in I_{n+1}$ as well. We have shown this inclusion. 
+
+Since the $I_n$ form an ascending chain of ideals in $R$, they stabilize by
+noetherianness.  There is an $N$ such that $I_m  = I_N$ for all $m > N$. 
+Also, every single $I_n$ is finitely generated by noetherianness again.
+
+Choose a finite set $S$ of power series $r X^N + \dots$ whose leading
+terms generate $I_N$. We can do this by noetherianness. 
+Finally, for each $n<N$, choose a finite set $S_n$ of power series $rx^n +
+\dots $ whose leading terms (in degree $n$) generate $I_n$. 
+I claim that
+\[ T = S \cup \bigcup_{n< N}  S_n  \]
+generates $I$. 
+
+\begin{lemma} 
+Suppose $f = rx^d + \dots$ is a power series in $I$. Then there are polynomials
+$P_t\}_{t \in T}$ such that
+\[ f - \sum_{t \in T} P_t t \in I  \]
+has lowest degree at least $d+1$. Moreover, the $P_t$ can be taken to have
+nonzero terms in degree $d-N$ and up only.
+\end{lemma} 
+\begin{proof} 
+Suppose first $f$ has degree $d<N$. Then the leading coefficient $r \in I_d$.
+So we can find  a linear combination of the $S_d$ with coefficients in $R$ such
+that when we subtract this linear combination from $f$, we get something in
+degrees $d+1$ and higher only. This handles the first case.
+
+Suppose $f$ has degree $d \geq N$. Then the leading coefficient $r$ belongs to
+$I_d = I_N$. In particular, there are elements $r_q \in R, \forall q \in  S_N$, such
+that
+\[ f - \sum_{q \in S_N} r_q X^{d-N} q   \]
+has degrees $d+1$ and up. Since the powers of $X$ chosen were $d-N$, it follows
+that we have satisfied the degree condition. (We take the multipliers of the
+terms in $T - S_N$ to be zero.)
+\end{proof} 
+
+We can now show that $T$ generates $I$. Fix $f \in I$. For each $t \in T$, and $n \in
+\mathbb{N}$, we construct a polynomial $P_{t,n}$ inductively by the above
+lemma such that
+\[ f - \sum_{t \in T} P_{t,1} t \in (X) \subset R[[X]]  \]
+and more generally 
+\[ \left(f - \sum_{t \in T, k \leq n-1} P_{t, k} t \right) - \sum_{t \in T} P_{t, n}t \in (X^n)
+\subset R[[X]]. \]
+The above lemma states that if we have constructed the $\left\{P_{t,n-1}
+\right\}_{t \in T}$, we can construct the $P_{t, n}$. Moreover, we can choose things such that the lowest degree of $P_{t,n}$ is at least
+$N-n$. So the  partial sums of the $\sum P_{t,k} t$ in $k$ become closer and
+cloer approximations to $f$. Now the sums $\sum_k P_{t,k}$ converge for each $t
+\in T$ because of the conditions on the degree. It follows that
+\[ f - \sum_{t \in T} t \left( \sum_{k} P_{t,k}  \right) \in \bigcap (X^n)
+\subset R[[X]], \]
+so this must be zero. It follows that $f$ belongs to the ideal generated by $T$. 
+Since $f$ was arbitrary, this shows that $I$ was finitely generated
+\end{solution}
+
+\begin{solution}[5] 
+Suppose that every prime ideal of $R$ is finitely generated. Suppose $S$ is the
+set of ideals in $R$ which are not finitely generated. Suppose $S \neq
+\emptyset$, i.e. $S$ is not noetherian.
+
+I claim that every chain in $S$ has a maximal element. Indeed, let $I_t, t \in
+T$ be a totally ordered set. Then $\bigcup_t I_t$ is an ideal, as the union of
+a totally ordered set of ideals (this is a familiar argument). Moreover, it is not 
+finitely generated. If it were finitely generated, say with generators $a_1,
+\dots, a_n$, then each of these would lie in some ideals $I_{t_1}, \dots,
+I_{t_n}$. The largest one $I_T$ (remember, this set is totally ordered), contains all
+of the $a_i$. In particular $I_T \supset (a_1, \dots, a_n) = \bigcup I_t$. So
+the chain stabilizes at $I_T$, and $I_T = (a_1, \dots, a_n)$ is finitely generated, contradiction.
+
+In any case, we can now use Zorn's lemma to argue that there is an ideal
+maximal with respect to being not finitely generated. Call this ideal $I$.
+
+I claim, however, that such an $I$ is actually finitely generated. This will
+contradict what we have just seen. By assumption, $I$ is not prime.  Suppose $a, b
+\in R$ with $a,b \notin I$ and $ab \in I$. 
+Then $(I, a), (I: a)$ properly contain $I$ so are finitely generated. Here
+$(I:a)$ is the ideal
+\[ \left\{y: ya \in I\right\} \supset (I, b).  \]
+
+Suppose $(I, a)  = (a, q_1, \dots, q_r)$. We can always assume $a$ is one of
+the generators. Then, by excising multiples of $a$ from the other generators,
+we can assume that each $q_i \in I$. It follows that each $x \in I$ can be
+written as 	
+\[ x = ta + \sum t_i q_i, \quad t, t_i \in R.  \]
+This almost says that $I$ is generated by the $\left\{t_i\right\}$. But in fact
+we have the extra term $ta$ occurring. However, we know that $ta \in I$. So $t
+\in (I:a)$. In particular, if we take a finite set $\left\{r_j\right\}$ of
+generators of $(I:a)$, then $t$ can be written in as a linear combination $\sum
+u_j r_j$. It follows that
+\[ x \in ( \left\{ar_j\right\}, \left\{q_i\right\}).  \]
+This finite set of elements lying in $I$ (recall that $ar_j \in (I:a)(a)
+\subset I$) must therefore generate $I$. So $I$ is
+finitely generated, a contradiction. 
+\end{solution}
+
+
+\end{document}
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{verbatim}
+\usepackage[left=1.2in, right=1.2in, top=1in, bottom=1in]{geometry}
+\usepackage{amssymb}
+\usepackage{xy}
+\input xy
+\xyoption{all}
+\usepackage{amsthm}
+%\usepackage{times}
+\usepackage{amsmath}
+
+
+\newtheorem{proposition}{Proposition}
+
+\newcommand{\cont}{\mathrm{cont}}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem*{solution}{Solution}
+
+%\newcommand{\mod}{\mathrm{mod}}
+\newcommand{\im}{\mathrm{im}}
+\begin{document}
+
+\title{Problem set 6 for Math 221}
+\author{Akhil Mathew}
+\date{October 14, 2010}
+\newcommand{\spec}{\mathrm{Spec}} 
+\maketitle
+
+\begin{solution}[1] 
+Suppose the contrary. Consider the set $\mathcal{S}$ of closed subsets of $X$ which
+\emph{cannot} be written as a finite union of irreducible closed sets.
+ So $\mathcal{S} \neq \emptyset$.
+
+\begin{lemma} Let $X$ be noetherian. Suppose $\mathcal{F}$ is a nonempty family
+of closed subsets of $X$. Then it has a minimal element.
+\end{lemma}
+
+\begin{proof} 
+Suppose otherwise. Then, choose $F_1 \in \mathcal{F}$; it is not minimal, so
+it properly contains $F_2 \in \mathcal{F}$. Repeating, we see that  there would be a descending sequence
+\[ F_1 \supset F_2 \supset \dots \in \mathcal{F}  \]
+of closed sets $F_i$, with the inclusions proper. This contradicts the
+noetherian hypothesis (which equivalently states that every descending chain of
+closed sets stabilizes). 
+\end{proof} 
+
+Returning to the main statement, we see that $\mathcal{S}$ has a minimal element $F$, which
+is a closed subset of $X$. $F$ cannot be irreducible or it would be the union
+of one irreducible closed subset and thus not in $\mathcal{S}$, so $F = F_1
+\cup F_2$ for some $F_1, F_2 \subsetneq F$. But by minimality $F_1, F_2 \notin
+\mathcal{S}$. So there are expressions
+\[ F_1 = G_1 \cup \dots G_k  \]
+and
+\[ F_2 = H_1 \cup \dots H_l  \]
+that express $F_1, F_2$ as finite unions of irreducible closed subsets.
+Combining, we find
+\[ F = G_1 \cup \dots \cup G_k \cup H_1 \cup \dots \cup H_l,  \]
+so $F \notin \mathcal{S}$, a contradiction. 
+\end{solution}
+
+
+\begin{solution}[2] 
+
+We start with:
+\begin{lemma}[Gauss's lemma] Suppose $R$ is a unique factorization domain with
+quotient field $K$.
+Suppose $f \in R[X]$ is irreducible in $R[X]$ and there is no nontrivial common divisor of
+the coefficients of $f$. Then $f$ is irreducible in $K[X]$.
+\end{lemma} 
+\newtheorem*{definition}{Definition}
+With this in mind, we say that a polynomial in $R[X]$ is \textbf{primitive} if
+the coefficients have no common divisor in $R$.
+
+\begin{proof} Indeed, suppose we had a factorization
+\[ f = gh,  \quad g, h \in K[X], \]
+where $g,h$ have degree $\geq 1$. 
+Then we can clear denominators to find a factorization
+\[ rf  = g' h'  \]
+where $r \in R - \left\{0\right\}$ and $g', h' \in R[X]$. By clearing
+denominators as little as possible, we may assume that $g',h'$ are primitive. 
+To be precise, we divide $g', h'$ by their \emph{contents.} Let us define:
+
+\begin{definition} 
+The \textbf{content} $\cont (f)$ of a polynomial $f \in R[X]$ is the greatest common
+divisor of its coefficients.  The content of an element $f$ in $K[X]$ is defined
+by considering $r \in R$ such that $rf \in R[X]$, and taking $\cont(rf)/r$.
+This is well-defined, modulo elements of $R^*$, and we have $\cont(sf) = s \cont f$ if $s \in K$.
+\end{definition}
+
+To say that the content lies in $R$ is to say that the polynomial is in $R[X]$;
+to say that the content is a unit is to say that the polynomial is primitive. 
+Note that a monic polynomial in $R[X]$ is primitive.
+
+So we have:
+\begin{lemma} 
+Any element of $K[X]$ is a product of $\cont(f)$ and something primitive in
+$R[X]$.
+\end{lemma} 
+\begin{proof} 
+Indeed, $f/\cont(f)$ has content a unit.  It therefore cannot have anything in the
+denominator. Indeed, if it had a term $r/p^i X^n$ where $r ,p \in R$ and $p
+\nmid r$ is prime, then the content would divide $r/p^i$. It thus could not be
+in $R$. 
+\end{proof} 
+
+\begin{lemma} 
+$\cont(fg) = \cont(f) \cont(g)$ if $f,g \in K[X]$. 
+\end{lemma} 
+\begin{proof} 
+By dividing $f,g$ by their contents, it suffices to show that the product of
+two primitive polynomials in $R[X]$ (i.e. those with no common divisor of all
+their coefficients) is itself primitive. Indeed, suppose $f,g$ are primitive
+and $p \in R$ is a prime. Then $\overline{f}, \overline{g} \in R/(p)[X]$ are
+nonzero. Their product $\overline{f}\overline{g}$ is also not zero because
+$R/(p)[X]$ is a domain, $p$ being prime. In particular, $p$ is not a common
+factor of the coefficients of $fg$. Since $p$ was arbitrary, this completes the
+proof.
+\end{proof} 
+
+So return to the main proof. We know that $f =  gh$. We divided $g,h$ by their
+contents to get $g', h' \in R[X]$. We had then
+\[ r f = g' h', \quad r \in K^*.  \]
+Taking the contents, and using the fact that $f, g', h'$ are primitive, we have then:
+\[ r = \cont(g') \cont(h') = 1 \quad \mathrm{(modulo \ } R^*).  \]
+But then $f = r^{-1} g' h'$ shows that $f$ is not irreducible in $R[X]$,
+contradiction. 
+\end{proof} 
+
+
+Let $R$ be a ring. Recall that an element is \textbf{irreducible} if it admits
+no nontrivial factorization. The product of an irreducible element and a unit
+is irreducible.
+Call a ring \textbf{finitely irreducible} if every element in the ring admits a
+factorization into finitely many irreducible elements. 
+
+\begin{lemma} 
+A ring $R$ is finitely irreducible if every ascending sequence of
+\emph{principal} ideals in $R$ stabilizes.
+
+In particular, every noetherian ring is finitely irreducible.
+\end{lemma} 
+\begin{proof} 
+Suppose  $R$ satisfies the ascending chain condition on principal ideals. Then
+let $x \in R$. We would like to show it can be factored as a product of
+irreducibles. 
+So suppose $x$ is not the product of finitely many irreducibles. In particular,
+it is reducible: $x = x_1 x_1'$, where neither factor is a unit. One of this
+cannot be written as a finite product of irreducibles. Say it is $x_1$.
+Similarly, we can write $x_1 = x_2 x_2''$ where one of the factors, wlog $x_2$,
+is not the product of finitely many irreducibles. Repeating inductively gives
+the ascending sequence
+\[ (x) \subset (x_1) \subset (x_2) \subset \dots,  \]
+and since each factorization is nontrivial, the inclusions are each nontrivial.
+This is a contradiction.
+\end{proof} 
+
+\begin{lemma} 
+Suppose $R$ is a UFD. Then every ascending sequence of principal ideals in
+$R[X]$ stabilizes.  In particular, $R[X]$ is finitely irreducible.
+\end{lemma} 
+\begin{proof} 
+Suppose $(f_1) \subset (f_2) \subset \dots \in R[X]$. Then each $f_{i+1} \mid
+f_{i}$. In particular, the degrees of $f_i$ are nonincreasing, and consequently
+stabilize. Thus for $i \gg 0$, we have $\deg f_{i+1} = \deg f_i$.
+We can thus assume that all the degrees are the same. In this case, if $i \gg
+0$ and $k>0$, 
+$f_{i}/f_{i+k} \in R[X]$ must actually lie in $R$ as $R$ is a domain. 
+In particular, throwing out the first few elements in the sequence if
+necessary, it follows that our sequence looks like
+\[ f, f/r_1, f/(r_1r_2), \dots \]
+where the $r_i \in R$. However, we can only continue this a finite amount of
+time before the $r_i$'s will have to become units since $R$ is a UFD. (Or $f
+ = 0$.) 
+So the sequence of ideals stabilizes. 
+\end{proof} 
+
+\begin{lemma} 
+Every element in $R[X]$ can be factored into a product of irreducibles.
+\end{lemma} 
+\begin{proof} Now evident from the preceding lemmata.
+\end{proof} 
+Suppose $P$ is an irreducible element in $R[X]$. I claim that $P$ is prime.
+There are two cases:
+\begin{enumerate}
+\item $P \in R$ is a prime in $R$. Then we know that $P \mid f$ if and only if
+the coefficients of $f$ are divisible by $P$. In particular, $P \mid f$ iff $P
+\mid \cont (f)$. It is now clear that $P \mid fg$ if and only if $P$ divides
+one of $\cont(f), \cont(g)$ (since $\cont(fg) = \cont(f) \cont(g)$). 
+\item $P$ does not belong to $R$. Then $P$ must have content a unit or it would
+be divisible by its content. 
+So $P$ is irreducible in $K[X]$ by the above reasoning. 
+
+Say we have an expression
+\[ P \mid fg, \quad f,g \in R[X].  \]
+Since $P$ is irreducible, hence prime, in the UFD (even PID) $K[X]$, we have
+that $P $ divides one of $f,g$ in $K[X]$. Say we can write
+\[ f = q P , q \in K[X].  \]
+Then taking the content shows that $\cont(q) = \cont(f) \in R$, so $q \in
+R[X]$. It follows that $P \mid f$ in $R[X]$. 
+\end{enumerate}
+
+We have shown that every element in $R[X]$ factors into a product of prime
+elements. From this, it is clear that $R[X]$ is a UFD (same argument as for
+$\mathbb{Z}$).
+\end{solution}
+
+\begin{solution}[3] We will start with the following
+
+
+\begin{proposition} 
+Let $R$ be a ring and $I$ a nilpotent ideal. Let $P$ be a finitely generated
+projective $R/I$-module. Then there is a finitely generated projective
+$R$-module $P'$ such that $P' \otimes_R R/I \simeq P$.
+\end{proposition} 
+\begin{proof} 
+A finitely generated projective module over a ring $S$ is described by an
+idempotent in the ring $\hom_S(S^n, S^n) = M_n(R)$.  Given such an idempotent
+$e$, we can construct a projective module as the image of $e: S^n \to S^n$. 
+Conversely, every f.g. projective module arises in this way.
+
+Let $S \to T$ be  a morphism of rings. Then there is a functor from the
+category of finitely generated projective $S$-modules to the category of f.g.
+projective $T$-modules by the tensor product. On idempotents, this comes from
+the map
+\[ M_n(S) \to M_n(T)  \]
+induced by $S \to T$.
+
+In particular, to show the proposition, it is sufficient to show (since we can
+apply this to $(M_n(R), M_n(I)$):
+\begin{lemma}[Lifting idempotents]
+Suppose $I \subset R$ is a nilpotent two-sided ideal, for $R$ any\footnote{Not
+necessarily commutative.} ring. Let
+$\overline{e} \in R/I$ be an idempotent. Then there is an idempotent $e
+\in R$ which reduces to $\overline{e}$.
+\end{lemma} 
+
+Note that if $J$ is a two-sided ideal in a noncommutative ring, then so are the
+powers of $J$.
+
+\begin{proof} Let us first assume that $I^2 = 0$. 
+We can find $e_1 \in R$ which reduces to $e$, but $e_1$ is not necessarily
+idempotent.
+By replacing $R$ with $\mathbb{Z}[e_1]$ and $I$ with $\mathbb{Z}[e_1] \cap I$,
+we may assume that $R$ is in fact commutative. 	
+However, 
+\[ e_1^2 \in e_1 + I.  \]
+Suppose we want to modify $e_1$ by $i$ such that $e = e_1 + i$ is
+idempotent and $i \in I$; then $e$ will do as in the lemma. We would then
+necessarily have
+\[ e_1 + i = (e_1 + i)^2 = e_1^2 + 2e_1 i\quad \mathrm{as} \ I^2 =0 .  \]
+In particular, we must satisfy
+\[ i(1-2e_1) = e_1^2 - e_1  \in I. \]
+
+I claim that $1 - 2e_1 \in R$ is invertible, so that we can solve for $i \in I$. 
+However, $R$ is commutative. It thus suffices to check that $1 - 2e_1$ lies in
+no maximal ideal of $R$. But the image of $e_1$ in $R/\mathfrak{m}$ for any
+maximal ideal $\mathfrak{m} \subset R$ is either zero or one. So $1 - 2e_1$ has
+image either $1$ or $-1$ in $R/\mathfrak{m}$. Thus it is invertible. 
+
+This establishes the result when $I$ has zero square. In general, suppose $I^n
+= 0$. We have the sequence of noncommutative rings:
+\[ R \twoheadrightarrow R/I^{n-1} \twoheadrightarrow R/I^{n-2} \dots
+\twoheadrightarrow R/I. \]
+The kernel at each step is an ideal whose square is zero. Thus, we can use the
+lifting idempotents partial result proved above each step of the way and left
+$\overline{e}  \in R/I$ to some $e \in R$. 
+\end{proof} 
+
+The proposition is now clear.
+\end{proof} 
+\newcommand{\pic}{\mathrm{Pic}}
+
+By the remarks above about projectives corresponding to idempotent matrices, it is also clear
+that:
+\begin{proposition} Let $R$ be a commutative ring and $I \subset R$ a nilpotent
+ideal.
+Every f.g. projective $R/I$-module can be obtained by reducing mod $I$ a f.g.
+projective $R$-module.
+\end{proposition} 
+
+
+Now, finally, let us prove the corresponding result for \emph{invertible}
+modules, which is the content of the exercise. 
+Let $M $ be an invertible $R/I$-module. We  will produce $M' \in \pic(R)$ with
+$M' \otimes_R R/I \simeq M$. We can choose $M'$ satisfying $M'/IM' \simeq M$
+with $M$ f.g. \emph{projective} by the above discussion. It remains to be seen that
+any such $M'$ is necessarily invertible.
+
+\begin{lemma} 
+Suppose $M'$ is a f.g. projective $R$-module such that $M'/IM'$ is invertible over
+$R/I$. Then $M'$ is invertible over $R$. ($I$ denotes a nilpotent ideal, as
+above.)
+\end{lemma} 
+\begin{proof} 
+Indeed, $M'_{\mathfrak{p}}$ is free over $R_{\mathfrak{p}}$ for each $\mathfrak{p} \in R$; it is also
+finitely presented (as the direct summand in a f.g. free module). 
+It must be of rank one, though, since
+\[ M'_{\mathfrak{p}} \otimes_{R_{\mathfrak{p}}}
+R_{\mathfrak{p}}/\mathfrak{p}R_{\mathfrak{p}} \simeq (M'/IM')\otimes_{R_{\mathfrak{p}}}
+R_{\mathfrak{p}}/\mathfrak{p}R_{\mathfrak{p}} \simeq
+R_{\mathfrak{p}}/\mathfrak{p}R_{\mathfrak{p}}   \]
+is of rank one over the residue field. (The rank is uniquely determined.)
+Indeed, we have used the fact that $I \subset \mathfrak{p}$, so reduction mod
+$I$ does not affect the reduction mod $\mathfrak{p}$, and the fact that
+$M'/IM'$ is invertible over $R/I$. 
+\end{proof} 
+\end{solution}
+
+\newcommand{\pic}{\mathrm{Pic}}
+\begin{solution}[4] 
+Let us consider the pull-back diagram of commutative rings:
+\[ \xymatrix{
+& \ar[rd] A \ar[ld] &  \\
+A_1 \ar[rd]^{\phi} & & A_2 \ar[ld]^{\psi} \\
+& B
+}.\]
+Under the assumption that $\phi, \psi$ are surjective, our job is to produce
+the exact sequence of abelian groups
+\[ 0 \to A^* \to A_1^* \oplus A_2^* \to B^* \to \pic(A) \to \pic(A_1) \oplus
+\pic(A_2) \to \pic(B). \]
+
+\subsection*{Step 1}
+The first map $A^* \to A_1^* \oplus A_2^*$ is obtained from the two maps $A^*
+\to
+A_1^* , A^* \to A_2^*$. Note that the map $R \to R^*$ is a covariant functor
+from the category of commutative rings to the category of abelian groups.
+
+\subsection*{Step 2} The map $A_1^* \oplus A_2^* \to B^*$ is obtained from the
+two natural maps $A_1^* \to B^*, A_2^* \to B^* \stackrel{x \to x^{-1}}{\to} B^*$ obtained from maps of rings. 
+
+\subsection*{Step 3} The map $B^* \to \pic(A)$ is a little more complicated.
+Let $b \in B^*$. Consider the subgroup $L_b$ of $A_1 \times A_2$ defined by
+$\left\{(a_1, a_2) \in A_1 \times A_2: \phi(a_1) = b \psi(a_2)\right\}$. 
+This is an $A$-module. Indeed, a pair $(a_1', a_2')$ belongs to $A$ precisely
+when $\phi(a'_1) = \psi(a'_2)$. Clearly multiplying an element of $L_b$ by
+something in $A$ cannot pull the element out of $L_b$.  
+
+It takes a little work to check that this is indeed well-defined and a
+homomorphism. 
+We shall divide this into several sub-steps.
+
+\begin{enumerate}
+\item $L_b$ is isomorphic to $A$ if $b$ belongs to the image of $A_1^* \oplus
+A_2^*$. Indeed, suppose $b = \phi(r)\psi(s)$ for $r \in A_1^*, s \in A_2^*$.
+Then consider the map
+\[ A \to  L_b, \quad (a_1, a_2) \to (ra_1, s^{-1}a_2).  \]
+It is evident that this is an isomorphism (with inverse $(a_1, a_2) \to
+(r^{-1}a_1, s^{-1}a_2)$). 
+\item The map $A \to B$, which we denote by $\Phi$, is surjective. This is clear: the map $A \to A_1$ is
+surjective (pull-backs of surjective maps are surjective, as an easy argument
+shows), and $A_1 \to B$ is surjective.
+\item Fix $b \in B^*$. Then there are $f_1, \dots, f_k \in A$ generating the
+unit
+ideal in $A$ such that for each $i$, 
+$b$ (or rather its image in $B_{\Phi(f_i)}$) lies in the image of 
+\[ (A_{f_i})^* \to (B_{\Phi(f_i)})^*. \]
+In particular, while $b$ itself cannot necessarily be lifted to a unit in $A$,
+it can locally, in a certain sense. 
+
+This is actually part of a more general fact:
+\begin{lemma}[Local lifting of units]
+Let $A \stackrel{\Phi}{\twoheadrightarrow} B$ be a surjection of commutative
+rings. Let $b \in B^*$. Then there exist $f_1, \dots, f_k \in A$ generating the
+unit ideal such that in the map
+\[ A_{f_i} \to B_{\Phi(f_i)},  \]
+the image of $b$ can be lifted to a unit in $A_{f_i}$.
+\end{lemma} 
+\begin{proof} 
+For each prime $\mathfrak{p} \subset B$, with $\mathfrak{q} \subset A$ the
+inverse image, we have a \emph{local homomorphism}
+\[ A_{\mathfrak{q}} \to B_{\mathfrak{p}}.  \]
+However, a surjective local homomorphism of local rings induces a surjection of 
+the units. Indeed, if $R \to S$ is a local homomorphism of local rings, then
+something in $R$ is a unit iff its image in $S$ is  a unit.
+
+So since $b \in (B_{\mathfrak{p}})^*$, there exists $a_{\mathfrak{p}} \in
+(A_{\mathfrak{q}})^*$ mapping to $b$. 
+Now this means that there is $a'_{\mathfrak{p}} \in A_{\mathfrak{q}}$ with
+$a_{\mathfrak{p}}a_{\mathfrak{p}}' = 1$ (in the ring $A_{\mathfrak{q}}$). 
+This equality must hold true in some $A_{f}$ for some $f \in A - \mathfrak{q}$. Indeed, we
+take $f$ sufficiently divisible that it contains the denominator of $a'$, and
+such that the equation $a_{\mathfrak{p}}a_{\mathfrak{p}}' = 1$ still holds in $A_{f}$. We can also choose $f$
+sufficiently divisible by things not in $\mathfrak{q}$ such that $a$ still maps
+to $b$ in this localization. 
+
+Anyway, we know that $\mathfrak{q} \in D(f)$ as chosen above. These various
+$D(f)$'s that one gets as one varies $\mathfrak{p}$ (and consequently
+$\mathfrak{q}$) must cover the image of $\spec B$. So if $B = A/I$, then the
+$D(f)$ cover $V(I)$. This is a quasi-compact set as it is homeomorphic to
+$\spec B$ though. 
+
+\newcommand{\rad}{\mathrm{rad}}
+So we have a finite
+number of elements $f_1, \dots, f_m$ and elements $a_i \in (A_{f_i})^*$ 
+mapping to $b$ in these localizations. However, the $D(f_i)$ need not cover
+$\spec A$---i.e., the $f_i$ needn't generate the unit ideal. 
+Nevertheless, consider the complement 
+\[ \spec A  - \bigcup D(f_i).  \]
+This is a closed subset of $\spec A$, and consequently quasi-compact. We can
+thus cover it by a finite number of $D(f_i), m+1 \leq i \leq k$ each of which
+does not intersect the closed subset $V(I)$. (This means that $f_i \in
+\rad(I)$.)
+It follows that in the map
+\[ A_{f_i} \to B_{\Phi(f_i)},  \]
+the latter ring is zero, as its $\spec$ is $D(f_i) \cap V(I) = \emptyset$, but
+the former is not.\footnote{Or use the fact that each $f_i, i>m$, lies in
+$\rad(I)$.} In particular, the image of $b$
+in $B_{\Phi(f_i)}$ is zero. So any unit in $A_{f_i}$ will be a lifting of $b$.
+This proves the lemma. 
+\end{proof} 
+We now resume the proof of the main claim: that the map $B^* \to \pic(A)$ is
+well-defined and a homomorphism.
+\item 
+ The formation of $L_b$ commutes nicely with localization. More precisely, let
+ $f \in A$; then $A_1, A_2, B$ can all be localized at $f$ (or its images; we
+ shall occasionally blur this distinction). I claim that 
+ \[ ( L_b )_{f_i}= \left\{ (a_1, a_2) \in (A_1)_{f_i} \times (A_2)_{f_i}
+ \ \mathrm{s.t. } \ \phi(a_1) = b \psi(a_2). \right\} . \]
+
+ The reason for this is that localization is an exact functor. We can represent
+ $L_b$ as  the kernel of 
+ \[ A_1 \oplus A_2 \stackrel{\phi - b \psi}{\to} B. \]
+ In particular, $(L_b)_f$ is representable as a similar kernel, which means
+ that it is obtained as claimed, which is to say the $L_b$ obtained when one
+ uses the rings $B_f, (A_1)_f, (A_2)_f$.
+\item $L_b$ is invertible. Indeed, the previous lemma implies that there is a
+ covering of $\spec A$ by basic open sets $D(f_i)$ (with the
+ $\left\{f_i\right\}$ generating the unit ideal), such that the map $A_{f_i}
+ \to B_{\Phi(f_i)}$ sends a unit into $b$.  
+ Let us localize at each $f_i$. 
+Then we know that $(L_b)_f$ is the same thing as the $L_b$ obtained from the
+rings $A_f, (A_1)_f, (A_2)_f, B_f$ (which form a cartesian square as
+localization is an exact functor). 
+However, we have see that in this case, $(L_b)_f$ is actually free of rank one because $b$
+lifts to a unit in $A_f$. 
+\item Finally, we take the last sub-step in defining $B^* \to \pic(A)$. Namely,
+we show that it is a homomorphism, i.e.
+\[ L_b \otimes_A L_{b'} \simeq L_{bb'}.  \]
+We can start by defining the map, or equivalently, an $A$-bilinear map $L_b
+\times L_{b'} \to L_{bb'}$. Namely, we send a pair of pairs $((a_1, a_2),
+(a_1', a_2'))$ to $(a_1 a_1', a_2 a_2')$. It is clear that this defines a
+bilinear map. 
+
+Now we need to check that this is an isomorphism. It is enough to do this
+locally. In particular, we may assume that $b, b'$ come from units $(q_1,
+q_2), (q_1', q_2')$ in $A$. Then
+$L_b \otimes_A L_{b'}$ is free of rank one, generated by $(q_1, q_2) \otimes
+(q_1', q_2')$. 
+But then the image $(q_1 q_1', q_2 q_2') \in L_{bb'}$ is given by a pair of
+units in $A$, so it (as is easily seen by arguments similar to those used to
+show that $L_b$ was free) is a generator. In particular, we have an isomorphism
+of free modules of rank one. This establishes the claim. 
+\end{enumerate}
+
+We are now done with Step 3.
+
+\subsection*{Step 4} There are maps $\pic(A) \to \pic(A_1), \pic(A) \to
+\pic(A_2)$ obtained by tensoring with $A_1, A_2$. 
+More generally, given a ring-homomorphism $R \to S$, there is always a map
+$\pic(R) \to \pic(S)$ obtained by tensoring with $S$. The fact that a module is
+$R$-invertible implies that it is locally free, so when tensoring with $S$, we
+get something locally free. The direct sum of 
+\[ \pic(A) \to \pic(A_1), \quad  \pic(A) \to \pic(A_2) \stackrel{-1}{\to}
+\pic(A_2) \]
+is our next map. 
+
+\subsection*{Step 5}
+The map $\pic(A_1) \oplus \pic(A_2) \to \pic(B)$ is obtained by taking the
+direct sum of the two natural tensor product maps
+\[ \pic(A_1) \to \pic(B), \quad \pic(A_2) \to \pic(B).  \]
+
+We now move to checking exactness of the sequence thus defined.
+
+\subsection*{Step 6: Exactness at $A^*$} This simply says that the map $A^* \to A_1^*
+\oplus A_2^*$ is injective. Since this is basically a restriction of the
+inclusion $A \hookrightarrow A_1 \oplus A_2$, this is evident.
+
+\subsection*{Step 7: Exactness at $A_1^* \oplus A_2^*$} It is evident from the
+definitions that the composite $A^* \to A_1^* \oplus A_2^* \to B^*$ is zero
+because the map $A_2^* \to B^*$ involved inversion, and the fact that $A$ is
+the pull-back of $A_1 , A_2 \to B$.
+Conversely, if something $(a_1, a_2) \in A_1^* \oplus A_2^*$ maps to zero in
+$B^*$, this means that
+\[ \phi(a_1) = \psi(a_2).  \]
+So $(a_1, a_2) \in A$ after all. Since it is also true that $\phi(a_1^{-1}) =
+\psi(a_2^{-1})$, $(a_1, a_2) \in A^*$. This establishes exactness.
+
+\subsection*{Step 8: Exactness at $B^*$}
+
+First, we check that the map $A_1^* \oplus A_2^* \to B^* \to \pic(A)$ is zero.
+This is evident, though, from what we have shown earlier (substep 1 of step 3) about $L_b$ being
+trivial if $b$ lifts to a unit in $A_1$ times a unit in $A_2$. 
+
+To complete the proof of exactness at this step, we now have to show:
+\begin{lemma} 
+$L_b$ is free only if the $b$ lies in the image of $A_1^* \oplus A_2^* \to B$.
+\end{lemma} 
+\begin{proof} 
+Suppose $L_b$ is free with generator $(a_1, a_2) \in L_b \subset A_1 \oplus
+A_2$. This means that if $(c_1, c_2)$ are such that $\phi(c_1) = b \psi(c_2)$,
+then $(c_1, c_2)$ is a multiple of $(a_1, a_2)$. 
+
+I claim that both $a_1$ and $a_2$ are units in $A_1, A_2$---so that $b = \phi(a_1)
+\psi(a_2^{-1})$ is in the image of $A_1^* \oplus A_2^*$. Indeed, note that
+there are elements of $L_b$ where the first element is a unit. For instance, we
+could consider $(1, \mathrm{lift}(b^{-1}))$ where $\mathrm{lift}$ denotes some
+lifting of $b^{-1} \in B$ to $A_2$. 
+If some $A$-multiple of $(a_1, a_2)$ is $(1, \mathrm{lift}(b^-1))$, then it
+follows that $1$ is an $A_1$-multiple of $a_1$. So $a_1$, and similarly $a_2$,
+is a unit. 
+\end{proof} 
+
+\subsection*{Step 9: Exactness at $\pic(A)$}
+Let us first check that any element of $\pic(A)$ of the form $L_b, b \in B^*$
+goes to zero in $\pic(A_1), \pic(A_2)$. As we said earlier, tensoring $L_b$
+with $A_1, A_2$ correspond to the projections on the first (resp. second)
+factors. That is, $L_b \otimes_A A_1 = L_b \otimes_A Ae = L_b e = \im(L_b \to
+A_1)$. This is all of $A_1$ though. Indeed, given $a_1 \in A_1$, choose $a_2
+\in A_2$ such that $\psi(a_2) = b^{-1}\phi(a_1)$, which is legal because $\psi$
+is surjective. Then $(a_1, a_2) \in L_b$ projects to $a_1$. Similarly for the
+second coordinate. 
+
+Conversely, suppose given $M \in \pic(A)$ which is trivial when tensored by
+$A_1, A_2$. We have to show that it is a $L_b$. However, we have isomorphisms
+\[ M \otimes_A A_1 \simeq A_1, \quad M \otimes_A A_2 \simeq A_2.  \]
+We get two isomorphisms
+\[ M \otimes_A B \simeq B, \quad M \otimes_A B \simeq B.  \]
+They must differ by a unit  $b$ in $B$ since the only isomorphisms of $B$ onto
+itself (as $B$-modules) are multiplications by units. 
+
+Let us consider 
+\[ L_b = \left\{(a_1, a_2): \phi(a_1) = b \psi(a_2)\right\}  .\]
+There is a map $M \to L_b$ sending $m$ to $(m \otimes 1, m \otimes 1)$. Here $m
+\otimes 1$ is interpreted first as an element of $M \otimes_A A_1$ and second
+as an element of $M \otimes_A A_2$. This map is clearly an isomorphism if $M$
+is free. Since the formation of this map commutes with localization, and the
+property of isomorphism can be checked locally, it follows that $M$ is $L_b$
+for the $b$ constructed above. Note that $b$ was chosen \emph{globally}.
+We have gotten exactness here too.
+
+\subsection*{Step 10: Exactness at $\pic(A_1) \oplus \pic(A_2)$} Finally, we
+check exactness at the last step. Since the two maps $A \to A_1 \to B, A \to
+A_2 \to B$ are the same, it follows that a module $M $ can be base-changed from
+$A$ to $B$ in only one real way. 
+Thus the composite is zero.
+
+The hard part is the converse. Suppose $M_1 \in \pic(A_1), M_2 \in \pic(A_2)$
+are modules. Suppose we have an isomorphism $t: M_1 \otimes_{A_1} B \simeq M_2
+\otimes_{A_2} B$. We need to ``glue'' $M_1, M_2$ into one $M \in \pic(A)$ which
+when tensored with $A_1, A_2$ yields $M_1, M_2$. 
+
+For this, we define 
+\[ M = \left\{(m_1, m_2): t(m_1 \otimes 1) = m_2 \otimes 1 \right\}.  \]
+This is an $A$-module, evidently, from the definitions. Moreover, we have maps
+$M \to M_1, M \to M_2$ defined naturally, which commute with localizations.
+These induce natural maps $M \otimes_A A_1 \to M_1, M \otimes_A A_2 \to M_2$,
+which commute with localizations.  We want to show that these are isomorphisms
+and that $M$ is locally free.
+
+In the case where $M_1, M_2$ are free, to which the general case can be
+reduced, we have that $t$ is just multiplication by a unit $b: B \to B$ (where
+$b \in B^*$) and then $M = L_b$. So in this case $M$ is locally free.
+We have seen earlier that the maps $L_b \otimes_A A_i \to A_i$ are isomorphisms
+for $i = 1,2$. This special case implies the general case by localization. 
+\end{solution}
+
+\end{document}
+\subsection*{Step 9: Exactness at $\pic(A)$} First, we check that the composite
+$B^* \to \pic(A) \to \pic(A_1) \oplus \pic(A_2)$ is zero. To do this, it is
+sufficient to show that $L_b \otimes_A A_1, L_b \otimes_A A_1$ are trivial. 
+Now there are idempotents $e, e' \in A_1 \times A_2$ (generally not in $A$) such that $A_1 = Ae, A_2 =
+Ae'$. For instance, we could take $(1, 0), (0, 1) \in A_1 \times A_2$. It
+follows that
+\[ L_b \otimes_A A_1 = L_b \otimes_A Ae = (L_b) e = A_1  \]
+because $L_b$ projects surjectively onto $A_1$, and similarly for $A_2$. So the
+composite is zero. 
+
+Next, we show that if $L$ is an invertible $A$-module such that $L \otimes_A
+A_1, L \otimes_A A_2$ are trivial over $A_1, A_2$, then $L$ is isomorphic to a $L_b$ for some
+$b$. We can assume, first of all, that $L$ is contained as a submodule of $A$
+(by Theorem REF in Eisenbud). So we can assume, more generally, that $L \subset
+A_1 \oplus A_2$.
+To say that $L \otimes_A Ae, L \otimes_A Ae'$ are principal is to say that the
+projections of $L$ onto the first and second coordinates are principal ideals
+in $A_1, A_2$, and that those principal ideals are generated by nonzerodivisors. 
+
+Now we want to arrange it so that the projections are all of $A_1, A_2$. This
+we do as follows. 
+Suppose the projection of $L$ onto $A_1 \subset A_1 \oplus A_2$ is $(d)$ where
+$d \in A_2$ is a nonzerodivisor. Then we define the modified $L'$ via
+\[ L' = \left\{(a_1, a_2) : ( da_1, a_2) \in L \right\} . \]
+There is an isomorphism of $A$-mdoules $L' \simeq L$ sending $(a_1, a_2) \to
+(da_1, a_2)$. Also, the projection of $L'$ onto the first axis is all of $A_1$.
+We can do the same for $A_2$. 
+Let us throw out $L$ and replace it with $L'$.
+
+We thus have the following situation. $L$ is an invertible $A$-submodule of
+$A_1 \oplus A_2$. Moreover, the projections of $L$ onto the first and second
+axes are surjective. We are to show that $L$ is equal to one of the $L_b$. 
+For this, consider $(a_1, a_2) \in L$ with at least one coefficient (say the
+first $a_1$) a unit;
+then consider $\psi(a_2) \in B$. I claim that it is a unit.
+Indeed, if not, then reducing the image of $(a_1, a_2)$ in $B \times B$ modulo some
+maximal ideal $\mathfrak{n}$ in $B$ gives $(\mathrm{nonzero}, \mathrm{zero})$. But choosing an
+element $(a_1', a_2') \in L$ with $a_2'$ a unit, we can choose something so
+as to have that  the image in $B$ modulo the maximal ideal $\mathfrak{n}$ is
+$(\mathrm{something}, \mathrm{nonzero})$. These two vectors in
+$(B/\mathfrak{n})^2$ are linearly independent, so the image of $L$ in $B^2$
+has, after suitable reduction, rank two; this contradicts $L$'s being
+invertible (and consequently locally free of rank one). 
+
+We are now in the following situation. We have $L$ as above, and we know that
+if $(u, v) \in L$ with $u_1 \in A_1$ a unit, then $\psi(v)$ is a unit. It
+follows that the line spanned by $(u,v)$ gets mapped into
+\[ L_b \quad \mathrm{for} \quad b = \psi(v) \phi(u)^{-1} \in B^*.  \]
+Consider another pair $(u',v') \in L$ where this time $v'$ is a unit. Then the
+line spanned by this is contained in a different $L_{b'}$. However, a siimlar
+linear independence argument as above shows that $b = b'$. 
+
+I claim now that, up to elements in $\ker \phi \cap \ker \psi \subset L_b$, anything in $L$
+is a sum of multiples of $(u,v)$ and $(u', v')$. This will show that $L$ is 
+contained in $L_b$. The reason is that given $(x,y) \in L$, 
+we subtract a multiple of the first $(u,v)$ to excise the first coordinate. 
+
+However, I claim that $L = A(u,v) + \ker \Phi$. The reason is that 
+
+\end{solution}
+
+
+
+\end{document}
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{verbatim}
+\usepackage[left=1.5in, right=1.5in, top=1in, bottom=1in]{geometry}
+\usepackage{amssymb}
+\usepackage{xy}
+\input xy
+\xyoption{all}
+\usepackage{amsthm}
+%\usepackage{times}
+\usepackage{amsmath}
+
+
+\newtheorem{proposition}{Proposition}
+
+\newcommand{\cont}{\mathrm{cont}}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem*{solution}{Solution}
+
+%\newcommand{\mod}{\mathrm{mod}}
+\newcommand{\im}{\mathrm{im}}
+\begin{document}
+
+\title{Problem set 6 for Math 221}
+\author{Akhil Mathew}
+\date{October 23, 2010}
+\newcommand{\spec}{\mathrm{Spec}} 
+\maketitle
+
+\begin{solution}[1] 
+If $R  = \prod R_i$ for a finite product of domains, then
+\[ K(R) = \prod K(R_i),  \]
+as the nonzerodivisors are the elements in $\prod R_i$ each of whose components
+is nonzero. Localizing at this subset allows one to insert nonzero denominators
+in each $R_i$ factor. 
+
+\begin{lemma} Suppose $R = \prod R_i$ is any finite product of domains.
+Let $x = (x_i) \in K(R)$, where each $x_i \in K(R_i)$. Then $x$ is integral
+over $R$ iff each $x_i$ is integral over $R_i$.
+\end{lemma} 
+\begin{proof} 
+An element $a$ is integral over a ring $S$ iff $S[a]$ is a finite $S$-module.
+We need to show that $R[x]$ is a finite $R$-module iff each $R_i[x_i]$ is  a
+finite $R_i$-module. 
+
+Suppose $R[x]$ is a finite $R$-module. Then $R_i[x_i] $ is a quotient of $R[x]$
+under projection on the $i$th factor, so it is a finite $R$-module. Hence it is
+a finite $R_i$-module, as everything in $R$ acts on $R_i[x_i]$ by its
+projection to $R_i$.  (There is a surjection $R \twoheadrightarrow R_i$ in an
+obvious way.)
+
+If each $R_i[x_i]$ is finite as an $R_i$-module, then the direct sum $R[x]
+\simeq \bigoplus R_i[x_i]$ is finite too.
+\end{proof} 
+
+It follows that a direct product of integrally closed domains is integrally
+closed. 
+ 
+Let us now do the other direction. Since $R$ is normal, it is reduced. Thus it
+embeds in a direct product of fields $\prod K_i$ which is its total ring of
+fractions $K(R)$ (as discussed in class). I claim that if
+$(x_i) \in \prod K_i$ is in the image of $R$, so is $(0, 0, \dots,
+x_i, 0, \dots, 0)$. The reason is 
+the following. The idempotent elements $e_i = (0, \dots, 1, \dots, 0) \in \prod
+K_i = K(R)$ satisfy the integral  equations
+\[ e_i^2 - e_i = 0  \]
+which implies that they lie in $R$ itself.
+So if $x = (x_i)$ is in the image of $R$, so is $(0, 0, \dots, x_i, \dots,
+0)$ because this is what one gets by multiplying $x$ by $e_i$.
+So this lies in $R$ as $R$ is integrally closed in the quotient ring.
+
+ In particular, the image of $R$ is a
+product of rings $R_i \subset K_i$, which are necessarily domains, and we can
+write $R = \prod R_i$.
+
+In particular, we are in the same situation as before. $R$ is  a subring $\prod
+R_i$ of a product $\prod K_i$ of fields, and $R$ is integrally closed in $\prod
+R_i$.
+We also know that since the total quotient ring of $R$ is $\prod K_i$, then
+necessarily the quotient field of $R_i$ is $K_i$. 
+This implies that each $R_i$ is integrally closed in $K_i$ by the above lemma.
+
+
+It follows that $R$ is  the product of the integrally closed domains $R_i$.
+
+\end{solution}
+
+\begin{solution}[2] 
+\textbf{In this solution $x$ denotes an element of a field, and $t$ an
+indeterminate.}
+
+By the Cayley-Hamilton theorem, $x $ satisfies its characteristic polynomial as
+a transformation $x_L: L \to L$, hence as an element of $L$ (because the map $L
+\to \hom(L, L), x \to x_L$ is faithful). The characteristic polynomial is (by
+linear algebra) always monic with first term $t^{[L:k]}$. So if this characteristic  
+polynomial has $R$-coefficients, then $x$ satisfies a monic equation in the
+polynomial ring $R[t]$.
+This means that $x$ is integral over $R$.
+
+Conversely, suppose $x$ is integral over $R$. Now $R[x] \subset L$ is a domain
+with quotient field $K(x)$ contained in $L$. 
+
+\begin{lemma} 
+The characteristic polynomial of $x: K(x) \to K(x)$ has coefficients in $R$ if
+$x$ is integral over $K$.
+\end{lemma} 
+\begin{proof} 
+Indeed, $R[x] \subset K(x)$ has quotient field $K(x)$. In particular, let the
+degree be $d$; this is the degree of the irreducible polynomial $p(t)$ that $x$ satisfies
+over $K$. Note that $p(t)$ can be taken monic with coefficients in $R$ because
+$R$ is integrally closed.\footnote{\begin{lemma} 
+Let $R$ be an integrally closed domain with quotient field $K$, $F/K$ a finite
+extension, and $w \in F$ integral over $R$. Then the irreducible monic polynomial of
+$w$ has coefficients in $R$.
+\end{lemma} 
+\begin{proof} 
+These coefficients are just the elementary symmetric functions in the
+conjugates of $w$, so are integral over $R$. But they lie in $K$ by definition
+of the minimal polynomial. So they are in $R$.
+\end{proof} 
+}
+The set
+\[ 1, x, \dots, x^{d-1} \subset K(x) \]
+is a $K$-basis for $K(x)$ since the irreducible polynomial has degree $d$. 
+Let us compute the action of $x: K(x) \to K(x)$ in this basis:
+\[ x (x^i) = x^{i+1}, i < d-1, \quad, x^{d} = -c_1 x^{d-1} - \dots - c_d  \]
+where the $c_i$'s are the coefficients of $p(t)$. We see that multiplication by
+$x$ can be represented by a matrix with coefficients in $R$ if we use this
+basis. It follows that
+the characteristic polynomial of this operator, as a determinant of a matrix in
+$R[t]$, has coefficients in $R$ (i.e. is in $R[t]$).
+\end{proof} 
+
+The next lemma will imply that the characteristic polynomial of $x: L \to L$ is
+a power of the characteristic polynomial of $x: K(x) \to K(x)$, and hence that
+this polynomial is in $R[t]$.
+
+\begin{lemma} 
+Suppose $k \subset L \subset F$ is an inclusion of fields. Suppose $x \in L$.
+Let $P_L, P_F$ be the characteristic polynomials of multiplication by $x$ on
+the $k$-vector spaces $L, F$. Then
+\[ P_F = P_L^{[F:L]}.  \]
+\end{lemma} 
+\begin{proof} 
+Consider a basis $e_1, \dots, e_{[F:L]}$ of $F/L$. Consider the decomposition
+\[ F = \bigoplus L e_i  \]
+of $L$-vector spaces (and consequently $k$-vector spaces). This decomposition
+is preserved by the multiplication map $x: F \to F$. The characteristic
+polynomial of $x: F \to F$ is thus the product of the characteristic
+polynomials of the maps $x: Le_i \to Le_i$.  
+
+However, for each $i$, there is a commutative diagram of $k$-vector spaces
+(even $L$-spaces)
+\[ 
+\xymatrix{
+L \ar[d]^{\simeq} \ar[r]^{x} & L \ar[d]^{\simeq}  \\
+Le_i \ar[r]^{x} &  Le_i
+}
+\]
+where the vertical isomorphisms are multiplication by $e_i$. It follows that
+the characteristic polynomial of $x$ on $Le_i$ is the same as the
+characteristic polynomial of $x$ on $L$. This completes the proof.
+\end{proof} 
+
+\end{solution}
+
+
+\begin{solution}[3] 
+Let $S \subset L$ be the integral closure of $R$ in $L$.
+
+\begin{lemma} 
+$S$ has quotient field $L$. More precisely, if $\xi \in L$, then there is $x
+\in R$ such that $x \xi \in S$.
+\end{lemma} 
+\begin{proof} 
+Let $\xi \in L$. Then it satisfies an equation
+\[ a_0 t^{d} + a_1 t^{d-1} + \dots + a_d = 0, \quad a_i \in K.  \]
+By clearing denominators, we may assume that each $a_i \in R$. 
+Multiply this by $a_0^{d-1}$: we find 
+\[ (a_0t)^d + a_1 (a_0 t)^{d-1} + a_2 a_0 (a_0 t)^{d-1} + \dots + a_d
+a_0^{d-1} = 0.  \]
+This is a monic equation in $a_0^{d-1}t$, which is thus in $S$.
+\end{proof}
+
+In any case, we see that there is a basis of $L/K$ consisting of elements in
+$S$. 
+Let this basis be denoted $\mathcal{B}$. 
+
+Now $(x,y) \to \mathrm{Tr}(x,y)$ is  a nondegenerate $K$-bilinear form on $L$,
+as in the problem, by separability. 
+Thus $\mathcal{B}$ has a dual basis $\mathcal{B}' \subset L$. Write $\mathcal{B} =
+\left\{e_1, \dots, e_n\right\}, \mathcal{B}' = \left\{f_1, \dots, f_n\right\}$.
+Then by definition, we have
+\[ \mathrm{Tr}(e_i f_j)  = \delta_{ij}.  \]
+
+The next lemma will imply that $S$ is contained in a finitely generated
+$R$-module, and hence by noetherianness, is a finite $R$-module.
+\begin{lemma} 
+$S \subset \sum R f_i$.
+\end{lemma} 
+\begin{proof} 
+Let $x \in S$. Then $\mathrm{Tr}(xe_i) \in R$ for each $i$ since 
+\begin{enumerate}
+\item $xe_i$ is integral over $R$, as $x$ and $e_i$ are. 
+\item The trace of an integral element is integral, so $\mathrm{Tr}(xe_i) \in S
+\cap K$.
+\item $R$ is integrally closed in $K$, so $ S \cap K = R$.
+\end{enumerate}
+Let $\alpha_i = \mathrm{Tr}(xe_i) \in R$. Then I claim that
+\[ x  = \sum \alpha_i f_i.  \]
+The reason is that when we take the ``dot product'' of both sides with
+$e_j$ respect
+to the symmetric bilinear form $(x,y) \to \mathrm{Tr}(xy)$, then we get the
+same values $\alpha_i$, as $\left\{f_i\right\}, \left\{e_i\right\}$ are dual
+bases.
+Namely:
+\[ \mathrm{Tr}(xe_j) = \alpha_j, \quad \mathrm{Tr}( e_i \sum \alpha_i f_j) =
+\sum \delta_{ij} \alpha_i = \alpha_j. \]
+
+Thus $x \in \sum R f_i$. This establishes the lemma.
+\end{proof} 
+
+We still need to show the last part of the exercise. Namely, we must check that
+if $R$ is a Dedekind domain, and $L/K$ is a finite separable extension of the
+quotient field, then the integral closure $S$ of $R$ in $L$ is Dedekind. 
+We already know that $S$ is a finite $R$-module. This implies that it is a
+finitely generated $R$-algebra, hence noetherian.\footnote{This can be seen
+more simply: $S$ is a noetherian $R$-module.} Also, $S$, as the integral
+closure of something, is integrally closed. If $x\in L-S$ were integral over
+$S$, then the transitivity of integral dependence would imply it was integral
+over $R$, hence in $S$.
+
+We now need to check the key condition of a Dedekind domain: namely, that every
+non-zero prime ideal of $S$ is maximal. 	We digress with a lemma.
+
+\begin{lemma} 
+Suppose $R \subset S$ is an integral  extension of domains. Suppose
+$\mathfrak{q}_1 \subsetneq \mathfrak{q}_2$ is a proper extension of prime
+ideals in $S$. Then 
+\[ \mathfrak{q}_1 \cap R \subsetneq \mathfrak{q}_2 \cap R.  \]
+\end{lemma} 
+\begin{proof} 
+Let us quotient $R$ by $R \cap \mathfrak{q}_1$ and $S$ by $\mathfrak{q}_1$.
+Then there is still an injection $R \hookrightarrow S$ which makes $S$ integral 
+over $R$. The claim is then that if $\mathfrak{q}_2 \subset S$ is prime, then
+$\mathfrak{q}_2 \cap R \neq 0$. 
+
+Pick $x \in \mathfrak{q}_2 - \left\{0\right\}$. Then $x$ satisfies an
+irreducible equation in $R[t]$,
+\[  x^d + a_1 x^{d} + \dots + a_d = 0.  \]
+Here each $a_i \in R$ and necessarily $a_d \neq 0$ by irreducibility. But every
+term other than $a_d$ has a power of $x$ so is in $\mathfrak{q}_2$. Thus
+\[ a_d \in \mathfrak{q}_2 \cap R,  \]
+and is nonzero.
+\end{proof} 
+
+Return to the proof that the integral closure of a Dedekind domain in a finite
+separable extension is Dedekind, and keep the  same notation as before.
+Suppose we had an inclusion
+\[ \mathfrak{q}_1 \subsetneq \mathfrak{q}_2 \subsetneq \mathfrak{q}_3 \subset
+S.  \]
+Then the previous lemma implies that there would be an inclusion of primes,
+\[   \mathfrak{q}_1 \cap R \subsetneq \mathfrak{q}_2 \cap R\subsetneq
+\mathfrak{q}_3 \cap R \subset R
+  ,\]
+  which contradicts $R$'s being Dedekind. So every ascending chain of primes in
+  $S$ has length two. Since zero can always be included in every ascending
+  chain, it follows that every nonzero prime in $S$ is maximal.
+\end{solution}
+
+\newcommand{\pic}{\mathrm{Pic}}
+\begin{solution}[4] In this exercise, we write $K_0(R)$ for the $K$-group of $R$,
+and $K$ for the quotient field.
+
+We define $K_0(R) \to \mathbb{Z} \oplus \pic(R)$ below. We start by giving  a
+classification theorem for f.g. projectives over a Dedekind domain $R$.  
+First, if $P$ is a f.g. projective $R$-module, then the \textbf{rank} of $P$ is
+defined as the $K$-dimension of $K \otimes_R P$, where $K$ is the quotient
+field of $R$.
+Since tensoring with $K$ preserves direct sums, and even exact sequences, an
+exact sequence $0 \to P' \to P \to P'' \to 0$ results in the equality
+$\mathrm{rank} P = \mathrm{rank} P' + \mathrm{rank} P''$.
+
+An invertible ideal over any ring is projective (it is locally free and
+finitely presented\footnote{\begin{lemma} 
+Let $R $ be a ring, $M$ a f.p. module over $R$ with $M_{\mathfrak{p}}$
+projective
+for all $\mathfrak{p} \subset R$ prime. Then $M$ is projective.
+\end{lemma}
+\begin{proof} 
+Suppose $F$ is a finitely presented free module and $t: F \twoheadrightarrow M$ a
+surjection of $R$-modules. We will show that it splits. It splits locally at
+each $\mathfrak{p}$ as $M_{\mathfrak{p}}$ is projective. So there is, for each $\mathfrak{p}$, some $s \in \hom_R(M,
+F)_{\mathfrak{p}} = \hom_{R_{\mathfrak{p}}}(M_{\mathfrak{p}},
+F_{\mathfrak{p}})$ such that $ts = 1_{M_{\mathfrak{p}}}$. This means that any
+map $M_{\mathfrak{p}} \to M_{\mathfrak{p}}$ can be lifted (thanks to $s$) to
+$M_{\mathfrak{p}} \to F_{\mathfrak{p}}$.
+In particular, the
+map $\hom_R(M,F) \to \hom(M, M)$ is a surjection after localization at each
+prime, because localization commutes with $\hom$ for f.p. modules. This means
+that $\hom_R(M,F) \to \hom(M,M)$ is  a surjection. This in turn gives a
+splitting $M \to F$.
+\end{proof} 
+}). It is also of rank one, since its localization is not zero ($R$ being a
+domain) but is contained in the quotient field of $R$. Over a
+Dedekind domain, this means that any nonzero ideal is projective (as is $0$). 
+\begin{lemma} 
+Every f.g. projective $R$-module $P$ is a direct sum of ideals. 
+\end{lemma} 
+\begin{proof} 
+Induction on $\mathrm{rank}P$. When $\mathrm{rank} P = 1$, then the injection
+$P \to K \otimes_R P$ (it's an injection, because it is after localizing at
+each prime) shows that $P$ is isomorphic to a submodule of $K$. Since this
+submodule is finitely generated, clearing denominators can bring it inside $R$
+while preserving the isomorphism class. So $P$ is isomorphic to an ideal.
+
+In general, suppose $\mathrm{rank} P >1$. Suppose the result proved for
+modules of smaller rank. Then $P$ is a submodule of some
+$R^n$, so there is a linear functional $R^n \to R$ that doesn't annihilate $P$.
+In particular, there is an $R$-homomorphism
+\[ P \to R,  \]
+whose image is some ideal $I$. Then $P \twoheadrightarrow I$ is surjective, so
+we have a (necessarily split, $I$ being projective) exact sequence
+\[ 0 \to K \to P \to I \to 0.  \]
+Since $P \simeq I \oplus K$ and $\mathrm{rank} K = \mathrm{rank} P -
+\mathrm{rank } I = \mathrm{rank} P - 1$, we can decompose $K$ as a direct sum of
+ideals. Thus we can decompose $P$ as a sum of those ideals and $I$.
+\end{proof} 
+
+
+Next we want some kind of uniqueness.
+\begin{lemma}[Exercise in Eisenbud]
+Let $R$ be a  Dedekind domain and $I_1, \dots, I_n, J_1, \dots, J_m$ nonzero ideals.
+Suppose as $R$-modules
+\[ \bigoplus I_i \simeq \bigoplus J_i.  \]
+Then $\prod I_i $ and $\prod J_i$ are isomorphic as modules, so are the same
+in the ideal class group.
+\end{lemma} 
+\begin{proof} First, $n=m$ because the ranks are the same.
+We need to show that the products of the ideals lie in the same element
+of the class group. Indeed, consider the map on the $n$-th wedge product. There
+is a commutative diagram:
+\[ 
+\xymatrix{
+\wedge^n \bigoplus I_i \ar[d]  \ar[r] &  \wedge^n \bigoplus J_i \ar[d]  \\
+I_1 \otimes I_2 \dots \otimes I_n \ar[d]  \ar[r] & J_1 \otimes J_2 \otimes \dots
+\otimes J_n \ar[d]  \\
+\prod I_i \ar[r] &  \prod J_i
+}
+\]
+Here the first downward map is the projection, since $\wedge^n \bigoplus I_i$ has as
+direct factor 
+the tensor product $\otimes I_i = \otimes \wedge^1 I_i$ by multilinear algebra. The 
+second downward map is the evident multiplication $x_1 \otimes x_2 \dots
+\otimes x_n \to x_1 \dots x_n$.
+
+I claim that the vertical maps are 
+isomorphisms. For this we reduce by localization to the case of the $I_i, J_i$
+principal, when it is evident---just multilinear algebra, as the higher
+wedges of a principal ideal vanish. Now the result is
+clear.
+
+\end{proof} 
+
+So there is a modicum of uniqueness in the above decomposition of a
+projective module into a sum of ideals. We next include a result that states
+that this decomposition can be put in a nice form.
+
+\begin{lemma} 
+If $R$ is Dedekind and $I_1, I_2 \subset R$ are ideals, then
+\[ R \oplus I_1 I_2 \simeq I_1 \oplus I_2.  \]
+\end{lemma} 
+\begin{proof} 
+We can always multiply $I_1, I_2$ by something in $K$; this does not affect
+their isomorphism class or the isomorphism class of their product.
+I claim that there are $a,b \in K$ such that $aI_1, bI_2 \subset R$ are
+relatively prime:
+\[ aI_1 \oplus b I_2 = R. \]
+In particular, we may \emph{assume that $I_1, I_2$ are relatively prime.}
+Granting this, let us prove the lemma for $I_1, I_2$ relatively prime. We have a surjection
+\[ I_1 \oplus I_2 \twoheadrightarrow R  \]
+whose kernel is isomorphic $I_1 \cap I_2$ (embedded in $I_1 \oplus I_2$ via $x
+\to (x, -x)$). The exact sequence must split, and we get
+\[ R \oplus (I_1 \cap I_2) \simeq I_1 \oplus I_2.  \]
+
+Now the Chinese remainder theorem states that $I_1 \cap I_2 = I_1 I_2$. So this
+proves the result modulo the initial assumptions.
+We must find $a,b \in K$ with $aI_1 + bI_2 = R$. Let the primes dividing 
+$I_1$ be $\mathfrak{p}_1, \dots, \mathfrak{p}_r$ and let the orders of
+$I_2$ at these primes be $ n_1, \dots, n_r$. 
+
+Now by the Chinese remainder theorem, we can choose $b' \in R$ such
+that the orders of $b'$ at these primes are precisely $n_1, \dots, n_r$. Then
+we have that $b'^{-1} I_2$ has order zero at every prime dividing $I_1$.
+Unfortunately $b'^{-1}I_2$ is not necessarily contained in $R$. Let the primes
+where $b'^{-1}I_2$ has negative valuation be $\mathfrak{q}_1, \dots,
+\mathfrak{q}_s$; these don't intersect $\mathfrak{p}_1, \dots, \mathfrak{p}_r$. 
+We can choose $b'' \in R$ such that $b''$ is highly divisible at the
+$\mathfrak{q}_i$ and close to one at the $\mathfrak{p}_i$. Then $b'^{-1}b''
+I_2$ has zero valuation at the $\mathfrak{p}_i$ and is contained in $R$. 
+It follows that
+\[ I_1 + b'^{-1}b'' I_2 = R.  \]
+We have achieved the goal, with $a = 1, b = b'^{-1}b''$. The lemma is thus
+proved.
+\end{proof} 
+
+We see from the previous lemmata:
+\begin{proposition} 
+Any f.g. projective module over the Dedekind ring $R$ is isomorphic to a direct sum
+$R^{n-1} \oplus I$ for $I \subset R$ an ideal. $I$ is uniquely determined up to
+an element of the class group. 
+\end{proposition} 
+
+
+We now define $K_0(R) \to \mathbb{Z} \oplus \pic R$. Namely, if $P \simeq
+\bigoplus_{i=1}^N I_i$, we take its image as 
+\[ (N, \prod I_i).  \]
+Here $N$ is the rank of $P$, and $\prod I_i$ denotes the element in the ideal
+class group represented by the product of the ideals. This is well-defined by
+the previous lemmata.
+Indeed, $\prod I_i$ is uniquely determined.
+
+This induces a map on the free group of isomorphism class of f.g. projectives.
+To check that it factors through $K_0(R)$, we must check it factors through
+the relations. I.e., that the iamge of $[M \oplus N]$ is the same as the image of
+$[M]$ plus that of $[N]$.
+This is immediate because if $M = \bigoplus I_i, N = \bigoplus J_j$, then the
+class in $K_0(R)$ of $M
+\oplus N = \bigoplus I_i \oplus \bigoplus J_j$ is mapped to $\prod I_i \prod
+J_j$.
+
+It is evident that the map is surjective: any $(n,0)$ can be obtained (take the
+class of a
+free module $R^n$ or its opposite), as can
+any ideal class $(0, \mathcal{J})$ in the second part (take the image of
+$-[R] + [J]$ where $J$ represents $\mathcal{J}$). We next check
+injectivity. Suppose a sum $\sum \pm [P_i] \in K_0(R)$ maps to zero in 
+maps to zero in $\mathbb{Z} \oplus \pic(R)$.  Collecting terms, we can write this as a difference
+$[P] - [Q] \in K_0(R)$ which maps to zero. I claim that $P \simeq Q$. But
+looking at the first factor $\mathbb{Z}$ shows that $\mathrm{rank} P =
+\mathrm{rank } Q$. So we have
+\[ P \simeq R^s \oplus I, \quad Q \simeq R^s \oplus J  \]
+for ideals $I, J$. Looking at the second coordinate shows that they are
+isomorphic. So $P, Q$ are isomorphic. 
+This means that $[P] = [Q]$ in $K_0(R)$ and proves injectivity.
+\end{solution}
+
+\end{document}
+\documentclass[11pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{verbatim}
+\usepackage{url}
+\usepackage[left=1.5in, right=1.5in, top=1in, bottom=1in]{geometry}
+\usepackage{amssymb}
+\usepackage{xy}
+\input xy
+\xyoption{all}
+\usepackage{amsthm}
+%\usepackage{times}
+\usepackage{amsmath}
+
+
+\newtheorem{proposition}{Proposition}
+
+\newcommand{\cont}{\mathrm{cont}}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem*{solution}{Solution}
+
+%\newcommand{\mod}{\mathrm{mod}}
+\newcommand{\im}{\mathrm{im}}
+\begin{document}
+
+\title{Problem set 8 for Math 221}
+\author{Akhil Mathew}
+\date{November 1, 2010}
+\newcommand{\spec}{\mathrm{Spec}} 
+\maketitle
+\newcommand{\ass}{\mathrm{Ass}}
+
+\begin{solution}[1] 
+Suppose $R$ satisfies the condition in the exercise, i.e. $R_{\mathfrak{p}}$ is
+a DVR for all $\mathfrak{p} \in \ass(R/x)$ with $x \in R$ a nonzerodivisor. Let
+$S$ be the set of nonzerodivisors.
+I claim that $R$ is integrally closed in the quotient ring $S^{-1}R$.
+
+Let $x \in S^{-1}R$ be integral over $R$. We will show that $x \in R$ in fact. 
+Then for all $\mathfrak{p} \in \spec R$, we have a diagram
+\[ 
+\xymatrix{
+R \ar[d]  \ar[r] &  S^{-1} R \ar[d]  \\
+R_{\mathfrak{p}} \ar[r] &  (S^{-1}R)_{\mathfrak{p}}
+}.
+\]
+Now the image of $x$ in $(S^{-1}R)_{\mathfrak{p}}$ is integral over
+$R_{\mathfrak{p}}$. 
+Indeed, integrality is preserved by homomorphisms.
+
+\begin{lemma} 
+$(S^{-1}R)_{\mathfrak{p}}$ is the quotient field of $R_{\mathfrak{p}}$.
+\end{lemma} 
+
+\begin{proof} 
+Localization is a transitive operation. In particular,
+$(S^{-1}R)_{\mathfrak{p}}$ is the same thing as $R_{\mathfrak{p}}$ localized at
+the multiplicative subset which is the image of $S$. 
+
+But the nonzerodivisors in $R_{\mathfrak{p}}$ are just $(R -
+\mathfrak{p})^{-1}$ times $S$. To see this claim, it suffices to show that the
+image of $S$ consists of nonzerodivisors in $R_{\mathfrak{p}}$, and to show
+that anything of the form $\xi/1, \xi \in R$ is a nonzerodivisor in $R_{\mathfrak{p}}$ iff
+$\xi \in S$ (as inverting things in $R-\mathfrak{p}$ doesn't change anything).
+In particular, we have to show that $q/1$ is a zerodivisor in
+$R_{\mathfrak{p}}$ iff $q \in R$ is a zerodivisor.
+In the \emph{noetherian} case, this follows as the zerodivisors are the union
+of the associated primes, and the formation of associated primes commutes
+with localization. I  am not completely sure if this is true otherwise,
+but we do not need it anyway. 
+\end{proof} 
+
+Now the element $x \in S^{-1}R$ integral over $R$ is integral over
+all the localizations $R_{\mathfrak{p}}$. If $\mathfrak{p}$ is associated to a
+nonzerodivisor, this means that $x$ lands in $R_{\mathfrak{p}}$, since a DVR
+is integrally closed. Now we appeal
+to a general lemma proved in class. 
+
+We shall state it here for completeness. Let $M$ be a f.g. module over a
+noetherian ring $R$, and let $S \subset R$ be the multiplicative set of
+nonzerodivisors on $M$. There is an inclusion $M \to S^{-1} M$, and we are
+curious to know when some object $r \in S^{-1}M$ lies in $M$ in fact.
+The answer is that if for each $\mathfrak{p} \in \ass(M/sM), s \in S$, we know
+that the image of $r$ in $(S^{-1} M)_{\mathfrak{p}}$ lies in the image of
+$M_{\mathfrak{p}} \to S^{-1} M_{\mathfrak{p}}$, then $r$ lies in $M$. 
+
+So in our case, it is evident that $x$ must lie in $R \subset S^{-1}R$. This
+proves normality.
+
+\subsection{The other direction}
+Now consider the situation where $R$ is a
+product of normal domains $\prod R_i$. The claim is that to every prime
+$\mathfrak{p}$ associated to a nonzerodivisor, we have that $R_{\mathfrak{p}}$
+is a DVR. We know that $\spec R = \sqcup \spec R_i$.  In other words, any prime
+ideal $\mathfrak{p}$ is of the form $\prod_{i \neq j} R_i \times \mathfrak{p}_j$ 
+for $\mathfrak{p}_j \subset R_j$ a prime ideal. This is because idempotents
+correspond to a disconnection of the spectrum. 
+
+Consider such a prime $\prod_{i \neq j} R_i \times \mathfrak{p}_j$ 
+for $\mathfrak{p}_j \subset R_j$. I claim that localizing at this prime gives
+just $(R_j)_{\mathfrak{p}}$. The reason is that there is an evident morphism
+$(R_j)_{\mathfrak{p}_j} \to R_{\mathfrak{p}}$ from the inclusion $R_j \to R$.
+This is easily seen to be injective, and it is surjective because localizing at
+$\mathfrak{p}$ annihilates the other factors $R_i, i \neq j$. (The point is that the
+element which is zero outside $j$ and one at $i$ is in $R-\mathfrak{p}$, and
+inverting this leaves nothing standing but $R_j$.)
+
+\begin{lemma} 
+Let $s = (s_i) \in R = \prod R_i$ be a nonzerodivisor. (So each $s_i \neq 0 \in
+R_i$.) Then if $\mathfrak{p} \in \ass(R/sR)$, the prime $\mathfrak{p}$ will be
+of the form 
+\[ \prod_{i \neq j} R_i \times \mathfrak{p}_j  \]
+where $\mathfrak{p}_j \subset R_j$ is in $\ass(R_j/s_j R_j)$. 
+\end{lemma} 
+
+\begin{proof} 
+Indeed, it must be a product of copies of $R_i$ with some $\mathfrak{p}_j$
+since it is prime. If it is associated to $(s_i)$ (that is, to $R/ (s_i)$), then $\mathfrak{p}_j$ is the
+ideal in $R_j$ associated to $R_j/s_j R_j$. 
+\end{proof} 
+
+We know, by the usual Serre criterion, that the localization of $R_j$ at any
+prime associated to a nonzerodivisor is a DVR. We have shown that any
+localization of $R$ at a prime associated to a nonzerodivisor is isomorphic to a localization
+of some $R_j$ in this form. Thus we get the other direction from the usual
+Serre criterion. 
+\end{solution}
+
+\begin{solution}[2] Let $R = \mathbb{C}[x_1, \dots, x_n]/\mathfrak{p}$ be the
+ring in question. It is a domain, and we are to prove that the integral closure
+in the field of fractions is a finite $R$-module. 
+The Noether normalization theorem states that there is a polynomial ring $S =
+\mathbb{C}[y_1, \dots, y_s]$ such that $S$ injects into $R$ and $R$ is a finite
+$S$-module. 
+
+There is an injection of quotient fields $K(S) \hookrightarrow K(R)$ which is
+finite, as $R$ is a finite $S$-module (so $K(S)$ is finitely generated and
+algebraic over $K(R)$). Now integrality is transitive, and so the integral
+closure of $R$ in $K(R)$ is the same as the integral closure of $S$ in $K(R)$.
+This, however, is a finite $S$-module by the previous exercise of last time,
+and \emph{a fortiori} a finite $R$-module:
+\emph{The integral closure of a noetherian, integrally closed domain in a
+finite separable extension of the quotient field is a finite module over the
+original domain.} This gives the exercise. 
+
+To see that we can apply this, note:
+\begin{enumerate}
+\item $S$ is integrally closed. It is a polynomial ring, hence (by repeated
+Gauss lemma) a UFD, thus integrally closed. It is also noetherian by the basis
+theorem.
+\item The extension $K(S) \hookrightarrow K(R)$ is separable, this being
+characteristic zero.
+\end{enumerate}
+
+\end{solution}
+\newcommand{\supp}{\mathrm{supp}}
+\newcommand{\ann}{\mathrm{Ann}}
+\begin{solution}[3] 
+Let $K_0 = V(I), K_1=V(J)$. Then we know that $K_0 \cap K_1 = V(I+J) =
+\emptyset$. This implies that $I+J = (1)$ (or it would be contained in a
+maximal, hence prime, ideal). 
+
+We define $M_0$ to be the set of all $m \in M$ which are killed by a power of
+$I$, and we let $M_1$ be the set of all $m \in M$ which are killed by a power
+of $J$. It needs to be checked that $M_0 \oplus M_1 = M$. 
+
+Choose $i \in I, j \in J$ such that $i + j = 1$.
+\begin{enumerate}
+\item First, we check that $M_0 + M_1 = M$. We know that $\supp M = V(I)
+\cup V(J) = V(IJ)$. But $\supp(M) = V( \ann M)$. This means that as $\supp M =
+V(IJ)$, $\ann M$ and $IJ$ have the same radical. So there is a power of $IJ$
+which is contained in $\ann(M)$ by noetherianness, so which annihilates $M$.  
+Thus we know that $(ij)^N M = 0$ for $N \in \mathbb{N}$ very large. 
+We can write
+\[ m = (i+j)^{2N} m = \sum \binom{2N}{k} i^k j^{2N-k} m,  \]
+where each term in the sum has a factor of at least either $i^N$ or $j^N$. This
+means that it must (in the first case) be annihilated by $J^N$ or (in the
+second) by $I^N$ as $(IJ)^N M = 0$. So we have a resolution of $m \in M$ into
+a bunch of terms, each of which is either in $M_0$ or $M_1$.  
+\item $M_0 \cap M_1 = \left\{0\right\}$. Suppose $m \in M_0 \cap M_1$. Then
+high powers (say, the $N$-th power) of both $i,j$ kill $m$ as high powers of $I,J$ annihilate $m$. Then
+the expression $m = (i+j)^{2N} m$ will show that $m = 0$ since the expanded
+expression will contain terms with either a power of $i^N$ or $j^N$. 
+\end{enumerate}
+
+Finally, we are left to check that $M_0, M_1$ were the only two possible
+choices. Suppose we had
+another decomposition $M_0' \oplus M_1'$ with $\supp(M_0') = V(I), \supp(M_1')
+= V(J)$.
+But the formula $\supp N = V(\ann M)$ yields that a high power of $I$
+annihilates $M_0'$ and a high power of $J$ annihilates $M_1'$. So $M_0 \subset
+M_1', M_1 \subset M_1'$. The direct sum condition shows that $M_0'  = M_0, M_1'
+= M_1$. 
+\end{solution}
+
+
+\begin{solution}[4] 
+Note that each $R/\mathfrak{m}^i$ is local, since the prime ideals in this ring
+are those of $R$ containing a power of $\mathfrak{m}$, and there is one such.
+So the first claim that $\hat{R}_{\mathfrak{m}}$ is local will follow from
+
+\begin{lemma} 
+Let $\dots \to R_3 \to R_2 \to R_1 $ be a filtered system of local rings and
+local homomorphisms. Then $R = \varprojlim R_i$ is a local ring. The maximal
+ideal corresponds to sequences $(r_i) \in \varprojlim R_i \subset \prod R_i$
+with $r_1$ non-invertible.
+\end{lemma} 
+\begin{proof} 
+Suppose $(r_i) \in \varprojlim R_i$. Then if one of the $r_i$ is a unit, all
+the ones $r_j, j \leq i$ are units as they are images of $r_i$. All the higher
+ones $r_j, j \geq i$ are as we have local homomorphisms here. So the element
+$(r_i^{-1}) \in \prod R_i$ makes sense and satisfies the compatibility
+condition (i.e. is in $\varprojlim R_i$) because the
+inverse element of an element in a ring is necessarily unique. 
+Conversely, if $(r_i)$ is a unit, each $r_i$ must be.
+
+We have seen that the set of non-units in $\varprojlim R_i$ is the set of
+$(r_i)$ with $r_0$ in the maximal ideal of $R_0$. This is an ideal. So the set
+of non-units is an ideal. Thus $\varprojlim R_i$ is local, and the maximal
+ideal is as claimed. 
+\end{proof} 
+
+So we have a map $R \to \hat{R}_{\mathfrak{m}}$, and we have seen that this is
+local. It is clear that this map sends $\mathfrak{m}$ into the maximal ideal
+(as it sends $\mathfrak{m}$ into the set of elements in $\varprojlim
+R/\mathfrak{m}^i$ with the first coordinate zero). The universal property of
+localization gives a unique map
+\[ R_{\mathfrak{m}} \to \hat{R}_{\mathfrak{m}}.  \]
+\end{solution}
+
+\end{document}
+\documentclass{article}
+\usepackage[left=1.5in, right=1.5in, top=1in, bottom=1in]{geometry}
+\usepackage{amssymb}
+\usepackage{xy}
+\input xy
+\xyoption{all}
+\usepackage{amsthm}
+%\usepackage{times}
+\usepackage{amsmath}
+
+
+\newtheorem{proposition}{Proposition}
+
+\newcommand{\cont}{\mathrm{cont}}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem*{solution}{Solution}
+
+%\newcommand{\mod}{\mathrm{mod}}
+\newcommand{\im}{\mathrm{im}}
+\begin{document}
+
+\title{Problem set 9 for Math 221}
+\author{Akhil Mathew}
+\date{November 7, 2010}
+\newcommand{\spec}{\mathrm{Spec}} 
+\maketitle
+\newcommand{\ass}{\mathrm{Ass}}
+
+\begin{solution}[1] 
+If $M$ is finitely generated, the quotient $M/IM$ is clearly. 
+We are to show that
+\[ \bigcap I^i M = 0.  \]
+
+Now $I$ is
+contained in every maximal ideal of $R$. Indeed, if $x \in 1+I$, the geometric series
+shows that $x$ is invertible. Thus elements of $1+I$ cannot map to zero in
+$R/\mathfrak{m}$ for any maximal ideal $\mathfrak{m}$. If $x \in I$ does not
+map to zero in $R/\mathfrak{m}$, then there is a multiple $y$ of $x$ (which is
+thus in $I$) that maps to one in $R/\mathfrak{m}$. A look at $1-y$ now shows
+that $(1+I) \cap \mathfrak{m} \neq \emptyset$, contradiction. 
+
+We use:
+\begin{lemma}[Nakayama]
+Let $R$ be a ring, $I \subset R$ an ideal contained in every maximal ideal of
+$R$. Let $M$ be a f.g. $R$-module. Then if $IM = M$, we have $M =0$.
+\end{lemma} 
+\begin{proof} 
+We just need to check that $M=0$ at every localization $R_{\mathfrak{m}}$.
+Since $I_{\mathfrak{m}} \subset R_{\mathfrak{m}}$ is a proper ideal for each
+$\mathfrak{m}$, we reduce to the case of $R$ local, when it is just the usaul
+Nakayama.
+\end{proof} 
+
+From this we shall deduce that $\bigcap I^i M = 0$. The Artin-Rees lemma says
+that the $I$-adic topology on $N = \bigcap I^i M$ is the restriction of the
+$I$-adic topology of $M$ to $N$. But $N$ is contained in any
+$I$-adic neighborhood of
+the origin in $M$. 
+So $N$ has the trivial $I$-adic topology. That is, $IN=N$, so the above lemma
+implies $N=0$.
+
+Now let us do the other direction. Suppose $R$ noetherian and
+$I$-adically complete, $M$ a module with $M/IM$ f.g. and $\bigcap I^i M = 0$. 
+Let $x_1, \dots, x_n \in M$ elements whose images generate $M/IM$. 
+
+The claim is that 
+\begin{quote}
+$x_1, \dots, x_n$ generate $M$.
+\end{quote}
+
+Indeed, pick $x \in M$. For each $m \in \mathbb{N}$, we shall construct $a_{1,m}, \dots,
+a_{n,m} \in R$ such that
+\begin{enumerate}
+\item $x - \sum a_{i,m} x_i \in I^m M$.
+\item $a_{i,m} \equiv a_{i,m-1} \mod I^{m-1}$.
+\end{enumerate}
+
+\begin{lemma} 
+This will imply that $M$ is generated by $x_1, \dots, x_n$.
+\end{lemma} 
+\begin{proof} 
+Indeed, in this case the $a_{i,m}$ form a family of Cauchy sequences in $R$
+(indexed in $i$) by the second condition, which converge. The limits $a_i$
+satisfy that $x - \sum a_i x_i \in \bigcap I^m M$ because of the first
+condition. Since this is zero, we see that $x$ is in the submodule spanned by
+the $x_i$.
+\end{proof}
+
+Let us now prove the listed claim:
+\begin{proof} This is a successive approximation argument.
+
+Induction on $m$. For $m=1$, we just choose $a_{i,1}$ such that $x - \sum
+a_{i,1}x_i \in IM$, which we can do since the image of the $x_i$ generate
+$M/IM$. Suppose that the $a_{i,m-1} \ (1 \leq i \leq n)$ are given to us. 
+Then we can write 
+\[ y = x  - \sum a_{i,m-1} x_i \in I^{m-1 } M  \]
+as a sum $ y = \sum c_k m_k$ for the $m_k \in M$ and $c_k \in I^{m-1}$. This is the
+definition of the submodule $I^{m-1} M$. For each $k$, we can write $m_k = \sum
+d_{k,i} x_i \mod IM$ where the $d_{k,i} \in R$, again by hypothesis. 
+If we collect these, we find that
+\[ y \equiv \sum x_i \left( \sum_k c_k d_{k,i}  \right) \mod I^{m}M. \]
+The parenthesized terms are in $I^{m-1}$ because of the $c_k$. In total, we find that we
+can take the sum of those sums $\sum_k c_k d_{k,i}$ and the $a_{i,m-1}$ as the
+new  $a_{i,m} = a_{i,m-1} + \sum_k c_k d_{k,i}$. The above relations will imply that
+\[ x \equiv \sum a_{i,m} x_i \ \mod I^{m}M.  \]
+\end{proof} 
+
+\end{solution}
+
+\begin{solution}[2] Suppose otherwise. Let $a_0 + a_1 X + \dots $ be a power
+series which is nonzero and which satisfies
+\[ (a_0 + a_1 X + \dots) (X+a)=0.  \]
+
+We can assume that $a_0 \neq 0$.
+
+This is equivalent to the following relations:
+\begin{enumerate}
+\item $a a_0 =0 $. 
+\item $a a_i + a_{i-1} = 0$.
+\end{enumerate}
+In particular, we see that $a_i \mid a_{i-1}$. So we have a tower of ideals
+\[ (a_0) \subset (a_1) \subset (a_2) \subset \dots.  \]
+By noetherianness, this stabilizes. So we find that $a_i$ and $a_{i-1}$ are
+associates for some large $i$. For this, multiplication by $a$ acts on $a_i$ by
+a unit. In particular, multiplication by $a$ preserves the ideal: $$a (Ra_{i}) =
+Ra_i.$$
+However, we also know that a high power of $a$ must annihilate the ideal $Ra_i$
+because of the second itemized statement above, and the fact that $aa_0=0$. So
+multiplication by $a$ acts \emph{both} surjectively and nilpotently on $Ra_i$,
+so the latter is zero. Thus $a_i$ is zero.  All the ones below it are thus
+zero, in particular $a_0=0$. This is a contradiction.
+
+Here is a counterexample in the non-noetherian case.
+Consider the hyperreal field $\mathbb{R}^*$ and a nonzero infinitesimal
+$\epsilon >0$. Consider the ring $R=\mathbb{Z}\left\{T^t\right\}_{t \in
+\mathbb{R}^*_{\geq 0}} / (T)$. This is a quotient of a ``polynomial ring'' by
+the ideal generated by $T$, except it is not a polynomial ring, and hyperreal
+powers of $T$ are allowed. 
+
+Let $a = T^{\epsilon}$. Then we can construct a sequence of $a_i$ as above.
+Namely, $a_0  = T^{1-\epsilon}, a_1 = -T^{1-2\epsilon}, \dots$. This sequence
+satisfies the above enumerated set of relations that we wanted. We find that
+\[ (X + T^{\epsilon})(T^{1-\epsilon} - X T^{1-2\epsilon} \pm \dots) = 0 \in
+R[X]. \]
+\end{solution}
+
+\begin{solution}[3] Let $S = R_{\mathfrak{m}}$ and $\mathfrak{n} =
+\mathfrak{m} R_{\mathfrak{m}}$ the maximal ideal.
+By definition, the Hilbert polynomial is the length of $S/\mathfrak{n}^t$ for
+$t \gg 0$. Here $\mathfrak{n}^t$, and same for $\mathfrak{m}^t$, is generated by the homogeneous polynomials of
+degree $t$. Moreover, we have that $S/\mathfrak{n}^t \simeq R/\mathfrak{m}^t$
+since localization is exact and thus
+\[ (S/\mathfrak{n}^t) = (R/\mathfrak{m}^t)_{\mathfrak{m}} = R/\mathfrak{m}^t  \]
+because $\mathfrak{m}$ is maximal. 
+But as stated above, it is easy to determine $R/\mathfrak{m}^t$: it is
+isomorphic, as a $\mathbb{C}$-vector space, to the space of polynomials in
+$a,b,c,d$ of
+degree $<t$ modulo the identifications $ad = bc$.  (The fact that length is
+$\mathbb{C}$-dimension holds because a copy of the residue field is contained
+in the original ring.)
+
+Let us compute the space of polynomials in four variables modulo the above
+identifications that have \emph{precisely the degree $N$}.
+This is equivalently the cardinality of the  set of all
+\[ a^i b^j c^k d^l  \]
+where $i+j+k+l = N$ and where at most one of $j,k$ is nonzero. (This forms a
+complete set of representative for the equivalence classes.)
+Let $P_N(a,b,d)$ be the set of polynomials of degree $N$ in $a,b,d$ and
+let $P_N(a,c,d)$ be defined similarly. 
+
+We must compute $|P_N(a,b,d) \cup P_N(a,c,d)|$. This is $2|P_N(a,b,d)| -
+|P_N(a,d)|$ by inclusion-exclusion. 
+In general, the dimension of the space of  of homogeneous polynomials of degree $N$ on $k$ variables 
+is given by $\binom{N+k}{k}$. (To see this, one can count homogeneous monomials
+of that degree by thinking of $N+k$ objects and $k$ separators to be chosen.)
+So $|P_N(a,b,d)| = \binom{N+3}{3}$ and $|P_N(a,d)| = \binom{N+2}{2}$.
+Thus the cardinality in question is given by
+\[ 2 \binom{N+3}{3} - \binom{N+2}{2}.  \]
+
+It follows that 
+\[ \dim_{\mathbb{C}} R/\mathfrak{m}^t = \sum_{r=0}^{t-1} 2 \binom{r+3}{3} -
+\binom{r+2}{2}.\]
+A little Mathematica computation evaluates this to
+\[ \frac{1}{12} t (1+t)^2 (2+t).  \]
+\end{solution}
+
+\begin{solution}[4] 
+It is sufficient to show that each maximal ideal occurs the same number of
+times in each filtration; this is precisely the statement. Since localization
+is exact, we can check this at each maximal ideal. (Localizing at $\mathfrak{m}$
+collapses all steps in the filtration that are not of the form
+$R/\mathfrak{m}$.)
+
+It is now sufficient to prove the result over a \emph{local} ring.
+In that case, however, the only quantity in question is the length, which is
+independent of the filtration by the part of the Jordan-H\"older
+theorem proved in class. \end{solution}
+
+\end{document}
+\subsection{Step 1}
+Let us consider the following statement.
+\begin{quote}
+Let $M$ be a module admitting a filtration $0  = M_0 \subset M_1 \subset \dots
+\subset M_n = M$ where all the quotients are simple.\footnote{We do not count
+$0$ as simple, so a simple module is one isomorphic to $R/\mathfrak{m}$ for
+$\mathfrak{m} \subset R$ maximal.} Then for any filtration $0  =
+N_0 \subset \dots \subset N_l = M$ where the inclusions are proper and the
+quotients are either simple or zero, we have
+\[ l \geq n.  \]
+\end{quote}
+
+\begin{proof} 
+Induction on $n$. For $n=0$, the statement is obvious, and for $n=1$, any
+filtration of a simple module must be just zero and that module. 
+
+Suppose the result true for $n-1$ and we have filtrations
+$\left\{M_i\right\}, \left\{N_j\right\}$ as above.
+We shall show that $l \geq n$.
+Then we have a filtration
+\[ M_1  = M_1 +N_1  \subset \dots \subset M_{n-1} + N_1.  \]
+
+\end{proof} 
+
+
+
+
+\end{solution}
+
+\begin{solution}[1] We can use the ring 
+
+\end{solution}
+\end{document}
