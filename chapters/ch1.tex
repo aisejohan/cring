@@ -2,14 +2,12 @@
 
 Before beginning a proper study of commutative algebra, there is a set of
 basic definitions and general formalism (e.g. tensor products, projective
-modules, etc.)	 that one needs to assimilate, and the
-exposition of that is the purpose of the present chapter. It is assumed that
-the reader has at least some prior acquaintance with algebra, so the
-exposition will be occasionally quick.
+modules, etc.) that one needs to assimilate, and the exposition of that is the
+purpose of the present chapter. It is assumed that the reader has at least
+some prior acquaintance with algebra, so the exposition will be occasionally
+quick.
 
 \section{Basic definitions}
-
-\lecture{9/1}
 
 \subsection{Historical remarks: unique factorization}
 
@@ -18,46 +16,30 @@ refer terms that have not yet been defined, the reader may wish to skip ahead
 occasionally.
 
 
-\textbf{Fermat's last theorem} states that the equation
-\begin{equation} \label{ft} x^n  + y^n = z^n  \end{equation}
-has no nontrivial solutions in the integers.
+Fermat's last theorem states that the equation
+  \[ \label{ft} x^n  + y^n = z^n \]
+has no nontrivial solutions in the integers, for $n \ge 3$.  We could try to
+prove this by factoring the expression the left hand side. We can write
+  \[ (x+y)(x+ \zeta y) (x+ \zeta^2y) \dots (x+ \zeta^{n-1}y) = z^n, \]
+where $\zeta$ is a primitive $n$th root of unity.  Unfortunately, the factors
+lie in $\mathbb{Z}[\zeta]$, not the ring of integers $\mathbb{Z}$.  Though
+$\mathbb{Z}[\zeta]$ is still a ring where we have notions of primes and
+factorization, just as in $\mathbb{Z}$, we will see that prime factorization
+is not always unique in $\mathbb{Z}[\zeta]$.
 
-This result has a long history, and there
-have been many incorrect proofs. For instance, we could  try to prove this by
-factoring the expression \eqref{ft} for $n$ odd. Let $\zeta$ be a
-primitive $n$th root of unity; then we find
-\[ (x+y)(x+ \zeta y) (x+ \zeta^2y) \dots (x+ \zeta^{n-1}y) = z^n.  \]
-We are tempted to ask how the product decomposition interacts with the power
-decomposition. The caveat is that though $x,y,z$ are integers, the terms in
-the factorization actually live in $\mathbb{Z}[\zeta]$. 
+Here is another case where unique factorization fails.  Consider the ring
+$\mathbb{Z}[\sqrt{-5}]$ of numbers of the form $a + b\sqrt{-5}$, where
+$a, b \in \mathbb{Z}$.  Then we have the two factorizations
+  \[ 6 = 2 \cdot 3 = (1 + \sqrt{-5 })(1 - \sqrt{-5}). \]
+Both of these are factorizations of $6$ into irreducible factors, but they
+are fundamentally different factorizations.
 
-The problem is  $\mathbb{Z}[\zeta]$.  This is a legitimate ``ring,'' as we
-shall see below. We can still talk about ``primes''  and ``factorization''
-as we do over the integers. However, things go wrong.  Over $\mathbb{Z}$, factorization is unique up to
-permuting the factors.  Over $\mathbb{Z}[\zeta]$, you can still get a
-decomposition into irreducible factors, but in general it is not unique.
-The ring does not always have unique factorization. 
-
-Let us look at a failure of unique factorization.  Consider the set
-$\mathbb{Z}[\sqrt{-5}]$ of 
-complex numbers that look like $a+\sqrt{-5}b, a , b \in \mathbb{Z}$.
-We can write
-\[ 6 = 2 \times 3 = (1 + \sqrt{-5 })(1 - \sqrt{-5}); \]
-you can convince yourself (see Exercise \ref{}) that these are two fundamentally different
-factorizations, even though the elements in question are irreducible. So 6 admits a nonunique
-factorization into irreducibles in $\mathbb{Z}[\sqrt{-5}]$.
-
-
-
-In order to think about the
-failure of unique factorization, Dedekind introduced the theory of ideal
-numbers, now called \textbf{ideals.}
-Dedekind was trying to get to the bottom of what was going on.  Let us look at
-the problem.
-Ideally, if you have a prime factor of $6$, and a decomposition $6 = ab$, then
-that prime factor must divide $a$ or $b$.  This is not true, however. There is
-a new idea that one must introduce.
-
+In order to think about the failure of unique factorization, Dedekind
+introduced the theory of ideal numbers, now called \textbf{ideals}. Dedekind
+was trying to get to the bottom of what was going on.  Let us look at the
+problem. Ideally, if you have a prime factor of $6$, and a decomposition $6 =
+ab$, then that prime factor must divide $a$ or $b$.  This is not true,
+however. There is a new idea that one must introduce.
 
 One should imagine an \textbf{ideal number} $x$ such that $x$
 divides both  2 and $1+\sqrt{-5}$, but manages not to be 1.
