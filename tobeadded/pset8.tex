@@ -1,0 +1,374 @@
+\documentclass[12pt, reqno]{amsart}
+
+\input{other/preamble.tex}
+
+\usepackage{geometry}
+\geometry{lmargin = 1.0in, bmargin = 0.9in, tmargin = 1.0in, rmargin=1.0in}
+
+\begin{document}
+
+\title{Math 210A Problem Set 8}
+\input{other/amsdata.tex}
+
+\subsection*{1} (DF 10.5.14)
+\subsection*{(a)}
+
+Suppose that 
+$\xymatrix@1{0 \ar[r] & L \ar[r]^\psi & M \ar[r]^\f & N \ar[r] & 0}$ 
+is a split short exact sequence.
+Since $\Hom_R (D, \cdot)$ is a left-exact functor, we see that 
+$$\xymatrix@1{0 \ar[r] 
+	& \Hom_R(D, L) \ar[r]^{\psi'} 
+	& \Hom_R(D, M) \ar[r]^{\f'} 
+	& \Hom_R(D, N)}$$
+is exact. In addition, 
+$\Hom_R (D, L \oplus N) \cong \Hom_R(D, L) \oplus \Hom_R (D, N)$. Therefore, in
+the case that we start with a split short exact sequence $M \cong L \oplus N$,
+applying $\Hom_R (D, \cdot)$ does yield a split short exact sequence
+$$\xymatrix@1{0 \ar[r] 
+	& \Hom_R(D, L) \ar[r]^{\psi'} 
+	& \Hom_R(D, M) \ar[r]^{\f'} 
+	& \Hom_R(D, N) \ar[r] & 0}.$$
+
+Now, assume that 
+$$\xymatrix@1{0 \ar[r] 
+	& \Hom_R(D, L) \ar[r]^{\psi'} 
+	& \Hom_R(D, M) \ar[r]^{\f'} 
+	& \Hom_R(D, N) \ar[r] & 0}$$
+is a short exact sequence of abelian groups for all $R$-modules $D$.
+Set $D = R$ and using $\Hom_R (R, N) \cong N$ yields that 
+$\xymatrix@1{0 \ar[r] & L \ar[r]^\psi & M \ar[r]^\f & N \ar[r] & 0}$ 
+is a short exact sequence.
+
+Set $D = N$, so we have
+$$\xymatrix@1{0 \ar[r] 
+	& \Hom_R(N, L) \ar[r]^{\psi'} 
+	& \Hom_R(N, M) \ar[r]^{\f'} 
+	& \Hom_R(N, N) \ar[r] & 0}$$
+Here, $\f'$ is surjective, so the identity map of $\Hom_R (N, N)$ lifts to a
+map $g \in \Hom_R (N, M)$ so that $\f \circ g = \f'(g) = id$.
+This means that $g$ is a splitting homomorphism for the sequence 
+$\xymatrix@1{0 \ar[r] & L \ar[r]^\psi & M \ar[r]^\f & N \ar[r] & 0}$, 
+and therefore the sequence is a split short exact sequence.
+
+\subsection*{(b)}
+
+
+%This is very similar; the main difference is that we replace $\Hom_R (D,
+%\cdot)$ by $\Hom_R (\cdot, D)$.
+
+Suppose that 
+$\xymatrix@1{0 \ar[r] & L \ar[r]^\psi & M \ar[r]^\f & N \ar[r] & 0}$ 
+is a split short exact sequence.
+We want to show that
+$$\xymatrix@1{0 \ar[r] 
+	& \Hom_R(N, D) \ar[r]^{\f'} 
+	& \Hom_R(M, D) \ar[r]^{\psi'} 
+	& \Hom_R(L, D) \ar[r] & 0}$$
+is exact. 
+%
+Since $\Hom_R (\cdot, D)$ is a right-exact functor, we see that $\f'$ is
+injective and $\psi'\circ \f' = 0$; we just need to show that $\psi'$ is
+surjective.
+%
+Since we start with a split short exact sequence $M \cong L \oplus N$, we see
+that $\Hom_R (L \oplus N, D) \cong \Hom_R(L, D) \oplus \Hom_R (N, D)$. 
+Therefore, applying $\Hom_R (\cdot, D)$ does yield a split short exact sequence
+$$\xymatrix@1{0 \ar[r] 
+	& \Hom_R(N, D) \ar[r]^{\f'} 
+	& \Hom_R(M, D) \ar[r]^{\psi'} 
+	& \Hom_R(L, D) \ar[r] & 0}.$$
+
+Now, assume instead that 
+$$\xymatrix@1{0 \ar[r] 
+	& \Hom_R(N, D) \ar[r]^{\f'} 
+	& \Hom_R(M, D) \ar[r]^{\psi'} 
+	& \Hom_R(L, D) \ar[r] & 0}$$
+is a short exact sequence of abelian groups for all $R$-modules $D$.
+%Then
+%$$\xymatrix{0 \ar[r] & L \ar[r]^\psi & M \ar[r]^\f & N \ar[r] & 0}$$ 
+%is a short exact sequence.  %%% why?
+Set $D = M$, so we have
+$$\xymatrix@1{0 \ar[r] 
+	& \Hom_R(N, M) \ar[r]^{\f'} 
+	& \Hom_R(M, M) \ar[r]^{\psi'} 
+	& \Hom_R(L, M) \ar[r] & 0}.$$
+Then $\Hom_R(M, M) = \Hom_R (N, M) \oplus \Hom_R (L, M)$. Suppose that 
+$id_M = (f, g)$. Then $\f'(g) = g \circ \phi = id_M$.
+This means that $g$ is a splitting homomorphism for the sequence 
+$\xymatrix@1{0 \ar[r] & L \ar[r]^\psi & M \ar[r]^\f & N \ar[r] & 0}$, 
+and therefore the sequence is a split short exact sequence.
+
+%Here, $\f'$ is injective, so the identity map of $\Hom_R (M, M)$ lifts to a
+%map $g \in \Hom_R (N, M)$ so that $\f \circ g = \f'(g) = id$.
+%This means that $g$ is a splitting homomorphism for the sequence 
+%$\xymatrix{0 \ar[r] & L \ar[r]^\psi & M \ar[r]^\f & N \ar[r] & 0}$, 
+%and therefore the sequence is a split short exact sequence.
+
+% not very happy with this.
+
+
+\subsection*{2} (DF 10.5.16)
+\subsection*{(a)}
+
+Every $R$-module $M$ 
+has an abelian group structure along with the action of $R$,
+and the abelian group structure makes $M$ a $\ZZ$-module. Therefore, we can
+apply the fact proved in class that every $\ZZ$-module is a submodule of an
+injective $\ZZ$-module.
+Therefore, $M$ is contained in an injective $\ZZ$-module $Q$. 
+
+\subsection*{(b)}
+
+A map $R \to M$ is in the set $\Hom_{\ZZ} (R, M)$ if it respects the abelian
+group structure and the operation of addition. In order for it to be in the set
+$\Hom_R (R, M)$, it must respect addition and in addition respect the group
+action. This gives us the first inclusion 
+$\Hom_R (R, M) \subseteq \Hom_{\ZZ} (R, M)$.
+
+The second inclusion $\Hom_\ZZ (R, M) \subseteq \Hom_\ZZ (R, Q)$ is a corollary
+of the fact that $M$ is contained in $Q$, so that every map $R \to M$ is also a
+map $R \to Q$.
+
+\subsection*{(c)}
+
+%see 15(c). Do I need to prove this?
+It is given to us that if $Q$ is an injective $\ZZ$-module then $\Hom_{\ZZ} (R,
+Q)$ is an injective $R$-module. In addition, $\Hom_R (R, M) \cong M$.
+Therefore, the result of part (b) yields that 
+$M \subseteq \Hom_{\ZZ} (R, Q)$, which means that the $R$-module $M$ is
+contained inside the injective $R$-module $\Hom_{\ZZ} (R, Q)$, which is what we
+wanted to prove.
+
+\subsection*{3} (DF 10.5.21)
+
+Let $0 \to A \to B \to C \to 0$ be a short exact sequence.
+
+Since $N$ is flat, we see that 
+$0 \to N \otimes A \to N \otimes B \to N \otimes C \to 0$ 
+is a short exact sequence.
+
+Since $M$ is flat, this gives a short exact sequence
+$$0 \to M \otimes (N \otimes A) \to M \otimes (N \otimes B) \to M \otimes (N
+\otimes C) \to 0.$$ 
+Since the tensor product is associative, this means that 
+$$0 \to (M \otimes N) \otimes A \to (M \otimes N) \otimes B \to (M \otimes N)
+\otimes C \to 0$$ 
+is a short exact sequence, so that $M \otimes N$ is a flat
+module.
+
+
+\subsection*{4} (DF 17.1.31)
+\subsection*{(a)}
+Let $\f : A \to B$ be an element of $\Hom_R(A, B)$. 
+%The standard embeddings 
+%$A \to D^{-1}A$ and $B \to D^{-1}B$ via $a \mapsto a/1$ and $b \mapsto b/1$
+This induces a map $\f' : D^{-1}A \to D^{-1}B$ defined via 
+$\f'(a/d) = \f(a) / d$. Here, $\f' \in \Hom_{D^{-1}R} (D^{-1}A, D^{-1}B)$.
+
+The map $\f \to \f'$ therefore represents a map
+$D^{-1} \Hom_R(A, B) \to \Hom_{D^{-1}R}(D^{-1}A, D^{-1}B)$.
+
+%%% fix me!
+
+\subsection*{(b)}
+
+For any $R$-module $N$, consider $\Hom_R (R^m,N)$. Every map $\f$ 
+of $\Hom_R(R^m, N)$ satisfies
+$\f(a_1, a_2, \dots, a_m) 
+= a_1 \f(1, 0, \dots, 0) + a_2 \f(0, 1, \dots, 0) + \cdots + a_m \f(0, 0,
+\dots, 1)$.
+Therefore, the $m$ 
+values of $\f(0, \dots, 0, 1, 0, \dots, 0)$ (where there is a 1
+in the $m$-th position and 0's elsewhere) uniquely determine $\f$. They are
+also completely independent, and each can take on any value of $N$, so 
+therefore $\Hom_R (R^m, N) \cong N^m$. 
+
+Taking localizations, we therefore have
+$D^{-1}\Hom_R (R^m, N) \cong D^{-1} N^m = (D^{-1}N)^m$.
+
+
+\subsection*{(c)}
+
+Consider the diagram
+\[ 
+\xymatrix{
+0 \ar[r] 
+	& D^{-1} \Hom_R(M, N) \ar[r]^f \ar[d]^{h} 
+	& D^{-1} \Hom_R(R^t, N) \ar[r]^g \ar[d]^{h'}
+	& D^{-1} \Hom_R(R^s, N) \ar[d]^{h''} \\ 
+0 \ar[r] 
+	& \Hom_{D^{-1}R}(D^{-1}M, D^{-1}N) \ar[r]^{f'}
+	& \Hom_{D^{-1}R}((D^{-1}R)^t, D^{-1}N) \ar[r]^{g'} 
+	& \Hom_{D^{-1}R}((D^{-1}R)^s, D^{-1}N).
+}
+\] 
+
+Since $M$ is finitely presented, $R^s \to R^t \to M \to 0$ is exact. Taking
+$\Hom_R (\cdot, N)$ yields an exact sequence, and we proved earlier that
+localization is exact, so therefore the first row is exact.
+Tensoring the presentation with the flat module $D^{-1}R$ yields an exact
+sequence. Taking $\Hom_{D^{-1}R}(\cdot, D^{-1}N)$ preserves exactness, 
+so the second row is also exact.
+
+%why does this commute?
+
+
+\subsection*{(d)}
+
+By the results of part (b), we obtain the isomorphisms
+$$
+\Hom_{D^{-1}R} ((D^{-1}R)^t, D^{-1}N) \cong (D^{-1}N)^t \qquad
+\Hom_{D^{-1}R} ((D^{-1}R)^s, D^{-1}N) \cong (D^{-1}N)^s
+$$
+$$
+D^{-1} \Hom_R(R^t, N) \cong (D^{-1}N)^t \qquad 
+D^{-1} \Hom_R(R^s, N) \cong (D^{-1}N)^s, 
+$$
+so the preceding diagram has isomorphisms as the second two vertical maps:
+\[ 
+\xymatrix{
+0 \ar[r] 
+	& D^{-1} \Hom_R(M, N) \ar[r]^-f \ar[d]^{h} 
+	& (D^{-1}N)^t \ar[r]^g \ar[d]^{\cong}
+	& (D^{-1}N)^s \ar[d]^{\cong} \\ 
+0 \ar[r] 
+	& \Hom_{D^{-1}R}(D^{-1}M, D^{-1}N) \ar[r]^-{f'}
+	& (D^{-1}N)^t \ar[r]^{g'} 
+	& (D^{-1}N)^s.
+}
+\]
+
+We now need to show that the first vertical map is an isomorphism. Consider any
+$\f \in D^{-1}\Hom_R (M, N)$ satisfying $h(\f)= 0$. Then $f(\f) = f'(h(\f)) =
+f'(0) = 0$, so therefore $\f = 0$ because $f$ is injective, and hence $h$ is
+injective. 
+%Now, consider any $\psi \in \Hom_{D^{-1}R} (D^{-1}M, D^{-1}N)$.
+%
+%Then $f(\f) \in \im \f = \ker g = \ker g' = \im
+%f'$, so therefore there exists $\psi \in \Hom_{D^{-1}R} (D^{-1}M, D^{-1}N)$
+%such that $f'(\psi) = f(\f) = f'(h(\f))$, where $f = f' \circ h$ because the
+%diagram commutes. Since $f'$ is injective, this means that $\psi = h(\f)$. In
+%the other direction, 
+Suppose that $\psi \in \Hom_{D^{-1}R}(D^{-1}M, D^{-1}N)$.
+Then $f'(\psi) \in \im f' = \ker g' = \ker g = \im f$, so there is some $\f \in
+D^{-1} \Hom_R(M, N)$ such that $f'(h(\f)) = f(\f) = f'(\psi)$. Since $f'$ is
+injective, this means that $h(\f) = \psi$, so therefore $\h$ is surjective.
+Therefore, $h$ is an isomorphism, and hence
+\[ 
+D^{-1}\Hom_R(M, N) \cong \Hom_{D^{-1}R}(D^{-1}M, D^{-1}N).
+\] 
+
+\subsection*{5} (DF 17.2.1)
+
+\subsection*{(a)}
+
+Every element of 
+$F_n = \ZZ G \otimes_\ZZ \ZZ G \otimes_\ZZ \cdots \otimes_\ZZ \ZZ G$ can be
+written as a $\ZZ G$-linear combination of the basis elements
+$1 \otimes g_1 \otimes g_2 \otimes \cdots \otimes g_n$, where $g_i \in G$. This
+is because we can multiply any basis element by an integer to get
+$1 \otimes a_1 g_1 \otimes a_2 g_2 \otimes \cdots \otimes a_n g_n$, and adding
+basis elements of this form yields $1 \otimes \sum a_g g \otimes \sum a_g g
+\otimes \cdots
+\otimes \sum a_g g$, where each $\sum a_g g$ can be any element of $\ZZ G$; the tensor product is
+multilinear. The group action then allows us to set the first element to be any
+element of $\ZZ G$ that we want. Therefore, $F_n$ is a free $\ZZ G$ module with
+basis elements $1 \otimes g_1 \otimes g_2 \otimes \cdots \otimes g_n$. There
+are $|G|^n$ elements of this form, so $F_n$ has rank $|G|^n$.
+
+\subsection*{(b)}
+
+\def\e{\epsilon}
+
+$\e$ is the augmentation map $\e : F_0 = \ZZ G \to \ZZ$ given by 
+$\e (\sum a_g g) = \sum a_g$. 
+$s_{-1}$ is defined as the contracting homomorphism $s_{-1} : \ZZ \to F_0$ such
+that $s_{-1}(1) = 1$ so that $s_{-1}(n) = n \cdot s_{-1}(1) = n \cdot 1$. Then, 
+$\e s_{-1} (n) = \e(n) = n$, so therefore we indeed have $\e s_{-1} = 1$. 
+
+Now, 
+\begin{align*}
+(d_1 s_0 + s_{-1} \e)\left(\sum_{g \in G} a_g g\right) 
+&= (d_1 s_0) \left(\sum_{g \in G} a_g g\right) 
+	+ (s_{-1} \e) \left(\sum_{g \in G} a_g g\right) \\
+&= d_1 \left(\sum_{g \in G} a_g (1 \otimes g)\right) 
+	+ s_{-1} \left(\sum_{g \in G} a_g \right)  \\
+&= \sum_{g \in G} a_g (g - 1) + \sum_{g \in G} a_g = \sum_{g \in G} a_g g.
+\end{align*}
+
+Finally, 
+\begin{align*} 
+&(d_{n+1} s_n + s_{n-1} d_n) \left( g_1, g_2, \cdots, g_n \right) 
+= (d_{n+1} s_n) \left( g_1, \cdots, g_n \right) 
+	+(s_{n-1} d_n) \left(g_1, \cdots, g_n \right) \\
+& =  d_{n+1} (1, g_1, \cdots, g_n) \\
+	&+ s_{n-1} \left( 
+				g_1 \cdot (g_2, \cdots, g_n)
+				+ \sum_{i=1}^{n-1} (-1)^i (g_1, \cdots, g_{i-1}, g_i g_{i+1},
+				g_{i+2}, \cdots, g_n) 
+				+ (-1)^n (g_1, \cdots, g_{n-1})
+				\right) \\
+&= (g_1, \cdots, g_n) + \sum_{i=1}^{n} (-1)^i (1, g_1, \cdots, g_{i-2}, g_{i-1}
+g_{i}, g_{i+1}, \cdots, g_n) + (-1)^{n+1} (1, g_1, \cdots, g_{n-1}) \\
+	&+  
+				g_1\cdot(1, g_2, \cdots, g_n)
+				+ \sum_{i=1}^{n-1} (-1)^i (1, g_1, \cdots, g_{i-1}, g_i g_{i+1},
+				g_{i+2}, \cdots, g_{n}) 
+				+ (-1)^n (1, g_1, \cdots, g_{n-1}) \\
+&= (g_1, \cdots, g_n) + g_1 \cdot (g_2, \cdots, g_n) + (-1)^1 (g_2, g_2,
+\cdots, g_n) = (g_1, \cdots, g_n),
+\end{align*} 
+which is what we wanted to show.
+
+
+\subsection*{(c)}
+
+This is true by definition of chain homotopy.
+
+\[ 
+\xymatrix{
+\cdots \ar[r] & F_n \ar[r]^{d_{n}} & F_{n-1} \ar[r]^{d_{n-1}} 
+\ar[dl]_{s_{n-1}} & F_{n-2} \ar[r]^{d_{n-2}} \ar[dl]_{s_{n-2}}
+& \cdots \ar[r]^{d_2} & F_1 \ar[r]^{d_1}
+& F_0 \ar[r]^{\e} \ar[dl]_{s_0} & \ZZ \ar[r] \ar[dl]_{s_{-1}} & 0 \\
+%
+\cdots \ar[r] & F_n \ar[r]^{d_{n}} & F_{n-1} \ar[r]^{d_{n-1}} &
+F_{n-1} \ar[r]^{d_{n-2}}
+& \cdots \ar[r]^{f_2} & F_1
+\ar[r]^{d_1} & F_0 \ar[r]^{\e} & \ZZ \ar[r] & 0
+}
+\] 
+
+Here, the difference between the identity map and the zero map is 1, so the
+definition of chain homotopy is precisely what we checked in part (b):
+$\e s_{-1} = 1$, $d_1 s_0 + s_{-1}\e = 0$, and 
+$d_n s_{n-1} + s_{n-2} d_{n} = 1$ for all $n \ge 2$.
+Therefore, the maps $s_n$ are indeed a chain homotopy between the identity
+(chain) map and the zero (chain) map.
+
+\subsection*{(d)}
+
+Let the chain $\cdots \to F_n \to F_{n-1} \to \cdots \to F_0 \to \ZZ \to 0$ be
+called $A$, so that the homology groups are $H^n (A)$.
+
+We know that homotopic maps induce the same maps on homology.
+From part (c), we therefore see that the identity chain map and the zero chain
+map give equal induced group homomorphisms from $H^n (A)$ to $H^n(A)$. This is
+only possible if the homology groups are all zero, since that's the only case
+where the identity map and the zero map are the same. 
+
+This means that $A$ is an exact sequence of $\ZZ$-modules. Since each $F_n$ is
+free, each is also projective, so therefore $A$ represents a projective
+$G$-module resolution of $\ZZ$.
+
+\end{document}
+me maps on homology.
+From part (c), we therefore see that the identity chain map and the zero chain
+map give equal induced group homomorphisms from $H^n (A)$ to $H^n(A)$. This is
+only possible if the homology groups are all zero, since that's the only case
+where the identity map and the zero map are the same. 
+
+This means that $A$ is an exact sequence of $\ZZ$-modules. Since each $F_n$ is
+free, each is also projective, so therefore $A$ represents a projective
+$G$-module r
