@@ -10,6 +10,10 @@ dvi:
 	bibtex CRing
 	latex -src CRing.tex	
 
+preview:
+	pdflatex CRing.tex
+	open CRing.pdf
+
 new_date:
 	date +"%B %e, %Y." > other/lastupdated.tex	
 
