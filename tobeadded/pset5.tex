@@ -1,0 +1,317 @@
+\documentclass[12pt, reqno]{amsart}
+
+\input{other/preamble.tex}
+
+\begin{document}
+
+\title{Math 210A Problem Set 5}
+\input{other/amsdata.tex}
+
+\subsection*{1(a)}
+
+Since $1$ spans $\ZZ / (10)$ and $1$ spans $\ZZ / (12)$, 
+we see that $1 \otimes 1$ spans $\ZZ / (10) \otimes \ZZ / (12)$ and this tensor
+product is a cyclic group. 
+
+Note that 
+$1 \otimes 0 = 1 \otimes (10 \cdot 0) = 10 \otimes 0 = 0 \otimes 0 = 0$
+and 
+$0 \otimes 1 = (12 \cdot 0) \otimes 1 = 0 \otimes 12 = 0 \otimes 0 = 0$.
+Now,
+$10 (1 \otimes 1) = 10 \otimes 1 = 0 \otimes 1 = 0$
+and 
+$12 (1 \otimes 1) = 1 \otimes 12 = 1 \otimes 0 = 0$,
+so the cyclic group $\ZZ / (10) \otimes \ZZ / (12)$ has order dividing both
+$10$ and $12$. This means that the cyclic group has order dividing 
+$\gcd(10, 12) = 2$.
+
+To show that the order of $\ZZ / (10) \otimes \ZZ / (12)$, define a bilinear map
+$g: \ZZ / (10) \times \ZZ / (12) \to \ZZ / (2)$ via
+$g : (x, y) \mapsto xy$. The universal property of tensor products then
+says that there is a unique linear map 
+$f: \ZZ / (10) \otimes \ZZ / (12) \to \ZZ / (2)$ making the diagram
+\[ 
+\xymatrix{
+\ZZ / (10) \times \ZZ / (12) \ar[r]^\otimes \ar[rd]_g
+	& \ZZ / (10) \otimes \ZZ / (12) \ar[d]^f \\
+& \ZZ / (2).
+}
+\] 
+commute. In particular, this means that $f (x \otimes y) = g(x, y) = xy$.
+Hence, $f(1 \otimes 1) = 1$, so $f$ is surjective, and therefore, 
+$\ZZ / (10) \otimes \ZZ / (12)$ has size at least two. This allows us to
+conclude that $\ZZ / (10) \otimes \ZZ / (12) = \ZZ / (2)$.
+
+
+\subsection*{1(b)}
+
+\def\mod{\operatorname{mod}}
+
+Let $\frac ab \in \QQ$ and $\frac cd \in \QQ/\ZZ$, where $a, b, c, d \in \ZZ$.
+Then simple tensors of $\QQ
+\otimes_\ZZ (\QQ / \ZZ)$ are of the form
+\[ 
+\frac ab \otimes_\ZZ \left( \frac cd \mod \ZZ \right) 
+= d \frac a{bd} \otimes_\ZZ \left( \frac cd \mod \ZZ \right) 
+= \frac a{bd} \otimes_\ZZ \left( d \frac cd \mod \ZZ \right) 
+= \frac a{bd} \otimes_\ZZ \left( c \mod \ZZ \right) 
+= \frac a{bd} \otimes_\ZZ 0.
+\] 
+Now, note that $q \otimes 0 = 0$ for all $q \in \QQ$ because
+$q \otimes 0 = q \otimes (0+0) = q \otimes 0 + q \otimes 0$.
+Therefore, all simple tensors satisfy $\frac ab \otimes \frac cd = 0$, 
+and hence $\QQ \otimes_\ZZ (\QQ / \ZZ) = 0$.
+
+\subsection*{2}
+
+In order to show that $\cdot \otimes_R N$ is a functor from the category of
+$R$-modules to itself, we need to show that it preserves the identity morphism
+and composition of morphisms. 
+
+Let this functor map each $R$-module $M$ to $M \otimes N$ and every $R$-module
+homomorphism from $\f : M \to P$ into 
+$\f \otimes id: M \otimes N \to P \otimes N$ defined by 
+$(\f \otimes id) (m \otimes n) = \f(m) \otimes n$.
+
+Now, 
+$(\f \otimes id) (\psi \otimes id) (m \otimes n)
+	= (\f \otimes id) (\psi(m) \otimes n) 
+		= ((\f \psi (m)) \otimes n)
+			= (\f \psi \otimes id)(m \otimes n)$, 
+so hence $\cdot \otimes N$ is a covariant functor.
+
+Suppose that 
+\[ 
+\xymatrix{
+M' \ar[r]^{f'} & M \ar[r]^f & M'' \ar[r] & 0 
+}
+\] 
+is an exact sequence of $R$-modules. This means that $f: M \to M''$ is
+surjective, and $M'$ surjects onto the kernel of $f$. 
+
+Consider the induced sequence
+\[ 
+\xymatrix{
+M' \otimes_R N \ar[r]^{f' \otimes id} 
+	& M \otimes_R N \ar[r]^{f \otimes id} 
+		& M'' \otimes_R N \ar[r] 
+			& 0 
+}
+\] 
+%We need to show that $f \otimes id$ is surjective and that $f' \otimes id$
+%surjects onto the kernel of $f \otimes id$.
+
+\def\im{\operatorname{im}}
+
+Since $f$ is surjective, $f \otimes id$ is clearly also surjective.
+Additionally, since $f \circ f' = 0$, we see that 
+$(f \otimes 1) \circ (f' \otimes 1) = f \circ f' \otimes 1 = 0$ as well. We
+therefore only need to check that 
+$\ker (f \otimes 1) = \im (f' \otimes 1)$.
+To do this, it is sufficient to show that 
+$(M \otimes N) / \im(f' \otimes 1) \to M'' \otimes N$ 
+is an isomorphism. 
+In one direction, $g: (M \otimes N) / \im(f' \otimes 1) \to M'' \otimes N$
+factors naturally from the map $f \otimes id : M \otimes N \to M'' \otimes N$.
+This means that we need to construct an inverse map. 
+
+Define $\psi : M '' \times N \to (M \otimes N) / \im(f' \otimes 1)$ via
+$(m'', n) \to m \otimes n + \im (f' \otimes 1)$ where $m \in f^{-1} (m'')$.
+This map is well-defined because $M' \to M \to M'' \to 0$ is an exact sequence,
+so hence $\ker f = \im f'$ and $\im f' \otimes N = \im (f' \otimes 1)$.
+In addition, $\psi$ is bilinear, so it extends via the universal property
+\[ 
+\xymatrix{
+M'' \times N \ar[r]^\otimes \ar[rd]_\psi
+	& M'' \otimes N \ar[d]^\f \\
+& (M \otimes N) / \im (f' \otimes 1).
+}
+\] 
+to a map $\f : M'' \otimes N \to (M \otimes N) / \im(f' \otimes 1)$.
+Now, since $\f \circ g = id$, we see that the map $g$ is 1-1, which is what we
+needed for the exactness at $M \otimes N$.
+
+
+\subsection*{3}
+
+Suppose that we are given a map $f \in \Hom_R (M \otimes_R N, P)$, so 
+$f : M \otimes N \to P$. 
+Using this, define a map $g \in \Hom_R (M, \Hom_R(N, P))$ as a map 
+$g: M \to \Hom(N, P)$ defined via $g(m)(n) = f(m \otimes n)$.
+
+Conversely, given a map $g : M \to \Hom(N, P)$, define a map 
+$f : M \otimes N \to P$ via $f(m \otimes n) = g(m)(n)$.
+
+Composing these two processes yields the identity, so this gives the desired
+bijection
+$\Hom(M \otimes N, P) \leftrightarrow \Hom(M, \Hom(N, P))$.
+
+
+\subsection*{4(a)}
+
+We want to show that $B \otimes_A M$ naturally has the structure of a
+$B$-module. 
+
+%Recall that we have bilinear properties of the tensor:
+%\begin{align*} 
+%(b_1 + b_2) \otimes m &= b_1 \otimes m + b_2 \otimes m \\
+%b \otimes (m_1 + m_2) &= b \otimes m_1 + b \otimes m_2 \\
+%ab \otimes m &= b \otimes am.
+%\end{align*} 
+Now, for any element $\sum b_i \otimes m_i \in B \otimes M$, we define the
+action
+$b \left( \sum b_i \otimes m_i \right) = \sum (b b_i) \otimes m_i$.
+We need to show that this action is well-defined, and we do this by showing
+that it is independent by the particular representation of an element of $B
+\otimes M$ by elementary tensors.
+
+The tensor product can be defined as factoring by expressions of the form
+\begin{align*} 
+(b_1 + b_2) \otimes m &- b_1 \otimes m - b_2 \otimes m \\
+b \otimes (m_1 + m_2) &- b \otimes m_1 - b \otimes m_2 \\
+ab \otimes m &- b \otimes am.
+\end{align*} 
+Let these elements generate $H$.
+Note that for $b' \in B$, this means that
+\begin{align*} 
+b'(b_1 + b_2) \otimes m &- b'b_1 \otimes m - b'b_2 \otimes m \\
+b'b \otimes (m_1 + m_2) &- b'b \otimes m_1 - b'b \otimes m_2 \\
+ab'b \otimes m &- b'b \otimes am.
+\end{align*} 
+are also elements of $H$.
+
+Suppose that 
+\[ 
+\sum_i b_i \otimes m_i = \sum_j b'_j \otimes m'_j
+\] 
+are two different representations for the same element of $B \otimes M$.
+Bilinearity implies that $\sum b_i \otimes m_i - \sum b'_j \otimes m'_j$ 
+is also in $H$, and hence
+\[ 
+\sum_i bb_i \otimes m_i = \sum bb'_j \otimes m'_j
+\] 
+is also in $H$, which means that our $B$-action on $B \otimes M$ is indeed
+well-defined.
+
+It is now easy to check that this action makes $B \otimes M$ into a $B$-module.
+Indeed, 
+\[ 
+(b + b')(b_i \otimes m_i) 
+= ((b + b')b_i) \otimes m_i
+= (b b_i + b' b_i) \otimes m_i
+= b (b_i \otimes m_i) + b' (b_i \otimes m_i).
+\] 
+Analogously, we have the other module properties
+$b (b_i \otimes m_i + b_j \otimes m_j) 
+= b (b_i \otimes m_i) + b (b_j \otimes m_j)$ and 
+$(b_1 b_2) (b_i \otimes m_i) = b_1 (b_2 b_i \otimes m_i)$, 
+so $B \otimes M$ does indeed have the structure of a $B$-module.
+
+We therefore have a map from $A$-modules $M$ to $B$-modules $B \otimes_A M$, 
+and we want to show that this defines a functor from the category
+of $A$-modules to the category of $B$-modules.
+
+Suppose that $g$ and $f$ are morphisms of the category of $A$-modules. Then 
+under this map, they map to $id \otimes g$ and $id \otimes f$, so that
+their composition $gf$ maps to 
+$id \otimes gf = (id \otimes g) (id \otimes f)$, which shows that this map is a
+functor.
+
+
+\subsection*{4(b)}
+
+In this case, as we showed above, $B \otimes C$ is a $B$-module, so that
+$$
+(b_1 \otimes c_1)(b_2 \otimes c_2) 
+= b_1 b_2 (id \otimes c_1) (id \otimes c_2)
+= b_1 b_2 (id \otimes (c_1 c_2)) = (b_1 b_2 \otimes c_1 c_2),
+$$
+where the second equality is true because part (a) produced a functor taking 
+$C$ to $B \otimes C$. Such a functor takes $c_1$ and $c_2$ to $id \otimes c_1$
+and $id \otimes c_2$ respectively, 
+and it takes $c_1 c_2$ to $id \otimes (c_1 c_2)$.
+
+Therefore, $B \otimes C$ has a multiplicative operation, and the
+additive operation simply follows from bilinearity. Hence, it has the 
+structure of a ring.
+
+
+\subsection*{5}
+
+Define $\f: S^{-1} R \times M \to S^{-1}M$ via the mapping 
+$(r/s, m) \mapsto rm/s$. This clearly a bilinear mapping, so we can apply the
+universal property 
+\[ 
+\xymatrix{
+S^{-1}R \times M \ar[r]^\otimes \ar[rd]_\f
+	& S^{-1}R \otimes M \ar[d]^f \\
+& S^{-1}M.
+}
+\] 
+Therefore, the map $\f$ induces a map $f: S^{-1}R \otimes M \to S^{-1}M$.
+In addition, the inverse map that sends $m/s \mapsto 1/s \otimes m$
+gives  a well defined inverse homomorphism.
+This is because if $m_1/s_1 = m_2/s_2$ then $s (s_2 m_1 - s_1 m_2) = 0$, which
+means that 
+$1 / s_1 \otimes m_1 
+= 1 / (s s_2 s_1) \otimes s s_2 m_1  
+= 1 / (s s_2 s_1) \otimes s s_1 m_2 = 1/s \otimes m_2$.
+
+Hence, $\f$ and its inverse are both well-defined homomorphisms, and therefore
+we have the desired isomorphism $S^{-1}R \otimes M \cong S^{-1}M$.
+
+\subsection*{6}
+
+We want to show that $\CC \otimes_\RR \CC \cong \CC \times \CC$.
+
+Since each copy of $\CC$ has basis $1$ and $i$, we see that by 
+problem 7, 
+the tensor product is free of rank 4 with basis $1 \otimes 1$, $1 \otimes i$,
+$i \otimes 1$, and $i \otimes i$. 
+Since $\CC \times \CC$ 
+has the same structure, we see that $\CC \otimes_R \CC \cong \CC \times \CC$.
+
+
+\subsection*{7(a)}
+We want to describe an isomorphism 
+$M \otimes_R (N \oplus N') \cong (M \otimes_R N) \oplus (M \otimes_R N')$.
+Define a map 
+$\f : M \times (N \oplus N') \to (M \otimes N) \oplus (M \otimes N')$ via
+$m \otimes (n, n') \mapsto (m \otimes n, m \otimes n')$.
+This map is clearly bilinear, so the universal property 
+\[ 
+\xymatrix{
+M \times (N \oplus N') \ar[r]^\otimes \ar[rd]_\f
+	& M \otimes (N \oplus N') \ar[d]^f \\
+& (M \otimes N) \oplus (M \otimes N').
+}
+\] 
+induces a map
+$f : M \otimes (N \oplus N') \to (M \otimes N) \oplus (M \otimes N')$.
+
+We can define the inverse map
+$(M \otimes N) \oplus (M \otimes N') \to M \otimes (N \oplus N')$ via 
+the mapping
+$(m \otimes n, m \otimes n') \mapsto m \otimes (n, n')$. We see that
+both $f$ and its inverse are well-defined homomorphisms, so 
+we therefore have the isomorphism
+$M \otimes (N \oplus N') \cong (M \otimes N) \oplus (M \otimes N')$.
+
+\subsection*{7(b)}
+First, note that $R \otimes_R R \cong R$.
+This is because every element of $R \otimes_R R$ can be written as
+$a \otimes b = ab \otimes 1$ by bilinearity.
+Hence, the mapping $R \otimes_R R \to R$ via $ab \otimes 1 \mapsto ab$ is
+well-defined and invertible, so it is an isomorphism $R \otimes_R R \cong R$. 
+
+Now, consider $R^m \otimes_R R^n$. Each of $R^m$ and $R^n$ are a direct sum of
+copies of $R$, so we can apply part (a) to decompose $R^m \otimes_R R^n$ into
+the direct sum of $mn$ copies of $R \otimes_R R$, which is isomorphic to the
+direct sum of $mn$ copies of $R$:
+\[ 
+R^n \otimes_R R^n \cong (R \otimes_R R)^{mn} \cong  R^{mn}, 
+\] 
+as desired.
+
+\end{document}
+the mapping $R \otimes_R R \to R$ via $ab \otimes 1 \mapsto a
