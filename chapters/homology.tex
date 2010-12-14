@@ -1,6 +1,29 @@
-\chapter{Homological Algebra}
-Though strictly homological algebra doesn't belong to the study of commutative algbra, it is so widely used in fields such as geometry and algebra that it would be a waste not to write a short exposition on it. Throughout this chapter we will assume that our objects are modules over a commutative ring though the results hold for any ``abelian category.'' Historically homological algebra developed out of algebraic topology; originally homology was considered a series of numbers that keep track of what we now call the ``Betti numbers.'' The section on history can be skipped without impairing understanding but should be read if the reader is looking for the motivation for some of the ideas we will study. 
+\chapter{Homological Algebra} 
+
+Though strictly homological algebra doesn't
+belong to the study of commutative algbra, it is so widely used in fields
+such as geometry and algebra that it would be a waste not to write a short
+exposition on it. Throughout this chapter we will assume that our objects are
+modules over a commutative ring though the results hold for any ``abelian
+category.'' Historically homological algebra developed out of algebraic
+topology; originally homology was considered a series of numbers that keep
+track of what we now call the ``Betti numbers.'' The section on history can
+be skipped without impairing understanding but should be read if the reader
+is looking for the motivation for some of the ideas we will study.
 
 \subsection{Origins of Homology: Simplicial Homology}
-The first homology theory to be developed was simplicial homology - the study of homology of simplicial complexes. To be simple, we will not develop the general theory and instead motivate our definitions with a few basic examples.
-\begin{example} Suppose our simplicial complex has one line segment with both ends id entified at one point $p$. Call the line segment $a$. The $n$-th homology group of this space roughly counts how many ``different ways'' there are of finding $n$ dimensional sub-simplices that have no boundary that aren't the boundary of any $n+1$ dimensional simplex. For the circle, notice that for each integer, we can find such a way (namely the simplex that wraps counter clockwise that integer number of times).
+
+The first homology theory
+to be developed was simplicial homology - the study of homology of simplicial
+complexes. To be simple, we will not develop the general theory and instead
+motivate our definitions with a few basic examples.  
+
+\begin{example} Suppose
+our simplicial complex has one line segment with both ends id entified at
+one point $p$. Call the line segment $a$. The $n$-th homology group of this
+space roughly counts how many ``different ways'' there are of finding $n$
+dimensional sub-simplices that have no boundary that aren't the boundary of
+any $n+1$ dimensional simplex. For the circle, notice that for each integer,
+we can find such a way (namely the simplex that wraps counter clockwise that
+integer number of times).
+\end{example}
