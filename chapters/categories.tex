@@ -544,8 +544,16 @@ in class as we haven't studied filtered colimits.
 
 \subsection{Filtered colimits}
 
-These are really useful, especially in algebraic topology. These are colimits
-over special $I$.
+
+\emph{Filtered colimits} are colimits
+over special indexing categories $I$ which look like totally ordered sets.
+These have several convenient properties as compared to general colimits.
+For instance, in the category of \emph{modules} over a ring (to be studied in
+chapter~\ref{foundations}), we shall see that filtered colimits actually
+preserve injections and surjections. In fact, they are \emph{exact.} This is
+not true in more general categories which are similarly structured.
+
+
 
 \begin{definition} 
 An indexing category is \textbf{filtered} if the following hold:
@@ -607,14 +615,6 @@ maps
 The colimit of this is $\mathbb{Q}$. There is a quick way of seeing this, which
 is left to the reader.
 \end{example} 
-
-\subsection{Filtered colimits}
-Last time, we talked about something called \emph{filtered colimits}. In this,
-we had a special property of the indexing category $I$. It had the property
-that given any two $i_0, i_1 \in I$, there was a third one into which they
-mapped; moreover, given any two maps $i_0 \rightrightarrows i_1$, there was a
-third one which coequalized them. Filtered colimits were defined as colimits
-over a filtered category. 
 
 When we have a functor $F: I \to \mathbf{Sets}, \mathbf{Grps},
 \mathbf{Modules}$ taking values in a ``nice'' category (e.g. the category of
