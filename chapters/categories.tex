@@ -16,8 +16,7 @@ seriously; skipping it for the moment to chapter 1 and returning here as a
 reference could be quite reasonable. 
 
 \section{Introduction}
-\newcommand{\ob}{\mathrm{ob}}
-
+\newcommand{\ob}{\operatorname{ob}}
 
 Categories are supposed to be places where mathematical objects live. For
 instance, meta-mathematically, to any given type of structure, there should be a
@@ -27,8 +26,8 @@ book.
 
 \begin{definition} 
 A \textbf{category} $\mathcal{C}$ consists of a collection of \textbf{objects},
-$\mathrm{ob} \ \mathcal{C}$, and for each pair of objects $X, Y \in
-\mathrm{ob}\mathcal{C}$, a set
+$\ob \mathcal{C}$, and for each pair of objects $X, Y \in
+\ob \mathcal{C}$, a set
 of \textbf{morphisms} $\hom_{\mathcal{C}}(X, Y)$ (abbreviated $\hom(X,Y)$). 
 
 For each object $X \in \ob\mathcal{C}$, there is an \textbf{identity morphism}
@@ -71,7 +70,7 @@ together with structure-preserving maps. Nonetheless, one can easily give
 other examples that do not fall into this category.
 
 \begin{example} 
-Let $G$ be a finite group. Then we an make a category $B_G$ where the objects
+Let $G$ be a finite group. Then we can make a category $B_G$ where the objects
 just consist of one point $\ast$ and the maps $\ast \to \ast$ are the elements
 of $G$. The identity is the identity of $G$ and composition is multiplication
 in the group. 
@@ -146,7 +145,7 @@ identities.
 In particular, we get maps $i_G: X \to X$ corresponding to each $g \in G$, such
 that the following diagram commutes:
 \[ \xymatrix{
-X \ar[r]^{i_{g_1}} \ar[rd]^{i_{g_1g_2}} & X \ar[d]^{i_{g_2}} \\ & X 
+X \ar[r]^{i_{g_1}} \ar[rd]_{i_{g_1g_2}} & X \ar[d]^{i_{g_2}} \\ & X 
 }\]
 So a functor $B_G \to \mathbf{Sets}$ is just a left $G$-action on a set $X$.
 \end{example} 
