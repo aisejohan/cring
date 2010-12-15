@@ -122,4 +122,10 @@ of $M$. \end{proof}
 Similarly, since any finitely generated abelian group can be decomposed into the direct sum of torsion subgroups and free subgroups, all finitely generated abelian groups admit a resolution of the type shown above.\end{example}
 
 \subsection{Derived Functors}
+Often in homological algebra, we see that ``short exact sequences induce long exact sequences.'' Using the theory of derived functors, we can make this formal.
+\begin{definition} A right-exact functor is an additive functor between two abelian categories $F$ such that for every short exact sequence $0\rightarrow A\rightarrowB\rightarrow C\rightarrow 0$, we get a exact sequence $F(A)\rightarrow F(B)\rightarrow F(C)\rightarrow 0$. \end{definition}
+\begin{example} The example that we will extensively study is the tensory product, $-\otimes M$ for any $R$-module $M$ is right-exact.\end{example}
+Now, what would be nice is if we could continue the exact sequence $F(A)\rightarrow F(B)\rightarrow F(C)\rightarrow 0$ on the left and make a long exact sequence; derived functors allow for this to happen.
+
+\begin{definition} Let $M$ be an object in an abelian category that has enough projectives. Let $P_*\rightarrow M$ be a resolution. Then the left derived functors $L_iF(-)$ are defined to be the homology objects $h_i(F(P_*))$ (the degree $0$ term of this complex is the last term to the left of $M$ in the resolution).\end{definition}
 
