@@ -885,3 +885,212 @@ means that primary decomposition is unique for torsion modules.
 Any torsion group is a direct sum of the $p$-power torsion over all primes $p$. 
 \end{example} 
 
+
+\section{Artinian rings}
+
+
+
+\begin{definition} 
+A commutative ring $R$ is \textbf{Artinian} every descending chain of ideals
+$I_0 \supset I_1 \supset I_2 \supset \dots$
+stabilizes.
+\end{definition} 
+
+\begin{remark} 
+The same definition makes sense for modules. We can define an $R$-module $M$ to
+be \textbf{Artinian} if every descending chain of submodules stabilizes. 
+\end{remark} 
+
+\begin{remark} 
+If $0 \to M' \to M \to M'' \to 0$ is an exact sequence, then $M$ is Artinian
+iff $M', M''$ are. This is proved in the same way as for noetherianness.
+\end{remark} 
+
+This definition is obviously dual to the notion of noetherianness, but it is
+much more restrictive.  
+Our first goal for today is to prove:
+
+\begin{theorem} 
+A commutative ring $R$ is artinian iff:
+\begin{enumerate}
+\item $R$ is noetherian. 
+\item Every prime ideal of $R$ is maximal.\footnote{This is much different from
+the Dedekind ring condition---there, zero is not maximal. An artinian domain is
+necessarily a field, in fact.}
+\end{enumerate}
+\end{theorem} 
+
+
+So artinian rings are very simple---small in some sense.
+
+
+\begin{proof} 
+Let's warm up to this by first proving 2. Let $R$ be artinian; we prove that:
+
+\begin{lemma} 
+Every prime $\mathfrak{p} \subset R$ is maximal.
+\end{lemma} 
+\begin{proof} 
+Indeed, $R/\mathfrak{p}$ is artinian. We want to show that this is a field,
+which is the same thing as saying that $\mathfrak{p}$ is maximal. Let $x \in
+R/\mathfrak{p}$ be nonzero. We have a descending chain
+\[ R/\mathfrak{p} \supset (x) \supset (x^{2}) \dots  \]
+which necessarily stabilizes. Then we have $(x^n) = (x^{n+1})$ for some $n$. In
+particular, we have $x^n = y x^{n+1}$ for some $y \in R/\mathfrak{p}$. But $x$
+is a nonzerodivisor, and  we find $$ 1 = xy$$ so $x$ is invertible. Thus
+$R/\mathfrak{p}$ is a field.
+\end{proof} 
+
+Next, we claim there aren't many primes:
+\begin{lemma} 
+If $R$ is artinian, there are only finitely many maximal ideals.
+\end{lemma} 
+\begin{proof} 
+Assume otherwise. Then we have an infinite sequence
+\[ \mathfrak{m}_1, \dots, \mathfrak{m}_2, \dots  \]
+of distinct maximal ideals. Then we have the descending chain
+\[ R \supset \mathfrak{m}_1 \supset \mathfrak{m}_1 \cap \mathfrak{m}_2 \supset \dots.  \]
+This stabilizes. So for some $n$, we have that $\mathfrak{m}_1 \cap \dots \cap 
+\mathfrak{m}_n \subset \mathfrak{m}_{n+1}$. However, this means that
+$\mathfrak{m}_{n+1}$ contains one of the $\mathfrak{m}_1, \dots,
+\mathfrak{m}_n$ since these are prime ideals (a familiar argument).  Maximality
+and distinctness of the $\mathfrak{m}_i$ give a contradiction.
+\end{proof} 
+
+In particular, we see that $\spec R$ for an artinian ring is just a finite set.
+In fact, since each point is closed, as each prime is maximal, the set has the
+\emph{discrete topology.}
+
+This means that $R$ factors as a product of rings. Whenever $\spec R$ can be
+written as a disjoint union of components, you get a factoring of $R$ into a
+product (this was on the homework). So $R = \prod R_i$ where each $R_i$ has
+only one maximal ideal. We find, as a result, 
+\begin{proposition} 
+Any artinian ring is a finite product of local artinian rings.
+\end{proposition} 
+
+Now, let us continue our analysis. We may as well assume that we are working
+with \emph{local} artinian rings $R$ in the future. In particular, $R$ has a unique
+prime $\mathfrak{m}$, which must be the radical of $R$ as the radical is the
+intersection of all primes. In particular, $\mathfrak{m}$ consists of
+nilpotent elements.
+
+I claim now that:
+\begin{lemma} Let $(R, \mathfrak{m})$ be a local artinian ring.
+Then $\mathfrak{m}$ is nilpotent. In particular, there is $n$ such that
+$\mathfrak{m}^n = (0)$.
+\end{lemma}
+\begin{proof}
+We have the chain of ideals 
+\[ \mathfrak{m} \supset \mathfrak{m}^2 \supset \dots,  \]
+which stabilizes, so there is a large $n$ with $\mathfrak{m}^n =
+\mathfrak{m}^{n+1} = \dots$. Let us call this stable ideal $I$. We want to show
+that $I = 0$. 
+
+Assume not. Consider all ideals $J$ such that $IJ \neq 0$. This is nonempty (as
+$I = I(1) \neq 0$). There is a minimal such ideal $J$. That's what the
+condition of artinianness buys us---any nonempty collection of ideals in an
+artinian ring has a minimal element.
+
+First, I claim that $J$ is principal. Indeed, there is $x \in J$ with $x I \neq
+0$; thus $(x)I \neq 0$, and minimality implies that $J = (x)$. 
+
+%Also we can now say that $x I^n \neq 0$ as $I = I^2$ by the definition of $I$
+%as the limit of the $\mathfrak{m}^k$.
+
+I now claim that $x \in \mathfrak{m}$. If otherwise, then $x$ would be
+invertible, so $J = R$. In particular, no nontrivial ideals $J$ satisfy $JI =
+0$. But $\mathfrak{m}I = I$ by construction of $I$. So $x$ is a nonunit.
+
+Consider ideals $I'$ such that $xI' \neq 0$. There is at least one, namely $I$. 
+So there is a minimal one. 
+
+%We consider the sequence
+%\[ xI \supset x^2 I \supset x^3 I \supset \dots  \]
+
+OK, we messed up. Let's assume this.
+\end{proof}
+
+Finally, we may prove:
+
+\begin{lemma} 
+A local artinian ring $R$ is noetherian.
+\end{lemma} 
+\begin{proof} 
+We have the filtration $R \supset \mathfrak{m} \supset \mathfrak{m}^2 \supset
+\dots$. This eventually stabilizes at zero---that's the previous statement. I
+claim that $R$ is noetherian as an $R$-module. To prove this, it suffices to
+show that $\mathfrak{m}^k/\mathfrak{m}^{k+1}$ is noetherian as an $R$-module.
+But of course, this is annihilated by $\mathfrak{m}$, so it is really a vector
+space over the field $R/\mathfrak{m}$. But $\mathfrak{m}^k/\mathfrak{m}^{k+1}$
+is a subquotient of an artinian module so is artinian itself. We have to show
+that it is noetherian. 
+It suffices to show now that if $k$ is a field, and $V$ a $k$-vector space,
+then TFAE:
+\begin{enumerate}
+\item $V$ is artinian. 
+\item $V$ is noetherian.
+\item $V$ is finite-dimensional.
+\end{enumerate}
+This is evident by linear algebra. 	
+\end{proof} 
+
+Now, finally, we have shown that an artinian ring is noetherian. We have to
+discuss the converse. Let us assume now that $R$ is noetherian and has only
+maximal prime ideals. We show that $R$ is artinian. Let us consider $\spec R$;
+there are only finitely many minimal primes by the theory of associated primes.
+Every prime ideal is minimal in this case. Once again, we learn that $\spec R$
+is finite and has the discrete topology. This means that $R$ is a product of
+factors $\prod R_i$ where each $R_i$ is a local noetherian ring with a unique
+prime ideal. We might as well now prove:
+
+\begin{lemma} 
+Let $(R, \mathfrak{m})$ be a local noetherian ring with one prime ideal. Then
+$R$ is artinian.
+\end{lemma} 
+\begin{proof} 
+We know that $\mathfrak{m} = \mathrm{rad}(R)$. So $\mathfrak{m}$ consists of
+nilpotent elements, so by finite generatedness it is nilpotent.  Then we have a
+finite filtration
+\[ R \supset \mathfrak{m} \supset \dots \supset \mathfrak{m}^k = 0.  \]
+Each of the quotients are finite-dimensional vector spaces, so artinian---this
+implies that $R$ itself is artinian. 
+
+\end{proof} 
+
+
+\end{proof} 
+
+The theory of artinian rings is thus a special case of the theory of noetherian
+rings.
+
+
+\begin{lemma} 
+If $R$ is artinian, then $\rad (R) $ is nilpotent.
+\end{lemma} 
+\begin{proof} 
+Call $J = \rad(R)$. Consider the decreasing filtration
+\[ R \supset J \supset J^2 \supset J^3 \supset \dots.  \]
+We want to show that this stabilizes at zero. A priori, we know that it
+stabilizes \emph{somewhere}. For some $n$, we have
+\[ J^n = J^{n'}, \quad n' \geq n.  \]
+Call the eventual stabilization of these ideals $I$. Consider ideals $I'$ such
+that
+\[ II' \neq 0.  \]
+\begin{enumerate}
+\item There aren't any such $I'$. Then $I = 0$, and we're done. 
+\item Otherwise, there is one, namely the unit ideal $(1)$. So there is a
+minimal such $I'$ as this is an artinian ring. What can we say about $I'$?
+Necessarily it is nonzero, and furthermore there is $x \in I'$ with $x I \neq
+0$. It follows by minimality that
+\[ I' = (x)  \]
+so $I'$ is principal, generated by some $x \in I'$. Then $xI \neq 0$; observe
+that this is also $(xI)I $ as $I^2  = I$ from the definition of $I$. Since
+$(xI) I \neq 0$, it follows again by minimality that
+\[ xI = (x).  \] This means that there is $y \in I$ such that $xy = x$; but now, by construction $I \subset J = \rad (R)$, implying that $y $ is nilpotent.
+It follows that
+\[ x = xy = xy^2 = \dots = 0  \]
+as $y$ is nilpotent. However, $x \neq 0$ as $xI \neq 0$. 
+\end{enumerate}
+\end{proof} 
+
