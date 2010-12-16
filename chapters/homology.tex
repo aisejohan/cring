@@ -1,4 +1,4 @@
-\chapter{Homological Algebra} 
+\chapter{Homological algebra} 
 
 Though strictly homological algebra doesn't
 belong to the study of commutative algebra, it is so widely used in fields
@@ -11,7 +11,7 @@ track of what we now call the ``Betti numbers.'' The section on history can
 be skipped without impairing understanding but should be read if the reader
 is looking for the motivation for some of the ideas we will study.
 
-\section{Origins of Homology: Simplicial Homology}
+\section{Origins of homology: simplicial homology}
 
 The first homology theory
 to be developed was simplicial homology - the study of homology of simplicial
@@ -39,7 +39,7 @@ $\ker(\partial_1)/\ker(\partial_2)$. This motivates us to define homology in a
 general setting.
 \end{example}
 
-\section{Chain Complexes}
+\section{Chain complexes}
 The chain complex is the most fundamental construction in homological algebra.
 \begin{definition} A chain complex is a collection of modules over a ring $C_i$
 for integer values of $i$. Usually we will find that $C_i=0$ for negative valuesof $i$. Equipped with the $C_i$ are boundary operators
@@ -82,7 +82,7 @@ As seen above, in homological algebra, one often deals with the images and kerne
 \begin{definition} The submodule of cycles $Z_i\subseteq C_i$ is the kernel $\ker(\partial_i)$. The submodule of boundaries $B_i\subseteq C_i$ is the image $Im(\partial_{i+1})$. Thus homology is said to be ``cycles mod boundaries,'' i.e. $Z_i/B_i$.\end{definition}
 To further simplify notation, often all differentials regardless of what chain complex they are part of are denoted $\partial$, thus the commutativity relation on chain maps is $f\partial=\partial f$ with indices and differention between the boundary operators dropped. 
 
-\section{Cochain Complexes}
+\section{Cochain complexes}
 Cochain complexes are much like chain complexes except the arrows point in the
 opposite direction.
 \begin{definition} A cochain complex is a series of modules $C_i$ for integer
@@ -95,7 +95,7 @@ cohomology objects to be $h^i(C^*)=\ker(\partial_i)/Im(\partial_{i-1})$.
 Similarly, we can also turn cochain complexes and cohomology modules into a
 graded module.
 
-\section{Chain Homotopies}
+\section{Chain homotopies}
 Returning to algebraic topology as a motivation, originally homology was
 intended to be a homotopy invariant meaning that space with the same homotopy
 type would have isomorphic homology modules. In fact, any homotopy induces what
@@ -139,7 +139,7 @@ of $M$. \end{proof}
 \begin{example} The abelian group $\mathbb{Z}/2$ has the free resolution $0\rightarrow\cdots 0\rightarrow\mathbb{Z}\rightarrow\mathbb{Z}\rightarrow\mathbb{Z}/2$.
 Similarly, since any finitely generated abelian group can be decomposed into the direct sum of torsion subgroups and free subgroups, all finitely generated abelian groups admit a resolution of the type shown above.\end{example}
 
-\section{Derived Functors}
+\section{Derived functors}
 Often in homological algebra, we see that ``short exact sequences induce long exact sequences.'' Using the theory of derived functors, we can make this formal.
 
 \begin{definition} A right-exact functor is an additive functor between two abelian categories $F$ such that for every short exact sequence $0\rightarrow A\rightarrow B\rightarrow C\rightarrow 0$, we get a exact sequence $F(A)\rightarrow F(B)\rightarrow F(C)\rightarrow 0$.
