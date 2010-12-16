@@ -1,17 +1,41 @@
 \chapter{The $\spec$ of a ring}
 
 
+The notion of the $\spec$ of a ring is fundamental in modern algebraic
+geometry. It is the scheme-theoretic analog of classical affine schemes. The
+identification occurs when one identifies the maximal ideals of the polynomial
+ring $k[x_1, \dots, x_n]$ (for $k$ an algebraically closed field) with the
+points of the classical variety $\mathbb{A}^n_k = k^n$. In modern algebraic
+geometry, one adds the ``non-closed points'' given by the other prime ideals.
+Just as general varieties were classically defined by gluing affine varieties, a
+scheme is defined by gluing open affines. 
+
+This is not a book on schemes, but it will nonetheless be convenient to
+introduce the $\spec$ construction, outside of the obvious benefits of
+including preparatory material for algebraic geometry. First of all, it will provide a convenient
+notation. Second, and more importantly, it will provide a convenient geometric
+intuition. For example, an $R$-module can be thought of as a kind of ``vector
+bundle''---technically, a sheaf---over the space $\spec R$, with the caveat
+that the rank might not be locally constant (which is, however, the case when the module
+is projective).
+
 \section{The spectrum of a ring}
 
 We shall now associate to every commutative ring a topological space $\spec R$
-in a functorial manner. This construction is the basis for scheme-theoretic
+in a functorial manner.
+That is, there will be a contravariant functor
+\[\spec:  \mathbf{CRing} \to \mathbf{Top}  \]
+where $\mathbf{Top}$ is the category of topological spaces.
+This construction is the basis for scheme-theoretic
 algebraic geometry and will be used frequently in the sequel. 
 
 \subsection{Definition and examples}
 
+We start simply by defining $\spec$ as a set. We will next construct the
+Zariski topology and later the functoriality.
 \begin{definition} 
 Let $R$ be a commutative ring.  The \textbf{spectrum} of $R$, denoted $\spec R$, is
-the collection of prime ideals of $R$.
+the set of prime ideals of $R$.
 \end{definition} 
 
 We shall now make $\spec R$ into a topological space. First, we describe a
@@ -38,7 +62,7 @@ ranging over some index set.  Let $I
 \[ V(I) = \bigcap K_{\alpha} = \bigcap V(I_{\alpha}),  \]
 which follows because $I$ is the smallest ideal containing each $I_{\alpha}$,
 so a prime contains every $I_{\alpha}$ iff it contains $I$.  
-\item The closed sets are closed under pairwise unions. If $K,K' \subset \spec
+\item The union of two closed sets is closed. Indeed, if $K,K' \subset \spec
 R$ are closed, we show $K \cup K'$ is closed.  Say $K= V(I), K' = V(I')$. Then
 we claim: 
 \[ K \cup K'  = V(II').  \]
@@ -48,7 +72,8 @@ this implies the displayed equation above and implies the result.
 \end{enumerate}
 \end{proof} 
 \begin{definition} 
-The topology on $\spec R$ defined above is called the \textbf{Zariski topology}.
+The topology on $\spec R$ defined above is called the \textbf{Zariski
+topology}. With it,  $\spec R$ is now a topological space.
 \end{definition} 
 
 In order to see the geometry of this construction, let us work several examples.
@@ -87,7 +112,8 @@ In fact,
 \begin{theorem}
 The $\mathfrak{m}_{s,t}$ are all the maximal ideals in $R$.
 \end{theorem} 
-This will follow from the \emph{Hilbert Nullstellensatz} to be proved later in the course.
+This will follow from the \emph{Hilbert Nullstellensatz} to be proved later
+(Theorem~\ref{nullstellensatz}).
 \item $(0) \subset R$ is a prime ideal since $R$ is a domain. 
 \item  If $f(x,y) \in R$ is an irreducible polynomial, then $(f)$ is a prime
 ideal.  This is equivalent to unique factorization in $R$.\footnote{To be
