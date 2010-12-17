@@ -127,9 +127,10 @@ follows.
 \end{proof}
 \end{proposition}
 
-\section{The category of rings.}
 
+\subsection{The categorical structure}
 The class of rings forms a category. Its morphisms are called ring homomorphisms.
+
 
 \begin{definition}
 A \textbf{ring homomorphism} between two rings $R$ and $S$ as a map
@@ -164,7 +165,7 @@ factorization, we shall give several more  examples.
 
 \begin{exercise}\label{polynomial} Let $R$ be a commutative ring.
 Show that the set of polynomials in one variable over $R$ is a commutative
-ring $R[x]$. Give a rigorous definition of this.
+ring $R[x]$, in fact an $R$-algebra. Give a rigorous definition of this.
 \end{exercise} 
 \begin{exercise} 
 If $R$ is a commutative ring, recall that an \textbf{invertible element} (or, somewhat
@@ -210,7 +211,14 @@ Prove that the functor  $\mathbf{Rings} \to \mathbf{Sets}$ assigning to each rin
 representable. (Hint: use a suitable polynomial ring.)
 \end{exercise} 
 
-\subsection{Another example: rings of holomorphic functions}
+\section{Further examples}
+
+We now illustrate a few important examples of 
+commutative rings. The section is in large measure an advertisement for why
+one might care about commutative algebra; nonetheless, the reader is
+encouraged at least to skim this section.
+
+\subsection{Rings of holomorphic functions}
 
 The following subsection may be omitted without impairing understanding.
 
@@ -460,11 +468,12 @@ get the coset $ax
 + M_0$. This does not depend on the coset representative.  
 \end{definition} 
 
+
+\subsection{Quotient rings}
 We shall next see that when one quotients by an \emph{ideal}, one gets not
 merely a module but actually another \emph{ring.}
 
 
-\begin{example} 
 If $R$ is a ring and $I \subset R$ an ideal, then $R/I$ is an $R$-module. The
 multiplication is $a(b+I) = ab + I$. 
 
@@ -498,13 +507,13 @@ a map
 \[ f: R \to B  \]
 killing $I$, then we can define $R/I \to B$ by sending $a+I$ to $f(a)$; this is
 uniquely defined since $f$ annihilates $I$.
-\end{example} 
 
 \begin{exercise} 
  If $R$ is a commutative
 ring, an element $e \in R$ is said to be \textbf{idempotent} if $e^2 =
 e$. Define a covariant functor $\mathbf{Rings} \to \mathbf{Sets}$ sending a
-ring to its idempotents. Prove that it is corepresentable.
+ring to its idempotents. Prove that it is corepresentable. (Answer: the
+corepresenting object is $\mathbb{Z}[X]/(X - X^2)$.)
 \end{exercise} 
 
 \begin{exercise} 
@@ -519,7 +528,7 @@ canonical isomorphism
 \end{exercise} 
 
 
-\subsection{Some categorical constructions}
+\subsection{The categorical structure on modules}
 So far, we have talked about modules, but we have not discussed morphisms
 between modules, and have yet to make the class of modules over a given ring
 into a category. This we do next.
