@@ -1,4 +1,5 @@
 \chapter{Noetherian rings and modules}
+\label{noetherian}
 
 The finiteness condition of a noetherian ring makes commutative algebra much
 nicer.
@@ -896,15 +897,18 @@ $I_0 \supset I_1 \supset I_2 \supset \dots$
 stabilizes.
 \end{definition} 
 
-\begin{remark} 
+\begin{definition}
 The same definition makes sense for modules. We can define an $R$-module $M$ to
 be \textbf{Artinian} if every descending chain of submodules stabilizes. 
-\end{remark} 
+\end{definition}
 
-\begin{remark} 
+\begin{proposition}  \label{exactartinian}
 If $0 \to M' \to M \to M'' \to 0$ is an exact sequence, then $M$ is Artinian
-iff $M', M''$ are. This is proved in the same way as for noetherianness.
-\end{remark} 
+iff $M', M''$ are. 
+\end{proposition}
+
+This is proved in the same way as for noetherianness.
+
 
 This definition is obviously dual to the notion of noetherianness, but it is
 much more restrictive.  
