@@ -74,7 +74,8 @@ divisible by all integers $n_1, \ldots, n_k$ forms the ideal $J =
 \end{example}
 
 \begin{exercise} 
-Show that the ideal $(2, 1 + \sqrt{-5}) \subset \mathbb{Z}[\sqrt{-5}]$ is not principal.
+Show that the ideal $(2, 1 + \sqrt{-5}) \subset \mathbb{Z}[\sqrt{-5}]$ is not
+principal.
 \end{exercise}
 
 \paragraph{Operations on ideals.}
@@ -109,6 +110,22 @@ In $\mathbb{Z}$, we have the following for any $m, n$.
   \item $(m) \cap (n) = (\mathrm{lcm}\{ m, n \})$,
 \end{enumerate}
 \end{example}
+
+\begin{proposition}
+For ideals $I, J, K \subset R$, we have the following.
+
+\begin{enumerate}
+  \item Distributivity: $I(J + K) = IJ + IK$.
+  \item $I \cap (J + K) = I \cap J + I \cap K$ if $I \supseteq J$ or $I \supseteq K$.
+  \item If $I + J = R$, $I \cap J = IJ$.
+\end{enumerate}
+
+\begin{proof}
+1 and 2 are clear.  For 3, note that $(I + J)(I \cap J) = I(I \cap J)
++ J(I \cap J) \subseteq IJ$.  Since $IJ \subseteq I \cap J$, the result
+follows.
+\end{proof}
+\end{proposition}
 
 \section{The category of rings.}
 
