@@ -4,7 +4,7 @@ We begin with a few historical remarks.  Fermat's last theorem states that the
 equation
   \[ \label{ft} x^n  + y^n = z^n \]
 has no nontrivial solutions in the integers, for $n \ge 3$.  We could try to
-prove this by factoring the expression the left hand side. We can write
+prove this by factoring the expression on the left hand side. We can write
   \[ (x+y)(x+ \zeta y) (x+ \zeta^2y) \dots (x+ \zeta^{n-1}y) = z^n, \]
 where $\zeta$ is a primitive $n$th root of unity.  Unfortunately, the factors
 lie in $\mathbb{Z}[\zeta]$, not the ring of integers $\mathbb{Z}$.  Though
@@ -105,8 +105,8 @@ In $\mathbb{Z}$, we have the following for any $m, n$.
 
 \begin{enumerate}
   \item $(m) + (n) = (\gcd\{ m, n \})$,
-  \item $(m)(n) = (mn)$.
-  \item $(m) \cap (n) = (\mathrm{lcm}\{ m, n \})$,
+  \item $(m)(n) = (mn)$,
+  \item $(m) \cap (n) = (\mathrm{lcm}\{ m, n \})$.
 \end{enumerate}
 \end{example}
 
@@ -284,7 +284,7 @@ last subsection. More generally, if $R$ is a ring,  we saw in
 Exercise~\ref{polynomial} that the set $R[t]$ of polynomials with coefficients
 in $R$
 is a ring.  This is a construction that
-can be iterated, to get a polynomial ring in several variables over $R$.
+can be iterated to get a polynomial ring in several variables over $R$.
 
 \begin{example} 
 Consider the polynomial ring $\mathbb{C}[x_1, \dots, x_n]$. Recall that before
@@ -521,7 +521,7 @@ $f(ax)  = af(x)$ for $a \in R, x \in M$.
 
 
 Thus, for any commutative ring $R$, the class of $R$-modules and
-module-homomorphsims forms a \textbf{category.}
+module-homomorphisms forms a \textbf{category.}
 
 \begin{example} 
 If $a \in R$, then multiplication by $a$ is a module-homomorphism $M
@@ -721,7 +721,7 @@ So for any nonzero commutative ring, we have at least two distinct ideals.
 Next, we show that maximal ideals always \emph{do} exist, except in the case
 of the zero ring. 
 \begin{proposition} \label{anycontainedinmaximal}
-Let $R$ be a commutative ring. Then $I \subset R$ be a proper ideal.  Then $I$
+Let $R$ be a commutative ring. Let $I \subset R$ be a proper ideal.  Then $I$
 is contained in a maximal ideal.
 \end{proposition} 
 
@@ -814,7 +814,6 @@ It follows that $R/I$ is a field precisely if
 $R/I$ has precisely two ideals, i.e. precisely if there are precisely two
 ideals in $R$ containing $I$. These ideals must be $(1)$ and $I$, so this
 holds if and only if $I$ is maximal.
-
 \end{proof} 
 
 There is a similar characterization of prime ideals.
