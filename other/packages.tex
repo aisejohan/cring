@@ -2,8 +2,18 @@
 \usepackage{amsmath}
 \usepackage{amscd}
 \usepackage{url}
+\usepackage[top=1.3in, bottom=1.3in, left=1.3in, right=1.3in]{geometry}
+
+% header and footer
 \usepackage{fancyhdr}
-\usepackage[top=1.3in, bottom=1.3in, left=1.5in, right=1.5in]{geometry}
+\fancyhead{}
+\fancyhead[CO,CE]{\itshape \name, \S\thechapter.\arabic{section}.}
+\fancyfoot{}
+\fancyfoot[CE,CO]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\headheight = 12pt
+
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{stackrel}
@@ -14,12 +24,3 @@
 \usepackage{xy}
 \input xy
 \xyoption{all}
-
-
-
-
-
-
-
-
-

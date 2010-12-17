@@ -1,0 +1,30 @@
+\def\textline#1{%
+  \hbox to \hsize{%
+    \vbox{\centering #1}}}%
+
+\def\maketitle{%
+  \null
+  \pagestyle{empty}%
+  \vbox to .9\vsize{%
+    \vss
+    \vbox to 1\vsize{%
+      \vfill
+      \textline{{\LARGE \name}\\\ \\%
+      A collaborative, open source textbook on commutative algebra.\\\ \\%
+      \url{http://people.fas.harvard.edu/~amathew/cr.html}}
+      \vfill
+      \textline{%
+        \begin{tabular}{l}
+          The following people have contributed to this work.
+        \end{tabular}}
+      \vspace{5mm}
+      \textline{%
+        \begin{tabular}{l}
+          \input{other/contributors.tex}
+        \end{tabular}
+      }
+    }%
+    \vss
+  }
+}
+\makeatother

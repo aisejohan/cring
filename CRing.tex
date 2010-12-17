@@ -5,15 +5,19 @@
 \input{other/theoremdef.tex}
 \input{other/formatting.tex}
 
-\begin{document}
+\def\name{The CRing Project}
 
+\input{other/titlepage.tex}
+
+\begin{document}
+\maketitle
+
+\input{other/intro.tex}
 
 \frontmatter
 
-\input{other/intro.tex}
-\input{other/contrib.tex}
-
 \mainmatter 
+\pagestyle{fancy}
 
 \input{chapters/categories.tex}
 \input{chapters/homology.tex}
@@ -28,8 +32,9 @@
 \input{chapters/completion.tex}
 \input{chapters/etale.tex}
 
+\input{other/contrib.tex}
 \input{other/license.tex}
 
 \input{other/biblio.tex}
-\end{document}
 
+\end{document}
