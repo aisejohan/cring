@@ -227,7 +227,7 @@ the zero polynomial does not have a degree, but the zero polynomial is
 obviously in $J$.
 
 There are two cases. In the first case, $n \geq N$. Then we write
-\[ P(X) = a X^n + \dots .  \] By definition $a \in I(n) = I(N)$ since the
+\[ P(X) = a X^n + \dots .  \] By definition, $a \in I(n) = I(N)$ since the
 chain of ideals $I(n)$ stabilized. Thus we can write $a$ in terms of the
 generators:  $a = \sum a_{N, i} \lambda_i$ for some
 $\lambda_i \in R$. Define the polynomial
@@ -396,7 +396,7 @@ Let $\mathfrak{p} \in \spec R$. Then $\ass(R/\mathfrak{p}) =
 \end{exercise} 
 
 We shall start by proving that $\ass(M) \neq \emptyset$ for nonzero modules. 
-\begin{proposition} 
+\begin{proposition} \label{assmnonempty} 
 If $M \neq 0$, then $M$ has an associated prime.
 \end{proposition} 
 \begin{proof}  Consider the collection of ideals in $R$ that arise as the
@@ -543,7 +543,7 @@ $\ass(S^{-1}M) \subset \spec S^{-1}R$. But we also know that $\spec S^{-1}R
 Thus, we can directly compare $\ass(M)$ and $\ass(S^{-1}M)$, and one might
 conjecture (correctly, as it happens) that $\ass(S^{-1}M) = \ass(M) \cap \spec
 S^{-1}R$.
-\begin{proposition} 
+\begin{proposition} \label{assmlocalization}
 Let $R$ noetherian, $M$ finitely generated and $S \subset R$ multiplicatively closed. 
 Then 
 \[ \ass(S^{-1}M)  = \left\{S^{-1}\mathfrak{p}: \mathfrak{p} \in \ass(M),
@@ -575,12 +575,12 @@ noetherian.  The claim is that $I = \phi^{-1}(\mathfrak{q})$, so
 $\phi^{-1}(\mathfrak{q}) \in \ass(M)$.
 
 Indeed,  any other annihilator $I' = \ann(tx)$ (for $t \in S$) must be contained in $\ann(t_0 t x)$. However, 
-\[ I \subset \ann(t_0 x)  \]
+\( I \subset \ann(t_0 x)  \)
 and $I$ is maximal, so $I = \ann(t_0 t x)$ and
-\[ I' \subset I.  \] In other words, $I$ contains all the other annihilators
+\( I' \subset I.  \) In other words, $I$ contains all the other annihilators
 $\ann(tx)$ for $t \in S$.
 In particular, the big union above, i.e. $\phi^{-1}(\mathfrak{q})$, is just
-\[ I = \ann(t_0 x).  \]
+\( I = \ann(t_0 x).  \)
 In particular, $\phi^{-1}(\mathfrak{q}) = \ann(t_0x)$ is in $\ass(M)$.
 This means that every associated prime
 of $S^{-1}M$ comes from an associated prime of $M$, which completes the proof.
@@ -593,59 +593,76 @@ of $S^{-1}M$ comes from an associated prime of $M$, which completes the proof.
 \subsection{Associated primes determine the support}
 The next claim is that the support and the associated primes are related.
 
-\begin{proposition} The support is the closure of the associated primes:
+\begin{proposition}\label{supportassociated} The support is the closure of the associated primes:
 \[ \supp M  = \bigcup_{\mathfrak{q} \in \ass(M)}
 \overline{\left\{\mathfrak{q}\right\}} \]
 \end{proposition} 
 
-\begin{proof} 
-First, the easy direction. We show that $\supp(M)$ contains the set of primes
-$\mathfrak{p}$ containing an associated prime. So let $\mathfrak{q}$ be an
-associated prime and $\mathfrak{p} \supset \mathfrak{q}$. We show that
-\[ \mathfrak{p} \in \supp M, \ i.e. \ M_{\mathfrak{p}} \neq 0.  \]
-But there is an injective map
-\[ R/\mathfrak{q} \to M  \]
-so an injective map
-\[ (R/\mathfrak{q})_{\mathfrak{p}} \to M_{\mathfrak{p}}  \]
-where the first thing is nonzero since nothing nonzero in $R/\mathfrak{q}$ can be
-annihilated by something not in $\mathfrak{p}$. So $M_{\mathfrak{p}} \neq 0$. 
+By definition of the Zariski topology, this means that a prime $\mathfrak{p}
+\in \spec R$ belongs to $\supp M$ if and only if it contains an associated
+prime. 
 
-The hard direction is the converse. Say that $\mathfrak{p} \in \supp M$. We
+\begin{proof} 
+First,  we show that $\supp(M)$ contains the set of primes
+$\mathfrak{p} \in \spec R$ containing an associated prime; this will imply
+that $\supp(M) \supset \bigcup_{\mathfrak{q} \in \ass(M)}
+\overline{\left\{\mathfrak{q}\right\}}$. So let $\mathfrak{q}$ be an
+associated prime and $\mathfrak{p} \supset \mathfrak{q}$. We need to show that
+\[ \mathfrak{p} \in \supp M, \ \text{i.e.} \ M_{\mathfrak{p}} \neq 0.  \]
+But, since $\mathfrak{q} \in \ass(M)$,  there is an injective map
+\[ R/\mathfrak{q} \hookrightarrow M , \]
+so localization gives an injective map
+\[ (R/\mathfrak{q})_{\mathfrak{p}} \hookrightarrow M_{\mathfrak{p}}.  \]
+Here, however, the first object $(R/\mathfrak{q})_{\mathfrak{p}}$ is nonzero since nothing nonzero in $R/\mathfrak{q}$ can be
+annihilated by something outside $\mathfrak{p}$. So $M_{\mathfrak{p}} \neq
+0$, and $\mathfrak{p} \in \supp M$. 
+
+Let us now prove the converse inclusion. Suppose that $\mathfrak{p} \in \supp M$. We
 have to show that $\mathfrak{p}$ contains an associated prime.  
-Now $M_{\mathfrak{p}} \neq 0$ and it is a finitely generated $R_{\mathfrak{p}}$-module, where
-$R_{\mathfrak{p}}$ is noetherian. So this has an associated prime. 
-\[ \ass(M_{\mathfrak{p}}) \neq \emptyset  \]
-and we can find an element $\mathfrak{q}_{\mathfrak{p}} \subset
-R_{\mathfrak{p}}$ in there, where
-$\mathfrak{q}$ is a prime of $R$ contained in $\mathfrak{p}$. But by the above
-fact about localization and associated primes, we have that 
-\[ \mathfrak{q} \in \ass(M)  \]
-and we have already seen that $\mathfrak{q} \subset \mathfrak{p}$. This proves
-the other inclusion and establishes the result. 
+By assumption, $M_{\mathfrak{p}} \neq 0$, and $M_{\mathfrak{p}}$ is a finitely generated
+module over the noetherian ring $R_{\mathfrak{p}}$. So $M_{\mathfrak{p}}$ has
+an associated prime.
+It follows by Proposition~\ref{assmlocalization} that $\ass(M) \cap \spec
+R_{\mathfrak{p}}$ is nonempty. Since the primes of $R_{\mathfrak{p}}$
+correspond to the primes contained in $\mathfrak{p}$, it follows that there
+is  a prime contained in $\mathfrak{p}$ that lies in $\ass(M)$. This is
+precisely what we wanted to prove.
 \end{proof} 
 
 
-\begin{corollary} 
-$\supp(M)$ is closed.
+\begin{corollary} \label{suppisclosed} For $M$ finitely generated,  
+$\supp M$ is closed. Further, every minimal element of $\supp M$ lies in
+$\ass(M)$.
 \end{corollary} 
 \begin{proof} 
 Indeed, the above result says that
 \[ \supp M  = \bigcup_{\mathfrak{q} \in \ass(M)}
 \overline{\left\{\mathfrak{q}\right\}}. \]
+Since $\ass(M)$ is finite, it follows that $\supp M$ is closed.
+The above equality also shows that any minimal element of $\supp M$ must be an
+associated prime.
 \end{proof} 
+
+\begin{example} 
+Corollary~\ref{suppisclosed} is \emph{false} for modules that are not finitely
+generated. Consider for instance the abelian group $\bigoplus_p \mathbb{Z}/p$.
+The support of this as a $\mathbb{Z}$-module is precisely the set of all
+closed points (i.e., maximal ideals) of $\spec \mathbb{Z}$, and is
+consequently is not closed. 
+\end{example} 
+
 \begin{corollary} 
 The ring $R$ has finitely many minimal prime ideals. 
 \end{corollary} 
 \begin{proof} 
-Indeed, every minimal prime ideal is an associated prime for the $R$-module $R$
-itself. Why is this? Well, $\supp R = \spec R$. Thus every prime ideal of $R$
-contains an associated prime. And $R$ has finitely many associated primes.
+Clearly, $\supp R = \spec R$. Thus every prime ideal of $R$
+contains an associated prime of $R$ by Proposition~\ref{supportassociated}.
 \end{proof} 
 
-\begin{remark} 
-So $\spec R$ is the finite union of irreducible pieces
+So $\spec R$ is the finite union of the  irreducible closed  pieces
 $\overline{\mathfrak{q}}$ if $R$ is noetherian.
-\end{remark}
+\add{I am not sure if ``irreducibility'' has already been defined. Check this.}
+
 We have just seen that $\supp M$ is a closed subset of $\spec R$ and is a union
 of finitely many irreducible subsets.  More precisely, 
 \[ \supp M = \bigcup_{\mathfrak{q} \in \ass(M)}
@@ -661,19 +678,26 @@ $M$ if it is minimal (with respect to the ordering on $\ass(M)$); it is
 
 So the embedded primes are not needed to describe the support of $M$. 
 
+\add{Examples of embedded primes}
+
 \subsection{Primary modules}
 
+A primary modules are ones that has only one associated prime. It is equivalent
+to say that any homothety is either injective or nilpotent. 
+As we will see in the next section, any module has a ``primary
+decomposition:'' in fact, it embeds as a submodule of a sum of primary
+modules.
+
 \begin{definition} 
-Let $\mathfrak{p} \subset R$ be prime, $M$ a finitely generated $R$-module. Then $M$ is
+Let $\mathfrak{p} \subset R$ be prime, $M$ a finitely generated  $R$-module. Then $M$ is
 \textbf{$\mathfrak{p}$-primary} if 
 \[ \ass(M) = \left\{\mathfrak{p}\right\}.  \]
-Let's say that the zero module is not primary.
 
 A module is \textbf{primary} if it is $\mathfrak{p}$-primary for some
-$\mathfrak{p}$, i.e. has precisely one associated prime. 
+prime $\mathfrak{p}$, i.e., has precisely one associated prime. 
 \end{definition} 
 
-\begin{proposition} 
+\begin{proposition} \label{whenisprimary}
 Let $M$ be a finitely generated $R$-module. Then $M$ is \textbf{$\mathfrak{p}$}-primary if
 and only if, for every $m \in M - \left\{0\right\}$, 
 the annihilator $\ann(m)$ has radical $\mathfrak{p}$.
@@ -682,18 +706,21 @@ the annihilator $\ann(m)$ has radical $\mathfrak{p}$.
 We first need a small observation.
 
 \begin{lemma} 
-If $M$ is $\mathfrak{p}$-primary, so is any nonzero submodule of $M$ is
+If $M$ is $\mathfrak{p}$-primary, then any nonzero submodule $M' \subset M$ is
 $\mathfrak{p}$-primary.
 \end{lemma} 
 \begin{proof} 
-Indeed, any associated prime of the submodule is an associated prime of $M$.
-Note that the submodule, if it is nonzero, it has an associated prime. That has
-to be $\mathfrak{p}$.
+Indeed, we know that $\ass(M') \subset \ass(M)$ by Proposition~\ref{assexact}.
+Since $M' \neq 0$, we also know that $M'$ has an associated prime
+(Proposition~\ref{assmnonempty}). Thus $ \ass(M') = \{\mathfrak{p}\}$, so
+$M'$ is $\mathfrak{p}$-primary.
 \end{proof} 
 
-Assume first $M$ to be $\mathfrak{p}$-primary. Let $x \in M$, $x \neq 0$. Let
-$I = \ann(x)$. So by definition there is an injection
-\[ R/I \to M  \]
+Let us now return to the proof of the main result,
+Proposition~\ref{whenisprimary}.
+Assume first that $M$ is $\mathfrak{p}$-primary. Let $x \in M$, $x \neq 0$. Let
+$I = \ann(x)$; we are to show that $\rad(I)  =\mathfrak{p}$. By definition, there is an injection
+\[ R/I \hookrightarrow M  \]
 sending $1 \to x$. As a result, $R/I$ is $\mathfrak{p}$-primary by the above
 lemma. We want to know that $\mathfrak{p}  = \rad(I)$. 
 We saw that the support $\supp R/I = \left\{\mathfrak{q}: \mathfrak{q}
@@ -714,79 +741,135 @@ Suppose the condition holds and $\mathfrak{q} \in \ass(M)$, so $\mathfrak{q} =
 
 We have another characterization.
 
-\begin{proposition}
-Let $M \neq 0$ be a finitely generated $R$-module. Then $M$ is primary iff for each $a \in
-R$, either multiplication $a: M \to M$ is injective or nilpotent.
+\begin{proposition} \label{whenisprimary2}
+Let $M \neq 0$ be a finitely generated $R$-module. Then $M$ is primary if and
+only if for each $a \in
+R$, then the homothety $ M \stackrel{a}{\to} M$ is either injective or nilpotent.
 \end{proposition}
 \begin{proof} 
-Suppose $M$ to be $\mathfrak{p}$-primary. Then multiplication by anything in
+Suppose first that $M$ is $\mathfrak{p}$-primary. Then multiplication by anything in
 $\mathfrak{p}$ is nilpotent because the annihilator of everything nonzero has
-radical $\mathfrak{p}$. But if $a \notin \mathfrak{p}$, then $\ann(x)$ for
+radical $\mathfrak{p}$ by Proposition~\ref{whenisprimary}. But if $a \notin \mathfrak{p}$, then $\ann(x)$ for
 $x \in M - \left\{0\right\}$ has radical $\mathfrak{p}$ and cannot contain $a$. 
 
-Other direction, now. Assume that every element of $a$ acts either injectively or nilpotently on $M$.
+Let us now do the other direction. Assume that every element of $a$ acts either injectively or nilpotently on $M$.
 Let $I \subset R$ be the collection of elements $a \in R$ such that $a^n M = 0$
-for $n$ large. Then $I$ is an ideal; it is closed under addition by the
-binomial formula. If $a, b \in I$ and $a^n, b^n$ act by zero, then $(a+b)^{2n}$
+for $n$ large. Then $I$ is an ideal, since it is closed under addition by the
+binomial formula: if $a, b \in I$ and $a^n, b^n$ act by zero, then $(a+b)^{2n}$
 acts by zero as well.
 
 
-I claim that $I$ is actually prime. If $a,b \notin I$, then $a,b$ act by
-multiplication injectively on $I$. So $a: M \to M, b: M \to M$ are injective.
+I claim that $I$ is actually prime. If $a,b \notin I$, then  $a,b$ act by
+multiplication injectively on $M$. So $a: M \to M, b: M \to M$ are injective.
 However, a composition of injections is injective, so $ab$ acts injectively and
 $ab \notin I$. So $I$ is prime.
 
 We need now to check that if $x \in M$ is nonzero, then $\ann(x)$ has radical
-$I$. This is because something $a \in R$ has a power that kills $x$,
-multiplication $M \stackrel{a}{\to} M$ can't be injective, so it must be
-nilpotent. Conversely, if $a \in I$, then a power of $a$ is nilpotent, so it
+$I$. Indeed, if $a \in R$   annihilates $x$,
+then the homothety  $M \stackrel{a}{\to} M$ cannot be injective, so it must be
+nilpotent (i.e. in $I$). Conversely, if $a \in I$, then a power of $a$ is
+nilpotent, so a power of $a$ 
 must kill $x$. 
+It follows that $\ann(x) = I$. Now, by Proposition~\ref{whenisprimary}, we see
+that $M$ is $I$-primary.
 \end{proof} 
 
-So we have this notion of a primary module. The idea is that all the torsion is
+We now have this notion of a primary module. The idea is that all the torsion is
 somehow concentrated in some prime.
+
+\begin{example} 
+If $R$ is a noetherian ring and $\mathfrak{p} \in \spec R$, then
+$R/\mathfrak{p}$ is $\mathfrak{p}$-primary. More generally, if $I \subset R$
+is an ideal, then $R/I$ is ideal if and only if $\rad(I) $ is prime. This
+follows from Proposition~\ref{whenisprimary2}.
+\end{example} 
+
+\begin{exercise} 
+If $0 \to M' \to M \to M'' \to 0$ is an exact sequence with $M', M, M''$
+nonzero and finitely generated, then $M$ is $\mathfrak{p}$-primary if and only if $M', M''$ are.
+\end{exercise} 
+
+\begin{exercise} 
+Let $M$ be a finitely generated $R$-module. Let $\mathfrak{p} \in \spec R$. Show that the sum of two
+$\mathfrak{p}$-primary  submodules is $\mathfrak{p}$-primary. Deduce that
+there is a $\mathfrak{p}$-primary submodule of $M$ which contains every
+$\mathfrak{p}$-primary submodule. 
+\end{exercise} 
+
+\begin{exercise}[Bourbaki]
+Let $M$ be a finitely generated $R$-module. Let $T \subset \ass(M)$ be a
+subset of the associated primes. Prove that there is a submodule $N \subset M$
+such that 
+\[ \ass(N) = T, \quad \ass(M/N) = \ass(M) - T.  \]
+
+\end{exercise} 
 
 \section{Primary decomposition} This is the structure theorem for modules
 over a noetherian ring, in some sense.
+Throuoghout, we fix a noetherian ring $R$.
+
+\subsection{Irreducible and coprimary modules}
 
 \begin{definition} 
 Let $M$ be a finitely generated $R$-module. A submodule $N \subset M$ is
 \textbf{$\mathfrak{p}$-coprimary} if $M/N$ is $\mathfrak{p}$-primary.
 
-Similarly, we can say that $N \subset M$ is \textbf{coprimary}.
+Similarly, we can say that $N \subset M$ is \textbf{coprimary} if it is
+$\mathfrak{p}$-coprimary for some $\mathfrak{p} \in \spec R$.
 \end{definition} 
+
+We shall now show we can represent any submodule of $M$ as an intersection of
+coprimary submodules. In order to do this, we will define a submodule of $M$ to be
+\emph{irreducible} if it cannot be written as a nontrivial intersection of
+submodules of $M$. It
+will follow by general nonsense that any submodule is an intersection of
+irreducible submodueles. We will then see that any irreducible submodule is
+coprimary. 
 
 \begin{definition} 
-$N \subsetneq M$ is \textbf{irreducible} if whenever $N = N_1 \cap N_2$ for $N_1,
-N_2 \subset M$, then either one of $N_1, N_2$ equals $N$. It is not
-nontrivially the intersection of larger submodules. 
+The submomdule $N \subsetneq M$ is \textbf{irreducible} if whenever $N = N_1 \cap N_2$ for $N_1,
+N_2 \subset M$ submodules, then either one of $N_1, N_2$ equals $N$. In other words, it is not
+ the intersection of larger submodules. 
 \end{definition} 
 
-\begin{proposition} 
+\begin{proposition} \label{irrediscoprimary}
 An irreducible submodule $N \subset M$ is coprimary.
 \end{proposition} 
 \begin{proof} 
-Say $a \in R$. We'd like to show that 
+Say $a \in R$. We would like to show that the homothety 
 \[ M/N \stackrel{a}{\to} M/N  \]
 is either injective or nilpotent.
-Consider  the following submodule of $M/N$:
+Consider  the following submodules of $M/N$:
 \[ K(n) =  \left\{x \in M/N: a^n x = 0\right\} . \]
-Then $K(0) \subset K(1) \subset \dots$; this chain stops by noetherianness as
+Then clearly $K(0) \subset K(1) \subset \dots$; this chain stabilizes  as
 the quotient module is noetherian.
 In particular, $K(n) = K(2n)$ for large $n$. 
 
-In particular, if $x \in M/N$ is divisible by $a^n$ ($n$ large) and nonzero, then $a^n x$
-is also nonzero. Indeed, say $x = a^n y$; then $y \notin K(n)$, so $a^{n}x =
+It follows that if $x \in M/N$ is divisible by $a^n$ ($n$ large) and nonzero, then $a^n x$
+is also nonzero. Indeed, say $x = a^n y \neq 0$; then $y \notin K(n)$, so $a^{n}x =
 a^{2n}y \neq 0$ or we would have $y \in K(2n) = K(n)$. In $M/N$, the submodules
 \[ a^n(M/N) \cap \ker(a^n)  \]
 are equal to zero for large $n$. But our assumption was that $N$ is
-irreducible.  So one of these submodules of $M/N$ is zero. I.e., either
+irreducible.  So one of these submodules of $M/N$ is zero. That is, either
 $a^n(M/N) = 0$ or $\ker a^n = 0$. We get either injectivity or nilpotence on
 $M/N$. This proves the result.
 \end{proof} 
+ 
+\subsection{Irreducible and primary decompositions}
+
+We shall now show that in a finitely generated module over a noetherian ring,
+we can write $0$ as an intersection of coprimary modules. This decomposition,
+which is called a \emph{primary decomposition}, will be deduced from purely
+general reasoning.
+
+\begin{definition} 
+An \textbf{irreducible decomposition} of the module $M$ is a representation
+$N_1 \cap N_2 \dots \cap N_k  = 0$, where the $N_i \subset M$ are irreducible
+submodules.
+\end{definition} 
 
 \begin{proposition} 
-$M$ has an irreducible decomposition. There exist finitely many irreducible
+If $M$ is finitely generated, then $M$ has an irreducible decomposition. There exist finitely many irreducible
 submodules $N_1, \dots, N_k$ with
 \[  N_1 \cap \dots \cap N_k = 0. \]
 \end{proposition} 
@@ -794,20 +877,34 @@ In other words,
 \[  M \to \bigoplus M/N_i  \]
 is injective.
 So a finitely generated module over a noetherian ring can be imbedded in a direct sum of
-primary modules. 
+primary modules, since by Proposition~\ref{irrediscoprimary} the $M/N_i$ are
+primary. 
 
-\begin{proof} 
-Let $M' \subset M$ be a maximal submodule of $M$ such that $M'$ cannot be
-written as an intersection of finitely many irreducible submodules. If no such
-$M'$ exists, then we're done, because then $0$ can be written as an
+\begin{proof} This is now purely formal. 
+
+Among the submodules of $M$, some may be expressible as intersections of
+finitely many irreducibles, while some may not be. Our goal is to show that
+$0$ is such an intersection.
+Let $M' \subset M$ be a maximal submodule of $M$ such that $M'$ \emph{cannot} be
+written as such an intersection. If no such
+$M'$ exists, then we are done, because then $0$ can be written as an
 intersection of finitely many irreducible submodules.
 
 Now $M'$ is not irreducible, or it would be the intersection of one irreducible
 submodule.
-Then $M'$ can be written as $M_1' \cap M_2'$ for two strictly
-larger submodules of $M$.  But $M_1', M_2'$ admit decompositions as
-intersections of irreducibles. So $M'$ does as well, contradiction. 
+It follows $M'$ can be written as $M'=M_1' \cap M_2'$ for two strictly
+larger submodules of $M$.  But by maximality, $M_1', M_2'$ admit decompositions as
+intersections of irreducibles. So $M'$ admits such a decomposition as well, a contradiction. 
 \end{proof} 
+
+\begin{corollary} 
+For any finitely generated $M$, there exist coprimary submodules $N_1, \dots,
+N_k \subset M$ such that $N_1 \cap \dots \cap N_k  = 0$.
+\end{corollary} 
+\begin{proof} 
+Indeed, every irreducible submodule is coprimary.
+\end{proof} 
+
 
 For any $M$, we have an \textbf{irreducible decomposition}
 \[ 0 = \bigcap N_i  \]
@@ -825,24 +922,37 @@ N_2$ is also $\mathfrak{p}$-coprimary.
 We have to show that $M/N_1 \cap N_2$ is $\mathfrak{p}$-primary. Indeed, we have an injection
 \[ M/N_1 \cap N_2 \rightarrowtail  M/N_1 \oplus M/N_2  \]
 which implies that $\ass(M/N_1 \cap N_2) \subset \ass(M/N_1) \cup \ass(M/N_2) =
-\left\{\mathfrak{p}\right\}$. So we're done. 
+\left\{\mathfrak{p}\right\}$. So we are done. 
 \end{proof} 
 
-In particular, if we don't want irreducibility but only primariness in the
+In particular, if we do not want irreducibility but only primariness in the
 decomposition
 \[ 0 = \bigcap N_i,  \]
-we can assume that each $N_i$ is $\mathfrak{p}_i$ coprimary for some prime
-$\mathfrak{p}_i$ with the $\mathfrak{p}_i$ distinct.
+we can assume that each $N_i$ is $\mathfrak{p}_i$ coprimary for some
+ prime
+$\mathfrak{p}_i$ with the $\mathfrak{p}_i$ \emph{distinct}.
 
 \begin{definition} 
-Such a decomposition of zero is called a \textbf{primary decomposition}.
+Such a decomposition of zero, where the different modules $N_i$ are
+$\mathfrak{p}_i$-coprimary for different $\mathfrak{p}_i$, is called a \textbf{primary decomposition}.
 \end{definition} 
 
-We can further assume that 
+
+
+\subsection{Uniqueness questions}
+
+In general, primary decomposition is \emph{not} unique. Nonetheless, we shall
+see that a limited amount of uniqueness does hold. For instance, the primes
+that occur are determined.
+
+Let $M$ be a finitely generated module over a noetherian ring $R$, and suppose
+$N_1 \cap \dots \cap N_k = 0$ is a primary decomposition.
+Let us assume that the decomposition is
+\emph{minimal}: that is, if we dropped one of the $N_i$, the intersection would no
+longer be zero.
+This implies that
 \[ N_i \not\supset \bigcap_{j \neq i} N_j  \]
-or we could omit one of the $N_i$. Let's assume that the decomposition is
-minimal.
-Then the decomposition is called a \textbf{reduced primary decomposition}.
+or we could omit one of the $N_i$. Then the decomposition is called a \textbf{reduced primary decomposition}.
 
 Again, what this tells us is that $M \rightarrowtail  \bigoplus M/N_i$. What we
 have shown is that $M$ can be imbedded in a sum of pieces, each of which is
@@ -939,7 +1049,8 @@ Any torsion group is a direct sum of the $p$-power torsion over all primes $p$.
 
 The notion of an \emph{artinian ring}  appears to be dual to that of a
 noetherian ring, since the chain condition is simply reversed in the
-definitino. However, the artinian condition is much stronger. In fact, 
+definition. However, the artinian condition is much stronger than the
+noetherian one. In fact, 
 artinianness actually implies noetherianness, and much more. 
 Artinian modules over non-artinian rings are frequently of interest as well;
 for instance, if $R$ is a noetherian ring and $\mathfrak{m}$ is a maximal
@@ -972,7 +1083,7 @@ A ring which is a finite-dimensional algebra over a field is artinian.
 \end{exercise} 
 \begin{proposition}  \label{exactartinian}
 If $0 \to M' \to M \to M'' \to 0$ is an exact sequence, then $M$ is Artinian
-iff $M', M''$ are. 
+if and only if $M', M''$ are. 
 \end{proposition}
 
 This is proved in the same way as for noetherianness.
@@ -990,7 +1101,7 @@ much more restrictive.
 The main result is:
 
 \begin{theorem} \label{artinianclassification}
-A commutative ring $R$ is artinian iff:
+A commutative ring $R$ is artinian if and only if:
 \begin{enumerate}
 \item $R$ is noetherian. 
 \item Every prime ideal of $R$ is maximal.\footnote{This is much different from
@@ -1021,7 +1132,7 @@ R/\mathfrak{p}$ be nonzero. We have a descending chain
 \[ R/\mathfrak{p} \supset (x) \supset (x^{2}) \dots  \]
 which necessarily stabilizes. Then we have $(x^n) = (x^{n+1})$ for some $n$. In
 particular, we have $x^n = y x^{n+1}$ for some $y \in R/\mathfrak{p}$. But $x$
-is a nonzerodivisor, and  we find $$ 1 = xy$$ so $x$ is invertible. Thus
+is a nonzerodivisor, and  we find $ 1 = xy$. So $x$ is invertible. Thus
 $R/\mathfrak{p}$ is a field.
 \end{proof} 
 
@@ -1031,10 +1142,10 @@ If $R$ is artinian, there are only finitely many maximal ideals.
 \end{lemma} 
 \begin{proof} 
 Assume otherwise. Then we have an infinite sequence
-\[ \mathfrak{m}_1, \dots, \mathfrak{m}_2, \dots  \]
+\[ \mathfrak{m}_1,  \mathfrak{m}_2, \dots  \]
 of distinct maximal ideals. Then we have the descending chain
 \[ R \supset \mathfrak{m}_1 \supset \mathfrak{m}_1 \cap \mathfrak{m}_2 \supset \dots.  \]
-This stabilizes. So for some $n$, we have that $\mathfrak{m}_1 \cap \dots \cap 
+This necessarily stabilizes. So for some $n$, we have that $\mathfrak{m}_1 \cap \dots \cap 
 \mathfrak{m}_n \subset \mathfrak{m}_{n+1}$. However, this means that
 $\mathfrak{m}_{n+1}$ contains one of the $\mathfrak{m}_1, \dots,
 \mathfrak{m}_n$ since these are prime ideals (a familiar argument).  Maximality
@@ -1043,12 +1154,17 @@ and distinctness of the $\mathfrak{m}_i$ give a contradiction.
 
 In particular, we see that $\spec R$ for an artinian ring is just a finite set.
 In fact, since each point is closed, as each prime is maximal, the set has the
-\emph{discrete topology.}
+\emph{discrete topology.} As a result, $\spec R$ for an artinian ring is
+\emph{Hausdorff}. (There are very few other cases.)
 
 This means that $R$ factors as a product of rings. Whenever $\spec R$ can be
-written as a disjoint union of components, you get a factoring of $R$ into a
-product (this was on the homework). So $R = \prod R_i$ where each $R_i$ has
-only one maximal ideal. We find, as a result, 
+written as a disjoint union of components, there is a factoring of $R$ into a
+product $\prod R_i$. So $R = \prod R_i$ where each $R_i$ has
+only one maximal ideal. Each $R_i$, as a homomorphic image of $R$, is artinian. We find, as a result, 
+
+\add{mention that disconnections of $\spec R$ are the same thing as
+idempotents.}
+
 \begin{proposition} 
 Any artinian ring is a finite product of local artinian rings.
 \end{proposition} 
@@ -1056,12 +1172,18 @@ Any artinian ring is a finite product of local artinian rings.
 Now, let us continue our analysis. We may as well assume that we are working
 with \emph{local} artinian rings $R$ in the future. In particular, $R$ has a unique
 prime $\mathfrak{m}$, which must be the radical of $R$ as the radical is the
-intersection of all primes. In particular, $\mathfrak{m}$ consists of
-nilpotent elements.
+intersection of all primes. 
 
-\begin{lemma} 
-If $R$ is artinian, then $\rad (R) $ is nilpotent.
+We shall now see that the unique prime ideal $\mathfrak{m} \subset R$ is
+nilpotent by:
+\begin{lemma} \label{radnilpotentartinian}
+If $R$ is artinian (not necessarily local), then $\rad (R) $ is nilpotent.
 \end{lemma} 
+
+It is, of course, always true that any \emph{element} of the radical $\rad(R)$
+is nilpotent, but it is not true for a general ring $R$ that $\rad(R)$ is
+nilpotent as an \emph{ideal}.
+
 \begin{proof} 
 Call $J = \rad(R)$. Consider the decreasing filtration
 \[ R \supset J \supset J^2 \supset J^3 \supset \dots.  \]
@@ -1071,21 +1193,27 @@ stabilizes \emph{somewhere}. For some $n$, we have
 Call the eventual stabilization of these ideals $I$. Consider ideals $I'$ such
 that
 \[ II' \neq 0.  \]
+There are now two cases:
 \begin{enumerate}
-\item There aren't any such $I'$. Then $I = 0$, and we're done. 
-\item Otherwise, there is one, namely the unit ideal $(1)$. So there is a
-minimal such $I'$ as this is an artinian ring. What can we say about $I'$?
-Necessarily it is nonzero, and furthermore there is $x \in I'$ with $x I \neq
-0$. It follows by minimality that
-\[ I' = (x)  \]
-so $I'$ is principal, generated by some $x \in I'$. Then $xI \neq 0$; observe
-that this is also $(xI)I $ as $I^2  = I$ from the definition of $I$. Since
+\item No such $I'$ exists. Then $I = 0$, and we are done: the powers of
+$J^n$ stabilize at zero. 
+\item Otherwise,  there is a
+\emph{minimal} such $I'$ (minimal for satisfying $II' \neq 0$) as $R$ is
+artinian. Necessarily $I'$ is nonzero, and furthermore there is $x \in I'$ with $x I \neq
+0$. 
+
+It follows by minimality that
+\[ I' = (x) , \]
+so $I'$ is principal. Then $xI \neq 0$; observe
+that $xI$ is also $(xI)I $ as $I^2  = I$ from the definition of $I$. Since
 $(xI) I \neq 0$, it follows again by minimality that
-\[ xI = (x).  \] This means that there is $y \in I$ such that $xy = x$; but now, by construction $I \subset J = \rad (R)$, implying that $y $ is nilpotent.
+\[ xI = (x).  \] Hence, there is $y \in I$ such that $xy = x$; but now, by construction $I \subset J = \rad (R)$, implying that $y $ is nilpotent.
 It follows that
 \[ x = xy = xy^2 = \dots = 0  \]
-as $y$ is nilpotent. However, $x \neq 0$ as $xI \neq 0$. 
+as $y$ is nilpotent. However, $x \neq 0$ as $xI \neq 0$. This is a
+contradiction, which implies that the second case cannot occur. 
 \end{enumerate}
+We have now proved the lemma.
 \end{proof} 
 
 Finally, we may prove:
@@ -1095,12 +1223,12 @@ A local artinian ring $R$ is noetherian.
 \end{lemma} 
 \begin{proof} 
 We have the filtration $R \supset \mathfrak{m} \supset \mathfrak{m}^2 \supset
-\dots$. This eventually stabilizes at zero---that's the previous statement. I
+\dots$. This eventually stabilizes at zero by Lemma~\ref{radnilpotentartinian}. I
 claim that $R$ is noetherian as an $R$-module. To prove this, it suffices to
 show that $\mathfrak{m}^k/\mathfrak{m}^{k+1}$ is noetherian as an $R$-module.
 But of course, this is annihilated by $\mathfrak{m}$, so it is really a vector
 space over the field $R/\mathfrak{m}$. But $\mathfrak{m}^k/\mathfrak{m}^{k+1}$
-is a subquotient of an artinian module so is artinian itself. We have to show
+is a subquotient of an artinian module, so is artinian itself. We have to show
 that it is noetherian. 
 It suffices to show now that if $k$ is a field, and $V$ a $k$-vector space,
 then TFAE:
@@ -1115,8 +1243,8 @@ This is evident by linear algebra.
 Now, finally, we have shown that an artinian ring is noetherian. We have to
 discuss the converse. Let us assume now that $R$ is noetherian and has only
 maximal prime ideals. We show that $R$ is artinian. Let us consider $\spec R$;
-there are only finitely many minimal primes by the theory of associated primes.
-Every prime ideal is minimal in this case. Once again, we learn that $\spec R$
+there are only finitely many minimal primes by the theory of associated
+primes: every prime ideal is minimal in this case. Once again, we learn that $\spec R$
 is finite and has the discrete topology. This means that $R$ is a product of
 factors $\prod R_i$ where each $R_i$ is a local noetherian ring with a unique
 prime ideal. We might as well now prove:
@@ -1130,9 +1258,8 @@ We know that $\mathfrak{m} = \mathrm{rad}(R)$. So $\mathfrak{m}$ consists of
 nilpotent elements, so by finite generatedness it is nilpotent.  Then we have a
 finite filtration
 \[ R \supset \mathfrak{m} \supset \dots \supset \mathfrak{m}^k = 0.  \]
-Each of the quotients are finite-dimensional vector spaces, so artinian---this
+Each of the quotients are finite-dimensional vector spaces, so artinian; this
 implies that $R$ itself is artinian. 
-
 \end{proof} 
 
 
