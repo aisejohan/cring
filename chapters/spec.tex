@@ -195,7 +195,7 @@ If $I$ is an ideal, then the \textbf{radical} $\rad(I)  $ or $ \sqrt{I}$ is
 defined as $$\rad(I) =
 \left\{x \in R: x^n \in I \ \mathrm{for} \ \mathrm{some} \ n \right\}.$$
 An ideal is \textbf{radical} if it is equal to its radical. (This is
-equivalent to the earlier Definition~\ref{}.) 
+equivalent to the earlier Definition~\ref{def-radical-ideal}.) 
 \end{definition} 
 
 Before proceeding, we must check:
@@ -223,9 +223,9 @@ converse inclusion. Namely, we must prove:
 \begin{quote}
 If $\mathfrak{p} \supset I$, then $\mathfrak{p} \supset  \rad(I).$
 \end{quote}
-So suppose $\mathfrak{p} \subset I$ is prime and $x \in \rad(I)$; then $x^n \in I \subset \mathfrak{p}$ for some $n$.
+So suppose $\mathfrak{p} \supset I$ is prime and $x \in \rad(I)$; then $x^n \in I \subset \mathfrak{p}$ for some $n$.
 But $\mathfrak{p}$ is prime, so whenever a  product of things belongs to
-$\mathfrak{p}$, a factor does.  Thus since $x^n = x . x \dots . x$, we must
+$\mathfrak{p}$, a factor does.  Thus since $x^n = x \cdot x \cdots x$, we must
 have $x \in \mathfrak{p}$. So
 \[ \rad(I) \subset \mathfrak{p}  \]
 proving the quoted claim, and thus the lemma.
@@ -273,7 +273,7 @@ intersect $S$.
 In English, any ideal missing $S$ can be enlarged to a prime ideal missing $S$.
 This is actually fancier version of a previous argument. We showed earlier that any ideal not
 containing the multiplicatively closed subset $\left\{1\right\}$ can be
-contained in a prime ideal not containing $1$ in \ref{}.
+contained in a prime ideal not containing $1$ in \ref{anycontainedinmaximal}.
 
 Note that the sublemma clearly implies the lemma when applied to $S =
 \left\{1, x, \dots\right\}.$
@@ -294,9 +294,9 @@ $\mathfrak{p}$ would not be maximal. Ditto for $(y, \mathfrak{p})$.
 
 In particular, we have that these bigger ideals both intersect $S$.  This means
 that there are 
-\[  a \in \mathfrak{p} , r \in R \quad \mathrm{such that }\quad a+rx \in S \]
+\[  a \in \mathfrak{p} , r \in R \quad \text{such that}\quad a+rx \in S \]
 and 
-\[  b \in \mathfrak{p} , r' \in R \quad \mathrm{such that}\quad b+r'y \in S .\]
+\[  b \in \mathfrak{p} , r' \in R \quad \text{such that}\quad b+r'y \in S .\]
 Now $S$ is multiplicatively closed, so multiply $(a+rx)(b+r'y) \in S$.
 We find:
 \[ ab + ar'y+brx+rr'xy \in S.  \]
@@ -307,7 +307,7 @@ are in $\mathfrak{p}$, and the sum is too. But this contradicts $\mathfrak{p}
 \end{proof} 
 \end{proof} 
 
-The upshot of the previous lemmata is :
+The upshot of the previous lemmata is:
 \begin{proposition}
 There is a bijection between the closed subsets of $\spec R$ and radical ideals
 $I \subset R$.
@@ -409,8 +409,7 @@ The basic open sets have nice properties.
 \item $U_1  = \spec R$ because prime ideals are not allowed to contain the
 unit element. 
 \item $U_0 = \emptyset$ because every prime ideal contains $0$.
-\item $U_{fg} = U_f \cap U_g$ because $fg$ lies in a prime $\mathfrak{p}$ if and only if one
-of $f,g$ does.
+\item $U_{fg} = U_f \cap U_g$ because $fg$ lies in a prime ideal $\mathfrak{p}$ if and only if one of $f,g$ does.
 \end{enumerate}
 
 Now let us describe what the Zariski topology has to do with localization.
@@ -447,7 +446,7 @@ $\phi(f) \in \mathfrak{p}$; however, $\phi(f)$ is invertible, and then
 $\mathfrak{p}$ would be $(1)$.  
 \item Let's show that the map surjects onto $U_f$. If $\mathfrak{p} \subset R$ is a prime
 ideal not containing $f$, i.e. $\mathfrak{p} \in U_f$. We want to construct a
-corresponding prime in the ring $R[f^{-1}]$ whose inv. image is $\mathfrak{p}$.
+corresponding prime in the ring $R[f^{-1}]$ whose inverse image is $\mathfrak{p}$.
 
 Let $\mathfrak{p}[f^{-1}]$ be the collection of all fractions
 \[ \{\frac{x}{f^n}, x \in \mathfrak{p}\} \subset R[f^{-1}],  \]
@@ -466,7 +465,7 @@ $\frac{a}{f^m}, \frac{b}{f^n}$ belongs to $\mathfrak{p}[f^{-1}]$. Also, $1/1
 
 It is clear that the inverse image of $\mathfrak{p}[f^{-1}]$ is $\mathfrak{p}$,
 because the image of $x \in R$ is $x/1$, and this belongs to
-$\mathfrak{p}[f^{-1}]$ precisely wehn $x \in \mathfrak{p}$.
+$\mathfrak{p}[f^{-1}]$ precisely when $x \in \mathfrak{p}$.
 \item The map $\spec R[f^{-1}] \to \spec R$ is injective. Suppose
 $\mathfrak{p}, \mathfrak{p'}$ are prime ideals in the localization and the
 inverse images are the same.  
@@ -484,8 +483,7 @@ is open.
 In particular, we have to show that a basic open set on the left side is mapped
 to an open set on the right side.
 If $y/f^n \in R[f^{-1}]$, we have to show that $U_{y/f^n} \subset \spec
-R[f^{-1}]$ has open image under $\psi$.  We'll in fact show what open set it is
-.
+R[f^{-1}]$ has open image under $\psi$.  We'll in fact show what open set it is.
 
 I claim that
 \[ \psi(U_{y/f^n}) = U_{fy} \subset \spec R.  \]
@@ -501,7 +499,7 @@ belong to $\mathfrak{p}$.  (This is kosher and dandy because we have a bijection
 \phi^{-1}(\mathfrak{p})$, so $fy/1 \notin \mathfrak{p}$.  Dividing by $f^{n+1}$
 implies that
 \[ y/f^{n} \notin \mathfrak{p}  \]
-and $\mathfrak{p} \in U_{f/y^n}$. 
+and $\mathfrak{p} \in U_{f/y^n}$. \qedhere
 \end{enumerate}
 \end{proof} 
 
@@ -516,7 +514,7 @@ We will bring it up when appropriate.
 \begin{remark} 
 The construction $R \to R[f^{-1}]$ as discussed above is an instance of
 localization.  More generally, we can define $S^{-1}R$ for $S \subset R$
-multiplicativelly closed. We can define maps
+multiplicatively closed. We can define maps
 \[ \spec S^{-1}R \to \spec R . \]
 How can you think about the construction in general? You can think of it as
 \[ \varinjlim_{f \in S} R[f^{-1}]  \]
