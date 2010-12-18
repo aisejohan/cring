@@ -1197,6 +1197,404 @@ $\mathbb{C}^n$ which is even in $V$ as it is a map out of $R$. This corresponds
 to a maximal ideal in $R$. 
 This maximal ideal does not contain $f$ by construction. 
 \end{proof} 
-\lecture{10/27}
+
+\section{Serre's criterion and its variants}
+\subsection{Reducedness}
+
+Recall:
+
+\begin{definition} 
+A ring $R$ is \textbf{reduced} if it has no nonzero nilpotents.
+\end{definition} 
+
+\begin{proposition} 
+If $R$ is noetherian, then $R$ is reduced if and only if it satisfies the
+following conditions:
+\begin{enumerate}
+\item Every associated prime of $R$ is  minimal (no embedded primes).
+\item If $\mathfrak{p}$ is minimal, then $R_{\mathfrak{p}}$ is  a field.
+\end{enumerate}
+\end{proposition}
+\begin{proof} 
+First, assume $R$ reduced. What can we say? Say $\mathfrak{p}$ is a minimal
+prime; then $R_{\mathfrak{p}}$ has precisely one prime ideal (namely,
+$\mathfrak{m}=\mathfrak{p}R_{\mathfrak{p}}$). It is in fact a local artinian ring, though we
+don't need that fact. The radical of $R_{\mathfrak{p}}$ is just $\mathfrak{m}$.
+But $R$ was reduced, so $R_{\mathfrak{p}}$ was reduced; it's an easy argument
+that localization preserves reducedness. So $\mathfrak{m}=0$. The fact that 0
+is a maximal ideal in $R_{\mathfrak{p}}$ says that it is a field.
+
+On the other hand, we still have to do part 1. $R$ is reduced, so $\rad(R) =
+\bigcap_{\mathfrak{p} \in \spec R} \mathfrak{p} = 0$. In particular, 
+\[ \bigcap_{\mathfrak{p} \ \mathrm{minimal}}\mathfrak{p} = 0.  \]
+The map
+\[ R \to \prod_{\mathfrak{p} \ \mathrm{minimal}}R/\mathfrak{p}  \]
+is injective. The associated primes of the product, however, are just the
+minimal primes. So $\ass(R)$ can contain only minimal primes. 
+
+That's one direction of the proposition. Let us prove the converse now. Assume
+$R$ satisfies the two conditions listed. In other words, $\ass(R)$ consists of
+minimal primes, and each $R_{\mathfrak{p}}$ for $\mathfrak{p} \in \ass(R)$ is a
+field. We would like to show that $R$ is reduced. 
+Primary decomposition tells us that there is an injection 
+\[ R \hookrightarrow \prod_{\mathfrak{p}_i \ \mathrm{minimal}} M_i, \quad M_i
+\ \  \mathfrak{p}_i-\mathrm{primary}. \]
+In this case, each $M_i$ is primary with respect to a minimal prime. We have a
+map
+\[ R \hookrightarrow \prod M_i \to \prod (M_i)_{\mathfrak{p}_i},  \]
+which is injective, because when you localize a primary module at its
+associated prime, you don't kill anything by definition of primariness. Since
+we can draw a diagram
+\[ 
+\xymatrix{
+R \ar[r] \ar[d]  &  \prod M_i \ar[d]  \\
+\prod R_{\mathfrak{p}_i} \ar[r] & \prod (M_i)_{\mathfrak{p}_i}
+}
+\]
+and the map $R \to \prod (M_i)_{\mathfrak{p}_i}$ is injective, the downward
+arrow on the right injective. Thus $R$ can be embedded in
+a product of the fields $\prod R_{\mathfrak{p}_i}$, so is reduced.
+\end{proof} 
+
+This proof actually shows: 
+\begin{proposition}[Scholism] A noetherian ring $R$ is reduced iff it injects
+into a product of fields. We can take the fields to be the localizations at the
+minimal primes. 
+\end{proposition} 
+
+\begin{example} 
+Let $R = k[X]$ be the coordinate ring of a variety $X$ in $\mathbb{C}^n$. Assume $X$ is
+reduced. Then $\mathrm{MaxSpec} R$ is a union of irreducible components $X_i$, which
+are the closures of the minimal primes of $R$. The fields you get by localizing
+at minimal primes depend only on the irreducible components, and in fact are
+the rings of meromorphic functions on $X_i$. 
+Indeed, we have a map
+\[ k[X] \to \prod k[X_i] \to \prod k(X_i).  \]
+
+If we don't assume that $R$ is radical, this is \textbf{not} true.
+\end{example} 
+
+There is a stronger condition than being reduced we could impose. We could say:
+
+\begin{proposition} 
+If $R$ is a noetherian ring, then $R$ is a domain iff 
+\begin{enumerate}
+\item $R$ is reduced. 
+\item $R$ has a unique minimal prime.
+\end{enumerate}
+\end{proposition} 
+\begin{proof} 
+One direction is obvious. A domain is reduced and $(0)$ is the minimal prime. 
+
+The other direction is proved as follows. Assume 1 and 2. Let $\mathfrak{p}$ be
+the unique minimal prime of $R$. Then $\rad (R) = 0 = \mathfrak{p}$ as every
+prime ideal contains $\mathfrak{p}$. As $(0)$ is a prime ideal, $R$ is a domain.
+\end{proof} 
+
+We close by making some remarks about this embedding of $R$ into a product of
+fields. 
+
+\begin{definition} 
+Let $R$ be any ring, not necessarily a domain. Let $K(R)$ be the localized ring
+$S^{-1}R$ where $S$ is the multiplicatively closed set of nonzerodivisors in
+$R$.  $K(R)$ is called the \textbf{total ring of fractions} of $R$.
+
+When $R$ is a field, this is the quotient field.
+\end{definition} 
+
+First, to get a feeling for this, we show:
+
+\begin{proposition} Let $R$ be noetherian. The set of nonzerodivisors $S$ can be described by
+$S = R- \bigcup_{\mathfrak{p} \in \ass(R)} \mathfrak{p}$.
+\end{proposition} 
+\begin{proof} 
+If $x \in\mathfrak{p} \in \ass(R)$, then $x$ must kill something in $R$ as it
+is in an associated prime. 	So $x$ is a zerodivisor. 
+
+Conversely, suppose $x$ is a zerodivisor, say $xy = 0$ for some $y \in R -
+\left\{0\right\}$. In
+particular, $x \in \ann(y)$. We have an injection $R/\ann(y) \hookrightarrow R$
+sending 1 to $y$. But $R/\ann(y)$ is nonzero, so it has an associated prime
+$\mathfrak{p}$ of $R/\ann(y)$, which contains $\ann(y)$ and thus $x$. But $\ass(R/\ann(y)) \subset \ass(R)$. 
+So $x$ is contained in a prime in $\ass(R)$. 
+\end{proof} 
+
+Assume now that $R$ is reduced.  Then $K(R)  = S^{-1}R$ where $S$ is the
+complement of the union of the minimal primes. 
+At least, we can claim:
+
+\begin{proposition} Let $R$ be reduced and noetherian. Then
+$K(R) = \prod_{\mathfrak{p}_i \ \mathrm{minimal}} R_{\mathfrak{p}_i}$.
+\end{proposition} 
+
+So $K(R)$ is the product of fields into which $R$ embeds.  
+We will give a proof of this next time. 
+\lecture{10/18}
+\subsection{Total rings of fractions}
+
+We now continue the discussion begun last time. Let $R$ be noetherian and $M$ a
+finitely generated $R$-module. We would like to understand very rough features of $M$.  
+We can embed $M$ into a larger $R$-module.
+Here are two possible approaches.
+
+\begin{enumerate}
+\item  $S^{-1}M$, where $S$ is a large multiplicatively closed subset of $M$.
+Let us take $S $ to be the set of all $a \in R$ such that $M
+\stackrel{a}{\to}M$ is injective, i.e. $a$ is not a zerodivisor on $M$. Then
+the map 
+\[ M \to S^{-1}M  \]
+is an injection. Note that $S$ is the complement of the union of $\ass(R)$.
+\item Another approach would be to use a \emph{primary decomposition}
+\[ M \hookrightarrow \prod M_i,  \]
+where each $M_i$ is $\mathfrak{p}_i$-primary for some prime $\mathfrak{p}_i$
+(and these primes range over $\ass(M)$). In this case, it is clear that
+anything not in each $\mathfrak{p}_i$ acts injectively. So we can draw a
+commutative diagram
+\[ 
+\xymatrix{
+M \ar[d]  \ar[r] &  \prod M_i \ar[d]  \\
+\prod M_{\mathfrak{p}_i} \ar[r] &  \prod (M_i)_{\mathfrak{p}_i}
+}.
+\]
+The map going right and down is injective.
+It follows that $M$ injects into the product of its localizations at associated
+primes. 
+\end{enumerate}
+
+The claim is that these constructions agree if $M$ has no embedded primes.
+I.e., if there are no nontrivial containments among the associated primes of
+$M$, then $S^{-1}M$ (for $S =  R - \bigcup_{\mathfrak{p} \in \ass(M)} \mathfrak{p}$)
+is just $\prod M_{\mathfrak{p}}$. 
+To see this, note that any element of $S$ must act invertibly on $\prod
+M_{\mathfrak{p}}$. We thus see that there is always a map
+\[ S^{-1}M \to \prod_{\mathfrak{p} \in \ass(M)} M_{\mathfrak{p}} . \]
+\begin{proposition} 
+This is an isomorphism if $M$ has no embedded primes. 
+\end{proposition} 
+
+\begin{proof} 
+Let us go through a series of reductions. Let $I = \ann(M) = \left\{a: aM
+= 0\right\}$. Wlog, we can replace $R $ by $R/I$. This plays nice with the
+associated primes.
+
+The assumption is now that $\ass(M)$ consists of the minimal
+primes of $R$.
+
+Without loss of generality, we can next replace $R$ by $S^{-1}R$ and $M$ by
+$S^{-1}M$, because that doesn't affect the conclusion; localization plays nice
+with associated primes. 
+
+Now, however, $R$ is artinian: i.e., all primes of $R$ are minimal (or maximal). Why is this? 
+Let $R$ be \emph{any} noetherian ring and $S = R - \bigcup_{\mathfrak{p} \
+\mathrm{minimal}} \mathfrak{p}$. Then I claim that $S^{-1}R$ is artinian. We'll
+prove this in a moment. 
+
+So $R$ is artinian, hence a product $\prod R_i$ where each $R_i$ is local
+artinian. Without loss of generality, we can replace $R$ by $R_i$ by taking
+products. The condition we are trying to prove is now that
+\[ S^{-1}M \to M_{\mathfrak{m}}  \]
+for $\mathfrak{m} \subset R$ the maximal ideal. But $S$ is the complement of
+the union of the minimal primes, so it is $R - \mathfrak{m}$ as $R$ has one
+minimal (and maximal) ideal.  This is obviously an isomorphism: indeed, both
+are $M$.
+\end{proof} 
+Let us return to the claim. It is called \textbf{prime avoidance}.
+We start by proving:
+\begin{proposition} 
+Let $\mathfrak{p}_1, \mathfrak{p}_2, \dots, \mathfrak{p}_n$ be a finite set of
+primes of $R$. Suppose $I \subset R$ is not contained in any $\mathfrak{p}_i$.
+Then there is $x \in I$ such that $x $ is not contained in any $\mathfrak{p}_i$. 
+\end{proposition} 
+This implies the claim made earlier. In a noetherian ring, a nonminimal prime will contain an element
+which does not belong to any minimal prime. It follows that if $S = R -
+\bigcup_{\mathfrak{p} \ \mathrm{minimal}} \mathfrak{p}$, then $S$ contains an
+element of each nonminimal prime. So $S^{-1}R$ has only minimal primes.
+
+\begin{proof} 
+Induction on $n$.
+
+When $n=1$, this is obvious.
+
+Suppose $n>1$ and the result is true for $n-1$. The inductive hypothesis states
+that for each $i \in [1, n]$, there is $x_i \in I$ which fails to lie in
+$\mathfrak{p}_i$ for $i \neq j$. 
+If there is $i$ such that $x_i \notin \mathfrak{p}_i$, then we're done---take
+$x = x_i$. Assume otherwise, so each $x_i \in \mathfrak{p}_i$.
+
+We now take
+\[  x = \sum_i \prod_{j \neq i} x_j.  \]
+Then evidently $x \in I$, $I$ being an ideal. We now show that $x \notin
+\mathfrak{p}_i$ for each $i$. The reason is that there is one term in the sum
+which doesn't include the factor $x_i$, but is the product of the $x_j, j \neq
+i$; this doesn't belong to $\mathfrak{p}_i$ then. All the other terms in the
+sum include the factor $x_i$ so do belong to $\mathfrak{p}_i$. When we add up a
+bunch of things such that one doesn't belongs  $\mathfrak{p}_i$ and the others
+do, the sum isn't in $\mathfrak{p}_i$. This establishes prime avoidance.
+\end{proof} 
+
+\begin{corollary} 
+Let $R$ be a noetherian ring with no embedded primes (i.e. $\ass(R)$ consists
+of minimal primes).
+Then $K(R) = \prod_{\mathfrak{p}_i \ \mathrm{minimal}} R_{\mathfrak{p_i}}$.
+\end{corollary} 
+If $R$ is reduced, we get the statement made last time: there are no
+embedded primes, and $K(R)$ is a product of
+fields. 
+
+\subsection{The image of $M \to S^{-1}M$}
+Let's ask now the following question. Let $R$ be a noetherian ring, $M$ a finitely generated
+$R$-module, and $S$ the set of nonzerodivisors on $M$, i.e. $R -
+\bigcup_{\mathfrak{p} \in \ass(M)} \mathfrak{p}$. We have seen that there is an
+imbedding
+\[ \phi: M \hookrightarrow S^{-1}M.  \]
+What is the image? Given $x \in S^{-1}M$, when does it belong to the imbedding
+above.
+
+To answer such a question, it suffices to check locally. In particular:
+\begin{proposition} 
+$x$ belongs to the image of $M $ in $S^{-1}M$ iff for every $\mathfrak{p} \in
+\spec R$, the image of $x$ in $(S^{-1}M)_{\mathfrak{p}}$ lies inside
+$M_{\mathfrak{p}}$. 
+\end{proposition} 
+
+This isn't all that interesting. However, it turns out that you can check this
+at a smaller set of primes.
+
+\begin{proposition} 
+In fact, it suffices to show that $x$ is in the image of $\phi_{\mathfrak{p}}$
+for every $\mathfrak{p} \in \ass(M/sM)$ where $s \in S$.
+\end{proposition} 
+This is a little opaque; soon we'll see what it actually means.
+The proof is very simple.
+
+\begin{proof} 
+Remember that $ x \in S^{-1}M$. In particular, we can write $x = y/s$ where $y
+\in M, s \in S$. What we'd like to prove that $x \in M$, or equivalently that
+$y \in sM$.\footnote{In general, this would be equivalent to $ty \in tsM$ for
+some $t \in S$; but $S$ consists of nonzerodivisors on $M$.}
+In particular, we want to know that $y$ maps to zero in $M/sM$. If not, there
+exists an associated prime $\mathfrak{p} \in \ass(M/sM)$ such that $y$ does not
+get 
+killed in $(M/sM)_{\mathfrak{p}}$. 
+We have assumed, however, for every associated prime $\mathfrak{p}\in \ass(M)$, 
+$x \in ( S^{-1}M)_{\mathfrak{p}}$ lies in the image of $M_{\mathfrak{p}}$. This
+states that the image of $y$ in this quotient $(M/sM)_{\mathfrak{p}}$ is zero,
+or that $y$ is divisible by $s$ in this localization.
+\end{proof} 
+
+The case we actually care about is the following:
+
+Take $R$ as a noetherian domain and $M = R$.  Then $S = R - \left\{0\right\}$
+and $S^{-1}M $ is just the fraction field $K(R)$.  The goal is to describe $R$
+as a subset of $K(R)$. What we have proven is that $R$ is the intersection in
+the fraction field 
+\[ \boxed{ R = \bigcap_{\mathfrak{p} \in \ass(R/s), s \in R - 0}
+R_{\mathfrak{p}} . }\]
+So to check that something belongs to $R$, we just have to check that in a
+\emph{certain set of localizations}.
+
+Let us state this as a result:
+\begin{theorem}[Krull intersection theorem, preliminary version]
+If $R$ is a noetherian domain
+\[ R = \bigcap_{\mathfrak{p} \in \ass(R/s), s \in R - 0}
+R_{\mathfrak{p}}  \]
+\end{theorem} 
+
+\subsection{Serre's criterion}
+
+We can now state a result.
+\begin{theorem}[Serre] Let $R$ be a noetherian domain.  Then $R $ is integrally
+closed iff it satisfies 
+\begin{enumerate}
+\item For any $\mathfrak{p} \subset R$ of height one, $R_{\mathfrak{p}}$ is a
+DVR.
+\item For any $s \neq 0$, $R/s$ has no embedded primes (i.e. all the
+associated primes of $R/s$ are height one). 
+\end{enumerate}
+\end{theorem} 
+
+Here is the non-preliminary version of the Krull theorem.
+\begin{theorem}[Krull]
+Let $R$ be a noetherian integrally closed ring. Then 
+\[ R = \bigcap_{\mathfrak{p} \ \mathrm{height \ one}} R_{\mathfrak{p}},  \]
+where each $R_{\mathfrak{p}}$ is a DVR.
+\end{theorem} 
+
+\begin{proof} 
+Now evident from the earlier Krull theorem and Serre's criterion.
+\end{proof} 
+Earlier in the class, we proved that a domain was integrally closed if and only
+if it could be described as an intersection of valuation rings. We have now
+shown that when $R$ is noetherian, we can take \emph{discrete} valuation rings. 
+
+\begin{remark} 
+In algebraic geometry, say $R = \mathbb{C}[x_1, \dots, x_n]/I$.  Its maximal
+spectrum is a subset of $\mathbb{C}^n$.  If $I$ is prime, and $R$ a domain, this variety is
+irreducible.  We are trying to describe $R$ inside its field of fractions. 
+
+The field of fractions are like the ``meromorphic functions''; $R$ is like the
+holomorphic functions. Geometrically, this states to check that a meromorphic
+function is holomorphic, you can just check this by computing the ``poleness''
+along each codimension one subvariety. If the function doesn't blow up on each
+of the codimension one subvarieties,  and $R$ is normal, then you can extend it
+globally.
+
+This is an algebraic version of Hartog's theorem: this states that a
+holomorphic function on $\mathbb{C}^2 - (0,0)$ extends over the origin, because
+this has codimension $>1$. 
+
+All the obstructions of extending a function to all of $\spec R$ are in
+codimension one. 
+\end{remark} 
+
+Now, we prove Serre's criterion.
+\begin{proof} 
+Let us first prove that $R$ is integrally closed if 1 and 2 occur. We know that 
+\[ R = \bigcap_{\mathfrak{p} \in \ass(R/x), x \neq 0} R_{\mathfrak{p}} ; \]
+by condition 1, each such $\mathfrak{p}$ is of height one, and
+$R_{\mathfrak{p}}$ is a DVR. So $R$ is the intersection of DVRs and thus
+integrally closed.
+
+The hard part is going in the other direction. Assume $R$ is integrally closed. 
+We want to prove the two conditions. In $R$, consider the following conditions
+on a prime ideal $\mathfrak{p}$:
+\begin{enumerate}
+\item $\mathfrak{p}$ is an associated prime of $R/x$ for some $x \neq 0$.
+\item $\mathfrak{p} $ is height one.
+\item $\mathfrak{p}_{\mathfrak{p}}$ is principal in $R_{\mathfrak{p}}$.
+\end{enumerate}
+First, 3 implies 2 implies 1. 3 implies that $\mathfrak{p}$ contains an element
+$x$ which 
+generates $\mathfrak{p}$ after localizing.
+It follows that there can be no prime between $(x)$ and $\mathfrak{p}$ because
+that would be preserved under localization.  Similarly, 2 implies 1 is easy. If
+$\mathfrak{p}$ is minimal over $(x)$, then $\mathfrak{p} \in \ass R/(x)$ since
+the minimal primes in the support are always associated.
+
+We are trying to prove the inverse implications. In that case, the claims
+of the theorem will be proved. We have to show that 1 implies 3.
+This is an argument we really saw last time, but let's see it again. Say
+$\mathfrak{p} \in \ass(R/x)$. We can replace $R$ by $R_{\mathfrak{p}}$ so that
+we can assume that $\mathfrak{p}$ is maximal. We want to show that
+$\mathfrak{p}$ is generated by one
+element. 
+
+What does the condition $\mathfrak{p} \in \ass(R/x)$ buy us? It tells us that
+there is $\overline{y} \in R/x$ such that $\ann(\overline{y}) = \mathfrak{p}$.
+In particular, there is $y \in R$ such that $\mathfrak{p}y \subset (x)$ and $y
+\notin (x)$. 
+We have the element $y/x \in K(R)$ which sends $\mathfrak{p}$ into $R$.  That
+is,
+\[ (y/x) \mathfrak{p} \subset R.  \]
+There are two cases to consider, as in last time:
+\begin{enumerate}
+\item $(y/x) \mathfrak{p}  = R$. Then $\mathfrak{p} = R (x/y)$ so $\mathfrak{p}
+$ is principal. 
+\item $(y/x) \mathfrak{p} \neq R$. In particular, $(y/x)\mathfrak{p} \subset
+\mathfrak{p}$. Then since $\mathfrak{p}$ is finitely generated, we find that $y/x $ is
+integral over $R$, hence in $R$. This is a contradiction as $y \notin (x)$. 
+\end{enumerate}
+Only the first case is now possible. So $\mathfrak{p}$ is in fact principal. 
+\end{proof} 
 
 
