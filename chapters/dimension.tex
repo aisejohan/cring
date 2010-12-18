@@ -1329,12 +1329,181 @@ Let $R$ be a noetherian ring. Then $\dim R[X] = \dim R+1$.
 \end{theorem} 
 
 Interestingly, this is \emph{false} if $R$ is non-noetherian, cf. \cite{}.
+Let $R$ be a ring of dimension $n$. 
+
+\begin{lemma} 
+$\dim R[x] \geq \dim R+1$.
+\end{lemma} 
+\begin{proof} 
+Let $\mathfrak{p}_0 \subset \dots \subset \mathfrak{p}_n$ be a chain of primes of
+length $n = \dim R$. Then $\mathfrak{p}_0 R[x] \subset \dots \subset
+\mathfrak{p}_n R[x] \subset (x, \mathfrak{p}_n)R[x]$ is a chain of primes in
+$R[x]$ of length $n+1$ because of the following fact: if $\mathfrak{q} \subset
+R$ is prime, then so is $\mathfrak{q}R[x] \subset R[x]$.\footnote{This is
+because $R[x]/\mathfrak{q}R[x] = (R/\mathfrak{q})[x]$ is a domain.} Note also
+that as $\mathfrak{p}_n \subsetneq R$, we have that $\mathfrak{p}_n R[x]
+\subsetneq (x, \mathfrak{p}_n)$. So this is indeed a legitimate chain. 
+\end{proof} 
+
+Now we need only show:
+\begin{lemma} 
+Let $R$ be noetherian of dimension $n$. Then $\dim R[x] \leq \dim R+1$.
+\end{lemma} 
+\begin{proof} 
+Let $\mathfrak{q}_0 \subset \dots \subset \mathfrak{q}_m \subset R[x]$ be a chain of primes
+in $R[x]$. Let $\mathfrak{m} = \mathfrak{q}_m \cap R$. Then if we localize and
+replace $R$ with $R_{\mathfrak{m}}$, we get a chain of primes of length $m$ in
+$R_{\mathfrak{m}}[x]$. 
+In fact, we get more. We get a chain of primes of length $m$ in
+$(R[x])_{\mathfrak{q}_m}$, and a \emph{local } inclusion of noetherian local rings
+\[ R_{\mathfrak{m}} \hookrightarrow (R[x])_{\mathfrak{q}_m} . \]
+To this we can apply the fiber dimension theorem. In particular, this implies
+that
+\[ m \leq \dim (R[x])_{\mathfrak{q}_m} \leq \dim R_{\mathfrak{m}} + \dim
+(R[x])_{\mathfrak{q}_m} /\mathfrak{m} (R[x])_{\mathfrak{q}_m}. \]
+Here $\dim R_{\mathfrak{m}} \leq \dim R = n$. So if we show that $\dim
+(R[x])_{\mathfrak{q}_m} /\mathfrak{m} (R[x])_{\mathfrak{q}_m} \leq 1$, we will
+have seen that $m \leq n+1$, and will be done. But this last ring is a
+localization of $(R_{\mathfrak{m}}/\mathfrak{m}R_{\mathfrak{m}})[x]$, which is
+a PID by the euclidean algorithm for polynomial rings over a field, and thus of
+dimension  $\leq 1$.
+\end{proof} 
 
 \subsection{An infinite-dimensional noetherian ring}
 
-\begin{example}[Nagata] To be added.
-\end{example} 
+We shall now present an example, due to Nagata, of an infinite-dimensional
+noetherian ring. Note that such a ring cannot be \emph{local}.
 
+Consider the ring $R=\mathbb{C}[\{x_{i,j}\}_{0 \leq i \leq j}]$ of polynomials in 
+infinitely many variables $x_{i,j}$. 
+This is clearly an infinite-dimensional ring, but it is also not noetherian.
+We will localize it suitably to make it noetherian.
+
+Let $\mathfrak{p}_n \subset R$ be the
+ideal  $(x_{1,n}, x_{2,n}, \dots, x_{n,n})$ for all $i \leq n$.
+Let $S = R - \bigcup \mathfrak{p}_n$; this is a multiplicatively closed set. 
+
+\begin{theorem}[Nagata] The ring $S^{-1}R$ is noetherian and has infinite
+dimension.
+\end{theorem} 
+
+We start with
+\begin{proposition} 
+The ring in the statement of the problem is noetherian.
+\end{proposition} 
+
+The proof is slightly messy, so we first prove a few lemmas.
+
+Let $R' = S^{-1}R$ as in the problem statement. We start by proving that every ideal in $R'$ is contained
+in one of the $\mathfrak{p}_n$ (which, by abuse of notation, we identify with
+their localizations in $R' = S^{-1}R$). 
+In particular, the $\mathfrak{p}_n$ are the maximal ideals in $R'$.
+
+\begin{lemma} 
+The $\mathfrak{p}_n$ are the maximal ideals in $R'$.
+\end{lemma} 
+\begin{proof} 
+We start with an observation:
+\begin{quote}
+If $f \neq 0 $, then $f$ belongs to only finitely many $\mathfrak{p}_n$.
+\end{quote}
+To see this, let us use the following notation. If $M$ is a monomial, we let
+$S(M)$ denote the set of subscripts $x_{a,b}$ that occur and $S_2(M)$ the set
+of second subscripts (i.e. the $b$'s). 
+For $f \in R$, we define $S(f)$ to be the intersection of the $S(M)$ for $M$ a
+monomial occurring nontrivially in $f$. Similarly we define $S_2(f)$.
+
+Let us prove:
+\begin{lemma} 
+$f \in \mathfrak{p}_n$ iff $n \in S_2(f)$. Moreover, $S(f)$ and $S_2(f)$ are
+finite for any $f \neq 0$.
+\end{lemma} 
+\begin{proof} 
+Indeed, $f \in \mathfrak{p}_n$ iff every monomial in $f$ is divisible by some
+$x_{i,n}, i \leq n$, as $\mathfrak{p}_n  = (x_{i,n})_{i \leq n}$. From this the first assertion is clear. The second too,
+because $f$ will contain a nonzero monomial, and that can be divisible by only
+finitely many $x_{a,b}$.
+\end{proof} 
+From this, it is clear how to define $ S_2(f)$ for any element in $R'$,
+not necessarily a polynomial in $R$. Namely, it is the set of $n$ such that $f
+\in \mathfrak{p}_n$. 
+It is now clear, from the second statement of the lemma, that any $f \neq 0$ lies in \emph{only finitely many
+$\mathfrak{p}_n$}. In particular, the observation has been proved. 
+
+Let $\mathcal{T} = \left\{ S_2(f), f \in I - 0\right\}$. \emph{I claim that
+$\emptyset \in \mathcal{T}$ iff $I = (1)$.} For $\emptyset \in \mathcal{T}$ iff
+there is a polynomial lying in no $\mathfrak{p}_n$. Since the union $\bigcup
+\mathfrak{p}_n$ is the set of non-units (by construction), we find that the
+assertion is clear.
+
+
+\begin{lemma} 
+$\mathcal{T}$ is closed under finite intersections.
+\end{lemma} 
+\begin{proof} 
+Suppose $T_1, T_2 \in \mathcal{T}$. Without loss of generality, there are
+\emph{polynomials} $F_1, F_2 \in R$ such that $S_2(F_1) = T_1, S_2(F_2) = T_2$.
+A generic linear combination $a F_1 + bF_2$ will involve no cancellation for
+$a, b \in \mathbb{C}$, and
+the monomials in this linear combination will be the union of those in $F_1$
+and those in $F_2$ (scaled appropriately). So $S_2(aF_1 + bF_2) = S_2(F_1) \cap S_2(F_2)$.
+\end{proof} 
+
+Finally, we can prove the result that the $\mathfrak{p}_n$ are the only maximal
+ideals. Suppose $I$ was contained in no $\mathfrak{p}_n$, and form the set
+$\mathcal{T}$ as above. This is a collection of finite sets. Since $I
+\not\subset \mathfrak{p}_n$ for each $n$, we find that $n \notin \bigcap_{T \in
+\mathcal{T}} T$. This intersection is thus empty. It follows that there is a
+\emph{finite} intersection of sets in $\mathcal{T}$
+which is empty as $\mathcal{T}$ consists of finite sets. But $\mathcal{T}$ is closed under intersections. There is thus
+an element in $I$ whose $S_2$ is empty, and is thus a unit. Thus $I = (1)$.
+\end{proof} 
+
+We have proved that the $\mathfrak{p}_n$ are the only maximal ideals. This is
+not enough, though. We need:
+\begin{lemma} 
+$R'_{\mathfrak{p}_n}$ is noetherian for each $n$. 
+\end{lemma} 
+\begin{proof} 
+Indeed, any polynomial involving the variables $x_{a,b}$ for $ b \neq n$ is
+invertible in this ring. We see that this ring contains the field
+\[ \mathbb{C}(\{x_{a,b}, b \neq n\}),  \]
+and over it is contained in the field $\mathbb{C}(\left\{x_{a,b}, \forall
+a,b\right\})$. It is a localization of the algebra $\mathbb{C}(\{x_{a,b}, b
+\neq n\})[x_{1,n} , \dots, x_{n,n}]$ and is consequently noetherian by
+Hilbert's basis theorem.
+\end{proof} 
+
+The proof will be completed with:
+\begin{lemma} 
+Let $R$ be a ring. Suppose every element $x \neq 0$ in the ring belongs to only
+finitely many maximal ideals, and suppose that $R_{\mathfrak{m}}$ is noetherian
+for each $\mathfrak{m} \subset R$ maximal. Then $R$ is noetherian. 
+\end{lemma} 
+\begin{proof} 
+Let $I \subset R$ be a nonzero ideal. We must show that it is finitely generated. We
+know that $I$ is contained in only finitely many maximal ideals $\mathfrak{m}_1
+, \dots , \mathfrak{m}_k$. 
+At each of these maximal ideals, we know that $I_{\mathfrak{m}_i}$ is finitely
+generated. Clearing denominators, we can choose a finite set of generators in
+$R$. So we can collect them together and get a finite set $a_1, \dots, a_N
+\subset I$
+which generate $I_{\mathfrak{m}_i} \subset R_{\mathfrak{m}_i}$ for each $i$. It
+is not necessarily true that $J = (a_1, \dots, a_N) = I$, though we do have
+$\subset$. However, $I_{\mathfrak{m}} = J_{\mathfrak{m}}$ except at finitely
+many maximal ideals $\mathfrak{n}_1, \dots, \mathfrak{n}_M$ because a nonzero
+element is a.e. a unit. However, these $\mathfrak{n}_j$ are not among the
+$\mathfrak{m}_i$. In particular, for each $j$, there is $b_j \in I -
+\mathfrak{n}_j$ as $I \not\subset \mathfrak{n}_j$. Then we find that the ideal
+\[ (a_1, \dots, a_N, b_1, \dots, b_M) \subset I \]
+becomes equal to $I$ in all the localizations. So it is $I$, and $I$ is f.g. 
+
+\end{proof} 
+
+We need only see that the ring $R'$ has infinite dimension. But for each $n$, there
+is a chain of primes $(x_{1,n}) \subset (x_{1,n}, x_{2,n}) \subset
+\dots \subset (x_{1,n}, \dots, x_{n,n})$ of length $n-1$. The supremum of the
+lengths is thus infinite.
 \subsection{Dimension theory for topological spaces}
 \label{subsectiondimension}
 The present subsection (which consists mostly of exercises) is a digression   that may illuminate the notion of
