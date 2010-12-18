@@ -167,6 +167,31 @@ Prove that the successive quotients $M_i/M_{i-1}$ are also determined (up to
 permutation).
 \end{exercise} 
 
+\subsection{Integer-valued polynomials}
+
+It is now necessary 
+
+\begin{remark} 
+A function $f: \mathbb{Z} \to \mathbb{Z}$ is polynomial iff 
+\[ f(t) = \sum_n c_n \binom{t}{n}, \quad c_n \in \mathbb{Z}.  \]
+So $f$ is a $\mathbb{Z}$-linear function of binomial coefficients. 
+\end{remark} 
+\begin{proof} 
+Note that the set $\left\{\binom{t}{n}\right\}$ forms a basis for the set of
+polynomials, that is $\mathbb{Q}[t]$. It is clear that $f(t)$ can be written as
+$\sum c_n \binom{t}{n}$ for the $c_n \in \mathbb{Q}$. By looking at the
+function $\Delta f (t) = f(t) - f(t-1)$ (which takes values in $\mathbb{Z}$) and the fact that $\Delta \binom{t}{n}
+= \binom{t}{n-1}$, it is easy to see that the $c_n \in \mathbb{Z}$ by induction
+on the degree. 
+It is also easy to see that the binomial coefficients take values in
+$\mathbb{Z}$.
+\end{proof} 
+
+\begin{remark} 
+The same remark applies if $f$ is polynomial and $f(t) \in \mathbb{Z}$ for $t
+\gg 0$, by the same argument. It follows that $f(t) \in \mathbb{Z}$ for all $t$. 
+\end{remark} 
+
 
 \section{Introduction to dimension theory}
 
@@ -395,28 +420,6 @@ In other words, the Hilbert functions eventually become polynomials.
 These polynomials don't generally have integer coefficients, but they are
 close, as they take integer values at large values.
 In fact, they take integer values everywhere.
-
-\begin{remark} 
-A function $f: \mathbb{Z} \to \mathbb{Z}$ is polynomial iff 
-\[ f(t) = \sum_n c_n \binom{t}{n}, \quad c_n \in \mathbb{Z}.  \]
-So $f$ is a $\mathbb{Z}$-linear function of binomial coefficients. 
-\end{remark} 
-\begin{proof} 
-Note that the set $\left\{\binom{t}{n}\right\}$ forms a basis for the set of
-polynomials, that is $\mathbb{Q}[t]$. It is clear that $f(t)$ can be written as
-$\sum c_n \binom{t}{n}$ for the $c_n \in \mathbb{Q}$. By looking at the
-function $\Delta f (t) = f(t) - f(t-1)$ (which takes values in $\mathbb{Z}$) and the fact that $\Delta \binom{t}{n}
-= \binom{t}{n-1}$, it is easy to see that the $c_n \in \mathbb{Z}$ by induction
-on the degree. 
-It is also easy to see that the binomial coefficients take values in
-$\mathbb{Z}$.
-\end{proof} 
-
-\begin{remark} 
-The same remark applies if $f$ is polynomial and $f(t) \in \mathbb{Z}$ for $t
-\gg 0$, by the same argument. It follows that $f(t) \in \mathbb{Z}$ for all $t$. 
-\end{remark} 
-
 Let us now prove the proposition.
 \begin{proof} 
 I claim, first, that the polynomiality of $H_M(t)$ (for $t$ large) is
