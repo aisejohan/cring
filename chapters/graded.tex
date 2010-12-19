@@ -1,12 +1,47 @@
 \chapter{Graded and filtered rings}
 
+In algebraic geometry, working in classical affine space
+$\mathbb{A}^n_{\mathbb{C}}$ of points in $\mathbb{C}^n$ turns out to be insufficient for various reasons.
+Instead, it is often more convenient to consider varieties in \emph{projective
+space} $\mathbb{P}^n_{\mathbb{C}}$, which is the set of lines through the
+origin in $\mathbb{C}^{n+1}$. 
+In other words, it is the set of all $n+1$-tuples $[z_0, \dots, z_n] \in
+\mathbb{C}^{n+1} - \left\{0\right\}$ modulo the relation that
+\[ [z_0, \dots, z_n] = [\lambda z_0, \dots, \lambda z_n], \quad \lambda \in
+\mathbb{C}^*.  \]
+Varieties in projective space  have many
+convenient properties that affine varieties do not: for instance,
+intersections work out much more nicely when intersections at the extra
+``points at infinity'' are included. 
+
+It is when defining the notion of a ``variety'' in projective space that one
+encounters gradedness. Now a variety in $\mathbb{P}^n$ must be cut out by
+polynomials $F_1, \dots, F_k \in \mathbb{C}[x_0, \dots, x_n]$; that is, a
+point represented by $[z_0, \dots, z_n]$ lies in the associated variety if and
+only if $F_i(z_0, \dots, z_n) = 0$ for each $i$. For this to make sense, or to
+be independent of the choice of $z_0, \dots, z_n$, it is necessary to assume
+that each $F_i$ is \emph{homogeneous.}
+
+Algebraically, $\mathbb{A}^n_{\mathbb{C}}$ is the set of maximal ideals in the
+polynomial ring $\mathbb{C}^{n}$. Projective space is defined somewhat more
+geometrically (as a set of lines) but it turns out that there is an
+algebraic interpretation here too. The points of projective space are in
+bijection with the \emph{ homogeneous maximal ideals} of the polynomial ring
+$\mathbb{C}[x_0, \dots, x_n]$. We shall define  more generally the $\proj$ of a
+\emph{graded} ring in this chapter. Although we shall not repeatedly refer to
+this concept in the sequel, it will be useful for readers interested in
+algebraic geometry.
+
+We shall also introduce the notion of a \emph{filtration}. A filtration allows
+one to endow a given module with a topology, and one can in fact complete with
+respect to this topology. This construction will be studied in
+chapter~\ref{completions}.
+
 \section{Graded rings and modules}
 
 \subsection{Basic definitions}
-We shall now review  a few facts from commutative algebra; for more details,
-cf. \cite{Bo61}.
 \begin{definition} 
-A \textbf{graded ring} $R$ is a ring with a decomposition (as abelian groups)
+A \textbf{graded ring} $R$ is a ring together with a decomposition (as abelian groups)
 \[  R = R_0 \oplus R_1 \oplus \dots   \]
 such that $R_m R_n \subset R_{m+n}$ for all $m, n \in \mathbb{Z}_{\geq 0}$,
 and where $R_0$ is a subring.
@@ -14,9 +49,14 @@ A \textbf{$\mathbb{Z}$-graded ring} is one where the decomposition is into
 $\bigoplus_{n \in \mathbb{Z}} R_n$.
 In either case, the elements of the subgroup $R_n$ are called
 \textbf{homogeneous of degree $n$}.
+\end{definition}
 
-Let $M$ be an $R$-module. Then $M$ is called a \textbf{graded} $S$-module if
-there is a decomposition
+The basic example to keep in mind is, of course, the polynomial ring $R[x_1,
+\dots, x_n]$ for $R$ any ring. The graded piece of degree $n$ consists of the
+homogeneous polynomials of degree $n$.
+
+\begin{definition} Fix a graded ring $R$.
+A \textbf{graded} $R$-module is an ordinary $R$-module $M$ together with  a decomposition
 \[  M = \bigoplus_{k \in \mathbb{Z}} M_k  \]
 as abelian groups, such that $R_m M_n \subset M_{m+n}$ for all $m \in
 \mathbb{Z}_{\geq 0}, n \in \mathbb{Z}$.
@@ -24,27 +64,25 @@ as abelian groups, such that $R_m M_n \subset M_{m+n}$ for all $m \in
 
 Since we shall focus on positively graded rings, we shall simply call them
 graded rings; when we do have to consider rings with possibly negative
-gradings, we shall highlight this explicitly. Note however that we allow
+gradings, we shall highlight this explicitly. Note, however, that we allow
 modules with negative gradings freely.
 In fact, given a graded module $M$, we define the \textbf{twists} $M(n)$ as the
-same $S$-module but with the grading
+same $R$-module but with the grading
 \[  M(n)_k = M_{n+k} . \]  
 
-\begin{example} 
-The polynomial ring $A[x_1, \dots, x_n] $ is graded by the total degree. The
-homogeneous elements of degree $n$ are the homogeneous polynomials of degree
-$n$.
-\end{example} 
 \begin{example} 
 If $R$ is  a graded ring, then $R$ is a graded module over itself. 
 \end{example} 
 
 \begin{definition} Fix a graded ring $R$.
-Let $M$ be a graded $R$-module and $N$ an $R$-submodule. Then $N$ is called  a
+Let $M$ be a graded $R$-module and $N \subset M$ an $R$-submodule. Then $N$ is called  a
 \textbf{graded submodule} if the homogeneous components of anything in $N$ are
 in $N$. If $M=R$, then a graded ideal is also called a \textbf{homogeneous
 ideal}.
 \end{definition} 
+
+In particular, a graded submodule is automatically a graded module in its own
+right. 
 
 \begin{lemma} 
 \begin{enumerate}
@@ -56,18 +94,54 @@ ideal}.
 Immediate.
 \end{proof} 
 
+One can grade the quotients of a graded module by a graded submodule.
 If $N \subset M$ is a graded submodule, then $M/N$ can be made into a graded
-module, namely via the isomorphism of abelian groups
-\[  M/N \simeq \sum_{k \in \mathbb{Z}} M_k/N_k.  \]
+module,  via the isomorphism of abelian groups
+\[  M/N \simeq \bigoplus_{k \in \mathbb{Z}} M_k/N_k.  \]
+In particular, if $\mathfrak{a} \subset R$ is a homogeneous ideal, then 
+$R/\mathfrak{a}$ is a graded ring in a natural way.
+
+
+
 Also, if $\mathfrak{a}, \mathfrak{b}$ are homogeneous ideals, then so is
 $\mathfrak{ab}$.  Justification: if we have resolutions into homogeneous
 components $\mathfrak{a} = \bigoplus \mathfrak{a}_i$, $\mathfrak{b} = \bigoplus
 \mathfrak{b}_i$, then 
 \[  \mathfrak{ab} = \sum_{i+j=k} \mathfrak{a}_i \mathfrak{b}_j . \]
 
+\subsection{Homogeneous ideals}
 
+Recall that a homogeneous ideal in a graded ring $R$ is simply a graded
+submodule of $R$. We now prove a useful result that enables us tell when an
+ideal is homogeneous.
 
-We now prove a result about homogeneous prime ideals specifically.
+\begin{proposition} 
+Let $R$ be a graded ring, $I \subset R$ an ideal. Then $I$ is a graded ideal
+if and only if it can be generated by homogeneous elements.
+\end{proposition} 
+\begin{proof} 
+If $I$ is a homogeneous ideal, then by definition
+\[ I = \bigoplus I \cap R_i,  \]
+so $I$ is generated by the sets $\left\{I \cap R_i\right\}_{i \in
+\mathbb{Z}_{\geq 0}}$ of homogeneous elements. 
+
+Conversely, let us suppose that $I$ is generated by homogeneous elements
+$\left\{h_\alpha\right\}$. Let $x \in I$ be arbitrary; we can uniquely
+decompose $x$ as a sum of homogeneous elements, $x = \sum x_i$, where each
+$x_i \in R_i$. We need to show that each $x_i \in I$ in fact.
+
+To do this, note that $x = \sum q_\alpha h_\alpha$ where the $q_\alpha $
+belong to $R$. If we take $i$th homogeneous components, we find that
+\[ x_i = \sum ( q_{\alpha})_{i - \deg h_\alpha} h_\alpha, \]
+where $(q_\alpha)_{i - \deg h_\alpha}$ refers to the component of $q_\alpha$
+concentrated in the degree $i - \deg h_\alpha$.
+From this it is easy to see that each $x_i$ is a linear combination of the
+$h_\alpha$ and consequently lies in $I$.
+\end{proof} 
+
+Since we shall need to use them to define $\proj R$ in the future, we now
+prove a result about homogeneous prime ideals specifically. Namely, primeness
+can be checked just on homogeneous elements for a homogeneous ideal.
 \begin{lemma} \label{homogeneousprimeideal}
 Let $\mathfrak{p} \subset R$ be a homogeneous ideal. In order that $\mathfrak{p}$ be prime, it is
 necessary and sufficient that whenever $x,y$ are \emph{homogeneous} elements
@@ -92,18 +166,19 @@ $\mathfrak{p}$, and since $a_k \in \mathfrak{p}$, we find that one of $a,b \in \
 \end{proof} 
 
 \subsection{Finiteness conditions}
-There are various finiteness conditions that we often want to impose on
-projective schemes, so it is necessary to review their counterparts for graded
-rings.
+There are various finiteness conditions that one often wants to impose in
+algebraic geometry.
+Since projective varieties (and schemes) are obtained from graded rings,
+we briefly discuss these finiteness conditions for them.
 
 For a graded ring $R$, write $R_+ = R_1 \oplus R_2 \oplus \dots$. Clearly $R_+
-\subset R$ is a homogeneous ideal.
+\subset R$ is a homogeneous ideal. It is called the \textbf{irrelevant ideal.}
 
 \begin{proposition} 
 Suppose $R = R_0 \oplus R_1 \oplus \dots$ is  a graded ring. Then if a subset
 of $R_+$ generates $R_+$ as $R$-ideal, it generates $R$ as $R_0$-algebra.
 \end{proposition} 
-The converse is clear. 
+The converse is clear as well. 
 Indeed, if $S \subset R_+$ generates $R$ as an $R_0$-algebra, clearly it
 generates $R_+$ as an $R$-ideal. 
 \begin{proof} 
@@ -117,10 +192,10 @@ the deg} \\
 & \subset (R_0[S]) (S) \cap R_n \ \text{by inductive hypothesis} \\
 & \subset R_0(S). \end{align*}
 \end{proof} 
-\begin{corollary} 
+\begin{theorem} 
 $R$ is noetherian if and only if $R_0$ is noetherian and $R$ is finitely
 generated as $R_0$-algebra.
-\end{corollary} 
+\end{theorem} 
 \begin{proof} 
 One direction is clear by Hilbert's basis theorem. For the other, suppose $R$
 noetherian. Then $R_0$ is noetherian because any sequence $I_1 \subset I_2
@@ -327,7 +402,7 @@ We next observe that there is a generalization of Proposition~\ref{loc interpret
 \begin{proposition} \label{loc
 module as quotient}
 Suppose $M$ is a graded $R$-module, $f \in R$ homogeneous of degree $d$. Then
-we have an isomorphism
+there is  an isomorphism
 \[ M_{(f)} \simeq M^{(d)}/(f-1)M^{(d)}  \]
 of $R^{(d)}$-modules.
 \end{proposition}
@@ -344,7 +419,8 @@ Suppose $M$ is a graded $R$-module, $f \in R$ homogeneous of degree 1. Then we
 have
 \[  M_{(f)} \simeq M/(f-1)M \simeq M\otimes_R R/(f-1).  \]
 \end{corollary} 
-\subsection{Definition}
+
+\subsection{The $\proj$ of a ring}
 Let $R=R_0 \oplus R_1 \oplus \dots$ be a \textbf{graded ring}.
 
 \begin{definition} 
