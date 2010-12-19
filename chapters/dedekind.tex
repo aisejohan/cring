@@ -295,7 +295,9 @@ This can be generalized to the Krull-Azizuki theorem, cf. \cite{bourbaki}.
 \begin{itemize}
 \item Noetherian.  Indeed, I claim that $B$ is a finitely generated $A$-module, which obviously implies Noetherianness.  The $K$-linear map $(.,.): L \times L \to K$, $a,b \to \mathrm{Tr}(ab)$ is nondegenerate since $L$ is separable over $K$.  Let $F \subset B$ be a free module spanned by a $K$-basis for $L$.  Then since traces preserve integrality and $A$ is integrally closed, we have $B \subset F^*$, where $F^* := \{ x \in K: (x,F) \subset A \}$.  Now $F^*$ is $A$-free on the dual basis of $F$ though, so $B$ is a submodule of a f.g. $A$ module, hence a f.g. $A$-module.
 \item Integrally closed.  It is an integral closure, and integrality is transitive.
-\item Dimension 1.  Indeed, if $A \subset B$ is an integral extension of domains, then $\dim A = \dim B$. This follows essentially from the theorems of ``lying over'' and ``going up.'' Cf. \cite{Eisenbud}.
+\item Dimension 1.  Indeed, if $A \subset B$ is an integral extension of
+domains, then $\dim A = \dim B$. This follows essentially from the theorems of
+``lying over'' and ``going up.'' Cf. \cite{Ei95}.
 \end{itemize}
 
 So, consequently the ring of algebraic integers (integral over $\mathbb{Z}$) in a number field (finite extension of $\mathbb{Q}$) is Dedekind.
@@ -357,7 +359,7 @@ Let $K$ be a field, $L$ a finite separable extension.  Then a discrete valuation
 \begin{proof}
 Indeed, let $R \subset K$ be the ring of integers.  Then $R$ is a DVR, hence Dedekind, so the integral closure $S \subset L$ is Dedekind too (though in general it is not   a DVR---it may have several non-zero prime ideals) by Theorem~\ref{intclosdedekind}.  Now as above, $S$ is a finitely generated $R$-module, so if $\mathfrak{m} \subset R$ is the maximal ideal, then 
 \[ \mathfrak{m} S \neq S \]
-by Nakayama's lemma (cf. for instance \cite{Eisenbud}).  So $\mathfrak{m} S$ is contained in a maximal ideal $\mathfrak{M}$ of $S$ with, therefore, $\mathfrak{M} \cap R = \mathfrak{m}$.  (This is indeed the basic argument behind lying over, which I could have just invoked.) Now $S_{\mathfrak{M}} \supset R_{\mathfrak{m}}$ is a DVR as it is the localization of a Dedekind domain at a prime ideal, and one can appeal to Theorem~\ref{niupmeansdvr}.  So there is a discrete valuation on $S_{\mathfrak{M}}$.  Restricted to $R$, it will be a power of the given $R$-valuation, because its value on a uniformizer $\pi$ is $<1$.  However, a power of a discrete valuation is a discrete valuation too.  So we can adjust the discrete valuation on $S_{\mathfrak{M}}$ if necessary to make it an extension.
+by Nakayama's lemma (cf. for instance \cite{Ei95}).  So $\mathfrak{m} S$ is contained in a maximal ideal $\mathfrak{M}$ of $S$ with, therefore, $\mathfrak{M} \cap R = \mathfrak{m}$.  (This is indeed the basic argument behind lying over, which I could have just invoked.) Now $S_{\mathfrak{M}} \supset R_{\mathfrak{m}}$ is a DVR as it is the localization of a Dedekind domain at a prime ideal, and one can appeal to Theorem~\ref{niupmeansdvr}.  So there is a discrete valuation on $S_{\mathfrak{M}}$.  Restricted to $R$, it will be a power of the given $R$-valuation, because its value on a uniformizer $\pi$ is $<1$.  However, a power of a discrete valuation is a discrete valuation too.  So we can adjust the discrete valuation on $S_{\mathfrak{M}}$ if necessary to make it an extension.
 
 This completes the proof.  
 \end{proof}
