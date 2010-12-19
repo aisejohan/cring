@@ -918,13 +918,89 @@ holds: if $a,b \in R$ with $b \neq 0$, there are $q,r \in R$ such that
 and $v(r)< v(b)$. Prove that a euclidean domain is principal.
 \end{exercise} 
 
-\begin{exercise} 
+\begin{exercise} \label{gaussianintegersareprincipal}
 Prove that $\mathbb{Z}[i]$ is principal. (Use the previous exercise.)
 \end{exercise} 
 
 \begin{exercise} \label{polyringisprincipal}
 Prove that the polynomial ring $F[t]$ for $F$ a field is principal. 
 \end{exercise} 
+
+\subsection{Unique factorization domains}
+
+The integers $\mathbb{Z}$ are especially nice because of the Fundamental
+Theorem of Arithmetic, which states that every integer has a unique
+factorization into primes. This is not true for every integral domain.
+
+First, we need a generalization of prime integer:
+\begin{definition} 
+An element of a domain $R$ is \textbf{irreducible} if it cannot be written
+as the product of two non-unit elements of $R$.
+\end{definition} 
+
+\begin{example} 
+Consider the integral domain $\mathbb{Z}[\sqrt{-5}]$. We saw earlier that 
+\[ 
+6 = 2 \cdot 3 = (1 + \sqrt{-5})(1 - \sqrt{-5}),
+\] 
+which means that $6$ was written as the product of two non-unit elements in
+different ways. $\mathbb{Z}[\sqrt{-5}]$ does not have unique factorization.
+\end{example} 
+
+\begin{definition} 
+A domain $R$ is a \textbf{unique factorization domain} or \textbf{UFD} if every
+non-unit $x \in R$ satisfies
+\begin{enumerate}
+\item $x$ can be written as a product $x = p_1 p_2 \cdots p_n$ of 
+irreducible elements $p_i \in R$
+\item if $x = q_1 q_2 \cdots q_m$ where $q_i \in R$ are irreducible
+then the $p_i$ and $q_i$ are the same up to order and multiplication by units.
+\end{enumerate}
+\end{definition} 
+
+\begin{example}
+$\mathbb{Z}$ is a UFD, while $\mathbb{Z}[\sqrt{-5}]$ is not. In fact, many of
+our favorite domains have unique factorization. We will prove that all PIDs 
+are UFDs. In particular, in Exercises \label{gaussianintegersareprincipal} and
+\label{polyringisprincipal}, we saw that $\mathbb{Z}[i]$ and $F[t]$ are PIDs,
+so they also have unique factorization.
+\end{example}
+
+\begin{theorem} 
+Every principal ideal domain is a unique factorization domain.
+\end{theorem} 
+
+\begin{proof} 
+Suppose that $R$ is a principal ideal domain and $x$ is an element of $R$. We
+first demonstrate that $x$ can be factored into irreducibles.
+If $x$ is a unit or an irreducible, then we are done. Therefore, we can assume
+that $x$ is reducible, which means that $x = x_1 x_2$ for non-units 
+$x_1, x_2 \in R$. If there are irreducible, then we are again done, so we
+assume that they are reducible and repeat this process. We need to show that
+this process terminates.
+
+Suppose that this process continued infinitely. Then we have an infinite
+ascending chain of ideals, where all of the inclusions are proper:
+$(x) \subset (x_1) \subset (x_{11}) \subset \cdots \subset R$.
+We will show that this is impossible because any infinite ascending chain of
+ideals $I_1 \subset I_2 \subset \cdots \subset R$ of a principal ideal domain 
+eventually becomes stationary, i.e. for some $n$, $I_k = I_n$ for $k \geq n$.
+Indeed, let $I = \bigcup_{i=1}^\infty I_i$. This is an ideal, so it is 
+principally generated as $I = (a)$ for some $a$. Since $a \in I$, we must have 
+$a \in I_N$ for some $N$, which means that the chain stabilizes after $I_N$.
+
+It remains to prove that this factorization of $x$ is unique. We induct on
+the number of irreducible factors $n$ of $x$. If $n = 0$, then $x$ is a unit,
+which has unique factorization up to units. Now, suppose that 
+$x = p_1 \cdots p_n = q_1 \cdots q_m$ for some $m \ge n$. Since $p_1$ divides
+$x$, it must divide the product $q_1 \cdots q_m$ and by irreducibility, one of
+the factors $q_i$. Reorder the $q_i$ so that $p_1$ divides $q_1$. However,
+$q_1$ is irreducible, so this means that $p_1$ and $q_1$ are the same up to
+multiplication by a unit $u$. Canceling $p_1$ from each of the two
+factorizations, we see that $p_2 \cdots p_n = u q_2 \cdots q_m = q_2' \cdots
+q_m$. By induction, this shows that the factorization of $x$ is unique up to
+order and multiplication by units.
+\end{proof} 
 
 \section{Basic properties of modules}
 
