@@ -423,6 +423,22 @@ the contrary $bx \neq 0$. In this case, $\ann(bx)$ contains $(a) + I$, which
 
 \end{proof} 
 
+\begin{example} 
+Without the noetherian hypothesis, Proposition~\ref{assmnonempty} is
+\emph{false}. Consider $R = \mathbb{C}[x_1, x_2, \dots]$, the polynomial ring
+over $\mathbb{C}$ in infinitely many variables, and the ideal $I = (x_1,
+x_2^2, x_3^3, \dots) \subset R$.
+The claim is that 
+\[ \ass(R/I ) = \emptyset.  \]
+To see this, suppose a prime $\mathfrak{p}$ was the annihilator of some
+$\overline{f}\in R/I$.  Then $\overline{f}$ lifts to $f \in R$; it follows
+that $\mathfrak{p}$ is precisely the set of $g \in R$ such that $fg \in I$.
+Now $f$ contains only finitely many of the variables $x_i$, say $x_1, \dots,
+x_n$. It is then clear that $x_{n+1}^{n+1} f \in I$  (so $x_{n+1}^{n+1} \in
+\mathfrak{p}$), but $x_{n+1} f \notin I$ (so $x_{n+1} \notin \mathfrak{p}$).
+It follows that $\mathfrak{p}$ is not a prime, a contradiction.
+\end{example} 
+
 We shall now show that the associated primes are finite in number.
 
 \begin{proposition} \label{finiteassm}
