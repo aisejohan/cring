@@ -158,7 +158,7 @@ Similarly, we can also turn cochain complexes and cohomology
 modules into a
 graded module.
 
-\section{Chain homotopies}
+\subsection{Chain Homotopies}
 Returning to algebraic topology as a motivation, originally
 homology was
 intended to be a homotopy invariant meaning that space with the
@@ -170,6 +170,37 @@ complexes; it can be
 shown that when such a chain homotopy exists, the homology
 modules are
 isomorphic.
+\begin{definition} A chain homotopy between two chain maps
+$f,g:C_*\rightarrow D_*$ is a series of homomorphisms
+$t^i:C^i\rightarrow D^{i-1}$ satisfying $f^i-g^i=\partial t^n+
+t^{n+1}\partial$. Again often notation is abused and the
+condition is written $f-g=\partial t +
+t\partial$.\end{definition}
+\begin{theorem} If two maps are chain homotopic, they are taken to the same induced map after applying the homology functor. \end{theorem}
+\begin{corollary} If two chain complexes are chain homotopic (there are maps $f: C_*\rightarrow D_*$ and $g:D_*\rightarrow C_*$ such that both $fg$ and $gf$ are chain homotopic to the identity), they have isomorphic homology. \end{corollary}
+
+\begin{theorem} Additive functors preserve chain homotopies \end{theorem}
+\begin{proof} Since an additive functor $F$ is a homomorphism on $Hom(-,-)$, the chain homotopy condition will be preserved; in particular, if $t$ is a chain homotopy, then $F(t)$ is a chain homotopy.\end{proof}
+
+In more sophisticated homological theory, one often makes the
+definition of the ``homotopy category of chain complexes.''
+\begin{definition} The homotopy category of chain complexes is
+the category $hKom(R)$ where objects are chain complexes of
+$R$-modules and morphisms are chain maps modulo chain homotopy.
+\end{definition}
+
+In this setting, homology (resp. cohomology) is really a
+covariant (resp. contravariant) functor $h_i:hKom(R)\rightarrow
+Mod(R)$.
+\subsection{Resolutions}
+\begin{definition} A projective object in an abelian category is
+an object $P$
+such that for any map $P\rightarrow M$ and a surjection
+$N\rightarrow M$, there
+is a lift $P\rightarrow N$ making the diagram commute.
+\end{definition}
+\begin{example} All free objects are projective. \end{example}
+
 
 \section{Resolutions}
 
@@ -250,18 +281,35 @@ exact sequence $0\rightarrow A\rightarrow B\rightarrow
 C\rightarrow 0$, we get a exact sequence $F(A)\rightarrow
 F(B)\rightarrow F(C)\rightarrow 0$.
 \end{definition}
+We want a natural way to continue this exact sequence to the left; one way of doing this is to define the left derived functors.
+\begin{definition} Let $F$ be a right-exact functor and $P_*\rightarrow M$ are projective resolution. We can form a chain complex $F(P_*)$ whose object in degree $i$ is $F(P_i)$ with boundary maps $F(\partial)$. The homology of this chain complex denoted $L_iF$ are the left derived functors. \end{definition}
 
 For this definition to be useful, it is important to verify that
 deriving a functor yields functors independent on choice of
-resolution.
+resolution. To do this, we use the following lemma:
 
+\begin{lemma} Any two projective resolutions $P_*\rightarrow M$ and $P_*'\rightarrow M$ are chain homotopic. \end{lemma}
+\begin{corollary}Since the functors we are deriving are additive, the chain complex $F(P_*)$ is homotopic to $F(P_*')$ which means their homologies are isomorphic meaning the derived functors of $F$ agree.\end{corollary}
+
+\begin{theorem} The following properties characterize derived functors: \begin{enumerate}
+\item{ $L_0F(-)=F(-)$ }
+\item{  Suppose $0\rightarrow A\rightarrow B\rightarrow C\rightarrow 0$ is an exact sequence and $F$ a right-exact functor; the left derived functors fit into the following exact sequence:
+
+\begin{equation} \cdots L_iF(A)\rightarrow L_iF(B)\rightarrow L_iF(C)\rightarrow L_{i-1}F(A)\cdots\rightarrow L_1(C)\rightarrow L_0F(A)\rightarrow L_0F(B)\rightarrow L_0F(C)\rightarrow 0$ \end{equation}}
+\end{enumerate}
+\end{theorem}
+\begin{proof} The second property is the hardest to prove, but it is by far the most useful; it is essentially an application of the snake lemma. \end{proof}
+One can define right derived functors analgously; if one has a left exact functor (an additive functor that takes an exact sequence $0\rightarrow A\rightarrow B\rightarrow C\rightarrow 0$ to $0\rightarrow F(A)\rightarrow F(B)\rightarrow F(C)$), we can pick an injective resolution instead (the injective criterion is simply the projective criterion with arrows reversed). If $M\rightarrow I^*$ is a injective resolution then the cohomology if the chain complex $F(I^*)$ gives the right derived functors. However, variance must also be taken into consideration so the choice of whether or not to use a projective or injective resolution is of importance (in all of the above, functors were assumed to be covariant). In the following, we see an example of when right derived functors can be computed using projective resolutions.
 
 \newcommand{\ext}{\mathrm{Ext}}
 \subsection{$\ext$ functors}
 
+\begin{definition} The right derived functors of $Hom(-,N)$ are called the $Ext$-modules denoted $Ext^i_R(-,N)$. \end{definition}
+We now look at the specific construction:
+
 Let $M, M'$ be $R$-modules. Choose a projective resolution 
 \[ \dots \to P_2 \to P_1 \to P_0 \to M \to 0  \]
-and consider what happens when you hom this resolution into $M$.
+and consider what happens when you hom this resolution into $N$.
 Namely, we can
 consider $\hom_R(M,N)$, which is the kernel of $\hom(P_0, M) \to
 \hom(P_1, M) $
@@ -286,7 +334,7 @@ $i$th ext group.
 
 
 
-Let us list some properties:
+Let us list some properties (some of these properties are just case-specific examples of general properties of derived functors)
 
 \begin{proposition} 
 $\ext_R^0(M,N) = \hom_R(M,N)$. 
