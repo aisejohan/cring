@@ -1,0 +1,161 @@
+\chapter{Flatness revisited}
+
+In the past, we have already encountered the notion of \emph{flatness}. We
+shall now study it in more detail.
+
+\section{Faithful flatness}
+
+\subsection{Faithfully flat modules}
+Let $R$ be a commutative ring.
+
+\begin{definition} 
+The $R$-module $M$ is \textbf{faithfully flat} if  any complex $N' \to N
+\to N''$ of $R$-modules is exact if and only if the tensored sequence $N'
+\otimes_R M \to N \otimes_R M \to N'' \otimes_R M$ is exact.
+\end{definition} 
+
+Clearly, a faithfully flat module is flat.
+
+
+\begin{example} 
+The direct sum of faithfully flat modules is faithfully flat.
+\end{example} 
+\begin{example} 
+A (nonzero)  free module is faithfully flat, because $R$ itself is flat
+(tensoring with $R$ is the identity functor).
+\end{example} 
+
+We shall now prove several useful criteria about faithfully flat modules.
+
+\begin{proposition}  \label{easyffcriterion}
+An $R$-module $M$ is faithfully flat if and only if it is flat and if $M
+\otimes_R N = 0$ implies $N=0$ for any $N$.
+\end{proposition} 
+\begin{proof} Suppose $M$ f.f.
+Then $M$ is flat, clearly. In addition, if $N$ is any $R$-module, consider the
+sequence
+\[ 0 \to N \to 0;  \]
+it is exact if and only if
+\[ 0 \to M \otimes_R N \to 0  \]
+is exact. Thus $N=0$ if and only if $M \otimes_R N = 0$.
+
+Conversely, suppose $M$ is flat and satisfies the additional condition. We
+need to show that if $N'
+\otimes_R M \to N \otimes_R M \to N'' \otimes_R M$ is exact, so is $N' \to N
+\to N''$. Since $M$ is flat, taking homology commutes with tensoring with $M$.
+In particular, if $H$ is the homology of $N' \to N \to N''$, then $H \otimes_R
+M$ is the homology of 
+$N'
+\otimes_R M \to N \otimes_R M \to N'' \otimes_R M$. It follows that $H
+\otimes_R M = 0$, so $H=0$, and the initial complex is exact.
+\end{proof} 
+
+
+\begin{exercise} 
+The direct sum of a flat module and a faithfully flat module is faithfully flat.
+\end{exercise} 
+
+A functor $F$ between two categories is said to be \textbf{faithful} if the
+induced map on the hom-sets $\hom(x,y) \to \hom(Fx, Fy)$ is always injective.
+The following result explains the use of the term ``faithful.''
+
+\begin{proposition} 
+A module $M$ is f.f. if and only if it is flat and the functor $N \to N
+\otimes_R M$ is faithful.
+\end{proposition} 
+\begin{proof} Let $M$ be flat.
+We need to check that $M$ is f.f. if and only if the natural map
+\[ \hom_R(N, N') \to \hom_R(N \otimes_R M, N' \otimes_R M)  \]
+is injective.
+Suppose first $M$ is faithfully flat and $f: N \to N'$ goes to zero $f \otimes
+1_M: N \otimes_R M \to  N' \otimes_R M$. We know by flatness that
+\[ \im(f) \otimes_R M = \im(f \otimes 1_M)  \]
+so that if $f \otimes 1_M = 0$, then $\im(f) \otimes M = 0$. Thus by faithful
+flatness, $\im(f) = 0$ by Proposition~\ref{easyffcriterion}.
+
+Conversely, let us suppose $M$ flat and the functor $N \to N \otimes_M$
+faithful. Let $N \neq 0$; then $1_N \neq 0$ as maps $N \to N$. 
+It follows that $1_N \otimes 1_M$ and $0 \otimes 1_M = 0$ are different as
+endomorphisms of $M \otimes_R N$. Thus $M \otimes_R N \neq 0$. By
+Proposition~\ref{easyffcriterion}, we are done again.
+\end{proof} 
+
+
+Finally, we prove one last criterion:
+
+\begin{proposition} 
+$M$ is f.f. if and only if $M$ is flat and $\mathfrak{m}M \neq M$ for all
+maximal ideals $\mathfrak{m} \subset R$.
+\end{proposition} 
+\begin{proof} 
+If $M$ is f.f., then $M$ is flat, and $M \otimes_R R/\mathfrak{m} =
+M/\mathfrak{m}M \neq 0$ for all $\mathfrak{m}$ as $R/\mathfrak{m} \neq 0$, by
+Proposition~\ref{easyffcriterion}. So we get one direction.
+
+Alternatively, suppose $M$ is flat and $M \otimes_R R/\mathfrak{m} \neq 0$ for
+all maximal $\mathfrak{m}$. Since every proper ideal is contained in a maximal
+ideal, it follows that $M \otimes_R R/I \neq 0$ for all proper ideals $I$. We
+shall use this and Proposition~\ref{easyffcriterion} to prove that $M$ is f.f.
+
+Let $N$ now be any nonzero module. Then $N$ contains a \emph{cyclic} submodule, i.e.
+one isomorphic to $R/I$ for some proper $I$. The injection
+\[ R/I \hookrightarrow N  \]
+becomes an injection
+\[ R/I \otimes_R M \hookrightarrow N \otimes_R M,  \]
+and since $R/I \otimes_R M \neq 0$, we find that $N \otimes_R M \neq 0$. By
+Proposition~\ref{easyffcriterion}, it follows that $M$ is f.f.
+\end{proof} 
+
+\begin{corollary} 
+A finitely generated flat module over a \emph{local} ring is faithfully flat.
+\end{corollary} 
+
+A \emph{finitely presented} flat module is in fact free, but we do not prove
+this.
+\begin{proof} 
+Indeed, let $R$ be a local ring with maximal ideal $\mathfrak{m}$, and $M$ a
+finitely generated flat $R$-module. Then by Nakayama's lemma, $M/\mathfrak{m}M
+\neq 0$, so that $M$ must be faithfully flat.
+\end{proof} 
+
+\begin{proposition} 
+Faithfully flat modules are closed under direct sums and tensor products.
+\end{proposition} 
+
+\begin{proof} 
+Exercise.
+\end{proof} 
+
+
+\subsection{Faithfully flat algebras}
+
+Let $\phi: R \to S$ be a morphism of rings, making $S$ into an $R$-algebra.
+
+\begin{definition} 
+$S$ is a \textbf{faithfully flat $R$-algebra} if it is faithfully flat as an
+$R$-module.
+\end{definition} 
+
+\begin{proposition} 
+If $S$ is a f.f. $R$-algebra, then the structure map $R \to S$ is injective.
+\end{proposition} 
+\begin{proof} 
+Indeed, let us tensor the map $R \to S $ with $S$, over $R$. We get a morphism
+of $S$-modules
+\[ S \to S \otimes_R S ,  \]
+sending $s \to  1 \otimes s$.
+This morphism has an obvious section $S \otimes_R S \to S$ sending $a \otimes b
+\to ab$. Since it has a section, it is injective. But faithful flatness says
+that the original map must be injective itself.
+\end{proof} 
+
+
+\begin{proposition} 
+A flat local homomorphism of local rings is faithfully flat.
+\end{proposition} 
+\begin{proof} 
+
+\end{proof} 
+
+
+
