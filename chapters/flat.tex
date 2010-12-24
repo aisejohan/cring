@@ -83,7 +83,7 @@ Proposition~\ref{easyffcriterion}, we are done again.
 
 Finally, we prove one last criterion:
 
-\begin{proposition} 
+\begin{proposition} \label{ffmaximal} 
 $M$ is f.f. if and only if $M$ is flat and $\mathfrak{m}M \neq M$ for all
 maximal ideals $\mathfrak{m} \subset R$.
 \end{proposition} 
@@ -154,8 +154,85 @@ that the original map must be injective itself.
 A flat local homomorphism of local rings is faithfully flat.
 \end{proposition} 
 \begin{proof} 
-
+Let $\phi: R \to S$ be a local homomorphism of local rings with maximal ideals
+$\mathfrak{m}, \mathfrak{n}$. Then by definition $\phi(\mathfrak{m}) \subset
+\mathfrak{n}$. It follows that $S \neq \phi(\mathfrak{m})S$, so by
+Proposition~\ref{ffmaximal} we win.
 \end{proof} 
+
+
+\begin{example} 
+The map $R \to R[x]$ from a ring into its polynomial ring is always faithfully
+flat. This is clear.
+\end{example} 
+
+There are many topological consequences of faithful flatness on the $\spec$'s. These are
+explored in detail in volume 4-2 of \cite{EGA}. We shall only scratch the
+surface.
+
+\begin{proposition} 
+Let $R \to S$ be a faithfully flat morphism of rings. Then the map $\spec S
+\to \spec R$ is surjective.
+\end{proposition} 
+
+\begin{proof} Since $R \to S$ is injective, we may regard $R$ as a subring of $S$.
+We shall first show that:
+
+\begin{lemma} 
+If $I \subset R$ is any ideal, then $R \cap IS = I$.
+\end{lemma}
+\begin{proof} 
+To see this, note that the morphism
+\[ R/I \to S/IS  \]
+is faithfully flat, since faithful flatness is preserved by base-change, and
+this is the base-change of $R \to S$ via $R \to R/I$.
+In particular, it is injective. Thus $IS \cap R = I$.
+\end{proof} 
+
+
+Now to see surjectivity, we use a general criterion:
+
+\begin{lemma} 
+Let $\phi: R \to S$ be a morphism of rings and suppose $\mathfrak{p} \in \spec
+R$. Then $\mathfrak{p}$ is in the image of $\spec S \to \spec R$ if and only if 
+$\phi^{-1}( \phi(\mathfrak{p}) S) = \mathfrak{p}$.
+\end{lemma} 
+
+This lemma will prove the proposition.
+\begin{proof} 
+Suppose first that $\mathfrak{p}$ is in the image of $\spec S \to \spec R$. In
+this case, there is $\mathfrak{q} \in \spec S$ such that
+\[ \mathfrak{p} = \phi^{-1}(\mathfrak{q}).  \]
+In particular, $\mathfrak{q} \supset \phi(\mathfrak{p})S$, so that
+\[ \mathfrak{p} \subset \phi^{-1}(\phi(\mathfrak{p}) S),  \]
+while the other inclusion is obviously true.
+
+Conversely, suppose that $\mathfrak{p} \subset \phi^{-1}(\phi(\mathfrak{p})
+S)$. In this case, we know that 
+\[ \phi(R  - \mathfrak{p}) \cap \phi(\mathfrak{p})S = \emptyset.  \]
+Now $T = \phi(R - \mathfrak{p})$ is a multiplicatively closed subset.
+There is a morphism
+\begin{equation} \label{randomequationwhichidonthaveanamefor}
+R_{\mathfrak{p}} \to T^{-1}S 
+\end{equation} 
+which sends elements of $\mathfrak{p}$ into non-units, by
+\eqref{randomequationwhichidonthaveanamefor} so it is a \emph{local}
+homomorphism. The maximal ideal of $T^{-1} S$ pulls back to that of
+$R_{\mathfrak{p}}$. By the usual commutative diagrams, it follows that
+$\mathfrak{p}$ is the preimage of something in $\spec S$.
+\end{proof} 
+\end{proof} 
+
+In fact, one can show that the morphism $\spec S \to \spec R$ is actually an
+\emph{identification,} that is, a quotient map. This is true more generally
+for faithfully flat and quasi-compact morphisms of schemes; see \cite{EGA},
+volume 4-2.
+
+\begin{exercise} 
+Let $R \to S$ be a faithfully flat morphism of rings. If $S$ is noetherian, so
+is $R$. The converse is false!
+\end{exercise} 
+
 
 
 
