@@ -1,5 +1,10 @@
 \chapter{Foundations}
 
+
+The present foundational chapter will introduce the notion of a ring and,
+next, that of  a module over a ring. These notions will be the focus of the
+present book.
+
 We begin with a few historical remarks.  Fermat's last theorem states that the
 equation
   \[ \label{ft} x^n  + y^n = z^n \]
@@ -12,15 +17,21 @@ $\mathbb{Z}[\zeta]$ is still a ring where we have notions of primes and
 factorization, just as in $\mathbb{Z}$, we will see that prime factorization
 is not always unique in $\mathbb{Z}[\zeta]$.
 
-Here is another case where unique factorization fails.  Consider the ring
+For instance, consider the ring
 $\mathbb{Z}[\sqrt{-5}]$ of complex numbers of the form $a + b\sqrt{-5}$, where
 $a, b \in \mathbb{Z}$.  Then we have the two factorizations
   \[ 6 = 2 \cdot 3 = (1 + \sqrt{-5})(1 - \sqrt{-5}). \]
 Both of these are factorizations of 6 into irreducible factors, but they
 are fundamentally different.
 
+In part, commutative algebra grew out of the need to understand this failure
+of unique factorization more generally.
+The most natural context for this is that of a \emph{ring}, which we now
+introduce. 
+
 \section{Commutative rings and their ideals}
 
+\subsection{Rings}
 \begin{definition} 
 A \textbf{commutative ring} is a set $R$ with an addition map
 $+ : R \times R \to R$ and a multiplication map $\times : R \times R \to R$
@@ -76,7 +87,7 @@ Show that the ideal $(2, 1 + \sqrt{-5}) \subset \mathbb{Z}[\sqrt{-5}]$ is not
 principal.
 \end{exercise}
 
-\paragraph{Operations on ideals.}
+\subsection{Operations on ideals}
 
 \begin{definition}
 The sum $I + J$ of two ideals $I, J \subset R$ is defined as the set
