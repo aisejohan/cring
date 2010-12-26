@@ -11,6 +11,7 @@ many of the constructions made in the future when we can freely use terms like
 with a brief introduction to their theory. We only scratch the surface; the
 interested reader can pursue further study in \cite{Ma98}.
 
+
 Nonetheless, the reader is advised not to take the present chapter too
 seriously; skipping it for the moment to chapter 1 and returning here as a
 reference could be quite reasonable. 
@@ -18,28 +19,39 @@ reference could be quite reasonable.
 \section{Introduction}
 \newcommand{\ob}{\operatorname{ob}}
 
-Categories are supposed to be places where mathematical objects live. For
-instance, meta-mathematically, to any given type of structure, there should be a
+Categories are supposed to be places where mathematical objects live.
+Intuitively, to any given type of structure (e.g. groups, rings, etc.), there should be a
 category of objects with that structure. These are not, of course, the only
 type of categories, but they will be the primary ones of concern to us in this
 book.
 
+
+The basic idea of a category is that there should be objects, and that one
+should be able to map between objects. These mappings could be functions, and
+they often are, but they don't have to be. One has to be able to compose
+mappings. Nothing else is required.
+
 \begin{definition} 
-A \textbf{category} $\mathcal{C}$ consists of a collection of \textbf{objects},
-$\ob \mathcal{C}$, and for each pair of objects $X, Y \in
+A \textbf{category} $\mathcal{C}$ consists of:
+\begin{enumerate}
+\item  A collection of \textbf{objects},
+$\ob \mathcal{C}$.
+\item For each pair of objects $X, Y \in
 \ob \mathcal{C}$, a set
 of \textbf{morphisms} $\hom_{\mathcal{C}}(X, Y)$ (abbreviated $\hom(X,Y)$). 
-
-For each object $X \in \ob\mathcal{C}$, there is an \textbf{identity morphism}
-$1 \in \mathcal{C}(X, X)$. 
-
-Next, there is a \textbf{composition law}
-$\mathcal{C}(X, Y) \times \mathcal{C}(Y, Z) \to \mathcal{C}(X, Z), (g, f) \to g
+\item For each object $X \in \ob\mathcal{C}$, there is an \textbf{identity morphism}
+$1 \in \hom_{\mathcal{C}}(X, X)$. 
+\item Next, there is a \textbf{composition law}
+$\hom_{\mathcal{C}}(X, Y) \times \hom_{\mathcal{C}}(Y, Z) \to
+\hom_{\mathcal{C}}(X, Z), (g, f) \to g
 \circ f$ for every
-triple $X, Y, Z$ of objects, which is unital and associative. 
-
-We write $X \to Y$ to denote an element of $\mathcal{C}(X, Y)$.
+triple $X, Y, Z$ of objects.
+\item  The composition law is unital (that is, left or right composition with
+the identity has no effect) and associative. 
+\end{enumerate}
 \end{definition} 
+
+We write $X \to Y$ to denote an element of $\hom_{\mathcal{C}}(X, Y)$.
 
 $\mathcal{C}$ is the storehouse for mathematical objects: groups, Lie algebras,
 rings, etc.
@@ -59,15 +71,13 @@ field $k$, and the morphisms are linear maps.
 
 
 
-\begin{remark} 
-The objects don't have to form a set; they can be too large for
+In general, the objects of a category don not have to form a set; they can be too large for
 that.
 For instance, the collection of objects in $\mathbf{Sets}$ does not form a set. 
-\end{remark} 
 
 The standard examples of categories are the ones above: structured sets
 together with structure-preserving maps. Nonetheless, one can easily give
-other examples that do not fall into this category.
+other examples that are not of this form.
 
 \begin{example} 
 Let $G$ be a finite group. Then we can make a category $B_G$ where the objects
@@ -75,7 +85,7 @@ just consist of one point $\ast$ and the maps $\ast \to \ast$ are the elements
 of $G$. The identity is the identity of $G$ and composition is multiplication
 in the group. 
 
-In this case, the category doesn't represent so much of a class of objects, but
+In this case, the category doesn't represent  a class of objects, but
 instead we think of the composition law as the key thing. So a group is a
 special kind of category.
 \end{example} 
@@ -85,26 +95,31 @@ A monoid is precisely a category with one object. Recall that a \textbf{monoid}
 has an associative and unital multiplication (not necessarily inverses).
 \end{example} 
 
-
+There is, however, a major difference between category theory and set theory.
 There is \textbf{nothing} in the language of categories that lets you look
 \emph{inside} an object. We think of vector spaces having elements, spaces
-having points, etc. Categories treat these kinds of things as invisible. There
-is nothing ``inside'' of $X \in \mathcal{C}$. The only way to understand $X$ is
-to understand the homs into and out of $X$. 
+having points, etc. 
+By contrast, categories treat these kinds of things as invisible. There
+is nothing ``inside'' of an object $X \in \mathcal{C}$. The only way to understand $X$ is
+to understand the ways one can map into and out of $X$. 
 
-We will elaborate on this in the future.
-
-
-Figures... ADD THEM
-
-\begin{remark} 
-A lot of people said that they've seen this before in commutative algebra, but not necessarily
-thoroughly.  So we will keep talking about this.
-\end{remark} 
-
+\begin{example} 
+In the category of topological spaces, one can in fact recover the
+``underlying set'' of a topological space via the hom-sets. Namely, for each
+topological space, the points of $X$ are the same thing as the mappings from a
+one-point space into $X$. Later we will say that the functor assigning to each
+space its underlying set is \emph{corepresentable.}
+\end{example} 
 
 \section{Functors}
-Let $\mathcal{C}, \mathcal{D}$ be categories.
+Let $\mathcal{C}, \mathcal{D}$ be categories. If $\mathcal{C}, \mathcal{D}$
+are categories of structured sets (of possibly different types), there may be a
+way to associate objects in $\mathcal{D}$ to objects in $\mathcal{C}$. For
+instance, to every group $G$ we can associate its \emph{group ring} $\mathbb{Z}[G]$
+ (\add{definition or reference}). 
+In many cases, given a map between objects in $c\mathcal{C}$ preserving the
+relevant structure, there will be an induced map on the corresponding objects
+in $\mathcal{D}$. It is from here that we define a \emph{functor.}
 
 \begin{definition} 
 A \textbf{functor} $F: \mathcal{C} \to \mathcal{D}$ consists of a function $F:
@@ -188,9 +203,7 @@ property.
 \section{Natural transformations}
 
 The original paper of Eilenberg and Maclane was called ``On a general theory of
-natural transformations.'' Maclane was a great guy, incidentally, besides
-inventing homological algebra; there was a
-picture in his office of someone holding a ray gun like a sci-fi movie yelling Tor, Tor, Tor. 
+natural transformations.''
 
 
 Suppose $F, G: \mathcal{C} \to \mathcal{D}$ are functors.
@@ -269,9 +282,6 @@ What's important here is not the theorem, but the \emph{definition of an
 isomorphism.}
 
 
-
-A lot of it for this course, though, is just getting used to the language and
-the definitions.  
 
 \section{Various universal constructions}
 
@@ -533,9 +543,7 @@ If $\mathcal{C}$ has all coproducts and coequalizers, then it has all colimits.
 \end{theorem} 
 
 \begin{proof} 
-Exercise. It's not too hard, but it is---I don't know, I'll talk about it on
-Monday. It's worth racking your brain over.
-\end{proof} 
+Exercise. \add{proof} \end{proof} 
 
 One of the reasons I talked about colimits is that we can talk about it in
 class and use the language. Also, there are a lot of examples we haven't done
