@@ -19,6 +19,8 @@ reference could be quite reasonable.
 \section{Introduction}
 \newcommand{\ob}{\operatorname{ob}}
 
+\subsection{Definitions}
+
 Categories are supposed to be places where mathematical objects live.
 Intuitively, to any given type of structure (e.g. groups, rings, etc.), there should be a
 category of objects with that structure. These are not, of course, the only
@@ -110,6 +112,37 @@ topological space, the points of $X$ are the same thing as the mappings from a
 one-point space into $X$. Later we will say that the functor assigning to each
 space its underlying set is \emph{corepresentable.}
 \end{example} 
+
+\subsection{The language of commutative diagrams}
+
+While the language of categories is, of course, purely algebraic, it will be
+convenient for psychological reasons to visualize categorical arguments
+through diagrams. 
+We shall introduce this notation here.
+
+Let $\mathcal{C}$ be a category, and let $X, Y$ be objects in $\mathcal{C}$.
+If $f \in \hom(X, Y)$, we shall sometimes write $f$ as an arrow
+\[ X \to Y  \]
+or
+\[ X \stackrel{f}{\to} Y \]
+as if $f$ were an actual function.
+If $X \stackrel{f}{\to} Y$ and $Y \stackrel{g}{\to} Z$ are morphisms,
+composition $g \circ f: X \to Z$ can be visualized by the picture
+\[ X \stackrel{f}{\to} Y \stackrel{g}{\to} Z.\]
+
+Finally, when we work with several objects, we shall often draw collections of
+morphisms into diagrams, where arrows indicate morphisms between two objects. 
+A diagram will be said to \textbf{commute} if whenever one goes from one
+object in the diagram to another by following the arrows in the right order,
+one obtains the same morphism. 
+For instance, the commutativity of the diagram
+\[ \xymatrix{
+X \ar[d]^f \ar[r]^{f'} &  W \ar[d]^g \\
+Y \ar[r]^{g'} &  Z
+}\]
+is equivalent to the assertion that 
+\[ g \circ f' = g' \circ f \in \hom(X, Z).  \]
+
 
 \section{Functors}
 Let $\mathcal{C}, \mathcal{D}$ be categories. If $\mathcal{C}, \mathcal{D}$
@@ -232,7 +265,7 @@ Work this out for yourselves. Suppose you have two functors $B_G \to
 \mathbf{Sets}$, i.e. $G$-sets. What's a natural transformation between them?
 \end{exercise} 
 
-Now I want to prove a theorem.
+Now we want to prove a theorem.
 \begin{theorem} 
 If $f: X \to Y$ is a map in $\mathcal{C}$, and $F: \mathcal{C} \to \mathcal{D}$
 is a functor, then $F(f): FX \to FY$ is an isomorphism. 
@@ -338,13 +371,12 @@ There is a philosophical point to be made here. We have characterized an object
 uniquely in terms of mapping properties. We have characterized it
 \emph{uniquely up to unique isomorphism,} which is really the best you can do
 in mathematics. Two sets aren't generally the ``same,'' but they may be
-isomorphism up to unique isomorphism. Like the sets of your father and Darth
-Vader: they're different (unless you're Luke), but the sets are isomorphic up
+isomorphism up to unique isomorphism. They're different (unless you're Luke), but the sets are isomorphic up
 to unique isomorphism. 
 
 Now we're going to talk about a bunch of other examples, which can all be
 phrased via initial or terminal objects in some weird category. This,
-therefore, is the proof for \emph{everything} we will do today.
+therefore, is the proof for \emph{everything} we will do in this section.
 
 Say we have a diagram
 \[ 
@@ -635,98 +667,4 @@ modulo the relation that $a \in F_i$ and $b \in F_{i'}$ are equivalent if and
 only if there is a later $i''$ with maps $i \to i'', i' \to i''$ such that
 $a,b$ both map to the same thing in $F_{i''}$. 
 
-
-Suppose $F: I \to \mathbf{Ch}$ is a functor from a filtered category $I$ to the
-category of chain complexes. For instance, $I$ could be the category $\ast \to
-\ast \to \ast \to \dots$, leading to  a sequence of chain complexes
-$C_*^{(0)}\to C_{*}^{(1)} \to \dots$.  This is the standard example you're
-supposed to keep in mind. 
-
-Then:
-\begin{proposition} 
-The homology of the colimit $\varinjlim_I F$ is the colimit of the homologies
-$H(F_i)_{i \in F}$.
-\end{proposition} 
-
-\begin{proof} 
-This is easy to prove. The deep idea is the formulation, not the proof. 
-
-We will first prove that the  natural map
-\[ \colim_I (H_*F) \to H_* \colim_I F   \]
-is onto. Suppose we have something in $H_*(\colim F)$. Then this element $x$ is
-represented by a $n$-cycle $z$ in $(\colim_I F)_n$ for some $n$. The colimit
-$(\colim_I F)_n$ is just $\sqcup (F_i)_n$ modulo the equivalence relation. 
-So $z$ is represented by some $z' \in (F_i)_n$. We don't, a priori, know that
-$z'$ is a cycle, i.e. that $dz' = 0$. If this were the case, then we would have
-a class in $\colim_I (H_* F)$ mapping onto $x$.
-
-However, $dz'$ does go to zero in the colimit $\colim_I F$ as $z'$ is a cycle
-in this colimit. Because it is filtered, we know that there is a map $f:i \to
-i'$ such that $dz'$ goes to zero in $i'$. 
-In $F_{i'}$, $z'$ becomes a cycle.  So the homology class of $x$ is in the
-image of $H_n(F_{i'})$, which maps into the colimit $\colim_I H_n(F_i)$, which
-in turn maps into the homology of the colimit. We have thus seen that
-\[ \colim_I H_n(F_i) \to H_n(\colim_I F_i)  \]
-is surjective. 
-
-Now let us prove that it is one-to-one. Suppose $x \in \colim_I H_n(F)$ 
-goes to zero in the homology of the colimit $\colim_I F$. So $x$ is represented
-by some cycle $z \in Z_n(F_i)$.  In the colimit $\colim_I F$, $x$ is a
-boundary $x = dy$. There is thus $\overline{y} \in F_{i'}$ representing $y$. 
-By pushing forward into some mutually larger $i''$, we might as well suppose that $x = d
-\overline{y}$ in
-$F_i$ itself. This means that $x$ was zero in $H_n(F_i)$ itself.
-\end{proof} 
-
-I hope that made sense. If it didn't, it's one of those things that's more
-complicated when you say it out loud than when you think it through for
-yourself. I can't remember whether this was in Hatcher or not.
-But then you'll just get what I said here in a less entertaining way. I find
-these kinds of things hard to digest when someone is standing there telling it
-to me. 
-
-But anyway, this is one of the main uses of filtered colimits---or directed
-colimits, as some people say.  
-
-
-The key observation made in class is that any diagram of the form
-\[ 
-\xymatrix{
-X \ar[r]\ar[rd] &  Y \ar[d]  \\ 
-& Z
-}
-\]
-can be interpreted as a \emph{functor} from a suitable \emph{diagram category}. 
-A \emph{cone} on a functor $F: I \to \mathcal{C}$ can be defined as a
-collection of maps $Fi \to Z$.  There is a category of cones one can define,
-and in this category, the initial object is the \emph{colimit}.  
-
-Colimits don't have to exist.  
-
-\begin{remark} 
-Given a functor $F: I \to \mathcal{C}$ where $\mathcal{C}$ has a terminal
-object, you can always consider the trivial cone over the functor mapping each
-object  $Fi, i \in I$ into the terminal object. 
-\end{remark} 
-
-For limits, one reverses the arrows and defines a \emph{co-cone} over a functor
-and considers the terminal object in the category of co-cones.
-
-
-As we saw in class, given a functor $G$, we can always define a natural map
-\[ G(\colim_I F) \to \colim_I GF.  \]
-Here is an example. Given the category $J: \ast \to \ast$, a functor $J \to
-\mathbf{Top}$ is just a morphism $X \to Y$. A colimit of this $X \to Y$ is just
-a space (the cone) $C_F$ with maps 
-\[ X \to C_F, Y \to C_F.  \]
-If $G$ is a functor from $\mathbf{Top}$ to some other category, we have a
-commutative diagram
-\[ \xymatrix{
-G(X) \ar[rd] \ar[rr] &  &  G(Y) \ar[ld] \\
-& G(C_F)  \ar[ru]
-}\]
-	
-From this, we get a map from this cone into the universal cone $C_{GF}$ over
-$CG(X) \to CG(Y)$. In particular, we get a map
-\[ G(C_F) \to C_{GF}.  \]
 
