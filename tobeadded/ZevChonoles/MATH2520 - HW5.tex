@@ -1,0 +1,80 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage[pdftex]{graphicx}
+\input xy
+\xyoption{all}
+%% This command inserts \noindent and makes the input bold.
+\newcommand{\num}[1]{\noindent \textbf{#1}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+%% This custom type produces a column of the specified width whose contents are centered.
+\newcolumntype{C}[1]{>{\centering\hspace{0pt}}p{#1}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}[theorem]
+\theoremstyle{definition}
+\newtheorem{axiom}{Axiom}[section]
+\newtheorem{definition}{Definition}
+\newtheorem*{remark}{Remark}
+\textwidth 6.9in
+\textheight 9.4in
+\oddsidemargin -0.2in
+\topmargin -0.7in
+\pagestyle{empty}
+\begin{document}
+\noindent Zev Chonoles \hfill \today\\[-0.4in]
+\begin{center}
+\noindent \underline{MATH 2520 - Assignment 5}
+\end{center}
+
+\num{1.} As we showed in class, because $0\rightarrow P\rightarrow R\rightarrow R/P\rightarrow0$ is exact and localizations are flat, we have that $0\rightarrow P\otimes R[U^{-1}]\rightarrow R\otimes R[U^{-1}]\rightarrow (R/P)\otimes R[U^{-1}]\rightarrow0$ is exact, and because $M\otimes R[U^{-1}]\simeq M[U^{-1}]$, we have that $0\rightarrow P[U^{-1}]\rightarrow R[U^{-1}]\rightarrow (R/P)[U^{-1}]\rightarrow0$ is exact. This implies that $R[U^{-1}]/P[U^{-1}]\simeq (R/P)[U^{-1}]$. In particular, if $U=R-P$, then we have that $R_P/P_P\simeq (R/P)_P$.\\
+
+\noindent Let $U=R-P$. Define the map $f:(R/P)_P\rightarrow\text{Frac}(R/P)$ by $f(\frac{a+P}{u})=\frac{a+P}{u+P}$ (note that $u\in U$). This is well-defined because if $\frac{a+P}{u}=\frac{b+P}{v}$, then there is a $w\in U$ such that $w\cdot(v\cdot(a+P)-u\cdot(b+P))=0$, which is equivalent to $(w+P)((v+P)(a+P)-(u+P)(b+P))=0$. Because $R/P$ is an integral domain and $w\in U$, we have that $(v+P)(a+P)-(u+P)(b+P)=0$, so that $f(\frac{a+P}{u})=\frac{a+P}{u+P}=\frac{b+P}{v+P}=f(\frac{b+P}{v})$. The map $f$ is a homomorphism of rings because 
+\small
+\[\hskip-0.2in f\left(\frac{a+P}{u}\frac{b+P}{v}\right)=f\left(\frac{(a+P)(b+P)}{uv}\right)=\frac{(a+P)(b+P)}{uv+P}=\frac{(a+P)(b+P)}{(u+P)(v+P)}=\frac{a+P}{u+P}\frac{b+P}{v+P}=f\left(\frac{a+P}{u}\right)f\left(\frac{b+P}{v}\right)\]
+\normalsize
+and $f$ similarly respects addition. The map $f$ is injective because if $f(\frac{a+P}{u})=\frac{a+P}{u+P}=\frac{0+P}{1+P}$, then $(a+P)(1+P)-(u+P)(0+P)=a+P=0+P$, so $a\in P$, i.e. $\frac{a+P}{u}=\frac{0+P}{1}$. Finally, $f$ is surjective because any $\frac{a+P}{u+P}\in\text{Frac}(R/P)$ is mapped to by $\frac{a+P}{u}\in (R/P)_P$. Thus $R_P/P_P\simeq (R/P)_P\simeq\text{Frac}(R/P)$. One consequence of this is that $R_P/P_P$ is isomorphic to $R/P$ itself iff $P$ is maximal. \\
+
+%Recall that the $R$-algebra structure of $R/P$ is given by $r\cdot(a+P)=ra+P=(r+P)(a+P)$. 
+
+%Let $\phi:R\rightarrow R/P$ be the natural map, and note that the $R$-module structure of $R/P$ is given by $r\cdot(a+P)=ra+P=(r+P)(a+P)$. We claim that for any multiplicatively closed set $U\subset R$ which is disjoint from $P$, $(R/P)[U^{-1}]\simeq (R/P)[\phi(U)^{-1}]$, that is, $R/P$ as an $R$-module, localized at $U\subset R$, is isomorphic to $R/P$ as an $R/P$-module, localized at $\phi(U)\subset R/P$. The map $f:(R/P)[U^{-1}]\rightarrow(R/P)[\phi(U)^{-1}]$ defined by $f(\frac{a+P}{u})=\frac{a+P}{u+P}$ is well-defined, because if $\frac{a+P}{u}=\frac{b+P}{v}$, then there is a $w\in U$ such that $w\cdot(v\cdot(a+P)-u\cdot(b+P))=0$, and by $R$-module structure of $R/P$, this is $(w+P)((v+P)(a+P)-(u+P)(b+P))=0$, so that $f(\frac{a+P}{u})=\frac{a+P}{u+P}=\frac{b+P}{v+P}=f(\frac{b+P}{v})$. Furthermore, $f$ is injective because if $f(\frac{a+P}{u})=\frac{a+P}{u+P}=\frac{0+P}{1+P}$, then there is a $(w+P)\in\phi(U)$ such that $(w+P)((a+P)(1+P)-(u+P)(0+P))=wa+P=0+P$, but $w\in U$, so that $w\notin P$ and thus $a\in P$, i.e. $\frac{a+P}{w}=\frac{0+P}{1}$. Finally, $f$ is surjective because $\frac{a+P}{u+P}\in(R/P)[\phi(U)^{-1}]$ is mapped to by $\frac{a+P}{u}$. \\
+
+%\noindent Thus, for $U\subset R$ disjoint from $P$, we have $(R/P)[U^{-1}]\simeq(R/P)[\phi(U)^{-1}]$ in the sense described above. In particular, $(R/P)_P=(R/P)[(R-P)^{-1}]\simeq(R/P)[\phi(R-P)^{-1}]=(R/P)[(R/P-\{0\})^{-1}]=(R/P)_{(0)}=\text{Frac}(R/P)$, the fraction field of the integral domain $R/P$ (recall that $0$ is prime in an integral domain). Thus, we can say for example that $(R/P)_P$ is isomorphic to $R/P$ itself iff $P$ is maximal.     \\
+
+\num{2.} Suppose $\frac{r}{u}\in N(R[U^{-1}])$, that is, there is some $n$ for which $\left(\frac{r}{u}\right)^n=\frac{0}{1}$. Then there is a $v\in U$ such that $v(r^n\cdot1-0\cdot u^n)=0$, so that $vr^n=0$. Thus $(vr)^n=0$, so that $vr\in N(R)$. Thus $\frac{r}{u}=vr\cdot\frac{1}{uv}\in N(R)^e$. Conversely, if $\frac{r}{u}\in N(R)^e$, then by the definition of the extension of an ideal, $\frac{r}{u}$ is an $R[U^{-1}]$-linear combination of finitely many nilpotent elements and hence is nilpotent itself.     \\
+
+\num{3.} Of course, $R$ contains no nilpotent elements iff $N(R)=0$. We know that for any $R$-module $M$, $M=0$ iff $M_P=0$ for all prime ideals $P\subset R$, so that $N(R)=0$ iff $N(R)_P=0$ for all prime ideals $P$. But we proved in Problem 2 that $N(R)_P=N(R_P)$ (because $N(R)^e=N(R)_P$ for this particular problem), and $R_P$ has no nilpotent elements iff $N(R_P)=0$, so that $R$ has no nilpotent elements iff $R_P$ has no nilpotent elements for all prime ideals $P$.     \\
+
+\num{4.} We know that there is an inclusion-preserving bijection between the prime ideals of $R_P$ and the prime ideals of $R$ disjoint from $R-P$, i.e. contained in $P$. But $P$ is a minimal prime, so the only prime contained in $P$ is $P$ itself, so the only prime of $R_P$ is $P_P$. Thus $N(R_P)=\bigcap_{\text{prime } Q\subset R_P} Q = P_P$, so $P_P$ consists of the nilpotent elements of $R_P$. But because we assumed $R$ has no nilpotent elements, we have that $R_P$ has no nilpotent elements by Problem 3. Thus $P_P$ is in fact the 0 ideal, and being $R_P$'s only prime ideal, it is $R_P$'s only maximal ideal, so that the 0 ideal is maximal and hence $R_P$ is a field.     \\
+
+\num{5.} If $R$ is an integral domain, then for any prime $P$, in $R_P$ we have that $\frac{r}{u}\cdot\frac{s}{v}=\frac{rs}{uv}=\frac{0}{1}$ when there is a $w\in R-P$ such that $w(rs\cdot1-uv\cdot0)=wrs=0$. Because $0\in P$ for all primes $P$, we must have that $w\neq0$, and because $R$ is an integral domain, we must have that $rs=0$, so that $r=0$ or $s=0$, so that $\frac{r}{u}=0$ or $\frac{s}{v}=0$, so that $R_P$ is an integral domain for all primes $P$. However, the converse is false - a counterexample is $R=\mathbb{Z}/6\mathbb{Z}$, which has no nilpotent elements and whose only prime ideals are $P=2\mathbb{Z}/6\mathbb{Z}$ and $Q=3\mathbb{Z}/6\mathbb{Z}$, which are minimal primes by inspection, so that by Problem 4, $R_P$ and $R_Q$ are both fields and hence integral domains, while $R$ itself is not.    \\
+
+\num{6.} We have the inclusion $B\hookrightarrow A$ and the quotient $A\rightarrow A/C$. The kernel of their composition is obviously $B\cap C$. Let $D$ be $B$'s image in $A/C$ under this composition, namely $(B+C)/C$. Then $B/(B\cap C)\simeq D$ by the first isomorphism theorem. It is clear that localization respects quotients, intersections, and sums of submodules (we have shown all of this in class). Now, because $B_P\subseteq C_P$ for all maximal ideals $P$, we have that $D_P=(B_P+C_P)/C_P=C_P/C_P\simeq0$ for all maximal ideals $P$. Thus $D\simeq 0$, by a problem on a previous homework. But this implies that $B/(B\cap C)\simeq 0$, so that $B\cap C= B$, so that $B\subseteq C$.   \\
+
+\num{7.} Let $F$ be the free $R$-module on $\{e_1,\ldots,e_n\}$ (so that $F\simeq R^n$), and suppose $\{y_1,\ldots,y_n\}$ generates $F$. Define $\phi:F\rightarrow F$ by $\phi(e_i)=y_i$ (this specifies $\phi$ uniquely by the universal property of free modules). By assumption, the $y_i$ generate $F$, so $\phi$ is surjective. It is clear that there is a linear dependence among the $y_i$ iff $\ker(\phi)\neq0$; thus, we want to show that $\ker(\phi)=0$, which is equivalent to showing $\phi$ is injective. We know that $\phi$ is injective iff $\phi_P$ is injective for all maximal ideals $P$, so consider the exact sequence $0\rightarrow \ker(\phi)_P\rightarrow F_P\rightarrow F_P\rightarrow 0$ obtained by localizing the exact sequence $0\rightarrow\ker(\phi)\rightarrow F\rightarrow F\rightarrow0$. We have that $F_P\simeq R^n\otimes R_P\simeq(R_P)^n$, and hence we have an exact sequence $0\rightarrow\ker(\phi)_P\rightarrow (R_P)^n\rightarrow (R_P)^n\rightarrow 0$ of $R_P$-modules for each maximal ideal $P$. It's clear that the next step is to reduce this to the case of vector spaces (perhaps by tensoring with the field $k=R_P/P_P$?) because $k^n\rightarrow k^n$ surjective implies injective and hence $\ker(\phi)_P$ would be 0 for all $P$, and thus 0 itself - but I couldn't determine why $k$ should be flat, and thus I couldn't justify tensoring with it. \\
+
+\num{8.} If $f\in\bigcap_{a\in k}(x-a)$, then $f(a)=0$ for all $a\in k$. But any non-zero polynomial has only finitely many roots, so $f=0$. Thus $(\bigcap_{a\in k}(x-a))[U^{-1}]=0$. On the other hand, $x-a\in U$ so $\frac{1}{1}=\frac{x-a}{x-a}\in(x-a)[U^{-1}]$ and thus $(x-a)[U^{-1}]=k[x]$, so $\bigcap_{a\in k}(x-a)[U^{-1}]=k[x]$. Clearly $0\neq k[x]$.     \\
+
+\num{9a.} If the sequence $0\rightarrow A\stackrel{\alpha}{\rightarrow}B\stackrel{\beta}{\rightarrow}C\rightarrow0$ is split, there is a map $\gamma:C\rightarrow B$ such that $\beta\circ\gamma=\id_C$. Then for any $f\in\Hom(C,C)$, we have $f=\id_C\circ f=(\beta\circ\gamma)\circ f=\beta\circ(\gamma\circ f)$, so that $f$ is mapped to by $\gamma\circ f\in\Hom(C,B)$. Conversely, suppose each $f\in\Hom(C,C)$ is mapped to by some $g\in\Hom(C,B)$. Then in particular, $\id_C$ is mapped to by some $\gamma\in\Hom(C,B)$, that is, $\beta\circ \gamma=\id_C$. Thus the sequence splits.    \\
+
+\num{9b.} Suppose $C$ is finitely presented and the sequence $0\rightarrow A_P\stackrel{\alpha_P}{\rightarrow}B_P\stackrel{\beta_P}{\rightarrow}C_P\rightarrow0$ splits for all maximal ideals $P$. By Problem 9a, this is the case iff $\Hom(C_P,B_P)\rightarrow\Hom(C_P,C_P)$ induced by $\beta_P$ is an epimorphism for all $P$. By Proposition 2.10, $\Hom(C_P,B_P)\simeq R_P\otimes_R\Hom(C,B)$ and $\Hom(C_P,C_P)\simeq R_P\otimes_R\Hom(C,C)$ because $C$ is finitely presented and $R_P$ is flat (since all localizations are flat). Thus, $\beta_P$ also induces an epimorphism $R_P\otimes_R\Hom(C,B)\rightarrow R_P\otimes_R\Hom(C,C)$ for all maximal ideals $P$. But we proved in class that a map is an epimorphism iff each of its localizations is an epimorphism - thus, the map $\beta$ is itself an epimorphism because each $\beta_P$ is. By Problem 9a again, this is equivalent to the original sequence being split.
+
+
+
+
+
+
+
+
+
+
+\end{document}
+C)$ because $C$ is finitely presented and $R_P$ is flat (since all localizations are flat). 

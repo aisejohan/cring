@@ -1,0 +1,65 @@
+\documentclass[11pt]{article}
+\input{C:/Users/Public/stuff.tex}
+\textwidth 7in
+\textheight 9.6in
+\oddsidemargin -0.25in
+\topmargin -0.85in
+\setlength\parindent{0pt}
+\pagestyle{empty}
+\begin{document}
+Zev Chonoles \hfill 
+\underline{MATH 2520 - Assignment 9} \hfill \today\\
+
+\num{1.} Suppose $A$ is a Dedekind domain, that is, $A$ is a Noetherian domain, integrally closed, and of dimension one. It is obvious that $S^{-1}A$ is a domain, and we proved in class a long time ago that $S^{-1}A$ is Noetherian. Suppose $P_0\subset\cdots\subset P_n$ is a chain of prime ideals in $S^{-1}A$; then $P_0^c\subset\cdots\subset P_n^c$ is a chain of prime ideals in $A$. Because $A$ is a Dedekind domain, we must therefore have $n\leq 1$, and thus $\text{dim}(S^{-1}A)\leq 1$. Suppose for the moment that $\text{dim}(S^{-1}A)=1$. Because $A$ is integrally closed, i.e. the integral closure of $A$ in $K(A)$ is $A$, Proposition 5.12 shows that $S^{-1}A$ will be the integral closure of $S^{-1}A$ in $S^{-1}K(A)$, which has
+\[S^{-1}K(A)\simeq K(A)\simeq K(S^{-1}A)\]
+by $\frac{a/b}{s}\mapsto\frac{a}{bs}\mapsto\frac{a/s}{b}$ (these are easily seen to be homomorphisms and bijective). Thus $S^{-1}A$ is integrally closed. Then $S^{-1}A$ is a Noetherian domain, integrally closed, and of dimension one, i.e. a Dedekind domain.\\
+
+If $\text{dim}(S^{-1}A)=0$, then because we know 0 is prime in $S^{-1}A$, we must in fact have that it is maximal and thus $S^{-1}A$ is a field. But $K(A)=A_{(0)}$ is the ``least'' field containing $A$, in the sense that any non-zero map from $A$ to a field $B$ must factor through the canonical inclusion $A\hookrightarrow K(A)$, and any $S^{-1}A$ has a canonical injection into $T^{-1}A$ when $T\supset S$ (and certainly $R-\{0\}\supset S$ for any multiplicative set $S$). Thus the identity map from the field $S^{-1}A$ to itself factors into a map from $S^{-1}(A)$ into $K(A)$ and a map from $K(A)$ into $S^{-1}A$. Thus these monomorphisms (all field homormorphisms are injective) must be isomorphisms, and $S^{-1}A$ is the fraction field of $A$. \\
+
+Consider the map $f:H\rightarrow H'$ defined as follows: let $\overline{J}=JP$ be the coset of a fractional ideal $J$ in $H=I/P$. Then there is some integral ideal $T\subseteq R$ such that $\overline{J}=\overline{T}$, because $J=(\frac{a_1}{b_1},\ldots,\frac{a_n}{b_n})=(\frac{1}{b_1\cdots b_n})T$ where $T=(a_1b_2\cdots b_n,\ldots,a_nb_1\cdots b_{n-1})$, and $(\frac{1}{b_1\cdots b_n})\in P$, so that $\overline{J}=\overline{(\frac{1}{b_1\cdots b_n})}\overline{T}$ and thus $\overline{J}=\overline{T}$. Now define $f(\overline{J})$ to be $\overline{T^e}$. This is well-defined because if $T$ and $R$ are two integral ideals representing $\overline{J}$, then $T=(x)R$ for some principal fractional ideal $(x)$, and because extension respects multiplication of ideals, $f(T)=T^e=(x)^eR^e=(x)^ef(R)$. But $(x)^e$ is principal, i.e. $(x)^e\in P'\subset I'$. Thus $\overline{f(T)}=\overline{(x)^e}\overline{f(R)}=\overline{f(R)}$. Furthermore, we know that every (integral) ideal of $S^{-1}A$ is the extension of some (integral) ideal of $A$ (Proposition 3.11), so because every element of $H'$ is represented by some integral ideal of $S^{-1}A$, we have that $f$ is onto.\\
+
+\num{2.} Let $f=a_0+\cdots+a_nx^n$ and $g=b_0+\cdots+b_mx^m$, so that $fg=a_0b_0+\cdots+a_nb_mx^{n+m}$, $c(f)=(a_0,\ldots,a_n)$, $c(g)=(b_0,\ldots,b_m)$, and $c(fg)=(a_0b_0,a_1b_0+a_0b_1,\ldots,a_nb_m)$. We have $c(fg)\subseteq c(f)c(g)$ because each coefficient of $fg$ is a linear combination of elements of the form $a_ib_j$, which are precisely the generators for $c(f)c(g)=(a_0,\ldots,a_n)(b_0,\ldots,b_m)$. Now we show the reverse inclusion by localization. \\
+
+Localizing at each maximal ideal $P$, we have that $A_P$ is a DVR for each $P$, so that there is a unique prime ideal $P_P$, which is principal (say $P_P=(\pi)$), and all ideals are powers of it. Thus $c(f)_P=(\pi)^k$ for some $k$, $c(g)=(\pi)^h$ for some $h$, and $c(fg)=(\pi)^\ell$ for some $\ell$. Because $c(f)_P=(a_0,\ldots,a_n)_P=(\pi)^k$, we must have that each $a_i\in (\pi)^k$, but at least one is not in $(\pi)^{k+1}$ - otherwise, they could only together generate $(\pi)^{k+1}$. Thus, we can write $a_i=a'_i\pi^k\in(\pi)^k$ for each $i$, and similarly, $b_j=b'_j\pi^h\in(\pi)^h$ for each $j$. Let $y$ and $z$ be the least indices such that $a'_y\notin(\pi)$ and $b'_z\notin (\pi)$ (we showed that at least one such $a'_i$ and $b'_j$ existed above) - then the $k+h$th term in $fg$ is
+\[(a'_0b'_{k+h}+\cdots+a'_yb'_z+\cdots+a'_{k+h}b'_0)\pi^{k+h}x^{k+h}\]
+(setting any $a'_i$ or $b'_j$ with $i>n$ or $j>m$ to 0). Thus, we can see that regardless of what extra $\pi$'s the other terms contribute, $a'_yb'_z$ contributes none, so that $c(fg)_P=(\pi)^\ell$ for some $\ell\leq k+h$ (because $c(fg)$ contains an element which is in $(\pi)^{k+h}$ but no higher power), so that $c(fg)_P=(\pi)^\ell\supseteq(\pi)^k(\pi)^h=c(f)_Pc(g)_P$. This is true for all $P$, and hence $c(fg)\supseteq c(f)c(g)$ as we proved on a previous homework. Thus, $c(fg)=c(f)c(g)$.\\
+
+\num{4.} Because $\bigcap_{n=0}^\infty M^n=0$, for any $a\in A$, $a\neq0$ there is some $w\geq0$ for which $a\in M^w=(\pi^w)$, but $a\notin M^{w+1}$. Define $v(a)=w$ and $v(0)=\infty$, and extend $v$ to $K(A)$ by $v(\frac{a}{b})=v(a)-v(b)$. Then if $a=a'\pi^w$, $b=b'\pi^x$, $c=c'\pi^y$, $d=d'\pi^z$ with $a',b',c',d'\notin(\pi)$, we have $v(\frac{a}{b}\frac{c}{d})=v(\frac{ac}{bd})=v(ac)-v(bd)=v(a'c'\pi^{w+y})-v(b'd'\pi^{x+z})=w+y-x-z=v(a)+v(c)-v(b)-v(d)=v(a)-v(b)+v(c)-v(d)=v(\frac{a}{b})v(\frac{c}{d})$.  Similarly, $v$ satisfies the additive rules for a valuation. Finally, it is clear from the definition that it is precisely the elements of $A$ for which $v(a)\geq0$, thereby confirming that $A$ is a discrete valuation ring.\\
+
+\num{6.} We have that $A$ is a Dedekind domain, so $A_{P_j}$ is a local Dedekind domain for each prime ideal $P_j$, so each $A_{P_j}$ is a DVR, having principal maximal ideal $(P_j)_{P_j}=(\pi)$, and with every ideal $I$ of $A_{P_j}$ of the form $I=(\pi)^k=(\pi^k)$ for some $k$. Thus, in particular, the only prime ideal of $A_{P_j}$ is $(P_j)_{P_j}$ and $A_{P_j}$ is a PID, so by the structure theorem for finitely generated modules over a PID, 
+\[M_{P_j}\simeq (A_{P_j}/(P_j)_{P_j}^{e_{j1}})\oplus\cdots\oplus(A_{P_j}/(P_j)_{P_j}^{e_{jn_j}})\simeq\bigoplus_{i=1}^{n_j} A_{P_j}/(P_j)_{P_j}^{e_{ji}}\]
+for some exponents $e_{j1},\ldots,e_{jn_j}$ (not necessarily distinct). Because localization distributes over direct sums, we have an isomorphism
+%\[\psi_j:((A/P_j^{e_{j1}})\oplus\cdots\oplus(A/P_j^{e_{jn_j}}))_{P_j}\rightarrow M_{P_j}\]
+\[\psi_j:\left(\bigoplus_{i=1}^{n_j} A/P_j^{e_{ji}}\right)_{P_j}\rightarrow M_{P_j}\]
+for each prime $P_j$. Because $A$ is Noetherian and $\bigoplus_{i=1}^{n_j} A/P_j^{e_{ji}}$ is finitely generated as an $A$-module, it is in fact finitely presented, so by Proposition 2.10 in Eisenbud, 
+\[\Hom\left(\left(\bigoplus_{i=1}^{n_j} A/P_j^{e_{ji}}\right)_{P_j},M_{P_j}\right)\simeq\Hom\left(\bigoplus_{i=1}^{n_j} A/P_j^{e_{ji}},M\right)_{P_j}\]
+and thus $\psi_j$ canonically corresponds to $\phi_j:\bigoplus_{i=1}^{n_j} A/P_j^{e_{ji}}\rightarrow M$, defined by $\psi_j(\frac{x}{u})=\frac{\phi_j(x)}{u}$. We claim that 
+\[\phi:\bigoplus_{P_j\in\Supp(M)}\left(\bigoplus_{i=1}^{n_j} A/P_j^{e_{ji}}\right)\rightarrow M\]
+where the map $\phi$ is the piecing together of the $\phi_j$ for each $P_j\in\Supp(M)$ using the universal property of the coproduct (which for modules is the direct sum), is an isomorphism. This will be the case because the localization of $\phi$ at each prime $P_j$ is both injective and surjective, and hence an isomorphism; thus $\phi$ itself must be an isomorphism. To show this, note that if $Q\not\subset I$ for a prime ideal $Q\subset R$ and ideal $I\subset R$, then $(R/I)_Q\simeq(R_Q/I_Q)\simeq(R_Q/R_Q)\simeq0$ because $I\cap R-Q\neq\emptyset$ and thus $I_Q=I^e=(1)=R_Q$. Thus, for any \textit{non-zero} prime ideal $Q$ of the Dedekind domain $A$, with $Q\not\subset P_j$ for all $P_j\in\Supp(M)$ (which since all non-zero primes are maximal, is equivalent to $Q\neq P_j$ for all $P_j\in\Supp(M)$), we have
+\[\left(\bigoplus_{P_j\in\Supp(M)}\left(\bigoplus_{i=1}^{n_j} A/P_j^{e_{ji}}\right)\right)_Q\simeq\bigoplus_{P_j\in\Supp(M)}\left(\bigoplus_{i=1}^{n_j} A_Q/(P_j^{e_{ji}})_Q\right)\simeq0 \]
+Furthermore, if $Q=0$, then $\left(\bigoplus_{P_j\in\Supp(M)}\left(\bigoplus_{i=1}^{n_j} A/P_j^{e_{ji}}\right)\right)_Q\simeq 0$ because the module is torsion, and by localizing it at 0 we are making it into a $K(A)$-vector space, which cannot have any torsion. Conversely, by definition, $Q\notin\Supp(M)$ iff $M_Q\simeq 0$. Thus, the localization of the map $\phi$ at all $Q\notin\Supp(M)$ is an isomorphism (of trivial modules).\\
+
+Now consider $\phi$ localized at each $P_k\in\Supp(M)$. By the same considerations as before, $(A/P_j^{e_{ji}})_{P_k}\simeq0$ if $j\neq k$ (because $P_k\not\subset P_j$), so
+\[\left(\bigoplus_{P_j\in\Supp(M)}\left(\bigoplus_{i=1}^{n_j} A/P_j^{e_{ji}}\right)\right)_{P_k}\simeq\bigoplus_{P_j\in\Supp(M)}\left(\bigoplus_{i=1}^{n_j} A_{P_k}/(P_j^{e_{ji}})_{P_k}\right)\simeq\bigoplus_{i=1}^{n_k} A_{P_k}/(P_k^{e_{ki}})_{P_k} \]
+and, by our construction of $\phi$ from the $\phi_j$ (which in turn came from the $\psi_j$), we see that $\phi$ localized at each $P_k$ is an isomorphism to $M_{P_k}$. Thus, we have shown that
+\[\phi:\bigoplus_{P_j\in\Supp(M)}\left(\bigoplus_{i=1}^{n_j} A/P_j^{e_{ji}}\right)\rightarrow M\]
+is locally an isomorphism, and thus must be an isomorphism itself (because a map is injective/surjective iff locally injective/surjective). This expression for $M$ is a finite direct sum because there are only finitely many primes in $\Supp(M)$, and it is unique because any other factor $A/Q^e$ ($Q$ a prime) occurring as a direct summand of $M$ would show up in $M_Q$, but we know $M_Q\simeq0$ for $Q\notin \Supp(M)$ and is uniquely (up to order) $\bigoplus_{i=1}^{n_k} A_{P_k}/(P_k)_{P_k}^{e_{ki}}$ for $Q=P_k\in\Supp(M)$ by the structure theorem for modules over a PID. \\
+
+%\num{7.}      \\
+%
+%\num{Assigned in class.} If $R$ is a Dedekind domain and $I,J\subseteq R$ are ideals, then $R/J\simeq I/IJ$.
+
+
+
+
+
+
+
+
+
+\end{document}
+\Supp(M)$, and it is unique because any other factor $A/Q^e$ ($Q$ a prime) occurring as a direct summand of $M$ would show up in $M_Q$, but we know $M_Q\simeq0$ for $Q\notin \Supp(M)$ and is uniquely (up to order) $\bigoplus_{i=1}^{n_k} A_{P_k}/(P_k)_{P_k}^{e_{ki}}$ for $Q=P_k\in\Supp(M)$ by the structure theorem for modules over a PID. \\
+
+%\num{7.}      \\
+%
+%\num{Assigned in class.} If $R$ is a Dedekind domain and $I,J\subseteq 
