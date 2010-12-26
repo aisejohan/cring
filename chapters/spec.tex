@@ -535,3 +535,176 @@ intersect $\mathfrak{p}$.  In the end, you don't restrict to an open set, but
 to a direct limit of this.
 \end{remark} 
 
+\subsection{Vista: sheaves on $\spec R$}
+
+Let $X$ be a topological space. 
+\begin{definition} 
+A \textbf{presheaf of sets} $\mathcal{F}$ on $X$ assigns to every open subset
+$U \subset X$ a set $\mathcal{F} (U)$, and to every inclusion $U \subset V$ a
+\textbf{restriction map}
+$\mathrm{res}^V_U : \mathcal{F}(V) \to \mathcal{F}(U)$. The restriction map is
+required to satisfy:
+\begin{enumerate}
+\item $\res^U_U = \id_{\mathcal{F}(U)} $ for all open sets $U$.
+\item $\res^W_U = \res^V_U \circ \res^W_V $ if $U \subset V \subset W$.
+\end{enumerate}
+
+If the sets $\mathcal{F}(U)$ are all groups (resp. rings), and the restriction
+maps are morphisms of groups (resp. rings), then we say that $\mathcal{F}$ is a
+sheaf of groups (resp. rings).
+\end{definition} 
+
+
+One should think of the restriction maps as kind of like restricting the
+domain of a function.
+The standard example of presheaves is given in this way, in fact.
+\begin{example} 
+Let $X$ be a topological space, and $\mathcal{F}$ the presheaf assigning to
+each $U \subset X$ the set of continuous functions $U \to \mathbb{R}$. The
+restriction maps come from restricting the domain of a function.
+\end{example} 
+
+Now, in classical algebraic geometry, there are likely to be more
+continuous functions in the Zariski topology than one really wants. One wants
+to focus on functions that are given by polynomial equations.
+
+\begin{example} 
+Let $X$ be the topological space $\mathbb{C}^n$ with the topology where the
+closed sets are those defined by the zero loci of polynomials (that is, the
+topology induced on $\mathbb{C}^n$ from the Zariski topology of $\spec
+\mathbb{C}[x_1, \dots, x_n]$ via the canonical imbedding $\mathbb{C}^n
+\hookrightarrow \spec \mathbb{C}[x_1, \dots, x_n]$). Then there is a presheaf
+assigning to each open set $U$ the collection of rational functions defined
+everywhere on $U$, with the  restriction maps being the obvious ones.
+\end{example} 
+
+\add{define sheaves}
+
+In the theory of schemes, when one wishes to replace polynomial rings over
+$\mathbb{C}$ (or an algebraically closed field) with arbitrary commutative
+rings, one must drop the idea that a sheaf is necessarily given by functions. 
+A \emph{scheme} is defined as a space with a certain type of sheaf of rings on
+it. We shall not define a scheme formally, but show how on the building blocks
+of schemes---objects of the form $\spec A$---a sheaf of rings can be defined.
+
+\begin{proposition}
+Let $ A$ be a ring and let $ X = \mathrm{Spec}(A)$. Then the assignment of the ring $A_f$ to the basic open set $X_f$ defines a presheaf of rings on $X$.
+\end{proposition}
+
+\begin{proof} \mbox{}
+
+\emph{Part (i)}. If $ X_g \subseteq X_f$ are basic open sets, then there exist $ n \geq 1$ and $ u \in A$ such that $ g^n = uf$.
+
+\emph{Proof of part (i)}. Let $ S = \{g^n : n \geq 0\}$ and suppose $ S \cap (f) = \emptyset$. Then the extension $ (f)^e$ into $ S^{-1}A$ is a proper ideal, so there exists a maximal ideal $ S^{-1}\mathfrak{p}$ of $ S^{-1}A$, where $ \mathfrak{p} \cap S = \emptyset$. Since $ (f)^e \in S^{-1}\mathfrak{p}$, we see that $ f/1 \in S^{-1}\mathfrak{p}$, so $ f \in \mathfrak{p}$. But $ S \cap \mathfrak{p} = \emptyset$ implies that $ g \notin \mathfrak{p}$. This is a contradiction, since then $ \mathfrak{p} \in X_g \setminus X_f$.
+
+\emph{Part (ii)}. If $ X_g \subseteq X_f$, then there exists a unique map $ \rho : A_f \to A_g$, called the restriction map, which makes the following diagram commute.
+\[ \xymatrix{ & A \ar[dl] \ar[dr] & \\ A_f \ar[rr] & & A_g } \]
+
+\emph{Proof of part (ii)}. 
+Let $ n \geq 1$ and $ u \in A$ be such that $ g^n = uf$ by part (i). Note that in $ A_g$,
+\[ (f/1)(u/g^n) = (fu/g^n) = 1/1 = 1 \]
+which means that $ f$ maps to a unit in $ A_g$. Hence every $ f^m$ maps to a unit in $ A_g$, so the universal property of $ A_f$ yields the desired unique map $ \rho : A_f \to A_g$.
+
+\emph{Part (iii)}. 
+If $ X_g = X_f$, then the corresponding restriction $ \rho : A_f \to A_g$ is an isomorphism.
+
+\emph{Proof of part (iii)}. 
+The reverse inclusion yields a $ \rho' : A_g \to A_f$ such that the diagram
+\[ \xymatrix{
+& A \ar[dr] \ar[dl] & \\
+A_f \ar@/^/[rr]^{\rho} & & A_g \ar@/^/[ll]^{\rho'}
+} \]
+commutes. But since the localization map is epic, this implies that $ \rho \rho' = \rho' \rho = \mathbf{1}$.
+
+\emph{Part (iv)}.
+If $ X_h \subseteq X_g \subseteq X_f$, then the diagram
+\[ \xymatrix{
+A_f \ar[rr] \ar[dr] & & A_h \\
+& A_g \ar[ur] &
+} \]
+of restriction maps commutes.
+
+\emph{Proof of part (iv)}.
+Consider the following tetrahedron.
+\[ \xymatrix{
+& A \ar[dl] \ar[dr] \ar[dd] & \\
+A_f \ar@{.>}[rr] \ar[dr] & & A_h \\
+& A_g \ar[ur] &
+} \]
+Except for the base, the commutativity of each face of the tetrahedron follows from the universal property of part (ii). But its easy to see that commutativity of the those faces implies commutativity of the base, which is what we want to show.
+
+\emph{Part (v)}.
+If $ X_{\tilde{g}} = X_g \subseteq X_f = X_{\tilde{f}}$, then the diagram
+\[ \xymatrix{
+A_f \ar[r] \ar[d] & A_g \ar[d] \\
+A_{\tilde{f}} \ar[r] & A_{\tilde{g}}
+} \]
+of restriction maps commutes. (Note that the vertical maps here are isomorphisms.)
+
+\emph{Proof of part (v)}.
+By part (iv), the two triangles of
+\[ \xymatrix{
+A_f \ar[r] \ar[d] \ar[dr] & A_g \ar[d] \\
+A_{\tilde{f}} \ar[r] & A_{\tilde{g}}
+} \]
+commute. Therefore the square commutes.
+
+\emph{Part (vi)}.
+Fix a prime ideal $ \mathfrak{p}$ in $ A$. Consider the direct system consisting of rings $ A_f$ for every $ f \notin \mathfrak{p}$ and restriction maps $ \rho_{fg} : A_f \to A_g$ whenever $ X_g \subseteq X_f$. Then $ \varinjlim A_f \cong A_{\mathfrak{p}}$.
+
+\emph{proof of part (vi)}.
+First, note that since $ f \notin \mathfrak{p}$ and $ \mathfrak{p}$ is prime, we know that $ f^m \notin \mathfrak{p}$ for all $ m \geq 0$. Therefore the image of $ f^m$ under the localization $ A \to A_\mathfrak{p}$ is a unit, which means the universal property of $ A_f$ yields a unique map $ \alpha_f : A_f \to A_\mathfrak{p}$ such that the following diagram commutes.
+\[ \xymatrix{
+& A \ar[dr] \ar[dl] & \\
+A_f \ar[rr]^{\alpha_f} & & A_{\mathfrak{p}}
+} \]
+Then consider the following tetrahedron.
+\[ \xymatrix{
+& A \ar[dl] \ar[dr] \ar[dd] & \\
+A_f \ar@{.>}[rr] \ar[dr] & & A_h \\
+& A_\mathfrak{p} \ar[ur] &
+} \]
+All faces except the bottom commute by construction, so the bottom face commutes as well. This implies that the $ \alpha_f$ commute with the restriction maps, as necessary. Now, to see that $ \varinjlim A_f \cong A_\mathfrak{p}$, we show that $ A_\mathfrak{p}$ satisfies the universal property of $ \varinjlim A_f$.
+
+Suppose $ B$ is a ring and there exist maps $ \beta_f : A_f \to B$ which commute with the restrictions. Define $ \beta : A \to B$ as the composition $ A \to A_f \to B$. The fact that $ \beta$ is independent of choice of $ f$ follows from the commutativity of the following diagram.
+\[ \xymatrix{
+& A \ar[dr] \ar[dl] & \\
+A_f \ar[rr]^{\rho_{fg}} \ar[dr]^{\beta_f} & & A_g \ar[dl]_{\beta_g} \\
+& B
+} \]
+Now, for every $ f \notin \mathfrak{p}$, we know that $ \beta(f)$ must be a unit since $ \beta(f) = \beta_f(f/1)$ and $ f/1$ is a unit in $ A_f$. Therefore the universal property of $ A_\mathfrak{p}$ yields a unique map $ A_{\mathfrak{p}} \to B$, which clearly commutes with all the arrows necessary to make $ \varinjlim A_f \cong A_\mathfrak{p}$.
+\end{proof}
+
+
+\begin{proposition}
+Let $ A$ be a ring and let $ X = \mathrm{Spec}(A)$. The presheaf of rings $ \mathcal{O}_X$ defined on $ X$ is a sheaf.
+\end{proposition}
+
+\begin{proof}
+The proof proceeds in two parts. Let $ (U_i)_{i \in I}$ be a covering of $ X$ by basic open sets.
+
+\emph{Part 1}. If $ s \in A$ is such that $ s_i := \rho_{X, U_i}(s) = 0$ for all $ i \in I$, then $ s = 0$.
+
+\emph{Proof of part 1}. Suppose $ U_i = X_{f_i}$. Note that $ s_i$ is the fraction $ s/1$ in the ring $ A_{f_i}$, so $ s_i = 0$ implies that there exists some integer $ m_i$ such that $ sf_i^{m_i} = 0$. Define $ g_i = f_i ^{m_i}$, and note that we still have an open cover by sets $ X_{g_i}$ since $ X_{f_i} = X_{g_i}$ (a prime ideal contains an element if and only if it contains every power of that element). Also $ s g_i = 0$, so the fraction $ s/1$ is still $ 0$ in the ring $ A_{g_i}$. (Essentially, all we're observing here is that we are free to change representation of the basic open sets in our cover to make notation more convenient).
+
+Since $ X$ is quasicompact, choose a finite subcover $ X = X_{g_1} \cup \dotsb \cup X_{g_n}$. This means that $ g_1, \dotsc, g_n$ must generate the unit ideal, so there exists some linear combination $ \sum x_i g_i = 1$ with $ x_i \in A$. But then
+\[ s = s \cdot 1 = s \left( \sum x_i g_i \right) = \sum x_i (s g_i) = 0.\]
+
+\emph{Part 2}. Let $ s_i \in \mathcal{O}_X(U_i)$ be such that for every $ i, j \in I$,
+\[ \rho_{U_i, U_i \cap U_j}(s_i) = \rho_{U_j, U_i \cap U_j}(s_j).\]
+(That is, the collection $ (s_i)_{i \in I}$ agrees on overlaps). Then there exists a unique $ s \in A$ such that $ \rho_{X, U_i}(s) = s_i$ for every $ i \in I$.
+
+\emph{Proof of part 2}. Let $ U_i = X_{f_i}$, so that $ s_i = a_i/(f_i^{m_i})$ for some integers $ m_i$. As in part 1, we can clean up notation by defining $ g_i = f_i^{m_i}$, so that $ s_i = a_i/g_i$. Choose a finite subcover $ X = X_{g_1} \cup \dotsb \cup X_{g_n}$. Then the condition that the cover agrees on overlaps means that
+\[ \frac{a_i g_j}{g_i g_j} = \frac{a_j g_i}{g_i g_j} \]
+for all $ i, j$ in the finite subcover. This is equivalent to the existence of some $ k_{ij}$ such that
+\[ (a_i g_j - a_j g_i) (g_i g_j)^{k_{ij}} = 0.\]
+Let $ k$ be the maximum of all the $ k_{ij}$, so that $ (a_i g_j - a_j g_i)(g_i g_j)^k = 0$ for all $ i, j$ in the finite subcover. Define $ b_i = a_i g_i^k$ and $ h_i = g_i^{k+1}$. We make the following observations:
+\[ b_i h_j - b_j h_i = 0, X_{g_i} = X_{h_i}, \text{ and } s_i = a_i/g_i = b_i/h_i \]
+The first observation implies that the $ X_{h_i}$ cover $ X$, so the $ h_i$ generate the unit ideal. Then there exists some linear combination $ \sum x_i h_i = 1$. Define $ s = \sum x_i b_i$. I claim that this is the global section that restricts to $ s_i$ on the open cover.
+
+The first step is to show that it restricts to $ s_i$ on our chosen finite subcover. In other words, we want to show that $ s/1 = s_i = b_i/h_i$ in $ A_{h_i}$, which is equivalent to the condition that there exist some $ l_i$ such that $ (sh_i b_i) h_i^{l_i} = 0$. But in fact, even $ l_i = 0$ works:
+\[ sh_i - b_i = \left(\sum x_j b_j\right) h_i - b_i\left(\sum x_j h_j\right) = \sum x_j\left(h_i b_j - b_i h_j\right) = 0. \]
+This shows that $ s$ restricts to $ s_i$ on each set in our finite subcover. Now we need to show that in fact, it restricts to $ s_i$ for all of the sets in our cover. Choose any $ j \in I$. Then $ U_1, \dotsc, U_n, U_j$ still cover $ X$, so the above process yields an $ s'$ such that $ s'$ restricts to $ s_i$ for all $ i \in \{1, \dotsc, n, j\}$. But then $ s - s'$ satisfies the assumptions of part 1 using the cover $ \{U_1, \dotsc, U_n, U_j\}$, so this means $ s = s'$. Hence the restriction of $ s$ to $ U_j$ is also $ s_j$.
+\end{proof}
+
+
