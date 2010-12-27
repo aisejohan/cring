@@ -1,27 +1,42 @@
 \chapter{The $\spec$ of a ring}
 
 
-The notion of the $\spec$ of a ring is fundamental in modern algebraic
-geometry. It is the scheme-theoretic analog of classical affine schemes. The
-identification occurs when one identifies the maximal ideals of the polynomial
-ring $k[x_1, \dots, x_n]$ (for $k$ an algebraically closed field) with the
-points of the classical variety $\mathbb{A}^n_k = k^n$. In modern algebraic
-geometry, one adds the ``non-closed points'' given by the other prime ideals.
-Just as general varieties were classically defined by gluing affine varieties, a
+The notion of the $\spec$ of a ring is fundamental in modern
+algebraic
+geometry. It is the scheme-theoretic analog of classical affine
+schemes. The
+identification occurs when one identifies the maximal ideals of
+the polynomial
+ring $k[x_1, \dots, x_n]$ (for $k$ an algebraically closed
+field) with the
+points of the classical variety $\mathbb{A}^n_k = k^n$. In
+modern algebraic
+geometry, one adds the ``non-closed points'' given by the other
+prime ideals.
+Just as general varieties were classically defined by gluing
+affine varieties, a
 scheme is defined by gluing open affines. 
 
-This is not a book on schemes, but it will nonetheless be convenient to
-introduce the $\spec$ construction, outside of the obvious benefits of
-including preparatory material for algebraic geometry. First of all, it will provide a convenient
-notation. Second, and more importantly, it will provide a convenient geometric
-intuition. For example, an $R$-module can be thought of as a kind of ``vector
-bundle''---technically, a sheaf---over the space $\spec R$, with the caveat
-that the rank might not be locally constant (which is, however, the case when the module
+This is not a book on schemes, but it will nonetheless be
+convenient to
+introduce the $\spec$ construction, outside of the obvious
+benefits of
+including preparatory material for algebraic geometry. First of
+all, it will provide a convenient
+notation. Second, and more importantly, it will provide a
+convenient geometric
+intuition. For example, an $R$-module can be thought of as a
+kind of ``vector
+bundle''---technically, a sheaf---over the space $\spec R$, with
+the caveat
+that the rank might not be locally constant (which is, however,
+the case when the module
 is projective).
 
 \section{The spectrum of a ring}
 
-We shall now associate to every commutative ring a topological space $\spec R$
+We shall now associate to every commutative ring a topological
+space $\spec R$
 in a functorial manner.
 That is, there will be a contravariant functor
 \[\spec:  \mathbf{CRing} \to \mathbf{Top}  \]
@@ -31,170 +46,232 @@ algebraic geometry and will be used frequently in the sequel.
 
 \subsection{Definition and examples}
 
-We start simply by defining $\spec$ as a set. We will next construct the
+We start simply by defining $\spec$ as a set. We will next
+construct the
 Zariski topology and later the functoriality.
 \begin{definition} 
-Let $R$ be a commutative ring.  The \textbf{spectrum} of $R$, denoted $\spec R$, is
+Let $R$ be a commutative ring. The \textbf{spectrum} of $R$,
+denoted $\spec R$, is
 the set of prime ideals of $R$.
 \end{definition} 
 
-We shall now make $\spec R$ into a topological space. First, we describe a
+We shall now make $\spec R$ into a topological space. First, we
+describe a
 collection of sets which will become the closed sets. 
 If $I \subset R$ is an ideal, let
-\[ V(I) = \left\{\mathfrak{p}: \mathfrak{p} \supset I\right\} \subset \spec R.
+\[ V(I) = \left\{\mathfrak{p}: \mathfrak{p} \supset I\right\}
+\subset \spec R.
 \]
 
 \begin{proposition} 
-There is a topology on $\spec R$ such that the closed subsets are of the form
+There is a topology on $\spec R$ such that the closed subsets
+are of the form
 $V(I)$ for $I \subset R$ an ideal.
 \end{proposition} 
 
 \begin{proof} 
 Indeed:
 \begin{enumerate}
-\item $\emptyset = V((1))$ because $(1)$ is not prime. So $\emptyset$ is closed. 
-\item $\spec R = V((0))$ because any ideal contains zero. So $\spec R$ is
+\item $\emptyset = V((1))$ because $(1)$ is not prime. So
+$\emptyset$ is closed.
+\item $\spec R = V((0))$ because any ideal contains zero. So
+$\spec R$ is
 closed.
-\item  We show the closed sets are stable under intersections.  Let
-$K_{\alpha} = V(I_{\alpha})$ be closed subsets of $\spec R$ for $\alpha$
+\item We show the closed sets are stable under intersections.
+Let
+$K_{\alpha} = V(I_{\alpha})$ be closed subsets of $\spec R$ for
+$\alpha$
 ranging over some index set.  Let $I
 = \sum I_{\alpha}$. Then 
 \[ V(I) = \bigcap K_{\alpha} = \bigcap V(I_{\alpha}),  \]
-which follows because $I$ is the smallest ideal containing each $I_{\alpha}$,
+which follows because $I$ is the smallest ideal containing each
+$I_{\alpha}$,
 so a prime contains every $I_{\alpha}$ iff it contains $I$.  
-\item The union of two closed sets is closed. Indeed, if $K,K' \subset \spec
-R$ are closed, we show $K \cup K'$ is closed.  Say $K= V(I), K' = V(I')$. Then
+\item The union of two closed sets is closed. Indeed, if $K,K'
+\subset \spec
+R$ are closed, we show $K \cup K'$ is closed. Say $K= V(I), K' =
+V(I')$. Then
 we claim: 
 \[ K \cup K'  = V(II').  \]
-Here $II'$ is the ideal generated by products $ii', i \in I, i' \in I'$. If
-$\mathfrak{p}$ is \textbf{prime} and contains $II'$, it must contain one of $I$, $I'$;
-this implies the displayed equation above and implies the result.
+Here $II'$ is the ideal generated by products $ii', i \in I, i'
+\in I'$. If
+$\mathfrak{p}$ is \textbf{prime} and contains $II'$, it must
+contain one of $I$, $I'$;
+this implies the displayed equation above and implies the
+result.
 \end{enumerate}
 \end{proof} 
 \begin{definition} 
-The topology on $\spec R$ defined above is called the \textbf{Zariski
+The topology on $\spec R$ defined above is called the
+\textbf{Zariski
 topology}. With it,  $\spec R$ is now a topological space.
 \end{definition} 
 
-In order to see the geometry of this construction, let us work several examples.
+In order to see the geometry of this construction, let us work
+several examples.
 
 \begin{example} 
-Let $R = \mathbb{Z}$, and consider $\spec \mathbb{Z}$. Then every prime is generated by one element, since
-$\mathbb{Z}$ is a PID. We have that $\spec \mathbb{Z} = \{(0)\} \cup \bigcup_{p \
-\mathrm{prime}} \{ (p)\}$.  The picture is that one has all the familiar primes $(2), (3),
+Let $R = \mathbb{Z}$, and consider $\spec \mathbb{Z}$. Then
+every prime is generated by one element, since
+$\mathbb{Z}$ is a PID. We have that $\spec \mathbb{Z} = \{(0)\}
+\cup \bigcup_{p \
+\mathrm{prime}} \{ (p)\}$. The picture is that one has all the
+familiar primes $(2), (3),
 (5), \dots, $ and then a special point $(0)$.
 
-Let us now describe the closed subsets. These are of the form $V(I)$ where $I
-\subset \mathbb{Z}$ is an ideal, so $I = (n)$ for some $n \in \mathbb{Z}$. 
+Let us now describe the closed subsets. These are of the form
+$V(I)$ where $I
+\subset \mathbb{Z}$ is an ideal, so $I = (n)$ for some $n \in
+\mathbb{Z}$.
 
 \begin{enumerate}
-\item If $n=0$, the closed subset is all of $\spec \mathbb{Z}$. 
-\item If $n \neq 0$, then $n$ has finitely many prime divisors. So $V((n))$ consists
+\item If $n=0$, the closed subset is all of $\spec \mathbb{Z}$.\item If $n \neq 0$, then $n$ has finitely many prime divisors.
+So $V((n))$ consists
 of the prime ideals corresponding to these prime divisors.  
 \end{enumerate}
 
-The only closed subsets besides the entire space are the finite subsets
+The only closed subsets besides the entire space are the finite
+subsets
 that exclude $(0)$.  
 \end{example} 
 
 \begin{example} \label{twovarpoly}
-Say $R = \mathbb{C}[x,y]$ is a polynomial ring in two variables.  What is
-$\spec R$? We won't give a complete answer. But we will write down several
+Say $R = \mathbb{C}[x,y]$ is a polynomial ring in two variables.
+What is
+$\spec R$? We won't give a complete answer. But we will write
+down several
 prime ideals.
 
 \begin{enumerate}
-\item For every pair of complex numbers $s,t \in \mathbb{C}$, the collection of polynomials
-$f \in R$ such that $f(s,t) = 0$ is a prime ideal $\mathfrak{m} _{s,t}$.  In
-fact, it is maximal, as the residue field is all of $\mathbb{C}$.  Indeed,
-$R/\mathfrak{m}_{s,t} \simeq \mathbb{C}$ under the map $f \to f(s,t)$.  
+\item For every pair of complex numbers $s,t \in \mathbb{C}$,
+the collection of polynomials
+$f \in R$ such that $f(s,t) = 0$ is a prime ideal $\mathfrak{m}
+_{s,t}$. In
+fact, it is maximal, as the residue field is all of
+$\mathbb{C}$. Indeed,
+$R/\mathfrak{m}_{s,t} \simeq \mathbb{C}$ under the map $f \to
+f(s,t)$.
 
 In fact, 
 \begin{theorem}
 The $\mathfrak{m}_{s,t}$ are all the maximal ideals in $R$.
 \end{theorem} 
-This will follow from the \emph{Hilbert Nullstellensatz} to be proved later
+This will follow from the \emph{Hilbert Nullstellensatz} to be
+proved later
 (Theorem~\ref{nullstellensatz}).
 \item $(0) \subset R$ is a prime ideal since $R$ is a domain. 
-\item  If $f(x,y) \in R$ is an irreducible polynomial, then $(f)$ is a prime
-ideal.  This is equivalent to unique factorization in $R$.\footnote{To be
+\item If $f(x,y) \in R$ is an irreducible polynomial, then $(f)$
+is a prime
+ideal. This is equivalent to unique factorization in
+$R$.\footnote{To be
 proved later \ref{}.}  
 \end{enumerate}
 
-To draw $\spec R$, we start by drawing $\mathbb{C}^2$, the collection of
-maximal ideals.  $\spec R$ has additional (non-closed) points too, as
+To draw $\spec R$, we start by drawing $\mathbb{C}^2$, the
+collection of
+maximal ideals. $\spec R$ has additional (non-closed) points
+too, as
 described above, but for now let us
-consider the topology induced on $\mathbb{C}^2$ as a subspace of $\spec R$. 
+consider the topology induced on $\mathbb{C}^2$ as a subspace of
+$\spec R$.
 
-The closed subsets of $\spec R$ are subsets $V(I)$ where $I$ is an ideal,
-generated by some polynomials $\left\{f_{\alpha}(x,y)\right\}$.  
-It is of interest to determine  the  subset of $\mathbb{C}^2$ that $V(I)$
+The closed subsets of $\spec R$ are subsets $V(I)$ where $I$ is
+an ideal,
+generated by some polynomials $\left\{f_{\alpha}(x,y)\right\}$.It is of interest to determine the subset of $\mathbb{C}^2$ that
+$V(I)$
 induces. In other words, we ask:
 \begin{quote}
 What points of $\mathbb{C}^2$ (with $(s,t)$ identified with
 $\mathfrak{m}_{s,t}$) lie in $V(I)$?
 \end{quote}
-Now we know that $(s,t)$ corresponds to a point of $I$ if and only if  $I
+Now we know that $(s,t)$ corresponds to a point of $I$ if and
+only if $I
 \subset \mathfrak{m}_{s,t}$.
 This is true iff all the
-$f_{\alpha} $ lie in $ \mathfrak{m}_{s,t}$, i.e. if $f_{\alpha}(s,t) =0$ for all
-$\alpha$.  So the closed subsets of $\mathbb{C}^2$ (with the induced Zariski
+$f_{\alpha} $ lie in $ \mathfrak{m}_{s,t}$, i.e. if
+$f_{\alpha}(s,t) =0$ for all
+$\alpha$. So the closed subsets of $\mathbb{C}^2$ (with the
+induced Zariski
 topology) are precisely the subsets
-that can be defined by polynomial equations.  This is \textbf{much} coarser
-than the usual topology.  For instance, $\left\{(z_1,z_2): \Re(z_1) \geq 0\right\}$ is
+that can be defined by polynomial equations. This is
+\textbf{much} coarser
+than the usual topology. For instance, $\left\{(z_1,z_2):
+\Re(z_1) \geq 0\right\}$ is
 not Zariski-closed. 
 
-The Zariski topology is so coarse because one has only algebraic data (namely,
+The Zariski topology is so coarse because one has only algebraic
+data (namely,
 polynomials, or elements of $R$) to define the topology.
 \end{example} 
 
 \begin{exercise} 
-Let $R_1, R_2$ be commutative rings. Give $R_1 \times R_2$ a natural structure
-of a ring, and describe $\spec( R_1 \times R_2)$ in terms of $\spec R_1$ and
+Let $R_1, R_2$ be commutative rings. Give $R_1 \times R_2$ a
+natural structure
+of a ring, and describe $\spec( R_1 \times R_2)$ in terms of
+$\spec R_1$ and
 $\spec R_2$.
 \end{exercise} 
 
 
 \begin{exercise} 
-Let $X$ be a compact Hausdorff space, $C(X)$ the ring of real continuous
+Let $X$ be a compact Hausdorff space, $C(X)$ the ring of real
+continuous
 functions $X \to \mathbb{R}$. 
-The maximal ideals in $\spec C(X)$ are in bijection with the points of $X$,
-and the topology induced on $X $ (as a subset of $\spec C(X)$) is just the usual topology.
+The maximal ideals in $\spec C(X)$ are in bijection with the
+points of $X$,
+and the topology induced on $X $ (as a subset of $\spec C(X)$)
+is just the usual topology.
 \end{exercise}
 
 \begin{exercise}
-Prove the following result: if $X, Y$ are compact Hausdorff spaces and $C(X),
-C(Y)$ the associated rings of continuous functions, if $C(X), C(Y)$ are
-isomorphic as $\mathbb{R}$-algebras, then $X$ is homeomorphic to $Y$.
+Prove the following result: if $X, Y$ are compact Hausdorff
+spaces and $C(X),
+C(Y)$ the associated rings of continuous functions, if $C(X),
+C(Y)$ are
+isomorphic as $\mathbb{R}$-algebras, then $X$ is homeomorphic to
+$Y$.
 \end{exercise} 
 
 
 \subsection{The radical ideal-closed subset correspondence}
 
-We now return to the case of an arbitrary  commutative ring $R$. If $I \subset R$, we get a closed
-subset $V(I) \subset \spec R$.  It is called $V(I)$ because one is supposed to
-think of it as the places where the elements of $I$ ``vanish,'' as the
-elements of $R$ are something like ``functions.'' This analogy is perhaps best
-seen in the example of a polynomial ring over an algebraically closed field,
+We now return to the case of an arbitrary commutative ring $R$.
+If $I \subset R$, we get a closed
+subset $V(I) \subset \spec R$. It is called $V(I)$ because one
+is supposed to
+think of it as the places where the elements of $I$ ``vanish,''
+as the
+elements of $R$ are something like ``functions.'' This analogy
+is perhaps best
+seen in the example of a polynomial ring over an algebraically
+closed field,
 e.g. Example~\ref{twovarpoly} above.
 
-The map from ideals into closed sets is very far from being injective in
+The map from ideals into closed sets is very far from being
+injective in
 general, though by definition it is surjective.
 
 \begin{example} 
-If $R = \mathbb{Z}$ and $p$ is prime, then $I = (p), I' = (p^2)$ define the
+If $R = \mathbb{Z}$ and $p$ is prime, then $I = (p), I' = (p^2)$
+define the
 same subset (namely, $\left\{(p)\right\}$) of
 $\spec R$. 
 \end{example} 
 
-We now ask the question of why the map from ideals to closed subsets fails to
-be injective. As we shall see, the entire problem disappears if we restrict to
+We now ask the question of why the map from ideals to closed
+subsets fails to
+be injective. As we shall see, the entire problem disappears if
+we restrict to
 \emph{radical} ideals.
 
 \begin{definition} 
-If $I$ is an ideal, then the \textbf{radical} $\rad(I)  $ or $ \sqrt{I}$ is
+If $I$ is an ideal, then the \textbf{radical} $\rad(I) $ or $
+\sqrt{I}$ is
 defined as $$\rad(I) =
-\left\{x \in R: x^n \in I \ \mathrm{for} \ \mathrm{some} \ n \right\}.$$
-An ideal is \textbf{radical} if it is equal to its radical. (This is
+\left\{x \in R: x^n \in I \ \mathrm{for} \ \mathrm{some} \ n
+\right\}.$$
+An ideal is \textbf{radical} if it is equal to its radical.
+(This is
 equivalent to the earlier Definition~\ref{def-radical-ideal}.) 
 \end{definition} 
 
@@ -203,29 +280,40 @@ Before proceeding, we must check:
 If $I$ an ideal, so is $\rad(I)$.
 \end{lemma} 
 \begin{proof} 
-Clearly $\rad(I)$ is closed under multiplication since $I$ is.  
-Suppose $x,y \in \rad(I)$; we show $x+y \in \rad(I)$.  Then $x^n, y^n \in I$
-for some $n$ (large) and thus for all larger $n$. The binomial expansion now
+Clearly $\rad(I)$ is closed under multiplication since $I$ is.Suppose $x,y \in \rad(I)$; we show $x+y \in \rad(I)$. Then $x^n,
+y^n \in I$
+for some $n$ (large) and thus for all larger $n$. The binomial
+expansion now
 gives
-\[ (x+y)^{2n} = x^{2n} + \binom{2n}{1} x^{2n-1}y + \dots + y^{2n},  \]
-where every term contains either $x,y$ with power $ \geq n$, so every term
-belongs to $I$.  Thus $(x+y)^{2n} \in I$ and, by definition, we see then that $x+y \in \rad(I)$. 
+\[ (x+y)^{2n} = x^{2n} + \binom{2n}{1} x^{2n-1}y + \dots +
+y^{2n}, \]
+where every term contains either $x,y$ with power $ \geq n$, so
+every term
+belongs to $I$. Thus $(x+y)^{2n} \in I$ and, by definition, we
+see then that $x+y \in \rad(I)$.
 \end{proof} 
 
-The map $I \to V(I)$ does in fact depend only on the radical of $I$. In fact, if $I,J$ have the same radical $\rad(I) = \rad(J)$, then $V(I) = V(J)$. 
+The map $I \to V(I)$ does in fact depend only on the radical of
+$I$. In fact, if $I,J$ have the same radical $\rad(I) =
+\rad(J)$, then $V(I) = V(J)$.
 Indeed, $V(I) = V(\rad(I)) = V(\rad(J)) = V(J)$ by:
 \begin{lemma} 
 For any $I$, $V(I) = V(\rad(I))$.
 \end{lemma} 
 \begin{proof} 
-Indeed, $I \subset \rad(I)$ and therefore obviously $V(\rad(I)) \subset V(I)$. We have to show the
+Indeed, $I \subset \rad(I)$ and therefore obviously $V(\rad(I))
+\subset V(I)$. We have to show the
 converse inclusion. Namely, we must prove:
 \begin{quote}
-If $\mathfrak{p} \supset I$, then $\mathfrak{p} \supset  \rad(I).$
+If $\mathfrak{p} \supset I$, then $\mathfrak{p} \supset
+\rad(I).$
 \end{quote}
-So suppose $\mathfrak{p} \supset I$ is prime and $x \in \rad(I)$; then $x^n \in I \subset \mathfrak{p}$ for some $n$.
-But $\mathfrak{p}$ is prime, so whenever a  product of things belongs to
-$\mathfrak{p}$, a factor does.  Thus since $x^n = x \cdot x \cdots x$, we must
+So suppose $\mathfrak{p} \supset I$ is prime and $x \in
+\rad(I)$; then $x^n \in I \subset \mathfrak{p}$ for some $n$.
+But $\mathfrak{p}$ is prime, so whenever a product of things
+belongs to
+$\mathfrak{p}$, a factor does. Thus since $x^n = x \cdot x
+\cdots x$, we must
 have $x \in \mathfrak{p}$. So
 \[ \rad(I) \subset \mathfrak{p}  \]
 proving the quoted claim, and thus the lemma.
@@ -235,73 +323,109 @@ There is a converse to this remark:
 \begin{proposition} 
 If $V(I) = V(J)$, then $\rad(I) = \rad(J)$. 
 \end{proposition} 
-So two ideals define the same closed subset iff they have the same radical.
+So two ideals define the same closed subset iff they have the
+same radical.
 \begin{proof} 
-We write down a formula for $\rad(I)$ that will imply this at once.
-\begin{lemma} For a commutative ring $R$ and an ideal $I \subset R$, 
+We write down a formula for $\rad(I)$ that will imply this at
+once.
+\begin{lemma} For a commutative ring $R$ and an ideal $I \subset
+R$,
 \[ \rad(I) = \bigcap_{\mathfrak{p} \supset I} \mathfrak{p}.  \]
 \end{lemma} 
-From this, it follows that $V(I)$ determines $\rad(I)$.  This will thus imply
+From this, it follows that $V(I)$ determines $\rad(I)$. This
+will thus imply
 the proposition.  
 We now prove the lemma:
 \begin{proof} 
 \begin{enumerate}
-\item We show $\rad(I) \subset \bigcap_{\mathfrak{p} \in V(I)} \mathfrak{p} $.  In
-particular, this follows if we show that if a prime contains $I$, it contains $\rad(I)$; but we have already
+\item We show $\rad(I) \subset \bigcap_{\mathfrak{p} \in V(I)}
+\mathfrak{p} $. In
+particular, this follows if we show that if a prime contains
+$I$, it contains $\rad(I)$; but we have already
 discussed this above.  
-\item If $x \notin \rad(I)$, we will show that there is a prime ideal $\mathfrak{p}
-\supset I$ not containing $x$. This will imply the reverse inclusion and the
+\item If $x \notin \rad(I)$, we will show that there is a prime
+ideal $\mathfrak{p}
+\supset I$ not containing $x$. This will imply the reverse
+inclusion and the
 lemma.  
 \end{enumerate}
 
 
-We want to find $\mathfrak{p}$ not containing $x$, more generally not
-containing any power of $x$.  In particular, we want $\mathfrak{p} \cap \left\{1,
-x, x^2 \dots, \right\} = \emptyset$.  This set $S = \left\{1, x, \dots\right\}$
-is multiplicatively closed, in that it contains 1 and is closed under
-finite products. Right now, it does not hit $I$; we want to find a
-\emph{prime} containing $I$ that does not hit $\left\{x^n, n \geq 0\right\}$.
+We want to find $\mathfrak{p}$ not containing $x$, more
+generally not
+containing any power of $x$. In particular, we want
+$\mathfrak{p} \cap \left\{1,
+x, x^2 \dots, \right\} = \emptyset$. This set $S = \left\{1, x,
+\dots\right\}$
+is multiplicatively closed, in that it contains 1 and is closed
+under
+finite products. Right now, it does not hit $I$; we want to find
+a
+\emph{prime} containing $I$ that does not hit $\left\{x^n, n
+\geq 0\right\}$.
 
 
 More generally, we will prove:
 
 \begin{sublemma}
-Let $S$ be multiplicatively closed set in any ring $R$ and let $I$ be any ideal with $I \cap S  =
-\emptyset$.  There is a prime ideal $\mathfrak{p} \supset I$ and does not
+Let $S$ be multiplicatively closed set in any ring $R$ and let
+$I$ be any ideal with $I \cap S =
+\emptyset$. There is a prime ideal $\mathfrak{p} \supset I$ and
+does not
 intersect $S$.  
 \end{sublemma}
-In English, any ideal missing $S$ can be enlarged to a prime ideal missing $S$.
-This is actually fancier version of a previous argument. We showed earlier that any ideal not
-containing the multiplicatively closed subset $\left\{1\right\}$ can be
-contained in a prime ideal not containing $1$ in \ref{anycontainedinmaximal}.
+In English, any ideal missing $S$ can be enlarged to a prime
+ideal missing $S$.
+This is actually fancier version of a previous argument. We
+showed earlier that any ideal not
+containing the multiplicatively closed subset $\left\{1\right\}$
+can be
+contained in a prime ideal not containing $1$ in
+\ref{anycontainedinmaximal}.
 
-Note that the sublemma clearly implies the lemma when applied to $S =
+Note that the sublemma clearly implies the lemma when applied to
+$S =
 \left\{1, x, \dots\right\}.$
 
 \begin{proof}[Proof of the sublemma]
-Let $P = \left\{J: J \supset I, J \cap S = \emptyset \right\}$. Then $P$ is a
-poset with respect to  inclusion. Note that $P \neq \emptyset$ because $I \in P$.  Also,
-for any nonempty linearly ordered subset of $P$, the union is in $P$ (i.e. there is an
+Let $P = \left\{J: J \supset I, J \cap S = \emptyset \right\}$.
+Then $P$ is a
+poset with respect to inclusion. Note that $P \neq \emptyset$
+because $I \in P$. Also,
+for any nonempty linearly ordered subset of $P$, the union is in
+$P$ (i.e. there is an
 upper bound).  
-We can invoke Zorn's lemma to get a maximal element of $P$.  This element is an
-ideal $\mathfrak{p} \supset I$ with $\mathfrak{p} \cap S = \emptyset$.  I claim
+We can invoke Zorn's lemma to get a maximal element of $P$. This
+element is an
+ideal $\mathfrak{p} \supset I$ with $\mathfrak{p} \cap S =
+\emptyset$. I claim
 that $\mathfrak{p}$ is prime.
 
-First of all, $1 \notin \mathfrak{p}$ because $1 \in S$.  We need only check
-that if $xy \in \mathfrak{p}$, then $x \in \mathfrak{p}$ or $y \in
-\mathfrak{p}$. Suppose otherwise, so $x,y \notin \mathfrak{p}$.  Then $(x,\mathfrak{p}) \notin P$ or
-$\mathfrak{p}$ would not be maximal. Ditto for $(y, \mathfrak{p})$. 
+First of all, $1 \notin \mathfrak{p}$ because $1 \in S$. We need
+only check
+that if $xy \in \mathfrak{p}$, then $x \in \mathfrak{p}$ or $y
+\in
+\mathfrak{p}$. Suppose otherwise, so $x,y \notin \mathfrak{p}$.
+Then $(x,\mathfrak{p}) \notin P$ or
+$\mathfrak{p}$ would not be maximal. Ditto for $(y,
+\mathfrak{p})$.
 
-In particular, we have that these bigger ideals both intersect $S$.  This means
+In particular, we have that these bigger ideals both intersect
+$S$. This means
 that there are 
-\[  a \in \mathfrak{p} , r \in R \quad \text{such that}\quad a+rx \in S \]
+\[ a \in \mathfrak{p} , r \in R \quad \text{such that}\quad a+rx
+\in S \]
 and 
-\[  b \in \mathfrak{p} , r' \in R \quad \text{such that}\quad b+r'y \in S .\]
-Now $S$ is multiplicatively closed, so multiply $(a+rx)(b+r'y) \in S$.
+\[ b \in \mathfrak{p} , r' \in R \quad \text{such that}\quad
+b+r'y \in S .\]
+Now $S$ is multiplicatively closed, so multiply $(a+rx)(b+r'y)
+\in S$.
 We find:
 \[ ab + ar'y+brx+rr'xy \in S.  \]
-Now $a,b \in \mathfrak{p}$ and $xy \in \mathfrak{p}$, so all the terms above
-are in $\mathfrak{p}$, and the sum is too. But this contradicts $\mathfrak{p}
+Now $a,b \in \mathfrak{p}$ and $xy \in \mathfrak{p}$, so all the
+terms above
+are in $\mathfrak{p}$, and the sum is too. But this contradicts
+$\mathfrak{p}
 \cap S = \emptyset$. 
 \end{proof}
 \end{proof} 
@@ -309,46 +433,62 @@ are in $\mathfrak{p}$, and the sum is too. But this contradicts $\mathfrak{p}
 
 The upshot of the previous lemmata is:
 \begin{proposition}
-There is a bijection between the closed subsets of $\spec R$ and radical ideals
+There is a bijection between the closed subsets of $\spec R$ and
+radical ideals
 $I \subset R$.
 \end{proposition}
 
 \subsection{Functoriality of $\spec$}
  The construction $R \to \spec R$ is functorial in $R$ in a
-contravariant sense.   That is,  if $f: R \to R'$, there is a continuous map $\spec
+contravariant sense. That is, if $f: R \to R'$, there is a
+continuous map $\spec
 R' \to \spec R$. This map sends $\mathfrak{p} \subset R'$ to
-$f^{-1}(\mathfrak{p}) \subset R$, which is easily seen to be a prime ideal
-in $R$.   Call this map $F: \spec R' \to \spec R$. So far, we have seen that
-$\spec R$ induces a contravariant  functor from $\mathbf{Rings} \to \mathbf{Sets}$.
+$f^{-1}(\mathfrak{p}) \subset R$, which is easily seen to be a
+prime ideal
+in $R$. Call this map $F: \spec R' \to \spec R$. So far, we have
+seen that
+$\spec R$ induces a contravariant functor from $\mathbf{Rings}
+\to \mathbf{Sets}$.
 
 \begin{exercise} 
-A contravariant functor $F: \mathcal{C} \to \mathbf{Sets}$ (for some category
-$\mathcal{C}$) is called \textbf{representable} if it is naturally isomorphic
-to a functor of the form $X \to \hom(X, X_0)$ for some $X_0 \in \mathcal{C}$,
+A contravariant functor $F: \mathcal{C} \to \mathbf{Sets}$ (for
+some category
+$\mathcal{C}$) is called \textbf{representable} if it is
+naturally isomorphic
+to a functor of the form $X \to \hom(X, X_0)$ for some $X_0 \in
+\mathcal{C}$,
 or equivalently if the induced covariant functor on
 $\mathcal{C}^{\mathrm{op}}$ is corepresentable. 
 
-The functor $R \to \spec R $ is not representable. (Hint: Indeed, a representable
+The functor $R \to \spec R $ is not representable. (Hint:
+Indeed, a representable
 functor must send the initial object into a one-point set.)
 \end{exercise} 
 
 Next, we check that the morphisms induced on $\spec$'s from a
-ring-homomorphism are in fact \emph{continuous} maps of topological spaces. 
+ring-homomorphism are in fact \emph{continuous} maps of
+topological spaces.
 
 \begin{proposition} 
-$\spec $ induces a contravariant functor from $\mathbf{Rings}$ to the category
+$\spec $ induces a contravariant functor from $\mathbf{Rings}$
+to the category
 $\mathbf{Top}$ of topological spaces.
 \end{proposition} 
 \begin{proof} Let $f : R \to R'$. 
-We need to check that this map $ \spec R' \to \spec R$, which we call $F$, is
+We need to check that this map $ \spec R' \to \spec R$, which we
+call $F$, is
 continuous.
 That is, we must check that $F^{-1}$ sends closed
 subsets of $\spec R$ to closed subsets of $\spec R'$.  
 
 More precisely, if $I \subset
-R$ and we take the inverse image $F^{-1}(V(I)) \subset \spec R'$, it is just
-the closed set $V(f(I))$.  This is best left to the reader, but here is the justification.  If $\mathfrak{p} \in \spec R'$, then $F(\mathfrak{p}) = f^{-1}(\mathfrak{p})
-\supset I$ if and only if $\mathfrak{p} \supset f(I)$. So $F(\mathfrak{p}) \in
+R$ and we take the inverse image $F^{-1}(V(I)) \subset \spec
+R'$, it is just
+the closed set $V(f(I))$. This is best left to the reader, but
+here is the justification. If $\mathfrak{p} \in \spec R'$, then
+$F(\mathfrak{p}) = f^{-1}(\mathfrak{p})
+\supset I$ if and only if $\mathfrak{p} \supset f(I)$. So
+$F(\mathfrak{p}) \in
 V(I)$ if and only if $\mathfrak{p} \in V(f(I))$.
 
 \end{proof} 
@@ -356,15 +496,18 @@ V(I)$ if and only if $\mathfrak{p} \in V(f(I))$.
 
 
 \begin{example} 
-Let $R$ be a commutative ring, $I \subset R$ an ideal, $f: R \to R/I$. There is a map
+Let $R$ be a commutative ring, $I \subset R$ an ideal, $f: R \to
+R/I$. There is a map
 of topological spaces
 \[ F: \spec (R/I) \to \spec R  .\]
-This map is a closed embedding whose image is $V(I)$.  Most of this follows because
+This map is a closed embedding whose image is $V(I)$. Most of
+this follows because
 there is a bijection between ideals of $R$ containing $I$ and
 ideals of $R/I$, and this bijection preserves primality.
 
 \begin{exercise} 
-Show that this map $\spec R/I \to \spec R$ is indeed a homeomorphism from $\spec R/I
+Show that this map $\spec R/I \to \spec R$ is indeed a
+homeomorphism from $\spec R/I
 \to V(I)$.  
 \end{exercise} 
 \end{example} 
@@ -372,18 +515,24 @@ Show that this map $\spec R/I \to \spec R$ is indeed a homeomorphism from $\spec
 \section{Basic open sets}
 
 \subsection{A basis for the Zariski topology}
-In the previous section, we were talking about the Zariski topology. If $R$ is a
-commutative ring, we recall that $\spec R$ is defined to be the collection of
-prime ideals in $R$. This has a topology where the closed sets are the sets of
+In the previous section, we were talking about the Zariski
+topology. If $R$ is a
+commutative ring, we recall that $\spec R$ is defined to be the
+collection of
+prime ideals in $R$. This has a topology where the closed sets
+are the sets of
 the form
-\[ V(I) = \left\{\mathfrak{p} \in \spec R: \mathfrak{p} \supset I\right\} . \]
-There is another way to describe the Zariski topology in terms of
+\[ V(I) = \left\{\mathfrak{p} \in \spec R: \mathfrak{p} \supset
+I\right\} . \]
+There is another way to describe the Zariski topology in terms
+of
 \emph{open} sets.  
 
 \begin{definition} 
 If $f \in R$, we let 
 \[ U_f = \left\{\mathfrak{p}: f \notin \mathfrak{p}\right\}  \]
-so that $U_f$ is the subset of $\spec R$ consisting of primes not containing
+so that $U_f$ is the subset of $\spec R$ consisting of primes
+not containing
 $f$. This is the complement of $V((f))$, so it is open.  
 \end{definition} 
 
@@ -392,13 +541,16 @@ The sets $U_f$ form a basis for the Zariski topology.
 \end{proposition} 
 
 \begin{proof} 
-Suppose $U \subset \spec R$ is open.  We claim that $U$ is a union of basic
+Suppose $U \subset \spec R$ is open. We claim that $U$ is a
+union of basic
 open sets $U_f$. 
 
 Now $U = \spec R - V(I)$ for some ideal $I$.  Then
 \[ U = \bigcup_{f \in I} U_f  \]
-because if an ideal is not in $V(I)$, then it fails to contain some $f \in I$,
-i.e. is in $U_f$ for that $f$. Alternatively, we could take complements, whence
+because if an ideal is not in $V(I)$, then it fails to contain
+some $f \in I$,
+i.e. is in $U_f$ for that $f$. Alternatively, we could take
+complements, whence
 the above statement becomes
 \[ V(I) = \bigcap_{f \in I} V((f))  \]
 which is clear.
@@ -406,17 +558,22 @@ which is clear.
 
 The basic open sets have nice properties.
 \begin{enumerate}
-\item $U_1  = \spec R$ because prime ideals are not allowed to contain the
+\item $U_1 = \spec R$ because prime ideals are not allowed to
+contain the
 unit element. 
 \item $U_0 = \emptyset$ because every prime ideal contains $0$.
-\item $U_{fg} = U_f \cap U_g$ because $fg$ lies in a prime ideal $\mathfrak{p}$ if and only if one of $f,g$ does.
+\item $U_{fg} = U_f \cap U_g$ because $fg$ lies in a prime ideal
+$\mathfrak{p}$ if and only if one of $f,g$ does.
 \end{enumerate}
 
-Now let us describe what the Zariski topology has to do with localization.
+Now let us describe what the Zariski topology has to do with
+localization.
 
 \begin{example} 
-Let $R$ be a ring and $f \in R$.  Consider $S = \left\{1, f, f^2, \dots
-\right\}$; this is a multiplicatively closed subset. Last week, we defined
+Let $R$ be a ring and $f \in R$. Consider $S = \left\{1, f, f^2,
+\dots
+\right\}$; this is a multiplicatively closed subset. Last week,
+we defined
 $S^{-1}R$.
 \end{example}
 
@@ -426,112 +583,164 @@ For $S$ the powers of $f$, we write $R[f^{-1}]=S^{-1}R$.
 
 There is  a map $\phi: R \to R[f^{-1}]$ and a corresponding map
 \[ \spec R[f^{-1}] \to \spec R  \]
-sending a prime $\mathfrak{p} \subset R[f^{-1}]$ to $\phi^{-1}(\mathfrak{p})$.
+sending a prime $\mathfrak{p} \subset R[f^{-1}]$ to
+$\phi^{-1}(\mathfrak{p})$.
 
 \begin{proposition} 
-This map induces a homeomorphism of $\spec R[f^{-1}]$ onto $U_f \subset \spec
+This map induces a homeomorphism of $\spec R[f^{-1}]$ onto $U_f
+\subset \spec
 R$. 
 \end{proposition} 
 
-So if you take a commutative ring and invert an element, you just get an open
-subset of $\spec$. This is why it's called localization: you are restricting to
+So if you take a commutative ring and invert an element, you
+just get an open
+subset of $\spec$. This is why it's called localization: you are
+restricting to
 an open subset on the $\spec $ level when you invert something.
 
 \begin{proof} 
 \begin{enumerate}
-\item First, we show that $\spec R[f^{-1}] \to \spec R$ lands in $U_f$. If
-$\mathfrak{p} \subset R[f^{-1}]$, then we must show that the inverse image
-$\phi^{-1}(\mathfrak{p})$ can't contain $f$. If otherwise, that would imply that
-$\phi(f) \in \mathfrak{p}$; however, $\phi(f)$ is invertible, and then
+\item First, we show that $\spec R[f^{-1}] \to \spec R$ lands in
+$U_f$. If
+$\mathfrak{p} \subset R[f^{-1}]$, then we must show that the
+inverse image
+$\phi^{-1}(\mathfrak{p})$ can't contain $f$. If otherwise, that
+would imply that
+$\phi(f) \in \mathfrak{p}$; however, $\phi(f)$ is invertible,
+and then
 $\mathfrak{p}$ would be $(1)$.  
-\item Let's show that the map surjects onto $U_f$. If $\mathfrak{p} \subset R$ is a prime
-ideal not containing $f$, i.e. $\mathfrak{p} \in U_f$. We want to construct a
-corresponding prime in the ring $R[f^{-1}]$ whose inverse image is $\mathfrak{p}$.
+\item Let's show that the map surjects onto $U_f$. If
+$\mathfrak{p} \subset R$ is a prime
+ideal not containing $f$, i.e. $\mathfrak{p} \in U_f$. We want
+to construct a
+corresponding prime in the ring $R[f^{-1}]$ whose inverse image
+is $\mathfrak{p}$.
 
 Let $\mathfrak{p}[f^{-1}]$ be the collection of all fractions
 \[ \{\frac{x}{f^n}, x \in \mathfrak{p}\} \subset R[f^{-1}],  \]
-which is evidently an ideal. Note that whether the numerator is in
+which is evidently an ideal. Note that whether the numerator is
+in
 $\mathfrak{p}$ is \textbf{independent} of the
-representing fraction $\frac{x}{f^n}$ used.\footnote{Suppose $\frac{x}{f^n} =
-\frac{y}{f^k}$ for $y \in \mathfrak{p}$. Then there is $N$ such that
-$f^N(f^k x - f^n y) = 0 \in \mathfrak{p}$; since $y \in \mathfrak{p}$ and $f
+representing fraction $\frac{x}{f^n}$ used.\footnote{Suppose
+$\frac{x}{f^n} =
+\frac{y}{f^k}$ for $y \in \mathfrak{p}$. Then there is $N$ such
+that
+$f^N(f^k x - f^n y) = 0 \in \mathfrak{p}$; since $y \in
+\mathfrak{p}$ and $f
 \notin \mathfrak{p}$, it follows that $x \in \mathfrak{p}$.}
-In fact, $\mathfrak{p}[f^{-1}]$ is a prime ideal. Indeed, suppose 
+In fact, $\mathfrak{p}[f^{-1}]$ is a prime ideal. Indeed,
+suppose
 \[  \frac{a}{f^m} \frac{b}{f^n} \in \mathfrak{p}[f^{-1}] .\]
-Then $\frac{ab}{f^{m+n}}$ belongs to this ideal, which means $ab \in
-\mathfrak{p}$; so one of $a,b \in \mathfrak{p}$ and one of the two fractions
-$\frac{a}{f^m}, \frac{b}{f^n}$ belongs to $\mathfrak{p}[f^{-1}]$. Also, $1/1
+Then $\frac{ab}{f^{m+n}}$ belongs to this ideal, which means $ab
+\in
+\mathfrak{p}$; so one of $a,b \in \mathfrak{p}$ and one of the
+two fractions
+$\frac{a}{f^m}, \frac{b}{f^n}$ belongs to
+$\mathfrak{p}[f^{-1}]$. Also, $1/1
 \notin \mathfrak{p}[f^{-1}]$.
 
-It is clear that the inverse image of $\mathfrak{p}[f^{-1}]$ is $\mathfrak{p}$,
+It is clear that the inverse image of $\mathfrak{p}[f^{-1}]$ is
+$\mathfrak{p}$,
 because the image of $x \in R$ is $x/1$, and this belongs to
 $\mathfrak{p}[f^{-1}]$ precisely when $x \in \mathfrak{p}$.
-\item The map $\spec R[f^{-1}] \to \spec R$ is injective. Suppose
-$\mathfrak{p}, \mathfrak{p'}$ are prime ideals in the localization and the
+\item The map $\spec R[f^{-1}] \to \spec R$ is injective.
+Suppose
+$\mathfrak{p}, \mathfrak{p'}$ are prime ideals in the
+localization and the
 inverse images are the same.  
 We must show that $\mathfrak{p} = \mathfrak{p'}$.
 
-Suppose $\frac{x}{f^n} \in \mathfrak{p}$.  Then $x/1 \in \mathfrak{p}$, so $x
-\in \phi^{-1}(\mathfrak{p}) = \phi^{-1}(\mathfrak{p}')$.  This means that $x/1
+Suppose $\frac{x}{f^n} \in \mathfrak{p}$. Then $x/1 \in
+\mathfrak{p}$, so $x
+\in \phi^{-1}(\mathfrak{p}) = \phi^{-1}(\mathfrak{p}')$. This
+means that $x/1
 \in \mathfrak{p}'$, so 
-$\frac{x}{f^n} \in \mathfrak{p}'$ too.  So a fraction that belongs to
-$\mathfrak{p}$ belongs to $\mathfrak{p}'$. By symmetry the two ideals must be
+$\frac{x}{f^n} \in \mathfrak{p}'$ too. So a fraction that
+belongs to
+$\mathfrak{p}$ belongs to $\mathfrak{p}'$. By symmetry the two
+ideals must be
 the same.  
-\item We now know that the map $\psi: \spec R[f^{-1}] \to U_f$ is a continuous
-bijection. It is left to see that it is a homeomorphism.  We will show that it
+\item We now know that the map $\psi: \spec R[f^{-1}] \to U_f$
+is a continuous
+bijection. It is left to see that it is a homeomorphism. We will
+show that it
 is open.  
-In particular, we have to show that a basic open set on the left side is mapped
+In particular, we have to show that a basic open set on the left
+side is mapped
 to an open set on the right side.
-If $y/f^n \in R[f^{-1}]$, we have to show that $U_{y/f^n} \subset \spec
-R[f^{-1}]$ has open image under $\psi$.  We'll in fact show what open set it is.
+If $y/f^n \in R[f^{-1}]$, we have to show that $U_{y/f^n}
+\subset \spec
+R[f^{-1}]$ has open image under $\psi$. We'll in fact show what
+open set it is.
 
 I claim that
 \[ \psi(U_{y/f^n}) = U_{fy} \subset \spec R.  \]
-To see this, $\mathfrak{p}$ is contained in $U_{f/y^n}$. This mean that
-$\mathfrak{p}$ doesn't contain $y/f^n$.  In particular, $\mathfrak{p}$ doesn't
-contain  the multiple $yf/1$.  So $\psi(\mathfrak{p})$ doesn't contain $yf$.
+To see this, $\mathfrak{p}$ is contained in $U_{f/y^n}$. This
+mean that
+$\mathfrak{p}$ doesn't contain $y/f^n$. In particular,
+$\mathfrak{p}$ doesn't
+contain the multiple $yf/1$. So $\psi(\mathfrak{p})$ doesn't
+contain $yf$.
 This proves the inclusion $\subset$.  
 
 To complete the proof of the claim, and
-the result, we must show that if $\mathfrak{p} \subset \spec R[f^{-1}]$ and
-$\psi(\mathfrak{p}) = \phi^{-1}(\mathfrak{p}) \in U_{fy}$, then $y/f^n$ doesn't
-belong to $\mathfrak{p}$.  (This is kosher and dandy because we have a bijection.) But the hypothesis implies that $fy \notin
-\phi^{-1}(\mathfrak{p})$, so $fy/1 \notin \mathfrak{p}$.  Dividing by $f^{n+1}$
+the result, we must show that if $\mathfrak{p} \subset \spec
+R[f^{-1}]$ and
+$\psi(\mathfrak{p}) = \phi^{-1}(\mathfrak{p}) \in U_{fy}$, then
+$y/f^n$ doesn't
+belong to $\mathfrak{p}$. (This is kosher and dandy because we
+have a bijection.) But the hypothesis implies that $fy \notin
+\phi^{-1}(\mathfrak{p})$, so $fy/1 \notin \mathfrak{p}$.
+Dividing by $f^{n+1}$
 implies that
 \[ y/f^{n} \notin \mathfrak{p}  \]
 and $\mathfrak{p} \in U_{f/y^n}$. \qedhere
 \end{enumerate}
 \end{proof} 
 
-If $\spec R$ is a space, and $f$ is thought of as a ``function'' defined on
-$\spec R$, the space $U_f$ is to be thought of as the set of points where $f$
+If $\spec R$ is a space, and $f$ is thought of as a ``function''
+defined on
+$\spec R$, the space $U_f$ is to be thought of as the set of
+points where $f$
 ``doesn't vanish'' or ``is invertible.''
-Thinking about rings in terms of their spectra is a very useful idea, though we
+Thinking about rings in terms of their spectra is a very useful
+idea, though we
 don't make too much use of it. 
 
 We will bring it up when appropriate.  
 
 \begin{remark} 
-The construction $R \to R[f^{-1}]$ as discussed above is an instance of
-localization.  More generally, we can define $S^{-1}R$ for $S \subset R$
+The construction $R \to R[f^{-1}]$ as discussed above is an
+instance of
+localization. More generally, we can define $S^{-1}R$ for $S
+\subset R$
 multiplicatively closed. We can define maps
 \[ \spec S^{-1}R \to \spec R . \]
-How can you think about the construction in general? You can think of it as
+How can you think about the construction in general? You can
+think of it as
 \[ \varinjlim_{f \in S} R[f^{-1}]  \]
-which is a direct limit when you invert more and more elements.  
-
-As an example, consider $S = R - \mathfrak{p}$ for a prime $\mathfrak{p}$, and for
+which is a direct limit when you invert more and more elements.
+As an example, consider $S = R - \mathfrak{p}$ for a prime
+$\mathfrak{p}$, and for
 simplicity that $R$ is countable. We can write $S =
-S_0 \cup S_1 \cup \dots$, where each $S_k$ is generated by a finite number of
-elements $f_0, \dots, f_k$.  Then $R_{\mathfrak{p}} = \varinjlim S_k^{-1} R$.
+S_0 \cup S_1 \cup \dots$, where each $S_k$ is generated by a
+finite number of
+elements $f_0, \dots, f_k$. Then $R_{\mathfrak{p}} = \varinjlim
+S_k^{-1} R$.
 So we have
-\[ S^{-1}R = \varinjlim_k R[f_0^{-1} , f_1^{-1}, \dots, f_k^{-1}  ] = \varinjlim
+\[ S^{-1}R = \varinjlim_k R[f_0^{-1} , f_1^{-1}, \dots, f_k^{-1}
+] = \varinjlim
 R[(f_0\dots f_k)^{-1}]. \]
-The functions we invert in this construction are precisely those which do not
-contain $\mathfrak{p}$, or where ``the functions don't vanish.''  The idea is
-that to construct $\spec S^{-1}R = \spec R_{\mathfrak{p}}$, we keep cutting out
-from $\spec R$ vanishing locuses of various functions that do not
-intersect $\mathfrak{p}$.  In the end, you don't restrict to an open set, but
+The functions we invert in this construction are precisely those
+which do not
+contain $\mathfrak{p}$, or where ``the functions don't vanish.''
+The idea is
+that to construct $\spec S^{-1}R = \spec R_{\mathfrak{p}}$, we
+keep cutting out
+from $\spec R$ vanishing locuses of various functions that do
+not
+intersect $\mathfrak{p}$. In the end, you don't restrict to an
+open set, but
 to a direct limit of this.
 \end{remark} 
 
@@ -539,91 +748,144 @@ to a direct limit of this.
 
 Let $X$ be a topological space. 
 \begin{definition} 
-A \textbf{presheaf of sets} $\mathcal{F}$ on $X$ assigns to every open subset
-$U \subset X$ a set $\mathcal{F} (U)$, and to every inclusion $U \subset V$ a
+A \textbf{presheaf of sets} $\mathcal{F}$ on $X$ assigns to
+every open subset
+$U \subset X$ a set $\mathcal{F} (U)$, and to every inclusion $U
+\subset V$ a
 \textbf{restriction map}
-$\mathrm{res}^V_U : \mathcal{F}(V) \to \mathcal{F}(U)$. The restriction map is
+$\mathrm{res}^V_U : \mathcal{F}(V) \to \mathcal{F}(U)$. The
+restriction map is
 required to satisfy:
 \begin{enumerate}
 \item $\res^U_U = \id_{\mathcal{F}(U)} $ for all open sets $U$.
-\item $\res^W_U = \res^V_U \circ \res^W_V $ if $U \subset V \subset W$.
+\item $\res^W_U = \res^V_U \circ \res^W_V $ if $U \subset V
+\subset W$.
 \end{enumerate}
 
-If the sets $\mathcal{F}(U)$ are all groups (resp. rings), and the restriction
-maps are morphisms of groups (resp. rings), then we say that $\mathcal{F}$ is a
-sheaf of groups (resp. rings). Often the restriction of an element $a\in U$ to a subset $W$ is denoted $a|_W$
+If the sets $\mathcal{F}(U)$ are all groups (resp. rings), and
+the restriction
+maps are morphisms of groups (resp. rings), then we say that
+$\mathcal{F}$ is a
+sheaf of groups (resp. rings). Often the restriction of an
+element $a\in U$ to a subset $W$ is denoted $a|_W$
 \end{definition} 
 
 
-One should think of the restriction maps as kind of like restricting the
+One should think of the restriction maps as kind of like
+restricting the
 domain of a function.
-The standard example of presheaves is given in this way, in fact.
+The standard example of presheaves is given in this way, in
+fact.
 \begin{example} 
-Let $X$ be a topological space, and $\mathcal{F}$ the presheaf assigning to
-each $U \subset X$ the set of continuous functions $U \to \mathbb{R}$. The
-restriction maps come from restricting the domain of a function.
-\end{example} 
+Let $X$ be a topological space, and $\mathcal{F}$ the presheaf
+assigning to
+each $U \subset X$ the set of continuous functions $U \to
+\mathbb{R}$. The
+restriction maps come from restricting the domain of a function.\end{example} 
 
-Now, in classical algebraic geometry, there are likely to be more
-continuous functions in the Zariski topology than one really wants. One wants
+Now, in classical algebraic geometry, there are likely to be
+more
+continuous functions in the Zariski topology than one really
+wants. One wants
 to focus on functions that are given by polynomial equations.
 
 \begin{example} 
-Let $X$ be the topological space $\mathbb{C}^n$ with the topology where the
-closed sets are those defined by the zero loci of polynomials (that is, the
-topology induced on $\mathbb{C}^n$ from the Zariski topology of $\spec
-\mathbb{C}[x_1, \dots, x_n]$ via the canonical imbedding $\mathbb{C}^n
-\hookrightarrow \spec \mathbb{C}[x_1, \dots, x_n]$). Then there is a presheaf
-assigning to each open set $U$ the collection of rational functions defined
-everywhere on $U$, with the  restriction maps being the obvious ones.
+Let $X$ be the topological space $\mathbb{C}^n$ with the
+topology where the
+closed sets are those defined by the zero loci of polynomials
+(that is, the
+topology induced on $\mathbb{C}^n$ from the Zariski topology of
+$\spec
+\mathbb{C}[x_1, \dots, x_n]$ via the canonical imbedding
+$\mathbb{C}^n
+\hookrightarrow \spec \mathbb{C}[x_1, \dots, x_n]$). Then there
+is a presheaf
+assigning to each open set $U$ the collection of rational
+functions defined
+everywhere on $U$, with the restriction maps being the obvious
+ones.
 \end{example} 
 
-\add{define sheaves}
-
-\begin{definition} Let $\mathcal{F}$ be a presheaf of groups (resp. rings) on a topological space $X$. We call $\mathbb{F}$ a sheaf if $\mathcal{F}$ further satisfies the following two ``sheaf conditions.''\begin{enumerate}
-\item{If $U$ is an open set of $X$ covered by $U_i$ and there are two elements $a,b\in \mathcal{F}(U)$ such that $a|_{U_i}=b|_{U_i}$ for all $U_i$, then $a=b$.}
-\item{If $U$ is an open set of $X$ covered by $U_i$ and there are elements $a_i\in \mathcal{F}(U_i)$ such that $a_i|_{U_i\cap U_j} = a_j|_{U_i\cap U_j}$ for all $i$ and $j$, then there exists an element $a\in\mathcal{F}(U)$ that restricts to the $a_i$. Notice that by the first axiom, this element is unique.}
+\begin{definition} Let $\mathcal{F}$ be a presheaf of groups
+(resp. rings) on a topological space $X$. We call $\mathbb{F}$ a
+sheaf if $\mathcal{F}$ further satisfies the following two
+``sheaf conditions.''\begin{enumerate}
+\item{If $U$ is an open set of $X$ covered by $U_i$ and there
+are two elements $a,b\in \mathcal{F}(U)$ such that
+$a|_{U_i}=b|_{U_i}$ for all $U_i$, then $a=b$.}
+\item{If $U$ is an open set of $X$ covered by $U_i$ and there
+are elements $a_i\in \mathcal{F}(U_i)$ such that $a_i|_{U_i\cap
+U_j} = a_j|_{U_i\cap U_j}$ for all $i$ and $j$, then there
+exists an element $a\in\mathcal{F}(U)$ that restricts to the
+$a_i$. Notice that by the first axiom, this element is unique.}
 \end{enumerate}
 \end{definition}
 
-There is a process that allows one to take any presheaf and associate a sheaf to it. 
+There is a process that allows one to take any presheaf and
+associate a sheaf to it.
 \add{define sheafification}
 
-In the theory of schemes, when one wishes to replace polynomial rings over
-$\mathbb{C}$ (or an algebraically closed field) with arbitrary commutative
-rings, one must drop the idea that a sheaf is necessarily given by functions. 
-A \emph{scheme} is defined as a space with a certain type of sheaf of rings on
-it. We shall not define a scheme formally, but show how on the building blocks
-of schemes---objects of the form $\spec A$---a sheaf of rings can be defined.
+In the theory of schemes, when one wishes to replace polynomial
+rings over
+$\mathbb{C}$ (or an algebraically closed field) with arbitrary
+commutative
+rings, one must drop the idea that a sheaf is necessarily given
+by functions.
+A \emph{scheme} is defined as a space with a certain type of
+sheaf of rings on
+it. We shall not define a scheme formally, but show how on the
+building blocks
+of schemes---objects of the form $\spec A$---a sheaf of rings
+can be defined.
 
 \begin{proposition}
-Let $ A$ be a ring and let $ X = \mathrm{Spec}(A)$. Then the assignment of the ring $A_f$ to the basic open set $X_f$ defines a presheaf of rings on $X$.
+Let $ A$ be a ring and let $ X = \mathrm{Spec}(A)$. Then the
+assignment of the ring $A_f$ to the basic open set $X_f$ defines
+a presheaf of rings on $X$.
 \end{proposition}
 
 \begin{proof} \mbox{}
 
-\emph{Part (i)}. If $ X_g \subseteq X_f$ are basic open sets, then there exist $ n \geq 1$ and $ u \in A$ such that $ g^n = uf$.
+\emph{Part (i)}. If $ X_g \subseteq X_f$ are basic open sets,
+then there exist $ n \geq 1$ and $ u \in A$ such that $ g^n =
+uf$.
 
-\emph{Proof of part (i)}. Let $ S = \{g^n : n \geq 0\}$ and suppose $ S \cap (f) = \emptyset$. Then the extension $ (f)^e$ into $ S^{-1}A$ is a proper ideal, so there exists a maximal ideal $ S^{-1}\mathfrak{p}$ of $ S^{-1}A$, where $ \mathfrak{p} \cap S = \emptyset$. Since $ (f)^e \in S^{-1}\mathfrak{p}$, we see that $ f/1 \in S^{-1}\mathfrak{p}$, so $ f \in \mathfrak{p}$. But $ S \cap \mathfrak{p} = \emptyset$ implies that $ g \notin \mathfrak{p}$. This is a contradiction, since then $ \mathfrak{p} \in X_g \setminus X_f$.
+\emph{Proof of part (i)}. Let $ S = \{g^n : n \geq 0\}$ and
+suppose $ S \cap (f) = \emptyset$. Then the extension $ (f)^e$
+into $ S^{-1}A$ is a proper ideal, so there exists a maximal
+ideal $ S^{-1}\mathfrak{p}$ of $ S^{-1}A$, where $ \mathfrak{p}
+\cap S = \emptyset$. Since $ (f)^e \in S^{-1}\mathfrak{p}$, we
+see that $ f/1 \in S^{-1}\mathfrak{p}$, so $ f \in
+\mathfrak{p}$. But $ S \cap \mathfrak{p} = \emptyset$ implies
+that $ g \notin \mathfrak{p}$. This is a contradiction, since
+then $ \mathfrak{p} \in X_g \setminus X_f$.
 
-\emph{Part (ii)}. If $ X_g \subseteq X_f$, then there exists a unique map $ \rho : A_f \to A_g$, called the restriction map, which makes the following diagram commute.
+\emph{Part (ii)}. If $ X_g \subseteq X_f$, then there exists a
+unique map $ \rho : A_f \to A_g$, called the restriction map,
+which makes the following diagram commute.
 \[ \xymatrix{ & A \ar[dl] \ar[dr] & \\ A_f \ar[rr] & & A_g } \]
 
 \emph{Proof of part (ii)}. 
-Let $ n \geq 1$ and $ u \in A$ be such that $ g^n = uf$ by part (i). Note that in $ A_g$,
+Let $ n \geq 1$ and $ u \in A$ be such that $ g^n = uf$ by part
+(i). Note that in $ A_g$,
 \[ (f/1)(u/g^n) = (fu/g^n) = 1/1 = 1 \]
-which means that $ f$ maps to a unit in $ A_g$. Hence every $ f^m$ maps to a unit in $ A_g$, so the universal property of $ A_f$ yields the desired unique map $ \rho : A_f \to A_g$.
+which means that $ f$ maps to a unit in $ A_g$. Hence every $
+f^m$ maps to a unit in $ A_g$, so the universal property of $
+A_f$ yields the desired unique map $ \rho : A_f \to A_g$.
 
 \emph{Part (iii)}. 
-If $ X_g = X_f$, then the corresponding restriction $ \rho : A_f \to A_g$ is an isomorphism.
+If $ X_g = X_f$, then the corresponding restriction $ \rho : A_f
+\to A_g$ is an isomorphism.
 
 \emph{Proof of part (iii)}. 
-The reverse inclusion yields a $ \rho' : A_g \to A_f$ such that the diagram
+The reverse inclusion yields a $ \rho' : A_g \to A_f$ such that
+the diagram
 \[ \xymatrix{
 & A \ar[dr] \ar[dl] & \\
 A_f \ar@/^/[rr]^{\rho} & & A_g \ar@/^/[ll]^{\rho'}
 } \]
-commutes. But since the localization map is epic, this implies that $ \rho \rho' = \rho' \rho = \mathbf{1}$.
+commutes. But since the localization map is epic, this implies
+that $ \rho \rho' = \rho' \rho = \mathbf{1}$.
 
 \emph{Part (iv)}.
 If $ X_h \subseteq X_g \subseteq X_f$, then the diagram
@@ -640,15 +902,21 @@ Consider the following tetrahedron.
 A_f \ar@{.>}[rr] \ar[dr] & & A_h \\
 & A_g \ar[ur] &
 } \]
-Except for the base, the commutativity of each face of the tetrahedron follows from the universal property of part (ii). But its easy to see that commutativity of the those faces implies commutativity of the base, which is what we want to show.
+Except for the base, the commutativity of each face of the
+tetrahedron follows from the universal property of part (ii).
+But its easy to see that commutativity of the those faces
+implies commutativity of the base, which is what we want to
+show.
 
 \emph{Part (v)}.
-If $ X_{\tilde{g}} = X_g \subseteq X_f = X_{\tilde{f}}$, then the diagram
+If $ X_{\tilde{g}} = X_g \subseteq X_f = X_{\tilde{f}}$, then
+the diagram
 \[ \xymatrix{
 A_f \ar[r] \ar[d] & A_g \ar[d] \\
 A_{\tilde{f}} \ar[r] & A_{\tilde{g}}
 } \]
-of restriction maps commutes. (Note that the vertical maps here are isomorphisms.)
+of restriction maps commutes. (Note that the vertical maps here
+are isomorphisms.)
 
 \emph{Proof of part (v)}.
 By part (iv), the two triangles of
@@ -659,10 +927,20 @@ A_{\tilde{f}} \ar[r] & A_{\tilde{g}}
 commute. Therefore the square commutes.
 
 \emph{Part (vi)}.
-Fix a prime ideal $ \mathfrak{p}$ in $ A$. Consider the direct system consisting of rings $ A_f$ for every $ f \notin \mathfrak{p}$ and restriction maps $ \rho_{fg} : A_f \to A_g$ whenever $ X_g \subseteq X_f$. Then $ \varinjlim A_f \cong A_{\mathfrak{p}}$.
+Fix a prime ideal $ \mathfrak{p}$ in $ A$. Consider the direct
+system consisting of rings $ A_f$ for every $ f \notin
+\mathfrak{p}$ and restriction maps $ \rho_{fg} : A_f \to A_g$
+whenever $ X_g \subseteq X_f$. Then $ \varinjlim A_f \cong
+A_{\mathfrak{p}}$.
 
 \emph{proof of part (vi)}.
-First, note that since $ f \notin \mathfrak{p}$ and $ \mathfrak{p}$ is prime, we know that $ f^m \notin \mathfrak{p}$ for all $ m \geq 0$. Therefore the image of $ f^m$ under the localization $ A \to A_\mathfrak{p}$ is a unit, which means the universal property of $ A_f$ yields a unique map $ \alpha_f : A_f \to A_\mathfrak{p}$ such that the following diagram commutes.
+First, note that since $ f \notin \mathfrak{p}$ and $
+\mathfrak{p}$ is prime, we know that $ f^m \notin \mathfrak{p}$
+for all $ m \geq 0$. Therefore the image of $ f^m$ under the
+localization $ A \to A_\mathfrak{p}$ is a unit, which means the
+universal property of $ A_f$ yields a unique map $ \alpha_f :
+A_f \to A_\mathfrak{p}$ such that the following diagram
+commutes.
 \[ \xymatrix{
 & A \ar[dr] \ar[dl] & \\
 A_f \ar[rr]^{\alpha_f} & & A_{\mathfrak{p}}
@@ -673,47 +951,111 @@ Then consider the following tetrahedron.
 A_f \ar@{.>}[rr] \ar[dr] & & A_h \\
 & A_\mathfrak{p} \ar[ur] &
 } \]
-All faces except the bottom commute by construction, so the bottom face commutes as well. This implies that the $ \alpha_f$ commute with the restriction maps, as necessary. Now, to see that $ \varinjlim A_f \cong A_\mathfrak{p}$, we show that $ A_\mathfrak{p}$ satisfies the universal property of $ \varinjlim A_f$.
+All faces except the bottom commute by construction, so the
+bottom face commutes as well. This implies that the $ \alpha_f$
+commute with the restriction maps, as necessary. Now, to see
+that $ \varinjlim A_f \cong A_\mathfrak{p}$, we show that $
+A_\mathfrak{p}$ satisfies the universal property of $ \varinjlim
+A_f$.
 
-Suppose $ B$ is a ring and there exist maps $ \beta_f : A_f \to B$ which commute with the restrictions. Define $ \beta : A \to B$ as the composition $ A \to A_f \to B$. The fact that $ \beta$ is independent of choice of $ f$ follows from the commutativity of the following diagram.
+Suppose $ B$ is a ring and there exist maps $ \beta_f : A_f \to
+B$ which commute with the restrictions. Define $ \beta : A \to
+B$ as the composition $ A \to A_f \to B$. The fact that $ \beta$
+is independent of choice of $ f$ follows from the commutativity
+of the following diagram.
 \[ \xymatrix{
 & A \ar[dr] \ar[dl] & \\
-A_f \ar[rr]^{\rho_{fg}} \ar[dr]^{\beta_f} & & A_g \ar[dl]_{\beta_g} \\
+A_f \ar[rr]^{\rho_{fg}} \ar[dr]^{\beta_f} & & A_g
+\ar[dl]_{\beta_g} \\
 & B
 } \]
-Now, for every $ f \notin \mathfrak{p}$, we know that $ \beta(f)$ must be a unit since $ \beta(f) = \beta_f(f/1)$ and $ f/1$ is a unit in $ A_f$. Therefore the universal property of $ A_\mathfrak{p}$ yields a unique map $ A_{\mathfrak{p}} \to B$, which clearly commutes with all the arrows necessary to make $ \varinjlim A_f \cong A_\mathfrak{p}$.
+Now, for every $ f \notin \mathfrak{p}$, we know that $
+\beta(f)$ must be a unit since $ \beta(f) = \beta_f(f/1)$ and $
+f/1$ is a unit in $ A_f$. Therefore the universal property of $
+A_\mathfrak{p}$ yields a unique map $ A_{\mathfrak{p}} \to B$,
+which clearly commutes with all the arrows necessary to make $
+\varinjlim A_f \cong A_\mathfrak{p}$.
 \end{proof}
 
 
 \begin{proposition}
-Let $ A$ be a ring and let $ X = \mathrm{Spec}(A)$. The presheaf of rings $ \mathcal{O}_X$ defined on $ X$ is a sheaf.
+Let $ A$ be a ring and let $ X = \mathrm{Spec}(A)$. The presheaf
+of rings $ \mathcal{O}_X$ defined on $ X$ is a sheaf.
 \end{proposition}
 
 \begin{proof}
-The proof proceeds in two parts. Let $ (U_i)_{i \in I}$ be a covering of $ X$ by basic open sets.
+The proof proceeds in two parts. Let $ (U_i)_{i \in I}$ be a
+covering of $ X$ by basic open sets.
 
-\emph{Part 1}. If $ s \in A$ is such that $ s_i := \rho_{X, U_i}(s) = 0$ for all $ i \in I$, then $ s = 0$.
+\emph{Part 1}. If $ s \in A$ is such that $ s_i := \rho_{X,
+U_i}(s) = 0$ for all $ i \in I$, then $ s = 0$.
 
-\emph{Proof of part 1}. Suppose $ U_i = X_{f_i}$. Note that $ s_i$ is the fraction $ s/1$ in the ring $ A_{f_i}$, so $ s_i = 0$ implies that there exists some integer $ m_i$ such that $ sf_i^{m_i} = 0$. Define $ g_i = f_i ^{m_i}$, and note that we still have an open cover by sets $ X_{g_i}$ since $ X_{f_i} = X_{g_i}$ (a prime ideal contains an element if and only if it contains every power of that element). Also $ s g_i = 0$, so the fraction $ s/1$ is still $ 0$ in the ring $ A_{g_i}$. (Essentially, all we're observing here is that we are free to change representation of the basic open sets in our cover to make notation more convenient).
+\emph{Proof of part 1}. Suppose $ U_i = X_{f_i}$. Note that $
+s_i$ is the fraction $ s/1$ in the ring $ A_{f_i}$, so $ s_i =
+0$ implies that there exists some integer $ m_i$ such that $
+sf_i^{m_i} = 0$. Define $ g_i = f_i ^{m_i}$, and note that we
+still have an open cover by sets $ X_{g_i}$ since $ X_{f_i} =
+X_{g_i}$ (a prime ideal contains an element if and only if it
+contains every power of that element). Also $ s g_i = 0$, so the
+fraction $ s/1$ is still $ 0$ in the ring $ A_{g_i}$.
+(Essentially, all we're observing here is that we are free to
+change representation of the basic open sets in our cover to
+make notation more convenient).
 
-Since $ X$ is quasicompact, choose a finite subcover $ X = X_{g_1} \cup \dotsb \cup X_{g_n}$. This means that $ g_1, \dotsc, g_n$ must generate the unit ideal, so there exists some linear combination $ \sum x_i g_i = 1$ with $ x_i \in A$. But then
-\[ s = s \cdot 1 = s \left( \sum x_i g_i \right) = \sum x_i (s g_i) = 0.\]
+Since $ X$ is quasicompact, choose a finite subcover $ X =
+X_{g_1} \cup \dotsb \cup X_{g_n}$. This means that $ g_1,
+\dotsc, g_n$ must generate the unit ideal, so there exists some
+linear combination $ \sum x_i g_i = 1$ with $ x_i \in A$. But
+then
+\[ s = s \cdot 1 = s \left( \sum x_i g_i \right) = \sum x_i (s
+g_i) = 0.\]
 
-\emph{Part 2}. Let $ s_i \in \mathcal{O}_X(U_i)$ be such that for every $ i, j \in I$,
-\[ \rho_{U_i, U_i \cap U_j}(s_i) = \rho_{U_j, U_i \cap U_j}(s_j).\]
-(That is, the collection $ (s_i)_{i \in I}$ agrees on overlaps). Then there exists a unique $ s \in A$ such that $ \rho_{X, U_i}(s) = s_i$ for every $ i \in I$.
+\emph{Part 2}. Let $ s_i \in \mathcal{O}_X(U_i)$ be such that
+for every $ i, j \in I$,
+\[ \rho_{U_i, U_i \cap U_j}(s_i) = \rho_{U_j, U_i \cap
+U_j}(s_j).\]
+(That is, the collection $ (s_i)_{i \in I}$ agrees on overlaps).
+Then there exists a unique $ s \in A$ such that $ \rho_{X,
+U_i}(s) = s_i$ for every $ i \in I$.
 
-\emph{Proof of part 2}. Let $ U_i = X_{f_i}$, so that $ s_i = a_i/(f_i^{m_i})$ for some integers $ m_i$. As in part 1, we can clean up notation by defining $ g_i = f_i^{m_i}$, so that $ s_i = a_i/g_i$. Choose a finite subcover $ X = X_{g_1} \cup \dotsb \cup X_{g_n}$. Then the condition that the cover agrees on overlaps means that
+\emph{Proof of part 2}. Let $ U_i = X_{f_i}$, so that $ s_i =
+a_i/(f_i^{m_i})$ for some integers $ m_i$. As in part 1, we can
+clean up notation by defining $ g_i = f_i^{m_i}$, so that $ s_i
+= a_i/g_i$. Choose a finite subcover $ X = X_{g_1} \cup \dotsb
+\cup X_{g_n}$. Then the condition that the cover agrees on
+overlaps means that
 \[ \frac{a_i g_j}{g_i g_j} = \frac{a_j g_i}{g_i g_j} \]
-for all $ i, j$ in the finite subcover. This is equivalent to the existence of some $ k_{ij}$ such that
+for all $ i, j$ in the finite subcover. This is equivalent to
+the existence of some $ k_{ij}$ such that
 \[ (a_i g_j - a_j g_i) (g_i g_j)^{k_{ij}} = 0.\]
-Let $ k$ be the maximum of all the $ k_{ij}$, so that $ (a_i g_j - a_j g_i)(g_i g_j)^k = 0$ for all $ i, j$ in the finite subcover. Define $ b_i = a_i g_i^k$ and $ h_i = g_i^{k+1}$. We make the following observations:
-\[ b_i h_j - b_j h_i = 0, X_{g_i} = X_{h_i}, \text{ and } s_i = a_i/g_i = b_i/h_i \]
-The first observation implies that the $ X_{h_i}$ cover $ X$, so the $ h_i$ generate the unit ideal. Then there exists some linear combination $ \sum x_i h_i = 1$. Define $ s = \sum x_i b_i$. I claim that this is the global section that restricts to $ s_i$ on the open cover.
+Let $ k$ be the maximum of all the $ k_{ij}$, so that $ (a_i g_j
+- a_j g_i)(g_i g_j)^k = 0$ for all $ i, j$ in the finite
+subcover. Define $ b_i = a_i g_i^k$ and $ h_i = g_i^{k+1}$. We
+make the following observations:
+\[ b_i h_j - b_j h_i = 0, X_{g_i} = X_{h_i}, \text{ and } s_i =
+a_i/g_i = b_i/h_i \]
+The first observation implies that the $ X_{h_i}$ cover $ X$, so
+the $ h_i$ generate the unit ideal. Then there exists some
+linear combination $ \sum x_i h_i = 1$. Define $ s = \sum x_i
+b_i$. I claim that this is the global section that restricts to
+$ s_i$ on the open cover.
 
-The first step is to show that it restricts to $ s_i$ on our chosen finite subcover. In other words, we want to show that $ s/1 = s_i = b_i/h_i$ in $ A_{h_i}$, which is equivalent to the condition that there exist some $ l_i$ such that $ (sh_i b_i) h_i^{l_i} = 0$. But in fact, even $ l_i = 0$ works:
-\[ sh_i - b_i = \left(\sum x_j b_j\right) h_i - b_i\left(\sum x_j h_j\right) = \sum x_j\left(h_i b_j - b_i h_j\right) = 0. \]
-This shows that $ s$ restricts to $ s_i$ on each set in our finite subcover. Now we need to show that in fact, it restricts to $ s_i$ for all of the sets in our cover. Choose any $ j \in I$. Then $ U_1, \dotsc, U_n, U_j$ still cover $ X$, so the above process yields an $ s'$ such that $ s'$ restricts to $ s_i$ for all $ i \in \{1, \dotsc, n, j\}$. But then $ s - s'$ satisfies the assumptions of part 1 using the cover $ \{U_1, \dotsc, U_n, U_j\}$, so this means $ s = s'$. Hence the restriction of $ s$ to $ U_j$ is also $ s_j$.
+The first step is to show that it restricts to $ s_i$ on our
+chosen finite subcover. In other words, we want to show that $
+s/1 = s_i = b_i/h_i$ in $ A_{h_i}$, which is equivalent to the
+condition that there exist some $ l_i$ such that $ (sh_i b_i)
+h_i^{l_i} = 0$. But in fact, even $ l_i = 0$ works:
+\[ sh_i - b_i = \left(\sum x_j b_j\right) h_i - b_i\left(\sum
+x_j h_j\right) = \sum x_j\left(h_i b_j - b_i h_j\right) = 0. \]
+This shows that $ s$ restricts to $ s_i$ on each set in our
+finite subcover. Now we need to show that in fact, it restricts
+to $ s_i$ for all of the sets in our cover. Choose any $ j \in
+I$. Then $ U_1, \dotsc, U_n, U_j$ still cover $ X$, so the above
+process yields an $ s'$ such that $ s'$ restricts to $ s_i$ for
+all $ i \in \{1, \dotsc, n, j\}$. But then $ s - s'$ satisfies
+the assumptions of part 1 using the cover $ \{U_1, \dotsc, U_n,
+U_j\}$, so this means $ s = s'$. Hence the restriction of $ s$
+to $ U_j$ is also $ s_j$.
 \end{proof}
 
 
