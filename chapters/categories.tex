@@ -214,8 +214,9 @@ set with a \emph{right} $G$-action.
 \end{example} 
 
 \begin{example} 
-On the category $\mathbf{Vect}$ of vector spaces over a field $k$, we have the contravariant
-functor
+On the category $\mathbf{Vect}$ of vector spaces over a field $k$, we
+have 
+the contravariant functor
 \[ V \to V^{\ast}.  \]
 sending a vector space to its dual $V^{\ast} = \hom(V,k)$. 
 Given a map $V \to W$ of vector spaces, there is an induced map
@@ -228,10 +229,22 @@ If we map $B_G \to B_G$ sending $\ast \to \ast$ and $g \to g^{-1}$, we get a
 contravariant functor. 
 \end{example} 
 
+\begin{exercise} 
+Let $\mathcal{C}$ be a category. Define the \textbf{opposite category}
+$\mathcal{C}^{op}$ of $\mathcal{C}$ to have the same objects as
+$\mathcal{C}$  but such that the morphsims between $X,Y$ in
+$\mathcal{C}^{op}$ 
+are those between $Y$ and $X$ in $\mathcal{C}$.
+Show that there is a contravariant functor $\mathcal{C} \to
+\mathcal{C}^{op}$. 
+\end{exercise}
+
 There is room, nevertheless, for something else. You could have something that
 sent an object to a map. 
 This is, I think, the reason for Maclane and Eilenberg to describe the next
 property.
+
+
 
 \section{Natural transformations}
 
@@ -371,7 +384,7 @@ There is a philosophical point to be made here. We have characterized an object
 uniquely in terms of mapping properties. We have characterized it
 \emph{uniquely up to unique isomorphism,} which is really the best you can do
 in mathematics. Two sets aren't generally the ``same,'' but they may be
-isomorphism up to unique isomorphism. They're different (unless you're Luke), but the sets are isomorphic up
+isomorphic up to unique isomorphism. They're different (unless you're Luke), but the sets are isomorphic up
 to unique isomorphism. 
 
 Now we're going to talk about a bunch of other examples, which can all be
@@ -399,7 +412,7 @@ A \ar[r] \ar[d]  &  B \ar[dd] \\
 C \ar[rd] & \\
 & Y
 }\]
-there is a unique map $X \to Y$ making the diagram
+there is a unique map $X \to Y$ making the following diagram commute:
 \[ \xymatrix{
 A \ar[r] \ar[d]  &  B \ar[d] \\ 
 C \ar[rd] \ar[r] & X  \ar[d]  \\
@@ -463,26 +476,28 @@ is that $I$ is something like the category
 or the category
 \[ \ast \rightrightarrows \ast.  \]
 We will formulate the notion of a \textbf{colimit} which will specialize to the
-push-out when $I$ is the first case. $I$ is to be called the \textbf{indexing
-category}. 
+push-out when $I$ is the first case. $I$ is to be called  the  \textbf{indexing
+category}.   
+
 
 So we will look at functors 
 \[ F: I \to \mathcal{C},  \]
-which in the case of the three-element category, will just correspond to
+which in the case of the three-element category, will just
+ correspond to
 diagrams
 \[ \xymatrix{A \ar[d]  \ar[r] &  B \\ C}.  \]
 
 We will call a \textbf{cone} on $F$ (this is an ambiguous term) an object $X
 \in \mathcal{C}$ equip'd\footnote{Imagine I wrote that with an English accent.}
-with maps $F_i \to X, \forall i \in I$ such that for all maps $i \to i' \in I$,
-the diagram below commutes:
+with maps $F_i \to X, \forall i \in I$ such that for all maps $i \to
+i' \in I$, the diagram below commutes:
 \[ \xymatrix{
 F_i \ar[d] \ar[r] &  X \\
 F_{i'} \ar[ru]
 }.\]
 
-An example would be a cone on the three-element category above: then this is
-just a commutative diagram
+An example would be a cone on the three-element category above: then
+this is just a commutative diagram
 \[ \xymatrix{
 A \ar[r]\ar[d]  &  B \ar[d]  \\
 C \ar[r] &  D
@@ -540,7 +555,6 @@ rings with unit. Then the colimit is the tensor product.
 \end{example} 
 
 So the idea unifies a whole bunch of constructions. 
-
 Now let us take a different example.
 
 \begin{example} 
@@ -558,7 +572,8 @@ tricky.
 \end{example} 
 
 \begin{definition} 
-When $I$ is just a bunch of points  $\ast, \ast, \ast, \dots$ with no nonidentity morphisms, then the
+When $I$ is just a bunch of points  $\ast, \ast, \ast, \dots$ with no 
+nonidentity morphisms, then the
 colimit over $I$ is called the \textbf{coproduct}.
 \end{definition} 
 
