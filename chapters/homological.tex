@@ -55,7 +55,7 @@ homological algebra.
 \begin{definition} A chain complex is a collection of modules
 over a ring $C_i$
 for integer values of $i$. Usually we will find that $C_i=0$ for
-negative valuesof $i$. Equipped with the $C_i$ are boundary
+negative values of $i$. Equipped with the $C_i$ are boundary
 operators
 $\partial_i:C_i\rightarrow C_{i-1}$ with the property that
 $\partial_{i-1}\partial_i=0$. Sometimes the boundary map is also
@@ -116,7 +116,7 @@ on homology, we need to check that $f_*(Im(\partial))\subseteq
 Im(\partial')$ and $f_*(\ker(\partial))\subseteq
 \ker(\partial)$. We first check the condition on images: we want
 to look at $f_i(Im(\partial_{i+1}))$. By commutativity of $f$
-and the bounary maps, this is equal to
+and the boundary maps, this is equal to
 $\partial'_{i+1}(Im(f_{i+1})$. Hence we have
 $f_i(Im(\partial_{i+1}))\subseteq Im(\partial_{i+1}')$. For the
 condition on kernels, let $x\in \ker(\partial_i)$. Then by
@@ -215,7 +215,7 @@ construct a boundary map $\partial_n:C_n\rightarrow C_{n-1}$ to
 take a map $\sigma^n:\Delta^n\rightarrow X$ to
 $\sum_{i=0}^n(-1)^i\sigma^n|_{\Delta^n_{\hat{i}}}$. Verify that
 $\partial^2=0$ (hence making $C_*$ into a chain complex known as
-the ``singular chain complex of $X$``. Its homology groups are
+the ``singular chain complex of $X$R''. Its homology groups are
 the ``singular homology groups''. \end{exercise}
 \begin{exercise} Compute the singular homology groups of a
 point. \end{exercise}
@@ -227,7 +227,6 @@ such that for any map $P\rightarrow M$ and a surjection
 $N\rightarrow M$, there
 is a lift $P\rightarrow N$ making the diagram commute.
 \end{definition}
-\begin{example} All free objects are projective. \end{example}
 
 \begin{example} All free objects are projective. \end{example}
 Projective objects are useful in defining chain exact sequences
@@ -353,7 +352,7 @@ assumed to be covariant). In the following, we see an example of when right
 derived functors can be computed using projective
 resolutions.
 
-\newcommand{\ext}{\mathrm{Ext}}
+\newcommand{\ext}{\operatorname{Ext}}
 \subsection{$\ext$ functors}
 
 \begin{definition} The right derived functors of $Hom(-,N)$ are
@@ -573,7 +572,7 @@ injective, you're
 done; if not, there's some piece of evidence $N'$ is not
 injective, and that
 piece of evidence lets you extend $N'$. The claim is that if
-youdo it
+you do it
 carefully, you eventually end up at an injective module.
 
 \end{proof}
@@ -633,7 +632,7 @@ by adding along the diagonals. Namely, the $n$th term
 is $C'_n = \bigoplus_{i+j=n} C_{ij}$. This \emph{total complex}
 will receive a
 map from the chain complex used to compute the $\ext$ groups
-anda chain
+and a chain
 complex used to compute the $\ext'$ groups. There are maps on
 cohomology,
 \[ \ext^i(M,N) \to H^i(C'_*), \quad \ext^i(M,N)' \to H^i(C'_*).
@@ -672,7 +671,7 @@ local ring. Let $k = R/\mathfrak{m}$.
 
 Let $M \neq 0$ be a finitely generated $R$-module.
 
-\newcommand{\depth}{\mathrm{depth}}
+\newcommand{\depth}{\operatorname{depth}}
 \begin{definition}
 The \textbf{depth} of $M$ is equal to the smallest integer $i$
 such that
@@ -980,7 +979,7 @@ too small.
 Anyway, we shall not say much more about Cohen-Macaulayness, but
 instead focus
 on understanding regular local rings. We want, for next time,
-tounderstand the relationship
+to understand the relationship
 between depth and lengths of projective resolutions.
 We will prove:
 
@@ -1374,7 +1373,7 @@ $M$ is not
 free, so $K \neq 0$.
 
 Recall that the depth of $M$ is the smallest value $i$ such
-that$\ext^i(R/\mathfrak{m}, M) \neq 0$. So we should look at thelong exact
+that$\ext^i(R/\mathfrak{m}, M) \neq 0$. So we should look at the long exact
 sequence from the above short exact sequence:
 \[ \ext^i(R/\mathfrak{m}, P) \to  \ext^i(R/\mathfrak{m},M)  \to
 \ext^{i+1}(R/\mathfrak{m}, K) \to \ext^{i+1}(R/\mathfrak{m},
@@ -1531,7 +1530,7 @@ $S'$-module. Then, for any finitely generated $S$-module $M$,
 With this, the theorem will be proved.
 
 \begin{remark}
-This result generealizes to the semi-local case, which is how
+This result generalizes to the semi-local case, which is how
 one side-steps
 the issue above.
 \end{remark}
