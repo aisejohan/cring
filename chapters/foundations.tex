@@ -737,57 +737,6 @@ A functor is exact if and only if it is both left and right exact.
 
 \add{further explanation, exactness of filtered colimits}
 
-\subsection{Free modules}
-
-We now describe a simple way of constructing modules over a ring, and an
-important class of modules.
-
-\begin{definition} 
-A module $M$ is \textbf{free} if it is isomorphic to $\bigoplus_I R$ for some
-index set $I$. The cardinality of $I$ is called the \textbf{rank}.
-\end{definition} 
-
-\begin{example} 
-$R$ is the simplest example of a free module.
-\end{example} 
-
-The claim now is that the notion of ``rank'' is well-defined for a free module. Indeed, suppose
-$\bigoplus_I R$ and $\bigoplus_J R$ are isomorphic; we must show that $I$ and
-$J$ have the same cardinality. Choose a maximal ideal $\mathfrak{m}
-\subset R$. Then, by applying the functor $M \to
-M/\mathfrak{m}M$, we find that the $R/\mathfrak{m}$-\emph{vector spaces}
-\[ \bigoplus_I R/\mathfrak{m}, \quad \bigoplus_J R/\mathfrak{m}  \]
-are isomorphic. By linear algebra, $I$ and $J$ have the same cardinality. 
-
-
-Free modules have a bunch of nice properties. The first is that it is very
-easy to map out of a free module.
-\begin{example} 
-Let $I$ be an indexing set, and $M$ an $R$-module. Then to give a morphism
-\[ \bigoplus_I R \to M  \]
-is equivalent to picking an element of $M$ for each $i \in I$. Indeed, given
-such a collection of elements $\left\{m_i\right\}$, we send the generator of $\bigoplus_I R$ with a 1
-in the $i$th spot and zero elsewhere to $m_i$.
-\end{example} 
-
-Another way of saying this is that the free module $\bigoplus_I R$ represents
-the functor $M \to M^I$. We have already seen a special case of this for $I$ a
-one-element set (Exercise~\ref{moduleunderlyingsetrepresentable}).
-
-The next claim is that free modules form a reasonably large class of the
-category of $R$-modules.
-
-\begin{proposition} 
-Given an $R$-module $M$, there is a free module $F$ and a surjection
-\[ F \twoheadrightarrow M.  \]
-\end{proposition} 
-\begin{proof} 
-We let $F$ to be the free $R$-module on the elements $e_m$, one for each $m
-\in M$. We define the map
-\[ F \to M  \]
-by describing the image of each of the generators $e_m$: we just send each
-$e_m$ to $m \in M$. It is clear that this map is surjective.
-\end{proof} 
 \section{Ideals}
 
 The notion of an \emph{ideal} has already been defined. Now we will introduce additional terminology related to the theory of ideals.
@@ -820,7 +769,7 @@ consisting only of the zero element, and the unit element $(1)$ consisting of al
 $R$.
 
 
-\begin{definition} 
+\begin{definition} \label{maximalideal}
 An ideal $I \subset R$ is called \textbf{maximal}\footnote{Maximal with
 respect to not being the unit ideal.} if 
 \begin{enumerate}[\textbf{M} 1]
@@ -938,7 +887,7 @@ multiple of $x$, implying that $x$ has a multiplicative inverse.
 
 So fields also have an uninteresting ideal structure.
 
-\begin{corollary} 
+\begin{corollary} \label{maximalfield}
 If $R$ is a ring and $I \subset R$ is an ideal, then $I$ is maximal if and only
 if $R/I$ is a field.
 \end{corollary} 
@@ -1125,6 +1074,65 @@ order and multiplication by units.
 \section{Basic properties of modules}
 
 \subsection{Free modules}
+
+We now describe a simple way of constructing modules over a ring, and an
+important class of modules.
+
+\begin{definition} 
+A module $M$ is \textbf{free} if it is isomorphic to $\bigoplus_I R$ for some
+index set $I$. The cardinality of $I$ is called the \textbf{rank}.
+\end{definition} 
+
+\begin{example} 
+$R$ is the simplest example of a free module.
+\end{example} 
+
+The claim now is that the notion of ``rank'' is well-defined for a free
+module. To see this, we will have to use the notion 
+of a \emph{maximal ideal} (Definition~\ref{maximalideal}) and
+Corollary~\ref{maximalfield}.
+Indeed, suppose
+$\bigoplus_I R$ and $\bigoplus_J R$ are isomorphic; we must show that $I$ and
+$J$ have the same cardinality. Choose a maximal ideal $\mathfrak{m}
+\subset R$. Then, by applying the functor $M \to
+M/\mathfrak{m}M$, we find that the $R/\mathfrak{m}$-\emph{vector spaces}
+\[ \bigoplus_I R/\mathfrak{m}, \quad \bigoplus_J R/\mathfrak{m}  \]
+are isomorphic. By linear algebra, $I$ and $J$ have the same cardinality. 
+
+
+Free modules have a bunch of nice properties. The first is that it is very
+easy to map out of a free module.
+\begin{example} 
+Let $I$ be an indexing set, and $M$ an $R$-module. Then to give a morphism
+\[ \bigoplus_I R \to M  \]
+is equivalent to picking an element of $M$ for each $i \in I$. Indeed, given
+such a collection of elements $\left\{m_i\right\}$, we send the generator of $\bigoplus_I R$ with a 1
+in the $i$th spot and zero elsewhere to $m_i$.
+\end{example}
+
+\begin{example} 
+In a domain, every principal ideal (other than zero) is a free module of rank
+one.
+\end{example} 
+
+Another way of saying this is that the free module $\bigoplus_I R$ represents
+the functor $M \to M^I$. We have already seen a special case of this for $I$ a
+one-element set (Exercise~\ref{moduleunderlyingsetrepresentable}).
+
+The next claim is that free modules form a reasonably large class of the
+category of $R$-modules.
+
+\begin{proposition} 
+Given an $R$-module $M$, there is a free module $F$ and a surjection
+\[ F \twoheadrightarrow M.  \]
+\end{proposition} 
+\begin{proof} 
+We let $F$ to be the free $R$-module on the elements $e_m$, one for each $m
+\in M$. We define the map
+\[ F \to M  \]
+by describing the image of each of the generators $e_m$: we just send each
+$e_m$ to $m \in M$. It is clear that this map is surjective.
+\end{proof} 
 
 \subsection{Finitely generated modules}
 
