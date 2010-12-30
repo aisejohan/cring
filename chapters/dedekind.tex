@@ -208,7 +208,9 @@ Thus we only need to prove that $\mathfrak{m} \mathfrak{m}^{-1} = \mathfrak{m}$ 
 \end{lemma}
 \begin{proof}
 
-This follows by the Cayley-Hamilton theorem, and is a standard criterion for integrality.  (It can even be generalized to faithful finitely generated $R$-modules.)  Cf. \cite{langalgebra}.
+This follows by the Cayley-Hamilton theorem, and is a standard criterion for
+integrality.  (It can even be generalized to faithful finitely generated
+$R$-modules.)  Cf. \cite{La02}.
 \end{proof}
 
 So returning back above, $a \notin R$ is integral over $R$, a contradiction by integrally closedness.
@@ -274,7 +276,8 @@ Then, by the following lemma, every prime ideal is principal.  Hence every ideal
 \end{proof}
 \begin{lemma} Let $R$ be a UFD, and let $\mathfrak{p}$ be a prime ideal which contains no proper prime subideal except for $0$.  Then $\mathfrak{p}$ is principal.
 \end{lemma}
-The converse holds as well; a domain is a UFD if and only if every prime ideal of height one is principal.  Cf. \cite{eisenbud}.
+The converse holds as well; a domain is a UFD if and only if every prime ideal
+of height one is principal.  Cf. \cite{Ei95}.
 \begin{proof}
 First, $\mathfrak{p}$ contains an element $x \neq 0$, which we factor into irreducibles $\pi_1 \dots \pi_k$.  One of these, say $\pi_j$, belongs to $\mathfrak{p}$, so $\mathfrak{p} \supset (\pi_j)$. Since $\mathfrak{p}$ is minimal among nonzero prime ideals, we have $\mathfrak{p} = (\pi_j)$.  (Note that $(\pi_j)$ is prime by unique factorization.)
 \end{proof}
@@ -288,7 +291,7 @@ One of the reasons Dedekind domains are so important is
 \begin{theorem} \label{intclosdedekind} Let $A$ be a Dedekind domain with quotient field $K$, $L$ a finite separable extension of $K$, and $B$ the integral closure of $A$ in $L$.  Then $B$ is Dedekind.
 \end{theorem}
 
-This can be generalized to the Krull-Azizuki theorem, cf. \cite{bourbaki}.
+This can be generalized to the Krull-Azizuki theorem, cf. \cite{Bo68}.
 
 \begin{proof}  We need to check that $B$ is Noetherian, integrally, closed, and of dimension 1.
 
@@ -403,16 +406,20 @@ The following result will be crucial in constructing the so-called ``Frobenius e
 In this case, the extension $B/\mathfrak{P}/A/\mathfrak{p}$ is separable, and we can choose $\ol{x} \in B/\mathfrak{P}$ generating it by the primitive element theorem.  We will show that $\ol{x}$ satisfies a polynomial equation  $\ol{P}(X) \in A/\mathfrak{p}[X]$ all of whose roots lie in $B/\mathfrak{P}$, which will prove that the residue field extension is Galois.  Moreover, we will show that all the nonzero roots of $\ol{P}$ in $B/\mathfrak{P}$ are conjugates of $\ol{x}$ under elements of $G_{\mathfrak{P}}$.  This latter will imply surjectivity of the homomorphism $\sigma \to \ol{\sigma}$, because it shows that any conjugate of $\ol{x}$ under $G(B/\mathfrak{P}/A/\mathfrak{p})$ is a conjugate under $G_{\mathfrak{P}}$.
 
 We now construct the aforementioned polynomial.   Let $x \in B$ lift $\ol{x}$.  Choose $y \in B$ such that $y \equiv x \mod \mathfrak{P}$ but $y \equiv 0 \mod \mathfrak{Q}$ for the other primes $\mathfrak{Q}$ lying over $\mathfrak{p}$.  We take $P(X) = \prod_{\sigma \in G} (X - \sigma(y)) \in A[X]$. Then the reduction $\ol{P}$ satisfies $\ol{P}(\ol{x})= \ol{P}(\ol{y}) = 0$, and $\ol{P}$ factors completely (via $\prod_{\sigma} (X - \ol{\sigma(t)})$) in $B/\mathfrak{P}[X]$.  This implies that the residue field extension is Galois, as already stated. 
-But it is also clear that the polynomial $\ol{P}(X)$ has roots of zero and $\sigma(\ol{y}) = \sigma(\ol{x})$ for $\sigma \in G_{\mathfrak{P}}$.  This completes the proof fo the other assertion, and hence the proposition.
+But it is also clear that the polynomial $\ol{P}(X)$ has roots of zero and $\sigma(\ol{y}) = \sigma(\ol{x})$ for $\sigma \in G_{\mathfrak{P}}$.  This completes the proof of the other assertion, and hence the proposition.
 \end{proof}
 
 \begin{definition} 
-The kernel of the map $\sigma \to \ol{\sigma}$ is called the \textbf{inertia group} $T_{\mathfrak{P}}$.  Its fixed field is called the \textbf{inertia field}
+The kernel of the map $\sigma \to \ol{\sigma}$ is called the \textbf{inertia
+group} $T_{\mathfrak{P}}$.  Its fixed field is called the \textbf{inertia
+field}.
 \end{definition}
 
 These groups will resurface significantly in the future.
 
-\begin{remark} Although we shall never need this in the future, it is of interest to see what happens when the extension $L/K$ is \emph{purely inseparable}.\footnote{Cf. \cite{langalgebra}, for instance.}  Suppose $A$ is integrally closed in $K$, and $B$ is the integral closure in $L$.  Let the characteristic be $p$, and the degree $[L:K] = p^i$.
+\begin{remark} Although we shall never need this in the future, it is of
+interest to see what happens when the extension $L/K$ is \emph{purely
+inseparable}.\footnote{Cf. \cite{La02}, for instance.}  Suppose $A$ is integrally closed in $K$, and $B$ is the integral closure in $L$.  Let the characteristic be $p$, and the degree $[L:K] = p^i$.
 In this case, $x \in B$  if and only if $x^{p^i} \in A$. Indeed, it is clear that the condition mentioned implies integrality.  Conversely, if $x$ is integral, then so is $x^{p^i}$, which belongs to $K$ (by basic facts about purely inseparable extensions).  Since $A$ is integrally closed, it follows that $x^{p^i} \in A$.
 
 Let now $\mathfrak{p} \subset A$ be a prime ideal.  I claim that there is precisely one prime ideal $\mathfrak{P}$ of $B$ lying above $A$, and $\mathfrak{P}^{p^i} = \mathfrak{p}$.  Namely, this ideal consists of $x \in B$ with $x^{p^i} \in \mathfrak{p}$!  The proof is straightforward; if $\mathfrak{P}$ is \emph{any} prime ideal lying over $\mathfrak{p}$, then $x \in \mathfrak{P}$ iff $x^{p^i} \in L \cap \mathfrak{P} = \mathfrak{p}$.   In a terminology to be explained later, $\mathfrak{p}$ is \emph{totally ramified.}
