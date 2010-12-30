@@ -236,3 +236,115 @@ is $R$. The converse is false!
 
 
 
+\section{Interpretation via Tor}
+
+Recall that the derived functors of the tensor product functor are denoted by $\mathrm{Tor} _R^i, i \geq 0$.  So $\mathrm{Tor} _R^0(M,N) = M \otimes N$.  These functors are symmetric in both variables, and  given an exact sequence
+\[ 0 \to N' \to N \to N'' \to 0 \]
+we have a long exact sequence
+\[ \mathrm{Tor} ^i(N',M) \to \mathrm{Tor} ^i(N,M) \to \mathrm{Tor} ^i(N'',M ) \to \mathrm{Tor} ^{i-1}(N',M) \to \dots \]
+For this, cf. books on homological algebra.
+
+One of the basic applications of this is that for a flat module $M$, the tor-functors vanish for $i \geq 1$ (whatever be $N$).
+Indeed, recall that $\mathrm{Tor} (M,N)$ is computed by taking a projective resolution of $N$,
+\[ \dots \to P_2 \to P_1 \to P_0 \to M \to 0 \]
+tensoring with $M$, and taking the homology.  But tensoring with $M$ is exact if we have flatness, so the higher $\mathrm{Tor} $ modules vanish.
+
+Conversely, suppose $\mathrm{Tor} ^i(M,N) = 0$ for all $N$ and $i>0$.  Then given an exact sequence,
+\[ 0 \to N'   \to N \to N'' \to 0 \]
+we get exactness of
+\[  \mathrm{Tor} _1(N'',M)  \to N' \otimes M \to N \otimes M \to N'' \otimes M \to 0 \]
+so the $\mathrm{Tor} $-vanishing (as we saw, we only needed it for $i=1$) gives flatness.
+By taking direct (filtered) limits, which preserve exactness, we can reduce to the case of checking that $\mathrm{Tor} ^1(M,N) = 0$ for $N$ finitely generated.  By using a filtration on $N$ whose quotients are of the form $R/I$ for $I \subset R$ an ideal, we find that:
+
+\begin{proposition} $M$ is flat iff $\mathrm{Tor} ^1(M,R/I)=0$ for all finitely generated ideals $I \subset R$.
+\end{proposition}
+
+Note that there is an exact sequence $0 \to I \to R \to R/I \to 0$ and
+so
+\[ \mathrm{Tor} _1(M,R)=0 \to \mathrm{Tor} _1(M,R/I) \to I \otimes M \to M \]
+is exact, and it suffices to show that
+\[ I \otimes M \to M \]
+is injective for all $I$.
+
+\begin{theorem} If $R$ is noetherian local and $M$ finitely generated and flat, then $M$ is free.
+\end{theorem}
+Indeed, let $\mathfrak{m} \subset R$ be the maximal ideal and $k$ the residue field.  Now $M/\mathfrak{m} M$ is a finitely generated $k$-vector space; choose a basis.  This induces an isomorphism
+\[ k^n \to M/\mathfrak{m} M \]
+which we can lift to a map
+\[ R^n \to M ,\]
+which is surjective by Nakayama's lemma, and which becomes an isomorphism upon being tensored with $k$.  Let $Q$ be the kernel:
+\[ 0 \to Q \to R^n \to M \to 0;\]
+then we have an exact sequence
+\[ \mathrm{Tor} ^1(k,M)=0 \to Q \otimes k \to k^n \to M/\mathfrak{m} M \to 0.\]
+As a result $Q \otimes k = Q/\mathfrak{m} Q = 0$, which implies $Q=0$ by Nakayama, so $R^n \to M$ is an isomorphism, q.e.d.
+
+\section{Flatness over a local ring}
+
+Let $R$ be a noetherian local ring with maximal ideal $\mathfrak{m}$ and residue field $k$, $S$ be a local finitely generated $R$-algebra with $\mathfrak{m}S \subset \mathfrak{n}$ for $\mathfrak{n}$ the maximal ideal of $S$, and $M$ a finitely generated $S$-module.
+
+\begin{theorem} $M$ is flat over $R$ iff
+\[ \mathrm{Tor} ^1_R( k, M) = 0.\]
+\end{theorem}
+
+\begin{proof} 
+Necessity is immediate.  What we have to prove is sufficiency.
+
+First, I make the following claim. If $N$ is an $R$-module of finite length, then
+\[ \mathrm{Tor} ^1_R( N, M)=0.\]
+This is because $N$ has by devissage a filtration $N_i$ whose quotients are of the form $R/\mathfrak{p}$ for $\mathfrak{p}$ prime and (by finite length hypothesis) $\mathfrak{p}= \mathfrak{m}$.  
+Then the result is true $N_0=0 \subset N$ trivially.  We climb up the filtration piece by piece inductively; if $\mathrm{Tor} ^1_R(N_i, M)=0$, then the exact sequence
+\[ 0 \to N_i \to N_{i+1} \to k \to 0 \]
+yields
+\[ \mathrm{Tor} ^1_R(N_i, M) \to \mathrm{Tor} ^1_R(N_{i+1}, M) \to 0 \]
+from the long exact sequence of $\mathrm{Tor} $ and the hypothesis on $M$.
+The claim is proved.
+
+
+The idea behind this proof is to show that $I \otimes_RM \to M$ is injective for any $I \subset R$.  We will use some diagram chasing and the Krull intersection theorem on the kernel $K$ of this map, to interpolate between it and various quotients by powers of $\mathfrak{m}$.
+First we write some exact sequences.
+
+We have an exact sequence
+\[ 0 \to \mathfrak{m}^t \cap I \to I \to I/I \cap \mathfrak{m}^t \to 0\]
+which we tensor with $M$:
+\[   \mathfrak{m}^t \cap I \otimes M \to I \otimes M \to I/I \cap \mathfrak{m}^t \otimes M \to 0.\]
+
+The sequence
+\[ 0 \to  I/I  \cap \mathfrak{m}^t \to R/\mathfrak{m}^t \to R/(I+\mathfrak{m}^t) \to 0\]
+is also exact, and tensoring with $M$ yields an exact sequence:
+\[ 0 \to  I/I  \cap \mathfrak{m}^t \otimes M  \to M/\mathfrak{m}^tM  \to M/(\mathfrak{m}^t  + I) M \to 0\]
+because $\mathrm{Tor} ^1_R(M,   R/(I+\mathfrak{m}^t))=0$ (finite length hypothesis.
+
+
+Let us draw the following commutative diagram:\\
+\xymatrix{
+& & 0 \ar[d] \\
+\mathfrak{m}^t \cap I \otimes M \ar[r] & I \otimes M \ar[r] & I/I \cap \mathfrak{m}^t \otimes M \ar[d] \\
+& & M/\mathfrak{m}^t M 
+}
+
+where the column and the row are exact.
+As a result, if an element in $I \otimes M$ goes to zero in $M$ (a fortiori in  $M/\mathfrak{m}^tM$) it must come from $\mathfrak{m}^t \cap I \otimes M$ for all $t$.  Thus it belongs to $\mathfrak{m}^t(I \otimes M)$ for all $t$, and the Krull intersection theorem (applied to $S$, since $\mathfrak{m}S \subset \mathfrak{n}$) implies it is zero.
+
+\end{proof} 
+
+\subsection{The infinitesimal criterion}
+
+\begin{theorem} Let $M$ be a module over a noetherian local ring $R$.  Then $M$ is flat iff $M/\mathfrak{m}^tM$ is flat over $R/\mathfrak{m}^t$ for all $t>0$.
+\end{theorem}
+\begin{proof} 
+One direction is easy, because if $M$ is a flat $R$-module and $S$ an $R$-algebra, then $M \otimes_R S$ is flat over $S$. 
+For the other direction, take the same commutative diagram as before:\\
+\xymatrix{
+& & 0 \ar[d] \\
+\mathfrak{m}^t \cap I \otimes M \ar[r] & I \otimes M \ar[r] & I/I \cap \mathfrak{m}^t \otimes M \ar[d] \\
+& & M/\mathfrak{m}^t M 
+}
+
+The horizontal sequence was always exact.  The vertical sequence can be argued to be exact by tensoring the exact sequence 
+\[ 0 \to  I/I  \cap \mathfrak{m}^t \to R/\mathfrak{m}^t \to R/(I+\mathfrak{m}^t) \to 0\]
+of $R/\mathfrak{m}^t$-modules with $M/\mathfrak{m}^tM$, and using flatness.
+Thus we get flatness of $M$ as before.
+
+\end{proof} 
+Incidentally, if we combine the local and infinitesimal criteria fo flatness, we get a little more.
+
