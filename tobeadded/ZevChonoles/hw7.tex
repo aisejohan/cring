@@ -10,9 +10,24 @@
 Zev Chonoles \hfill 
 \underline{MATH 2520 - Assignment 7} \hfill \today\\
 
-\num{1.} If $S$ is finite over $R$, then $S=Rs_1+\cdots+Rs_a$ for some $s_i\in S$. If $M$ is finitely generated as an $S$-module, then $M=Sm_1+\cdots+Sm_b$ for some $m_j\in M$. Thus $M=(Rs_1+\cdots+Rs_a)m_1+\cdots+(Rs_1+\cdots+Rs_a)m_b=Rs_1m_1+\cdots+Rs_am_b$, i.e. $M$ is finitely generated as an $R$-module by the $ab$ elements $s_im_j\in M$.      \\
+\num{1.} If $S$ is finite over $R$, then $S=Rs_1+\cdots+Rs_a$
+for some $s_i\in S$. If $M$ is finitely generated as an
+$S$-module, then $M=Sm_1+\cdots+Sm_b$ for some $m_j\in M$. Thus
+$M=(Rs_1+\cdots+Rs_a)m_1+\cdots+(Rs_1+\cdots+Rs_a)m_b=Rs_1m_1+\cdots+Rs_am_b$,
+i.e. $M$ is finitely generated as an $R$-module by the $ab$ elements
+$s_im_j\in M$.      \\
 
-\num{2.} If $r_0s^n+\cdots+r_{n-1}s+r_n=0$ and $r_n$ is a unit, then $s(r_0s^{n-1}+\cdots+r_{n-1})=-r_n$, and in general, if $ab=u$ for a unit $u$, then $a$ and $b$ must both be units. Thus $s$ is a unit. If $S$ is an integral extension of $R$, then every $s\in S$ satisfies an integral equation over $R$ of minimal degree. Suppose $s^n+r_0s^{n-1}+\cdots+r_{n-2}=0$ is an integral equation over $R$ of minimal degree. Then $r_n$ can't be 0, because then we would have $s(s^{n-1}+r_0s^{n-2}+\cdots+r_{n-1})=0$, and $s\neq 0$, so that $s$ satisfies an integral equation of lower degree. But $r_n\in R$, $r_n\neq 0$ implies $r_n$ is a unit since $R$ is a field, and we showed that this implies that $s$ is a unit. Thus all non-zero elements of $S$ are units, i.e. $S$ is a field.       \\
+\num{2.} If $r_0s^n+\cdots+r_{n-1}s+r_n=0$ and $r_n$ is a unit, then
+$s(r_0s^{n-1}+\cdots+r_{n-1})=-r_n$, and in general, if $ab=u$ for a unit
+$u$, then $a$ and $b$ must both be units. Thus $s$ is a unit. If $S$ is an
+integral extension of $R$, then every $s\in S$ satisfies an integral equation
+over $R$ of minimal degree. Suppose $s^n+r_0s^{n-1}+\cdots+r_{n-2}=0$ is an
+integral equation over $R$ of minimal degree. Then $r_n$ can't be 0, because
+then we would have $s(s^{n-1}+r_0s^{n-2}+\cdots+r_{n-1})=0$, and $s\neq 0$,
+so that $s$ satisfies an integral equation of lower degree. But $r_n\in R$,
+$r_n\neq 0$ implies $r_n$ is a unit since $R$ is a field, and we showed that
+this implies that $s$ is a unit. Thus all non-zero elements of $S$ are units,
+i.e. $S$ is a field.       \\
 
 \num{3.}       \\
 
@@ -24,15 +39,48 @@ Zev Chonoles \hfill
 
 \num{7.}       \\
 
-\num{8.} (a) $\Rightarrow$ (b): Suppose $f^*$ is a closed mapping. Let $p_1\subset p_2\subset f(A)$ be prime ideals, and let $q_1\in B$ be a prime ideal such that $q_1\cap f(A)=p_1$. By the definition of the Zariski topology, $V(q_1)=\{\ell\supseteq q_1:\ell\text{ prime in }B\}\subset\text{Spec}(B)$ is a closed set, and hence $f^*(V(q_1))=\{f^{-1}(\ell)\supseteq f^{-1}(q_1)=f^{-1}(p_1):\ell\text{ prime in }B\}$ is a closed subset of Spec($A$). Preimages of prime ideals are prime, so $f^{-1}(p_1)\in\text{Spec}(A)$, and clearly $f^{-1}(p_1)\in f^*(V(q_1))$, and by the definition of the Zariski topology, the closure of $\{f^{-1}(p_1)\}\subset\text{Spec}(A)$ is $V(f^{-1}(p_1))=\{d\supseteq f^{-1}(p_1):d\text{ prime in }A\}$, and thus we must have $V(f^{-1}(p_1))\subseteq f^*(V(q_1))$. If $p_2$ is any prime ideal of $f(A)$ with $p_2\supseteq p_1$, then $f^{-1}(p_2)\supseteq f^{-1}(p_1)$, so $f^{-1}(p_2)\in  V(f^{-1}(p_1))$, and hence $f^{-1}(p_2)\in f^*(V(q_1))=\{f^{-1}(\ell)\supseteq f^{-1}(q_1)=f^{-1}(p_1):\ell\text{ prime in }B\}$. Thus there is some prime $q_2\subset B$ which has $f^{-1}(q_2)=f^{-1}(p_2)$. We know that $f(f^{-1}(p_2))=p_2$, so that $q_2\cap f(A)=p_2$. Thus $f:A\rightarrow B$ has the going-up property.\\
+\num{8.} (a) $\Rightarrow$ (b): Suppose $f^*$ is a closed mapping. Let
+$p_1\subset p_2\subset f(A)$ be prime ideals, and let $q_1\in B$
+be a prime ideal such that $q_1\cap f(A)=p_1$. By the definition
+of the Zariski topology, $V(q_1)=\{\ell\supseteq q_1:\ell\text{
+prime in }B\}\subset\text{Spec}(B)$ is a closed set, and hence
+$f^*(V(q_1))=\{f^{-1}(\ell)\supseteq f^{-1}(q_1)=f^{-1}(p_1):\ell\text{
+prime in }B\}$ is a closed subset of Spec($A$). Preimages of prime
+ideals are prime, so $f^{-1}(p_1)\in\text{Spec}(A)$, and clearly
+$f^{-1}(p_1)\in f^*(V(q_1))$, and by the definition of the Zariski
+topology, the closure of $\{f^{-1}(p_1)\}\subset\text{Spec}(A)$ is
+$V(f^{-1}(p_1))=\{d\supseteq f^{-1}(p_1):d\text{ prime in }A\}$, and
+thus we must have $V(f^{-1}(p_1))\subseteq f^*(V(q_1))$. If $p_2$ is any
+prime ideal of $f(A)$ with $p_2\supseteq p_1$, then $f^{-1}(p_2)\supseteq
+f^{-1}(p_1)$, so $f^{-1}(p_2)\in  V(f^{-1}(p_1))$, and hence $f^{-1}(p_2)\in
+f^*(V(q_1))=\{f^{-1}(\ell)\supseteq f^{-1}(q_1)=f^{-1}(p_1):\ell\text{
+prime in }B\}$. Thus there is some prime $q_2\subset B$ which has
+$f^{-1}(q_2)=f^{-1}(p_2)$. We know that $f(f^{-1}(p_2))=p_2$, so that $q_2\cap
+f(A)=p_2$. Thus $f:A\rightarrow B$ has the going-up property.\\
 
-(b) $\Rightarrow$ (c): Suppose $f:A\rightarrow B$ has the going-up property. Suppose that $q_1\subset B$ is a prime and $p_1=f^{-1}(q_1)\subset A$. Then $p_1$ is a prime, and contains the kernel $f^{-1}(0)$ of $f$. Thus $f(p_1)\subset f(A)\simeq A/f^{-1}(0)$ is prime. We also have the induced map $\tilde{f}:A/p_1\rightarrow B/q_1$, and consequently also the map $\tilde{f}^*:\text{Spec}(B/p_1)\rightarrow\text{Spec}(A/p_1)$, sending $\ell/q_1$ to $\tilde{f}^*(\ell/q_1)=\tilde{f}^{-1}(\ell/q_1)=f^{-1}(\ell)/p_1$ for primes $\ell\in B$ containing $q_1$. For any prime $p_2\subset A$ with $p_2\supset p_1$, we know that $f(p_2)\supset f(p_1)$ and that $f(p_2)\subset f(A)$ is a prime. By the assumption that $f$ has the going-up property, there exists some $q_2\subset B$ with $q_2\cap f(A)=f(p_2)\supset f(p_1)$, i.e. $f^*(q_2)=f^{-1}(q_2)=p_2\supset p_1$. Thus $\tilde{f}^*(q_2/q_1)=f^{-1}(q_2)/p_1=p_2/p_1$. Because any prime ideal of $A/p_1$ is of this form, we have that $\tilde{f}^*$ is surjective.\\
+(b) $\Rightarrow$ (c): Suppose $f:A\rightarrow B$ has the going-up
+property. Suppose that $q_1\subset B$ is a prime and $p_1=f^{-1}(q_1)\subset
+A$. Then $p_1$ is a prime, and contains the kernel $f^{-1}(0)$ of $f$. Thus
+$f(p_1)\subset f(A)\simeq A/f^{-1}(0)$ is prime. We also have the induced
+map $\tilde{f}:A/p_1\rightarrow B/q_1$, and consequently also the map
+$\tilde{f}^*:\text{Spec}(B/p_1)\rightarrow\text{Spec}(A/p_1)$, sending
+$\ell/q_1$ to $\tilde{f}^*(\ell/q_1)=\tilde{f}^{-1}(\ell/q_1)=f^{-1}(\ell)/p_1$
+for primes $\ell\in B$ containing $q_1$. For any prime $p_2\subset
+A$ with $p_2\supset p_1$, we know that $f(p_2)\supset f(p_1)$ and
+that $f(p_2)\subset f(A)$ is a prime. By the assumption that $f$ has
+the going-up property, there exists some $q_2\subset B$ with $q_2\cap
+f(A)=f(p_2)\supset f(p_1)$, i.e. $f^*(q_2)=f^{-1}(q_2)=p_2\supset p_1$. Thus
+$\tilde{f}^*(q_2/q_1)=f^{-1}(q_2)/p_1=p_2/p_1$. Because any prime ideal of
+$A/p_1$ is of this form, we have that $\tilde{f}^*$ is surjective.\\
 
 (c) $\Rightarrow$ (b):      \\
 
 % $\tilde{f}^{-1}(q_2/q_1)=p_2/p_1$.
 %
-%But the prime ideals $p_2\subset A$ with $p_2\supset p_1$ are in bijection with the prime ideals $p_2/p_1$ of $A/p_1$, and the prime ideals $q_2\subset B$ with $q_2\supset q_1$ are in bijection with the prime ideals $q_2/q_1$ of $B/q_1$, so that the map that
+%But the prime ideals $p_2\subset A$ with $p_2\supset p_1$ are in bijection
+with the prime ideals $p_2/p_1$ of $A/p_1$, and the prime ideals $q_2\subset
+B$ with $q_2\supset q_1$ are in bijection with the prime ideals $q_2/q_1$
+of $B/q_1$, so that the map that
 
 
 
@@ -49,10 +97,13 @@ Zev Chonoles \hfill
 
 
 \end{document}
-f^{-1}(q_2)/p_1=p_2/p_1$. Because any prime ideal of $A/p_1$ is of this form, we have that $\tilde{f}^*$ is surjective.\\
+f^{-1}(q_2)/p_1=p_2/p_1$. Because any prime ideal of $A/p_1$ is of this form,
+we have that $\tilde{f}^*$ is surjective.\\
 
 (c) $\Rightarrow$ (b):      \\
 
 % $\tilde{f}^{-1}(q_2/q_1)=p_2/p_1$.
 %
-%But the prime ideals $p_2\subset A$ with $p_2\supset p_1$ are in bijection with the prime ideals $p_2/p_1$ of $A/p_1$, and the prime ideals $q_2\subset B$ with $q_2\supset q_1$ are in bijection with the prime ideals $q_2/q_1$ of $
+%But the prime ideals $p_2\subset A$ with $p_2\supset p_1$ are in bijection
+with the prime ideals $p_2/p_1$ of $A/p_1$, and the prime ideals $q_2\subset
+B$ with $q_2\supset q_1$ are in bijection with the prime ideals $q_2/q_1$ of $

@@ -12,92 +12,355 @@ Zev Chonoles \hfill
 
 Skipped: 6, 10 (though I put my attempt at 6 at the end anyway)\\
 
-\num{1.} Suppose there is an $e\in R$, $e\neq0,1$, with $e^2=e$. Then $1-e\neq0,1$, and $(1-e)^2=1-2e+e^2=1-2e+e=1-e$. If $e$ were a unit with inverse $v$, $e^2=e$ would imply $e^2v=ev=1$ and hence $e=1$, contradiction. Thus $e$ is not a unit, and similarly, neither is $1-e$. Thus $(e)$ and $(1-e)$ are proper ideals, so that each has some maximal (and hence prime) ideal containing it, and thus $Z(e)$ and $Z(1-e)$ are non-empty. Recall that the Zariski topology on $\Spec(R)$ has the sets $Z(I)=\{P:P\supseteq I\}$ as its closed sets. Thus, $Z(e)$ and $Z(1-e)$ are closed sets in $\Spec(R)$. The union of $Z(e)$ and $Z(1-e)$ is all of $\Spec(R)$, because if $P\notin Z(e)$ and $P\notin Z(1-e)$, then $e\notin P$ and $1-e\notin P$, so that $e(1-e)=e-e^2=e-e=0\notin P$, contradiction. Furthermore, $Z(e)$ and $Z(1-e)$ are disjoint, because if $P\in Z(e)$ and $P\in Z(1-e)$, then $e\in P$ and $1-e\in P$, so that $e+(1-e)=1\in P$, contradiction. Thus, $Z(e)^c=Z(1-e)$ and $Z(1-e)^c=Z(e)$. Finally, $Z(e)^c=Z(1-e)$ and $Z(1-e)^c=Z(e)$ are open because $Z(e)$ and $Z(1-e)$ are closed. Thus $Z(e)$ and $Z(1-e)$ are disjoint non-empty open sets in $\Spec(R)$ whose union is all of $\Spec(R)$, so that $\Spec(R)$ is disconnected.        \\
+\num{1.} Suppose there is an $e\in R$, $e\neq0,1$, with $e^2=e$. Then
+$1-e\neq0,1$, and $(1-e)^2=1-2e+e^2=1-2e+e=1-e$. If $e$ were a unit
+with inverse $v$, $e^2=e$ would imply $e^2v=ev=1$ and hence $e=1$,
+contradiction. Thus $e$ is not a unit, and similarly, neither is $1-e$. Thus
+$(e)$ and $(1-e)$ are proper ideals, so that each has some maximal (and hence
+prime) ideal containing it, and thus $Z(e)$ and $Z(1-e)$ are non-empty. Recall
+that the Zariski topology on $\Spec(R)$ has the sets $Z(I)=\{P:P\supseteq
+I\}$ as its closed sets. Thus, $Z(e)$ and $Z(1-e)$ are closed sets in
+$\Spec(R)$. The union of $Z(e)$ and $Z(1-e)$ is all of $\Spec(R)$, because
+if $P\notin Z(e)$ and $P\notin Z(1-e)$, then $e\notin P$ and $1-e\notin P$,
+so that $e(1-e)=e-e^2=e-e=0\notin P$, contradiction. Furthermore, $Z(e)$ and
+$Z(1-e)$ are disjoint, because if $P\in Z(e)$ and $P\in Z(1-e)$, then $e\in P$
+and $1-e\in P$, so that $e+(1-e)=1\in P$, contradiction. Thus, $Z(e)^c=Z(1-e)$
+and $Z(1-e)^c=Z(e)$. Finally, $Z(e)^c=Z(1-e)$ and $Z(1-e)^c=Z(e)$ are open
+because $Z(e)$ and $Z(1-e)$ are closed. Thus $Z(e)$ and $Z(1-e)$ are disjoint
+non-empty open sets in $\Spec(R)$ whose union is all of $\Spec(R)$, so that
+$\Spec(R)$ is disconnected.        \\
 
-Conversely, suppose $\Spec(R)$ is disconnected, so that $\Spec(R)=U\cup V$ for disjoint non-empty open sets $U$ and $V$. Then $U=V^c$ and $V=U^c$, and because $U$ and $V$ are open, $V=U^c$ and $U=V^c$ are closed, so by the definition of the Zariski topology, $U=Z(I)$ and $V=Z(J)$ for some ideals $I$ and $J$. Because $Z(I)$ and $Z(J)$ are not empty, each of $I$ and $J$ has some prime ideal containing it, so that $I,J\neq(1)$. Because every $P\in\Spec(R)$ has $P\in U$ or $P\in V$ but not both, every $P\in\Spec(R)$ has either $P\supseteq I$ or $P\supseteq J$ but not both. Thus, no $P\in\Spec(R)$ contains $I+J$ (because $I+J\supseteq I$ and $I+J\supseteq J$), so that $I+J$ cannot be a proper ideal, so that $I+J=(1)$. Thus there is some $x\in I$, $y\in J$ for which $x+y=1$. Because $I,J\neq(1)$, $x$ and $y$ are not units. Because $xy\in I\cap J$ and every $P\in\Spec(R)$ contains one of $I$ and $J$, we have that $xy\in P$ for all $P\in\Spec(R)$ and hence $xy\in\bigcap P = \frak{N}$, the nilradical. Thus $(xy)^n=0$ for some $n$. We have $1=(x+y)^n=x^n+xy(\cdots)+y^n$, so $1-xy(\cdots)=x^n+y^n$, and because $xy$ is nilpotent, $xy(\cdots)$ is nilpotent and thus $x^n+y^n$ is a unit (we proved this on a homework), say with inverse $z$. Then $zx^n=zx^n(1)=zx^n(zx^n+zy^n)=(zx^n)^2+z^2(xy)^n=(zx^n)^2$, and similarly $zy^n=(zy^n)^2$. Because $x$ and $y$ are not units, $zx^n$ and $zy^n$ are not units and hence $zx^n,zy^n\neq1$. If $zx^n=0$, then we would have $x^n=0$ and thus $x^n+y^n=y^n$ would be a unit, so that $y$ would be a unit, contradiction. Thus $zx^n\neq0$, and similarly $zy^n\neq0$. Thus we have $e=zx^n\in R$, $e\neq0,1$, with $e^2=e$. \\
+Conversely, suppose $\Spec(R)$ is disconnected, so that $\Spec(R)=U\cup V$
+for disjoint non-empty open sets $U$ and $V$. Then $U=V^c$ and $V=U^c$,
+and because $U$ and $V$ are open, $V=U^c$ and $U=V^c$ are closed, so by the
+definition of the Zariski topology, $U=Z(I)$ and $V=Z(J)$ for some ideals
+$I$ and $J$. Because $Z(I)$ and $Z(J)$ are not empty, each of $I$ and $J$
+has some prime ideal containing it, so that $I,J\neq(1)$. Because every
+$P\in\Spec(R)$ has $P\in U$ or $P\in V$ but not both, every $P\in\Spec(R)$
+has either $P\supseteq I$ or $P\supseteq J$ but not both. Thus, no
+$P\in\Spec(R)$ contains $I+J$ (because $I+J\supseteq I$ and $I+J\supseteq
+J$), so that $I+J$ cannot be a proper ideal, so that $I+J=(1)$. Thus there
+is some $x\in I$, $y\in J$ for which $x+y=1$. Because $I,J\neq(1)$, $x$
+and $y$ are not units. Because $xy\in I\cap J$ and every $P\in\Spec(R)$
+contains one of $I$ and $J$, we have that $xy\in P$ for all $P\in\Spec(R)$
+and hence $xy\in\bigcap P = \frak{N}$, the nilradical. Thus $(xy)^n=0$ for
+some $n$. We have $1=(x+y)^n=x^n+xy(\cdots)+y^n$, so $1-xy(\cdots)=x^n+y^n$,
+and because $xy$ is nilpotent, $xy(\cdots)$ is nilpotent and thus $x^n+y^n$
+is a unit (we proved this on a homework), say with inverse $z$. Then
+$zx^n=zx^n(1)=zx^n(zx^n+zy^n)=(zx^n)^2+z^2(xy)^n=(zx^n)^2$, and similarly
+$zy^n=(zy^n)^2$. Because $x$ and $y$ are not units, $zx^n$ and $zy^n$
+are not units and hence $zx^n,zy^n\neq1$. If $zx^n=0$, then we would have
+$x^n=0$ and thus $x^n+y^n=y^n$ would be a unit, so that $y$ would be a unit,
+contradiction. Thus $zx^n\neq0$, and similarly $zy^n\neq0$. Thus we have
+$e=zx^n\in R$, $e\neq0,1$, with $e^2=e$. \\
 
-\num{2.} Let $f:k[x_1,\ldots,x_n]\rightarrow k[\gamma_1,\ldots,\gamma_n]$ be the obvious map, so that $R=k[\gamma_1,\ldots,\gamma_n]\simeq k[x_1,\ldots,x_n]/\ker(f)$. We know that there is an inclusion-preserving bijection between ideals of $R$ and ideals of $k[x_1,\ldots,x_n]$ containing $\ker(f)$, and that this bijection sends primes to primes and maximal ideals to maximal ideals. Thus, it is the case that each prime ideal of $R$ is equal to the intersection of the maximal ideals of $R$ containing it iff the same is true of the prime ideals of $k[x_1,\ldots,x_n]$ containing $\ker(f)$. Thus, it certainly suffices to prove that \textit{every} prime ideal of $k[x_1,\ldots,x_n]$ is the intersection of the maximal ideals containing it.\\
+\num{2.} Let $f:k[x_1,\ldots,x_n]\rightarrow k[\gamma_1,\ldots,\gamma_n]$
+be the obvious map, so that $R=k[\gamma_1,\ldots,\gamma_n]\simeq
+k[x_1,\ldots,x_n]/\ker(f)$. We know that there is an inclusion-preserving
+bijection between ideals of $R$ and ideals of $k[x_1,\ldots,x_n]$ containing
+$\ker(f)$, and that this bijection sends primes to primes and maximal
+ideals to maximal ideals. Thus, it is the case that each prime ideal of $R$
+is equal to the intersection of the maximal ideals of $R$ containing it
+iff the same is true of the prime ideals of $k[x_1,\ldots,x_n]$ containing
+$\ker(f)$. Thus, it certainly suffices to prove that \textit{every} prime
+ideal of $k[x_1,\ldots,x_n]$ is the intersection of the maximal ideals
+containing it.\\
 
-In fact, every \textit{radical} ideal of $k[x_1,\ldots,x_n]$ is the intersection of the maximal ideals containing it, by the Nullstellensatz. This is because for a radical ideal, that is an ideal $J$ for which $r(J)=J$, the Nullstellensatz says that $I(Z(J))=r(J)=J$. Thus, an $f\in k[x_1,\ldots,x_n]$ vanishes on $Z(J)$ iff $f\in J$. An $f\in k[x_1,\ldots,x_n]$ vanishes on $Z(J)$ iff $f$ vanishes on each $c=(c_1,\ldots,c_n)\in Z(J)\subset\mathbb{A}^n(k)$. But $f$ vanishes on $c\in\mathbb{A}^n(k)$ iff $f\in M_c$, where $M_c$ is the kernel of the evaluation map at $c$, that is $\text{ev}_c:k[x_1,\ldots,x_n]\rightarrow k$. The corollary to the Nullstellensatz that we proved in class is that the only maximal ideals of $k[x_1,\ldots,x_n]$ are the $M_c$ for each $c\in\mathbb{A}^n(k)$ (when $k$ is algebraically closed), and $c\in Z(J)$ iff $Z(M_c)=\{c\}\subseteq Z(J)$ iff $M_c\supseteq J$ (because the maps $I$ and $Z$ are inclusion-reversing). Thus, $f\in J$ iff $f\in M_c$ for each $M_c\supseteq J$, or equivalently, a radical ideal $J$ is the intersection of the maximal ideals containing it. All prime ideals are radical, so this proves the first part of the question. This implies that the nilradical of $R$, $\frak{N}=\bigcap_{P\text{ prime}} P=\bigcap_{P\text{ prime}}\left(\bigcap_{M\supseteq P\text{ maximal}} M\right)= \bigcap_{M\text{ maximal}} M=\frak{R}$, the Jacobson radical (because every maximal $M$ contains some prime and hence occurs in the intersection), thus establishing the second part.\\
+In fact, every \textit{radical} ideal of $k[x_1,\ldots,x_n]$
+is the intersection of the maximal ideals containing it, by the
+Nullstellensatz. This is because for a radical ideal, that is an ideal $J$ for
+which $r(J)=J$, the Nullstellensatz says that $I(Z(J))=r(J)=J$. Thus, an $f\in
+k[x_1,\ldots,x_n]$ vanishes on $Z(J)$ iff $f\in J$. An $f\in k[x_1,\ldots,x_n]$
+vanishes on $Z(J)$ iff $f$ vanishes on each $c=(c_1,\ldots,c_n)\in
+Z(J)\subset\mathbb{A}^n(k)$. But $f$ vanishes on $c\in\mathbb{A}^n(k)$
+iff $f\in M_c$, where $M_c$ is the kernel of the evaluation map at $c$,
+that is $\text{ev}_c:k[x_1,\ldots,x_n]\rightarrow k$. The corollary to the
+Nullstellensatz that we proved in class is that the only maximal ideals of
+$k[x_1,\ldots,x_n]$ are the $M_c$ for each $c\in\mathbb{A}^n(k)$ (when $k$
+is algebraically closed), and $c\in Z(J)$ iff $Z(M_c)=\{c\}\subseteq Z(J)$ iff
+$M_c\supseteq J$ (because the maps $I$ and $Z$ are inclusion-reversing). Thus,
+$f\in J$ iff $f\in M_c$ for each $M_c\supseteq J$, or equivalently, a radical
+ideal $J$ is the intersection of the maximal ideals containing it. All prime
+ideals are radical, so this proves the first part of the question. This
+implies that the nilradical of $R$, $\frak{N}=\bigcap_{P\text{ prime}}
+P=\bigcap_{P\text{ prime}}\left(\bigcap_{M\supseteq P\text{ maximal}}
+M\right)= \bigcap_{M\text{ maximal}} M=\frak{R}$, the Jacobson radical
+(because every maximal $M$ contains some prime and hence occurs in the
+intersection), thus establishing the second part.\\
 
-\num{3.} We know that there is an inclusion-preserving bijection between the ideals of $k[x,y,z]$ containing $(z^2-xy)$ and the ideals of $R=k[x,y,z]/(z^2-xy)$, given by $I\mapsto \phi(I)$ where $I\subseteq k[x,y,z]$ is an ideal and $\phi:k[x,y,z]\rightarrow R$ is the canonical map. The inverse of this bijection is obviously $J\mapsto\phi^{-1}(J)$, where $J\subseteq R$ is an ideal. Because $\phi((x,z))=\phi(\{fx+gz:f,g\in k[x,y,z]\})=\{\bar{f}\bar{x}+\bar{g}\bar{z}:\bar{f},\bar{g}\in R\}=(\bar{x},\bar{z})=P$, it must also be the case that $\phi^{-1}(P)=(x,z)$. Furthermore, we know that this bijection (and its inverse) send primes to primes. Thus, because $(x,z)\subseteq k[x,y,z]$ is a prime (because $k[x,y,z]/(x,z)\simeq k[y]$, which is an integral domain), we must also have that $\phi(x,z)=P$ is a prime. \\
+\num{3.} We know that there is an inclusion-preserving bijection
+between the ideals of $k[x,y,z]$ containing $(z^2-xy)$ and the ideals
+of $R=k[x,y,z]/(z^2-xy)$, given by $I\mapsto \phi(I)$ where $I\subseteq
+k[x,y,z]$ is an ideal and $\phi:k[x,y,z]\rightarrow R$ is the canonical
+map. The inverse of this bijection is obviously $J\mapsto\phi^{-1}(J)$,
+where $J\subseteq R$ is an ideal. Because $\phi((x,z))=\phi(\{fx+gz:f,g\in
+k[x,y,z]\})=\{\bar{f}\bar{x}+\bar{g}\bar{z}:\bar{f},\bar{g}\in
+R\}=(\bar{x},\bar{z})=P$, it must also be the case that
+$\phi^{-1}(P)=(x,z)$. Furthermore, we know that this bijection (and its
+inverse) send primes to primes. Thus, because $(x,z)\subseteq k[x,y,z]$ is
+a prime (because $k[x,y,z]/(x,z)\simeq k[y]$, which is an integral domain),
+we must also have that $\phi(x,z)=P$ is a prime. \\
 
-In general, if $S$ is a ring and $Q$ is a prime ideal, then $r(Q^n)=Q$ for any $n$, because if $x\in r(Q^n)$, there is an $m>0$ with $x^m\in Q^n\subseteq Q$, so that $x\in Q$ because $Q$ is prime. Conversely, if $x\in Q$, then $x^n\in Q^n$ for all $n$, so that $x\in r(Q^n)$ for all $n$, so that $r(Q^n)=Q$ for all $n$.\\
+In general, if $S$ is a ring and $Q$ is a prime ideal, then $r(Q^n)=Q$ for any
+$n$, because if $x\in r(Q^n)$, there is an $m>0$ with $x^m\in Q^n\subseteq Q$,
+so that $x\in Q$ because $Q$ is prime. Conversely, if $x\in Q$, then $x^n\in
+Q^n$ for all $n$, so that $x\in r(Q^n)$ for all $n$, so that $r(Q^n)=Q$
+for all $n$.\\
 
-In particular, $r(P^2)=P$. We have that $P^2=(\bar{x},\bar{z})(\bar{x},\bar{z})=(\bar{x}^2,\bar{x}\bar{z},\bar{z}^2)=(\bar{x}^2,\bar{x}\bar{z},\bar{x}\bar{y})=(\bar{x})(\bar{x},\bar{y},\bar{z})$ because $\overline{z^2-xy}=\bar{0}$ and hence $\bar{z}^2=\bar{x}\bar{y}$. Note that $\bar{x}\notin P^2$, because if $\bar{x}\in P^2=(\bar{x})(\bar{x},\bar{y},\bar{z})$, then we must have had $1\in(\bar{x},\bar{y},\bar{z})$, which is false, and $\bar{y}^n\notin P^2$ for any $n$, because if $\bar{y}^n\in P^2$ then $y^n\in (x,z)^2$, which is false. Thus, $P^2$ is not a primary ideal because $\bar{x}\bar{y}\in P^2$, but $\bar{x}\notin P^2$ and $\bar{y}^n\notin P^2$ for any $n$.\\
+In particular, $r(P^2)=P$. We have that
+$P^2=(\bar{x},\bar{z})(\bar{x},\bar{z})=(\bar{x}^2,\bar{x}\bar{z},\bar{z}^2)=(\bar{x}^2,\bar{x}\bar{z},\bar{x}\bar{y})=(\bar{x})(\bar{x},\bar{y},\bar{z})$
+because $\overline{z^2-xy}=\bar{0}$ and hence
+$\bar{z}^2=\bar{x}\bar{y}$. Note that $\bar{x}\notin P^2$, because if
+$\bar{x}\in P^2=(\bar{x})(\bar{x},\bar{y},\bar{z})$, then we must have had
+$1\in(\bar{x},\bar{y},\bar{z})$, which is false, and $\bar{y}^n\notin P^2$
+for any $n$, because if $\bar{y}^n\in P^2$ then $y^n\in (x,z)^2$, which is
+false. Thus, $P^2$ is not a primary ideal because $\bar{x}\bar{y}\in P^2$,
+but $\bar{x}\notin P^2$ and $\bar{y}^n\notin P^2$ for any $n$.\\
 
-\num{4.} There is a descending chain $M\supseteq \phi(M)\supseteq\phi^2(M)\supseteq\cdots$, which must stabilize because $M$ is Artinian. Thus $\phi^n(M)=\phi^{n+1}(M)$ for some $M$, i.e. $\phi^n(M)=\phi^n(\phi(M))$. Because $\phi$ is a monomorphism, $\phi^n$ is also a monomorphism, so that $\phi^n(M)=\phi^n(\phi(M))$ implies $M=\phi(M)$, so that $\phi$ is onto.     \\
+\num{4.} There is a descending chain $M\supseteq
+\phi(M)\supseteq\phi^2(M)\supseteq\cdots$, which must stabilize
+because $M$ is Artinian. Thus $\phi^n(M)=\phi^{n+1}(M)$ for some $M$,
+i.e. $\phi^n(M)=\phi^n(\phi(M))$. Because $\phi$ is a monomorphism, $\phi^n$ is
+also a monomorphism, so that $\phi^n(M)=\phi^n(\phi(M))$ implies $M=\phi(M)$,
+so that $\phi$ is onto.     \\
 
-\num{5.} Let $M$ be Noetherian, and consider $M^n$ for any finite $n$. Because submodules of $M^n$ are of the form $N=\{(m_1,\ldots,m_n):m_i\in N_i\}$ for some submodules $N_i\subseteq M$, and because $M$ is Noetherian any $N_i\subseteq M$ is finitely generated, say by $b_{i1},\ldots,b_{ij_i}$, we have that $N$ is generated by the $(b_{1k_1},\ldots,b_{nk_n})$ for $1\leq k_i\leq j_i$, and so that any submodule of $M^n$ is finitely generated. This implies that $M^n$ is Noetherian (we proved this in class). Because $M$ is Noetherian, it is in particular finitely generated, say by $x_1,\ldots,x_t$. Then any $\phi\in\text{End}_R(M)$ is uniquely determined by the $n$ elements $\phi(x_i)=a_i$ (of course, because $M$ is not necessarily free, not all combinations of $a_i\in M$ are necessarily possible - this doesn't matter for our purposes though). Thus, there is an injective map $f:\text{End}_R(M)\rightarrow M^n$ defined by $f(\phi)=(\phi(x_1),\ldots,\phi(x_n))$, and $f$ is a homomorphism because $f(a\phi+b\psi)=((a\phi+b\psi)(x_1),\ldots,(a\phi+b\psi)(x_n))=a(\phi(x_1),\ldots,\phi(x_n))+b(\psi(x_1),\ldots,\psi(x_n))=af(\phi)+bf(\psi)$. Thus, $\text{End}_R(M)$ is isomorphic to submodule of the Noetherian module $M^n$, and because any submodule of a Noetherian is Noetherian, we have that $\text{End}_R(M)$ is Noetherian. Now, consider the map $g:R\rightarrow\text{End}_R(M)$ defined by $g(r)=\phi_r$ where $\phi_r$ is the map on $M$ which is multiplication by $r$. By definition, the kernel of $g$ is $\Ann(M)$, so that by the first isomorphism theorem, $R/\Ann(M)$ is isomorphic to a submodule of $\text{End}_R(M)$. Because $\text{End}_R(M)$ is Noetherian, any submodule of it is Noetherian, so that $R/\Ann(M)$ is Noetherian.     \\
+\num{5.} Let $M$ be Noetherian, and consider $M^n$ for any finite $n$. Because
+submodules of $M^n$ are of the form $N=\{(m_1,\ldots,m_n):m_i\in N_i\}$
+for some submodules $N_i\subseteq M$, and because $M$ is Noetherian any
+$N_i\subseteq M$ is finitely generated, say by $b_{i1},\ldots,b_{ij_i}$,
+we have that $N$ is generated by the $(b_{1k_1},\ldots,b_{nk_n})$ for
+$1\leq k_i\leq j_i$, and so that any submodule of $M^n$ is finitely
+generated. This implies that $M^n$ is Noetherian (we proved this
+in class). Because $M$ is Noetherian, it is in particular finitely
+generated, say by $x_1,\ldots,x_t$. Then any $\phi\in\text{End}_R(M)$
+is uniquely determined by the $n$ elements $\phi(x_i)=a_i$ (of course,
+because $M$ is not necessarily free, not all combinations of $a_i\in M$ are
+necessarily possible - this doesn't matter for our purposes though). Thus,
+there is an injective map $f:\text{End}_R(M)\rightarrow M^n$ defined
+by $f(\phi)=(\phi(x_1),\ldots,\phi(x_n))$, and $f$ is a homomorphism because
+$f(a\phi+b\psi)=((a\phi+b\psi)(x_1),\ldots,(a\phi+b\psi)(x_n))=a(\phi(x_1),\ldots,\phi(x_n))+b(\psi(x_1),\ldots,\psi(x_n))=af(\phi)+bf(\psi)$.
+Thus, $\text{End}_R(M)$ is isomorphic to submodule of the Noetherian
+module $M^n$, and because any submodule of a Noetherian is Noetherian,
+we have that $\text{End}_R(M)$ is Noetherian. Now, consider the map
+$g:R\rightarrow\text{End}_R(M)$ defined by $g(r)=\phi_r$ where $\phi_r$ is the
+map on $M$ which is multiplication by $r$. By definition, the kernel of $g$ is
+$\Ann(M)$, so that by the first isomorphism theorem, $R/\Ann(M)$ is isomorphic
+to a submodule of $\text{End}_R(M)$. Because $\text{End}_R(M)$ is Noetherian,
+any submodule of it is Noetherian, so that $R/\Ann(M)$ is Noetherian.     \\
 
-\num{7.} \rmfamily \normalsize Suppose $M$ is a finitely generated flat module over a local Noetherian ring, and suppose $M=(m_1,\ldots,m_n)$ where $n$ is minimal. Let $f:R^n\rightarrow M$ be the epimorphism with $f(x_i)=m_i$. Because $R^n$ is a finitely generated module over a Noetherian ring $R$, it is a Noetherian module (we proved this in class), so $\ker(f)\subset R^n$ will also be finitely generated. We have the exact sequence
+\num{7.} \rmfamily \normalsize Suppose $M$ is a finitely generated flat module
+over a local Noetherian ring, and suppose $M=(m_1,\ldots,m_n)$ where $n$ is
+minimal. Let $f:R^n\rightarrow M$ be the epimorphism with $f(x_i)=m_i$. Because
+$R^n$ is a finitely generated module over a Noetherian ring $R$, it is a
+Noetherian module (we proved this in class), so $\ker(f)\subset R^n$ will
+also be finitely generated. We have the exact sequence
 \[0\rightarrow \ker(f)\rightarrow R^n\rightarrow M\rightarrow 0\]
-Because $M$ is flat, we can tensor with any $D$ and produce another exact sequence (as is indicated in the problem). Choosing $D=R/P$, where $P$ is the maximal ideal of $R$, we have
-\[0\rightarrow \ker(f)/P\ker(f)\rightarrow (R/P)^n\rightarrow M/PM\rightarrow0\]
-which is an exact sequence of vector spaces over the field $R/P$, and hence splits (because all vector spaces are free and hence projective). Thus $(R/P)^n\simeq M/PM\oplus \ker(f)/P\ker(f)$, and thus the dimension of $M/PM$ as an $R/P$-vector space is less than or equal to $n$. Suppose $a_1,\ldots,a_k$ is a basis for $M/PM$ (so that $k\leq n$), and $b_1\in\phi^{-1}(a_1),\ldots,b_k\in\phi^{-1}(a_k)$, where $\phi:M\rightarrow M/PM$ is the quotient map. Let $N=(b_1,\ldots,b_k)\subseteq M$. Then the composition $N\hookrightarrow M\rightarrow M/PM$ is onto, so that $N+PM=M$ and thus $M/N=P(M/N)$. But by Nakayama's Lemma, this combined with the fact that $M/N$ is finitely generated (because $M$ is) implies $M/N=0$, so that $M=N$, so that the $b_1,\ldots,b_k$ generate $M$. But because the $m_1,\ldots,m_n$ are a generating set for $M$ with the least number of elements, we must have $k\geq n$, so that $k=n$. Thus the dimension of $M/PM$ as an $R/P$-vector space is $n$, so that $(R/P)^n\simeq M/PM\oplus \ker(f)/P\ker(f)$ implies $\ker(f)/P\ker(f)\simeq0$. But because $\ker(f)$ is finitely generated, Nakayama's Lemma implies that $\ker(f)=0$. Thus $f:R^n\rightarrow M$ is both a monomorphism and an epimorphism, and thus is an isomorphism, so that $M\simeq R^n$, i.e. $M$ is free.  \\
+Because $M$ is flat, we can tensor with any $D$ and produce another exact
+sequence (as is indicated in the problem). Choosing $D=R/P$, where $P$
+is the maximal ideal of $R$, we have
+\[0\rightarrow \ker(f)/P\ker(f)\rightarrow (R/P)^n\rightarrow
+M/PM\rightarrow0\]
+which is an exact sequence of vector spaces over the field $R/P$,
+and hence splits (because all vector spaces are free and hence
+projective). Thus $(R/P)^n\simeq M/PM\oplus \ker(f)/P\ker(f)$, and thus
+the dimension of $M/PM$ as an $R/P$-vector space is less than or equal to
+$n$. Suppose $a_1,\ldots,a_k$ is a basis for $M/PM$ (so that $k\leq n$), and
+$b_1\in\phi^{-1}(a_1),\ldots,b_k\in\phi^{-1}(a_k)$, where $\phi:M\rightarrow
+M/PM$ is the quotient map. Let $N=(b_1,\ldots,b_k)\subseteq M$. Then the
+composition $N\hookrightarrow M\rightarrow M/PM$ is onto, so that $N+PM=M$ and
+thus $M/N=P(M/N)$. But by Nakayama's Lemma, this combined with the fact that
+$M/N$ is finitely generated (because $M$ is) implies $M/N=0$, so that $M=N$,
+so that the $b_1,\ldots,b_k$ generate $M$. But because the $m_1,\ldots,m_n$
+are a generating set for $M$ with the least number of elements, we must have
+$k\geq n$, so that $k=n$. Thus the dimension of $M/PM$ as an $R/P$-vector
+space is $n$, so that $(R/P)^n\simeq M/PM\oplus \ker(f)/P\ker(f)$ implies
+$\ker(f)/P\ker(f)\simeq0$. But because $\ker(f)$ is finitely generated,
+Nakayama's Lemma implies that $\ker(f)=0$. Thus $f:R^n\rightarrow M$ is
+both a monomorphism and an epimorphism, and thus is an isomorphism, so that
+$M\simeq R^n$, i.e. $M$ is free.  \\
 
-\num{8.} We proved in class that a module $M$ is flat iff $M_P$ is a flat $R_P$-module for all maximal ideals $P$. Thus, if a finitely generated module $M$ over a Noetherian ring $R$ is flat, then $M_P$ is a finitely generated flat $R_P$-module for all maximal ideals $P$, where each $R_P$ is a Noetherian local ring. By Problem 7, this implies that $M_P$ is a free $R_P$-module for all maximal ideals $P$, i.e. that $M$ is locally free. Conversely, suppose that a finitely generated module $M$ over a Noetherian ring is locally free, i.e. that for each maximal ideal $P$, we have $M_P\simeq (R_P)^n$ for some $n$. Then because free modules are flat (we proved this in class; also follows easily from the distributivity of tensor products over direct sums), $M_P$ is a flat $R_P$-module for each maximal ideal $P$, i.e. $M$ is locally flat. But because a module $M$ is flat iff $M_P$ is a flat $R_P$-module for all maximal ideals $P$ (which, again, we proved in class), this means $M$ is flat.      \\
+\num{8.} We proved in class that a module $M$ is flat iff $M_P$ is a flat
+$R_P$-module for all maximal ideals $P$. Thus, if a finitely generated module
+$M$ over a Noetherian ring $R$ is flat, then $M_P$ is a finitely generated
+flat $R_P$-module for all maximal ideals $P$, where each $R_P$ is a Noetherian
+local ring. By Problem 7, this implies that $M_P$ is a free $R_P$-module for
+all maximal ideals $P$, i.e. that $M$ is locally free. Conversely, suppose
+that a finitely generated module $M$ over a Noetherian ring is locally free,
+i.e. that for each maximal ideal $P$, we have $M_P\simeq (R_P)^n$ for some
+$n$. Then because free modules are flat (we proved this in class; also follows
+easily from the distributivity of tensor products over direct sums), $M_P$ is
+a flat $R_P$-module for each maximal ideal $P$, i.e. $M$ is locally flat. But
+because a module $M$ is flat iff $M_P$ is a flat $R_P$-module for all maximal
+ideals $P$ (which, again, we proved in class), this means $M$ is flat.      \\
 
-\num{9.} To improve the organization of the actual proof, we first establish the following lemmata (I'm not sure if we ever did these in class or on homework, and I just felt like being thorough - most of these statements are exercises or unproven statements from Atiyah-Macdonald): \\
+\num{9.} To improve the organization of the actual proof, we first establish
+the following lemmata (I'm not sure if we ever did these in class or on
+homework, and I just felt like being thorough - most of these statements
+are exercises or unproven statements from Atiyah-Macdonald): \\
 
-{\bf Lemma 1.} Let $\frak{a}\subseteq A$ be an ideal. Then $\frak{a}\subseteq r(\frak{a})$.
-\begin{proof} For all $a\in\frak{a}$, we have $a^1\in\frak{a}$, so that $\frak{a}\subseteq r(\frak{a})$.
+{\bf Lemma 1.} Let $\frak{a}\subseteq A$ be an ideal. Then $\frak{a}\subseteq
+r(\frak{a})$.
+\begin{proof} For all $a\in\frak{a}$, we have $a^1\in\frak{a}$, so that
+$\frak{a}\subseteq r(\frak{a})$.
 \end{proof}
-{\bf Lemma 2.} Let $\frak{a}\subseteq A$ be an ideal. Then $r(\frak{a})=(1)$ iff $\frak{a}=(1)$.
-\begin{proof} By Lemma 1, $\frak{a}\subseteq r(\frak{a})\subseteq (1)$, so we have that $\frak{a}=(1)$ implies $r(\frak{a})=(1)$. Conversely, if $r(\frak{a})=(1)$, there is an $n>0$ with $1^n\in\frak{a}$, but $1^n=1$, so $1\in\frak{a}$ and hence $\frak{a}=(1)$. Thus $r(\frak{a})=(1)$ iff $\frak{a}=(1)$.
+{\bf Lemma 2.} Let $\frak{a}\subseteq A$ be an ideal. Then $r(\frak{a})=(1)$
+iff $\frak{a}=(1)$.
+\begin{proof} By Lemma 1, $\frak{a}\subseteq r(\frak{a})\subseteq (1)$,
+so we have that $\frak{a}=(1)$ implies $r(\frak{a})=(1)$. Conversely, if
+$r(\frak{a})=(1)$, there is an $n>0$ with $1^n\in\frak{a}$, but $1^n=1$,
+so $1\in\frak{a}$ and hence $\frak{a}=(1)$. Thus $r(\frak{a})=(1)$ iff
+$\frak{a}=(1)$.
 \end{proof}
-{\bf Lemma 3.} Let $\frak{a}\subseteq A$ and $\frak{b}\subseteq B$ be ideals, and let $f:A\rightarrow B$ be a homomorphism. Then $r(\frak{a})^e\subseteq r(\frak{a}^e)$, $r(\frak{b})^c=r(\frak{b}^c)$.
-\begin{proof} We have $x\in r(\frak{a})^e$ implies $x=\sum_{i=1}^k y_if(z_i)$ where $y_i\in B$ and $z_i\in r(\frak{a})$, so that for each $i$, there is an $n_i>0$ with $z_i^{n_i}\in\frak{a}$. For $m=k\cdot\text{max}\{n_i\}$, we have $x^m=\left(\sum_{i=1}^k y_if(z_i)\right)^m = $ a sum of terms of the form $wf(z_1^{j_1}\cdots z_k^{j_k})$, where $w\in B$ and at least one $j_i\geq\text{max}\{n_i\}$, so that $z_1^{j_1}\cdots z_k^{j_k}\in\frak{a}$ for each term in the sum, so that $x^m=\sum_t w_t f(a_t)$ where $w_t\in B$ and $a_t\in \frak{a}$, so that $x^m\in\frak{a}^e$, so that $x\in r(\frak{a}^e)$. Thus $r(\frak{a})^e\subseteq r(\frak{a}^e)$.\\
+{\bf Lemma 3.} Let $\frak{a}\subseteq A$ and $\frak{b}\subseteq B$ be ideals,
+and let $f:A\rightarrow B$ be a homomorphism. Then $r(\frak{a})^e\subseteq
+r(\frak{a}^e)$, $r(\frak{b})^c=r(\frak{b}^c)$.
+\begin{proof} We have $x\in r(\frak{a})^e$ implies $x=\sum_{i=1}^k y_if(z_i)$
+where $y_i\in B$ and $z_i\in r(\frak{a})$, so that for each $i$, there is
+an $n_i>0$ with $z_i^{n_i}\in\frak{a}$. For $m=k\cdot\text{max}\{n_i\}$,
+we have $x^m=\left(\sum_{i=1}^k y_if(z_i)\right)^m = $ a sum of terms of
+the form $wf(z_1^{j_1}\cdots z_k^{j_k})$, where $w\in B$ and at least one
+$j_i\geq\text{max}\{n_i\}$, so that $z_1^{j_1}\cdots z_k^{j_k}\in\frak{a}$
+for each term in the sum, so that $x^m=\sum_t w_t f(a_t)$ where $w_t\in
+B$ and $a_t\in \frak{a}$, so that $x^m\in\frak{a}^e$, so that $x\in
+r(\frak{a}^e)$. Thus $r(\frak{a})^e\subseteq r(\frak{a}^e)$.\\
 
-We have $x\in r(\frak{b})^c$ iff there is an $n>0$ with $f(x)^n\in\frak{b}$. But $f(x)^n=f(x^n)$, so that $f(x)^n=f(x^n)\in\frak{b}$ iff $x^n\in\frak{b}^c$, which is the case iff $x\in r(\frak{b}^c)$. Thus $r(\frak{b})^c=r(\frak{b}^c)$. 
+We have $x\in r(\frak{b})^c$ iff there is an $n>0$ with
+$f(x)^n\in\frak{b}$. But $f(x)^n=f(x^n)$, so that $f(x)^n=f(x^n)\in\frak{b}$
+iff $x^n\in\frak{b}^c$, which is the case iff $x\in r(\frak{b}^c)$. Thus
+$r(\frak{b})^c=r(\frak{b}^c)$. 
 \end{proof}
 
-{\bf Lemma 4.} Let $\frak{N}$ be the nilradical of $A$. If $\frak{N}$ is maximal, every element of $A$ is either a unit or nilpotent.
+{\bf Lemma 4.} Let $\frak{N}$ be the nilradical of $A$. If $\frak{N}$ is
+maximal, every element of $A$ is either a unit or nilpotent.
 \begin{proof}
-We know that $\frak{N}$ is maximal iff $A/\frak{N}$ is a field. If $A/\frak{N}$ is a field and $\phi:A\rightarrow A/\frak{N}$ is the canonical map, then for any $a\in A$, either $\phi(a)=0$ (which is the case iff $a\in\frak{N}$) or $\phi(a)$ is a unit in $A/\frak{N}$, i.e. there exists a $b\in A$ such that $\phi(a)\phi(b)=\phi(ab)=\phi(1)$. But then $ab=1+n$ for some $n\in\frak{N}$, and we proved on a homework that a unit plus a nilpotent is a unit, so $1+n$ is a unit, so that $a$ is a unit in $A$. Thus, every element of $A$ is either nilpotent or a unit.
+We know that $\frak{N}$ is maximal iff $A/\frak{N}$ is a field. If $A/\frak{N}$
+is a field and $\phi:A\rightarrow A/\frak{N}$ is the canonical map, then for
+any $a\in A$, either $\phi(a)=0$ (which is the case iff $a\in\frak{N}$) or
+$\phi(a)$ is a unit in $A/\frak{N}$, i.e. there exists a $b\in A$ such that
+$\phi(a)\phi(b)=\phi(ab)=\phi(1)$. But then $ab=1+n$ for some $n\in\frak{N}$,
+and we proved on a homework that a unit plus a nilpotent is a unit, so $1+n$
+is a unit, so that $a$ is a unit in $A$. Thus, every element of $A$ is either
+nilpotent or a unit.
 \end{proof}
 \pagebreak
-{\bf Lemma 5.} Let $\frak{q}\subseteq A$ be an ideal. Then $\frak{q}$ is primary iff every zero-divisor in $A/\frak{q}$ is nilpotent.
+{\bf Lemma 5.} Let $\frak{q}\subseteq A$ be an ideal. Then $\frak{q}$ is
+primary iff every zero-divisor in $A/\frak{q}$ is nilpotent.
 \begin{proof}
-The condition that $xy\in\frak{q}\Rightarrow x\in\frak{q}$ or $y^n\in\frak{q}$ for some $n$ is equivalent to the condition that $\overline{xy}=\overline{0}\Rightarrow\overline{x}=\overline{0}$ or $\overline{y}^n=\overline{0}$ for some $n$, so that if $\overline{y}\in A/\frak{q}$ is a zero-divisor, say with $\overline{xy}=0$ where $\overline{x}\neq\overline{0}$, then we must have $\overline{y}^n=\overline{0}$, i.e. $\overline{y}$ is nilpotent.
+The condition that $xy\in\frak{q}\Rightarrow x\in\frak{q}$ or
+$y^n\in\frak{q}$ for some $n$ is equivalent to the condition that
+$\overline{xy}=\overline{0}\Rightarrow\overline{x}=\overline{0}$ or
+$\overline{y}^n=\overline{0}$ for some $n$, so that if $\overline{y}\in
+A/\frak{q}$ is a zero-divisor, say with $\overline{xy}=0$
+where $\overline{x}\neq\overline{0}$, then we must have
+$\overline{y}^n=\overline{0}$, i.e. $\overline{y}$ is nilpotent.
 \end{proof}
 
-{\bf Lemma 6.} Let $\frak{q}\subseteq B$ be a primary ideal, and $f:A\rightarrow B$ a homomorphism. Then $\frak{q}^c=f^{-1}(\frak{q})$ is a primary ideal.
+{\bf Lemma 6.} Let $\frak{q}\subseteq B$ be a primary ideal, and
+$f:A\rightarrow B$ a homomorphism. Then $\frak{q}^c=f^{-1}(\frak{q})$ is a
+primary ideal.
 \begin{proof}
-The kernel of the composition $A\stackrel{f}{\rightarrow}B\rightarrow B/\frak{q}$ is $\frak{q}^c$, so that by the first isomorphism theorem $A/\frak{q}^c\hookrightarrow B/\frak{q}$. By Lemma 5, $B/\frak{q}$ consists of only non-zero-divisors and nilpotents, and thus so does the (isomorphic copy of) $A/\frak{q}^c$ inside $B/\frak{q}$. Thus $\frak{q}^c$ is primary.
+The kernel of the composition $A\stackrel{f}{\rightarrow}B\rightarrow
+B/\frak{q}$ is $\frak{q}^c$, so that by the first isomorphism theorem
+$A/\frak{q}^c\hookrightarrow B/\frak{q}$. By Lemma 5, $B/\frak{q}$ consists
+of only non-zero-divisors and nilpotents, and thus so does the (isomorphic
+copy of) $A/\frak{q}^c$ inside $B/\frak{q}$. Thus $\frak{q}^c$ is primary.
 \end{proof}
 
-{\bf Lemma 7.} If $r(\frak{a})=\frak{m}$ is a maximal ideal, then $\frak{a}$ is $\frak{m}$-primary.
+{\bf Lemma 7.} If $r(\frak{a})=\frak{m}$ is a maximal ideal, then $\frak{a}$
+is $\frak{m}$-primary.
 \begin{proof} 
-Let $\phi:A\rightarrow A/\frak{a}$ be the canonical map, and suppose $r(\frak{a})=\frak{m}$ is maximal. The image of $\frak{m}$ in $A/\frak{a}$ is the nilradical $\frak{N}$ of $A/\frak{a}$, because $\overline{x}\in\frak{N}$ iff $\overline{x}^n=\overline{x^n}=\overline{0}$ iff $x^n\in\frak{a}$ iff $x\in r(\frak{a})=\frak{m}$ iff $\overline{x}=\phi(x)\in\phi(\frak{m})$. But in the inclusion-preserving bijection between ideals of $A$ containing $\frak{a}$ and ideals of $A/\frak{a}$, we must have that maximal ideals correspond to maximal ideals, and thus $\frak{N}=\phi(\frak{m})$ is maximal. By Lemma 4, every element of $A/\frak{a}$ is a unit or a nilpotent, so certainly every zero-divisor is a nilpotent. Thus, by Lemma 5, $\frak{a}$ is primary, and $r(\frak{a})=\frak{m}$ implies that $\frak{a}$ is $\frak{m}$-primary.
+Let $\phi:A\rightarrow A/\frak{a}$ be the canonical map, and suppose
+$r(\frak{a})=\frak{m}$ is maximal. The image of $\frak{m}$ in $A/\frak{a}$ is
+the nilradical $\frak{N}$ of $A/\frak{a}$, because $\overline{x}\in\frak{N}$
+iff $\overline{x}^n=\overline{x^n}=\overline{0}$ iff $x^n\in\frak{a}$ iff $x\in
+r(\frak{a})=\frak{m}$ iff $\overline{x}=\phi(x)\in\phi(\frak{m})$. But in the
+inclusion-preserving bijection between ideals of $A$ containing $\frak{a}$
+and ideals of $A/\frak{a}$, we must have that maximal ideals correspond to
+maximal ideals, and thus $\frak{N}=\phi(\frak{m})$ is maximal. By Lemma 4,
+every element of $A/\frak{a}$ is a unit or a nilpotent, so certainly every
+zero-divisor is a nilpotent. Thus, by Lemma 5, $\frak{a}$ is primary, and
+$r(\frak{a})=\frak{m}$ implies that $\frak{a}$ is $\frak{m}$-primary.
 \end{proof}
 
-%{\bf Lemma 8.} If $\frak{a}\subseteq A$ is an ideal and $\phi:A\rightarrow S^{-1}A$ is the canonical map, %then $\frak{a}^{ec}=\bigcup_{s\in S}(\frak{a}:s)$ where $(\frak{a}:s)=\{x\in A:x(s)\subseteq\frak{a}\}$.
+%{\bf Lemma 8.} If $\frak{a}\subseteq A$ is an ideal and $\phi:A\rightarrow
+S^{-1}A$ is the canonical map, %then $\frak{a}^{ec}=\bigcup_{s\in
+S}(\frak{a}:s)$ where $(\frak{a}:s)=\{x\in A:x(s)\subseteq\frak{a}\}$.
 %\begin{proof}
-%We have that $x\in\frak{a}^{ec}=(S^{-1}\frak{a})^c=\phi^{-1}(S^{-1}\frak{a})$ iff %$\phi(x)=\frac{x}{1}=\frac{a}{s}$ for some $a\in\frak{a}$ and $s\in S$. This is the case iff $(xs-a)t=0$ for %some $t\in S$, which is the case iff $xst\in \frak{a}$, which is the case iff $x\in\bigcup_{s\in %S}(\frak{a}:s)$.
+%We have that $x\in\frak{a}^{ec}=(S^{-1}\frak{a})^c=\phi^{-1}(S^{-1}\frak{a})$
+iff %$\phi(x)=\frac{x}{1}=\frac{a}{s}$ for some $a\in\frak{a}$ and $s\in
+S$. This is the case iff $(xs-a)t=0$ for %some $t\in S$, which is the case iff
+$xst\in \frak{a}$, which is the case iff $x\in\bigcup_{s\in %S}(\frak{a}:s)$.
 %\end{proof}
 
 End of lemmata.\\
 
-Let $Q$ be a $P$-primary ideal in $R$. Then by Lemma 1, $Q\subseteq r(Q)=P$. We proved in class that there is an inclusion-preserving bijection between ideals of $R$ not meeting $R-P$ and ideals of $R_P$, given by $I\mapsto I^e$. Because all ideals contained in $P$ do not meet $R-P$, the ideals $I$ between $Q$ and $P$ are in bijection with the ideals $J$ between $Q^e$ and $M=P^e$. Consider the map $I\mapsto I^e$, restricted to the set of $P$-primary ideals between $Q$ and $P$. Because $I\mapsto I^e$ is injective on the set of all ideals between $Q$ and $P$, this restriction will also be injective, and thus bijective with its image in the set of ideals between $Q^e$ and $M$. Thus, it suffices to show that the image of this restricted $I\mapsto I^e$ is contained in the set of $M$-primary ideals between $Q^e$ and $M$ (that is, if $Q\subseteq I\subseteq P$ is $P$-primary then $Q^e\subseteq I^e\subseteq M$ is $M$-primary), and the set of $M$-primary ideals between $Q^e$ and $M$ contains its image (that is, every $M$-primary $Q^e\subseteq J\subseteq M$ has $J=I^e$ for some $P$-primary ideal $I$ between $Q$ and $P$).\\
+Let $Q$ be a $P$-primary ideal in $R$. Then by Lemma 1, $Q\subseteq r(Q)=P$. We
+proved in class that there is an inclusion-preserving bijection between ideals
+of $R$ not meeting $R-P$ and ideals of $R_P$, given by $I\mapsto I^e$. Because
+all ideals contained in $P$ do not meet $R-P$, the ideals $I$ between $Q$ and
+$P$ are in bijection with the ideals $J$ between $Q^e$ and $M=P^e$. Consider
+the map $I\mapsto I^e$, restricted to the set of $P$-primary ideals between
+$Q$ and $P$. Because $I\mapsto I^e$ is injective on the set of all ideals
+between $Q$ and $P$, this restriction will also be injective, and thus
+bijective with its image in the set of ideals between $Q^e$ and $M$. Thus,
+it suffices to show that the image of this restricted $I\mapsto I^e$ is
+contained in the set of $M$-primary ideals between $Q^e$ and $M$ (that is,
+if $Q\subseteq I\subseteq P$ is $P$-primary then $Q^e\subseteq I^e\subseteq
+M$ is $M$-primary), and the set of $M$-primary ideals between $Q^e$ and $M$
+contains its image (that is, every $M$-primary $Q^e\subseteq J\subseteq M$
+has $J=I^e$ for some $P$-primary ideal $I$ between $Q$ and $P$).\\
 
-Suppose $Q\subseteq I\subseteq P$ is $P$-primary. Then $r(I)=P$, so that by Lemma 3, $r(I)^e=P^e=M\subseteq r(I^e)$. But $M$ is a maximal ideal in $R_P$, so either $r(I^e)=M$ or $r(I^e)=R_P$. By Lemma 2, $r(I^e)=R_P$ iff $I^e=R_P$. The extension $I^e$ of an ideal $I$ is all of $R_P$ iff the ideal $I$ meets $R-P$ (we proved this in class), but $I$ does not meet $R-P$ because $I\subseteq P$. Thus $r(I^e)=M$. By Lemma 7, this implies that $Q^e\subseteq I^e\subseteq M$ is $M$-primary.\\
+Suppose $Q\subseteq I\subseteq P$ is $P$-primary. Then $r(I)=P$, so that
+by Lemma 3, $r(I)^e=P^e=M\subseteq r(I^e)$. But $M$ is a maximal ideal
+in $R_P$, so either $r(I^e)=M$ or $r(I^e)=R_P$. By Lemma 2, $r(I^e)=R_P$
+iff $I^e=R_P$. The extension $I^e$ of an ideal $I$ is all of $R_P$ iff the
+ideal $I$ meets $R-P$ (we proved this in class), but $I$ does not meet $R-P$
+because $I\subseteq P$. Thus $r(I^e)=M$. By Lemma 7, this implies that
+$Q^e\subseteq I^e\subseteq M$ is $M$-primary.\\
 
-Now suppose $Q^e\subseteq J\subseteq M$ is $M$-primary. Then by Lemma 6, $J^c$ is primary, and by Lemma 3, we have $r(J^c)=r(J)^c=M^c=P$, so that $J^c$ is $P$-primary. We also know that $J^{ce}=J$ (this is true for all ideals $J$ in a localization, not just primary ones; we proved this in class). Thus, any $M$-primary $J$ between $Q^e$ and $M$ is obtained by extending $J^c$.\\[-0.2in]
+Now suppose $Q^e\subseteq J\subseteq M$ is $M$-primary. Then by Lemma 6,
+$J^c$ is primary, and by Lemma 3, we have $r(J^c)=r(J)^c=M^c=P$, so that
+$J^c$ is $P$-primary. We also know that $J^{ce}=J$ (this is true for all
+ideals $J$ in a localization, not just primary ones; we proved this in
+class). Thus, any $M$-primary $J$ between $Q^e$ and $M$ is obtained by
+extending $J^c$.\\[-0.2in]
 
-%Lemma 6 shows that $I^{ec}$ is primary, but we need to prove that in fact $I=I^{ec}$ to establish the %bijection (this will also show that $P^{ec}=P$, by setting $I=P$). By Lemma 8, if $x\in I^{ec}$, then %$x(u)\subseteq I$ for some $u\in R-P$. But $x(u)\subseteq I$ iff $xu\in I$, and because $u\notin P$, %$u^n\notin P$ for any $n$, and because $I\subseteq P$ we must have \\
+%Lemma 6 shows that $I^{ec}$ is primary, but we need to prove that in fact
+$I=I^{ec}$ to establish the %bijection (this will also show that $P^{ec}=P$,
+by setting $I=P$). By Lemma 8, if $x\in I^{ec}$, then %$x(u)\subseteq I$ for
+some $u\in R-P$. But $x(u)\subseteq I$ iff $xu\in I$, and because $u\notin
+P$, %$u^n\notin P$ for any $n$, and because $I\subseteq P$ we must have \\
 %
 %We know that $I\subseteq I^{ec}$. 
 %
-%If $r\in I^{ec}$, then $f(r)=\frac{r}{1}\in I^e$ (where $f:R\rightarrow R_P$ is the localization), so that %$\frac{r}{1}=\frac{i}{u}$ for some $i\in I$, $u\in R-P$. Thus there is some $v\in R-P$ such that %$v(ru-i)=0$, so that $r(uv)=i(v)$. Thus $r$. Suppose $\frac{r}{u}\cdot\frac{s}{v}=\frac{x}{w}\in I^e$ (in %particular, $x\in I$). Then \\
+%If $r\in I^{ec}$, then $f(r)=\frac{r}{1}\in I^e$ (where $f:R\rightarrow R_P$
+is the localization), so that %$\frac{r}{1}=\frac{i}{u}$ for some $i\in I$,
+$u\in R-P$. Thus there is some $v\in R-P$ such that %$v(ru-i)=0$, so that
+$r(uv)=i(v)$. Thus $r$. Suppose $\frac{r}{u}\cdot\frac{s}{v}=\frac{x}{w}\in
+I^e$ (in %particular, $x\in I$). Then \\
 
 $\text{}$\hline
 \vskip0.3in
-\num{6.} This doesn't count, but here was my attempt: Let $R$ be a ring whose prime ideals are finitely generated. Suppose the set $S$ of ideals which are not finitely generated is non-empty. Then it has a maximal element $I$ by Zorn's Lemma, which is non-finitely generated and thus, by hypothesis, is not prime. Thus there are $x\in R$ and $y\in R$ with $x,y\notin I$ and $xy\in I$. Thus $I\subsetneq I+(x)$ and $I\subsetneq I+(y)$, so that $I+(x)$ and $I+(y)$ are both finitely generated, say $I+(x)=(a_1,\ldots,a_m)$ and $I+(y)=(b_1,\ldots,b_n)$. But I couldn't get the fact that $(I+(x))(I+(y))\subseteq I+(xy)=I$ is finitely generated to tell us that $I$ is finitely generated.        \\
+\num{6.} This doesn't count, but here was my attempt: Let $R$ be a ring
+whose prime ideals are finitely generated. Suppose the set $S$ of ideals
+which are not finitely generated is non-empty. Then it has a maximal
+element $I$ by Zorn's Lemma, which is non-finitely generated and thus,
+by hypothesis, is not prime. Thus there are $x\in R$ and $y\in R$ with
+$x,y\notin I$ and $xy\in I$. Thus $I\subsetneq I+(x)$ and $I\subsetneq
+I+(y)$, so that $I+(x)$ and $I+(y)$ are both finitely generated, say
+$I+(x)=(a_1,\ldots,a_m)$ and $I+(y)=(b_1,\ldots,b_n)$. But I couldn't get
+the fact that $(I+(x))(I+(y))\subseteq I+(xy)=I$ is finitely generated to
+tell us that $I$ is finitely generated.        \\
 
 
 
 
 
 \end{document}
-imal element $I$ by Zorn's Lemma, which is non-finitely generated and thus, by hypothesis, is not prime. Thus there are $x\in R$ and $y\in R$ with $x,y\notin I$ and $xy\in I$. Thus $I\subsetneq I+(x)$ and $I\subsetneq I+(y)$, so that $I+(x)$ and $I+(y)$ are both finitely generated, say $I+(x)=(a_1,\ldots,a_m)$ and $I+(y)=(b_1,\ldots,b_n)$. But I couldn't get the fact that $(I+(x))(I+(y))\subseteq I+(xy)=I$ is finitely generated to tell us that $I$ is finitely gen
+imal element $I$ by Zorn's Lemma, which is non-finitely generated and thus,
+by hypothesis, is not prime. Thus there are $x\in R$ and $y\in R$ with
+$x,y\notin I$ and $xy\in I$. Thus $I\subsetneq I+(x)$ and $I\subsetneq
+I+(y)$, so that $I+(x)$ and $I+(y)$ are both finitely generated, say
+$I+(x)=(a_1,\ldots,a_m)$ and $I+(y)=(b_1,\ldots,b_n)$. But I couldn't get
+the fact that $(I+(x))(I+(y))\subseteq I+(xy)=I$ is finitely generated to
+tell us that $I$ is finitely gen

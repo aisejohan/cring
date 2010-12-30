@@ -10,42 +10,248 @@
 Zev Chonoles \hfill 
 \underline{MATH 2520 - Assignment 10} \hfill \today\\
 
-\num{1a.} Let $R$ be a local Noetherian ring, with $M$ its maximal ideal. Suppose $M=(\pi)$ is principal. Because $M$ is minimal over itself, it follows from the Principal Ideal Theorem that $\codim(M)\leq1$. Because $\dim(R)=\sup\{\codim(P):P\text{ maximal}\}$ and $R$ is local, it follows that $\dim(R)\leq1$. There are now two cases: $\dim(R)=0$ and $\dim(R)=1$.\\
+\num{1a.} Let $R$ be a local Noetherian ring, with $M$ its maximal
+ideal. Suppose $M=(\pi)$ is principal. Because $M$ is minimal over itself,
+it follows from the Principal Ideal Theorem that $\codim(M)\leq1$. Because
+$\dim(R)=\sup\{\codim(P):P\text{ maximal}\}$ and $R$ is local, it follows
+that $\dim(R)\leq1$. There are now two cases: $\dim(R)=0$ and $\dim(R)=1$.\\
 
-If $\dim(R)=0$, then by Theorem 8.5 in Atiyah-Macdonald, $R$ is Artinian. Because $R$ is local and Artinian, by Proposition 8.8 in Atiyah-Macdonald and the fact that $M$ is principal, we have that $R$ is a PID. Now, let $I=(a)$ be any proper ideal. Because $a$ is not a unit, we have $a\in M$, so that $M^1\supseteq (a)$. However, because $R$ is Artinian, there can be no infinite descending chain of ideals, so $M\supseteq M^2\supseteq\cdots$ must stabilize. Thus $M^k=M^{k+1}$ for some $k$, so by Nakayama's Lemma, $M^k=0$, for which certainly $M^k=0\not\supseteq(a)$. Thus there is a maximal $t$ for which $M^t\supseteq(a)$. Because $a\in M^t=(\pi)^t=(\pi^t)$, we have $a=b\pi^t$ for some $b\in R$. If $b$ is not a unit, then we must have $b\in M=(\pi)$ because $R$ is local, but then $a=b\pi^t\in M^{t+1}$, contradiction. Thus $a=b\pi^t$ for a unit $b$, so in fact $I=(a)=(\pi^t)=(\pi)^t=M^t$. Finally, by convention $M^0=R$. Thus every non-zero ideal is a power of the maximal ideal (in this case, the zero ideal is too).\\
+If $\dim(R)=0$, then by Theorem 8.5 in Atiyah-Macdonald, $R$ is
+Artinian. Because $R$ is local and Artinian, by Proposition 8.8 in
+Atiyah-Macdonald and the fact that $M$ is principal, we have that $R$ is
+a PID. Now, let $I=(a)$ be any proper ideal. Because $a$ is not a unit,
+we have $a\in M$, so that $M^1\supseteq (a)$. However, because $R$ is
+Artinian, there can be no infinite descending chain of ideals, so $M\supseteq
+M^2\supseteq\cdots$ must stabilize. Thus $M^k=M^{k+1}$ for some $k$, so by
+Nakayama's Lemma, $M^k=0$, for which certainly $M^k=0\not\supseteq(a)$. Thus
+there is a maximal $t$ for which $M^t\supseteq(a)$. Because $a\in
+M^t=(\pi)^t=(\pi^t)$, we have $a=b\pi^t$ for some $b\in R$. If $b$ is not
+a unit, then we must have $b\in M=(\pi)$ because $R$ is local, but then
+$a=b\pi^t\in M^{t+1}$, contradiction. Thus $a=b\pi^t$ for a unit $b$, so in
+fact $I=(a)=(\pi^t)=(\pi)^t=M^t$. Finally, by convention $M^0=R$. Thus every
+non-zero ideal is a power of the maximal ideal (in this case, the zero ideal
+is too).\\
 
-If $\dim(R)=1$, then let $P\neq M$ be any prime ideal distinct from $M$. Because $R$ is local, in fact $M\supsetneq P$. Because $R$ is Noetherian, $P=(a_1,\ldots,a_n)$ for some $x_i\in R$. They must all be non-units (otherwise $P=R$), so all $a_i\in M=(\pi)$ and thus each $a_i=b_i\pi$ for some $b_i\in R$. Let $Q=(b_1,\ldots,b_n)$, so that $P=(b_1\pi,\ldots,b_n\pi)=(\pi)(b_1,\ldots,b_n)=MQ$ and in particular $Q\supseteq P$. But each $b_i\pi\in P$, and $\pi\notin P$ (otherwise $P=M=(\pi)$), so we must have that each $b_i\in P$, so that $Q\subseteq P$. Thus $Q=P=MQ$, so that $P=Q=0$ by Nakayama's Lemma. Thus $R$ is a domain. Because $R$ is a Noetherian local domain of dimension 1 and the fact that $M$ is principal, by Proposition 9.2 in Atiyah-Macdonald we have that every non-zero ideal is a power of $M$, which also suffices to show that $R$ is a PID (because all powers of a principal ideal are obviously principal).  \\
+If $\dim(R)=1$, then let $P\neq M$ be any prime ideal distinct from
+$M$. Because $R$ is local, in fact $M\supsetneq P$. Because $R$ is
+Noetherian, $P=(a_1,\ldots,a_n)$ for some $x_i\in R$. They must all
+be non-units (otherwise $P=R$), so all $a_i\in M=(\pi)$ and thus each
+$a_i=b_i\pi$ for some $b_i\in R$. Let $Q=(b_1,\ldots,b_n)$, so that
+$P=(b_1\pi,\ldots,b_n\pi)=(\pi)(b_1,\ldots,b_n)=MQ$ and in particular
+$Q\supseteq P$. But each $b_i\pi\in P$, and $\pi\notin P$ (otherwise
+$P=M=(\pi)$), so we must have that each $b_i\in P$, so that $Q\subseteq
+P$. Thus $Q=P=MQ$, so that $P=Q=0$ by Nakayama's Lemma. Thus $R$ is a
+domain. Because $R$ is a Noetherian local domain of dimension 1 and the fact
+that $M$ is principal, by Proposition 9.2 in Atiyah-Macdonald we have that
+every non-zero ideal is a power of $M$, which also suffices to show that $R$
+is a PID (because all powers of a principal ideal are obviously principal).
+\\
 
-Thus, if $R$ is a local Noetherian ring, and its maximal ideal $M$ is principal, then $R$ is a PID and all non-zero ideals are some power of $M$.\\
+Thus, if $R$ is a local Noetherian ring, and its maximal ideal $M$ is
+principal, then $R$ is a PID and all non-zero ideals are some power of $M$.\\
 
-\num{1b.} This follows directly from the Principal Ideal Theorem, but can also be shown from Problem 1a as follows. We know that $\dim(R)=\sup\{\codim(P):P\text{ maximal}\}$ and that, by Problem 4 (see below), $\codim(P)=\codim(P_P)$ where $P_P$ is the maximal ideal of the localization $R_P$. Because the localization of a principal ideal is principal, if a Noetherian ring $R$ has each maximal ideal $P$ principal, then each $R_P$ is a local Noetherian ring with principal maximal ideal, which by Problem 1a shows that $\codim(P)=\codim(P_P)=\dim(R_P)\leq1$ for each $P$. Thus $\dim(R)\leq 1$.    \\
+\num{1b.} This follows directly from the Principal Ideal Theorem,
+but can also be shown from Problem 1a as follows. We know that
+$\dim(R)=\sup\{\codim(P):P\text{ maximal}\}$ and that, by Problem 4
+(see below), $\codim(P)=\codim(P_P)$ where $P_P$ is the maximal ideal of
+the localization $R_P$. Because the localization of a principal ideal is
+principal, if a Noetherian ring $R$ has each maximal ideal $P$ principal,
+then each $R_P$ is a local Noetherian ring with principal maximal ideal,
+which by Problem 1a shows that $\codim(P)=\codim(P_P)=\dim(R_P)\leq1$ for
+each $P$. Thus $\dim(R)\leq 1$.    \\
 
-%Let $P_0\supset\cdots\supset P_n$ be any chain of prime ideals of $R$. Because $R$ is a principal ring, we have $P_0=(a)$ for some non-unit $a\in R$. Because $P_0$ is obviously minimal over itself, by the Krull Principal Ideal Theorem we have that $\codim(P_0)\leq 1$, so in fact $n\leq 1$. Thus all chains of prime ideals in $R$ are of length at most 1, so that $\dim(R)\leq 1$. \\
+%Let $P_0\supset\cdots\supset P_n$ be any chain of prime ideals of $R$. Because
+$R$ is a principal ring, we have $P_0=(a)$ for some non-unit $a\in R$. Because
+$P_0$ is obviously minimal over itself, by the Krull Principal Ideal Theorem
+we have that $\codim(P_0)\leq 1$, so in fact $n\leq 1$. Thus all chains of
+prime ideals in $R$ are of length at most 1, so that $\dim(R)\leq 1$. \\
 
-\num{2a.} Certainly, $k[x',y]\subseteq k[x,y]$ where $x'=x-y^n$. Conversely, $x=x'+y^n\in k[x',y]$ and $y\in k[x',y]$, so $k[x,y]\subseteq k[x',y]$, so in fact $k[x',y]=k[x,y]$. Any $f\in k[x,y]$ can be represented as $f=\sum_{i=0}^m g_iy^i$, where $g_i\in k[x]$. Let $\deg(g_i)=r_i$, and $g_i=c_{i,0}+\cdots+c_{i,r_i}x^{r_i}$. Then expressing $f$ as an element of $k[x',y]$, we get $f=\sum_{i=0}^m g_i(x'+y^n)y^i$. The highest power of $y$ that occurs in $g_i(x'+y^n)y^i$ is $nr_i+i$ - specifically, $g_i(x'+y^n)y^i=y^i(c_{i,0}+\cdots+(c_{i,r_i}y^{nr_i}+\cdots+c_{i,r_i}x'^n))=c_{i,0}y^i+\cdots+c_{i,r_i}y^{nr_i+i}$, and because $c_{i,r_i}$ is the leading coefficient of $g_i$, we have $c_{i,r_i}\neq0$. Thus, the highest power of $y$ that occurs in $f$ (when treated as a polynomial in $x'$ and $y$) is $\max_{0\leq i\leq m}\{nr_i+i\}$. Let $s$ denote the largest $0\leq j\leq m$ for which $r_j=\max_{0\leq i\leq m}\{r_i\}$; then (as long as $f$ is non-constant, i.e. a non-unit, so that either at least one $r_i>0$ or $m>0$) for sufficiently large $n$, $nr_s+s>nr_i+i$ for all $i\neq s$, so that $c_{s,r_s}y^{nr_s+s}$ is the term in $f$ with the highest power of $y$ (and since it is the only such term, there is no danger of it being canceled by anything else). Thus, we have shown that for any $f\in k[x,y]$, there is an $n$ such that when $f$ is treated as a polynomial in $x'=x-y^n$ and $y$, we have that $f$ is a monic polynomial in $y$ times a scalar (namely, the $c_{s,r_s}$ determined above). Note that this polynomial in $y$ has coefficients in $k[x']$. Thus, letting $R=k[x']$ and $R[\bar{y}]=R[y]/f=k[x',y]/f=k[x,y]/f$, we have that $\bar{y}$ is integral over $R$, so that $R[\bar{y}]=k[x,y]/f$ is an integral extension of $R=k[x']$ (we proved in class that a ring extension generated by an integral element is integral) for any non-constant $f\in k[x,y]$. \\
+\num{2a.} Certainly, $k[x',y]\subseteq k[x,y]$ where $x'=x-y^n$. Conversely,
+$x=x'+y^n\in k[x',y]$ and $y\in k[x',y]$, so $k[x,y]\subseteq k[x',y]$,
+so in fact $k[x',y]=k[x,y]$. Any $f\in k[x,y]$ can be represented as
+$f=\sum_{i=0}^m g_iy^i$, where $g_i\in k[x]$. Let $\deg(g_i)=r_i$,
+and $g_i=c_{i,0}+\cdots+c_{i,r_i}x^{r_i}$. Then expressing $f$ as an
+element of $k[x',y]$, we get $f=\sum_{i=0}^m g_i(x'+y^n)y^i$. The highest
+power of $y$ that occurs in $g_i(x'+y^n)y^i$ is $nr_i+i$ - specifically,
+$g_i(x'+y^n)y^i=y^i(c_{i,0}+\cdots+(c_{i,r_i}y^{nr_i}+\cdots+c_{i,r_i}x'^n))=c_{i,0}y^i+\cdots+c_{i,r_i}y^{nr_i+i}$,
+and because $c_{i,r_i}$ is the leading coefficient of $g_i$, we have
+$c_{i,r_i}\neq0$. Thus, the highest power of $y$ that occurs in $f$
+(when treated as a polynomial in $x'$ and $y$) is $\max_{0\leq i\leq
+m}\{nr_i+i\}$. Let $s$ denote the largest $0\leq j\leq m$ for which
+$r_j=\max_{0\leq i\leq m}\{r_i\}$; then (as long as $f$ is non-constant,
+i.e. a non-unit, so that either at least one $r_i>0$ or $m>0$) for sufficiently
+large $n$, $nr_s+s>nr_i+i$ for all $i\neq s$, so that $c_{s,r_s}y^{nr_s+s}$
+is the term in $f$ with the highest power of $y$ (and since it is the only
+such term, there is no danger of it being canceled by anything else). Thus,
+we have shown that for any $f\in k[x,y]$, there is an $n$ such that when
+$f$ is treated as a polynomial in $x'=x-y^n$ and $y$, we have that $f$ is a
+monic polynomial in $y$ times a scalar (namely, the $c_{s,r_s}$ determined
+above). Note that this polynomial in $y$ has coefficients in $k[x']$. Thus,
+letting $R=k[x']$ and $R[\bar{y}]=R[y]/f=k[x',y]/f=k[x,y]/f$, we have that
+$\bar{y}$ is integral over $R$, so that $R[\bar{y}]=k[x,y]/f$ is an integral
+extension of $R=k[x']$ (we proved in class that a ring extension generated
+by an integral element is integral) for any non-constant $f\in k[x,y]$. \\
 
-Because $k[x']$ is Noetherian and a PID (so that each maximal ideal of $k[x']$ is principal), by Problem 1b we have that $\dim(k[x'])\leq1$, but since $(x)\supset (0)$ is chain of prime ideals of length 1, we have $\dim(k[x'])=1$. We will show that if $B$ is integral over $A$, then $\dim(B)=\dim(A)$, so that specifically, $\dim(k[x,y]/f)=\dim(k[x'])=1$. Suppose $\dim(A)=n$, and let $P_0\subset\cdots\subset P_n$ be a chain of maximal length. By Theorems 5.10 and 5.11 in Atiyah-Macdonald, there is a prime $Q_0$ with $Q_0\cap A=P_0$, and in fact a chain of prime ideals $Q_0\subset \cdots\subset Q_n$ with each $Q_i\cap R=P_i$, and the $Q_i$ are distinct because $Q_i\cap R=P_i\neq P_j=Q_j\cap R$ for any $i\neq j$. Thus, $\dim(B)\geq\dim(A)$. Conversely, if $\dim(B)=m$ and $Q_0\subset\cdots\subset Q_m$ is a chain of prime ideals of maximal length, then $P_0\subset\cdots\subset P_m$, where $P_i=Q_i\cap R$, is a chain of prime ideals, and $P_i\neq P_j$ for $i\neq j$ by Corollary 5.9 in Atiyah-Macdonald (if $Q_i\cap R=Q_j\cap R=P$, then $Q_i=Q_j$). Thus $\dim(A)\geq\dim(B)$, and thus $\dim(A)=\dim(B)$.\\
+Because $k[x']$ is Noetherian and a PID (so that each maximal
+ideal of $k[x']$ is principal), by Problem 1b we have that
+$\dim(k[x'])\leq1$, but since $(x)\supset (0)$ is chain of prime
+ideals of length 1, we have $\dim(k[x'])=1$. We will show that if $B$
+is integral over $A$, then $\dim(B)=\dim(A)$, so that specifically,
+$\dim(k[x,y]/f)=\dim(k[x'])=1$. Suppose $\dim(A)=n$, and let
+$P_0\subset\cdots\subset P_n$ be a chain of maximal length. By Theorems 5.10
+and 5.11 in Atiyah-Macdonald, there is a prime $Q_0$ with $Q_0\cap A=P_0$,
+and in fact a chain of prime ideals $Q_0\subset \cdots\subset Q_n$ with
+each $Q_i\cap R=P_i$, and the $Q_i$ are distinct because $Q_i\cap R=P_i\neq
+P_j=Q_j\cap R$ for any $i\neq j$. Thus, $\dim(B)\geq\dim(A)$. Conversely, if
+$\dim(B)=m$ and $Q_0\subset\cdots\subset Q_m$ is a chain of prime ideals of
+maximal length, then $P_0\subset\cdots\subset P_m$, where $P_i=Q_i\cap R$,
+is a chain of prime ideals, and $P_i\neq P_j$ for $i\neq j$ by Corollary
+5.9 in Atiyah-Macdonald (if $Q_i\cap R=Q_j\cap R=P$, then $Q_i=Q_j$). Thus
+$\dim(A)\geq\dim(B)$, and thus $\dim(A)=\dim(B)$.\\
 
-Thus we have proven that $\dim(k[x,y]/f)=1$ for any non-constant (i.e. non-unit) $f\in k[x,y]$. Then for any maximal chain of prime ideals $P_0\supset P_1\supset\cdots$ in $k[x,y]$, choose any non-zero $f\in P_1$ (it is not a unit since $P_1\neq R$). Then $\overline{P_0}\supset \overline{P_1}\supset\cdots$ is a chain of prime ideals in $k[x,y]/f$, but $\dim(k[x,y]/f)=1$ so that $\overline{P_0}\supset\overline{P_1}$ is in fact the entire chain - equivalently, $\overline{P_1}$ is minimal in $k[x,y]/f$. Thus $P_1$ is minimal over $(f)$, so by the Principal Ideal Theorem $\codim(P_1)\leq 1$, so that $\codim(P_0)\leq 2$, so that $\dim(k[x,y])\leq2$. Because $(x,y)\supset (x)\supset (0)$ is a chain of prime ideals of length 2 in $k[x,y]$, we have that $\dim(k[x,y])=2$.   \\
+Thus we have proven that $\dim(k[x,y]/f)=1$ for any non-constant
+(i.e. non-unit) $f\in k[x,y]$. Then for any maximal chain of prime ideals
+$P_0\supset P_1\supset\cdots$ in $k[x,y]$, choose any non-zero $f\in
+P_1$ (it is not a unit since $P_1\neq R$). Then $\overline{P_0}\supset
+\overline{P_1}\supset\cdots$ is a chain of prime ideals in $k[x,y]/f$,
+but $\dim(k[x,y]/f)=1$ so that $\overline{P_0}\supset\overline{P_1}$
+is in fact the entire chain - equivalently, $\overline{P_1}$ is minimal
+in $k[x,y]/f$. Thus $P_1$ is minimal over $(f)$, so by the Principal
+Ideal Theorem $\codim(P_1)\leq 1$, so that $\codim(P_0)\leq 2$, so that
+$\dim(k[x,y])\leq2$. Because $(x,y)\supset (x)\supset (0)$ is a chain of
+prime ideals of length 2 in $k[x,y]$, we have that $\dim(k[x,y])=2$.   \\
 
-\num{2b.} Any $f\in k[x,y]$ can be represented as $f=\sum_{i=0}^m g_iy^i$, where $g_i\in k[x]$. Let $\deg(g_i)=r_i$, and $g_i=c_{i,0}+\cdots+c_{i,r_i}x^{r_i}$. Then expressing $f$ as an element of $k[x',y]$, where $x'=x-ay$, we get $f=\sum_{i=0}^m g_i(x'+ay)y^i$. The highest power of $y$ that occurs in $g_i(x'+ay)y^i$ is $n+r_i$ - specifically, $g_i(x'+ay)y^i=y^i(c_{i,0}+\cdots+(c_{i,r_i}(ay)^n+\cdots+c_{i,r_i}x'^n))=c_{i,0}y^i+\cdots+c_{i,r_i}a^ny^{n+i}$, and because $c_{i,r_i}$ is the leading coefficient of $g_i$, we have $c_{i,r_i}\neq0$. Because we can express $f=\sum_{i=0}^m g_i(x'+ay)y^i$ as $\sum_{i=0}^m c_{i,r_i}a^iy^{n+r_i} + x'(\text{crap})$ (we have collected all candidates for the highest power of $y$), we are done as long as $\sum_{i=0}^m c_{i,r_i}a^iy^{n+r_i}$ is not the 0 polynomial. But this is the case iff the coefficient of each power of $y$ (which is a polynomial in $a$) is 0, for which only finitely many $a$ could possibly cause (because polynomials have only finitely many roots). Thus, at most finitely many $a\in k$ cause the substitution $x'=x-ay$ to not work for the purposes of Problem 2a.    \\
+\num{2b.} Any $f\in k[x,y]$ can be represented as $f=\sum_{i=0}^m
+g_iy^i$, where $g_i\in k[x]$. Let $\deg(g_i)=r_i$, and
+$g_i=c_{i,0}+\cdots+c_{i,r_i}x^{r_i}$. Then expressing $f$ as an element
+of $k[x',y]$, where $x'=x-ay$, we get $f=\sum_{i=0}^m g_i(x'+ay)y^i$. The
+highest power of $y$ that occurs in $g_i(x'+ay)y^i$ is $n+r_i$ - specifically,
+$g_i(x'+ay)y^i=y^i(c_{i,0}+\cdots+(c_{i,r_i}(ay)^n+\cdots+c_{i,r_i}x'^n))=c_{i,0}y^i+\cdots+c_{i,r_i}a^ny^{n+i}$,
+and because $c_{i,r_i}$ is the leading coefficient of $g_i$, we have
+$c_{i,r_i}\neq0$. Because we can express $f=\sum_{i=0}^m g_i(x'+ay)y^i$ as
+$\sum_{i=0}^m c_{i,r_i}a^iy^{n+r_i} + x'(\text{crap})$ (we have collected all
+candidates for the highest power of $y$), we are done as long as $\sum_{i=0}^m
+c_{i,r_i}a^iy^{n+r_i}$ is not the 0 polynomial. But this is the case iff
+the coefficient of each power of $y$ (which is a polynomial in $a$) is 0,
+for which only finitely many $a$ could possibly cause (because polynomials
+have only finitely many roots). Thus, at most finitely many $a\in k$ cause
+the substitution $x'=x-ay$ to not work for the purposes of Problem 2a.    \\
 
-\num{3.} We have that $\phi:R\rightarrow S$ is a homomorphism such that $S$ is integral over $\phi(R)$. We know that $M$ acquires an $R$-module structure by $r\cdot m=\phi(r)m$; let $\Ann_R(M)$, $\Ann_S(M)$ denote the annihilator of $M$ as an $R$-module and $S$-module, respectively, and let $\dim_R(M)$ and $\dim_S(M)$ denote the dimension of $M$ as an $R$-module and $S$-module, respectively. Clearly, $\ker(\phi)\subseteq\Ann_R(M)$, because if $\phi(r)=0$, then $r\cdot m=\phi(r)m=0m=0$ for all $m\in M$. In fact, $r\in\Ann_R(M)$ iff $\phi(r)\in\Ann_S(M)$, so $\Ann_R(M)=\phi^{-1}(\Ann_S(M))$. By Proposition 9.2 in Eisenbud and the definition of the dimension of a module, $\dim_R(M)=\dim(\Ann_R(M))=\dim(\phi^{-1}(\Ann_S(M)))=\dim(\Ann_S(M))=\dim_S(M)$.    \\
+\num{3.} We have that $\phi:R\rightarrow S$ is a homomorphism such that $S$
+is integral over $\phi(R)$. We know that $M$ acquires an $R$-module structure
+by $r\cdot m=\phi(r)m$; let $\Ann_R(M)$, $\Ann_S(M)$ denote the annihilator
+of $M$ as an $R$-module and $S$-module, respectively, and let $\dim_R(M)$
+and $\dim_S(M)$ denote the dimension of $M$ as an $R$-module and $S$-module,
+respectively. Clearly, $\ker(\phi)\subseteq\Ann_R(M)$, because if $\phi(r)=0$,
+then $r\cdot m=\phi(r)m=0m=0$ for all $m\in M$. In fact, $r\in\Ann_R(M)$
+iff $\phi(r)\in\Ann_S(M)$, so $\Ann_R(M)=\phi^{-1}(\Ann_S(M))$. By
+Proposition 9.2 in Eisenbud and the definition of the dimension of a module,
+$\dim_R(M)=\dim(\Ann_R(M))=\dim(\phi^{-1}(\Ann_S(M)))=\dim(\Ann_S(M))=\dim_S(M)$.
+\\
 
-\num{4.} We know the primes of $R[U^{-1}]$ are in inclusion-preserving bijection with the primes of $R$ disjoint from $U$, the bijection being given by $P\mapsto P^c$ (which Eisenbud denotes $P\cap R$), with the inverse being $Q\mapsto Q^e$. Thus, let $P$ be a prime in $R[U^{-1}]$ with $\codim(P)=n$, and let $P=P_0\supset\cdots\supset P_n$ be any chain of prime ideals of $R[U^{-1}]$ having the maximal length $n$. Then $P^c=P_0^c\supset\cdots\supset P_n^c$ is a chain of prime ideals (remaining distinct because $P\mapsto P^c$ is a bijection, and a chain because $P\mapsto P^c$ is inclusion-preserving) contained in $P^c$, so $\codim(P^c)\geq n$. Now suppose $\codim(P^c)=m$, and let $P^c=Q_0\supset\cdots\supset Q_m$ be any chain of prime ideals of $R$ (all will be disjoint from $U$, because $P^c=Q_0$ is and all the $Q_i$ are contained in $Q_0$) having the maximal length $m$. Then, $P=P^{ce}=Q_0^e\supset\cdots\supset Q_m^e$ is a chain of prime ideals contained in $P$, and because $\codim(P)=n$ we must have $\codim(P^c)\leq n$. Thus, $\codim(P^c)=\codim(P)$.    \\
+\num{4.} We know the primes of $R[U^{-1}]$ are in inclusion-preserving
+bijection with the primes of $R$ disjoint from $U$, the bijection being given
+by $P\mapsto P^c$ (which Eisenbud denotes $P\cap R$), with the inverse being
+$Q\mapsto Q^e$. Thus, let $P$ be a prime in $R[U^{-1}]$ with $\codim(P)=n$,
+and let $P=P_0\supset\cdots\supset P_n$ be any chain of prime ideals of
+$R[U^{-1}]$ having the maximal length $n$. Then $P^c=P_0^c\supset\cdots\supset
+P_n^c$ is a chain of prime ideals (remaining distinct because $P\mapsto P^c$
+is a bijection, and a chain because $P\mapsto P^c$ is inclusion-preserving)
+contained in $P^c$, so $\codim(P^c)\geq n$. Now suppose $\codim(P^c)=m$,
+and let $P^c=Q_0\supset\cdots\supset Q_m$ be any chain of prime ideals
+of $R$ (all will be disjoint from $U$, because $P^c=Q_0$ is and all
+the $Q_i$ are contained in $Q_0$) having the maximal length $m$. Then,
+$P=P^{ce}=Q_0^e\supset\cdots\supset Q_m^e$ is a chain of prime ideals
+contained in $P$, and because $\codim(P)=n$ we must have $\codim(P^c)\leq
+n$. Thus, $\codim(P^c)=\codim(P)$.    \\
 
-\num{6.} First, we prove the suggested lemma. Suppose $S$ is such that $S_P$ is Noetherian for all maximal ideals $P$, and every non-zero $s\in S$ is contained in only finitely many maximal ideals. Let $I\neq(0)$ be any ideal of $S$, and let $P_1,\ldots,P_r$ be the maximal ideals containing $I$ (if there were infinitely many maximal $P_i$ containing $I$, there would be infinitely many $P_i$ containing any given non-zero element of $I$, contradiction). For any $x\in I$, $x\neq0$, the set of maximal ideals containing $x$ obviously includes the $P_i$, though there may be some (finitely many) more $P_{r+1},\ldots,P_{r+s}$. Since $I\not\subseteq P_{r+1},\ldots,P_{r+s}$ (otherwise they would have been among the original $P_1,\ldots,P_r$), for each $P_{r+j}$, $1\leq j\leq s$, there is some $x_j\in I$ with $x_j\notin P_{r+j}$. Because each $S_{P_i}$ is Noetherian (for $1\leq i\leq r$), we have that each $I_{P_i}$ is finitely generated, say by $\frac{y_{i,1}}{1},\ldots,\frac{y_{i,t_i}}{1}$. Now let $I_0=(x,x_1,\ldots,x_s,y_{1,1},\ldots,y_{r,t_r})\subseteq I$. We certainly know that $I_Q=S_Q$ for any maximal $Q\neq P_1,\ldots,P_r$, because the $P_i$ are precisely the maximal ideals containing $I$. By construction, $(I_0)_Q=I_Q=S_Q$ for any maximal $Q\neq P_1,\ldots,P_r$, because if $Q\neq P_1,\ldots,P_{r+s}$, then $x\in I_0$, $x\notin Q$, and if $Q=P_{r+1},\ldots,P_{r+s}$, then $x_j\in I$, $x_j\notin Q$. Finally, $(I_0)_{P_i}\supseteq I_{P_i}$ for $1\leq i\leq r$ because, by construction, $I_0$ contains the elements of $I$ which generate $I_{P_i}$, but $(I_0)_{P_i}\subseteq I_{P_i}$ because $I_0\subseteq I$ and localization is inclusion-preserving. Thus, $I_Q=(I_0)_Q$ for all maximal ideals $Q$, and because $I_0\subseteq I$ we in fact have $I_0=I$ by a previous homework assignment about inclusions which become equalities at all localizations. Thus, all ideals $I$ of $S$ are finitely generated, so $S$ is Noetherian, proving the lemma.\\
+\num{6.} First, we prove the suggested lemma. Suppose $S$ is such that
+$S_P$ is Noetherian for all maximal ideals $P$, and every non-zero $s\in S$
+is contained in only finitely many maximal ideals. Let $I\neq(0)$ be any
+ideal of $S$, and let $P_1,\ldots,P_r$ be the maximal ideals containing $I$
+(if there were infinitely many maximal $P_i$ containing $I$, there would
+be infinitely many $P_i$ containing any given non-zero element of $I$,
+contradiction). For any $x\in I$, $x\neq0$, the set of maximal ideals
+containing $x$ obviously includes the $P_i$, though there may be some
+(finitely many) more $P_{r+1},\ldots,P_{r+s}$. Since $I\not\subseteq
+P_{r+1},\ldots,P_{r+s}$ (otherwise they would have been among the
+original $P_1,\ldots,P_r$), for each $P_{r+j}$, $1\leq j\leq s$, there
+is some $x_j\in I$ with $x_j\notin P_{r+j}$. Because each $S_{P_i}$ is
+Noetherian (for $1\leq i\leq r$), we have that each $I_{P_i}$ is finitely
+generated, say by $\frac{y_{i,1}}{1},\ldots,\frac{y_{i,t_i}}{1}$. Now let
+$I_0=(x,x_1,\ldots,x_s,y_{1,1},\ldots,y_{r,t_r})\subseteq I$. We certainly know
+that $I_Q=S_Q$ for any maximal $Q\neq P_1,\ldots,P_r$, because the $P_i$ are
+precisely the maximal ideals containing $I$. By construction, $(I_0)_Q=I_Q=S_Q$
+for any maximal $Q\neq P_1,\ldots,P_r$, because if $Q\neq P_1,\ldots,P_{r+s}$,
+then $x\in I_0$, $x\notin Q$, and if $Q=P_{r+1},\ldots,P_{r+s}$, then $x_j\in
+I$, $x_j\notin Q$. Finally, $(I_0)_{P_i}\supseteq I_{P_i}$ for $1\leq i\leq r$
+because, by construction, $I_0$ contains the elements of $I$ which generate
+$I_{P_i}$, but $(I_0)_{P_i}\subseteq I_{P_i}$ because $I_0\subseteq I$
+and localization is inclusion-preserving. Thus, $I_Q=(I_0)_Q$ for all
+maximal ideals $Q$, and because $I_0\subseteq I$ we in fact have $I_0=I$
+by a previous homework assignment about inclusions which become equalities
+at all localizations. Thus, all ideals $I$ of $S$ are finitely generated,
+so $S$ is Noetherian, proving the lemma.\\
 
-As the problem indicates, the maximal ideals of $S$ are the ideals $P_m[U^{-1}]$ where $P_m=(x_{d(m-1)+1},\ldots,x_{d(m)})$. We know that $\dim(S)=\sup\{\codim(P):P\text{ maximal}\}$, and by Problem 4, $\codim(P_m[U^{-1}])=\codim(P_m)=\codim(x_{d(m-1)+1},\ldots,x_{d(m)})=(d(m)-d(m-1)-1)+1=d(m)-d(m-1)$. Thus, if the $d(m)-d(m-1)$ are unbounded, for example $d(m)=m^2$, then $S$ has infinite dimension. But $S$ satisfies the conditions of the lemma, namely, that for every $P_m[U^{-1}]$, the localization $S_{P_m[U^{-1}]}\simeq K_m[x_{d(m-1)+1},\ldots,x_{d(m)}]$ where $K_m=\Frac(k[x_1,\ldots,x_{d(m-1)},x_{d(m)+1},\ldots])$ is Noetherian by the Hilbert basis theorem, and every $f\in S$ is contained in only finitely many maximal ideals because any corresponding $f'\in k[x_1,x_2,\ldots]$ can use only finitely many of the variables $x_1,x_2,\ldots$, so $f'$ could only possibly be in finitely many of the $P_m=(x_{d(m-1)+1},\ldots,x_{d(m)})$, and thus $f$ can only be in finitely many $P_m[U^{-1}]$.    \\
+As the problem indicates, the maximal ideals of $S$ are the
+ideals $P_m[U^{-1}]$ where $P_m=(x_{d(m-1)+1},\ldots,x_{d(m)})$. We
+know that $\dim(S)=\sup\{\codim(P):P\text{ maximal}\}$, and by Problem 4,
+$\codim(P_m[U^{-1}])=\codim(P_m)=\codim(x_{d(m-1)+1},\ldots,x_{d(m)})=(d(m)-d(m-1)-1)+1=d(m)-d(m-1)$.
+Thus, if the $d(m)-d(m-1)$ are unbounded, for example $d(m)=m^2$,
+then $S$ has infinite dimension. But $S$ satisfies the conditions of
+the lemma, namely, that for every $P_m[U^{-1}]$, the localization
+$S_{P_m[U^{-1}]}\simeq K_m[x_{d(m-1)+1},\ldots,x_{d(m)}]$ where
+$K_m=\Frac(k[x_1,\ldots,x_{d(m-1)},x_{d(m)+1},\ldots])$ is Noetherian by the
+Hilbert basis theorem, and every $f\in S$ is contained in only finitely many
+maximal ideals because any corresponding $f'\in k[x_1,x_2,\ldots]$ can use
+only finitely many of the variables $x_1,x_2,\ldots$, so $f'$ could only
+possibly be in finitely many of the $P_m=(x_{d(m-1)+1},\ldots,x_{d(m)})$,
+and thus $f$ can only be in finitely many $P_m[U^{-1}]$.    \\
 
-\num{Assigned in class.} Let $R_0=k[x,y]/(y^2-x^3)=k[\bar{x},\bar{y}]$. We know that $R_0$ is a domain. Let $M=(\bar{x},\bar{y})$, and let $R=(R_0)_M$. Show that $\dim(R)=1$, even though $M$ is not principal. Show that $\{\bar{x}^3\}$ is a system of parameters for $M$.\\
+\num{Assigned in class.} Let $R_0=k[x,y]/(y^2-x^3)=k[\bar{x},\bar{y}]$. We know
+that $R_0$ is a domain. Let $M=(\bar{x},\bar{y})$, and let $R=(R_0)_M$. Show
+that $\dim(R)=1$, even though $M$ is not principal. Show that $\{\bar{x}^3\}$
+is a system of parameters for $M$.\\
 
-We have that $M$ is maximal in $R$, because we localized $R_0$ at $M$. Note that $M^4=(\bar{x}^4,\bar{x}^3\bar{y},\bar{x}^2\bar{y}^2,\bar{x}\bar{y}^3,\bar{y}^4)$, and that because $\bar{y}^2-\bar{x}^3=\bar{0}$, we have that $M^4=(\bar{x}^4,\bar{x}^3\bar{y},\bar{x}^5,\bar{x}^5\bar{y},\bar{x}^6)=(\bar{x}^4,\bar{x}^3\bar{y})=(\bar{x}^3)M$, so that $M^4\subseteq(\bar{x})^3$. By a lemma proved in class, we therefore have that $M$ is minimal over $(\bar{x}^3)$, so that by the Principal Ideal Theorem, $\codim(M)\leq 1$. However, we know that $R$ is a domain, so $(\bar{0})$ is prime, and because $M=(\bar{x},\bar{y})\neq(\bar{0})$, we in fact have $\codim(M)=1$. Thus, $\dim(R)=\sup\{\codim(P):P\text{ maximal}\}$, so $\dim(R)=1$. \\
+We have that $M$ is maximal in $R$,
+because we localized $R_0$ at $M$. Note that
+$M^4=(\bar{x}^4,\bar{x}^3\bar{y},\bar{x}^2\bar{y}^2,\bar{x}\bar{y}^3,\bar{y}^4)$,
+and that because $\bar{y}^2-\bar{x}^3=\bar{0}$, we have that
+$M^4=(\bar{x}^4,\bar{x}^3\bar{y},\bar{x}^5,\bar{x}^5\bar{y},\bar{x}^6)=(\bar{x}^4,\bar{x}^3\bar{y})=(\bar{x}^3)M$,
+so that $M^4\subseteq(\bar{x})^3$. By a lemma proved in class, we therefore
+have that $M$ is minimal over $(\bar{x}^3)$, so that by the Principal
+Ideal Theorem, $\codim(M)\leq 1$. However, we know that $R$ is a domain,
+so $(\bar{0})$ is prime, and because $M=(\bar{x},\bar{y})\neq(\bar{0})$,
+we in fact have $\codim(M)=1$. Thus, $\dim(R)=\sup\{\codim(P):P\text{
+maximal}\}$, so $\dim(R)=1$. \\
 
-Thus, $R$ is a local Noetherian domain of dimension 1. Suppose $M$ were principal. Then by Proposition 9.2, every ideal is a power of $M$. But $M^2\subsetneq(\bar{x})\subsetneq M$, as we will show. We know that $M=(\bar{x},\bar{y})$ and $M^2=(\bar{x}^2,\bar{x}\bar{y},\bar{y}^2)=(\bar{x}^2,\bar{x}\bar{y},\bar{x}^3)=(\bar{x}^2,\bar{x}\bar{y})=(\bar{x})M$, so that $M^2\subseteq(\bar{x})\subseteq M$. If $(\bar{x})=M^2=(\bar{x})M$, then by Nakayama's Lemma, $(\bar{x})=0$, contradiction, so $M^2\subsetneq(\bar{x})$. If $(\bar{x})=M=(\bar{x},\bar{y})$, then $\bar{y}\in(\bar{x})$, so that $\bar{y}=a\bar{x}$ for some $a\in R$. We know that any $a\in R$ is of the form $\frac{\bar{b}}{\bar{c}}$ where $\bar{\text{ }}$ continues to denote reduction mod $y^2-x^3$, and where $b,c\in R_0=k[\bar{x},\bar{y}]$, with $c\notin M=(\bar{x},\bar{y})$ (equivalently, $c$ having a non-zero constant term). Thus, $\bar{c}\bar{y}=\bar{b}\bar{x}$, so that $y^2-x^3\mid cy-bx$. But because $c$ has a non-zero constant term, there is a term of $cy-bx$ which is a constant times $y$. Thus $y^2-x^3$ certainly cannot divide $cy-bx$, because any multiple of $y^2-x^3$ can only have terms of degree $\geq 2$, contradiction. Thus $\bar{y}\notin(\bar{x})$, so that $(\bar{x})\subsetneq M$, so that $M^2\subsetneq(\bar{x})\subsetneq M$, so that $(\bar{x})$ cannot be any power of $M$, contradiction. Thus $M$ must not be principal.\\
+Thus, $R$ is a local Noetherian domain of dimension 1. Suppose
+$M$ were principal. Then by Proposition 9.2, every ideal
+is a power of $M$. But $M^2\subsetneq(\bar{x})\subsetneq
+M$, as we will show. We know that $M=(\bar{x},\bar{y})$ and
+$M^2=(\bar{x}^2,\bar{x}\bar{y},\bar{y}^2)=(\bar{x}^2,\bar{x}\bar{y},\bar{x}^3)=(\bar{x}^2,\bar{x}\bar{y})=(\bar{x})M$,
+so that $M^2\subseteq(\bar{x})\subseteq M$. If $(\bar{x})=M^2=(\bar{x})M$,
+then by Nakayama's Lemma, $(\bar{x})=0$, contradiction, so
+$M^2\subsetneq(\bar{x})$. If $(\bar{x})=M=(\bar{x},\bar{y})$, then
+$\bar{y}\in(\bar{x})$, so that $\bar{y}=a\bar{x}$ for some $a\in R$. We
+know that any $a\in R$ is of the form $\frac{\bar{b}}{\bar{c}}$ where
+$\bar{\text{ }}$ continues to denote reduction mod $y^2-x^3$, and where $b,c\in
+R_0=k[\bar{x},\bar{y}]$, with $c\notin M=(\bar{x},\bar{y})$ (equivalently,
+$c$ having a non-zero constant term). Thus, $\bar{c}\bar{y}=\bar{b}\bar{x}$,
+so that $y^2-x^3\mid cy-bx$. But because $c$ has a non-zero constant term,
+there is a term of $cy-bx$ which is a constant times $y$. Thus $y^2-x^3$
+certainly cannot divide $cy-bx$, because any multiple of $y^2-x^3$ can only
+have terms of degree $\geq 2$, contradiction. Thus $\bar{y}\notin(\bar{x})$,
+so that $(\bar{x})\subsetneq M$, so that $M^2\subsetneq(\bar{x})\subsetneq
+M$, so that $(\bar{x})$ cannot be any power of $M$, contradiction. Thus $M$
+must not be principal.\\
 
-Finally, $\{\bar{x}^3\}$ is a system of parameters for $R$ when $(\bar{x}^3)$ has finite colength, which we proved in class (for the case of Noetherian local rings) was the case iff $(\bar{x}^3)$ contains a power of $M$, the maximal ideal. We showed above that this is the case, and $R$ is Noetherian and local, so $\{\bar{x}^3\}$ is a system of parameters for $R$.
+Finally, $\{\bar{x}^3\}$ is a system of parameters for $R$ when $(\bar{x}^3)$
+has finite colength, which we proved in class (for the case of Noetherian
+local rings) was the case iff $(\bar{x}^3)$ contains a power of $M$, the
+maximal ideal. We showed above that this is the case, and $R$ is Noetherian
+and local, so $\{\bar{x}^3\}$ is a system of parameters for $R$.
 
 
 \end{document}
-q(\bar{x})\subsetneq M$, so that $(\bar{x})$ cannot be any power of $M$, 
+q(\bar{x})\subsetneq M$, so that $(\bar{x})$ cannot be any power of $M$,

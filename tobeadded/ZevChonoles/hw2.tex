@@ -9,7 +9,8 @@
 \xyoption{all}
 %% This command inserts \noindent and makes the input bold.
 \newcommand{\num}[1]{\noindent \textbf{#1}}
-%% This custom type produces a column of the specified width whose contents are centered.
+%% This custom type produces a column of the specified width whose contents
+are centered.
 \newcolumntype{C}[1]{>{\centering\hspace{0pt}}p{#1}}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}[theorem]
@@ -28,31 +29,137 @@
 \noindent \underline{MATH 2520 - Assignment 2}
 \end{center}
 
-\num{Problem 1.} Suppose $R$ has d.c.c., and let $X$ be a non-empty collection of ideals (in particular, let $I_1\in X$). If $X$ has no minimal element, then there is some $I_2\subsetneq I_1$, and in fact for any $I_n$ there is an $I_{n+1}$ such that $I_{n+1}\subsetneq I_n$. But then $\{I_n\}$ is a decreasing sequence of ideals which does not stabilize, contradicting d.c.c. - thus $X$ must have at least one minimal element. Conversely, if every non-empty collection of ideals has a minimal element, then in particular any decreasing sequence of ideals $\{I_n\}$ must have a minimal element, say $I_n$ - but then $I_n\supseteq I_{n+1}\supseteq \cdots$ and $I_n$ minimal implies $I_n=I_{n+1}=\cdots$, i.e. the sequence $\{I_n\}$ stabilizes.    \\
+\num{Problem 1.} Suppose $R$ has d.c.c., and let $X$ be a non-empty collection
+of ideals (in particular, let $I_1\in X$). If $X$ has no minimal element,
+then there is some $I_2\subsetneq I_1$, and in fact for any $I_n$ there
+is an $I_{n+1}$ such that $I_{n+1}\subsetneq I_n$. But then $\{I_n\}$
+is a decreasing sequence of ideals which does not stabilize, contradicting
+d.c.c. - thus $X$ must have at least one minimal element. Conversely, if every
+non-empty collection of ideals has a minimal element, then in particular
+any decreasing sequence of ideals $\{I_n\}$ must have a minimal element,
+say $I_n$ - but then $I_n\supseteq I_{n+1}\supseteq \cdots$ and $I_n$ minimal
+implies $I_n=I_{n+1}=\cdots$, i.e. the sequence $\{I_n\}$ stabilizes.    \\
 
-\num{Problem 2.} First, note that for any two ideals $I_1$ and $I_2$, we have $I_1I_2\subseteq I_1\cap I_2$ and $(I_1+I_2)(I_1\cap I_2)\subseteq I_1I_2$ (because any element of $I_1+I_2$ multiplied by any element of $I_1\cap I_2$ will clearly be a sum of products of elements from both $I_1$ and $I_2$). Thus, if $I_1$ and $I_2$ are coprime, i.e. $I_1+I_2=(1)=R$, then $(1)(I_1\cap I_2)=(I_1\cap I_2)\subseteq I_1I_2\subseteq I_1\cap I_2$, so that $I_1\cap I_2=I_1I_2$. This establishes the result for $n=2$. If the ideals $I_1,\ldots,I_n$ are pairwise coprime and the result holds for $n-1$, then $\bigcap_{i=1}^{n-1} I_i=\prod_{i=1}^{n-1}I_i$.  Because $I_n+I_i=(1)$ for each $1\leq i\leq n-1$, there must be $x_i\in I_n$ and $y_i\in I_i$ such that $x_i+y_i=1$. Thus, $z_n=\prod_{i=1}^{n-1}y_i=\prod_{i=1}^{n-1}(1-x_i)\in \prod_{i=1}^{n-1} I_i$, and clearly $z_n+I_n=1+I_n$ since each $x_i\in I_n$. Thus $I_n+\prod_{i=1}^{n-1}I_i=I_n+\bigcap_{i=1}^{n-1}I_i=(1)$, and we can now apply the $n=2$ case to conclude that $\bigcap_{i=1}^n I_i=\prod_{i=1}^n I_i$. Note that for any $i$, we can construct a $z_i$ with $z_i\in I_j$ for $j\neq i$ and $z_i+I_i=1+I_i$ via the same procedure.\\
+\num{Problem 2.} First, note that for any two ideals $I_1$ and $I_2$, we
+have $I_1I_2\subseteq I_1\cap I_2$ and $(I_1+I_2)(I_1\cap I_2)\subseteq
+I_1I_2$ (because any element of $I_1+I_2$ multiplied by any element of
+$I_1\cap I_2$ will clearly be a sum of products of elements from both $I_1$
+and $I_2$). Thus, if $I_1$ and $I_2$ are coprime, i.e. $I_1+I_2=(1)=R$,
+then $(1)(I_1\cap I_2)=(I_1\cap I_2)\subseteq I_1I_2\subseteq I_1\cap I_2$,
+so that $I_1\cap I_2=I_1I_2$. This establishes the result for $n=2$. If the
+ideals $I_1,\ldots,I_n$ are pairwise coprime and the result holds for $n-1$,
+then $\bigcap_{i=1}^{n-1} I_i=\prod_{i=1}^{n-1}I_i$.  Because $I_n+I_i=(1)$
+for each $1\leq i\leq n-1$, there must be $x_i\in I_n$ and $y_i\in I_i$ such
+that $x_i+y_i=1$. Thus, $z_n=\prod_{i=1}^{n-1}y_i=\prod_{i=1}^{n-1}(1-x_i)\in
+\prod_{i=1}^{n-1} I_i$, and clearly $z_n+I_n=1+I_n$ since each $x_i\in
+I_n$. Thus $I_n+\prod_{i=1}^{n-1}I_i=I_n+\bigcap_{i=1}^{n-1}I_i=(1)$,
+and we can now apply the $n=2$ case to conclude that $\bigcap_{i=1}^n
+I_i=\prod_{i=1}^n I_i$. Note that for any $i$, we can construct a $z_i$
+with $z_i\in I_j$ for $j\neq i$ and $z_i+I_i=1+I_i$ via the same procedure.\\
 
-\noindent Define $\phi:R\rightarrow\bigoplus R/I_i$ by $\phi(a)=(a+I_1,\ldots,a+I_n)$. The kernel of $\phi$ is $\bigcap_{i=1}^n I_i$, because $a+I_i=0+I_i$ iff $a\in I_i$, so that $\phi(a)=(0+I_1,\ldots,0+I_n)$ iff $a\in I_i$ for all $i$, that is, $a\in\bigcap_{i=1}^n I_i$. Combined with our previous result, the kernel of $\phi$ is $\prod_{i=1}^n I_i$. Finally, recall that we constructed $z_i\in R$ such that $z_i+I_i=1+I_i$, and $z+I_j=0+I_j$ for all $j\neq i$, so that $\phi(z_i)=(0+I_1,\ldots,1+I_{i},\ldots,0+I_n)$. Thus, $\phi(a_1z_1+\cdots+a_nz_n)=(a_1+I_1,\ldots,a_n+I_n)$ for all $a_i\in R$, so that $\phi$ is onto. By the first isomorphism theorem, we have that $R/I_1\cdots I_n\simeq \bigoplus_{i=1}^nR/I_i$.   \\
+\noindent Define $\phi:R\rightarrow\bigoplus R/I_i$
+by $\phi(a)=(a+I_1,\ldots,a+I_n)$. The kernel of $\phi$ is
+$\bigcap_{i=1}^n I_i$, because $a+I_i=0+I_i$ iff $a\in I_i$, so that
+$\phi(a)=(0+I_1,\ldots,0+I_n)$ iff $a\in I_i$ for all $i$, that is,
+$a\in\bigcap_{i=1}^n I_i$. Combined with our previous result, the kernel
+of $\phi$ is $\prod_{i=1}^n I_i$. Finally, recall that we constructed
+$z_i\in R$ such that $z_i+I_i=1+I_i$, and $z+I_j=0+I_j$ for all $j\neq
+i$, so that $\phi(z_i)=(0+I_1,\ldots,1+I_{i},\ldots,0+I_n)$. Thus,
+$\phi(a_1z_1+\cdots+a_nz_n)=(a_1+I_1,\ldots,a_n+I_n)$ for all $a_i\in R$,
+so that $\phi$ is onto. By the first isomorphism theorem, we have that
+$R/I_1\cdots I_n\simeq \bigoplus_{i=1}^nR/I_i$.   \\
 
-\num{Problem 3.} Let $R$ be an integral domain with d.c.c., and suppose there is a non-unit $a\in R$, $a\neq0$. Then $(a^1)\subsetneq (a^0)=(1)=R$. We certainly have $(a^{n+1})\subseteq(a^n)$ for all $n$ - suppose $(a^{n+1})=(a^n)$ for some $n$. Then $ra^{n+1}=a^n$ for some $r\in R$, and $r\neq0$ because $a^n\neq0$, but then $ra^n(a-1)=0$, and $a\neq1$, $a^n\neq0$, and $r\neq0$, contradicting that $R$ is an integral domain. Thus, in fact $(a^{n+1})\subsetneq(a^n)$ for all $n$, but then this is a decreasing sequence of ideals which does not stabilize, contradicting d.c.c. Thus, there can be no non-zero non-units in $R$, i.e. $R$ is a field.    \\
+\num{Problem 3.} Let $R$ be an integral domain with d.c.c., and
+suppose there is a non-unit $a\in R$, $a\neq0$. Then $(a^1)\subsetneq
+(a^0)=(1)=R$. We certainly have $(a^{n+1})\subseteq(a^n)$ for all $n$ -
+suppose $(a^{n+1})=(a^n)$ for some $n$. Then $ra^{n+1}=a^n$ for some $r\in
+R$, and $r\neq0$ because $a^n\neq0$, but then $ra^n(a-1)=0$, and $a\neq1$,
+$a^n\neq0$, and $r\neq0$, contradicting that $R$ is an integral domain. Thus,
+in fact $(a^{n+1})\subsetneq(a^n)$ for all $n$, but then this is a decreasing
+sequence of ideals which does not stabilize, contradicting d.c.c. Thus,
+there can be no non-zero non-units in $R$, i.e. $R$ is a field.    \\
 
-\num{Problem 4.} Clearly, $R/M$ has d.c.c. because it is a field. Also, note that each $M^{n-1}/M^n$ is a finite dimensional vector space over $R/M$ (it is an abelian group which can be multiplied by elements from $R/M$, because $M^{n-1}$ is an ideal in $R$, and $M^{n-1}$ is finitely generated over $R$ because $R$ is Noetherian). Thus, as an $R/M$-module (i.e., vector space), each $M^{n-1}/M^n$ has d.c.c., because any decreasing sequence of subspaces will have a corresponding decreasing sequence of dimensions, which is bounded below by 0, and hence must stabilize. \\
+\num{Problem 4.} Clearly, $R/M$ has d.c.c. because it is a field. Also, note
+that each $M^{n-1}/M^n$ is a finite dimensional vector space over $R/M$ (it
+is an abelian group which can be multiplied by elements from $R/M$, because
+$M^{n-1}$ is an ideal in $R$, and $M^{n-1}$ is finitely generated over $R$
+because $R$ is Noetherian). Thus, as an $R/M$-module (i.e., vector space),
+each $M^{n-1}/M^n$ has d.c.c., because any decreasing sequence of subspaces
+will have a corresponding decreasing sequence of dimensions, which is bounded
+below by 0, and hence must stabilize. \\
 
-\noindent Now, suppose $R/M^{n-1}$ has d.c.c. - the ideals of $R/M^{n-1}$ are in bijection with the ideals of $R/M^n$ which contain $M^{n-1}/M^n$. Thus, if a descending sequence of ideals in $R/M^n$, say $I_1/M^n\supseteq I_2/M^n\supseteq \cdots$, has $I_i\supseteq M^{n-1}$ for all $i$, then the bijection gives a descending chain of ideals in $R/M^{n-1}$, namely $I_1/M^{n-1}\supseteq I_2/M^{n-1}\supseteq\cdots$, which must stabilize because $R/M^{n-1}$ has d.c.c., and therefore, so must the original sequence. Otherwise, we have $M^{n-1}\subsetneq I_i$ for all $i\geq k$ for some $k$. Obviously, the sequence as a whole stabilizes iff the sequence after the $k$th term stabilizes - but the sequence after the $k$th term must stabilize, as the sequence now represents a decreasing sequence of subspaces of $M^{n-1}/M^n$. Thus, any decreasing sequence in $R/M^n$ must stabilize, so by induction, each $R/M^n$ has d.c.c.     \\
+\noindent Now, suppose $R/M^{n-1}$ has d.c.c. - the ideals of $R/M^{n-1}$ are
+in bijection with the ideals of $R/M^n$ which contain $M^{n-1}/M^n$. Thus,
+if a descending sequence of ideals in $R/M^n$, say $I_1/M^n\supseteq
+I_2/M^n\supseteq \cdots$, has $I_i\supseteq M^{n-1}$ for all $i$, then
+the bijection gives a descending chain of ideals in $R/M^{n-1}$, namely
+$I_1/M^{n-1}\supseteq I_2/M^{n-1}\supseteq\cdots$, which must stabilize
+because $R/M^{n-1}$ has d.c.c., and therefore, so must the original
+sequence. Otherwise, we have $M^{n-1}\subsetneq I_i$ for all $i\geq k$ for
+some $k$. Obviously, the sequence as a whole stabilizes iff the sequence
+after the $k$th term stabilizes - but the sequence after the $k$th term must
+stabilize, as the sequence now represents a decreasing sequence of subspaces
+of $M^{n-1}/M^n$. Thus, any decreasing sequence in $R/M^n$ must stabilize,
+so by induction, each $R/M^n$ has d.c.c.     \\
 
-\num{Problem 5.} Note that if $R$ has d.c.c., then so does $R/I$ for any ideal $I$, because a decreasing chain of ideals $J_1\supseteq J_2\supseteq\cdots$ in $R/I$ is in bijection with the decreasing chain of ideals $\phi^{-1}(J_1)\supseteq\phi^{-1}(J_2)\supseteq\cdots$ in $R$ (where $\phi:R\rightarrow R/I$ is the quotient map) - this sequence stabilizes, and hence its image under $\phi$, i.e. the original $J_1\supseteq J_2\supseteq\cdots$, stabilizes as well. \\
+\num{Problem 5.} Note that if $R$ has d.c.c., then so does $R/I$
+for any ideal $I$, because a decreasing chain of ideals $J_1\supseteq
+J_2\supseteq\cdots$ in $R/I$ is in bijection with the decreasing chain of
+ideals $\phi^{-1}(J_1)\supseteq\phi^{-1}(J_2)\supseteq\cdots$ in $R$ (where
+$\phi:R\rightarrow R/I$ is the quotient map) - this sequence stabilizes,
+and hence its image under $\phi$, i.e. the original $J_1\supseteq
+J_2\supseteq\cdots$, stabilizes as well. \\
 
-\noindent We have that $N=\bigcap P_i$, where the $P_i$ are all the prime ideals of $R$. But we can form the decreasing sequence $P_1\subseteq P_1\cap P_2 \subseteq \ldots$, which terminates at some $\bigcap_{i=1}^r P_i$ because $R$ has d.c.c. Thus $N=\bigcap_{i=1}^r P_i$. Note that for each $P_i$, we have that $R/P_i$ is an integral domain (because $P_i$ is prime) which has d.c.c. (by our work above). Thus, by Problem 3, each $R/P_i$ is a field, or equivalently, each $P_i$ is maximal. Note that any two distinct maximal ideals $M$, $N$ are coprime, because $M\subsetneq M+N\subseteq (1)$ and hence $M+N=(1)$. Thus the $P_i$ are pairwise coprime because they are all maximal, and by Problem 2, we have that $R/N=R/\bigcap_{i=1}^r P_i\simeq\bigoplus R/P_i$, with each $R/P_i$ a field. Thus, $R/N$ is isomorphic to a direct sum of fields. \\
+\noindent We have that $N=\bigcap P_i$, where the $P_i$ are all the prime
+ideals of $R$. But we can form the decreasing sequence $P_1\subseteq P_1\cap
+P_2 \subseteq \ldots$, which terminates at some $\bigcap_{i=1}^r P_i$ because
+$R$ has d.c.c. Thus $N=\bigcap_{i=1}^r P_i$. Note that for each $P_i$, we
+have that $R/P_i$ is an integral domain (because $P_i$ is prime) which has
+d.c.c. (by our work above). Thus, by Problem 3, each $R/P_i$ is a field,
+or equivalently, each $P_i$ is maximal. Note that any two distinct maximal
+ideals $M$, $N$ are coprime, because $M\subsetneq M+N\subseteq (1)$ and hence
+$M+N=(1)$. Thus the $P_i$ are pairwise coprime because they are all maximal,
+and by Problem 2, we have that $R/N=R/\bigcap_{i=1}^r P_i\simeq\bigoplus
+R/P_i$, with each $R/P_i$ a field. Thus, $R/N$ is isomorphic to a direct
+sum of fields. \\
 
-\num{Problem 6.} Let $S=\{ab:a\notin P, b$ non-zero-divisor$\}$, which is clearly a multiplicative set - certainly $1\in S$, and if $a_1b_1,a_2b_2\in S$, then $a_1a_2\notin P$ and $b_1b_2$ is not a zero-divisor, and hence $(a_1b_1)(a_2b_2)=(a_1a_2)(b_1b_2)\in S$. Note that a set disjoint from $S$ can only contain zero-divisors and elements of $P$, because $a\cdot1,1\cdot b\in S$ for all $a\notin P$ and $b$ non-zero-divisors.\\
+\num{Problem 6.} Let $S=\{ab:a\notin P, b$ non-zero-divisor$\}$, which is
+clearly a multiplicative set - certainly $1\in S$, and if $a_1b_1,a_2b_2\in
+S$, then $a_1a_2\notin P$ and $b_1b_2$ is not a zero-divisor, and hence
+$(a_1b_1)(a_2b_2)=(a_1a_2)(b_1b_2)\in S$. Note that a set disjoint from $S$
+can only contain zero-divisors and elements of $P$, because $a\cdot1,1\cdot
+b\in S$ for all $a\notin P$ and $b$ non-zero-divisors.\\
 
-\noindent If $P=(0)$, the result is obviously true. If $(0)\subsetneq P$, then the fact that $P$ is a minimal prime implies that $(0)$ is not a prime ideal, i.e. there exist $r,s\in R$, $r,s\neq0$ such that $rs=0\in P$. Because $P$ is prime, we have that WLOG, $r\in P$. Because $r$ is a zero-divisor, $(r)$ is an ideal entirely composed of zero-divisors, and $(r)\subseteq P$.  Thus, $\Sigma$, the collection of all ideals of $R$ disjoint from $S$, is non-empty. Ordering $\Sigma$ by inclusion, for any chain $\{I_\alpha\}\subset \Sigma$, we have that $\bigcup I_\alpha$ is an ideal (by the standard argument), and is disjoint from $S$ (because each $I_\alpha\cap S=\emptyset$), and hence is a upper bound in $\Sigma$ for $\{I_\alpha\}$. Thus, by Zorn's Lemma, $\Sigma$ has maximal elements.\\
+\noindent If $P=(0)$, the result is obviously true. If $(0)\subsetneq P$,
+then the fact that $P$ is a minimal prime implies that $(0)$ is not a
+prime ideal, i.e. there exist $r,s\in R$, $r,s\neq0$ such that $rs=0\in
+P$. Because $P$ is prime, we have that WLOG, $r\in P$. Because $r$ is a
+zero-divisor, $(r)$ is an ideal entirely composed of zero-divisors, and
+$(r)\subseteq P$.  Thus, $\Sigma$, the collection of all ideals of $R$
+disjoint from $S$, is non-empty. Ordering $\Sigma$ by inclusion, for any
+chain $\{I_\alpha\}\subset \Sigma$, we have that $\bigcup I_\alpha$ is an
+ideal (by the standard argument), and is disjoint from $S$ (because each
+$I_\alpha\cap S=\emptyset$), and hence is a upper bound in $\Sigma$ for
+$\{I_\alpha\}$. Thus, by Zorn's Lemma, $\Sigma$ has maximal elements.\\
 
-\noindent Let $J$ be a maximal element of $\Sigma$ - because $J$ is disjoint from $S$, we have that $J\subseteq P$ and $J$ is entirely composed of zero-divisors. If $J=P$, we are done. If $J\subsetneq P$, choose any $a,b\notin J$. Then $J\subsetneq J+(a),J+(b)$, and because $J$ is maximal among ideals disjoint from $S$, there are $x,y\in S$ with $x\in J+(a)$, $y\in J+(b)$. But then $xy\in (J+(a))(J+(b))\subseteq J+(ab)$, and $xy\in S$, so that $ab\notin J$. Thus $a,b\notin J$ implies $ab\notin J$, so that $J\subsetneq P$ is prime - but this contradicts the minimality of $P$.\\
+\noindent Let $J$ be a maximal element of $\Sigma$ - because $J$ is
+disjoint from $S$, we have that $J\subseteq P$ and $J$ is entirely composed
+of zero-divisors. If $J=P$, we are done. If $J\subsetneq P$, choose any
+$a,b\notin J$. Then $J\subsetneq J+(a),J+(b)$, and because $J$ is maximal
+among ideals disjoint from $S$, there are $x,y\in S$ with $x\in J+(a)$,
+$y\in J+(b)$. But then $xy\in (J+(a))(J+(b))\subseteq J+(ab)$, and $xy\in
+S$, so that $ab\notin J$. Thus $a,b\notin J$ implies $ab\notin J$, so that
+$J\subsetneq P$ is prime - but this contradicts the minimality of $P$.\\
 
 \noindent Note that we did not need $R$ to be Noetherian for this problem.\\
 
-\num{Problem 7.} Because $R$ is Noetherian, $I$ is finitely generated. Thus, there are nilpotent elements $a_1,\ldots,a_r\in I$ such that $I=(a_1,\ldots,a_r)$. Let $n_i$ be such that $a_i^{n_i}=0$. Then because $I^{n_1+\cdots+n_r}$ is generated by the products of $n_1+\cdots+n_r$ of the $a_i$'s and any such product has at least one $a_i$ raised to a power of at least $n_i$, $I^{n_1+\cdots+n_r}$ is generated by 0's, and thus $I^{n_1+\cdots+n_r}=(0)$.
+\num{Problem 7.} Because $R$ is Noetherian, $I$ is finitely generated. Thus,
+there are nilpotent elements $a_1,\ldots,a_r\in I$ such that
+$I=(a_1,\ldots,a_r)$. Let $n_i$ be such that $a_i^{n_i}=0$. Then because
+$I^{n_1+\cdots+n_r}$ is generated by the products of $n_1+\cdots+n_r$ of
+the $a_i$'s and any such product has at least one $a_i$ raised to a power
+of at least $n_i$, $I^{n_1+\cdots+n_r}$ is generated by 0's, and thus
+$I^{n_1+\cdots+n_r}=(0)$.
 
 
 
@@ -66,4 +173,7 @@
 \end{document}
 r this problem.\\
 
-\num{Problem 7.} Because $R$ is Noetherian, $I$ is finitely generated. Thus, there are nilpotent elements $a_1,\ldots,a_r\in I$ such that $I=(a_1,\ldots,a_r)$. Let $n_i$ be such that $a_i^{n_i}=0$. Then because $I^{n_1+\cdots+n_r}$ is generated by the products of $n_1+\cd
+\num{Problem 7.} Because $R$ is Noetherian, $I$ is finitely
+generated. Thus, there are nilpotent elements $a_1,\ldots,a_r\in I$ such
+that $I=(a_1,\ldots,a_r)$. Let $n_i$ be such that $a_i^{n_i}=0$. Then because
+$I^{n_1+\cdots+n_r}$ is generated by the products of $n_1+\cd

@@ -10,31 +10,105 @@
 Zev Chonoles \hfill 
 \underline{MATH 2520 - Assignment 6} \hfill \today\\
 
-\num{1.} Let $M$ be a finitely generated abelian group. By the relevant classification theorem,
+\num{1.} Let $M$ be a finitely generated abelian group. By the relevant
+classification theorem,
 \[M\simeq (\Z/p_1^{a_1}\Z)\oplus\cdots\oplus(\Z/p_n^{a_n}\Z)\oplus\Z^r\]
-for some collection of not-necessarily-distinct primes $p_i$, some $a_i>0$, and some $r\geq 0$. Let $e_i=(0,\ldots,1,\ldots,0)\in M$, where the 1 is in the $i$th coordinate. If $r>0$, then $e_{n+r}$ has $\Ann(e_{n+r})=(0)$, because for $k\in\Z$, $k\cdot e_{n+r}=(0,\ldots,k\cdot1)=(0,\ldots,0)\in M$ iff $k=0$ because $\Z$ has no zero-divisors, and $(0)$ is indeed prime in $\Z$, so that $(0)$ is associated to $M$. However, if $r=0$, then every element of $M$ is torsion, hence every element has a non-zero annihilator, and hence $(0)$ will not be an associated prime of $M$. \\
+for some collection of not-necessarily-distinct primes $p_i$, some $a_i>0$,
+and some $r\geq 0$. Let $e_i=(0,\ldots,1,\ldots,0)\in M$, where the 1 is
+in the $i$th coordinate. If $r>0$, then $e_{n+r}$ has $\Ann(e_{n+r})=(0)$,
+because for $k\in\Z$, $k\cdot e_{n+r}=(0,\ldots,k\cdot1)=(0,\ldots,0)\in M$
+iff $k=0$ because $\Z$ has no zero-divisors, and $(0)$ is indeed prime in
+$\Z$, so that $(0)$ is associated to $M$. However, if $r=0$, then every
+element of $M$ is torsion, hence every element has a non-zero annihilator,
+and hence $(0)$ will not be an associated prime of $M$. \\
 
-Now, for each $1\leq i\leq n$, consider $\Ann(p_i^{a_i-1}e_i)$. For $k\in\Z$, $k\cdot p_i^{a_i-1}e_i=(0,\ldots,kp_i^{a_i-1}+p_i^{a_i}\Z,\ldots,0)=(0,\ldots,0)\in M$ iff $kp_i^{a_i-1}+p_i^{a_i}\Z=0+p_i^{a_i}\Z$, which is the case iff $p_i\mid k$ by unique factorization in $\Z$. Thus $\Ann(p_i^{a_i-1}e_i)=(p_i)$ for each $i$ (recall that the $p_i$ are not necessarily distinct, but this doesn't matter as long as we get all of them), and $(p_i)$ is prime, and hence $(p_i)$ is associated to $M$.\\
+Now, for each $1\leq i\leq n$, consider
+$\Ann(p_i^{a_i-1}e_i)$. For $k\in\Z$, $k\cdot
+p_i^{a_i-1}e_i=(0,\ldots,kp_i^{a_i-1}+p_i^{a_i}\Z,\ldots,0)=(0,\ldots,0)\in M$
+iff $kp_i^{a_i-1}+p_i^{a_i}\Z=0+p_i^{a_i}\Z$, which is the case iff $p_i\mid k$
+by unique factorization in $\Z$. Thus $\Ann(p_i^{a_i-1}e_i)=(p_i)$ for each $i$
+(recall that the $p_i$ are not necessarily distinct, but this doesn't matter
+as long as we get all of them), and $(p_i)$ is prime, and hence $(p_i)$
+is associated to $M$.\\
 
-Finally, suppose $(q)\in\Z$ is a prime ideal associated to $M$ and $q\neq p_i$ for all $i$. Then there is an $m=(m_1+p_1^{a_1}\Z,\ldots,m_n+p_n^{a_n}\Z,m_{n+1},\ldots,m_{n+r})\in M$ such that $(q)=\Ann(m)$. Then $qm_i+p_i^{a_i}\Z=0+p_i^{a_i}\Z$ for each $1\leq i\leq n$, and $qm_i=0$ for each $n+1\leq i\leq n+r$. Because $\Z$ has no zero-divisors, $m_i=0$ for each $n+1\leq i\leq n+r$, and $qm_i+p_i^{a_i}\Z=0+p_i^{a_i}\Z$ iff $p_i^{a_i}\mid qm_i$ - but $q\neq p_i$ for all $i$, so that $p_i^{a_i}\mid m_i$ for all $i$, so that $m_i+p_i^{a_i}\Z=0+p_i^{a_i}\Z$ for all $i$, so that in fact $m=(0,\ldots,0)$. But $\Ann(0,\ldots,0)=\Z\neq(q)$, contradiction.\\
+Finally, suppose $(q)\in\Z$ is a prime ideal associated
+to $M$ and $q\neq p_i$ for all $i$. Then there is an
+$m=(m_1+p_1^{a_1}\Z,\ldots,m_n+p_n^{a_n}\Z,m_{n+1},\ldots,m_{n+r})\in M$
+such that $(q)=\Ann(m)$. Then $qm_i+p_i^{a_i}\Z=0+p_i^{a_i}\Z$ for each
+$1\leq i\leq n$, and $qm_i=0$ for each $n+1\leq i\leq n+r$. Because
+$\Z$ has no zero-divisors, $m_i=0$ for each $n+1\leq i\leq n+r$,
+and $qm_i+p_i^{a_i}\Z=0+p_i^{a_i}\Z$ iff $p_i^{a_i}\mid qm_i$ - but
+$q\neq p_i$ for all $i$, so that $p_i^{a_i}\mid m_i$ for all $i$,
+so that $m_i+p_i^{a_i}\Z=0+p_i^{a_i}\Z$ for all $i$, so that in fact
+$m=(0,\ldots,0)$. But $\Ann(0,\ldots,0)=\Z\neq(q)$, contradiction.\\
 
-Thus, $\Ass(M)=\{(p_1),\ldots,(p_n)\}$ if $r=0$, and $\Ass(M)=\{(0),(p_1),\ldots,(p_n)\}$ if $r>0$.\\
+Thus, $\Ass(M)=\{(p_1),\ldots,(p_n)\}$ if $r=0$, and
+$\Ass(M)=\{(0),(p_1),\ldots,(p_n)\}$ if $r>0$.\\
 
-\num{2.} The kernel of the map $f:M\rightarrow (M/M_1)\oplus(M/M_2)$ is obviously $M'=M_1\cap M_2$, so that we have the induced monomorphism $\tilde{f}:M/M'\rightarrow(M/M_1)\oplus(M/M_2)$. We can complete this to an exact sequence 
-\[0\rightarrow M/M'\rightarrow (M/M_1)\oplus(M/M_2)\rightarrow C\rightarrow 0\]
-where $C\simeq\coker(\tilde{f})$, and by Lemma 3.6b of Eisenbud, $\Ass(M/M')\subseteq\Ass((M/M_1)\oplus(M/M_2))$. Finally, by Lemma 3.6a we have that $\Ass((M/M_1)\otimes(M/M_2))=\Ass(M/M_1)\cup\Ass(M/M_2)$, so we are done.      \\
+\num{2.} The kernel of the map $f:M\rightarrow (M/M_1)\oplus(M/M_2)$
+is obviously $M'=M_1\cap M_2$, so that we have the induced monomorphism
+$\tilde{f}:M/M'\rightarrow(M/M_1)\oplus(M/M_2)$. We can complete this to an
+exact sequence 
+\[0\rightarrow M/M'\rightarrow (M/M_1)\oplus(M/M_2)\rightarrow C\rightarrow
+0\]
+where $C\simeq\coker(\tilde{f})$, and by Lemma 3.6b of Eisenbud,
+$\Ass(M/M')\subseteq\Ass((M/M_1)\oplus(M/M_2))$. Finally, by Lemma 3.6a we
+have that $\Ass((M/M_1)\otimes(M/M_2))=\Ass(M/M_1)\cup\Ass(M/M_2)$, so we
+are done.      \\
 
-\num{3.} We know that $(M\otimes_R N)_P\simeq M_P\otimes_{R_P}N_P$. Because $M$ and $N$ are finitely generated over $R$, we know that $M_P$ and $N_P$ are finitely generated over $R_P$, so from a previous homework assignment we can conclude that $M_P\otimes_{R_P}N_P\simeq 0$ iff $M_P\simeq 0$, $N_P\simeq 0$, or both. Thus $(M\otimes_R N)_P\simeq 0$ iff $M_P\simeq 0$, $N_P\simeq 0$, or both, so that $P\notin\Supp(M\otimes_R N)$ iff $P\notin\Supp(M)\cup\Supp(N)$, so that $\Supp(M\otimes_R N)=\Supp(M)\cap\Supp(N)$.     \\
+\num{3.} We know that $(M\otimes_R N)_P\simeq M_P\otimes_{R_P}N_P$. Because
+$M$ and $N$ are finitely generated over $R$, we know that $M_P$ and $N_P$ are
+finitely generated over $R_P$, so from a previous homework assignment we can
+conclude that $M_P\otimes_{R_P}N_P\simeq 0$ iff $M_P\simeq 0$, $N_P\simeq 0$,
+or both. Thus $(M\otimes_R N)_P\simeq 0$ iff $M_P\simeq 0$, $N_P\simeq 0$, or
+both, so that $P\notin\Supp(M\otimes_R N)$ iff $P\notin\Supp(M)\cup\Supp(N)$,
+so that $\Supp(M\otimes_R N)=\Supp(M)\cap\Supp(N)$.     \\
 
-\num{4.} Because $R$ is Noetherian and $M$ and $N$ are finitely generated, we proved in class that $M$ and $N$ are finitely presented. Thus, by Proposition 2.10 (p.69 in Eisenbud), we have that $\Hom(M,N)_P\simeq\Hom(M_P,N_P)$ for any prime ideal $P$. We know that $\Ass(M[U^{-1}])=\{P[U^{-1}]:P\in\Ass(M),P\cap U=\emptyset\}$, so that 
-\[\Ass(\Hom(M_P,N_P))=\Ass(\Hom(M,N)_P)=\{Q_P:Q\in\Ass(\Hom(M,N)),Q\subseteq P\}\]
-Thus, if $P\in\Ass(\Hom(M,N))$, then $P_P\in\Ass(\Hom(M_P,N_P))=\Ass(\Hom(M,N)_P)$ (because $P\subseteq P$). If we had $M_P=0$, then any map from $M_P$ to $N_P$ would be the zero map, and hence $\Ass(\Hom(M_P,N_P))=\Ass(0)=\emptyset$ - but $P_P\in\Ass(\Hom(M_P,N_P))$, so we cannot have $M_P=0$. Thus $P\in\Supp(M)$. Furthermore, because $P_P\in\Ass(\Hom(M_P,N_P))$, there is a non-zero map $f:M_P\rightarrow N_P$ (that is, $\im(f)\neq\{\frac{0}{1}\}$) such that $P_P\cdot f=0$, i.e. the zero map. Thus, choosing any $\frac{n}{u}\in\im(f)\subseteq N_P, \frac{n}{u}\neq\frac{0}{1}$, we have that $P_P\cdot\frac{n}{u}=0$ and thus $P_P\subseteq\Ann(\frac{n}{u})$. But $\frac{n}{u}\neq\frac{0}{1}$, so that $\Ann(\frac{n}{u})\neq R_P$, and because $P_P$ is maximal in $R_P$, we must have $P_P=\Ann(\frac{n}{u})$. Thus $P_P\in\Ass(N_P)$, and we know that $\Ass(N_P)=\{Q_P:Q\in\Ass(N),Q\subseteq P\}$. Because we know that the bijection between primes of $R$ in contained in $P$ and primes of $R_P$ is given by $Q\mapsto Q_P$, we have that $P\in\Ass(N)$. Thus if $P\in\Ass(\Hom(M,N))$, then $P\in\Supp(M)\cap\Ass(N)$.      \\
+\num{4.} Because $R$ is Noetherian and $M$ and $N$ are finitely generated, we
+proved in class that $M$ and $N$ are finitely presented. Thus, by Proposition
+2.10 (p.69 in Eisenbud), we have that $\Hom(M,N)_P\simeq\Hom(M_P,N_P)$ for any
+prime ideal $P$. We know that $\Ass(M[U^{-1}])=\{P[U^{-1}]:P\in\Ass(M),P\cap
+U=\emptyset\}$, so that 
+\[\Ass(\Hom(M_P,N_P))=\Ass(\Hom(M,N)_P)=\{Q_P:Q\in\Ass(\Hom(M,N)),Q\subseteq
+P\}\]
+Thus, if $P\in\Ass(\Hom(M,N))$, then
+$P_P\in\Ass(\Hom(M_P,N_P))=\Ass(\Hom(M,N)_P)$ (because $P\subseteq P$). If we
+had $M_P=0$, then any map from $M_P$ to $N_P$ would be the zero map, and hence
+$\Ass(\Hom(M_P,N_P))=\Ass(0)=\emptyset$ - but $P_P\in\Ass(\Hom(M_P,N_P))$,
+so we cannot have $M_P=0$. Thus $P\in\Supp(M)$. Furthermore, because
+$P_P\in\Ass(\Hom(M_P,N_P))$, there is a non-zero map $f:M_P\rightarrow
+N_P$ (that is, $\im(f)\neq\{\frac{0}{1}\}$) such that $P_P\cdot f=0$,
+i.e. the zero map. Thus, choosing any $\frac{n}{u}\in\im(f)\subseteq N_P,
+\frac{n}{u}\neq\frac{0}{1}$, we have that $P_P\cdot\frac{n}{u}=0$ and
+thus $P_P\subseteq\Ann(\frac{n}{u})$. But $\frac{n}{u}\neq\frac{0}{1}$, so
+that $\Ann(\frac{n}{u})\neq R_P$, and because $P_P$ is maximal in $R_P$,
+we must have $P_P=\Ann(\frac{n}{u})$. Thus $P_P\in\Ass(N_P)$, and we
+know that $\Ass(N_P)=\{Q_P:Q\in\Ass(N),Q\subseteq P\}$. Because we know
+that the bijection between primes of $R$ in contained in $P$ and primes
+of $R_P$ is given by $Q\mapsto Q_P$, we have that $P\in\Ass(N)$. Thus if
+$P\in\Ass(\Hom(M,N))$, then $P\in\Supp(M)\cap\Ass(N)$.      \\
 
 Conversely, $\ldots$ I got stuck.\\ 
 
-\num{5.} The proof is by induction. First, note that $P^{(1)}=\{r\in R: sr\in P\text{ for some }s\notin P\}$. But $sr\in P$, $s\notin P$ implies $r\in P$, so that $P^{(1)}=\{r\in P\}=P$, a prime ideal. If $ab\in P$, then because $P$ is prime either $a\in P$ or $b^1\in P$, so that $P^{(1)}$ is primary. Now suppose that $P^{(n-1)}$ is primary, and note that $P^{(n)}\subseteq P^{(n-1)}$ (because any $r\in P^{(n)}$ has $sr\in P^n\subset P^{n-1}$ for $s\notin P$). If $ab\in P^{(n)}$, then $ab\in P^{(n-1)}$ and thus either $a\in P^{(n-1)}$ or $b^m\in P^{(n-1)}$ for some $r$. That is, either there is some $s\notin P$ with $sa\in P^{n-1}$, or there is some $t\notin P$ with $tb^m\in P^{n-1}$. But if $sa\in P^{n-1}\subset P$ and $s\notin P$, then $a\in P$; and if $tb^m\in P^{n-1}\subset P$ and $t\notin P$ with $b\notin P$, then $tb^m\notin P\supset P^{n-1}$, contradiction, so that we must have $b\in P$. Thus we either have $sa^2\in P^n$ with $s\notin P$, or $tb^{m+1}\in P^n$ with $t\notin P$, so that $a^2\in P^{(n)}$ or $b^{m+1}\in P^{(n)}$, which suffices to show that $P^{(n)}$ is primary because the definition of primary is symmetric.       \\
+\num{5.} The proof is by induction. First, note that $P^{(1)}=\{r\in R: sr\in
+P\text{ for some }s\notin P\}$. But $sr\in P$, $s\notin P$ implies $r\in P$,
+so that $P^{(1)}=\{r\in P\}=P$, a prime ideal. If $ab\in P$, then because
+$P$ is prime either $a\in P$ or $b^1\in P$, so that $P^{(1)}$ is primary. Now
+suppose that $P^{(n-1)}$ is primary, and note that $P^{(n)}\subseteq P^{(n-1)}$
+(because any $r\in P^{(n)}$ has $sr\in P^n\subset P^{n-1}$ for $s\notin P$). If
+$ab\in P^{(n)}$, then $ab\in P^{(n-1)}$ and thus either $a\in P^{(n-1)}$ or
+$b^m\in P^{(n-1)}$ for some $r$. That is, either there is some $s\notin P$
+with $sa\in P^{n-1}$, or there is some $t\notin P$ with $tb^m\in P^{n-1}$. But
+if $sa\in P^{n-1}\subset P$ and $s\notin P$, then $a\in P$; and if $tb^m\in
+P^{n-1}\subset P$ and $t\notin P$ with $b\notin P$, then $tb^m\notin P\supset
+P^{n-1}$, contradiction, so that we must have $b\in P$. Thus we either have
+$sa^2\in P^n$ with $s\notin P$, or $tb^{m+1}\in P^n$ with $t\notin P$, so
+that $a^2\in P^{(n)}$ or $b^{m+1}\in P^{(n)}$, which suffices to show that
+$P^{(n)}$ is primary because the definition of primary is symmetric.       \\
 
-Furthermore, suppose $P$ is prime (this includes the case of $P$ maximal). If $ab\in P^n\subset P$, then either $a\in P$ or $b\in P$, so that if $a\notin P$ then $b\in P$ and hence $b^n\in P^n$. Thus $P^n$ is primary.\\
+Furthermore, suppose $P$ is prime (this includes the case of $P$ maximal). If
+$ab\in P^n\subset P$, then either $a\in P$ or $b\in P$, so that if $a\notin P$
+then $b\in P$ and hence $b^n\in P^n$. Thus $P^n$ is primary.\\
 
 \num{6.}        \\
 
@@ -51,6 +125,8 @@ Furthermore, suppose $P$ is prime (this includes the case of $P$ maximal). If $a
 
 
 \end{document}
-1}\in P^n$ with $t\notin P$, so that $a^2\in P^{(n)}$ or $b^{m+1}\in P^{(n)}$, which suffices to show that $P^{(n)}$ is primary because the definition of primary is symmetric.       \\
+1}\in P^n$ with $t\notin P$, so that $a^2\in P^{(n)}$ or $b^{m+1}\in P^{(n)}$,
+which suffices to show that $P^{(n)}$ is primary because the definition of
+primary is symmetric.       \\
 
 Furthermore, sup

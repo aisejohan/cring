@@ -10,37 +10,188 @@
 Zev Chonoles \hfill 
 \underline{MATH 2520 - Assignment 11} \hfill \today\\
 
-\num{5.10i.} This is was on a previous homework assignment.\\%(a) $\Rightarrow$ (b): Suppose $f^*$ is a closed mapping. Let $p_1\subset p_2\subset f(A)$ be prime ideals, and let $q_1\in B$ be a prime ideal such that $q_1\cap f(A)=p_1$. By the definition of the Zariski topology, $V(q_1)=\{\ell\supseteq q_1:\ell\text{ prime in }B\}\subset\text{Spec}(B)$ is a closed set, and hence $f^*(V(q_1))=\{f^{-1}(\ell)\supseteq f^{-1}(q_1)=f^{-1}(p_1):\ell\text{ prime in }B\}$ is a closed subset of Spec($A$). Preimages of prime ideals are prime, so $f^{-1}(p_1)\in\text{Spec}(A)$, and clearly $f^{-1}(p_1)\in f^*(V(q_1))$, and by the definition of the Zariski topology, the closure of $\{f^{-1}(p_1)\}\subset\text{Spec}(A)$ is $V(f^{-1}(p_1))=\{d\supseteq f^{-1}(p_1):d\text{ prime in }A\}$, and thus we must have $V(f^{-1}(p_1))\subseteq f^*(V(q_1))$. If $p_2$ is any prime ideal of $f(A)$ with $p_2\supseteq p_1$, then $f^{-1}(p_2)\supseteq f^{-1}(p_1)$, so $f^{-1}(p_2)\in  V(f^{-1}(p_1))$, and hence $f^{-1}(p_2)\in f^*(V(q_1))=\{f^{-1}(\ell)\supseteq f^{-1}(q_1)=f^{-1}(p_1):\ell\text{ prime in }B\}$. Thus there is some prime $q_2\subset B$ which has $f^{-1}(q_2)=f^{-1}(p_2)$. We know that $f(f^{-1}(p_2))=p_2$, so that $q_2\cap f(A)=p_2$. Thus $f:A\rightarrow B$ has the going-up property.\\
+\num{5.10i.} This is was on a previous homework assignment.\\%(a) $\Rightarrow$
+(b): Suppose $f^*$ is a closed mapping. Let $p_1\subset p_2\subset f(A)$
+be prime ideals, and let $q_1\in B$ be a prime ideal such that $q_1\cap
+f(A)=p_1$. By the definition of the Zariski topology, $V(q_1)=\{\ell\supseteq
+q_1:\ell\text{ prime in }B\}\subset\text{Spec}(B)$ is a closed set, and hence
+$f^*(V(q_1))=\{f^{-1}(\ell)\supseteq f^{-1}(q_1)=f^{-1}(p_1):\ell\text{
+prime in }B\}$ is a closed subset of Spec($A$). Preimages of prime
+ideals are prime, so $f^{-1}(p_1)\in\text{Spec}(A)$, and clearly
+$f^{-1}(p_1)\in f^*(V(q_1))$, and by the definition of the Zariski
+topology, the closure of $\{f^{-1}(p_1)\}\subset\text{Spec}(A)$ is
+$V(f^{-1}(p_1))=\{d\supseteq f^{-1}(p_1):d\text{ prime in }A\}$, and
+thus we must have $V(f^{-1}(p_1))\subseteq f^*(V(q_1))$. If $p_2$ is any
+prime ideal of $f(A)$ with $p_2\supseteq p_1$, then $f^{-1}(p_2)\supseteq
+f^{-1}(p_1)$, so $f^{-1}(p_2)\in  V(f^{-1}(p_1))$, and hence $f^{-1}(p_2)\in
+f^*(V(q_1))=\{f^{-1}(\ell)\supseteq f^{-1}(q_1)=f^{-1}(p_1):\ell\text{
+prime in }B\}$. Thus there is some prime $q_2\subset B$ which has
+$f^{-1}(q_2)=f^{-1}(p_2)$. We know that $f(f^{-1}(p_2))=p_2$, so that $q_2\cap
+f(A)=p_2$. Thus $f:A\rightarrow B$ has the going-up property.\\
 
-%(b) $\Rightarrow$ (c): Suppose $f:A\rightarrow B$ has the going-up property. Suppose that $q_1\subset B$ is a prime and $p_1=f^{-1}(q_1)\subset A$. Then $p_1$ is a prime, and contains the kernel $f^{-1}(0)$ of $f$. Thus $f(p_1)\subset f(A)\simeq A/f^{-1}(0)$ is prime. We also have the induced map $\tilde{f}:A/p_1\rightarrow B/q_1$, and consequently also the map $\tilde{f}^*:\text{Spec}(B/p_1)\rightarrow\text{Spec}(A/p_1)$, sending $\ell/q_1$ to $\tilde{f}^*(\ell/q_1)=\tilde{f}^{-1}(\ell/q_1)=f^{-1}(\ell)/p_1$ for primes $\ell\in B$ containing $q_1$. For any prime $p_2\subset A$ with $p_2\supset p_1$, we know that $f(p_2)\supset f(p_1)$ and that $f(p_2)\subset f(A)$ is a prime. By the assumption that $f$ has the going-up property, there exists some $q_2\subset B$ with $q_2\cap f(A)=f(p_2)\supset f(p_1)$, i.e. $f^*(q_2)=f^{-1}(q_2)=p_2\supset p_1$. Thus $\tilde{f}^*(q_2/q_1)=f^{-1}(q_2)/p_1=p_2/p_1$. Because any prime ideal of $A/p_1$ is of this form, we have that $\tilde{f}^*$ is surjective.\\    
+%(b) $\Rightarrow$ (c): Suppose $f:A\rightarrow B$ has the going-up
+property. Suppose that $q_1\subset B$ is a prime and $p_1=f^{-1}(q_1)\subset
+A$. Then $p_1$ is a prime, and contains the kernel $f^{-1}(0)$ of $f$. Thus
+$f(p_1)\subset f(A)\simeq A/f^{-1}(0)$ is prime. We also have the induced
+map $\tilde{f}:A/p_1\rightarrow B/q_1$, and consequently also the map
+$\tilde{f}^*:\text{Spec}(B/p_1)\rightarrow\text{Spec}(A/p_1)$, sending
+$\ell/q_1$ to $\tilde{f}^*(\ell/q_1)=\tilde{f}^{-1}(\ell/q_1)=f^{-1}(\ell)/p_1$
+for primes $\ell\in B$ containing $q_1$. For any prime $p_2\subset
+A$ with $p_2\supset p_1$, we know that $f(p_2)\supset f(p_1)$ and
+that $f(p_2)\subset f(A)$ is a prime. By the assumption that $f$ has
+the going-up property, there exists some $q_2\subset B$ with $q_2\cap
+f(A)=f(p_2)\supset f(p_1)$, i.e. $f^*(q_2)=f^{-1}(q_2)=p_2\supset p_1$. Thus
+$\tilde{f}^*(q_2/q_1)=f^{-1}(q_2)/p_1=p_2/p_1$. Because any prime ideal of
+$A/p_1$ is of this form, we have that $\tilde{f}^*$ is surjective.\\    
 
-%(c) $\Rightarrow$ (b): Let $p_1\subset p_2\subset f(A)$ be prime ideals, and let $q_1$ be a prime ideal of $B$ such that $q_1\cap f(A)=p_1$. We
+%(c) $\Rightarrow$ (b): Let $p_1\subset p_2\subset f(A)$ be prime ideals,
+and let $q_1$ be a prime ideal of $B$ such that $q_1\cap f(A)=p_1$. We
 
-\num{5.11.} We proved this in class. Also, by Problem 3.18, if $f:A\rightarrow B$ is a flat homomorphism of rings, then $f^*:\Spec(B_q)\rightarrow\Spec(A_p)$ is surjective, and by Problem 5.10ii, this implies that $f$ has the going-down property.    \\
+\num{5.11.} We proved this in class. Also, by Problem 3.18, if $f:A\rightarrow
+B$ is a flat homomorphism of rings, then $f^*:\Spec(B_q)\rightarrow\Spec(A_p)$
+is surjective, and by Problem 5.10ii, this implies that $f$ has the going-down
+property.    \\
 
-\num{5.12.} For any $\rho\in G$, let $\tilde{\rho}$ denote its canonical extension to an automorphism of $A[t]$ (via acting on coefficients). Then $g\in A[t]$ lies in $A^G[t]$ iff $\tilde{\rho}(g)=g$ for all $\rho\in G$, because $\tilde{\rho}(g)=\rho(g_0)+\cdots+\rho(g_n)t^n=g_0+\cdots+g_nt^n=g$ for all $\rho\in G$ iff $\rho(g_i)=g_i$ for all $\rho\in G$ for all $g_i$, which is the case iff $g_i\in A^G$ for all $i$. \\
+\num{5.12.} For any $\rho\in G$, let $\tilde{\rho}$ denote its canonical
+extension to an automorphism of $A[t]$ (via acting on coefficients). Then
+$g\in A[t]$ lies in $A^G[t]$ iff $\tilde{\rho}(g)=g$ for all $\rho\in G$,
+because $\tilde{\rho}(g)=\rho(g_0)+\cdots+\rho(g_n)t^n=g_0+\cdots+g_nt^n=g$
+for all $\rho\in G$ iff $\rho(g_i)=g_i$ for all $\rho\in G$ for all $g_i$,
+which is the case iff $g_i\in A^G$ for all $i$. \\
 
-Obviously, any $x\in A$ is a root of the polynomial $f(t)=\prod_{\sigma\in G}(t-\sigma(x))\in A[t]$, because $x$ is a root of $t-\id(x)$. We have $f\in A^G[t]$ because $\tilde{\rho}(f)=\tilde{\rho}\left(\prod_{\sigma\in G}(t-\sigma(x))\right)=\prod_{\sigma\in G}\tilde{\rho}(t-\sigma(x))=\prod_{\sigma\in G}(t-\rho(\sigma(x)))=\prod_{\rho^{-1}\sigma\in G}(t-\sigma(x))=f$ for all $\rho\in G$. Thus, any $x\in A$ is a root of a monic polynomial in $A^G$, so that $A$ is integral over $A^G$.   \\
+Obviously, any $x\in A$ is a root of the polynomial $f(t)=\prod_{\sigma\in
+G}(t-\sigma(x))\in A[t]$, because $x$ is a root of $t-\id(x)$. We have $f\in
+A^G[t]$ because $\tilde{\rho}(f)=\tilde{\rho}\left(\prod_{\sigma\in
+G}(t-\sigma(x))\right)=\prod_{\sigma\in
+G}\tilde{\rho}(t-\sigma(x))=\prod_{\sigma\in
+G}(t-\rho(\sigma(x)))=\prod_{\rho^{-1}\sigma\in G}(t-\sigma(x))=f$ for all
+$\rho\in G$. Thus, any $x\in A$ is a root of a monic polynomial in $A^G$,
+so that $A$ is integral over $A^G$.   \\
 
-Define the action of $G$ on $S^{-1}A$ by $\sigma[\frac{a}{s}]=\frac{\sigma(a)}{\sigma(s)}$. This agrees with the action on $A$, i.e. if $i:A\rightarrow S^{-1}A$ is the canonical inclusion map then $\sigma[i(a)]=\sigma[\frac{a}{1}]=\frac{\sigma(a)}{\sigma(1)}=\frac{\sigma(a)}{1}=i(\sigma(a))$. Define $f:(S^G)^{-1}A^G\rightarrow (S^{-1}A)^G$ by $f(\frac{a}{s})=\frac{a}{s}$, which is obviously well-defined (if $\frac{a}{s}=\frac{b}{t}\in (S^G)^{-1}A^G$, then there is a $u\in S^G\subset S$ such that $u(at-bs)=0$, so that $f(\frac{a}{s})=\frac{a}{s}=\frac{b}{t}=f(\frac{b}{t})\in S^{-1}A$; and for any $\frac{a}{s}\in (S^G)^{-1}A^G$, we have $a\in A^G$, $s\in S^G$ so that $\sigma[f(\frac{a}{s})]=\sigma[\frac{a}{s}]=\frac{\sigma(a)}{\sigma(s)}=\frac{a}{s}=f(\frac{a}{s})$ for all $\sigma\in G$, hence $f(\frac{a}{s})\in (S^{-1}A)^G$) and a homomorphism. The map $f$ is injective, because if $f(\frac{a}{s})=\frac{a}{s}=\frac{0}{1}\in (S^{-1}A)^G$, then there is some $u\in S$ such that $u(a1-0s)=ua=0$, so that $v(a1-0s)=va=0$ where $v=\prod_{\sigma\in G}\sigma(u)\in S^G$ ($v\in S$ because $\sigma(S)\subseteq S$ for all $\sigma\in G$, so that $\sigma(u)\in S$ for all $\sigma\in G$, and $v$ is fixed by $G$ because any $\rho\in G$ will only permute the factors of the product), so that $\frac{a}{s}=\frac{0}{1}\in (S^G)^{-1}A^G$. \\
+Define the action of $G$ on $S^{-1}A$ by
+$\sigma[\frac{a}{s}]=\frac{\sigma(a)}{\sigma(s)}$. This agrees with the action
+on $A$, i.e. if $i:A\rightarrow S^{-1}A$ is the canonical inclusion map then
+$\sigma[i(a)]=\sigma[\frac{a}{1}]=\frac{\sigma(a)}{\sigma(1)}=\frac{\sigma(a)}{1}=i(\sigma(a))$.
+Define $f:(S^G)^{-1}A^G\rightarrow (S^{-1}A)^G$ by
+$f(\frac{a}{s})=\frac{a}{s}$, which is obviously well-defined
+(if $\frac{a}{s}=\frac{b}{t}\in (S^G)^{-1}A^G$, then there
+is a $u\in S^G\subset S$ such that $u(at-bs)=0$, so that
+$f(\frac{a}{s})=\frac{a}{s}=\frac{b}{t}=f(\frac{b}{t})\in S^{-1}A$; and
+for any $\frac{a}{s}\in (S^G)^{-1}A^G$, we have $a\in A^G$, $s\in S^G$ so that
+$\sigma[f(\frac{a}{s})]=\sigma[\frac{a}{s}]=\frac{\sigma(a)}{\sigma(s)}=\frac{a}{s}=f(\frac{a}{s})$
+for all $\sigma\in G$, hence $f(\frac{a}{s})\in (S^{-1}A)^G$)
+and a homomorphism. The map $f$ is injective, because if
+$f(\frac{a}{s})=\frac{a}{s}=\frac{0}{1}\in (S^{-1}A)^G$, then there is
+some $u\in S$ such that $u(a1-0s)=ua=0$, so that $v(a1-0s)=va=0$ where
+$v=\prod_{\sigma\in G}\sigma(u)\in S^G$ ($v\in S$ because $\sigma(S)\subseteq
+S$ for all $\sigma\in G$, so that $\sigma(u)\in S$ for all $\sigma\in G$,
+and $v$ is fixed by $G$ because any $\rho\in G$ will only permute the factors
+of the product), so that $\frac{a}{s}=\frac{0}{1}\in (S^G)^{-1}A^G$. \\
 
-Finally, to show that $f$ is surjective, we will show that for any $\frac{a}{s}\in (S^{-1}A)^G$, we have $\frac{a}{s}=\frac{b}{t}\in (S^{-1}A)^G$ for some $b\in A^G$, $t\in S^G$, so that $f(\frac{b}{t})=\frac{b}{t}=\frac{a}{s}$. First, note that for any $\frac{a}{s}\in (S^{-1}A)^G$, we have $\frac{a}{s}=\frac{ax}{sx}\in (S^{-1}A)^G$ where $x=\prod_{\sigma\neq\id}\sigma(s)$ (note that $sx=\prod_{\sigma\in G}\sigma(s)\in S$ because $\sigma(S)\subseteq S$ for all $\sigma\in G$, so that $\sigma(s)\in S$ for all $\sigma\in G$). Furthermore, $sx$ is fixed by $G$ by the standard argument. Thus, it suffices to show that for all $\frac{a}{s}\in (S^{-1}A)^G$ with $s\in S^G$, we have $\frac{a}{s}=\frac{b}{t}$ for some $b\in A^G$, $t\in S^G$ (because we have shown that all elements of $(S^{-1}A)^G$ can be expressed as an $\frac{a}{s}$ with this property). By definition, any $\frac{a}{s}\in (S^{-1}A)^G$ with $s\in S^G$ has $\sigma[\frac{a}{s}]=\frac{\sigma(a)}{\sigma(s)}=\frac{\sigma(a)}{s}=\frac{a}{s}$ for all $\sigma\in G$, so that $\frac{\sigma(a)}{1}=\frac{a}{1}$ for all $\sigma\in G$, so that there is some $u_\sigma\in S$ for each $\sigma\in G$ such that $u_\sigma(\sigma(a)-a)=0$, i.e. $u_\sigma\sigma(a)=u_\sigma a$. Define $y=\prod_{\sigma\in G}\prod_{\rho\in G}\rho(u_\sigma)$. We have $y\in S$ because each $\rho(u_\sigma)\in S$, and $y$ is fixed by $G$ by the standard argument. Then $\frac{a}{s}=\frac{ay}{sy}$, and $sy\in S^G$ because $S^G=S\cap A^G$ is a multiplicative set and $s,y\in S^G$, and $ay\in A^G$ because \[\hskip-0.15in\tau(ay)=\tau(a)\tau(y)=\tau(a)y=\tau(a)u_\tau\left(\prod_{\sigma\neq\tau}\prod_{\rho\in G}\rho(u_\sigma)\right)\left(\prod_{\rho\neq\id}\rho(u_\tau)\right)=au_\tau\left(\prod_{\sigma\neq\tau}\prod_{\rho\in G}\rho(u_\sigma)\right)\left(\prod_{\rho\neq\id}\rho(u_\tau)\right)=ay\]
-for all $\tau\in G$. Thus, for every $\frac{a}{s}\in (S^{-1}A)^G$, there is some $b\in A^G$ and $t\in S^G$ such that $\frac{a}{s}=\frac{b}{t}$ as elements of $(S^{-1}A)^G$, and thus every $\frac{a}{s}\in (S^{-1}A)^G$ is mapped to by some $\frac{b}{t}\in(S^G)^{-1}A^G$.\\  
+Finally, to show that $f$ is surjective, we will show that for any
+$\frac{a}{s}\in (S^{-1}A)^G$, we have $\frac{a}{s}=\frac{b}{t}\in
+(S^{-1}A)^G$ for some $b\in A^G$, $t\in S^G$, so that
+$f(\frac{b}{t})=\frac{b}{t}=\frac{a}{s}$. First, note that for any
+$\frac{a}{s}\in (S^{-1}A)^G$, we have $\frac{a}{s}=\frac{ax}{sx}\in
+(S^{-1}A)^G$ where $x=\prod_{\sigma\neq\id}\sigma(s)$ (note that
+$sx=\prod_{\sigma\in G}\sigma(s)\in S$ because $\sigma(S)\subseteq S$
+for all $\sigma\in G$, so that $\sigma(s)\in S$ for all $\sigma\in
+G$). Furthermore, $sx$ is fixed by $G$ by the standard argument. Thus,
+it suffices to show that for all $\frac{a}{s}\in (S^{-1}A)^G$ with
+$s\in S^G$, we have $\frac{a}{s}=\frac{b}{t}$ for some $b\in A^G$,
+$t\in S^G$ (because we have shown that all elements of $(S^{-1}A)^G$
+can be expressed as an $\frac{a}{s}$ with this property). By
+definition, any $\frac{a}{s}\in (S^{-1}A)^G$ with $s\in S^G$ has
+$\sigma[\frac{a}{s}]=\frac{\sigma(a)}{\sigma(s)}=\frac{\sigma(a)}{s}=\frac{a}{s}$
+for all $\sigma\in G$, so that $\frac{\sigma(a)}{1}=\frac{a}{1}$
+for all $\sigma\in G$, so that there is some $u_\sigma\in S$
+for each $\sigma\in G$ such that $u_\sigma(\sigma(a)-a)=0$,
+i.e. $u_\sigma\sigma(a)=u_\sigma a$. Define $y=\prod_{\sigma\in
+G}\prod_{\rho\in G}\rho(u_\sigma)$. We have $y\in S$ because
+each $\rho(u_\sigma)\in S$, and $y$ is fixed by $G$ by the standard
+argument. Then $\frac{a}{s}=\frac{ay}{sy}$, and $sy\in S^G$ because $S^G=S\cap
+A^G$ is a multiplicative set and $s,y\in S^G$, and $ay\in A^G$ because
+\[\hskip-0.15in\tau(ay)=\tau(a)\tau(y)=\tau(a)y=\tau(a)u_\tau\left(\prod_{\sigma\neq\tau}\prod_{\rho\in
+G}\rho(u_\sigma)\right)\left(\prod_{\rho\neq\id}\rho(u_\tau)\right)=au_\tau\left(\prod_{\sigma\neq\tau}\prod_{\rho\in
+G}\rho(u_\sigma)\right)\left(\prod_{\rho\neq\id}\rho(u_\tau)\right)=ay\]
+for all $\tau\in G$. Thus, for every $\frac{a}{s}\in (S^{-1}A)^G$, there
+is some $b\in A^G$ and $t\in S^G$ such that $\frac{a}{s}=\frac{b}{t}$
+as elements of $(S^{-1}A)^G$, and thus every $\frac{a}{s}\in (S^{-1}A)^G$
+is mapped to by some $\frac{b}{t}\in(S^G)^{-1}A^G$.\\  
 
 \pagebreak
 
-\num{5.13.} Consider any two prime ideals $p_1,p_2\subset A$ whose contraction to $A^G$ is $p$. We want to show that $p_1=\sigma(p_2)$ for some $\sigma\in G$, i.e. $G$ acts transitively on $P=\{\text{primes of $A$ whose contraction to $A^G$ is $p$}\}$. For any $x\in p_1$, we have that $\prod_{\sigma\in G}\sigma(x)\in p_1$ because $p_1$ is an ideal, and is fixed by $G$ by the standard argument. Thus $\prod_{\sigma\in G}\sigma(x)\in p_1\cap A^G=p\subseteq p_2$, and because $p_2$ is prime, we have that $\sigma(x)\in p_2$ for some $\sigma\in G$. Thus, every $x\in p_1$ has $x\in \sigma^{-1}(p_2)$ for some $\sigma\in G$, so that $p_1\subseteq\bigcup_{\sigma\in G}\sigma^{-1}(p_2)=\bigcup_{\sigma\in G}\sigma(p_2)$. Note that, for any $\sigma\in G$, we have that $\sigma(p_2)$ is a prime ideal (if $ab\in\sigma(p_2)$, then $\sigma^{-1}(a)\sigma^{-1}(b)\in p_2$, hence WLOG $\sigma^{-1}(a)\in p_2$, hence $a\in \sigma(p_2)$), and $\sigma(p_2)\cap A^G=\sigma(p_2)\cap\sigma(A^G)=\sigma(p_2\cap A^G)=\sigma(p)=p$ (we have used that $\sigma$ is bijective). Because each $\sigma(p_2)$ is a prime ideal, by Proposition 1.11i $p_1\subseteq\bigcup_{\sigma\in G}\sigma(p_2)$ implies that $p_1\subseteq\sigma(p_2)$ for some $\sigma\in G$. But the contraction of both $p_1$ and $\sigma(p_2)$ is $p$, so that by Proposition 5.9 we have that $p_1=\sigma(p_2)$.\\
+\num{5.13.} Consider any two prime ideals $p_1,p_2\subset A$ whose contraction
+to $A^G$ is $p$. We want to show that $p_1=\sigma(p_2)$ for some $\sigma\in
+G$, i.e. $G$ acts transitively on $P=\{\text{primes of $A$ whose contraction
+to $A^G$ is $p$}\}$. For any $x\in p_1$, we have that $\prod_{\sigma\in
+G}\sigma(x)\in p_1$ because $p_1$ is an ideal, and is fixed by $G$ by the
+standard argument. Thus $\prod_{\sigma\in G}\sigma(x)\in p_1\cap A^G=p\subseteq
+p_2$, and because $p_2$ is prime, we have that $\sigma(x)\in p_2$ for
+some $\sigma\in G$. Thus, every $x\in p_1$ has $x\in \sigma^{-1}(p_2)$
+for some $\sigma\in G$, so that $p_1\subseteq\bigcup_{\sigma\in
+G}\sigma^{-1}(p_2)=\bigcup_{\sigma\in G}\sigma(p_2)$. Note that,
+for any $\sigma\in G$, we have that $\sigma(p_2)$ is a prime ideal (if
+$ab\in\sigma(p_2)$, then $\sigma^{-1}(a)\sigma^{-1}(b)\in p_2$, hence WLOG
+$\sigma^{-1}(a)\in p_2$, hence $a\in \sigma(p_2)$), and $\sigma(p_2)\cap
+A^G=\sigma(p_2)\cap\sigma(A^G)=\sigma(p_2\cap A^G)=\sigma(p)=p$ (we have used
+that $\sigma$ is bijective). Because each $\sigma(p_2)$ is a prime ideal,
+by Proposition 1.11i $p_1\subseteq\bigcup_{\sigma\in G}\sigma(p_2)$ implies
+that $p_1\subseteq\sigma(p_2)$ for some $\sigma\in G$. But the contraction
+of both $p_1$ and $\sigma(p_2)$ is $p$, so that by Proposition 5.9 we have
+that $p_1=\sigma(p_2)$.\\
 
-By the orbit-stabilizer theorem, this implies that $P$ is isomorphic to a quotient of $G$, and hence finite.\\
+By the orbit-stabilizer theorem, this implies that $P$ is isomorphic to a
+quotient of $G$, and hence finite.\\
 
-\num{5.14.} If $r\in B$, then $r$ satisfies an integral relation $a_0+\cdots+a_nr^n=0$ over $A$. But then $\sigma(a_0+\cdots+a_nr^n)=\sigma(a_0)+\cdots+\sigma(a_n)\sigma(r)^n=a_0+\cdots+a_n\sigma(r)^n=\sigma(0)=0$, because $A\subset K$ and all $\sigma\in G=\Gal(L/K)$ fix $K$, so that $\sigma(r)$ is integral over $A$. Thus, $\sigma(B)\subseteq B$ for all $\sigma\in G$, or equivalently $\sigma^{-1}(B)\subseteq B$ for all $\sigma\in G$; but then $B\subseteq \sigma(B)$ for all $\sigma\in G$, so that $B=\sigma(B)$ for all $\sigma\in G$. If $x\in B^G$, then $x\in K=L^G$ by basic Galois theory, but $x\in B^G\subset B$ means that $x$ is integral over $A$, and because $A$ is integrally closed (i.e. in $K$), this implies $x\in A$. Thus $B^G\subseteq A$. Conversely, it is clear that because $A\subset K=L^G$ is fixed by all $\sigma\in G$ and $A\subset B$, we have $A\subseteq B^G$, so that $A=B^G$.     \\
+\num{5.14.} If $r\in B$, then $r$ satisfies an
+integral relation $a_0+\cdots+a_nr^n=0$ over $A$. But then
+$\sigma(a_0+\cdots+a_nr^n)=\sigma(a_0)+\cdots+\sigma(a_n)\sigma(r)^n=a_0+\cdots+a_n\sigma(r)^n=\sigma(0)=0$,
+because $A\subset K$ and all $\sigma\in G=\Gal(L/K)$ fix $K$, so that
+$\sigma(r)$ is integral over $A$. Thus, $\sigma(B)\subseteq B$ for
+all $\sigma\in G$, or equivalently $\sigma^{-1}(B)\subseteq B$ for all
+$\sigma\in G$; but then $B\subseteq \sigma(B)$ for all $\sigma\in G$,
+so that $B=\sigma(B)$ for all $\sigma\in G$. If $x\in B^G$, then $x\in
+K=L^G$ by basic Galois theory, but $x\in B^G\subset B$ means that $x$
+is integral over $A$, and because $A$ is integrally closed (i.e. in $K$),
+this implies $x\in A$. Thus $B^G\subseteq A$. Conversely, it is clear that
+because $A\subset K=L^G$ is fixed by all $\sigma\in G$ and $A\subset B$,
+we have $A\subseteq B^G$, so that $A=B^G$.     \\
 
-\num{5.15.} Because $L/K$ is finite, by a basic result of field theory we have that $K^{sep}/K$ is finite and separable, and $L/K^{sep}$ is finite and purely inseparable, where $K^{sep}$ is the separable closue of $K$ in $L$. Let $C$ be the integral closure of $A\subset K$ in $K^{sep}$ and $B$ be the integral closure of $A\subset K$ in $L$. Thus, if the result is true for finite separable and finite purely inseparable extensions, then for any prime $q
-\subset C$ whose contraction is the prime $p\subset A$, there are finitely many primes $\ell\subset B$ whose contraction is $q$, and there are only finitely many $q$, so that there are finitely many primes of $B$ whose contraction to $A$ is $p$, thus proving the result for any finite extension.\\
+\num{5.15.} Because $L/K$ is finite, by a basic result of field theory we
+have that $K^{sep}/K$ is finite and separable, and $L/K^{sep}$ is finite
+and purely inseparable, where $K^{sep}$ is the separable closue of $K$ in
+$L$. Let $C$ be the integral closure of $A\subset K$ in $K^{sep}$ and $B$
+be the integral closure of $A\subset K$ in $L$. Thus, if the result is true
+for finite separable and finite purely inseparable extensions, then for any
+prime $q
+\subset C$ whose contraction is the prime $p\subset A$, there are finitely
+many primes $\ell\subset B$ whose contraction is $q$, and there are only
+finitely many $q$, so that there are finitely many primes of $B$ whose
+contraction to $A$ is $p$, thus proving the result for any finite extension.\\
 
-If $L/K$ is finite and separable, then $L$ embeds into a finite normal separable extension $F/K$, say where $F$ is the normal closure of $L$. Let $D$ be the integral closure of $A$ in $F$, and let $P$ be the set of primes $q\subset B$ for which $q\cap A=p$. Then for each $q\in P$, there is at least one prime $d\subset D$ for which $d\cap B=q$ by Theorem 5.10 (and consequently, each $d$ has $d\cap A= (d\cap B)\cap A=q\cap A=p$). But by Problems 5.13 and 5.14, there are only finitely many primes $d\subset D$ whose contraction to $A$ is $p$, so there must also be finitely many primes of $B$ whose contraction to $A$ is $p$.\\
+If $L/K$ is finite and separable, then $L$ embeds into a finite normal
+separable extension $F/K$, say where $F$ is the normal closure of $L$. Let
+$D$ be the integral closure of $A$ in $F$, and let $P$ be the set of
+primes $q\subset B$ for which $q\cap A=p$. Then for each $q\in P$, there
+is at least one prime $d\subset D$ for which $d\cap B=q$ by Theorem 5.10
+(and consequently, each $d$ has $d\cap A= (d\cap B)\cap A=q\cap A=p$). But
+by Problems 5.13 and 5.14, there are only finitely many primes $d\subset D$
+whose contraction to $A$ is $p$, so there must also be finitely many primes
+of $B$ whose contraction to $A$ is $p$.\\
 
-If $L/K$ is finite and purely inseparable (with $\text{char}(L)=\text{char}(K)=\ell>0$), and $p\subset A$ is a prime with $q\subset B$ a prime for which $q\cap A=p$, then because every $x\in q$ has $x^{\ell^n}\in K$ for some $n$ (a basic result of field theory) and $x^{\ell^n}\in q$, we have $x^{\ell^n}\in q\cap K=q\cap A=p$ for some $n$. Conversely, if $x\in B$ has $x^{\ell^n}\in p\subset q$ for some $n$, then because $q$ is prime we must have $x\in q$. Finally, note that Theorem 5.10 guarantees that at least one such $q$ exists, and by our result above it must be $q=\{x:x^{\ell^n}\in p\text{ for some $n$}\}$. Thus, each prime $p\subset A$ has a unique prime $q\subset B$ whose contraction is $p$, so that $\Spec(B)\rightarrow\Spec(A)$ is bijective (and thus certainly has finite fibers).
+If $L/K$ is finite and purely inseparable (with
+$\text{char}(L)=\text{char}(K)=\ell>0$), and $p\subset A$ is a prime with
+$q\subset B$ a prime for which $q\cap A=p$, then because every $x\in q$
+has $x^{\ell^n}\in K$ for some $n$ (a basic result of field theory) and
+$x^{\ell^n}\in q$, we have $x^{\ell^n}\in q\cap K=q\cap A=p$ for some
+$n$. Conversely, if $x\in B$ has $x^{\ell^n}\in p\subset q$ for some $n$,
+then because $q$ is prime we must have $x\in q$. Finally, note that Theorem
+5.10 guarantees that at least one such $q$ exists, and by our result above
+it must be $q=\{x:x^{\ell^n}\in p\text{ for some $n$}\}$. Thus, each prime
+$p\subset A$ has a unique prime $q\subset B$ whose contraction is $p$,
+so that $\Spec(B)\rightarrow\Spec(A)$ is bijective (and thus certainly has
+finite fibers).
 
 
 
@@ -51,4 +202,7 @@ If $L/K$ is finite and purely inseparable (with $\text{char}(L)=\text{char}(K)=\
 
 
 \end{document}
- A=p$ for some $n$. Conversely, if $x\in B$ has $x^{\ell^n}\in p\subset q$ for some $n$, then because $q$ is prime we must have $x\in q$. Finally, note that Theorem 5.10 guarantees that at least one such $q$ exists, and by our result above it must be $q=\{x:x^{\ell^n}\in p\text{ for some $n$}\}$. 
+ A=p$ for some $n$. Conversely, if $x\in B$ has $x^{\ell^n}\in p\subset q$
+ for some $n$, then because $q$ is prime we must have $x\in q$. Finally,
+ note that Theorem 5.10 guarantees that at least one such $q$ exists, and
+ by our result above it must be $q=\{x:x^{\ell^n}\in p\text{ for some $n$}\}$.
