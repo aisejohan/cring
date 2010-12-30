@@ -286,6 +286,83 @@ Let $R \to S, S \to T$ be morphisms of rings. Suppose $S$ is a finite
 $R$-module and $T$ a finite $T$-module. Then $T$ is a finite $R$-module.
 \end{exercise}
 
+\subsection{Integrality and noetherianness}
+
+In this optional subsection, we give an application of the preceding ideas to
+show that the ``ring of invariants'' of a noetherian ring under the action of a
+finite group is noetherian.
+
+In general, it is \textbf{not} true  that a subring of a noetherian ring
+is noetherian.  For instance, let $A := k[X_1, X_2, \dots]$ be the polynomial
+ring in infinitely many variables over a field $k$.  Then $A$ is not noetherian
+because of the ascending chain
+\[ (X_0) \subset (X_0, X_1) \subset (X_0, X_1, X_2) \subset \dots.\]
+However, the quotient field of $A$ is noetherian.  This applies to any
+non-noetherian integral domain.
+
+There are special cases where we can conclude a subring of a noetherian ring
+is noetherian.
+
+For instance, if integrality holds:
+
+\begin{theorem} Let $A_0$ be  a noetherian ring and $A$ a finitely generated
+$A_0$-algebra.  Let $B \subset A$ be a subalgebra such that $A$ is integral
+over $B$.  Then $B$ is finitely generated, hence noetherian.
+\end{theorem}
+
+\begin{proof}
+We know that $A$ is finitely generated, say $A=A_0[x_1, \dots, x_n]$.  Then,
+ to say that $A$ is integral over $B$ is to say that each
+$x_i$ satisfies an integral equation $P_i(x_i)=0$ with $P_i \in B[X]$ monic.
+But there are finitely many $P_i$ and each has finitely many coefficients,
+all in $B$.  We can take the subring $C \subset B \subset A$ generated
+by all these coefficients.  Then $C$ is finitely generated over $A_0$,
+hence noetherian.  Also $A$ is integral over $C$.
+  
+  As above, $A$ is a f.g. $C$-module.  But $C$
+is noetherian, so the submodule $B \subset A$ is a f.g. $C$-module too.
+Taking the generators of $C$ and the $C$ module-generators of $B$, we find
+$B$ finitely generated.
+\end{proof}
+
+
+This result provides a quick application to ``invariant theory.''  The idea
+here is that if we have a finite group $G$  acting
+on an algebra $A$ by algebra automorphisms, then the subset $A^G$ of fixed
+points is actually an algebra, so it is  of interest to check whether, say,
+$A$ finitely generated implies $A^G$ finitely generated.
+
+\begin{example} 
+As an example, if we fix a field $k$, we can make the symmetric group $S_n$
+act on $k[x_1, \dots, x_n]$ by permuting variables; explicitly
+\[ \sigma f(x_1, \dots, x_n) := f( x_{\sigma^{-1} 1}, \dots,
+x_{\sigma^{-1}n}).\]
+The $S_n$ invariants in this case are just \textbf{symmetric polynomials}.
+There is a theorem that these are generated in the \textbf{elementary
+symmetric functions} which are the coefficients of $T$ in
+\[ \prod_i (T - x_i)  \in k[x_1, \dots, x_n, T].\]
+So in this case, the ring of invariants is finitely generated.
+
+\end{example} 
+
+In general:
+\begin{corollary} If $A_0$ is a noetherian ring and $A$ a finitely generated
+$A_0$-algebra acted on by $G$ (by $A_0$-algebra automorphisms), then $A^G$
+is a finitely generated $A_0$-algebra too.
+\end{corollary}
+\begin{proof} 
+This follows because $A$ is \textbf{integral} over $A^G$; indeed, $x \in A$
+satisfies the polynomial equation
+\[ \prod_{g \in G} (T - \sigma x);\]
+this polynomial is $G$-invariant, and consequently so are the coefficients
+of $T$.
+Now apply the previous theorem.
+
+\end{proof} 
+
+
+
+
 \section{Integral closure}
 \begin{definition}
 If $R \subset R'$, then the set $S = \left\{x \in R': x \ \mathrm{is \

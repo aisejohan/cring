@@ -735,6 +735,8 @@ sequences of the form $M' \to M \to M'' \to 0$, i.e. $F$ preserves cokernels.
 A functor is exact if and only if it is both left and right exact.  
 
 
+\add{split exact sequences}
+
 \add{further explanation, exactness of filtered colimits}
 
 \section{Ideals}
@@ -762,6 +764,8 @@ An ideal $I \subset R$ is said to be \textbf{prime} if
 If $R = \mathbb{Z}$ and $p \in R$, then $(p) \subset \mathbb{Z}$ is a prime ideal iff $p$ or $-p$ is a
 prime number in $\mathbb{N}$ or if $p$ is zero. 
 \end{example} 
+
+
 
 If $R$ is any commutative ring, there are two obvious ideals. These obvious
 ones are the zero ideal $(0)$
@@ -928,6 +932,31 @@ Any field is an integral domain. This is because in a field, nonzero elements
 are invertible, and the product of two invertible elements is invertible. This
 statement translates in ring theory to the statement that a maximal ideal is
 prime.
+
+
+Finally, we include an example that describes what \emph{some} of the prime
+ideals in a polynomial ring look like.
+\begin{example} 
+Let $R$ be a ring and $P$ a prime ideal. We claim that $PR[x] \subset R[x]$ is a
+prime ideal.
+
+Consider the map $\tilde{\phi}:R[x]\rightarrow(R/P)[x]$ with
+$\tilde{\phi}(a_0+\cdots+a_nx^n)=(a_0+P)+\cdots+(a_n+P)x^n$. This is clearly
+a homomorphism because $\phi:R\rightarrow R/P$ is, and its kernel consists
+of those polynomials $a_0+\cdots+a_nx^n$ with $a_0,\ldots,a_n\in P$, which is
+precisely $P[x]$. Thus $R[x]/P[x]\simeq (R/P)[x]$, which is an integral domain
+because $R/P$ is an integral domain. Thus $P[x]$ is a prime ideal. 
+
+However, if
+$P$ is a maximal ideal, then $P[x]$ is never a maximal ideal because the ideal
+$P[x]+(x)$ (the polynomials with constant term in $P$) always strictly contains
+$P[x]$ (because if $x\in P[x]$ then $1\in P$, which is impossible). Note
+that $P[x]+(x)$ is the kernel of the composition of $\tilde{\phi}$ with
+evaluation at 0, i.e $(\text{ev}_0\circ\tilde{\phi}):R[x]\rightarrow R/P$,
+and this map is a surjection and $R/P$ is a field, so that $P[x]+(x)$ is
+the maximal ideal in $R[x]$ containing $P[x]$.
+\end{example} 
+
 
 \begin{exercise} 
 Let $R$ be a domain. Consider the set of formal quotients $a/b, a, b \in R$
@@ -1224,4 +1253,10 @@ chapter~\ref{noetherian}, this does not happen over \emph{noetherian} rings.
 
 \begin{exercise} 
 Show that a quotient of a finitely generated module is finitely generated.
-\end{exercise} 
+\end{exercise}
+
+\begin{example} 
+Consider a \emph{split} exact sequence $0 \to M' \to M \to M'' \to 0$. In this
+case, show that if $M$ is finitely generated, so is $M'$.
+\end{example} 
+
