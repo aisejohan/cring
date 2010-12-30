@@ -1071,6 +1071,53 @@ q_m$. By induction, this shows that the factorization of $x$ is unique up to
 order and multiplication by units.
 \end{proof} 
 
+\subsection{The Chinese remainder theorem}
+
+\begin{theorem}[Chinese remainder theorem] Let $I_1, \dots I_n$ be ideals in a
+ring $R$ which satisfy $I_i + I_j = R$ for $i \neq j$. Then we have $I_1 \cap
+\dots \cap I_n = I_1 \dots I_n$ and the morphism of rings
+\[ R \to \bigoplus R/I_i \]
+is an epimorphism with kernel $I_1 \cap \dots \cap I_n$.
+\end{theorem} 
+
+\begin{proof} 
+First, note that for any two ideals $I_1$ and $I_2$, we
+have $I_1I_2\subseteq I_1\cap I_2$ and $(I_1+I_2)(I_1\cap I_2)\subseteq
+I_1I_2$ (because any element of $I_1+I_2$ multiplied by any element of
+$I_1\cap I_2$ will clearly be a sum of products of elements from both $I_1$
+and $I_2$). Thus, if $I_1$ and $I_2$ are coprime, i.e. $I_1+I_2=(1)=R$,
+then $(1)(I_1\cap I_2)=(I_1\cap I_2)\subseteq I_1I_2\subseteq I_1\cap I_2$,
+so that $I_1\cap I_2=I_1I_2$. This establishes the result for $n=2$.
+
+If the
+ideals $I_1,\ldots,I_n$ are pairwise coprime and the result holds for $n-1$,
+then $$\bigcap_{i=1}^{n-1} I_i=\prod_{i=1}^{n-1}I_i.$$  Because $I_n+I_i=(1)$
+for each $1\leq i\leq n-1$, there must be $x_i\in I_n$ and $y_i\in I_i$ such
+that $x_i+y_i=1$. Thus, $z_n=\prod_{i=1}^{n-1}y_i=\prod_{i=1}^{n-1}(1-x_i)\in
+\prod_{i=1}^{n-1} I_i$, and clearly $z_n+I_n=1+I_n$ since each $x_i\in
+I_n$. Thus $I_n+\prod_{i=1}^{n-1}I_i=I_n+\bigcap_{i=1}^{n-1}I_i=(1)$,
+and we can now apply the $n=2$ case to conclude that $\bigcap_{i=1}^n
+I_i=\prod_{i=1}^n I_i$. 
+
+Note that for any $i$, we can construct a $z_i$
+with $z_i\in I_j$ for $j\neq i$ and $z_i+I_i=1+I_i$ via the same procedure.
+
+ Define $\phi:R\rightarrow\bigoplus R/I_i$
+by $\phi(a)=(a+I_1,\ldots,a+I_n)$. The kernel of $\phi$ is
+$\bigcap_{i=1}^n I_i$, because $a+I_i=0+I_i$ iff $a\in I_i$, so that
+$\phi(a)=(0+I_1,\ldots,0+I_n)$ iff $a\in I_i$ for all $i$, that is,
+$a\in\bigcap_{i=1}^n I_i$. Combined with our previous result, the kernel
+of $\phi$ is $\prod_{i=1}^n I_i$.
+
+Finally, recall that we constructed
+$z_i\in R$ such that $z_i+I_i=1+I_i$, and $z+I_j=0+I_j$ for all $j\neq
+i$, so that $\phi(z_i)=(0+I_1,\ldots,1+I_{i},\ldots,0+I_n)$. Thus,
+$\phi(a_1z_1+\cdots+a_nz_n)=(a_1+I_1,\ldots,a_n+I_n)$ for all $a_i\in R$,
+so that $\phi$ is onto. By the first isomorphism theorem, we have that
+$R/I_1\cdots I_n\simeq \bigoplus_{i=1}^nR/I_i$.   \\
+
+\end{proof} 
+
 \section{Basic properties of modules}
 
 \subsection{Free modules}
