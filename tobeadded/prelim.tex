@@ -1,0 +1,130 @@
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage{bm}
+\usepackage{wrapfig}
+\usepackage[pdftex]{color}
+\usepackage[pdftex]{graphicx}
+
+%\usepackage{pdftricks}
+%\begin{psinputs}
+%\usepackage[dvips,ps,all]{xy}
+%\end{psinputs}
+
+\input xy
+\xyoption{all}
+
+%% This package sets the date to the more logical YYYY - MM - DD format.
+\usepackage{datetime}
+\renewcommand{\dateseparator}{-}
+\yyyymmdddate
+
+%% This command inserts \noindent and makes the input bold.
+\newcommand{\num}[1]{\noindent \textbf{#1}}
+
+%% Some math commands.
+\renewcommand{\ker}{\operatorname{ker}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\disc}{\operatorname{disc}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\rad}{\operatorname{rad}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Irr}{\operatorname{Irr}}
+\newcommand{\Char}{\operatorname{char}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\Ass}{\operatorname{Ass}}
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\mSpec}{\operatorname{mSpec}}
+\renewcommand{\dim}{\operatorname{dim}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\height}{\operatorname{ht}}
+\newcommand{\length}{\operatorname{length}}
+\newcommand{\depth}{\operatorname{depth}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\Tor}{\operatorname{Tor}}
+
+%% Some categories.
+\newcommand{\Set}{\ensuremath{\text{\sf Set}}}
+\newcommand{\Cat}{\ensuremath{\text{\sf Cat}}}
+\newcommand{\Top}{\ensuremath{\text{\sf Top}}}
+\newcommand{\Grp}{\ensuremath{\text{\sf Grp}}}
+\newcommand{\Ring}{\ensuremath{\text{\sf Ring}}}
+\newcommand{\CRing}{\ensuremath{\text{\sf CRing}}}
+\newcommand{\Ab}{\ensuremath{\text{\sf Ab}}}
+\newcommand{\Mod}{\ensuremath{\text{\sf Mod}}}
+\newcommand{\Fun}{\ensuremath{\text{\sf Fun}}}
+\newcommand{\Nat}{\ensuremath{\text{\sf Nat}}}
+\newcommand{\Vect}{\ensuremath{\text{\sf Vect}}}
+
+%% Shortening of some standard commands.
+\newcommand{\bb}[1]{\ensuremath{\mathbb{#1}}}
+\renewcommand{\cal}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\san}[1]{\ensuremath{\text{\sf #1}}}
+\renewcommand{\frak}[1]{\ensuremath{\mathfrak{#1}}}
+
+%% Standard double-struck letters.
+%% Integers.
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+%% Rational numbers.
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+%% Real numbers.
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+%% Complex numbers.
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+%% Natural numbers.
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+%% The sphere.
+\let\SS\S\renewcommand{\S}{\ensuremath{\mathbb{S}}}
+%% A field.
+\newcommand{\F}{\ensuremath{\mathbb{F}}}
+%% The quaternions.
+\renewcommand{\H}{\ensuremath{\mathbb{H}}}
+%% The octonions.
+\renewcommand{\O}{\ensuremath{\mathbb{O}}}
+%% Projective space, or probability.
+\renewcommand{\P}{\ensuremath{\mathbb{P}}}
+%% The torus.
+\newcommand{\T}{\ensuremath{\mathbb{T}}}
+%% Affine space.
+\newcommand{\A}{\ensuremath{\mathbb{A}}}
+%% The ball.
+\newcommand{\B}{\ensuremath{\mathbb{B}}}
+%% The disk.
+\newcommand{\D}{\ensuremath{\mathbb{D}}}
+
+%% Non-standard double-struck letters.
+%\newcommand{\E}{\ensuremath{\mathbb{E}}}
+%\newcommand{\G}{\ensuremath{\mathbb{G}}}
+%\newcommand{\I}{\ensuremath{\mathbb{I}}}
+%\newcommand{\J}{\ensuremath{\mathbb{J}}}
+%\newcommand{\K}{\ensuremath{\mathbb{K}}}
+%\renewcommand{\L}{\ensuremath{\mathbb{L}}}
+%\newcommand{\M}{\ensuremath{\mathbb{M}}}
+%\newcommand{\N}{\ensuremath{\mathbb{N}}}
+%\newcommand{\U}{\ensuremath{\mathbb{U}}}
+%\newcommand{\V}{\ensuremath{\mathbb{V}}}
+%\newcommand{\W}{\ensuremath{\mathbb{W}}}
+%\newcommand{\X}{\ensuremath{\mathbb{X}}}
+%\newcommand{\Y}{\ensuremath{\mathbb{Y}}}
+
+
+%% This custom type produces a column of the specified width whose contents are centered.
+\newcolumntype{C}[1]{>{\centering\hspace{0pt}}p{#1}}
+
+%% amsthm styles.
+\newtheorem{theorem}{Theorem}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem{axiom}{Axiom}[section]
+\newtheorem{definition}{Definition}
+\newtheorem*{remark}{Remark}

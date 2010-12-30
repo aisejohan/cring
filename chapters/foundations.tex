@@ -104,6 +104,17 @@ morphism between $A$-algebras is required to commute with the structure
 morphisms. 
 \end{definition} 
 
+So if $R$ is an $A$-algebra, then $R$ is not only a ring, but there is a way
+to multiply elements of $R$ by elements of $A$ (namely, to multiply $a \in A$
+with $r \in R$, take the image of $a $ in $R$, and multiply that by $r$).
+For instance, any ring is an algebra over any subring.
+
+If $B$ is an $A$-algebra and $C$ a $B$-algebra, then $C$ is an $A$-algebra in a
+natural way. Namely, by assumption we are given morphisms of rings $A \to B$
+and $B \to C$, so composing them gives the structure morphism $A \to C$ of $C$
+as an $A$-algebra. 
+
+
 \begin{example} 
 Every ring is a $\mathbb{Z}$-algebra in a natural and unique way. There is a
 unique map (of rings) $\mathbb{Z} \to R$ for any ring $R$ because a
@@ -114,6 +125,11 @@ ring-homomorphism is required to preserve the identity.
 If $R$ is a ring, the polynomial ring $R[x]$ is an $R$-algebra in a natural
 manner.
 \end{example} 
+
+\begin{example} 
+$\mathbb{C}$ is an $\mathbb{R}$-algebra.
+\end{example} 
+
 
 After this series of technical definitions, we shall give several more  examples.
 \begin{exercise} 
@@ -203,7 +219,7 @@ The sum $I + J$ of two ideals $I, J \subset R$ is defined as the set of sums
 \end{definition}
 
 \begin{definition}
-The project $IJ$ of two ideals $I, J \subset R$ is defined as the smallest
+The product $IJ$ of two ideals $I, J \subset R$ is defined as the smallest
 ideal containing the products $xy$ for all $x \in I, y \in J$. This is just
 the set
   \[ \left\{ \sum x_i y_i : x_i \in I, y_i \in J \right\}. \]
@@ -402,6 +418,12 @@ polynomial ring $\mathbb{C}[x_1, \dots, x_n]$ is of the form
 $(x_1-a_1, \dots, x_n-a_n)$ for $a_1, \dots, a_n \in \mathbb{C}$. An ideal of a
 ring is called \textbf{maximal} if the only ideal that contains it is the
 whole ring (and it itself is not the whole ring).
+
+As a corollary, deduce that if $I \subset \mathbb{C}[x_1, \dots, x_n]$ is a
+proper ideal (an ideal is called \textbf{proper} if it is not equal to the
+entire ring), then there exists $(x_1, \dots, x_n) \in \mathbb{C}^n$ such that
+every polynomial in $I$ vanishes on the point $(x_1, \dots, x_n)$. This is
+called the \textbf{weak Nullstellensatz.}
 \end{exercise} 
 
 \section{Modules over a commutative ring}
@@ -733,8 +755,8 @@ An ideal $I \subset R$ is said to be \textbf{prime} if
 
 \begin{example}
 \label{integerprimes}
-If $R = \mathbb{Z}$ and $p \in R$, then $(p) \subset \mathbb{Z}$ is a prime ideal iff $p$ is a
-prime number (or the opposite of a prime number) or zero.
+If $R = \mathbb{Z}$ and $p \in R$, then $(p) \subset \mathbb{Z}$ is a prime ideal iff $p$ or $-p$ is a
+prime number in $\mathbb{N}$ or if $p$ is zero. 
 \end{example} 
 
 \begin{definition} 
