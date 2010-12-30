@@ -156,37 +156,6 @@ exact and therefore the homology group is
 $\Tor_1^{\ZZ/6\ZZ} (\ZZ / 2\ZZ , \ZZ / 2\ZZ) = 0$.
 
 \subsection*{5 (DF 17.1.20)}
-
-Consider the projective resolution
-\[ 
-\xymatrix{
-\cdots \ar[r]^{m/d} & \ZZ/m\ZZ \ar[r]^d & \ZZ/m\ZZ \ar[r]^{m/d} 
-	%& \ZZ/m\ZZ \ar[r]^d & \ZZ/m\ZZ \ar[r]^{m/d} 
-	& \ZZ/m\ZZ \ar[r]^{d} & \ZZ/m\ZZ \ar[r] & \ZZ/d\ZZ \ar[r] & 0.
-}
-\]
-We apply $A \otimes_{\ZZ/m\ZZ} \cdot$ and truncate. Since 
-$S \otimes_R R \cong S$, we see that $A \otimes_{\ZZ/m\ZZ} \ZZ /m\ZZ \cong A$ and
-hence we obtain the complex
-\[ 
-\xymatrix{
-\cdots \ar[r]^{m/d} & A \ar[r]^d & A \ar[r]^{m/d} 
-	& A \ar[r]^{d} & A \ar[r] & 0.
-}
-\]
-The groups $\Tor_n^{\ZZ/m\ZZ} (A, \ZZ/d\ZZ)$ are simply the homology groups
-(ker/im) of
-the complex, which are simply 
-\begin{align*} 
-\Tor_0^{\ZZ / m\ZZ} (A, \ZZ/d\ZZ) &\cong A / dA \\
-\Tor_n^{\ZZ / m\ZZ} (A, \ZZ/d\ZZ) &\cong {}_dA/(m/d)A 
-			\quad \text{$n$ odd, $n \ge 1$} \\
-\Tor_n^{\ZZ / m\ZZ} (A, \ZZ/d\ZZ) &\cong {}_{m/d}A/dA 
-			\quad \text{$n$ even, $n \ge 2$},
-\end{align*} 
-where ${}_kA = \{ a \in A \mid ka = 0 \}$ denotes the set of elements of $A$
-killed by $k$.
-
 \subsection*{6 (DF 17.1.22)}
 
 Consider a projective resolution of $A$, i.e.

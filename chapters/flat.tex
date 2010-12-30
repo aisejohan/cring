@@ -3,6 +3,8 @@
 In the past, we have already encountered the notion of \emph{flatness}. We
 shall now study it in more detail.
 
+
+
 \section{Faithful flatness}
 
 \subsection{Faithfully flat modules}
@@ -234,6 +236,42 @@ is $R$. The converse is false!
 \end{exercise} 
 
 
+
+\section{Tor}
+
+
+\add{this section needs to be considerably expanded: define Tor, prove basic
+properties, etc.?}
+
+Consider the projective resolution
+\[ 
+\xymatrix{
+\cdots \ar[r]^{m/d} & \mathbb{Z}/m\mathbb{Z} \ar[r]^d & \mathbb{Z}/m\mathbb{Z} \ar[r]^{m/d} 
+	%& \mathbb{Z}/m\mathbb{Z} \ar[r]^d & \mathbb{Z}/m\mathbb{Z} \ar[r]^{m/d} 
+	& \mathbb{Z}/m\mathbb{Z} \ar[r]^{d} & \mathbb{Z}/m\mathbb{Z} \ar[r] & \mathbb{Z}/d\mathbb{Z} \ar[r] & 0.
+}
+\]
+We apply $A \otimes_{\mathbb{Z}/m\mathbb{Z}} \cdot$ and truncate. Since 
+$S \otimes_R R \cong S$, we see that $A \otimes_{\mathbb{Z}/m\mathbb{Z}} \mathbb{Z} /m\mathbb{Z} \cong A$ and
+hence we obtain the complex
+\[ 
+\xymatrix{
+\cdots \ar[r]^{m/d} & A \ar[r]^d & A \ar[r]^{m/d} 
+	& A \ar[r]^{d} & A \ar[r] & 0.
+}
+\]
+The groups $\Tor_n^{\mathbb{Z}/m\mathbb{Z}} (A, \mathbb{Z}/d\mathbb{Z})$ are simply the homology groups
+(ker/im) of
+the complex, which are simply 
+\begin{align*} 
+\Tor_0^{\mathbb{Z} / m\mathbb{Z}} (A, \mathbb{Z}/d\mathbb{Z}) &\cong A / dA \\
+\Tor_n^{\mathbb{Z} / m\mathbb{Z}} (A, \mathbb{Z}/d\mathbb{Z}) &\cong {}_dA/(m/d)A 
+			\quad \text{$n$ odd, $n \ge 1$} \\
+\Tor_n^{\mathbb{Z} / m\mathbb{Z}} (A, \mathbb{Z}/d\mathbb{Z}) &\cong {}_{m/d}A/dA 
+			\quad \text{$n$ even, $n \ge 2$},
+\end{align*} 
+where ${}_kA = \{ a \in A \mid ka = 0 \}$ denotes the set of elements of $A$
+killed by $k$.
 
 
 \section{Interpretation via Tor}

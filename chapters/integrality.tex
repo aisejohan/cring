@@ -302,27 +302,27 @@ non-noetherian integral domain.
 
 There are special cases where we can conclude a subring of a noetherian ring
 is noetherian.
-
 For instance, if integrality holds:
 
 \begin{theorem} Let $A_0$ be  a noetherian ring and $A$ a finitely generated
-$A_0$-algebra.  Let $B \subset A$ be a subalgebra such that $A$ is integral
-over $B$.  Then $B$ is finitely generated, hence noetherian.
+$A_0$-algebra.\footnote{So $A$ is noetherian by Hilbert's basis theorem.}  Let $B \subset A$ be a subalgebra such that $A$ is integral
+over $B$.  Then $B$ is finitely generated over $A_0$, hence noetherian.
 \end{theorem}
 
 \begin{proof}
-We know that $A$ is finitely generated, say $A=A_0[x_1, \dots, x_n]$.  Then,
+We know that $A$ is finitely generated over $A_0$, say $A=A_0[x_1, \dots, x_n]$.  Then,
  to say that $A$ is integral over $B$ is to say that each
-$x_i$ satisfies an integral equation $P_i(x_i)=0$ with $P_i \in B[X]$ monic.
+$x_i$ satisfies an integral equation $P_i(x_i)=0$ with each $P_i \in B[X]$ monic.
 But there are finitely many $P_i$ and each has finitely many coefficients,
 all in $B$.  We can take the subring $C \subset B \subset A$ generated
 by all these coefficients.  Then $C$ is finitely generated over $A_0$,
 hence noetherian.  Also $A$ is integral over $C$.
   
-  As above, $A$ is a f.g. $C$-module.  But $C$
+ Thus, $A$ is a finitely generated \emph{module} over $C$.
+ But $C$
 is noetherian, so the submodule $B \subset A$ is a f.g. $C$-module too.
 Taking the generators of $C$ and the $C$ module-generators of $B$, we find
-$B$ finitely generated.
+$B$ finitely generated over $A_0$.
 \end{proof}
 
 
