@@ -1,5 +1,5 @@
 \chapter{The $\spec$ of a ring}
-
+\label{spec}
 
 The notion of the $\spec$ of a ring is fundamental in modern
 algebraic
@@ -125,7 +125,8 @@ $V(I)$ where $I
 \mathbb{Z}$.
 
 \begin{enumerate}
-\item If $n=0$, the closed subset is all of $\spec \mathbb{Z}$.\item If $n \neq 0$, then $n$ has finitely many prime divisors.
+\item If $n=0$, the closed subset is all of $\spec \mathbb{Z}$.
+\item If $n \neq 0$, then $n$ has finitely many prime divisors.
 So $V((n))$ consists
 of the prime ideals corresponding to these prime divisors.  
 \end{enumerate}
@@ -329,7 +330,7 @@ same radical.
 \begin{proof} 
 We write down a formula for $\rad(I)$ that will imply this at
 once.
-\begin{lemma} For a commutative ring $R$ and an ideal $I \subset
+\begin{lemma} \label{radprimescontaining} For a commutative ring $R$ and an ideal $I \subset
 R$,
 \[ \rad(I) = \bigcap_{\mathfrak{p} \supset I} \mathfrak{p}.  \]
 \end{lemma} 
@@ -368,12 +369,13 @@ a
 
 More generally, we will prove:
 
-\begin{sublemma}
+\begin{sublemma}\label{sublemmamultclosed}
 Let $S$ be multiplicatively closed set in any ring $R$ and let
 $I$ be any ideal with $I \cap S =
 \emptyset$. There is a prime ideal $\mathfrak{p} \supset I$ and
 does not
-intersect $S$.  
+intersect $S$ (in fact, any ideal maximal with respect to the condition of
+not intersecting $S$ will do).  
 \end{sublemma}
 In English, any ideal missing $S$ can be enlarged to a prime
 ideal missing $S$.
@@ -431,13 +433,101 @@ $\mathfrak{p}
 \end{proof}
 \end{proof} 
 \end{proof} 
-
 The upshot of the previous lemmata is:
 \begin{proposition}
 There is a bijection between the closed subsets of $\spec R$ and
 radical ideals
 $I \subset R$.
 \end{proposition}
+
+
+\subsection{Nilpotent elements}
+
+There is a useful corollary of the above analysis. This is not strictly about
+the $\spec$ of a ring, but it is of general interest in commutative algebra. 
+
+\begin{definition} 
+ $x \in R$ is called \textbf{nilpotent} if a power of $x$ is zero. The set of
+ nilpotent elements in $R$ is called the \textbf{radical} of $R$ and is denoted
+ $\rad(R)$ (which is an abuse of notation).
+\end{definition}
+
+The set of nilpotents is just the radical $\rad((0))$ of the zero ideal, so it
+is an ideal. It can vary greatly. 
+A domain clearly has no nonzero nilpotents. On the other hand, many rings do:
+
+\begin{example} 
+For any $n \geq 2$, the ring $\mathbb{Z}[X]/(X^n)$ has a nilpotent, namely $X$.
+The ideal of nilpotent elements is $(X)$.
+\end{example} 
+
+It is a useful and frequently used trick that adding a nilpotent does not affect
+the collection of units. This trick is essentially an algebraic version of the
+familiar ``geometric series;'' convergence questions do not appear thanks to
+nilpotence. 
+
+\begin{example} 
+Suppose $u$ is a unit and $v \in R$ is nilpotent; we show that $a+v$ is a unit.
+
+Suppose $ua=1$ and $v^m=0$ for some
+$m>1$. Then  $(u+v)\cdot a(1-av+(av)^2-\cdots\pm(av)^{m-1})=$
+$(1-(-av))(1+(-av)+(-av)^2+\cdots+(-av)^{m-1})=1-(-av)^m=1-0=1$, so $u+v$
+is a unit.
+\end{example} 
+
+\begin{example}[Nilpotents in polynomial rings]
+Let us now compute the nilpotent elements in the polynomial $R[x]$.
+The claim is that a polynomial $\sum_{m=0}^n a_m x^m \in R[x]$ is nilpotent if and only
+if all the coefficients $a_m \in R$ are nilpotent. That is, $\rad(R[x]) =
+(\rad(R))R[x]$.
+
+If $a_0,\ldots,a_n$ are nilpotent, then because the nilpotent
+elements form an ideal, $f=a_0+\cdots+a_nx^n$ is nilpotent. Conversely,
+if $f$ is nilpotent, then $f^m=0$ and thus $(a_nx^n)^m=0$. Thus $a_nx^n$
+is nilpotent, and because the nilpotent elements form an ideal, $f-a_nx^n$
+is nilpotent. By induction, $a_ix^i$ is nilpotent for all $i$, so that all
+$a_i$ are nilpotent.
+\end{example} 
+
+\add{defn of power series ring}
+
+\begin{example}[Nilpotence in power series rings]
+Let $R$ be  a ring such that $\rad(R)$ is a finitely generated ideal. (This is
+satisfied, e.g., if $R$ is \emph{noetherian}, cf. chapter~\ref{noetherian}.)
+Let us consider the question of how $\rad(R)$ and $\rad(R[[x]])$ are related.
+The claim is that
+\[ \rad(R[[x]]) = (\rad(R))R[[x]].  \]
+
+If $f\in R[[x]]$ is nilpotent, say with $f^n=0$, then
+certainly $a_0^n=0$, so that $a_0$ is nilpotent. Because the nilpotent elements
+form an ideal, we have that $f-a_0$ is also nilpotent, and hence by induction
+every coefficient of $f$ must be nilpotent in $R$. 
+For the converse, let $I =
+\rad(R)$. There
+exists an $N>0$ such that the ideal power $I^N  = 0$ by finite generation. 
+Thus if $f \in IR[[x]]$, then $f^N \in I^N R[[x]] = 0$.
+\end{example} 
+\begin{exercise} \label{nilpcriterion} 
+Prove that $x \in R$ is nilpotent if and only if the localization $R_x$ is the
+zero ring.
+\end{exercise} 
+
+\begin{exercise} 
+Construct an example where $\rad(R) R[[x]] \neq \rad(R[[x]])$. (Hint: consider
+$R = \mathbb{C}[X_1, X_2, X_3, \dots]/(X_1, X_2^2, X_3^3, \dots)$.)
+\end{exercise} 
+
+
+It is easy to see that a nilpotent must lie in  any prime ideal. The converse is
+also true by the previous analysis.
+As a corollary of it, we find in fact:
+\begin{corollary} 
+Let $R$ be a commutative ring. Then the set of nilpotent elements of $R$ is
+precisely $\bigcap_{\mathfrak{p} \in \spec R} \mathfrak{p}$.
+\end{corollary} 
+\begin{proof} 
+Apply Lemma~\ref{radprimescontaining} to the zero ideal.
+\end{proof} 
 
 \subsection{Functoriality of $\spec$}
  The construction $R \to \spec R$ is functorial in $R$ in a
