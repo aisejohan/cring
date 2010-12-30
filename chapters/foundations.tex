@@ -590,27 +590,37 @@ So far, we have talked about modules, but we have not discussed morphisms
 between modules, and have yet to make the class of modules over a given ring
 into a category. This we do next.
 
-Let us introduce a  few more basic notions.
+Let us thus  introduce a  few more basic notions.
 
 \begin{definition} 
 Let $R$ be a ring.  Suppose $M,N$ are $R$-modules.  A map $f: M \to N$
 is a \textbf{module-homomorphism} if it preserves all the relevant structures.
-
 Namely, it must be a homomorphism of abelian groups, $f(x+y) = f(x) + f(y)$,
 and second it must
 preserve multiplication:
-$f(ax)  = af(x)$ for $a \in R, x \in M$. 
+$$f(ax)  = af(x)$$ for $a \in R, x \in M$. 
 \end{definition}
 
-
-Thus, for any commutative ring $R$, the class of $R$-modules and
-module-homomorphisms forms a \textbf{category.}
-
+A simple way of getting plenty of module-homomorphisms is simply to consider
+multiplication by a fixed element of the ring. 
 \begin{example} 
 If $a \in R$, then multiplication by $a$ is a module-homomorphism $M
-\stackrel{a}{\to} M$ for any $R$-module $M$.
+\stackrel{a}{\to} M$ for any $R$-module $M$.\footnote{When one considers
+modules over noncommutative rings, this is no longer true.} Such homomorphisms
+are called \textbf{homotheties.}
 \end{example} 
 
+
+If $M \stackrel{f}{\to} N$ and $N \stackrel{g}{\to} P$ are
+module-homomorphisms, their composite $M \stackrel{g \circ f}{\to} P$ clearly
+is too. 
+Thus, for any commutative ring $R$, the class of $R$-modules and
+module-homomorphisms forms a \textbf{category}.
+
+\begin{exercise} 
+The initial object in this category is the zero module, and this is also the
+final object. 
+\end{exercise} 
 \begin{definition} Let $f: M \to N$ be a module homomorphism.
 In this case, the \textbf{kernel} $\ker f$ of $f$ is  the set of elements $m
 \in M$ with $f(m)=0$. This is
@@ -628,17 +638,25 @@ The
 The universal property of the kernel is as follows. Let $M \stackrel{f}{\to }
 N$ be a morphism with kernel $K \subset M$. Let $T \to M$ be a map. Then $T \to M$ factors through the
 kernel $K \to M$ if and only if its composition with $f$ (a morphism $T \to N$) is zero. 
+That is, an arrow $T \to K$ exists in the diagram (where the dotted arrow
+indicates we are looking for a map that need not exist)
+\[ \xymatrix{
+& T \ar@{-->}[ld] \ar[d]  \\
+K \ar[r] &  M \ar[r]^f &  N
+}\]
+if and only if the composite $T \to N$ is zero.
 In particular, if we think of the hom-sets as abelian groups (i.e.
 $\mathbb{Z}$-modules)
-\[ \hom( T,K) = \ker\left( \hom(T, M) \to \hom(T, N) \right). \]
+\[ \hom_R( T,K) = \ker\left( \hom_R(T, M) \to \hom_R(T, N) \right). \]
 \end{exercise} 
 \begin{exercise} 
 What is the universal property of the cokernel?
 \end{exercise} 
 
-\begin{exercise} 
+\begin{exercise} \label{moduleunderlyingsetrepresentable}
 On the category of modules, the functor assigning to each module $M$ its
-underlying set is corepresentable (cf.\ Exercise \ref{corepresentable}).
+underlying set is corepresentable (cf.\ Exercise \ref{corepresentable}). What
+is the corepresenting object? 
 \end{exercise} 
 
 We shall now introduce the notions of \emph{direct sum} and \emph{direct
@@ -666,16 +684,15 @@ is a coproduct.
 
 \subsection{Exactness}
 Finally, we introduce the notion of \emph{exactness}. 
-\begin{definition} 
+\begin{definition} \label{exactness}
 Let $f: M \to N$ be a morphism of $R$-modules.  Suppose $g: N \to P$ is another morphism of
 $R$-modules.  
 
-The pair of maps is a \textbf{complex} if $g \circ f = 0$. So $M \to N \to P$
-is zero.
-In particular, $\im(f) \subset \ker(g)$. 
+The pair of maps is a \textbf{complex} if $g \circ f = 0: M \to N \to P$.
+This is equivalent to the condition that $\im(f) \subset \ker(g)$. 
 
 This complex is \textbf{exact} (or exact at $N$) if $\im(f) = \ker(g)$. So
-anything that is killed when you map to $P$ actually comes from something in
+anything that is killed when mapped to $P$ actually comes from something in
 $M$. 
 
 \end{definition} 
@@ -683,11 +700,11 @@ $M$.
 
 We shall often write pairs of maps as sequences
 \[ A \stackrel{f}{\to} B \stackrel{g}{\to} C  \]
-and say that the sequence is \textbf{exact} if the image of the map $f:A
-\to B$ is the same as the kernel of the map $g: B \to C$.
-A longer (possibly infinite) sequence of modules
+and say that the sequence is exact if the pair of maps is, as in
+Definition~\ref{exactness}. A longer (possibly infinite) sequence of modules
 \[ A_0 \to A_1 \to A_2 \to \dots  \]
-will be called \textbf{exact} if it is exact at each step.
+will be called a \textbf{complex} if each set of three
+consecutive terms is a complex, and \textbf{exact} if it is exact at each step.
 
 \begin{example} 
 The sequence $0 \to A \stackrel{f}{\to} B$ is exact if and only if the map $f$
@@ -699,9 +716,9 @@ One typically sees this definition applied to sequences of the form
 \[ 0 \to M'\stackrel{f}{ \to} M \stackrel{g}{\to} M'' \to 0,  \]
 which, if exact, is called a \textbf{short exact sequence}. 
 Exactness here means that $f$ is injective, $g$ is surjective, and $f$ maps
-onto the image of $g$.  So $M''$ can be thought of as the quotient $M/M'$.
+onto the kernel of $g$.  So $M''$ can be thought of as the quotient $M/M'$.
 
-Suppose you have a functor  $F$ from the category of $R$-modules to the
+Suppose   $F$ is a functor from the category of $R$-modules to the
 category of  $S$-modules, where $R, S$ are rings.  Then:
 
 \begin{definition} 
@@ -722,26 +739,64 @@ A functor is exact if and only if it is both left and right exact.
 
 \subsection{Free modules}
 
+We now describe a simple way of constructing modules over a ring, and an
+important class of modules.
+
 \begin{definition} 
 A module $M$ is \textbf{free} if it is isomorphic to $\bigoplus_I R$ for some
-index set $I$. 
+index set $I$. The cardinality of $I$ is called the \textbf{rank}.
 \end{definition} 
 
+\begin{example} 
+$R$ is the simplest example of a free module.
+\end{example} 
+
+The claim now is that the notion of ``rank'' is well-defined for a free module. Indeed, suppose
+$\bigoplus_I R$ and $\bigoplus_J R$ are isomorphic; we must show that $I$ and
+$J$ have the same cardinality. Choose a maximal ideal $\mathfrak{m}
+\subset R$. Then, by applying the functor $M \to
+M/\mathfrak{m}M$, we find that the $R/\mathfrak{m}$-\emph{vector spaces}
+\[ \bigoplus_I R/\mathfrak{m}, \quad \bigoplus_J R/\mathfrak{m}  \]
+are isomorphic. By linear algebra, $I$ and $J$ have the same cardinality. 
 
 
+Free modules have a bunch of nice properties. The first is that it is very
+easy to map out of a free module.
+\begin{example} 
+Let $I$ be an indexing set, and $M$ an $R$-module. Then to give a morphism
+\[ \bigoplus_I R \to M  \]
+is equivalent to picking an element of $M$ for each $i \in I$. Indeed, given
+such a collection of elements $\left\{m_i\right\}$, we send the generator of $\bigoplus_I R$ with a 1
+in the $i$th spot and zero elsewhere to $m_i$.
+\end{example} 
 
+Another way of saying this is that the free module $\bigoplus_I R$ represents
+the functor $M \to M^I$. We have already seen a special case of this for $I$ a
+one-element set (Exercise~\ref{moduleunderlyingsetrepresentable}).
+
+The next claim is that free modules form a reasonably large class of the
+category of $R$-modules.
+
+\begin{proposition} 
+Given an $R$-module $M$, there is a free module $F$ and a surjection
+\[ F \twoheadrightarrow M.  \]
+\end{proposition} 
+\begin{proof} 
+We let $F$ to be the free $R$-module on the elements $e_m$, one for each $m
+\in M$. We define the map
+\[ F \to M  \]
+by describing the image of each of the generators $e_m$: we just send each
+$e_m$ to $m \in M$. It is clear that this map is surjective.
+\end{proof} 
 \section{Ideals}
 
 The notion of an \emph{ideal} has already been defined. Now we will introduce additional terminology related to the theory of ideals.
 
 \subsection{Prime and maximal ideals}
 
-If $R$ is any commutative ring, there are two obvious ideals. These obvious
-ones are the zero ideal $(0)$
-consisting only of the zero element, and the unit element $(1)$ consisting of all of
-$R$.
-
-
+Recall that the notion of an ideal generalizes that of divisibility. In
+elementary number theory, though, one finds that questions of divisibility
+basically reduce to questions about primes. 
 The notion of a ``prime ideal'' is intended to generalize the familiar idea of a prime
 number.
 
@@ -758,6 +813,12 @@ An ideal $I \subset R$ is said to be \textbf{prime} if
 If $R = \mathbb{Z}$ and $p \in R$, then $(p) \subset \mathbb{Z}$ is a prime ideal iff $p$ or $-p$ is a
 prime number in $\mathbb{N}$ or if $p$ is zero. 
 \end{example} 
+
+If $R$ is any commutative ring, there are two obvious ideals. These obvious
+ones are the zero ideal $(0)$
+consisting only of the zero element, and the unit element $(1)$ consisting of all of
+$R$.
+
 
 \begin{definition} 
 An ideal $I \subset R$ is called \textbf{maximal}\footnote{Maximal with
