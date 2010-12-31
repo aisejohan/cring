@@ -18,7 +18,7 @@ new_date:
 	date +"%B %e, %Y." > other/lastupdated.tex	
 
 clean:
-	rm -f *.log *.pdf *.dvi *.out *.log *.toc *.aux *.fdb_latexmk *.blg *.bbl
+	rm -f *.log *.pdf *.dvi *.out *.log *.toc *.aux *.fdb_latexmk *.blg *.bbl *.thm
 
 cleanup:
-	rm -f *.log *.out *.log *.toc *.aux *.fdb_latexmk *.blg *.bbl
+	rm -f *.log *.out *.log *.toc *.aux *.fdb_latexmk *.blg *.bbl *.thm
