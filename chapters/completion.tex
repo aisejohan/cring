@@ -1,6 +1,13 @@
 \chapter{Completions}
 \label{completions}
 
+The algebraic version of completion is essentially analogous to the familiar
+process of completing a metric space from analysis, i.e. the process whereby $\mathbb{R}$ is constructed from
+$\mathbb{Q}$. Here the emphasis is on how the algebraic properties and
+structure pass to the completion. For instance, we will see that the
+dimension is invariant under completion for noetherian local rings.
+
+
 Completions are used in geometry and number theory in order to give a finer picture of local structure; for example, taking completions of rings allows for the recovery of a topology that looks more like the Euclidean topology as it has more open sets than the Zariski topology. Completions are also used in algebraic number theory to allow for the study of fields around a prime number (or prime ideal). 
 
 \section{Introduction}
@@ -554,3 +561,170 @@ is a unique solution of $\left\{f_i(x) =0\right\}$ in $\hat{R}_I^n$ which lifts 
 The proof is the same idea: successive approximation, using the invertibility
 of $\Delta$. 
 
+\section{Henselian rings}
+
+
+
+There is a substitute for completeness that captures the essential
+properties: Henselianness. A ring is Henselian if it satisfies
+Hensel's lemma, more or less.
+
+\subsection{Semilocal rings}
+
+To start with, we shall need a few preliminaries on semi-local rings.
+
+Fix a local ring $A$ with maximal ideal $\mathfrak{m} \subset A$.
+Fix a finite $A$-algebra $B$; by definition, $B $ is a finitely
+generated $A$-module.
+
+\begin{proposition} 
+Hypotheses as above, the maximal ideals of $B$ are in bijection with
+the prime ideals of $B $ containing $\mathfrak{m} B$, or equivalently
+the prime ideals of $\overline{B} = B \otimes_A A/\mathfrak{m}$.
+\end{proposition}
+
+\begin{proof} 
+We have to show that every maximal ideal of $B$ contains $\mathfrak{m}
+B$. Suppose $\mathfrak{n} \subset B$ was maximal and was otherwise.
+Then by Nakayama's lemma, $\mathfrak{n} + \mathfrak{m} B \neq B$ is a
+proper ideal strictly containing $\mathfrak{n}$; this contradicts
+maximality.
+
+It is now clear that the maximal ideals of $B$ are in bijection
+naturally with those of $\overline{B}$. 
+However, $\overline{B}$ is an artinian ring, as it is finite over the
+field $A/\mathfrak{m}$, so every prime ideal in it is maximal.
+\end{proof}
+
+
+
+The next thing to observe is that $\overline{B}$, as an artinian ring,
+decomposes  as a product of local artinian rings.
+In fact, this decomposition is unique.
+
+\begin{proposition} 
+Suppose $R = \prod R_i$ is a finite product of local rings $R_i$. Then
+the $R_i$ are unique.
+\end{proposition}
+\begin{proof} 
+To give a decomposition $R = \prod R_i$ is equivalent to giving
+idempotents $e_i$. If we had another decomposition $R = \prod S_j$,
+then we would have new idempotents $f_j$. The image of each $f_j$ in
+each $R_i$ is either zero or one as a local ring has no nontrivial
+idempotents. From this, one can easily deduce that the $f_j$'s are
+sums of the $e_i$'s, and if the $S_j$ are local, one sees that the
+$S_j$'s are just the $R_i$'s permuted. 
+\end{proof}
+
+In fact, there is a canonical way of determining the factors $R_i$. 
+A finite product of local rings as above is \textit{semi-local}; 
+the maximal ideals $\mathfrak{m_i}$ are finite in number, and, furthermore, the
+canonical map
+\[ R \to \prod R_{\mathfrak{m_i}} \]
+is an isomorphism.
+
+
+In general, this splitting \textbf{fails} for semi-local rings, and in
+particular for rings finite over a local ring.
+We have seen that this splitting nonetheless works for rings finite
+over a field.
+
+
+\subsection{Henselian rings}
+
+\begin{definition}
+A local ring $(R, \mathfrak{m})$ is \textbf{Henselian} if every finite
+$R$-algebra is a product of local $R$-algebras.
+\end{definition}
+
+
+It is clear from the remarks of the previous section that the 
+decomposition as a product of local algebras is unique.
+Furthermore, we have already seen:
+
+\begin{proposition} 
+A field is Henselian. 
+\end{proposition}
+
+This result was essentially a corollary of basic facts about artinian
+rings. In general, though, henselian rings are very far from artinian.
+Nonetheless, we want to argue that 
+
+\subsection{Lifting idempotents}
+
+\begin{definition}
+A local ring $(R, \mathfrak{m})$ \textbf{satisfies lifting
+  idempotents} if for every finite $R$-algebra $S$, the canonical
+(reduction) map
+between idempotents of $S$ and those of $S/\mathfrak{m}S$ is surjective.
+\end{definition}
+
+\begin{proposition} 
+The map from idempotents of $S$ to those of $S/\mathfrak{m} S$ is
+always injective.
+\end{proposition}
+
+
+\begin{proof} 
+ 
+\end{proof}
+
+\begin{proposition} 
+Suppose $(R, \mathfrak{m})$ satisfies lifting idempotents, and let $S$ be a
+fintie $R$-algebra. Then given
+orthogonal idempotents $\overline{e}_1, \dots, \overline{e}_n$ of $S/\mathfrak{m}S$, there are
+mutually orthogonal lifts $\left\{e_i\right\} \in S$.
+\end{proposition} 
+\begin{proof} 
+
+\end{proof} 
+
+\begin{proposition} 
+A local ring is henselian if and only if it satisfies lifting idempotents. 
+\end{proposition}
+\begin{proof} 
+Suppose first $(R, \mathfrak{m} )$ satisfies lifting idempotents. 
+Let $S$ be any finite $R$-algebra. Then $S/\mathfrak{m}S$ is artinian,
+so factors as a product of local artinian rings $\prod \overline{S}_i$. This
+factorization corresponds to diempotents $\overline{e}_i \in
+S/\mathfrak{m}S$.
+We can lift these to orthogonal idempotents $e_i \in S$ by assumption. 
+These idempotents corresponding to a decomposition 
+\[ S = \prod S_i  \]
+which lifts the decomposition $\overline{S} = \prod \overline{S}_i$. Since the
+$\overline{S_i}$ are local, so are the $S_i$.
+Thus $R$ is henselian.
+
+Conversely, suppose $R$ henselian. 
+Let $S$ be a finite $R$-algebra and let $\overline{e} \in \overline{S} =
+S/\mathfrak{m}S$ be idempotent. Since $\overline{S}$ is a product of local
+rings, $\overline{e}$ is a finite sum of the primitive idempotents in
+$\overline{S}$. By henselianness, each of these primitive idempotents lifts to
+$S$, so $\overline{e}$ does too.
+\end{proof}
+
+
+\subsection{Hensel's lemma}
+
+We now want to show that Hensel's lemma is essentially what characterizes
+henselian rings.
+
+\begin{proposition} 
+Let $(R, \mathfrak{m})$ be a local ring with residue field $k$. Then $R$ is henselian if and only if,
+whenever a monic polynomial $P \in R[X]$ satisfies
+\[ \overline{P} = \overline{Q}\overline{R} \in k[X], \]
+for some relatively prime polynomials $\overline{Q}, \overline{R} \in k[X]$,
+then the factorization lifts to a factorization 
+\[ P = QR \in R[X].  \]
+\end{proposition} 
+\begin{proof} 
+Suppose $R$ henselian and suppose $P$ is a polynomial whose reduction admits
+such a factorization.
+Consider the finite $R$-algebra
+\[ S = R[X]/(P);  \]
+since $\overline{S } = S/\mathfrak{m}S $ can be represented as
+$k[X]/(\overline{P})$, it admits a splitting into components
+\[ \overline{S} = k[X]/(\overline{Q}) \times k[X]/(\overline{R}).  \]
+Since $R$ is henselian, this splitting lifts to $S$, and we get a splitting
+\[ S = S_1 \times S_2.  \]
+\end{proof} 
