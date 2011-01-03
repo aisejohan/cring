@@ -1134,6 +1134,29 @@ the codimension in $\spec R$ of the corresponding irreducible closed subset of
 $\spec R$.
 \end{remark} 
 
+\begin{theorem}[Artin-Tate]
+Let $A$ be a noetherian domain. Then the following are equivalent:
+\begin{enumerate}
+\item There is $f \in A-\left\{0\right\} $ such that $A_f$ is a field.
+\item $A$ has finitely many maximal ideals and has dimension at most 1.
+\end{enumerate}
+\end{theorem} 
+\begin{proof} 
+Suppose first that there is $f$ with $A_f$ a field. 
+Then all nonzero prime ideals of $A$ contain $f$. 
+We need to deduce that $A$ has dimension $\leq 1$. Without loss of generality,
+we may assume that $A$ is not a field.
+
+There are finitely many primes $\mathfrak{p}_1,\dots, \mathfrak{p}_k$ which
+are minimal over $f$; these are all height one. The claim is that any maximal ideal of $A$ is of this
+form. Suppose $\mathfrak{m}$ were maximal and not one of the $\mathfrak{p}_i$.
+Then by prime avoidance, there is $g \in \mathfrak{m}$ which
+lies in no $\mathfrak{p}_i$. A minimal prime $\mathfrak{P}$ of $g$ has height
+one, so by our assumptions contains $f$. However, it is then one of the
+$\mathfrak{p}_i$; this is a contradiction as $g \in \mathfrak{P}$.
+\end{proof} 
+
+
 \subsection{Further remarks}
 
 We can recast earlier notions in terms of dimension.
