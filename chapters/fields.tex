@@ -80,12 +80,12 @@ then$[K:\mathbb{Q}]$ is the degree of the minimal polynomial $f(x)$ of $\alpha$.
 \noindent
 Let $F$ be a field. As $\mathbf{Z}$ is the intial object of the category of
 rings, there is a ring map $f : \mathbf{Z} \to F$, see
-\cref{integersinitial}.
+\rref{integersinitial}.
 The image of this ring map is an integral domain (as a subring of a field)
 hence the kernel of $f$ is a prime ideal in $\mathbf{Z}$, see
-\cref{primeifdomain}.
+\rref{primeifdomain}.
 Hence the kernel of $f$ is either $(0)$ or $(p)$ for some prime number $p$, see
-\cref{integerprimes}.
+\rref{integerprimes}.
 
 In the first case we see that $f$ is injective, and in this case
 we think of $\mathbf{Z}$ as a subring of $F$. Moreover, since every
@@ -329,13 +329,13 @@ splits in $K$.
 
 \begin{definition} By $\deg(K/F)$ we mean the dimension of $K$ as an $F$-vector
 space.  We denote $K_s/F$ the set of elements of $K$ whose minimal polynomials
-over $F$ have distinct roots; by \cref{sep_subfield} this is a subfield, and
+over $F$ have distinct roots; by \rref{sep_subfield} this is a subfield, and
 $\deg(K_s/F) = \deg_s(K/F)$ and $\deg(K/K_s) = \deg_i(K/F)$ by definition.
 \label{def:sep}
 \end{definition}
 
 \begin{definition} If $K = F(\alpha)$ for some $\alpha$ with minimal polynomial
-$q(x) \in F[x]$, then by \cref{sep_poly}, $q(x) = r(x^{p^d})$, where $p =
+$q(x) \in F[x]$, then by \rref{sep_poly}, $q(x) = r(x^{p^d})$, where $p =
 \Char{F}$ (or $1$ if $\Char{F} = 0$) and $r$ is separable; in this case we
 also denote $\deg_s(K/F) = \deg(r), \deg_i(K/F) = p^d$.  \label{def:prim_sep}
 \end{definition}
@@ -371,14 +371,14 @@ any irreducible $q(x) \in K[x]$, there is some $d \geq 0$ and polynomial $r(x)
 \begin{proof} By formal differentiation, $q'(x)$ has positive degree unless
 each exponent is a multiple of $p$; in characteristic zero this never occurs.
 If this is not the case, since $q$ is irreducible, it can have no factor in
-common with $q'$ and therefore has distinct roots by \cref{der_poly}.
+common with $q'$ and therefore has distinct roots by \rref{der_poly}.
 
 If $p > 0$, let $d$ be the largest integer such that each exponent of $q$ is a
 multiple of $p^d$, and define $r$ by the above equation.  Then by
 construction, $r$ has at least one exponent which is not a multiple of $p$,
 and therefore has distinct roots. \end{proof}
 
-\begin{corollary} In the statement of \cref{sep_poly}, $q$ and $r$ have the same
+\begin{corollary} In the statement of \rref{sep_poly}, $q$ and $r$ have the same
 number of roots.
 \label{sep_roots}
 \end{corollary}
@@ -412,8 +412,8 @@ the $q_i$, we define $g$ recursively by this formula. \end{proof}
 \label{emb_size}
 \end{corollary}
 
-\begin{proof} This follows immediately by induction from \cref{emb_roots} by
-\cref{sep_roots}. \end{proof}
+\begin{proof} This follows immediately by induction from \rref{emb_roots} by
+\rref{sep_roots}. \end{proof}
 
 \begin{lemma} For any $f \in \Emb(K/F)$, the map $\Aut(K/F) \to \Emb(K/F)$ given
 by $\sigma \mapsto f \circ \sigma$ is injective.  
@@ -426,8 +426,8 @@ by $\sigma \mapsto f \circ \sigma$ is injective.
 \label{aut_fin}
 \end{corollary}
 
-\begin{proof} By \cref{aut_inj}, $\Aut(K/F)$ injects into $\Emb(K/F)$, which by
-\cref{emb_size} is finite. \end{proof}
+\begin{proof} By \rref{aut_inj}, $\Aut(K/F)$ injects into $\Emb(K/F)$, which by
+\rref{emb_size} is finite. \end{proof}
 
 \begin{proposition} The inequality
 \begin{equation*}
@@ -437,12 +437,12 @@ is an equality if and only if the $q_i$ all split in $K$.
 \label{aut_ineq}
 \end{proposition}
 
-\begin{proof} The inequality follows from \cref{aut_inj} and from \cref{aut_fin}.
+\begin{proof} The inequality follows from \rref{aut_inj} and from \rref{aut_fin}.
 Since both sets are finite, equality holds if and only if the injection of
-\cref{aut_inj} is surjective (for fixed $f \in \Emb(K/F)$).
+\rref{aut_inj} is surjective (for fixed $f \in \Emb(K/F)$).
 
 If surjectivity holds, let $\beta_1, \dots, \beta_n$ be arbitrary roots of
-$q_1, \dots, q_n$ in the sense of \cref{emb_roots}, and extract an embedding $g
+$q_1, \dots, q_n$ in the sense of \rref{emb_roots}, and extract an embedding $g
 \colon K \to M$ with $g(\alpha_i) = \beta_i$.  Since the correspondence $f
 \mapsto f \circ \sigma$ ($\sigma \in \Aut(K/F)$) is a bijection, there is some
 $\sigma$ such that $g = f \circ \sigma$, and therefore $f$ and $g$ have the
@@ -450,10 +450,10 @@ same image.  Therefore the image of $K$ in $M$ is canonical, and contains
 $\beta_1, \dots, \beta_n$ for any choice thereof.
 
 If the $q_i$ all split, let $g \in \Emb(K/F)$ be arbitrary, so the
-$g(\alpha_i)$ are roots of $q_i$ in $M$ as in \cref{emb_roots}.  But the $q_i$
+$g(\alpha_i)$ are roots of $q_i$ in $M$ as in \rref{emb_roots}.  But the $q_i$
 have all their roots in $K$, hence in the image $f(K)$, so $f$ and $g$ again
 have the same image, and $f^{-1} \circ g \in \Aut(K/F)$.  Thus $g = f \circ
-(f^{-1} \circ g)$ shows that the map of \cref{aut_inj} is surjective.
+(f^{-1} \circ g)$ shows that the map of \rref{aut_inj} is surjective.
 \end{proof}
 
 \begin{corollary} Define
@@ -470,7 +470,7 @@ $K$, and the second if and only if each $q_i$ is separable.
 \end{corollary}
 
 \begin{proof} The statements concerning the first inequality are just
-\cref{aut_ineq}; the interior equality is just \cref{emb_size}; the latter
+\rref{aut_ineq}; the interior equality is just \rref{emb_size}; the latter
 inequality is obvious from the multiplicativity of the degrees of field
 extensions; and the deduction for equality follows from the definition of
 $\deg_s$. \end{proof}
@@ -482,7 +482,7 @@ if the $Q_i$ do and are.
 
 \begin{proof} The ordering of the $\alpha_i$ is irrelevant, so we may take
 each $i = 1$ in turn.  Then $Q_1 = q_1$ and if either of the equalities in
-\cref{large_aut_ineq} holds then so does the corresponding statement here.
+\rref{large_aut_ineq} holds then so does the corresponding statement here.
 Conversely, clearly each $q_i$ divides $Q_i$, so splitting or separability
 for the latter implies that for the former. \end{proof}
 
@@ -493,13 +493,13 @@ well.
 \end{corollary}
 
 \begin{proof} We may take $\alpha$ as the first element of an alternative
-generating set for $K/F$.  The numerical statement of \cref{large_aut_ineq}
+generating set for $K/F$.  The numerical statement of \rref{large_aut_ineq}
 does not depend on the particular generating set, hence the conditions given
 hold of the set containing $\alpha$ if and only if they hold of the canonical
 set ${\alpha_1, \dots, \alpha_n}$.
 
 For purely inseparable, if the $Q_i$ all have only one root then $|\Emb(K/F)|
-= 1$ by \cref{large_aut_ineq}, and taking $\alpha$ as the first element of a
+= 1$ by \rref{large_aut_ineq}, and taking $\alpha$ as the first element of a
 generating set as above shows that $q$ must have only one root as well for
 this to hold. \end{proof}
 
@@ -508,13 +508,13 @@ this to hold. \end{proof}
 \end{corollary}
 
 \begin{proof} Assume $\Char{F} = p > 0$, for otherwise $K_s = K$.  Using
-\cref{sep_poly}, write each $Q_i = R_i(x^{p^{d_i}})$, and let $\beta_i =
+\rref{sep_poly}, write each $Q_i = R_i(x^{p^{d_i}})$, and let $\beta_i =
 \alpha_i^{p^{d_i}}$.  Then the $\beta_i$ have $R_i$ as minimal polynomials and
 the $\alpha_i$ satisfy $s_i = x^{p^{d_i}} - \beta_i$ over $K' = F(\beta_1,
 \dots, \beta_n)$.  Therefore the $\alpha_i$ have minimal polynomials over $K'$
 dividing the $s_i$ and hence those polynomials have but one distinct root.
 
-By \cref{global_sepsplit}, the elements of $K'$ are separable, and those of
+By \rref{global_sepsplit}, the elements of $K'$ are separable, and those of
 $K'$ purely inseparable over $K'$.  In particular, since these minimal
 polynomials divide those over $F$, none of these elements is separable, so $K'
 = K_s$.
@@ -536,9 +536,9 @@ right if and only if $K/F$ is separable.
 \label{galois_size}
 \end{theorem}
 
-\begin{proof} The numerical statement combines \cref{large_aut_ineq} and
-\cref{sep_subfield}.  The deductions combine \cref{absolute_sepsplit} and
-\cref{global_sepsplit}. \end{proof}
+\begin{proof} The numerical statement combines \rref{large_aut_ineq} and
+\rref{sep_subfield}.  The deductions combine \rref{absolute_sepsplit} and
+\rref{global_sepsplit}. \end{proof}
 
 \subsection{Definitions}
 
@@ -587,7 +587,7 @@ transitively on its roots, then $q(x) \in K^H[x]$ is irreducible.
 \label{sep_irred}
 \end{corollary}
 
-\begin{proof} Immediate from \cref{root_action}. \end{proof}
+\begin{proof} Immediate from \rref{root_action}. \end{proof}
 
 \begin{lemma} If $K/F$ is Galois, so is $K/L$, and $\Gal(K/L) = G_L$..
 \label{sub_galois}
@@ -606,9 +606,9 @@ defines a surjection of $G$ onto $\Gal(L/F)$.  Thus $G_L$ is normal in $G$ and $
 \label{normal}
 \end{corollary}
 
-\begin{proof} $L/F$ is splitting, so by \cref{root_action} the elements of $G$
+\begin{proof} $L/F$ is splitting, so by \rref{root_action} the elements of $G$
 act as endomorphisms (hence automorphisms) of $L/F$, and the kernel of this action is $G_L$.  By
-\cref{sub_galois}, we have $G_L = \Gal(K/L)$, so $|G_L| = |\Gal(K/L)| = [K : L] = [K : F] / [L : F]$,
+\rref{sub_galois}, we have $G_L = \Gal(K/L)$, so $|G_L| = |\Gal(K/L)| = [K : L] = [K : F] / [L : F]$,
 or rearranging and using that $K/F$ is Galois, we get $|G|/|G_L| = [L : F] =
 |\Gal(L/F)|$.  Thus the map $G \to \Gal(L/F)$ is surjective and thus the induced map $G/G_L \to
 \Gal(L/F)$ is an isomorphism.
@@ -622,11 +622,11 @@ $\beta \in K^N$, so $K^N$ is splitting, i.e., Galois. \end{proof}
 \label{fixed_field}
 \end{proposition}
 
-\begin{proof} By \cref{sub_galois}, $K/L$ and $K/K^H$ are both Galois.  By
+\begin{proof} By \rref{sub_galois}, $K/L$ and $K/K^H$ are both Galois.  By
 definition, $\Gal(K/L) = G_L = H$; since $H$ fixes $K^H$ we certainly have
 $H < \Gal(K/K^H)$, but since $L \subset K^H$ we have \emph{a fortiori} that
 $\Gal(K/K^H) < \Gal(K/L) = H$, so $\Gal(K/K^H) = H$ as well.  It follows
-from \cref{galois_size} that $\deg(K/L) = |H| = \deg(K/K^H)$, so that $K^H =
+from \rref{galois_size} that $\deg(K/L) = |H| = \deg(K/K^H)$, so that $K^H =
 L$. \end{proof}
 
 \begin{lemma} If $K$ is a finite field, then $K^\ast$ is cyclic.
@@ -649,11 +649,11 @@ the Frobenius automorphism.
 \begin{proof} First take $F = \mathbb{F}_p$.  Then the map $f_i(\alpha) =
 \alpha^{p^i}$ is an endomorphism, injective since $K$ is a field, and
 surjective since it is finite, hence an automorphism.  Since every $\alpha$
-satisfies $\alpha^{p^n} = \alpha$, $f_n = 1$, but by \cref{fin_cyclic}, $f_{n -
+satisfies $\alpha^{p^n} = \alpha$, $f_n = 1$, but by \rref{fin_cyclic}, $f_{n -
 1}$ is nontrivial (applied to the generator).  Since $n = \deg(K/F)$, $f =
 f_1$ generates $\Gal(K/F)$.
 
-If $F$ is now arbitrary, by \cref{fixed_field} we have $\Gal(K/F) =
+If $F$ is now arbitrary, by \rref{fixed_field} we have $\Gal(K/F) =
 \Gal(K/\mathbb{F}_p)_F$, and every subgroup of a cyclic group is cyclic.
 \end{proof}
 
@@ -687,10 +687,10 @@ taken to be a linear combination of any finite set of generators of $K/F$.
 
 \begin{proof} We may embed $K/F$ in a Galois extension $M/F$ by adjoining all
 the conjugates of its generators.  Subextensions of $K/F$ are as well subextensions
-of $K'/F$ and by \cref{fixed_field} the map $H \mapsto (K')^H$ is a surjection
+of $K'/F$ and by \rref{fixed_field} the map $H \mapsto (K')^H$ is a surjection
 from the subgroups of $G$ to the subextensions of $K'/F$, which are hence
-finite in number.  By \cref{fin_prim_elt} we may assume $F$ is infinite.  The
-result now follows from \cref{gen_prim_elt}. \end{proof}
+finite in number.  By \rref{fin_prim_elt} we may assume $F$ is infinite.  The
+result now follows from \rref{gen_prim_elt}. \end{proof}
 
 \begin{corollary}
  If $K/F$ is Galois and $H \subset G$, then if $L = K^H$, we have $H = G_L$.
@@ -709,7 +709,7 @@ correspond.
 \label{fundamental_theorem}
 \end{theorem}
 
-\begin{proof} This combines \cref{fixed_field}, \cref{fixing_subgroup}, and \cref{normal}.
+\begin{proof} This combines \rref{fixed_field}, \rref{fixing_subgroup}, and \rref{normal}.
 \end{proof}
 
 

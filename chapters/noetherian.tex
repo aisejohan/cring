@@ -10,7 +10,7 @@ itself is noetherian in a certain sense.
 
 We shall start by proving the basic properties of noetherian rings. These are
 fairly standard and straightforward; they could have been placed after
-\cref{foundations}, in fact. More subtle is the structure theory for
+\rref{foundations}, in fact. More subtle is the structure theory for
 finitely generated modules over a noetherian ring. While there is nothing as
 concrete as there is for PIDs (there, one has a very explicit descrition for
 the isomorphism classes), one can still construct a so-called ``primary
@@ -94,10 +94,10 @@ $\mathbb{Z}$ is noetherian.
 
 The first basic result we want to prove is that over a noetherian ring, the
 noetherian modules are precisely the finitely generated ones.  This will
-follow from \cref{exactnoetherian} in the next subsection. So the defining 
+follow from \rref{exactnoetherian} in the next subsection. So the defining 
 property of noetherian rings is that a submodule of a finitely generated
 module is finitely generated. (Compare
-\cref{noetherianiffg}.)
+\rref{noetherianiffg}.)
 
 \begin{exercise} 
 The ring $\mathbb{C}[X_1, X_2, \dots]$ of polynomials in infinitely many
@@ -424,7 +424,7 @@ the contrary $bx \neq 0$. In this case, $\ann(bx)$ contains $(a) + I$, which
 \end{proof} 
 
 \begin{example} 
-Without the noetherian hypothesis, \cref{assmnonempty} is
+Without the noetherian hypothesis, \rref{assmnonempty} is
 \emph{false}. Consider $R = \mathbb{C}[x_1, x_2, \dots]$, the polynomial ring
 over $\mathbb{C}$ in infinitely many variables, and the ideal $I = (x_1,
 x_2^2, x_3^3, \dots) \subset R$.
@@ -486,7 +486,7 @@ This means that $\phi(ax) = 0$, so $ax \in \ker \phi=M'$; but $\ker \phi \cap Rx
 0$. So $ax = 0$ and consequently $a \in \mathfrak{p}$. It follows $\ann(\phi(x)) = \mathfrak{p}$. 
 \end{proof} 
 
-The next step in the proof of \cref{finiteassm} is that any
+The next step in the proof of \rref{finiteassm} is that any
 finitely generated module
 admits a filtration each of whose quotients are of a particularly nice form.
 This result is quite useful and will be referred to in the future.
@@ -526,14 +526,14 @@ $M'$ was assumed to be maximal.
 
 Now we are in a position to meet the goal, and prove that $\ass(M)$ is
 always a finite set. 
-\begin{proof}[Proof of \cref{finiteassm}]
+\begin{proof}[Proof of \rref{finiteassm}]
 Suppose $M$ is finitely generated Take our filtration
 \[ 0 = M_0 \subset M_1 \subset \dots \subset M_k = M.  \]
 By induction, we show that $\ass(M_i)$ is finite for each $i$. It is obviously
 true for $i=0$. Assume now that $\ass(M_i)$ is finite; we prove the same for
 $\ass(M_{i+1})$. We have an exact sequence
 \[ 0 \to M_i \to M_{i+1} \to R/\mathfrak{p}_i \to 0  \]
-which implies that, by \cref{assexact},
+which implies that, by \rref{assexact},
 \[ \ass(M_{i+1}) \subset \ass(M_i) \cup \ass(R/\mathfrak{p}_i) = \ass(M_i)
 \cup \left\{\mathfrak{p}_i\right\} , \]
 so $\ass(M_{i+1})$ is also finite.
@@ -638,7 +638,7 @@ have to show that $\mathfrak{p}$ contains an associated prime.
 By assumption, $M_{\mathfrak{p}} \neq 0$, and $M_{\mathfrak{p}}$ is a finitely generated
 module over the noetherian ring $R_{\mathfrak{p}}$. So $M_{\mathfrak{p}}$ has
 an associated prime.
-It follows by \cref{assmlocalization} that $\ass(M) \cap \spec
+It follows by \rref{assmlocalization} that $\ass(M) \cap \spec
 R_{\mathfrak{p}}$ is nonempty. Since the primes of $R_{\mathfrak{p}}$
 correspond to the primes contained in $\mathfrak{p}$, it follows that there
 is  a prime contained in $\mathfrak{p}$ that lies in $\ass(M)$. This is
@@ -660,7 +660,7 @@ associated prime.
 \end{proof} 
 
 \begin{example} 
-\cref{suppisclosed} is \emph{false} for modules that are not finitely
+\rref{suppisclosed} is \emph{false} for modules that are not finitely
 generated. Consider for instance the abelian group $\bigoplus_p \mathbb{Z}/p$.
 The support of this as a $\mathbb{Z}$-module is precisely the set of all
 closed points (i.e., maximal ideals) of $\spec \mathbb{Z}$, and is
@@ -672,7 +672,7 @@ The ring $R$ has finitely many minimal prime ideals.
 \end{corollary} 
 \begin{proof} 
 Clearly, $\supp R = \spec R$. Thus every prime ideal of $R$
-contains an associated prime of $R$ by \cref{supportassociated}.
+contains an associated prime of $R$ by \rref{supportassociated}.
 \end{proof} 
 
 So $\spec R$ is the finite union of the  irreducible closed  pieces
@@ -710,8 +710,8 @@ If a ring $R$ has precisely one prime ideal $\mathfrak{p}$, then any $x \in
 \mathfrak{p}$ is nilpotent.
 \end{lemma} 
 \begin{proof} 
-Indeed, it suffices to see that $R_x = 0$ (\cref{nilpcriterion} in
-\cref{spec}) if $x \in
+Indeed, it suffices to see that $R_x = 0$ (\rref{nilpcriterion} in
+\rref{spec}) if $x \in
 \mathfrak{p}$. But $\spec R_x$
 consists of the primes of $R$ not containing $x$. However, there are no such
 primes. Thus $\spec R_x = \emptyset$, so $R_x = 0$.
@@ -758,14 +758,14 @@ If $M$ is $\mathfrak{p}$-primary, then any nonzero submodule $M' \subset M$ is
 $\mathfrak{p}$-primary.
 \end{lemma} 
 \begin{proof} 
-Indeed, we know that $\ass(M') \subset \ass(M)$ by \cref{assexact}.
+Indeed, we know that $\ass(M') \subset \ass(M)$ by \rref{assexact}.
 Since $M' \neq 0$, we also know that $M'$ has an associated prime
-(\cref{assmnonempty}). Thus $ \ass(M') = \{\mathfrak{p}\}$, so
+(\rref{assmnonempty}). Thus $ \ass(M') = \{\mathfrak{p}\}$, so
 $M'$ is $\mathfrak{p}$-primary.
 \end{proof} 
 
 Let us now return to the proof of the main result,
-\cref{whenisprimary}.
+\rref{whenisprimary}.
 Assume first that $M$ is $\mathfrak{p}$-primary. Let $x \in M$, $x \neq 0$. Let
 $I = \ann(x)$; we are to show that $\rad(I)  =\mathfrak{p}$. By definition, there is an injection
 \[ R/I \hookrightarrow M  \]
@@ -797,7 +797,7 @@ R$, then the homothety $ M \stackrel{a}{\to} M$ is either injective or nilpotent
 \begin{proof} 
 Suppose first that $M$ is $\mathfrak{p}$-primary. Then multiplication by anything in
 $\mathfrak{p}$ is nilpotent because the annihilator of everything nonzero has
-radical $\mathfrak{p}$ by \cref{whenisprimary}. But if $a \notin \mathfrak{p}$, then $\ann(x)$ for
+radical $\mathfrak{p}$ by \rref{whenisprimary}. But if $a \notin \mathfrak{p}$, then $\ann(x)$ for
 $x \in M - \left\{0\right\}$ has radical $\mathfrak{p}$ and cannot contain $a$. 
 
 Let us now do the other direction. Assume that every element of $a$ acts either injectively or nilpotently on $M$.
@@ -818,7 +818,7 @@ then the homothety  $M \stackrel{a}{\to} M$ cannot be injective, so it must be
 nilpotent (i.e. in $I$). Conversely, if $a \in I$, then a power of $a$ is
 nilpotent, so a power of $a$ 
 must kill $x$. 
-It follows that $\ann(x) = I$. Now, by \cref{whenisprimary}, we see
+It follows that $\ann(x) = I$. Now, by \rref{whenisprimary}, we see
 that $M$ is $I$-primary.
 \end{proof} 
 
@@ -829,7 +829,7 @@ somehow concentrated in some prime.
 If $R$ is a noetherian ring and $\mathfrak{p} \in \spec R$, then
 $R/\mathfrak{p}$ is $\mathfrak{p}$-primary. More generally, if $I \subset R$
 is an ideal, then $R/I$ is ideal if and only if $\rad(I) $ is prime. This
-follows from \cref{whenisprimary2}.
+follows from \rref{whenisprimary2}.
 \end{example} 
 
 \begin{exercise} 
@@ -925,7 +925,7 @@ In other words,
 \[  M \to \bigoplus M/N_i  \]
 is injective.
 So a finitely generated module over a noetherian ring can be imbedded in a direct sum of
-primary modules, since by \cref{irrediscoprimary} the $M/N_i$ are
+primary modules, since by \rref{irrediscoprimary} the $M/N_i$ are
 primary. 
 
 \begin{proof} This is now purely formal. 
@@ -1163,7 +1163,7 @@ So artinian rings are very simple---small in some sense.
 They all look kind of like fields.
 
 We shall prove this result in a series of small pieces. We begin with a piece
-of the forward implication in \cref{artinianclassification}:
+of the forward implication in \rref{artinianclassification}:
 \begin{lemma} Let $R$ be artinian. 
 Every prime $\mathfrak{p} \subset R$ is maximal.
 \end{lemma} 
@@ -1271,7 +1271,7 @@ A local artinian ring $R$ is noetherian.
 \end{lemma} 
 \begin{proof} 
 We have the filtration $R \supset \mathfrak{m} \supset \mathfrak{m}^2 \supset
-\dots$. This eventually stabilizes at zero by \cref{radnilpotentartinian}. I
+\dots$. This eventually stabilizes at zero by \rref{radnilpotentartinian}. I
 claim that $R$ is noetherian as an $R$-module. To prove this, it suffices to
 show that $\mathfrak{m}^k/\mathfrak{m}^{k+1}$ is noetherian as an $R$-module.
 But of course, this is annihilated by $\mathfrak{m}$, so it is really a vector

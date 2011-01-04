@@ -38,7 +38,7 @@ The following are equivalent:
 Let $J = \text{Ker}(S \otimes_R S \to S)$ be the kernel of
 the multiplication map. Let $A_{univ} = S \otimes_R S/J^2$. Recall
 that $I_{univ} = J/J^2$ is isomorphic to $\Omega_{S/R}$, see
-\cref{lemma-differentials-diagonal}. Moreover, the two $R$-algebra maps
+\rref{lemma-differentials-diagonal}. Moreover, the two $R$-algebra maps
 $\sigma_1, \sigma_2 : S \to A_{univ}$, $\sigma_1(s) = s \otimes 1 \bmod J^2$,
 and $\sigma_2(s) = 1 \otimes s \bmod J^2$ differ by the
 universal derivation $\text{d} : S \to \Omega_{S/R} = I_{univ}$.
@@ -51,7 +51,7 @@ Hence $\Omega_{S/R} = 0$.
 
 \medskip\noindent
 Assume that $\Omega_{S/R} = 0$. Let $A, I, R \to A, S \to A/I$
-be a solid diagram as in \cref{definition-formally-unramified}.
+be a solid diagram as in \rref{definition-formally-unramified}.
 Let $\tau_1, \tau_2 : S \to A$ be two dotted arrows making the
 diagram commute. Consider the $R$-algebra map $A_{univ} \to A$
 defined by the rule $s_1 \otimes s_2 \mapsto \tau_1(s_1)\tau_2(s_2)$.
@@ -74,14 +74,14 @@ for all primes $\mathfrak q$ of $S$ with $\mathfrak p = R \cap \mathfrak q$.
 
 \begin{proof}
 We have seen in
-\cref{lemma-characterize-formally-unramified}
+\rref{lemma-characterize-formally-unramified}
 that (1) is equivalent to
 $\Omega_{S/R} = 0$. Similarly, by
-\cref{lemma-differentials-localize}
+\rref{lemma-differentials-localize}
 we see that (2) and (3)
 are equivalent to $(\Omega_{S/R})_{\mathfrak q} = 0$ for all
 $\mathfrak q$. Hence the equivalence follows from
-\cref{lemma-characterize-zero-local}.
+\rref{lemma-characterize-zero-local}.
 \end{proof}
 
 \begin{lemma}
@@ -97,11 +97,11 @@ $A \to S^{-1}B$ is formally unramified.
 
 \begin{proof}
 Follows from
-\cref{lemma-formally-unramified-local}.
+\rref{lemma-formally-unramified-local}.
 (You can also deduce it from
-\cref{lemma-characterize-formally-unramified}
+\rref{lemma-characterize-formally-unramified}
 combined with
-\cref{lemma-differentials-localize}.)
+\rref{lemma-differentials-localize}.)
 \end{proof}
 
 
@@ -138,9 +138,9 @@ $$
 \text{d} : J/J^2 \longrightarrow \Omega_{P/R} \otimes_P S
 $$
 see
-\cref{lemma-differential-seq}.
+\rref{lemma-differential-seq}.
 This is surjective since $\Omega_{S/R} = 0$ by assumption, see
-\cref{lemma-characterize-formally-unramified}.
+\rref{lemma-characterize-formally-unramified}.
 Note that $\Omega_{P/R}$ is free on $\text{d}x_i$, and hence the module
 $\Omega_{P/R} \otimes_P S$ is free over $S$. Thus we may choose a splitting
 of the surjection above and write
@@ -196,7 +196,7 @@ uniqueness required in the lemma.
 
 \noindent
 In the situation of
-\cref{lemma-universal-thickening}
+\rref{lemma-universal-thickening}
 the $R$-algebra map $S' \to S$ is unique up to unique isomorphism.
 
 \begin{definition}
@@ -205,7 +205,7 @@ Let $R \to S$ be a formally unramified ring map.
 \begin{enumerate}
 \item The {\it universal first order thickening} of $S$ over $R$ is
 the surjection of $R$-algebras $S' \to S$ of
-\cref{lemma-universal-thickening}.
+\rref{lemma-universal-thickening}.
 \item The {\it conormal module} of $R \to S$ is the kernel $I$ of the
 universal first order thickening $S' \to S$, seen as a $S$-module.
 \end{enumerate}
@@ -239,7 +239,7 @@ and $(S')^{-1}B' \to S^{-1}B$ is the universal first order thickening
 of $S^{-1}B$ over $A$. In particular $S^{-1}C_{B/A} = C_{S^{-1}B/A}$.
 \end{enumerate}
 Note that the lemma makes sense by
-\cref{lemma-formally-unramified-localize}.
+\rref{lemma-formally-unramified-localize}.
 \end{lemma}
 
 \begin{proof}
@@ -296,7 +296,7 @@ isomorphism.
 
 \begin{proof}
 We are going to use the construction of $B'$ from the proof of
-\cref{lemma-universal-thickening}
+\rref{lemma-universal-thickening}
 allthough in principle it should be possible to deduce these results
 formally from the definition. Namely, we choose a presentation
 $B = P/J$, where $P = A[x_i]$ is a polynomial ring over $A$.
@@ -304,7 +304,7 @@ Next, we choose elements $f_i \in J$ such that
 $\text{d}f_i = \text{d}x_i \otimes 1$ in $\Omega_{P/A} \otimes_P B$.
 Having made these choices we have
 $B' = P/J'$ with $J' = (f_i) + J^2$, see proof of
-\cref{lemma-universal-thickening}.
+\rref{lemma-universal-thickening}.
 
 \medskip\noindent
 Consider the canonical exact sequence
@@ -312,14 +312,14 @@ $$
 J'/(J')^2 \to \Omega_{P/A} \otimes_P B' \to \Omega_{B'/A} \to 0
 $$
 see
-\cref{lemma-differential-seq}.
+\rref{lemma-differential-seq}.
 By construction the classes of the $f_i \in J'$ map to elements of
 the module $\Omega_{P/A} \otimes_P B'$ which generate it modulo
 $J'/J^2$ by construction. Since $J'/J^2$ is a nilpotent ideal, we see
 that these elements generate the module alltogether (by
-Nakayama's \cref{lemma-NAK}). This proves that $\Omega_{B'/A} = 0$
+Nakayama's \rref{lemma-NAK}). This proves that $\Omega_{B'/A} = 0$
 and hence that $B'$ is formally unramified over $A$, see
-\cref{lemma-characterize-formally-unramified}.
+\rref{lemma-characterize-formally-unramified}.
 
 \medskip\noindent
 Since $P$ is a polynomial ring over $A$ we have
@@ -332,7 +332,7 @@ J'/(J')^2 \to
 \Omega_{B'/R} \to 0
 $$
 see
-\cref{lemma-differential-seq}.
+\rref{lemma-differential-seq}.
 We may tensor this with $B$ and obtain the exact sequence
 $$
 J'/(J')^2 \otimes_{B'} B \to
@@ -393,16 +393,16 @@ The following are equivalent:
 
 \begin{proof}
 Assume that $R \to S$ is formally \'etale.
-Then $R \to S$ is smooth by \cref{lemma-formally-smooth-smooth}.
-By \cref{lemma-characterize-formally-unramified}
+Then $R \to S$ is smooth by \rref{lemma-formally-smooth-smooth}.
+By \rref{lemma-characterize-formally-unramified}
 we have $\Omega_{S/R} = 0$.
 Hence $R \to S$ is \'etale by definition.
 
 \medskip\noindent
 Assume that $R \to S$ is \'etale.
 Then $R \to S$ is formally smooth by
-\cref{lemma-smooth-formally-smooth}.
-By \cref{lemma-characterize-formally-unramified}
+\rref{lemma-smooth-formally-smooth}.
+By \rref{lemma-characterize-formally-unramified}
 it is formally unramified. Hence $R \to S$ is formally \'etale.
 \end{proof}
 
@@ -415,7 +415,7 @@ $S = \text{colim}_{i \in I}\ S_i$ is formally \'etale over $R$
 \end{lemma}
 
 \begin{proof}
-Consider a diagram as in \cref{definition-formally-etale}.
+Consider a diagram as in \rref{definition-formally-etale}.
 By assumption we get unique $R$-algebra maps $S_i \to A$ lifting
 the compositions $S_i \to S \to A/I$. Hence these are compatible
 with the transition maps $\varphi_{ii'}$ and define a lift
@@ -484,7 +484,7 @@ Moreover, also the following are equivalent
 \end{lemma}
 
 \begin{proof}
-Follows from \cref{lemma-characterize-formally-unramified}
+Follows from \rref{lemma-characterize-formally-unramified}
 and the definitions.
 \end{proof}
 
@@ -537,36 +537,36 @@ $R \otimes_{R_0} S_0$.
 We prove each point, in order.
 
 \medskip\noindent
-Ad (1). Follows from Lemmas \ref{lemma-differentials-base-change}
-and \ref{lemma-base-change-finiteness}.
+Ad (1). Follows from Lemmas \rref{lemma-differentials-base-change}
+and \rref{lemma-base-change-finiteness}.
 
 \medskip\noindent
-Ad (2). Follows from Lemmas \ref{lemma-exact-sequence-differentials}
-and \ref{lemma-base-change-finiteness}.
+Ad (2). Follows from Lemmas \rref{lemma-exact-sequence-differentials}
+and \rref{lemma-base-change-finiteness}.
 
 \medskip\noindent
 Ad (3). Follows by direct computation of $\Omega_{R_f/R}$ which we omit.
 
 \medskip\noindent
 Ad (4). We have $\Omega_{(R/I)/R} = 0$, see
-\cref{lemma-trivial-differential-surjective},
+\rref{lemma-trivial-differential-surjective},
 and the ring map $R \to R/I$
 is of finite type. If $I$ is a finitely generated ideal then $R \to R/I$
 is of finite presentation.
 
 \medskip\noindent
-Ad (5). See discussion following \cref{definition-etale}.
+Ad (5). See discussion following \rref{definition-etale}.
 
 \medskip\noindent
 Ad (6). In this case $\Omega_{S/R}$ is a finite $S$-module (see
-\cref{lemma-differentials-finitely-generated}) and hence there
+\rref{lemma-differentials-finitely-generated}) and hence there
 exists a $g \in S$, $g \not \in \mathfrak q$ such that
-$(\Omega_{S/R})_g = 0$. By \cref{lemma-differentials-localize}
+$(\Omega_{S/R})_g = 0$. By \rref{lemma-differentials-localize}
 this means that $\Omega_{S_g/R} = 0$ and hence $R \to S_g$ is
 unramified as desired.
 
 \medskip\noindent
-Ad (7). Use Nakayama's lemma (\cref{lemma-NAK}) to see that
+Ad (7). Use Nakayama's lemma (\rref{lemma-NAK}) to see that
 the condition is equivalent to the condition of (6).
 
 \medskip\noindent
@@ -574,14 +574,14 @@ Ad (8) \& (9). These are equivalent in the same manner that (6) and (7)
 are equivalent. Moreover
 $\Omega_{S \otimes_R \kappa(\mathfrak p)/\kappa(\mathfrak p)} =
 \Omega_{S/R} \otimes_S (S \otimes_R \kappa(\mathfrak p))$ by
-\cref{lemma-differentials-base-change}.
+\rref{lemma-differentials-base-change}.
 Hence we see that (9) is equivalent to (7) since
 the $\kappa(\mathfrak q)$ vector spaces in both are canonically
 isomorphic.
 
 \medskip\noindent
-Ad (10). Follows from from Lemmas \ref{lemma-cover}
-and \ref{lemma-differentials-localize}.
+Ad (10). Follows from from Lemmas \rref{lemma-cover}
+and \rref{lemma-differentials-localize}.
 
 \medskip\noindent
 Ad (11). Follows from (6) and (7) and the fact that the spectrum of $S$
@@ -625,11 +625,11 @@ to $S \otimes_R S \to (S \otimes_R S)_e$.
 \begin{proof}
 Let $J = \text{Ker}(S \otimes_R S \to S)$. By assumption
 $J/J^2 = 0$, see
-\cref{lemma-differentials-diagonal}.
+\rref{lemma-differentials-diagonal}.
 Since $S$ is of finite type over $R$ we
 see that $J$ is finitely generated, namely by
 $x_i \otimes 1 - 1 \otimes x_i$, where $x_i$ generate $S$ over $R$.
-We win by \cref{lemma-ideal-is-squared-union-connected}.
+We win by \rref{lemma-ideal-is-squared-union-connected}.
 \end{proof}
 
 \begin{lemma}
@@ -651,15 +651,15 @@ We may first replace $S$ by $S_g$ for some $g \in S$, $g \not \in \mathfrak q$
 and assume that $R \to S$ is unramified.
 The base change $S \otimes_R \kappa(\mathfrak p)$
 is unramified over $\kappa(\mathfrak p)$ by
-\cref{lemma-unramified}.
+\rref{lemma-unramified}.
 By
-\cref{lemma-characterize-smooth-over-field}
+\rref{lemma-characterize-smooth-over-field}
 it is smooth hence \'etale over $\kappa(\mathfrak p)$.
 Hence we see that
 $S \otimes_R \kappa(\mathfrak p) =
 (R \setminus \mathfrak p)^{-1} S/\mathfrak pS$
 is a product of finite separable field extensions of
-$\kappa(\mathfrak p)$ by \cref{lemma-etale-over-field}.
+$\kappa(\mathfrak p)$ by \rref{lemma-etale-over-field}.
 This implies the lemma.
 \end{proof}
 
@@ -676,8 +676,8 @@ In particular, an unramified ring map is quasi-finite.
 An unramified ring map is of finite type.
 Thus it is clear that the second statement follows from the first.
 To see the first statement apply the characterization of
-\cref{lemma-isolated-point-fibre} part (2) using
-\cref{lemma-unramified-at-prime}.
+\rref{lemma-isolated-point-fibre} part (2) using
+\rref{lemma-unramified-at-prime}.
 \end{proof}
 
 \begin{lemma}
@@ -695,7 +695,7 @@ then $R \to S$ is unramified at $\mathfrak q$.
 \end{lemma}
 
 \begin{proof}
-By \cref{lemma-unramified} (8) it suffices to show that
+By \rref{lemma-unramified} (8) it suffices to show that
 $\Omega_{S \otimes_R \kappa(\mathfrak p) / \kappa(\mathfrak p)}$
 is zero when localized at $\mathfrak q$. Hence we may replace $S$
 by $S \otimes_R \kappa(\mathfrak p)$ and $R$ by $\kappa(\mathfrak p)$.
@@ -704,7 +704,7 @@ is a finite type $k$-algebra.
 In this case the hypotheses imply that
 $S_{\mathfrak q} \cong \kappa(\mathfrak q)$
 and hence $S = \kappa(\mathfrak q) \times S'$ (see
-\cref{lemma-isolated-point}).
+\rref{lemma-isolated-point}).
 Hence $(\Omega_{S/k})_{\mathfrak q} = \Omega_{\kappa(\mathfrak q)/k}$
 which is zero as desired.
 \end{proof}
@@ -722,18 +722,18 @@ If $R \to S$ is unramified at $\mathfrak q$, then there exist
 
 \begin{proof}
 This proof is the ``same'' as the proof of
-\cref{proposition-etale-locally-standard}.
+\rref{proposition-etale-locally-standard}.
 The proof is a little roundabout and there may be ways to
 shorten it.
 
 \medskip\noindent
-Step 1. By \cref{definition-unramified}
+Step 1. By \rref{definition-unramified}
 there exists a $g \in S$, $g \not \in \mathfrak q$
 such that $R \to S_g$ is unramified. Thus we may assume that $S$ is
 unramified over $R$.
 
 \medskip\noindent
-Step 2. By \cref{lemma-unramified}
+Step 2. By \rref{lemma-unramified}
 there exists an unramified ring map $R_0 \to S_0$
 with $R_0$ of finite type over $\mathbf{Z}$, and a ring map
 $R_0 \to R$ such that $S$ is a quotient of $R \otimes_{R_0} S_0$. Denote
@@ -745,8 +745,8 @@ we may assume that $R$ is Noetherian.
 \medskip\noindent
 Step 3.
 Note that $R \to S$ is quasi-finite by
-\cref{lemma-unramified-quasi-finite}.
-By \cref{lemma-quasi-finite-open-integral-closure}
+\rref{lemma-unramified-quasi-finite}.
+By \rref{lemma-quasi-finite-open-integral-closure}
 there exists a finite ring map $R \to S'$, an $R$-algebra map
 $S' \to S$, an element $g' \in S'$ such that
 $g' \not \in \mathfrak q$ such that $S' \to S$ induces
@@ -761,15 +761,15 @@ Step 4. Let $\mathfrak p \subset R$ be the prime corresponding
 to $\mathfrak q$. Consider the fibre ring
 $S \otimes_R \kappa(\mathfrak p)$. This is a finite algebra over
 $\kappa(\mathfrak p)$. Hence it is Artinian
-(see \cref{lemma-finite-dimensional-algebra}) and
+(see \rref{lemma-finite-dimensional-algebra}) and
 so a finite product of local rings
 $$
 S \otimes_R \kappa(\mathfrak p) = \prod\nolimits_{i = 1}^n A_i
 $$
-see \cref{proposition-dimension-zero-ring}. One of the factors,
+see \rref{proposition-dimension-zero-ring}. One of the factors,
 say $A_1$, is the local ring $S_{\mathfrak q}/\mathfrak pS_{\mathfrak q}$
 which is isomorphic to $\kappa(\mathfrak q)$,
-see \cref{lemma-unramified-at-prime}. The other factors correspond to
+see \rref{lemma-unramified-at-prime}. The other factors correspond to
 the other primes, say $\mathfrak q_2, \ldots, \mathfrak q_n$ of
 $S$ lying over $\mathfrak p$.
 
@@ -808,8 +808,8 @@ Step 6. Denote $\mathfrak q' \subset S'$ the prime of $S'$
 corresponding to $\mathfrak q$. By the above $\mathfrak q$ is
 the only prime of $S$ lying over $\mathfrak q'$. Thus we see that
 $S_{\mathfrak q} = S_{\mathfrak q'}$, see
-\cref{lemma-unique-prime-over-localize-below} (we have
-going up for $S' \to S$ by \cref{lemma-integral-going-up}
+\rref{lemma-unique-prime-over-localize-below} (we have
+going up for $S' \to S$ by \rref{lemma-integral-going-up}
 since $S' \to S$ is finite as $R \to S$ is finite).
 It follows that $S'_{\mathfrak q'} \to S_{\mathfrak q}$ is finite
 and injective as the localization of the finite injective ring map
@@ -819,7 +819,7 @@ R_{\mathfrak p} \to S'_{\mathfrak q'} \to S_{\mathfrak q}
 $$
 The second map is finite and injective. We have
 $S_{\mathfrak q}/\mathfrak pS_{\mathfrak q} = \kappa(\mathfrak q)$,
-see \cref{lemma-unramified-at-prime}.
+see \rref{lemma-unramified-at-prime}.
 Hence a fortiori
 $S_{\mathfrak q}/\mathfrak q'S_{\mathfrak q} = \kappa(\mathfrak q)$.
 Since
@@ -829,14 +829,14 @@ $$
 and since $\alpha$ is in the image of $\kappa(\mathfrak q')$ in
 $\kappa(\mathfrak q)$
 we conclude that $\kappa(\mathfrak q') = \kappa(\mathfrak q)$.
-Hence by Nakayama's \cref{lemma-NAK} applied to the
+Hence by Nakayama's \rref{lemma-NAK} applied to the
 $S'_{\mathfrak q'}$-module map $S'_{\mathfrak q'} \to S_{\mathfrak q}$,
 the map $S'_{\mathfrak q'} \to S_{\mathfrak q}$ is surjective.
 In other words,
 $S'_{\mathfrak q'} \cong S_{\mathfrak q}$.
 
 \medskip\noindent
-Step 7. By \cref{lemma-local-isomorphism} there exists a $g' \in S'$,
+Step 7. By \rref{lemma-local-isomorphism} there exists a $g' \in S'$,
 $g' \not \in \mathfrak q'$ such that $S'_{g'} \cong S_{g'}$.
 As $R$ is Noetherian the ring $S'$ is finite over $R$ as it is an $R$-submodule
 of the finite $R$-module $S$. Hence after replacing $S$ by $S'$ we may
@@ -922,7 +922,7 @@ $\overline{h}_1$ is separable.
 Step 11.
 We conclude that $\varphi : R[x]/(f) \to S$ is a surjective ring map,
 $R[x]_g/(f)$ is \'etale over $R$ (because it is standard \'etale,
-see \cref{lemma-standard-etale}) and $\varphi(g) \not \in \mathfrak q$.
+see \rref{lemma-standard-etale}) and $\varphi(g) \not \in \mathfrak q$.
 Thus the map $(R[x]/(f))_g \to S_{\varphi(g)}$ is the desired
 surjection.
 \end{proof}
@@ -962,7 +962,7 @@ be found.
 
 \medskip\noindent
 The assumption that $R \to S$ is of finite type means that we may apply
-\cref{lemma-etale-makes-quasi-finite-finite-variant}. Thus we may
+\rref{lemma-etale-makes-quasi-finite-finite-variant}. Thus we may
 assume that $S = A_1 \times \ldots \times A_n \times B$, that
 each $R \to A_i$ is finite with exactly one prime $\mathfrak r_i$
 lying over $\mathfrak p$ such that
@@ -970,17 +970,17 @@ $\kappa(\mathfrak p) \subset \kappa(\mathfrak r_i)$ is purely inseparable
 and that $R \to B$ is not quasi-finite at any prime lying over $\mathfrak p$.
 Then clearly $\mathfrak q = \mathfrak r_i$ for some $i$, since
 an unramified morphism is quasi-finite
-(see \cref{lemma-unramified-quasi-finite}).
+(see \rref{lemma-unramified-quasi-finite}).
 Say $\mathfrak q = \mathfrak r_1$.
-By \cref{lemma-unramified-at-prime} we see that
+By \rref{lemma-unramified-at-prime} we see that
 $\kappa(\mathfrak p) \subset \kappa(\mathfrak r_1)$
 is separable hence the trivial field extension, and that
 $\mathfrak p(A_1)_{\mathfrak r_1}$ is the maximal ideal.
-Also, by \cref{lemma-unique-prime-over-localize-below}
+Also, by \rref{lemma-unique-prime-over-localize-below}
 (which applies to $R \to A_1$ because a finite ring map satisfies going up by
-\cref{lemma-integral-going-up})
+\rref{lemma-integral-going-up})
 we have $(A_1)_{\mathfrak r_1} = (A_1)_{\mathfrak p}$.
-It follows from Nakayama's \cref{lemma-NAK}
+It follows from Nakayama's \rref{lemma-NAK}
 that the map of local rings
 $R_{\mathfrak p} \to (A_1)_{\mathfrak p} = (A_1)_{\mathfrak r_1}$
 is surjective. Since $A_1$ is finite over $R$ we see that there
