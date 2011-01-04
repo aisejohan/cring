@@ -183,7 +183,7 @@ in $R$ such that
 \end{enumerate}
 \end{proposition} 
 \begin{proof} 
-First, we show that if $I$ is invertible, then $I$ is finitely generated 
+First, we show that if $I$ is invertible, then $I$ is finitely generated. 
 Suppose $I \otimes_R J \simeq R$. This means that $1 \in R$ corresponds to an
 element
 \[ \sum i_k \otimes j_k \in I \otimes_R J .  \]
@@ -193,42 +193,46 @@ Thus, there exists a finitely generated submodule $I_0\subset I$ such that the m
 which leads to a surjection $I_0 \twoheadrightarrow I$. This implies that $I$
 is finitely generated 
 
-
+\textbf{Step 1: 1 implies 2.}
 We now show 1 implies 2. Note that if $I$ is invertible, then $I \otimes_R R'$
-is an invertible $R'$ module for any $R$-algebra $R'$; to get an inverse,
+is an invertible $R'$ module for any $R$-algebra $R'$; to get an inverse of
+$I \otimes_R R'$,
 tensor the inverse of $I$ with $R'$.
 In particular, $I_{\mathfrak{p}}$ is an invertible $R_{\mathfrak{p}}$-module
 for each $\mathfrak{p}$. As a result, 
 \[ I_{\mathfrak{p}}/\mathfrak{p} I_{\mathfrak{p}}  \]
-is invertible over $R_{\mathfrak{p}}/\mathfrak{p}R_{\mathfrak{p}}$. This means
+is invertible over the \emph{field} $R_{\mathfrak{p}}/\mathfrak{p}R_{\mathfrak{p}}$. This means
 that 
 $ I_{\mathfrak{p}}/\mathfrak{p} I_{\mathfrak{p}}$ is a one-dimensional vector
 space over the residue field. (The invertible modules over a vector space are
 the one-dimensional spaces.)
 Choose an element $x \in I_{\mathfrak{p}}$ which generates
 $I_{\mathfrak{p}}/\mathfrak{p}I_{\mathfrak{p}}$.  Since $I_{\mathfrak{p}}$ is
-finitely generated, this shows that $x$ generates $I_{\mathfrak{p}}$.
+finitely generated, Nakayama's lemma shows that $x$ generates $I_{\mathfrak{p}}$.
 
 We get a surjection $\alpha: R_{\mathfrak{p}} \twoheadrightarrow I_{\mathfrak{p}}$
-carrying $1 \to x$.  I claim that:
-\begin{quote}
-This map is injective.
-\end{quote}
-This will imply that $I_{\mathfrak{p}}$ is free of rank 1. Well, let $J$ be an
-inverse of $I$ in $R$-modules; the same argument provides a surjection
-$ \beta: {R}_{\mathfrak{p}} \to J_{\mathfrak{p}}$. We get a map
+carrying $1 \to x$.  We claim that this map is injective.
+This will imply that $I_{\mathfrak{p}}$ is free of rank 1. So, let $J$ be an
+inverse of $I$ among $R$-modules, so that $I \otimes_R J = R$; the same
+argument as above provides a surjection
+$ \beta: {R}_{\mathfrak{p}} \to J_{\mathfrak{p}}$. 
+Then $\beta' = \beta \otimes 1_{I_{\mathfrak{p}}}: I_{\mathfrak{p}} \to
+R_{\mathfrak{p}}$ is also a surjection.
+Composing, we get a surjective map
 \[ R_{\mathfrak{p}} \stackrel{\alpha}{\twoheadrightarrow} I_{\mathfrak{p}}
 \stackrel{\beta'}{\twoheadrightarrow} R_{\mathfrak{p}}  \]
-(where $\beta = \beta \otimes 1_{I_{\mathfrak{p}}}$)
 whose composite must be multiplication by a unit, since the ring is local. Thus
 the composite is injective and $\alpha$ is injective. 
+It follows that $\alpha$ is an isomorphism, so that $I_{\mathfrak{p}}$ is free
+of rank one.
 
-Now we show 2 implies 3. Suppose $I$ is finitely generated and $I_{\mathfrak{p}} \simeq
-R_{\mathfrak{p}}$ for all $\mathfrak{p}$. I claim that for each $\mathfrak{p}
-$, we can choose an element $x$ of $I_{\mathfrak{p}}$ generating $I_{\mathfrak{p}}$. 
+\textbf{Step 2: 2 implies 3.}
+Now we show 2 implies 3. Suppose $I$ is finitely generated with generators $\left\{x_1, \dots, x_n\right\} \subset I$ and $I_{\mathfrak{p}} \simeq
+R_{\mathfrak{p}}$ for all $\mathfrak{p}$. Then for each $\mathfrak{p}
+$, we can choose an element $x$ of $I_{\mathfrak{p}}$ generating
+$I_{\mathfrak{p}}$ as $R_{\mathfrak{p}}$-module. 
 By multiplying by the denominator, we can assume that $x \in I$. 
-Then if $\left\{x_1, \dots, x_n\right\} \subset I$ generates $I$, then we have
-equalities
+By assumption, we can then find $a_i,s_i \in R$ with
 \[ s_i x_i = a_i x \in R  \]
 for some $s_i \notin \mathfrak{p}$ as $x$ generates $I_{\mathfrak{p}}$. This means that $x$ generates $I$ after inverting the $s_i$. It
 follows that $I[1/a] = R[1/a]$ where $a = \prod s_i \notin \mathfrak{p}$.

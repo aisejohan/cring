@@ -301,7 +301,7 @@ Define a new ring $R' = R \oplus It \oplus I^2 t^2 + \dots$, which is a subring 
 $R[t]$. The coefficient of $t^n $ is required to belong to $I^n$. 
 
 \begin{lemma} 
-$R'$ is noetherian.
+Hypotheses as above, $R'$ is noetherian.
 \end{lemma} 
 \begin{proof} 
 Choose generators $x_1, \dots, x_n \in I$; then there is a map $R[y_1, \dots,
@@ -330,7 +330,7 @@ of finitely generated $R$-modules leads to a sequence
 which is also exact. We showed this using the Artin-Rees lemma.
 
 \begin{remark}
-In particular, completion is an \textbf{exact functor}: if $A \to B \to C$ is
+In particular, for finitely generated modules over a noetherian ring, completion is an \textbf{exact functor}: if $A \to B \to C$ is
 exact, so is the sequence of completions. This can be seen by drawing in
 kernels and cokernels, and using the fact that completions preserve short
 exact sequences. 
@@ -349,7 +349,7 @@ where the second map is just multiplication by the same $m$-by-$n$ matrix as in
 the first case.
 
 \begin{corollary} 
-If $M$ is finitely generated, there is a canonical isomorphism
+If $M$ is finitely generated and $R$ noetherian, there is a canonical isomorphism
 \[ \hat{M}_I \simeq M \otimes_R \hat{R}_I.  \]
 \end{corollary} 
 
@@ -378,7 +378,7 @@ isomorphism. That is obvious.
 \end{proof} 
 
 \begin{corollary} 
-$\hat{R}_I$ is a flat $R$-module.
+If $R$ is noetherian, then $\hat{R}_I$ is a flat $R$-module.
 \end{corollary} 
 \begin{proof} 
 Indeed, tensoring with $\hat{R}_I$ is exact (because it is completion, and
