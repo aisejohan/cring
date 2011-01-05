@@ -3,7 +3,9 @@
 ## read list of chapters from CRing.tex
 
 
-open (CR, "<", "../CRing.tex") or die "failed";
+$foo = $ARGV[0];
+
+open (CR, "<", $foo) or die "failed";
 
 @lines = <CR>;
 
