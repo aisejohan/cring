@@ -1,0 +1,16 @@
+categories
+foundations
+fields
+threeimportantfunctors
+spec
+graded
+noetherian
+integrality
+factorization
+dedekind
+dimension
+completion
+smoothness
+homological
+flat
+etale

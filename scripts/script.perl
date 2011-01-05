@@ -30,7 +30,7 @@ $i = -1;
 for $name (@files)
 {
 
-    $tmpname = "ch" .  $name . ".tex";
+    $tmpname = "../aux/ch" .  $name . ".tex";
 
     open (FILE, ">", $tmpname) or die "error opening";
 
@@ -70,10 +70,10 @@ open(MK2, ">", "../makefile");
 
 
 
-$j = 0;
+
 for $line (@mk)
 {
-    $j++;
+ 
     print MK2 $line;
     if ($line =~ m/chapters start/)
     {
@@ -83,7 +83,7 @@ for $line (@mk)
 }
 
 print MK2 "\n\n";
-print $j;
+
 
 for $fl (@files)
 {
