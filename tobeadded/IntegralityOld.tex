@@ -1,0 +1,1878 @@
+\documentclass[12pt,final,notitlepage,onecolumn]{article}%
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{color}%
+\setcounter{MaxMatrixCols}{30}
+%TCIDATA{OutputFilter=latex2.dll}
+%TCIDATA{Version=5.00.0.2570}
+%TCIDATA{CSTFile=LaTeX article (bright).cst}
+%TCIDATA{Created=Wed Dec 18 14:40:10 2002}
+%TCIDATA{LastRevised=Saturday, September 05, 2009 18:27:24}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="u">}
+\voffset=-2.5cm
+\hoffset=-2.5cm
+\setlength\textheight{24cm}
+\setlength\textwidth{15.5cm}
+\begin{document}
+\color{black}
+
+\begin{center}
+\textbf{A few facts on integrality}
+
+\textit{Darij Grinberg}
+
+Version 3 (18 August 2009, a mistake fixed later)
+\end{center}
+
+The purpose of this note is to collect some theorems and proofs related to
+integrality in commutative algebra. The note is subdivided into three parts.
+
+Part 1 (Integrality over rings) consists of known facts (Theorems 1, 4, 5) and
+a generalized exercise from [1] (Corollary 3) with a few minor variations
+(Theorem 2 and Corollary 6).
+
+Part 2 (Integrality over ideal semifiltrations) merges integrality over rings
+(as considered in Part 1) and integrality over ideals (a less-known but still
+very useful notion; the book [2] is devoted to it) into one general notion -
+that of integrality over ideal semifiltrations (Definition 9). This notion is
+very general, yet it can be reduced to the basic notion of integrality over
+rings by a suitable change of base ring (Theorem 7). This reduction allows to
+extend some standard properties of integrality over rings to the general case
+(Theorems 8 and 9).
+
+Part 3 (Generalizing to two ideal semifiltrations) continues Part 2, adding
+one more layer of generality. Its main result is a "relative" version of
+Theorem 7 (Theorem 11) and a known fact generalized one more time (Theorem 13).
+
+This note is supposed to be self-contained (only linear algebra and basic
+knowledge about rings, ideals and polynomials is assumed). The proofs are
+constructive. However, when writing down the proofs I focussed on maximal
+detail (to ensure correctness) rather than on clarity, so the proofs are
+probably a pain to read. I think of making a short version of this note with
+the obvious parts of proofs left out.
+
+\begin{center}
+\color{blue} \textbf{Preludium} \color{black}
+\end{center}
+
+\textbf{Definitions and notations:}
+
+\textbf{Definition 1.} In the following, "ring" will always mean "commutative
+ring with unity". We denote the set $\left\{  0,1,2,...\right\}  $ by
+$\mathbb{N}$, and the set $\left\{  1,2,3,...\right\}  $ by $\mathbb{N}^{+}$.
+
+\textbf{Definition 2.} Let $A$ be a ring, and let $n\in\mathbb{N}$. Let $M$ be
+an $A$-module. If $m_{1},$ $m_{2},$ $...,$ $m_{n}$ are $n$ elements of $M$,
+then we define an $A$-submodule $\left\langle m_{1},m_{2},...,m_{n}%
+\right\rangle _{A}$ of $M$ by%
+\[
+\left\langle m_{1},m_{2},...,m_{n}\right\rangle _{A}=\left\{  \sum
+\limits_{i=1}^{n}a_{i}m_{i}\ \mid\ \left(  a_{1},a_{2},...,a_{n}\right)  \in
+A^{n}\right\}  .
+\]
+Also, if $S$ is a finite set, and $m_{s}$ is an element of $M$ for every $s\in
+S$, then we define an $A$-submodule $\left\langle m_{s}\ \mid\ s\in
+S\right\rangle _{A}$ of $M$ by%
+\[
+\left\langle m_{s}\ \mid\ s\in S\right\rangle _{A}=\left\{  \sum\limits_{s\in
+S}a_{s}m_{s}\ \mid\ \left(  a_{s}\right)  _{s\in S}\in A^{S}\right\}  .
+\]
+Of course, if $m_{1},$ $m_{2},$ $...,$ $m_{n}$ are $n$ elements of $M$, then
+$\left\langle m_{1},m_{2},...,m_{n}\right\rangle _{A}=\left\langle m_{s}%
+\ \mid\ s\in\left\{  1,2,...,n\right\}  \right\rangle _{A}$.
+
+\textbf{Definition 3.} Let $A$ be a ring, and let $n\in\mathbb{N}$. Let $M$ be
+an $A$-module. We say that the $A$-module $M$ is $n$\textit{-generated} if
+there exist $n$ elements $m_{1},$ $m_{2},$ $...,$ $m_{n}$ of $M$ such that
+$M=\left\langle m_{1},m_{2},...,m_{n}\right\rangle _{A}$. In other words, the
+$A$-module $M$ is $n$-generated if and only if there exists a set $S$ and an
+element $m_{s}$ of $M$ for every $s\in S$ such that $\left\vert S\right\vert
+=n$ and $M=\left\langle m_{s}\ \mid\ s\in S\right\rangle _{A}$.
+
+\textbf{Definition 4.} Let $A$ and $B$ be two rings. We say that $A\subseteq
+B$ if and only if
+\[
+\left(  \text{the set }A\text{ is a subset of the set }B\right)  \text{ and
+}\left(  \text{the inclusion map }A\rightarrow B\text{ is a ring
+homomorphism}\right)  .
+\]
+
+
+Now assume that $A\subseteq B$. Then, obviously, $B$ is canonically an
+$A$-algebra (since $A\subseteq B$). If $u_{1},$ $u_{2},$ $...,$ $u_{n}$ are
+$n$ elements of $B$, then we define an $A$-subalgebra $A\left[  u_{1}%
+,u_{2},...,u_{n}\right]  $ of $B$ by%
+\[
+A\left[  u_{1},u_{2},...,u_{n}\right]  =\left\{  P\left(  u_{1},u_{2}%
+,...,u_{n}\right)  \ \mid\ P\in A\left[  X_{1},X_{2},...,X_{n}\right]
+\right\}  .
+\]
+
+
+In particular, if $u$ is an element of $B$, then the $A$-subalgebra $A\left[
+u\right]  $ of $B$ is defined by%
+\[
+A\left[  u\right]  =\left\{  P\left(  u\right)  \ \mid\ P\in A\left[
+X\right]  \right\}  .
+\]
+Since $A\left[  X\right]  =\left\{  \sum\limits_{i=0}^{m}a_{i}X^{i}%
+\ \mid\ m\in\mathbb{N}\text{ and }\left(  a_{0},a_{1},...,a_{m}\right)  \in
+A^{m+1}\right\}  $, this becomes
+\begin{align*}
+A\left[  u\right]   &  =\left\{  \left(  \sum\limits_{i=0}^{m}a_{i}%
+X^{i}\right)  \left(  u\right)  \ \mid\ m\in\mathbb{N}\text{ and }\left(
+a_{0},a_{1},...,a_{m}\right)  \in A^{m+1}\right\} \\
+&  \ \ \ \ \ \ \ \ \ \ \left(  \text{where }\left(  \sum\limits_{i=0}^{m}%
+a_{i}X^{i}\right)  \left(  u\right)  \text{ means the polynomial }%
+\sum\limits_{i=0}^{m}a_{i}X^{i}\text{ evaluated at }X=u\right) \\
+&  =\left\{  \sum\limits_{i=0}^{m}a_{i}u^{i}\ \mid\ m\in\mathbb{N}\text{ and
+}\left(  a_{0},a_{1},...,a_{m}\right)  \in A^{m+1}\right\}
+\ \ \ \ \ \ \ \ \ \ \left(  \text{because }\left(  \sum\limits_{i=0}^{m}%
+a_{i}X^{i}\right)  \left(  u\right)  =\sum\limits_{i=0}^{m}a_{i}u^{i}\right)
+.
+\end{align*}
+Obviously, $uA\left[  u\right]  \subseteq A\left[  u\right]  $ (since
+$A\left[  u\right]  $ is an $A$-algebra and $u\in A\left[  u\right]  $).
+
+\begin{center}
+\color{blue} \textbf{1. Integrality over rings} \color{black}
+\end{center}
+
+\begin{quote}
+\textbf{Theorem 1.} Let $A$ and $B$ be two rings such that $A\subseteq B$.
+Obviously, $B$ is canonically an $A$-module (since $A\subseteq B$). Let
+$n\in\mathbb{N}$. Let $u\in B$. Then, the following four assertions
+$\mathcal{A},$ $\mathcal{B},$ $\mathcal{C}$ and $\mathcal{D}$ are pairwise equivalent:
+
+\textit{Assertion }$\mathcal{A}$\textit{:} There exists a monic polynomial
+$P\in A\left[  X\right]  $ with $\deg P=n$ and $P\left(  u\right)  =0$.
+
+\textit{Assertion }$\mathcal{B}$\textit{:} There exists an $n$-generated
+$A$-submodule $U$ of $B$ such that $uU\subseteq U$ and such that $v=0$ for
+every $v\in B$ satisfying $vU=0$.
+
+\textit{Assertion }$\mathcal{C}$\textit{:} There exists an $n$-generated
+$A$-submodule $U$ of $B$ such that $1\in U$ and $uU\subseteq U$.
+
+\textit{Assertion }$\mathcal{D}$\textit{:} We have $A\left[  u\right]
+=\left\langle u^{0},u^{1},...,u^{n-1}\right\rangle _{A}$.
+\end{quote}
+
+\textbf{Definition 5.} Let $A$ and $B$ be two rings such that $A\subseteq B$.
+Let $n\in\mathbb{N}$. Let $u\in B$. We say that the element $u$ of $B$ is
+$n$\textit{-integral over }$A$ if it satisfies the four equivalent assertions
+$\mathcal{A},$ $\mathcal{B},$ $\mathcal{C}$ and $\mathcal{D}$ of Theorem 1.
+
+Hence, $u$ is $n$-integral over $A$ if and only if there exists a monic
+polynomial $P\in A\left[  X\right]  $ with $\deg P=n$ and $P\left(  u\right)
+=0$.
+
+\textit{Proof of Theorem 1.} We will prove the implications $\mathcal{A}%
+\Longrightarrow\mathcal{C}$, $\mathcal{C}\Longrightarrow\mathcal{B}$,
+$\mathcal{B}\Longrightarrow\mathcal{A}$, $\mathcal{A}\Longrightarrow
+\mathcal{D}$ and $\mathcal{D}\Longrightarrow\mathcal{C}$.
+
+\textit{Proof of the implication }$\mathcal{A}\Longrightarrow\mathcal{C}%
+$\textit{.} Assume that Assertion $\mathcal{A}$ holds. Then, there exists a
+monic polynomial $P\in A\left[  X\right]  $ with $\deg P=n$ and $P\left(
+u\right)  =0$. Since $P\in A\left[  X\right]  $ is a monic polynomial with
+$\deg P=n$, there exist elements $a_{0},$ $a_{1},$ $...,$ $a_{n-1}$ of $A$
+such that $P\left(  X\right)  =X^{n}+\sum\limits_{k=0}^{n-1}a_{k}X^{k}$. Thus,
+$P\left(  u\right)  =u^{n}+\sum\limits_{k=0}^{n-1}a_{k}u^{k}$, so that
+$P\left(  u\right)  =0$ becomes $u^{n}+\sum\limits_{k=0}^{n-1}a_{k}u^{k}=0$.
+Hence, $u^{n}=-\sum\limits_{k=0}^{n-1}a_{k}u^{k}$.
+
+Let $U$ be the $A$-submodule $\left\langle u^{0},u^{1},...,u^{n-1}%
+\right\rangle _{A}$ of $B$. Then, $U$ is an $n$-generated $A$-module (since
+$u^{0},$ $u^{1},$ $...,$ $u^{n-1}$ are $n$ elements of $U$). Besides,
+$1=u^{0}\in U$.
+
+Now, $u\cdot u^{k}\in U$ for any $k\in\left\{  0,1,...,n-1\right\}  $ (since
+$k\in\left\{  0,1,...,n-1\right\}  $ yields either $0\leq k<n-1$ or $k=n-1$,
+but $u\cdot u^{k}=u^{k+1}\in\left\langle u^{0},u^{1},...,u^{n-1}\right\rangle
+_{A}=U$ if $0\leq k<n-1$, and $u\cdot u^{k}=u\cdot u^{n-1}=u^{n}%
+=-\sum\limits_{k=0}^{n-1}a_{k}u^{k}\in\left\langle u^{0},u^{1},...,u^{n-1}%
+\right\rangle _{A}=U$ if $k=n-1$, so that $u\cdot u^{k}\in U$ in both cases).
+Hence,%
+\[
+uU=u\left\langle u^{0},u^{1},...,u^{n-1}\right\rangle _{A}=\left\langle u\cdot
+u^{0},u\cdot u^{1},...,u\cdot u^{n-1}\right\rangle _{A}\subseteq U
+\]
+(since $u\cdot u^{k}\in U$ for any $k\in\left\{  0,1,...,n-1\right\}  $).
+
+Thus, Assertion $\mathcal{C}$ holds. Hence, we have proved that $\mathcal{A}%
+\Longrightarrow\mathcal{C}$.
+
+\textit{Proof of the implication }$\mathcal{C}\Longrightarrow\mathcal{B}%
+$\textit{.} Assume that Assertion $\mathcal{C}$ holds. Then, there exists an
+$n$-generated $A$-submodule $U$ of $B$ such that $1\in U$ and $uU\subseteq U$.
+We have $v=0$ for every $v\in B$ satisfying $vU=0$ (since $1\in U$ and $vU=0$
+yield $v\cdot\underbrace{1}_{\in U}\in vU=0$ and thus $v\cdot1=0$, so that
+$v=0$). Thus, Assertion $\mathcal{B}$ holds. Hence, we have proved that
+$\mathcal{C}\Longrightarrow\mathcal{B}$.
+
+\textit{Proof of the implication }$\mathcal{B}\Longrightarrow\mathcal{A}%
+$\textit{.} Assume that Assertion $\mathcal{B}$ holds. Then, there exists an
+$n$-generated $A$-submodule $U$ of $B$ such that $uU\subseteq U$ and such that
+$v=0$ for every $v\in B$ satisfying $vU=0$. Since the $A$-module $U$ is
+$n$-generated, there exist $n$ elements $m_{1},$ $m_{2},$ $...,$ $m_{n}$ of
+$U$ such that $U=\left\langle m_{1},m_{2},...,m_{n}\right\rangle _{A}$. For
+any $k\in\left\{  1,2,...,n\right\}  $, we have%
+\begin{align*}
+um_{k}  &  \in uU\ \ \ \ \ \ \ \ \ \ \left(  \text{since }m_{k}\in U\right) \\
+&  \subseteq U=\left\langle m_{1},m_{2},...,m_{n}\right\rangle _{A},
+\end{align*}
+so that there exist $n$ elements $a_{k,1},$ $a_{k,2},$ $...,$ $a_{k,n}$ of $A$
+such that $um_{k}=\sum\limits_{i=1}^{n}a_{k,i}m_{i}$.
+
+Define a vector $v\in B^{n}$ by $v_{i}=m_{i}$ for all $i\in\left\{
+1,2,...,n\right\}  $. (Here, for any vector $w$ and any integer $x$, we denote
+by $w_{x}$ the entry of the vector $w$ in the $x$-th row.)
+
+Define a matrix $S\in A^{n\times n}$ by $S_{k,i}=a_{k,i}$ for all
+$k\in\left\{  1,2,...,n\right\}  $ and $i\in\left\{  1,2,...,n\right\}  $.
+(Here, for any matrix $T$ and any integers $x$ and $y$, we denote by $T_{x,y}$
+the entry of the matrix $T$ in the $x$-th row and the $y$-th column.) Then,
+for any $k\in\left\{  1,2,...,n\right\}  $, we have $u\underbrace{m_{k}%
+}_{=v_{k}}=uv_{k}=\left(  uv\right)  _{k}$ and $\sum\limits_{i=1}%
+^{n}\underbrace{a_{k,i}}_{=S_{k,i}}\underbrace{m_{i}}_{=v_{i}}=\sum
+\limits_{i=1}^{n}S_{k,i}v_{i}=\left(  Sv\right)  _{k}$, so that $um_{k}%
+=\sum\limits_{i=1}^{n}a_{k,i}m_{i}$ becomes $\left(  uv\right)  _{k}=\left(
+Sv\right)  _{k}$. Since this holds for every $k\in\left\{  1,2,...,n\right\}
+$, we conclude that $uv=Sv$. Thus,%
+\[
+0=uv-Sv=uI_{n}v-Sv=\left(  uI_{n}-S\right)  v.
+\]
+
+
+Now, let $P\in A\left[  X\right]  $ be the characteristic polynomial of the
+matrix $S\in A^{n\times n}$. Then, $P$ is monic, and $\deg P=n$. Besides,
+$P\left(  X\right)  =\det\left(  XI_{n}-S\right)  $, so that $P\left(
+u\right)  =\det\left(  uI_{n}-S\right)  $. Thus,%
+\begin{align*}
+P\left(  u\right)  \cdot v  &  =\det\left(  uI_{n}-S\right)  \cdot
+v=\underbrace{\det\left(  uI_{n}-S\right)  I_{n}}_{=\operatorname{adj}\left(
+uI_{n}-S\right)  \cdot\left(  uI_{n}-S\right)  }\cdot v\\
+&  =\operatorname{adj}\left(  uI_{n}-S\right)  \cdot\underbrace{\left(
+uI_{n}-S\right)  v}_{=0}=0.
+\end{align*}
+Hence, for any $k\in\left\{  1,2,...,n\right\}  $, we have%
+\[
+P\left(  u\right)  \cdot\underbrace{m_{k}}_{=v_{k}}=P\left(  u\right)  \cdot
+v_{k}=\left(  \underbrace{P\left(  u\right)  \cdot v}_{=0}\right)  _{k}=0,
+\]
+so that%
+\begin{align*}
+P\left(  u\right)  \cdot U  &  =P\left(  u\right)  \cdot\left\langle
+m_{1},m_{2},...,m_{n}\right\rangle _{A}=\left\langle P\left(  u\right)  \cdot
+m_{1},P\left(  u\right)  \cdot m_{2},...,P\left(  u\right)  \cdot
+m_{n}\right\rangle _{A}\\
+&  =\left\langle 0,0,...,0\right\rangle _{A}\ \ \ \ \ \ \ \ \ \ \left(
+\text{since }P\left(  u\right)  \cdot m_{k}=0\text{ for any }k\in\left\{
+1,2,...,n\right\}  \right) \\
+&  =0.
+\end{align*}
+This implies $P\left(  u\right)  =0$ (since $v=0$ for every $v\in B$
+satisfying $vU=0$). Thus, Assertion $\mathcal{A}$ holds. Hence, we have proved
+that $\mathcal{B}\Longrightarrow\mathcal{A}$.
+
+\textit{Proof of the implication }$\mathcal{A}\Longrightarrow\mathcal{D}%
+$\textit{.} Assume that Assertion $\mathcal{A}$ holds. Then, there exists a
+monic polynomial $P\in A\left[  X\right]  $ with $\deg P=n$ and $P\left(
+u\right)  =0$. Since $P\in A\left[  X\right]  $ is a monic polynomial with
+$\deg P=n$, there exist elements $a_{0},$ $a_{1},$ $...,$ $a_{n-1}$ of $A$
+such that $P\left(  X\right)  =X^{n}+\sum\limits_{k=0}^{n-1}a_{k}X^{k}$. Thus,
+$P\left(  u\right)  =u^{n}+\sum\limits_{k=0}^{n-1}a_{k}u^{k}$, so that
+$P\left(  u\right)  =0$ becomes $u^{n}+\sum\limits_{k=0}^{n-1}a_{k}u^{k}=0$.
+Hence, $u^{n}=-\sum\limits_{k=0}^{n-1}a_{k}u^{k}$.
+
+Let $U$ be the $A$-submodule $\left\langle u^{0},u^{1},...,u^{n-1}%
+\right\rangle _{A}$ of $B$. As in the Proof of the implication $\mathcal{A}%
+\Longrightarrow\mathcal{C}$, we can show that $U$ is an $n$-generated
+$A$-module, and that $1\in U$ and $uU\subseteq U$.
+
+Now, we are going to show that
+\begin{equation}
+u^{i}\in U\ \ \ \ \ \ \ \ \ \ \text{for any }i\in\mathbb{N}. \label{1}%
+\end{equation}
+
+
+\textit{Proof of (1).} We will prove (1) by induction over $i$:
+
+\textit{Induction base:} The assertion (1) holds for $i=0$ (since $u^{0}\in
+U$). This completes the induction base.
+
+\textit{Induction step:} Let $\tau\in\mathbb{N}$. If the assertion (1) holds
+for $i=\tau$, then the assertion (1) holds for $i=\tau+1$ (because if the
+assertion (1) holds for $i=\tau$, then $u^{\tau}\in U$, so that $u^{\tau
++1}=u\cdot\underbrace{u^{\tau}}_{\in U}\in uU\subseteq U$, so that $u^{\tau
++1}\in U$, and thus the assertion (1) holds for $i=\tau+1$). This completes
+the induction step.
+
+Hence, the induction is complete, and (1) is proven.
+
+Thus,%
+\[
+A\left[  u\right]  =\left\{  \sum\limits_{i=0}^{m}a_{i}u^{i}\ \mid
+\ m\in\mathbb{N}\text{ and }\left(  a_{0},a_{1},...,a_{m}\right)  \in
+A^{m+1}\right\}  \subseteq U
+\]
+(since $\sum\limits_{i=0}^{m}a_{i}u^{i}\in U$ for any $m\in\mathbb{N}$ and any
+$\left(  a_{0},a_{1},...,a_{m}\right)  \in A^{m+1}$, because $a_{i}\in A$ and
+$u^{i}\in U$ for any $i\in\left\{  0,1,...,m\right\}  $ (by (1)) and $U$ is an
+$A$-module). On the other hand, $U\subseteq A\left[  u\right]  $, since%
+\begin{align*}
+U  &  =\left\langle u^{0},u^{1},...,u^{n-1}\right\rangle _{A}=\left\{
+\sum\limits_{i=0}^{n-1}a_{i}u^{i}\ \mid\ \left(  a_{0},a_{1},...,a_{n-1}%
+\right)  \in A^{n}\right\} \\
+&  \subseteq\left\{  \sum\limits_{i=0}^{m}a_{i}u^{i}\ \mid\ m\in
+\mathbb{N}\text{ and }\left(  a_{0},a_{1},...,a_{m}\right)  \in A^{m+1}%
+\right\}  =A\left[  u\right]  .
+\end{align*}
+Thus, $U=A\left[  u\right]  $. In other words, $\left\langle u^{0}%
+,u^{1},...,u^{n-1}\right\rangle _{A}=A\left[  u\right]  $. Thus, Assertion
+$\mathcal{D}$ holds. Hence, we have proved that $\mathcal{A}\Longrightarrow
+\mathcal{D}$.
+
+\textit{Proof of the implication }$\mathcal{D}\Longrightarrow\mathcal{C}%
+$\textit{.} Assume that Assertion $\mathcal{D}$ holds. Then, $A\left[
+u\right]  =\left\langle u^{0},u^{1},...,u^{n-1}\right\rangle _{A}$.
+
+Let $U$ be the $A$-submodule $\left\langle u^{0},u^{1},...,u^{n-1}%
+\right\rangle _{A}$ of $B$. Then, $U$ is an $n$-generated $A$-module (since
+$u^{0},$ $u^{1},$ $...,$ $u^{n-1}$ are $n$ elements of $U$). Besides,
+$1=u^{0}\in U$.
+
+Also,%
+\[
+uU=u\cdot\left\langle u^{0},u^{1},...,u^{n-1}\right\rangle _{A}=u\cdot
+A\left[  u\right]  \subseteq A\left[  u\right]  =\left\langle u^{0}%
+,u^{1},...,u^{n-1}\right\rangle _{A}=U.
+\]
+
+
+Thus, Assertion $\mathcal{C}$ holds. Hence, we have proved that $\mathcal{D}%
+\Longrightarrow\mathcal{C}$.
+
+Now, we have proved the implications $\mathcal{A}\Longrightarrow\mathcal{D},$
+$\mathcal{D}\Longrightarrow\mathcal{C},$ $\mathcal{C}\Longrightarrow
+\mathcal{B}$ and $\mathcal{B}\Longrightarrow\mathcal{A}$ above. Thus, all four
+assertions $\mathcal{A},$ $\mathcal{B},$ $\mathcal{C}$ and $\mathcal{D}$ are
+pairwise equivalent, and Theorem 1 is proven.
+
+\begin{quote}
+\textbf{Theorem 2.} Let $A$ and $B$ be two rings such that $A\subseteq B$. Let
+$n\in\mathbb{N}$. Let $v\in B$. Let $a_{0},$ $a_{1},$ $...,$ $a_{n}$ be $n+1$
+elements of $A$ such that $\sum\limits_{i=0}^{n}a_{i}v^{i}=0$. Let
+$k\in\left\{  0,1,...,n\right\}  $. Then, $\sum\limits_{i=0}^{n-k}a_{i+k}%
+v^{i}$ is $n$-integral over $A$.
+\end{quote}
+
+\textit{Proof of Theorem 2.} Let $U$ be the $A$-submodule $\left\langle
+v^{0},v^{1},...,v^{n-1}\right\rangle _{A}$ of $B$. Then, $U$ is an
+$n$-generated $A$-module (since $v^{0},$ $v^{1},$ $...,$ $v^{n-1}$ are $n$
+elements of $U$). Besides, $1=v^{0}\in U$.
+
+Let $u=\sum\limits_{i=0}^{n-k}a_{i+k}v^{i}$. Then,%
+\begin{align*}
+0  &  =\sum\limits_{i=0}^{n}a_{i}v^{i}=\sum\limits_{i=0}^{k-1}a_{i}v^{i}%
++\sum\limits_{i=k}^{n}a_{i}v^{i}=\sum\limits_{i=0}^{k-1}a_{i}v^{i}%
++\sum\limits_{i=0}^{n-k}a_{i+k}\underbrace{v^{i+k}}_{=v^{i}v^{k}}\\
+&  \ \ \ \ \ \ \ \ \ \ \left(  \text{here, we substituted }i+k\text{ for
+}i\text{\ in the second sum}\right) \\
+&  =\sum\limits_{i=0}^{k-1}a_{i}v^{i}+v^{k}\underbrace{\sum\limits_{i=0}%
+^{n-k}a_{i+k}v^{i}}_{=u}=\sum\limits_{i=0}^{k-1}a_{i}v^{i}+v^{k}u,
+\end{align*}
+so that $v^{k}u=-\sum\limits_{i=0}^{k-1}a_{i}v^{i}$.
+
+Now, we are going to show that%
+\begin{equation}
+uv^{t}\in U\ \ \ \ \ \ \ \ \ \ \text{for any }t\in\left\{
+0,1,...,n-1\right\}  . \label{2}%
+\end{equation}
+
+
+\textit{Proof of (2).} Since $t\in\left\{  0,1,...,n-1\right\}  $, one of the
+following two cases must hold:
+
+\textit{Case 1:} We have $t\in\left\{  0,1,...,k-1\right\}  $.
+
+\textit{Case 2:} We have $t\in\left\{  k,k+1,...,n-1\right\}  $.
+
+In Case 1, we have%
+\begin{align*}
+uv^{t}  &  =\sum\limits_{i=0}^{n-k}a_{i+k}\underbrace{v^{i}\cdot v^{t}%
+}_{=v^{i+t}}=\sum\limits_{i=0}^{n-k}a_{i+k}v^{i+t}\in\left\langle v^{0}%
+,v^{1},...,v^{n-1}\right\rangle _{A}\\
+&  \ \ \ \ \ \ \ \ \ \ \left(
+\begin{array}
+[c]{c}%
+\text{since }t\in\left\{  0,1,...,k-1\right\}  \text{ yields }i+t\in\left\{
+0,1,...,n-1\right\}  \text{ and thus}\\
+v^{i+t}\in\left\{  v^{0},v^{1},...,v^{n-1}\right\}  \text{ for any }%
+i\in\left\{  0,1,...,n-k\right\}
+\end{array}
+\right) \\
+&  =U.
+\end{align*}
+
+
+In Case 2, we have $t\in\left\{  k,k+1,...,n-1\right\}  $, thus $t-k\in
+\left\{  0,1,...,n-k-1\right\}  $ and hence%
+\begin{align*}
+uv^{t}  &  =u\underbrace{v^{k+\left(  t-k\right)  }}_{=v^{k}v^{t-k}}%
+=v^{k}u\cdot v^{t-k}=-\sum\limits_{i=0}^{k-1}a_{i}\underbrace{v^{i}\cdot
+v^{t-k}}_{=v^{i+\left(  t-k\right)  }}\ \ \ \ \ \ \ \ \ \ \left(  \text{since
+}v^{k}u=-\sum\limits_{i=0}^{k-1}a_{i}v^{i}\right) \\
+&  =-\sum\limits_{i=0}^{k-1}a_{i}v^{i+\left(  t-k\right)  }\in\left\langle
+v^{0},v^{1},...,v^{n-1}\right\rangle _{A}\\
+&  \ \ \ \ \ \ \ \ \ \ \left(
+\begin{array}
+[c]{c}%
+\text{since }t-k\in\left\{  0,1,...,n-k-1\right\}  \text{ yields }i+\left(
+t-k\right)  \in\left\{  0,1,...,n-1\right\}  \text{ and thus}\\
+v^{i+\left(  t-k\right)  }\in\left\{  v^{0},v^{1},...,v^{n-1}\right\}  \text{
+for any }i\in\left\{  0,1,...,k-1\right\}
+\end{array}
+\right) \\
+&  =U.
+\end{align*}
+
+
+Hence, in both cases, we have $uv^{t}\in U$. Thus, $uv^{t}\in U$ always holds,
+and (2) is proven.
+
+Now,%
+\[
+uU=u\left\langle v^{0},v^{1},...,v^{n-1}\right\rangle _{A}=\left\langle
+uv^{0},uv^{1},...,uv^{n-1}\right\rangle _{A}\subseteq
+U\ \ \ \ \ \ \ \ \ \ \left(  \text{due to (2)}\right)  .
+\]
+
+
+Altogether, $U$ is an $n$-generated $A$-submodule of $B$ such that $1\in U$
+and $uU\subseteq U$. Thus, $u\in B$ satisfies Assertion $\mathcal{C}$ of
+Theorem 1. Hence, $u\in B$ satisfies the four equivalent assertions
+$\mathcal{A},$ $\mathcal{B},$ $\mathcal{C}$ and $\mathcal{D}$ of Theorem 1.
+Consequently, $u$ is $n$-integral over $A$. Since $u=\sum\limits_{i=0}%
+^{n-k}a_{i+k}v^{i}$, this means that $\sum\limits_{i=0}^{n-k}a_{i+k}v^{i}$ is
+$n$-integral over $A$. This proves Theorem 2.
+
+\begin{quote}
+\textbf{Corollary 3.} Let $A$ and $B$ be two rings such that $A\subseteq B$.
+Let $\alpha\in\mathbb{N}$ and $\beta\in\mathbb{N}$. Let $u\in B$ and $v\in B$.
+Let $s_{0},$ $s_{1},$ $...,$ $s_{\alpha}$ be $\alpha+1$ elements of $A$ such
+that $\sum\limits_{i=0}^{\alpha}s_{i}v^{i}=u$. Let $t_{0},$ $t_{1},$ $...,$
+$t_{\beta}$ be $\beta+1$ elements of $A$ such that $\sum\limits_{i=0}^{\beta
+}t_{i}v^{\beta-i}=uv^{\beta}$. Then, $u$ is $\left(  \alpha+\beta\right)
+$-integral over $A$.
+\end{quote}
+
+(This Corollary 3 generalizes Exercise 2-5 in [1].)
+
+\textit{Proof of Corollary 3.} Let $k=\beta$ and $n=\alpha+\beta$. Then,
+$k\in\left\{  0,1,...,n\right\}  $. Define $n+1$ elements $a_{0},$ $a_{1},$
+$...,$ $a_{n}$ of $A$ by%
+\[
+a_{i}=\left\{
+\begin{array}
+[c]{c}%
+t_{\beta-i},\text{ if }i<\beta;\\
+t_{0}-s_{0},\text{ if }i=\beta;\\
+-s_{i-\beta},\text{ if }i>\beta;
+\end{array}
+\right.  \ \ \ \ \ \ \ \ \ \ \text{for every }i\in\left\{  0,1,...,n\right\}
+.
+\]
+
+
+Then,%
+\begin{align*}
+\sum\limits_{i=0}^{n}a_{i}v^{i}  &  =\sum\limits_{i=0}^{\alpha+\beta}%
+a_{i}v^{i}=\sum\limits_{i=0}^{\beta-1}\underbrace{a_{i}}_{\substack{=t_{\beta
+-i},\\\text{since}\\i<\beta}}v^{i}+\sum\limits_{i=\beta}^{\beta}%
+\underbrace{a_{i}}_{\substack{=t_{0}-s_{0},\\\text{since}\\i=\beta}}v^{i}%
++\sum\limits_{i=\beta+1}^{\alpha+\beta}\underbrace{a_{i}}%
+_{\substack{=-s_{i-\beta},\\\text{since}\\i>\beta}}v^{i}\\
+&  =\sum\limits_{i=0}^{\beta-1}t_{\beta-i}v^{i}+\underbrace{\sum
+\limits_{i=\beta}^{\beta}\left(  t_{0}-s_{0}\right)  v^{i}}%
+_{\substack{=\left(  t_{0}-s_{0}\right)  v^{\beta}\\=t_{0}v^{\beta}%
+-s_{0}v^{\beta}}}+\underbrace{\sum\limits_{i=\beta+1}^{\alpha+\beta}\left(
+-s_{i-\beta}\right)  v^{i}}_{=-\sum\limits_{i=\beta+1}^{\alpha+\beta
+}s_{i-\beta}v^{i}}\\
+&  =\sum\limits_{i=0}^{\beta-1}t_{\beta-i}v^{i}+t_{0}v^{\beta}-s_{0}v^{\beta
+}-\sum\limits_{i=\beta+1}^{\alpha+\beta}s_{i-\beta}v^{i}=\sum\limits_{i=0}%
+^{\beta-1}t_{\beta-i}v^{i}+t_{0}v^{\beta}-\left(  s_{0}v^{\beta}%
++\sum\limits_{i=\beta+1}^{\alpha+\beta}s_{i-\beta}v^{i}\right) \\
+&  =\sum\limits_{i=0}^{\beta-1}t_{\beta-i}v^{i}+t_{0}v^{\beta}-\left(
+s_{0}v^{\beta}+\sum\limits_{i=1}^{\alpha}\underbrace{s_{\left(  i+\beta
+\right)  -\beta}}_{=s_{i}}\underbrace{v^{i+\beta}}_{=v^{i}v^{\beta}}\right) \\
+&  \ \ \ \ \ \ \ \ \ \ \left(  \text{here, we substituted }i+\beta\text{ for
+}i\text{ in the second sum}\right) \\
+&  =\sum\limits_{i=0}^{\beta-1}t_{\beta-i}v^{i}+t_{0}v^{\beta}-\left(
+s_{0}v^{\beta}+\sum\limits_{i=1}^{\alpha}s_{i}v^{i}v^{\beta}\right) \\
+&  =\sum\limits_{i=1}^{\beta}\underbrace{t_{\beta-\left(  \beta-i\right)  }%
+}_{=t_{i}}v^{\beta-i}+t_{0}\underbrace{v^{\beta}}_{=v^{\beta-0}}-\left(
+s_{0}\underbrace{v^{\beta}}_{=v^{0}v^{\beta}}+\sum\limits_{i=1}^{\alpha}%
+s_{i}v^{i}v^{\beta}\right) \\
+&  \ \ \ \ \ \ \ \ \ \ \left(  \text{here, we substituted }\beta-i\text{ for
+}i\text{ in the first sum}\right) \\
+&  =\sum\limits_{i=1}^{\beta}t_{i}v^{\beta-i}+t_{0}v^{\beta-0}-\left(
+s_{0}v^{0}v^{\beta}+\sum\limits_{i=1}^{\alpha}s_{i}v^{i}v^{\beta}\right) \\
+&  =\underbrace{\sum\limits_{i=1}^{\beta}t_{i}v^{\beta-i}+t_{0}v^{\beta-0}%
+}_{=\sum\limits_{i=0}^{\beta}t_{i}v^{\beta-i}=uv^{\beta}}-\left(
+\underbrace{s_{0}v^{0}+\sum\limits_{i=1}^{\alpha}s_{i}v^{i}}_{=\sum
+\limits_{i=0}^{\alpha}s_{i}v^{i}=u}\right)  v^{\beta}=uv^{\beta}-uv^{\beta}=0.
+\end{align*}
+Thus, Theorem 2 yields that $\sum\limits_{i=0}^{n-k}a_{i+k}v^{i}$ is
+$n$-integral over $A$. But%
+\begin{align*}
+\sum\limits_{i=0}^{n-k}a_{i+k}v^{i}  &  =\sum\limits_{i=0}^{n-\beta}%
+a_{i+\beta}v^{i}=\sum\limits_{i=0}^{0}\underbrace{a_{i+\beta}}%
+_{\substack{=t_{0}-s_{0},\\\text{since}\\i=0\text{ yields}\\i+\beta=\beta
+}}v^{i}+\sum\limits_{i=1}^{n-\beta}\underbrace{a_{i+\beta}}%
+_{\substack{=-s_{\left(  i+\beta\right)  -\beta},\\\text{since}\\i>0\text{
+yields}\\i+\beta>\beta}}v^{i}\\
+&  =\underbrace{\sum\limits_{i=0}^{0}\left(  t_{0}-s_{0}\right)  v^{i}%
+}_{\substack{=\left(  t_{0}-s_{0}\right)  v^{0}\\=t_{0}v^{0}-s_{0}%
+v^{0}\\=t_{0}-s_{0}v^{0}}}+\sum\limits_{i=1}^{n-\beta}\left(  -\underbrace
+{s_{\left(  i+\beta\right)  -\beta}}_{=s_{i}}\right)  v^{i}\\
+&  =t_{0}-s_{0}v^{0}+\sum\limits_{i=1}^{n-\beta}\left(  -s_{i}\right)
+v^{i}=t_{0}-s_{0}v^{0}-\sum\limits_{i=1}^{n-\beta}s_{i}v^{i}\\
+&  =t_{0}-s_{0}v^{0}-\sum\limits_{i=1}^{\alpha}s_{i}v^{i}%
+\ \ \ \ \ \ \ \ \ \ \left(  \text{since }n=\alpha+\beta\text{ yields }%
+n-\beta=\alpha\right) \\
+&  =t_{0}-\left(  \underbrace{s_{0}v^{0}+\sum\limits_{i=1}^{\alpha}s_{i}v^{i}%
+}_{=\sum\limits_{i=0}^{\alpha}s_{i}v^{i}=u}\right)  =t_{0}-u.
+\end{align*}
+Thus, $t_{0}-u$ is $n$-integral over $A$. On the other hand, $-t_{0}$ is
+$1$-integral over $A$ (by Theorem 5 \textbf{(a)} below, applied to $a=-t_{0}%
+$). Thus, $\left(  -t_{0}\right)  +\left(  t_{0}-u\right)  $ is $n\cdot
+1$-integral over $A$ (by Theorem 5 \textbf{(b)} below, applied to $x=-t_{0}$,
+$y=t_{0}-u$ and $m=1$). In other words, $-u$ is $n$-integral over $A$ (since
+$\left(  -t_{0}\right)  +\left(  t_{0}-u\right)  =-u$ and $n\cdot1=n$). On the
+other hand, $-1$ is $1$-integral over $A$ (by Theorem 5 \textbf{(a)} below,
+applied to $a=-1$). Thus, $\left(  -1\right)  \cdot\left(  -u\right)  $ is
+$n\cdot1$-integral over $A$ (by Theorem 5 \textbf{(c)} below, applied to
+$x=-1$, $y=-u$ and $m=1$). In other words, $u$ is $\left(  \alpha
++\beta\right)  $-integral over $A$ (since $\left(  -1\right)  \cdot\left(
+-u\right)  =u$ and $n\cdot1=n=\alpha+\beta$). This proves Corollary 3.
+
+\begin{quote}
+\textbf{Theorem 4.} Let $A$ and $B$ be two rings such that $A\subseteq B$. Let
+$v\in B$ and $u\in B$. Let $m\in\mathbb{N}$ and $n\in\mathbb{N}$. Assume that
+$v$ is $m$-integral over $A,$ and that $u$ is $n$-integral over $A\left[
+v\right]  $. Then, $u$ is $nm$-integral over $A$.
+\end{quote}
+
+\textit{Proof of Theorem 4.} Since $v$ is $m$-integral over $A$, we have
+$A\left[  v\right]  =\left\langle v^{0},v^{1},...,v^{m-1}\right\rangle _{A}$
+(this is the Assertion $\mathcal{D}$ of Theorem 1, stated for $v$ and $m$ in
+lieu of $u$ and $n$).
+
+Since $u$ is $n$-integral over $A\left[  v\right]  $, we have $\left(
+A\left[  v\right]  \right)  \left[  u\right]  =\left\langle u^{0}%
+,u^{1},...,u^{n-1}\right\rangle _{A\left[  v\right]  }$ (this is the Assertion
+$\mathcal{D}$ of Theorem 1, stated for $A\left[  v\right]  $ in lieu of $A$).
+
+Let $S=\left\{  0,1,...,n-1\right\}  \times\left\{  0,1,...,m-1\right\}  $.
+
+Let $x\in\left(  A\left[  v\right]  \right)  \left[  u\right]  $. Then, there
+exist $n$ elements $b_{0}$, $b_{1}$, $...$, $b_{n-1}$ of $A\left[  v\right]  $
+such that $x=\sum\limits_{i=0}^{n-1}b_{i}u^{i}$ (since $x\in\left(  A\left[
+v\right]  \right)  \left[  u\right]  =\left\langle u^{0},u^{1},...,u^{n-1}%
+\right\rangle _{A\left[  v\right]  }$). But for each $i\in\left\{
+0,1,...,n-1\right\}  $, there exist $m$ elements $a_{i,0},$ $a_{i,1},$ $...,$
+$a_{i,m-1}$ of $A$ such that $b_{i}=\sum\limits_{j=0}^{m-1}a_{i,j}v^{j}$
+(because $b_{i}\in A\left[  v\right]  =\left\langle v^{0},v^{1},...,v^{m-1}%
+\right\rangle _{A}$). Thus,%
+\begin{align*}
+x  &  =\sum\limits_{i=0}^{n-1}\underbrace{b_{i}}_{=\sum\limits_{j=0}%
+^{m-1}a_{i,j}v^{j}}u^{i}=\sum\limits_{i=0}^{n-1}\sum\limits_{j=0}^{m-1}%
+a_{i,j}v^{j}u^{i}=\sum\limits_{\left(  i,j\right)  \in\left\{
+0,1,...,n-1\right\}  \times\left\{  0,1,...,m-1\right\}  }a_{i,j}v^{j}%
+u^{i}=\sum\limits_{\left(  i,j\right)  \in S}a_{i,j}v^{j}u^{i}\\
+&  \in\left\langle v^{j}u^{i}\ \mid\ \left(  i,j\right)  \in S\right\rangle
+_{A}\ \ \ \ \ \ \ \ \ \ \left(  \text{since }a_{i,j}\in A\text{ for every
+}\left(  i,j\right)  \in S\right)
+\end{align*}
+So we have proved that $x\in\left\langle v^{j}u^{i}\ \mid\ \left(  i,j\right)
+\in S\right\rangle _{A}$ for every $x\in\left(  A\left[  v\right]  \right)
+\left[  u\right]  $. Thus, $\left(  A\left[  v\right]  \right)  \left[
+u\right]  \subseteq\left\langle v^{j}u^{i}\ \mid\ \left(  i,j\right)  \in
+S\right\rangle _{A}$. Conversely, $\left\langle v^{j}u^{i}\ \mid\ \left(
+i,j\right)  \in S\right\rangle _{A}\subseteq\left(  A\left[  v\right]
+\right)  \left[  u\right]  $ (since $v^{j}\in A\left[  v\right]  $ for every
+$\left(  i,j\right)  \in S$, and thus $\underbrace{v^{j}}_{\in A\left[
+v\right]  }u^{i}\in\left(  A\left[  v\right]  \right)  \left[  u\right]  $ for
+every $\left(  i,j\right)  \in S$, and therefore%
+\[
+\left\langle v^{j}u^{i}\ \mid\ \left(  i,j\right)  \in S\right\rangle
+_{A}=\left\{  \underbrace{\sum\limits_{\left(  i,j\right)  \in S}a_{i,j}%
+v^{j}u^{i}}_{\substack{\in\left(  A\left[  v\right]  \right)  \left[
+u\right]  ,\text{ since}\\v^{j}u^{i}\in\left(  A\left[  v\right]  \right)
+\left[  u\right]  \text{ for all }\left(  i,j\right)  \in S\\\text{and
+}\left(  A\left[  v\right]  \right)  \left[  u\right]  \text{ is an
+}A\text{-module}}}\ \mid\ \left(  a_{i,j}\right)  _{\left(  i,j\right)  \in
+S}\in A^{S}\right\}  \subseteq\left(  A\left[  v\right]  \right)  \left[
+u\right]
+\]
+). Hence, $\left(  A\left[  v\right]  \right)  \left[  u\right]  =\left\langle
+v^{j}u^{i}\ \mid\ \left(  i,j\right)  \in S\right\rangle _{A}$. Thus, the
+$A$-module $\left(  A\left[  v\right]  \right)  \left[  u\right]  $ is
+$nm$-generated (since
+\[
+\left\vert S\right\vert =\left\vert \left\{  0,1,...,n-1\right\}
+\times\left\{  0,1,...,m-1\right\}  \right\vert =\underbrace{\left\vert
+\left\{  0,1,...,n-1\right\}  \right\vert }_{=n}\cdot\underbrace{\left\vert
+\left\{  0,1,...,m-1\right\}  \right\vert }_{=m}=nm
+\]
+).
+
+Let $U=\left(  A\left[  v\right]  \right)  \left[  u\right]  $. Then, the
+$A$-module $U$ is $nm$-generated. Besides, $U$ is an $A$-submodule of $B$, and
+we have $1=u^{0}\in\left(  A\left[  v\right]  \right)  \left[  u\right]  =U$
+and%
+\begin{align*}
+uU  &  =u\left(  A\left[  v\right]  \right)  \left[  u\right]  \subseteq
+\left(  A\left[  v\right]  \right)  \left[  u\right]
+\ \ \ \ \ \ \ \ \ \ \left(  \text{since }\left(  A\left[  v\right]  \right)
+\left[  u\right]  \text{ is an }A\left[  v\right]  \text{-algebra and }%
+u\in\left(  A\left[  v\right]  \right)  \left[  u\right]  \right) \\
+&  =U.
+\end{align*}
+
+
+Altogether, we now know that the $A$-submodule $U$ of $B$ is $nm$-generated
+and satisfies $1\in U$ and $uU\subseteq U$.
+
+Thus, the element $u$ of $B$ satisfies the Assertion $\mathcal{C}$ of Theorem
+1 with $n$ replaced by $nm$. Hence, $u\in B$ satisfies the four equivalent
+assertions $\mathcal{A},$ $\mathcal{B},$ $\mathcal{C}$ and $\mathcal{D}$ of
+Theorem 1, all with $n$ replaced by $nm$. Thus, $u$ is $nm$-integral over $A$.
+This proves Theorem 4.
+
+\begin{quote}
+\textbf{Theorem 5.} Let $A$ and $B$ be two rings such that $A\subseteq B$.
+
+\textbf{(a)} Let $a\in A$. Then, $a$ is $1$-integral over $A$.
+
+\textbf{(b)} Let $x\in B$ and $y\in B$. Let $m\in\mathbb{N}$ and
+$n\in\mathbb{N}$. Assume that $x$ is $m$-integral over $A,$ and that $y$ is
+$n$-integral over $A$. Then, $x+y$ is $nm$-integral over $A$.
+
+\textbf{(c)} Let $x\in B$ and $y\in B$. Let $m\in\mathbb{N}$ and
+$n\in\mathbb{N}$. Assume that $x$ is $m$-integral over $A,$ and that $y$ is
+$n$-integral over $A$. Then, $xy$ is $nm$-integral over $A$.
+\end{quote}
+
+\textit{Proof of Theorem 5.} \textbf{(a)} There exists a monic polynomial
+$P\in A\left[  X\right]  $ with $\deg P=1$ and $P\left(  a\right)  =0$
+(namely, the polynomial $P\in A\left[  X\right]  $ defined by $P\left(
+X\right)  =X-a$). Thus, $a$ is $1$-integral over $A$. This proves Theorem 5
+\textbf{(a)}.
+
+\textbf{(b)} Since $y$ is $n$-integral over $A$, there exists a monic
+polynomial $P\in A\left[  X\right]  $ with $\deg P=n$ and $P\left(  y\right)
+=0$. Since $P\in A\left[  X\right]  $ is a monic polynomial with $\deg P=n$,
+there exists a polynomial $\widetilde{P}\in A\left[  X\right]  $ with
+$\deg\widetilde{P}<n$ and $P\left(  X\right)  =X^{n}+\widetilde{P}\left(
+X\right)  $.
+
+Now, define a polynomial $Q\in\left(  A\left[  x\right]  \right)  \left[
+X\right]  $ by $Q\left(  X\right)  =P\left(  X-x\right)  $. Then,%
+\begin{align*}
+\deg Q  &  =\deg P\ \ \ \ \ \ \ \ \ \ \left(  \text{since shifting the
+polynomial }P\text{ by the constant }x\text{ does not change its
+degree}\right) \\
+&  =n
+\end{align*}
+and $Q\left(  x+y\right)  =P\left(  \left(  x+y\right)  -x\right)  =P\left(
+y\right)  =0$.
+
+Define a polynomial $\widetilde{Q}\in\left(  A\left[  x\right]  \right)
+\left[  X\right]  $ by $\widetilde{Q}\left(  X\right)  =\left(  \left(
+X-x\right)  ^{n}-X^{n}\right)  +\widetilde{P}\left(  X-x\right)  $. Then,
+$\deg\widetilde{Q}<n$ (since%
+\begin{align*}
+&  \deg\left(  \widetilde{P}\left(  X-x\right)  \right)  =\deg\left(
+\widetilde{P}\left(  X\right)  \right) \\
+&  \ \ \ \ \ \ \ \ \ \ \left(  \text{since shifting the polynomial }%
+\widetilde{P}\text{ by the constant }x\text{ does not change its
+degree}\right) \\
+&  =\deg\widetilde{P}<n
+\end{align*}
+and%
+\begin{align*}
+\deg\left(  \left(  X-x\right)  ^{n}-X^{n}\right)   &  =\deg\left(  \left(
+\left(  X-x\right)  -X\right)  \cdot\sum\limits_{k=0}^{n-1}\left(  X-x\right)
+^{k}X^{n-1-k}\right) \\
+&  \leq\underbrace{\deg\left(  \left(  X-x\right)  -X\right)  }_{=\deg\left(
+-x\right)  =0}+\underbrace{\deg\left(  \sum\limits_{k=0}^{n-1}\left(
+X-x\right)  ^{k}X^{n-1-k}\right)  }_{\substack{\leq n-1,\text{ since}%
+\\\deg\left(  \left(  X-x\right)  ^{k}X^{n-1-k}\right)  \leq n-1\\\text{for
+any }k\in\left\{  0,1,...,n-1\right\}  }}\\
+&  \leq0+\left(  n-1\right)  =n-1<n
+\end{align*}
+yield%
+\begin{align*}
+\deg\widetilde{Q}  &  =\deg\left(  \widetilde{Q}\left(  X\right)  \right)
+=\deg\left(  \left(  \left(  X-x\right)  ^{n}-X^{n}\right)  +\widetilde
+{P}\left(  X-x\right)  \right) \\
+&  \leq\max\left\{  \underbrace{\deg\left(  \left(  X-x\right)  ^{n}%
+-X^{n}\right)  }_{<n},\underbrace{\deg\left(  \widetilde{P}\left(  X-x\right)
+\right)  }_{<n}\right\}  <\max\left\{  n,n\right\}  =n
+\end{align*}
+). Thus, the polynomial $Q$ is monic (since%
+\begin{align*}
+Q\left(  X\right)   &  =P\left(  X-x\right)  =\left(  X-x\right)
+^{n}+\widetilde{P}\left(  X-x\right)  \ \ \ \ \ \ \ \ \ \ \left(  \text{since
+}P\left(  X\right)  =X^{n}+\widetilde{P}\left(  X\right)  \right) \\
+&  =X^{n}+\underbrace{\left(  \left(  X-x\right)  ^{n}-X^{n}\right)
++\widetilde{P}\left(  X-x\right)  }_{=\widetilde{Q}\left(  X\right)  }%
+=X^{n}+\widetilde{Q}\left(  X\right)
+\end{align*}
+and $\deg\widetilde{Q}<n$).
+
+Hence, there exists a monic polynomial $Q\in\left(  A\left[  x\right]
+\right)  \left[  X\right]  $ with $\deg Q=n$ and $Q\left(  x+y\right)  =0$.
+Thus, $x+y$ is $n$-integral over $A\left[  x\right]  $. Thus, Theorem 4
+(applied to $v=x$ and $u=x+y$) yields that $x+y$ is $nm$-integral over $A$.
+This proves Theorem 5 \textbf{(b)}.
+
+\textbf{(c)} Since $y$ is $n$-integral over $A$, there exists a monic
+polynomial $P\in A\left[  X\right]  $ with $\deg P=n$ and $P\left(  y\right)
+=0$. Since $P\in A\left[  X\right]  $ is a monic polynomial with $\deg P=n$,
+there exist elements $a_{0},$ $a_{1},$ $...,$ $a_{n-1}$ of $A$ such that
+$P\left(  X\right)  =X^{n}+\sum\limits_{k=0}^{n-1}a_{k}X^{k}$. Thus, $P\left(
+y\right)  =y^{n}+\sum\limits_{k=0}^{n-1}a_{k}y^{k}$.
+
+Now, define a polynomial $Q\in\left(  A\left[  x\right]  \right)  \left[
+X\right]  $ by $Q\left(  X\right)  =X^{n}+\sum\limits_{k=0}^{n-1}x^{n-k}%
+a_{k}X^{k}$. Then,%
+\begin{align*}
+Q\left(  xy\right)   &  =\underbrace{\left(  xy\right)  ^{n}}_{=x^{n}y^{n}%
+}+\sum\limits_{k=0}^{n-1}x^{n-k}\underbrace{a_{k}\left(  xy\right)  ^{k}%
+}_{\substack{=a_{k}x^{k}y^{k}\\=x^{k}a_{k}y^{k}}}=x^{n}y^{n}+\sum
+\limits_{k=0}^{n-1}\underbrace{x^{n-k}x^{k}}_{=x^{n}}a_{k}y^{k}\\
+&  =x^{n}y^{n}+\sum\limits_{k=0}^{n-1}x^{n}a_{k}y^{k}=x^{n}\left(
+\underbrace{y^{n}+\sum\limits_{k=0}^{n-1}a_{k}y^{k}}_{=P\left(  y\right)
+=0}\right)  =0.
+\end{align*}
+Also, the polynomial $Q\in\left(  A\left[  x\right]  \right)  \left[
+X\right]  $ is monic and $\deg Q=n$ (since $Q\left(  X\right)  =X^{n}%
++\sum\limits_{k=0}^{n-1}x^{n-k}a_{k}X^{k}$). Thus, there exists a monic
+polynomial $Q\in\left(  A\left[  x\right]  \right)  \left[  X\right]  $ with
+$\deg Q=n$ and $Q\left(  xy\right)  =0$. Thus, $xy$ is $n$-integral over
+$A\left[  x\right]  $. Hence, Theorem 4 (applied to $v=x$ and $u=xy$) yields
+that $xy$ is $nm$-integral over $A$. This proves Theorem 5 \textbf{(c)}.
+
+\begin{quote}
+\textbf{Corollary 6.} Let $A$ and $B$ be two rings such that $A\subseteq B$.
+Let $n\in\mathbb{N}^{+}$ and $m\in\mathbb{N}$. Let $v\in B$. Let $b_{0},$
+$b_{1},$ $...,$ $b_{n-1}$ be $n$ elements of $A$, and let $u=\sum
+\limits_{i=0}^{n-1}b_{i}v^{i}$. Assume that $vu$ is $m$-integral over $A$.
+Then, $u$ is $nm$-integral over $A$.
+\end{quote}
+
+\textit{Proof of Corollary 6.} Define $n+1$ elements $a_{0},$ $a_{1},$ $...,$
+$a_{n}$ of $A\left[  vu\right]  $ by%
+\[
+a_{i}=\left\{
+\begin{array}
+[c]{c}%
+-vu,\text{ if }i=0;\\
+b_{i-1},\text{ if }i>0
+\end{array}
+\right.  \ \ \ \ \ \ \ \ \ \ \text{for every }i\in\left\{  0,1,...,n\right\}
+.
+\]
+Then, $a_{0}=-vu$. Let $k=1$. Then,%
+\begin{align*}
+\sum\limits_{i=0}^{n}a_{i}v^{i}  &  =\underbrace{a_{0}}_{=-vu}\underbrace
+{v^{0}}_{=1}+\sum\limits_{i=1}^{n}\underbrace{a_{i}}_{\substack{=b_{i-1}%
+,\\\text{since}\\i>0}}\underbrace{v^{i}}_{=v^{i-1}v}=-vu+\sum\limits_{i=1}%
+^{n}b_{i-1}v^{i-1}v=-vu+\underbrace{\sum\limits_{i=0}^{n-1}b_{i}v^{i}}_{=u}v\\
+&  \ \ \ \ \ \ \ \ \ \ \left(  \text{here, we substituted }i\text{ for
+}i-1\text{\ in the sum}\right) \\
+&  =-vu+uv=0.
+\end{align*}
+
+
+Now, $A\left[  vu\right]  $ and $B$ are two rings such that $A\left[
+vu\right]  \subseteq B$. The $n+1$ elements $a_{0},$ $a_{1},$ $...,$ $a_{n}$
+of $A\left[  vu\right]  $ satisfy $\sum\limits_{i=0}^{n}a_{i}v^{i}=0$. We have
+$k=1\in\left\{  0,1,...,n\right\}  .$
+
+Hence, Theorem 2 (applied to the ring $A\left[  vu\right]  $ in lieu of $A$)
+yields that $\sum\limits_{i=0}^{n-k}a_{i+k}v^{i}$ is $n$-integral over
+$A\left[  vu\right]  $. But%
+\[
+\sum\limits_{i=0}^{n-k}a_{i+k}v^{i}=\sum\limits_{i=0}^{n-1}\underbrace
+{a_{i+1}}_{\substack{=b_{\left(  i+1\right)  -1},\\\text{since }i+1>0}%
+}v^{i}=\sum\limits_{i=0}^{n-1}b_{\left(  i+1\right)  -1}v^{i}=\sum
+\limits_{i=0}^{n-1}b_{i}v^{i}=u.
+\]
+Hence, $u$ is $n$-integral over $A\left[  vu\right]  $. But $vu$ is
+$m$-integral over $A$. Thus, Theorem 4 (applied to $vu$ in lieu of $v$) yields
+that $u$ is $nm$-integral over $A$. This proves Corollary 6.
+
+\begin{center}
+\color{blue} \textbf{2. Integrality over ideal semifiltrations} \color{black}
+\end{center}
+
+\textbf{Definitions:}
+
+\textbf{Definition 6.} Let $A$ be a ring, and let $\left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}}$ be a sequence of ideals of $A$. Then, $\left(  I_{\rho
+}\right)  _{\rho\in\mathbb{N}}$ is called an \textit{ideal semifiltration} of
+$A$ if and only if it satisfies the two conditions%
+\begin{align*}
+I_{0}  &  =A;\\
+I_{a}I_{b}  &  \subseteq I_{a+b}\ \ \ \ \ \ \ \ \ \ \text{for every }%
+a\in\mathbb{N}\text{ and }b\in\mathbb{N}.
+\end{align*}
+
+
+\textbf{Definition 7.} Let $A$ and $B$ be two rings such that $A\subseteq B$.
+Then, we identify the polynomial ring $A\left[  Y\right]  $ with a subring of
+the polynomial ring $B\left[  Y\right]  $ (in fact, every element of $A\left[
+Y\right]  $ has the form $\sum\limits_{i=0}^{m}a_{i}Y^{i}$ for some
+$m\in\mathbb{N}$ and $\left(  a_{0},a_{1},...,a_{m}\right)  \in A^{m+1}$, and
+thus can be seen as an element of $B\left[  Y\right]  $ by regarding $a_{i}$
+as an element of $B$ for every $i\in\left\{  0,1,...,m\right\}  $).
+
+\textbf{Definition 8.} Let $A$ be a ring, and let $\left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}}$ be an ideal semifiltration of $A$. Consider the
+polynomial ring $A\left[  Y\right]  $. Let $A\left[  \left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}}\ast Y\right]  $ denote the $A$-submodule $\sum
+\limits_{i\in\mathbb{N}}I_{i}Y^{i}$ of the $A$-algebra $A\left[  Y\right]  $.
+Then,%
+\begin{align*}
+&  A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]
+=\sum\limits_{i\in\mathbb{N}}I_{i}Y^{i}\\
+&  =\left\{  \sum_{i\in\mathbb{N}}a_{i}Y^{i}\ \mid\ \left(  a_{i}\in
+I_{i}\text{ for all }i\in\mathbb{N}\right)  \text{, and }\left(  \text{only
+finitely many }i\in\mathbb{N}\text{ satisfy }a_{i}\neq0\right)  \right\} \\
+&  =\left\{  P\in A\left[  Y\right]  \ \mid\ \text{the }i\text{-th coefficient
+of the polynomial }P\text{ lies in }I_{i}\text{ for every }i\in\mathbb{N}%
+\right\}  .
+\end{align*}
+
+
+Now, $1\in A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast
+Y\right]  $ (because $1=\underbrace{1}_{\in A=I_{0}}\cdot Y^{0}\in I_{0}%
+Y^{0}\subseteq\sum\limits_{i\in\mathbb{N}}I_{i}Y^{i}=A\left[  \left(  I_{\rho
+}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $). Also, the $A$-submodule
+$A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $ of
+$A\left[  Y\right]  $ is closed under multiplication (since%
+\begin{align*}
+A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  \cdot
+A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]   &
+=\sum\limits_{i\in\mathbb{N}}I_{i}Y^{i}\cdot\sum\limits_{i\in\mathbb{N}}%
+I_{i}Y^{i}=\sum\limits_{i\in\mathbb{N}}I_{i}Y^{i}\cdot\sum\limits_{j\in
+\mathbb{N}}I_{j}Y^{j}\\
+&  \ \ \ \ \ \ \ \ \ \ \left(  \text{here we renamed }i\text{ as }j\text{ in
+the second sum}\right) \\
+&  =\sum\limits_{i\in\mathbb{N}}\sum\limits_{j\in\mathbb{N}}I_{i}Y^{i}%
+I_{j}Y^{j}=\sum\limits_{i\in\mathbb{N}}\sum\limits_{j\in\mathbb{N}}%
+\underbrace{I_{i}I_{j}}_{\substack{\subseteq I_{i+j},\\\text{since }\left(
+I_{\rho}\right)  _{\rho\in\mathbb{N}}\\\text{is an ideal}%
+\\\text{semifiltration}}}\underbrace{Y^{i}Y^{j}}_{=Y^{i+j}}\\
+&  \subseteq\sum\limits_{i\in\mathbb{N}}\sum\limits_{j\in\mathbb{N}}%
+I_{i+j}Y^{i+j}\subseteq\sum_{k\in\mathbb{N}}I_{k}Y^{k}=\sum\limits_{i\in
+\mathbb{N}}I_{i}Y^{i}\\
+&  \ \ \ \ \ \ \ \ \ \ \left(  \text{here we renamed }k\text{ as }i\text{ in
+the sum}\right) \\
+&  =A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]
+\end{align*}
+). Hence, $A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast
+Y\right]  $ is an $A$-subalgebra of the $A$-algebra $A\left[  Y\right]  $.
+This $A$-subalgebra $A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}%
+}\ast Y\right]  $ is called the \textit{Rees algebra} of the ideal
+semifiltration $\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}$.
+
+Clearly, $A\subseteq A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}%
+}\ast Y\right]  $, since $A\left[  \left(  I_{\rho}\right)  _{\rho
+\in\mathbb{N}}\ast Y\right]  =\sum\limits_{i\in\mathbb{N}}I_{i}Y^{i}%
+\supseteq\underbrace{I_{0}}_{=A}\underbrace{Y^{0}}_{=1}=A\cdot1=A$.
+
+\textbf{Definition 9.} Let $A$ and $B$ be two rings such that $A\subseteq B$.
+Let $\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}$ be an ideal semifiltration
+of $A$. Let $n\in\mathbb{N}$. Let $u\in B$.
+
+We say that the element $u$ of $B$ is $n$\textit{-integral over }$\left(
+A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $ if there exists some
+$\left(  a_{0},a_{1},...,a_{n}\right)  \in A^{n+1}$ such that%
+\[
+\sum\limits_{k=0}^{n}a_{k}u^{k}=0,\ \ \ \ \ \ \ \ \ \ a_{n}%
+=1,\ \ \ \ \ \ \ \ \ \ \text{and}\ \ \ \ \ \ \ \ \ \ a_{i}\in I_{n-i}\text{
+for every }i\in\left\{  0,1,...,n\right\}  .
+\]
+
+
+We start with a theorem which reduces the question of $n$-integrality over
+$\left(  A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $ to that of
+$n$-integrality over a ring\footnote{Theorem 7 is inspired by Proposition
+5.2.1 in [2].}:
+
+\begin{quote}
+\textbf{Theorem 7.} Let $A$ and $B$ be two rings such that $A\subseteq B$. Let
+$\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}$ be an ideal semifiltration of
+$A$. Let $n\in\mathbb{N}$. Let $u\in B$.
+
+Consider the polynomial ring $A\left[  Y\right]  $ and its $A$-subalgebra
+$A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $
+defined in Definition 8.
+
+Then, the element $u$ of $B$ is $n$-integral over $\left(  A,\left(  I_{\rho
+}\right)  _{\rho\in\mathbb{N}}\right)  $ if and only if the element $uY$ of
+the polynomial ring $B\left[  Y\right]  $ is $n$-integral over the ring
+$A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  .$
+(Here, $A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]
+\subseteq B\left[  Y\right]  $ because $A\left[  \left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}}\ast Y\right]  \subseteq A\left[  Y\right]  $ and we
+consider $A\left[  Y\right]  $ as a subring of $B\left[  Y\right]  $ as
+explained in Definition 7).
+\end{quote}
+
+\textit{Proof of Theorem 7.} In order to verify Theorem 7, we have to prove
+the following two lemmata:
+
+\textit{Lemma }$\mathcal{E}$\textit{:} If $u$ is $n$-integral over $\left(
+A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $, then $uY$ is
+$n$-integral over $A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast
+Y\right]  $.
+
+\textit{Lemma} $\mathcal{F}$\textit{:} If $uY$ is $n$-integral over $A\left[
+\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $, then $u$ is
+$n$-integral over $\left(  A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}%
+}\right)  $.
+
+\textit{Proof of Lemma }$\mathcal{E}$\textit{:} Assume that $u$ is
+$n$-integral over $\left(  A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}%
+}\right)  $. Then, by Definition 9, there exists some $\left(  a_{0}%
+,a_{1},...,a_{n}\right)  \in A^{n+1}$ such that%
+\[
+\sum\limits_{k=0}^{n}a_{k}u^{k}=0,\ \ \ \ \ \ \ \ \ \ a_{n}%
+=1,\ \ \ \ \ \ \ \ \ \ \text{and}\ \ \ \ \ \ \ \ \ \ a_{i}\in I_{n-i}\text{
+for every }i\in\left\{  0,1,...,n\right\}  .
+\]
+
+
+Note that $a_{k}Y^{n-k}\in A\left[  \left(  I_{\rho}\right)  _{\rho
+\in\mathbb{N}}\ast Y\right]  $ for every $k\in\left\{  0,1,...,n\right\}  $
+(because $\underbrace{a_{k}}_{\in I_{n-k}}Y^{n-k}\in I_{n-k}Y^{n-k}%
+\subseteq\sum\limits_{i\in\mathbb{N}}I_{i}Y^{i}=A\left[  \left(  I_{\rho
+}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $). Thus, we can define a
+polynomial $P\in\left(  A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}%
+}\ast Y\right]  \right)  \left[  X\right]  $ by $P\left(  X\right)
+=\sum\limits_{k=0}^{n}a_{k}Y^{n-k}X^{k}$. This polynomial $P$ satisfies $\deg
+P\leq n$, and its coefficient before $X^{n}$ is $\underbrace{a_{n}}%
+_{=1}\underbrace{Y^{n-n}}_{=Y^{0}=1}=1$. Hence, this polynomial $P$ is monic
+and satisfies $\deg P=n$. Also, $P\left(  X\right)  =\sum\limits_{k=0}%
+^{n}a_{k}Y^{n-k}X^{k}$ yields%
+\[
+P\left(  uY\right)  =\sum\limits_{k=0}^{n}a_{k}Y^{n-k}\left(  uY\right)
+^{k}=\sum\limits_{k=0}^{n}a_{k}Y^{n-k}u^{k}Y^{k}=\sum\limits_{k=0}^{n}%
+a_{k}u^{k}\underbrace{Y^{n-k}Y^{k}}_{=Y^{n}}=Y^{n}\cdot\underbrace
+{\sum\limits_{k=0}^{n}a_{k}u^{k}}_{=0}=0.
+\]
+Thus, there exists a monic polynomial $P\in\left(  A\left[  \left(  I_{\rho
+}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  \right)  \left[  X\right]  $ with
+$\deg P=n$ and $P\left(  uY\right)  =0$. Hence, $uY$ is $n$-integral over
+$A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $. This
+proves Lemma $\mathcal{E}$.
+
+\textit{Proof of Lemma }$\mathcal{F}$\textit{:} Assume that $uY$ is
+$n$-integral over $A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast
+Y\right]  $. Then, there exists a monic polynomial $P\in\left(  A\left[
+\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  \right)  \left[
+X\right]  $ with $\deg P=n$ and $P\left(  uY\right)  =0$. Since $P\in\left(
+A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  \right)
+\left[  X\right]  $ satisfies $\deg P=n$, there exists $\left(  p_{0}%
+,p_{1},...,p_{n}\right)  \in\left(  A\left[  \left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}}\ast Y\right]  \right)  ^{n+1}$ such that $P\left(
+X\right)  =\sum\limits_{k=0}^{n}p_{k}X^{k}$. Besides, $p_{n}=1$, since $P$ is
+monic and $\deg P=n$.
+
+For every $k\in\left\{  0,1,...,n\right\}  $, we have $p_{k}\in A\left[
+\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  =\sum
+\limits_{i\in\mathbb{N}}I_{i}Y^{i}$, and thus, there exists a sequence
+$\left(  p_{k,i}\right)  _{i\in\mathbb{N}}\in A^{\mathbb{N}}$ such that
+$p_{k}=\sum\limits_{i\in\mathbb{N}}p_{k,i}Y^{i}$, such that $p_{k,i}\in I_{i}$
+for every $i\in\mathbb{N}$, and such that only finitely many $i\in\mathbb{N}$
+satisfy $p_{k,i}\neq0$. Thus, $P\left(  X\right)  =\sum\limits_{k=0}^{n}%
+p_{k}X^{k}$ becomes $P\left(  X\right)  =\sum\limits_{k=0}^{n}\sum
+\limits_{i\in\mathbb{N}}p_{k,i}Y^{i}X^{k}$ (since $p_{k}=\sum\limits_{i\in
+\mathbb{N}}p_{k,i}Y^{i}$). Hence,
+\begin{align*}
+P\left(  uY\right)   &  =\sum\limits_{k=0}^{n}\sum\limits_{i\in\mathbb{N}%
+}p_{k,i}Y^{i}\underbrace{\left(  uY\right)  ^{k}}_{\substack{=u^{k}%
+Y^{k}\\=Y^{k}u^{k}}}=\sum\limits_{k=0}^{n}\sum\limits_{i\in\mathbb{N}}%
+p_{k,i}\underbrace{Y^{i}Y^{k}}_{=Y^{i+k}}u^{k}\\
+&  =\sum\limits_{k=0}^{n}\sum\limits_{i\in\mathbb{N}}p_{k,i}Y^{i+k}u^{k}%
+=\sum\limits_{k\in\left\{  0,1,...,n\right\}  }\sum\limits_{i\in\mathbb{N}%
+}p_{k,i}Y^{i+k}u^{k}\\
+&  =\sum\limits_{\left(  k,i\right)  \in\left\{  0,1,...,n\right\}
+\times\mathbb{N}}p_{k,i}Y^{i+k}u^{k}=\sum_{\ell\in\mathbb{N}}\sum
+\limits_{\substack{\left(  k,i\right)  \in\left\{  0,1,...,n\right\}
+\times\mathbb{N};\\i+k=\ell}}p_{k,i}\underbrace{Y^{i+k}}_{=Y^{\ell}}u^{k}\\
+&  =\sum_{\ell\in\mathbb{N}}\sum\limits_{\substack{\left(  k,i\right)
+\in\left\{  0,1,...,n\right\}  \times\mathbb{N};\\i+k=\ell}}p_{k,i}Y^{\ell
+}u^{k}=\sum_{\ell\in\mathbb{N}}\sum\limits_{\substack{\left(  k,i\right)
+\in\left\{  0,1,...,n\right\}  \times\mathbb{N};\\i+k=\ell}}p_{k,i}%
+u^{k}Y^{\ell}.
+\end{align*}
+Hence, $P\left(  uY\right)  =0$ becomes $\sum\limits_{\ell\in\mathbb{N}}%
+\sum\limits_{\substack{\left(  k,i\right)  \in\left\{  0,1,...,n\right\}
+\times\mathbb{N};\\i+k=\ell}}p_{k,i}u^{k}Y^{\ell}=0$. In other words, the
+polynomial $\sum\limits_{\ell\in\mathbb{N}}\underbrace{\sum
+\limits_{\substack{\left(  k,i\right)  \in\left\{  0,1,...,n\right\}
+\times\mathbb{N};\\i+k=\ell}}p_{k,i}u^{k}}_{\in B}Y^{\ell}\in B\left[
+Y\right]  $ equals $0$. Hence, its coefficient before $Y^{n}$ equals $0$ as
+well. But its coefficient before $Y^{n}$ is $\sum\limits_{\substack{\left(
+k,i\right)  \in\left\{  0,1,...,n\right\}  \times\mathbb{N};\\i+k=n}%
+}p_{k,i}u^{k}$. Hence, $\sum\limits_{\substack{\left(  k,i\right)  \in\left\{
+0,1,...,n\right\}  \times\mathbb{N};\\i+k=n}}p_{k,i}u^{k}$ equals $0$.
+
+Thus,%
+\begin{align*}
+0  &  =\sum\limits_{\substack{\left(  k,i\right)  \in\left\{
+0,1,...,n\right\}  \times\mathbb{N};\\i+k=n}}p_{k,i}u^{k}=\sum\limits_{k\in
+\left\{  0,1,...,n\right\}  }\sum_{\substack{i\in\mathbb{N};\\i+k=n}%
+}p_{k,i}u^{k}=\sum\limits_{k\in\left\{  0,1,...,n\right\}  }p_{k,n-k}u^{k}\\
+&  \ \ \ \ \ \ \ \ \ \ \left(
+\begin{array}
+[c]{c}%
+\text{since }\left\{  i\in\mathbb{N}\text{\ }\mid\ i+k=n\right\}  =\left\{
+i\in\mathbb{N}\ \mid\ i=n-k\right\}  =\left\{  n-k\right\}  \text{ (because
+}n-k\in\mathbb{N}\text{,}\\
+\text{since }k\in\left\{  0,1,...,n\right\}  \text{) yields }\sum
+\limits_{\substack{i\in\mathbb{N};\\i+k=n}}p_{k,i}u^{k}=\sum\limits_{i\in
+\left\{  n-k\right\}  }p_{k,i}u^{k}=p_{k,n-k}u^{k}%
+\end{array}
+\right)  .
+\end{align*}
+
+
+Note that%
+\begin{align*}
+\sum\limits_{i\in\mathbb{N}}p_{n,i}Y^{i}  &  =p_{n}\ \ \ \ \ \ \ \ \ \ \left(
+\text{since }\sum\limits_{i\in\mathbb{N}}p_{k,i}Y^{i}=p_{k}\text{ for every
+}k\in\left\{  0,1,...,n\right\}  \right) \\
+&  =1=1\cdot Y^{0}%
+\end{align*}
+in $A\left[  Y\right]  ,$ and thus the coefficient of the polynomial
+$\sum\limits_{i\in\mathbb{N}}p_{n,i}Y^{i}\in A\left[  Y\right]  $ before
+$Y^{0}$ is $1;$ but the coefficient of the polynomial $\sum\limits_{i\in
+\mathbb{N}}p_{n,i}Y^{i}\in A\left[  Y\right]  $ before $Y^{0}$ is $p_{n,0};$
+hence, $p_{n,0}=1$.
+
+Define an $\left(  n+1\right)  $-tuple $\left(  a_{0},a_{1},...,a_{n}\right)
+\in A^{n+1}$ by $a_{k}=p_{k,n-k}$ for every $k\in\left\{  0,1,...,n\right\}
+.$ Then, $a_{n}=p_{n,n-n}=p_{n,0}=1$. Besides,%
+\[
+\sum\limits_{k=0}^{n}a_{k}u^{k}=\sum\limits_{k=0}^{n}p_{k,n-k}u^{k}%
+=\sum\limits_{k\in\left\{  0,1,...,n\right\}  }p_{k,n-k}u^{k}=0.
+\]
+Finally, $a_{k}=p_{k,n-k}\in I_{n-k}$ (since $p_{k,i}\in I_{i}$ for every
+$i\in\mathbb{N}$) for every $k\in\left\{  0,1,...,n\right\}  $. In other
+words, $a_{i}\in I_{n-i}$ for every $i\in\left\{  0,1,...,n\right\}  $.
+
+Altogether, we now know that%
+\[
+\sum\limits_{k=0}^{n}a_{k}u^{k}=0,\ \ \ \ \ \ \ \ \ \ a_{n}%
+=1,\ \ \ \ \ \ \ \ \ \ \text{and}\ \ \ \ \ \ \ \ \ \ a_{i}\in I_{n-i}\text{
+for every }i\in\left\{  0,1,...,n\right\}  .
+\]
+Thus, by Definition 9, the element $u$ is $n$-integral over $\left(  A,\left(
+I_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $. This proves Lemma
+$\mathcal{F}$.
+
+Combining Lemmata $\mathcal{E}$ and $\mathcal{F}$, we obtain that $u$ is
+$n$-integral over $\left(  A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}%
+}\right)  $ if and only if $uY$ is $n$-integral over $A\left[  \left(
+I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $. This proves Theorem 7.
+
+The next theorem is an analogue of Theorem 5 for integrality over ideal semifiltrations:
+
+\begin{quote}
+\textbf{Theorem 8.} Let $A$ and $B$ be two rings such that $A\subseteq B$. Let
+$\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}$ be an ideal semifiltration of
+$A$.
+
+\textbf{(a)} Let $u\in A$. Then, $u$ is $1$-integral over $\left(  A,\left(
+I_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $ if and only if $u\in I_{1}$.
+
+\textbf{(b)} Let $x\in B$ and $y\in B$. Let $m\in\mathbb{N}$ and
+$n\in\mathbb{N}$. Assume that $x$ is $m$-integral over $\left(  A,\left(
+I_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  ,$ and that $y$ is $n$-integral
+over $\left(  A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $. Then,
+$x+y$ is $nm$-integral over $\left(  A,\left(  I_{\rho}\right)  _{\rho
+\in\mathbb{N}}\right)  $.
+
+\textbf{(c)} Let $x\in B$ and $y\in B$. Let $m\in\mathbb{N}$ and
+$n\in\mathbb{N}$. Assume that $x$ is $m$-integral over $\left(  A,\left(
+I_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  ,$ and that $y$ is $n$-integral
+over $A$. Then, $xy$ is $nm$-integral over $\left(  A,\left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}}\right)  $.
+\end{quote}
+
+\textit{Proof of Theorem 8.} \textbf{(a)} In order to verify Theorem 8
+\textbf{(a)}, we have to prove the following two lemmata:
+
+\textit{Lemma }$\mathcal{G}$\textit{:} If $u$ is $1$-integral over $\left(
+A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $, then $u\in I_{1}$.
+
+\textit{Lemma} $\mathcal{H}$\textit{:} If $u\in I_{1}$, then $u$ is
+$1$-integral over $\left(  A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}%
+}\right)  $.
+
+\textit{Proof of Lemma }$\mathcal{G}$\textit{:} Assume that $u$ is
+$1$-integral over $\left(  A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}%
+}\right)  $. Then, by Definition 9 (applied to $n=1$), there exists some
+$\left(  a_{0},a_{1}\right)  \in A^{2}$ such that%
+\[
+\sum\limits_{k=0}^{1}a_{k}u^{k}=0,\ \ \ \ \ \ \ \ \ \ a_{1}%
+=1,\ \ \ \ \ \ \ \ \ \ \text{and}\ \ \ \ \ \ \ \ \ \ a_{i}\in I_{1-i}\text{
+for every }i\in\left\{  0,1\right\}  .
+\]
+Thus, $a_{0}\in I_{1-0}$ (since $a_{i}\in I_{1-i}$ for every $i\in\left\{
+0,1\right\}  $). Also,%
+\[
+0=\sum\limits_{k=0}^{1}a_{k}u^{k}=a_{0}\underbrace{u^{0}}_{=1}+\underbrace
+{a_{1}}_{=1}\underbrace{u^{1}}_{=u}=a_{0}+u,
+\]
+so that $u=-\underbrace{a_{0}}_{\in I_{1-0}=I_{1}}\in I_{1}$ (since $I_{1}$ is
+an ideal). This proves Lemma $\mathcal{G}$.
+
+\textit{Proof of Lemma }$\mathcal{H}$\textit{:} Assume that $u\in I_{1}$.
+Then, $-u\in I_{1}$ (since $I_{1}$ is an ideal). Set $a_{0}=-u$ and $a_{1}=1$.
+Then, $\sum\limits_{k=0}^{1}a_{k}u^{k}=\underbrace{a_{0}}_{=-u}\underbrace
+{u^{0}}_{=1}+\underbrace{a_{1}}_{=1}\underbrace{u^{1}}_{=u}=-u+u=0$. Also,
+$a_{i}\in I_{1-i}$ for every $i\in\left\{  0,1\right\}  $ (since $a_{0}=-u\in
+I_{1}=I_{1-0}$ and $a_{1}=1\in A=I_{0}=I_{1-1}$). Altogether, we now know that
+$\left(  a_{0},a_{1}\right)  \in A^{2}$ and%
+\[
+\sum\limits_{k=0}^{1}a_{k}u^{k}=0,\ \ \ \ \ \ \ \ \ \ a_{1}%
+=1,\ \ \ \ \ \ \ \ \ \ \text{and}\ \ \ \ \ \ \ \ \ \ a_{i}\in I_{1-i}\text{
+for every }i\in\left\{  0,1\right\}  .
+\]
+Thus, by Definition 9 (applied to $n=1$), the element $u$ is $1$-integral over
+$\left(  A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $. This
+proves Lemma $\mathcal{H}$.
+
+Combining Lemmata $\mathcal{G}$ and $\mathcal{H}$, we obtain that $u$ is
+$1$-integral over $\left(  A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}%
+}\right)  $ if and only if $u\in I_{1}$. This proves Theorem 8 \textbf{(a)}.
+
+\textbf{(b)} Consider the polynomial ring $A\left[  Y\right]  $ and its
+$A$-subalgebra $A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast
+Y\right]  $. Theorem 7 (applied to $x$ and $m$ instead of $u$ and $n$) yields
+that $xY$ is $m$-integral over $A\left[  \left(  I_{\rho}\right)  _{\rho
+\in\mathbb{N}}\ast Y\right]  $ (since $x$ is $m$-integral over $\left(
+A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $). Also, Theorem 7
+(applied to $y$ instead of $u$) yields that $yY$ is $n$-integral over
+$A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $ (since
+$y$ is $n$-integral over $\left(  A,\left(  I_{\rho}\right)  _{\rho
+\in\mathbb{N}}\right)  $). Hence, Theorem 5 \textbf{(b)} (applied to $A\left[
+\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  ,$ $B\left[
+Y\right]  ,$ $xY$ and $yY$ instead of $A,$ $B,$ $x$ and $y$, respectively)
+yields that $xY+yY$ is $nm$-integral over $A\left[  \left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}}\ast Y\right]  $. Since $xY+yY=\left(  x+y\right)  Y$,
+this means that $\left(  x+y\right)  Y$ is $nm$-integral over $A\left[
+\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $. Hence, Theorem
+7 (applied to $x+y$ and $nm$ instead of $u$ and $n$) yields that $x+y$ is
+$nm$-integral over $\left(  A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}%
+}\right)  $. This proves Theorem 8 \textbf{(b)}.
+
+\textbf{(c)} First, a trivial observation:
+
+\textit{Lemma }$\mathcal{I}$\textit{:} Let $A$, $A^{\prime}$ and $B^{\prime}$
+be three rings such that $A\subseteq A^{\prime}\subseteq B^{\prime}$. Let
+$v\in B^{\prime}$. Let $n\in\mathbb{N}$. If $v$ is $n$-integral over $A$, then
+$v$ is $n$-integral over $A^{\prime}$.
+
+\textit{Proof of Lemma }$\mathcal{I}$\textit{:} Assume that $v$ is
+$n$-integral over $A$. Then, there exists a monic polynomial $P\in A\left[
+X\right]  $ with $\deg P=n$ and $P\left(  v\right)  =0$. Since $A\subseteq
+A^{\prime}$, we can identify the polynomial ring $A\left[  X\right]  $ with a
+subring of the polynomial ring $A^{\prime}\left[  X\right]  $ (as explained in
+Definition 7). Thus, $P\in A\left[  X\right]  $ yields $P\in A^{\prime}\left[
+X\right]  $. Hence, there exists a monic polynomial $P\in A^{\prime}\left[
+X\right]  $ with $\deg P=n$ and $P\left(  v\right)  =0$. Thus, $v$ is
+$n$-integral over $A^{\prime}$. This proves Lemma $\mathcal{I}$.
+
+Now let us prove Theorem 8 \textbf{(c)}.
+
+Consider the polynomial ring $A\left[  Y\right]  $ and its $A$-subalgebra
+$A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $.
+Theorem 7 (applied to $x$ and $m$ instead of $u$ and $n$) yields that $xY$ is
+$m$-integral over $A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast
+Y\right]  $ (since $x$ is $m$-integral over $\left(  A,\left(  I_{\rho
+}\right)  _{\rho\in\mathbb{N}}\right)  $). On the other hand, Lemma
+$\mathcal{I}$ (applied to $A^{\prime}=A\left[  \left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}}\ast Y\right]  $, $B^{\prime}=B\left[  Y\right]  $ and
+$v=y$) yields that $y$ is $n$-integral over $A\left[  \left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}}\ast Y\right]  $ (since $y$ is $n$-integral over $A$, and
+$A\subseteq A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast
+Y\right]  \subseteq B\left[  Y\right]  $). Hence, Theorem 5 \textbf{(c)}
+(applied to $A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast
+Y\right]  ,$ $B\left[  Y\right]  $ and $xY$ instead of $A,$ $B$ and $x$,
+respectively) yields that $xY\cdot y$ is $nm$-integral over $A\left[  \left(
+I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $. Since $xY\cdot y=xyY$,
+this means that $xyY$ is $nm$-integral over $A\left[  \left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}}\ast Y\right]  $. Hence, Theorem 7 (applied to $xy$ and
+$nm$ instead of $u$ and $n$) yields that $xy$ is $nm$-integral over $\left(
+A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $. This proves Theorem
+8 \textbf{(c)}.
+
+The next theorem imitates Theorem 4 for integrality over ideal semifiltrations:
+
+\begin{quote}
+\textbf{Theorem 9.} Let $A$ and $B$ be two rings such that $A\subseteq B$. Let
+$\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}$ be an ideal semifiltration of
+$A$.
+
+Let $v\in B$ and $u\in B$. Let $m\in\mathbb{N}$ and $n\in\mathbb{N}$.
+
+\textbf{(a)} Then, $\left(  I_{\rho}A\left[  v\right]  \right)  _{\rho
+\in\mathbb{N}}$ is an ideal semifiltration of $A\left[  v\right]  $.
+
+\textbf{(b)} Assume that $v$ is $m$-integral over $A,$ and that $u$ is
+$n$-integral over $\left(  A\left[  v\right]  ,\left(  I_{\rho}A\left[
+v\right]  \right)  _{\rho\in\mathbb{N}}\right)  $. Then, $u$ is $nm$-integral
+over $\left(  A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $.
+\end{quote}
+
+\textit{Proof of Theorem 9.} \textbf{(a)} More generally:
+
+\textit{Lemma }$\mathcal{J}$\textit{:} Let $A$ and $A^{\prime}$ be two rings
+such that $A\subseteq A^{\prime}$. Let $\left(  I_{\rho}\right)  _{\rho
+\in\mathbb{N}}$ be an ideal semifiltration of $A$. Then, $\left(  I_{\rho
+}A^{\prime}\right)  _{\rho\in\mathbb{N}}$ is an ideal semifiltration of
+$A^{\prime}$.
+
+\textit{Proof of Lemma }$\mathcal{J}$\textit{:} Since $\left(  I_{\rho
+}\right)  _{\rho\in\mathbb{N}}$ is an ideal semifiltration of $A$, the set
+$I_{\rho}$ is an ideal of $A$ for every $\rho\in\mathbb{N}$, and we have%
+\begin{align*}
+I_{0}  &  =A;\\
+I_{a}I_{b}  &  \subseteq I_{a+b}\ \ \ \ \ \ \ \ \ \ \text{for every }%
+a\in\mathbb{N}\text{ and }b\in\mathbb{N}.
+\end{align*}
+
+
+Now, the set $I_{\rho}A^{\prime}$ is an ideal of $A^{\prime}$ for every
+$\rho\in\mathbb{N}$ (since $I_{\rho}$ is an ideal of $A$), and we have%
+\begin{align*}
+I_{0}A^{\prime}  &  =AA^{\prime}=A^{\prime};\\
+I_{a}A^{\prime}\cdot I_{b}A^{\prime}  &  =I_{a}I_{b}A^{\prime}\subseteq
+I_{a+b}A^{\prime}\ \left(  \text{since }I_{a}I_{b}\subseteq I_{a+b}\right)
+\ \ \ \ \ \ \ \ \ \ \text{for every }a\in\mathbb{N}\text{ and }b\in\mathbb{N}.
+\end{align*}
+Thus, $\left(  I_{\rho}A^{\prime}\right)  _{\rho\in\mathbb{N}}$ is an ideal
+semifiltration of $A^{\prime}$. This proves Lemma $\mathcal{J}$.
+
+Now let us prove Theorem 9 \textbf{(a)}. In fact, Lemma $\mathcal{J}$ (applied
+to $A^{\prime}=A\left[  v\right]  $) yields that $\left(  I_{\rho}A\left[
+v\right]  \right)  _{\rho\in\mathbb{N}}$ is an ideal semifiltration of
+$A\left[  v\right]  $. This proves Theorem 9 \textbf{(a)}.
+
+\textbf{(b)} First, we will show a simple fact:
+
+\textit{Lemma }$\mathcal{K}$\textit{:} Let $A$, $A^{\prime}$ and $B^{\prime}$
+be three rings such that $A\subseteq A^{\prime}\subseteq B^{\prime}$. Let
+$v\in B^{\prime}$. Then, $A^{\prime}\cdot A\left[  v\right]  =A^{\prime
+}\left[  v\right]  $.
+
+\textit{Proof of Lemma }$\mathcal{K}$\textit{:} We have $\underbrace
+{A^{\prime}}_{\subseteq A^{\prime}\left[  v\right]  }\cdot\underbrace{A\left[
+v\right]  }_{\substack{\subseteq A^{\prime}\left[  v\right]  ,\\\text{since
+}A\subseteq A^{\prime}}}\subseteq A^{\prime}\left[  v\right]  \cdot A^{\prime
+}\left[  v\right]  =A^{\prime}\left[  v\right]  $ (since $A^{\prime}\left[
+v\right]  $ is a ring). On the other hand, let $x$ be an element of
+$A^{\prime}\left[  v\right]  $. Then, there exists some $n\in\mathbb{N}$ and
+some $\left(  a_{0},a_{1},...,a_{n}\right)  \in\left(  A^{\prime}\right)
+^{n+1}$ such that $x=\sum\limits_{k=0}^{n}a_{k}v^{k}$. Thus,%
+\[
+x=\sum\limits_{k=0}^{n}\underbrace{a_{k}}_{\in A^{\prime}}\underbrace{v^{k}%
+}_{\in A\left[  v\right]  }\in\sum\limits_{k=0}^{n}A^{\prime}\cdot A\left[
+v\right]  \subseteq A^{\prime}\cdot A\left[  v\right]
+\ \ \ \ \ \ \ \ \ \ \left(  \text{since }A^{\prime}\cdot A\left[  v\right]
+\text{ is an additive group}\right)  .
+\]
+Thus, we have proved that $x\in A^{\prime}\cdot A\left[  v\right]  $ for every
+$x\in A^{\prime}\left[  v\right]  $. Therefore, $A^{\prime}\left[  v\right]
+\subseteq A^{\prime}\cdot A\left[  v\right]  $. Combined with $A^{\prime}\cdot
+A\left[  v\right]  \subseteq A^{\prime}\left[  v\right]  $, this yields
+$A^{\prime}\cdot A\left[  v\right]  =A^{\prime}\left[  v\right]  $. Hence, we
+have established Lemma $\mathcal{K}$.
+
+Now let us prove Theorem 9 \textbf{(b)}. In fact, consider the polynomial ring
+$A\left[  Y\right]  $ and its $A$-subalgebra $A\left[  \left(  I_{\rho
+}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $. We have $A\left[  \left(
+I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  \subseteq A\left[
+Y\right]  $, and (as explained in Definition 7) we can identify the polynomial
+ring $A\left[  Y\right]  $ with a subring of $\left(  A\left[  v\right]
+\right)  \left[  Y\right]  $ (since $A\subseteq A\left[  v\right]  $). Hence,
+$A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]
+\subseteq\left(  A\left[  v\right]  \right)  \left[  Y\right]  $. On the other
+hand, $\left(  A\left[  v\right]  \right)  \left[  \left(  I_{\rho}A\left[
+v\right]  \right)  _{\rho\in\mathbb{N}}\ast Y\right]  \subseteq\left(
+A\left[  v\right]  \right)  \left[  Y\right]  $.
+
+Now, we will show that $\left(  A\left[  v\right]  \right)  \left[  \left(
+I_{\rho}A\left[  v\right]  \right)  _{\rho\in\mathbb{N}}\ast Y\right]
+=\left(  A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]
+\right)  \left[  v\right]  $.
+
+In fact, Definition 8 yields%
+\begin{align*}
+\left(  A\left[  v\right]  \right)  \left[  \left(  I_{\rho}A\left[  v\right]
+\right)  _{\rho\in\mathbb{N}}\ast Y\right]   &  =\sum\limits_{i\in\mathbb{N}%
+}I_{i}A\left[  v\right]  \cdot Y^{i}=\sum\limits_{i\in\mathbb{N}}I_{i}%
+Y^{i}\cdot A\left[  v\right]  =A\left[  \left(  I_{\rho}\right)  _{\rho
+\in\mathbb{N}}\ast Y\right]  \cdot A\left[  v\right] \\
+&  \ \ \ \ \ \ \ \ \ \ \left(  \text{since }\sum\limits_{i\in\mathbb{N}}%
+I_{i}Y^{i}=A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast
+Y\right]  \right) \\
+&  =\left(  A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast
+Y\right]  \right)  \left[  v\right]
+\end{align*}
+(by Lemma $\mathcal{K}$ (applied to $A^{\prime}=A\left[  \left(  I_{\rho
+}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $ and $B^{\prime}=\left(
+A\left[  v\right]  \right)  \left[  Y\right]  $)).
+
+Note that (as explained in Definition 7) we can identify the polynomial ring
+$\left(  A\left[  v\right]  \right)  \left[  Y\right]  $ with a subring of
+$B\left[  Y\right]  $ (since $A\left[  v\right]  \subseteq B$). Thus,
+$A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]
+\subseteq\left(  A\left[  v\right]  \right)  \left[  Y\right]  $ yields
+$A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]
+\subseteq B\left[  Y\right]  $.
+
+Besides, Lemma $\mathcal{I}$ (applied to $A\left[  \left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}}\ast Y\right]  $, $B\left[  Y\right]  $ and $m$ instead of
+$A^{\prime}$, $B^{\prime}$ and $n$) yields that $v$ is $m$-integral over
+$A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $ (since
+$v$ is $m$-integral over $A$, and $A\subseteq A\left[  \left(  I_{\rho
+}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  \subseteq B\left[  Y\right]  $).
+
+Now, Theorem 7 (applied to $A\left[  v\right]  $ and $\left(  I_{\rho}A\left[
+v\right]  \right)  _{\rho\in\mathbb{N}}$ instead of $A$ and $\left(  I_{\rho
+}\right)  _{\rho\in\mathbb{N}}$) yields that $uY$ is $n$-integral over
+$\left(  A\left[  v\right]  \right)  \left[  \left(  I_{\rho}A\left[
+v\right]  \right)  _{\rho\in\mathbb{N}}\ast Y\right]  $ (since $u$ is
+$n$-integral over $\left(  A\left[  v\right]  ,\left(  I_{\rho}A\left[
+v\right]  \right)  _{\rho\in\mathbb{N}}\right)  $). Since $\left(  A\left[
+v\right]  \right)  \left[  \left(  I_{\rho}A\left[  v\right]  \right)
+_{\rho\in\mathbb{N}}\ast Y\right]  =\left(  A\left[  \left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}}\ast Y\right]  \right)  \left[  v\right]  $, this means
+that $uY$ is $n$-integral over $\left(  A\left[  \left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}}\ast Y\right]  \right)  \left[  v\right]  $. Now, Theorem
+4 (applied to $A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast
+Y\right]  $, $B\left[  Y\right]  $ and $uY$ instead of $A$, $B$ and $u$)
+yields that $uY$ is $nm$-integral over $A\left[  \left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}}\ast Y\right]  $ (since $v$ is $m$-integral over $A\left[
+\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $, and $uY$ is
+$n$-integral over $\left(  A\left[  \left(  I_{\rho}\right)  _{\rho
+\in\mathbb{N}}\ast Y\right]  \right)  \left[  v\right]  $). Thus, Theorem 7
+(applied to $nm$ instead of $n$) yields that $u$ is $nm$-integral over
+$\left(  A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $. This
+proves Theorem 9 \textbf{(b)}.
+
+\begin{center}
+\color{blue} \textbf{3. Generalizing to two ideal semifiltrations} \color{black}
+\end{center}
+
+\begin{quote}
+\textbf{Theorem 10.} Let $A$ be a ring.
+
+\textbf{(a)} Then, $\left(  A\right)  _{\rho\in\mathbb{N}}$ is an ideal
+semifiltration of $A$.
+
+\textbf{(b)} Let $\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}$ and $\left(
+J_{\rho}\right)  _{\rho\in\mathbb{N}}$ be two ideal semifiltrations of $A$.
+Then, $\left(  I_{\rho}J_{\rho}\right)  _{\rho\in\mathbb{N}}$ is an ideal
+semifiltration of $A$.
+\end{quote}
+
+\textit{Proof of Theorem 10.} \textbf{(a)} Clearly, $\left(  A\right)
+_{\rho\in\mathbb{N}}$ is a sequence of ideals of $A$. Hence, in order to prove
+that $\left(  A\right)  _{\rho\in\mathbb{N}}$ is an ideal semifiltration of
+$A$, it is enough to verify that it satisfies the two conditions%
+\begin{align*}
+A  &  =A;\\
+AA  &  \subseteq A\ \ \ \ \ \ \ \ \ \ \text{for every }a\in\mathbb{N}\text{
+and }b\in\mathbb{N}.
+\end{align*}
+But these two conditions are obviously satisfied. Hence, $\left(  A\right)
+_{\rho\in\mathbb{N}}$ is an ideal semifiltration of $A$. This proves Theorem
+10 \textbf{(a)}.
+
+\textbf{(b)} Since $\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}$ is an ideal
+semifiltration of $A$, it is a sequence of ideals of $A$, and it satisfies the
+two conditions%
+\begin{align*}
+I_{0}  &  =A;\\
+I_{a}I_{b}  &  \subseteq I_{a+b}\ \ \ \ \ \ \ \ \ \ \text{for every }%
+a\in\mathbb{N}\text{ and }b\in\mathbb{N}.
+\end{align*}
+Since $\left(  J_{\rho}\right)  _{\rho\in\mathbb{N}}$ is an ideal
+semifiltration of $A$, it is a sequence of ideals of $A$, and it satisfies the
+two conditions%
+\begin{align*}
+J_{0}  &  =A;\\
+J_{a}J_{b}  &  \subseteq J_{a+b}\ \ \ \ \ \ \ \ \ \ \text{for every }%
+a\in\mathbb{N}\text{ and }b\in\mathbb{N}.
+\end{align*}
+
+
+Now, $I_{\rho}J_{\rho}$ is an ideal of $A$ for every $\rho\in\mathbb{N}$
+(since $I_{\rho}$ and $J_{\rho}$ are ideals of $A$ for every $\rho
+\in\mathbb{N}$, and the product of any two ideals of $A$ is an ideal of $A$).
+Hence, $\left(  I_{\rho}J_{\rho}\right)  _{\rho\in\mathbb{N}}$ is a sequence
+of ideals of $A$. Thus, in order to prove that $\left(  I_{\rho}J_{\rho
+}\right)  _{\rho\in\mathbb{N}}$ is an ideal semifiltration of $A$, it is
+enough to verify that it satisfies the two conditions%
+\begin{align*}
+I_{0}J_{0}  &  =A;\\
+I_{a}J_{a}\cdot I_{b}J_{b}  &  \subseteq I_{a+b}J_{a+b}%
+\ \ \ \ \ \ \ \ \ \ \text{for every }a\in\mathbb{N}\text{ and }b\in\mathbb{N}.
+\end{align*}
+But these two conditions are satisfied, since%
+\begin{align*}
+\underbrace{I_{0}}_{=A}\underbrace{J_{0}}_{=A}  &  =AA=A;\\
+I_{a}J_{a}\cdot I_{b}J_{b}  &  =\underbrace{I_{a}I_{b}}_{\subseteq I_{a+b}%
+}\underbrace{J_{a}J_{b}}_{\subseteq J_{a+b}}\subseteq I_{a+b}J_{a+b}%
+\ \ \ \ \ \ \ \ \ \ \text{for every }a\in\mathbb{N}\text{ and }b\in\mathbb{N}.
+\end{align*}
+Hence, $\left(  I_{\rho}J_{\rho}\right)  _{\rho\in\mathbb{N}}$ is an ideal
+semifiltration of $A$. This proves Theorem 10 \textbf{(b)}.
+
+Now let us generalize Theorem 7:
+
+\begin{quote}
+\textbf{Theorem 11.} Let $A$ and $B$ be two rings such that $A\subseteq B$.
+Let $\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}$ and $\left(  J_{\rho
+}\right)  _{\rho\in\mathbb{N}}$ be two ideal semifiltrations of $A$. Let
+$n\in\mathbb{N}$. Let $u\in B$.
+
+We know that $\left(  I_{\rho}J_{\rho}\right)  _{\rho\in\mathbb{N}}$ is an
+ideal semifiltration of $A$ (according to Theorem 10 \textbf{(b)}).
+
+Consider the polynomial ring $A\left[  Y\right]  $ and its $A$-subalgebra
+$A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $.
+
+We will abbreviate the ring $A\left[  \left(  I_{\rho}\right)  _{\rho
+\in\mathbb{N}}\ast Y\right]  $ by $A_{\left[  I\right]  }$.
+
+By Lemma $\mathcal{J}$ (applied to $A_{\left[  I\right]  }$ and $\left(
+J_{\tau}\right)  _{\tau\in\mathbb{N}}$ instead of $A^{\prime}$ and $\left(
+I_{\rho}\right)  _{\rho\in\mathbb{N}}$), the sequence $\left(  J_{\tau
+}A_{\left[  I\right]  }\right)  _{\tau\in\mathbb{N}}$ is an ideal
+semifiltration of $A_{\left[  I\right]  }$ (since $A\subseteq A_{\left[
+I\right]  }$ and since $\left(  J_{\tau}\right)  _{\tau\in\mathbb{N}}=\left(
+J_{\rho}\right)  _{\rho\in\mathbb{N}}$ is an ideal semifiltration of $A$).
+
+Then, the element $u$ of $B$ is $n$-integral over $\left(  A,\left(  I_{\rho
+}J_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $ if and only if the element
+$uY$ of the polynomial ring $B\left[  Y\right]  $ is $n$-integral over
+$\left(  A_{\left[  I\right]  },\left(  J_{\tau}A_{\left[  I\right]  }\right)
+_{\tau\in\mathbb{N}}\right)  .$ (Here, $A_{\left[  I\right]  }\subseteq
+B\left[  Y\right]  $ because $A_{\left[  I\right]  }=A\left[  \left(  I_{\rho
+}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  \subseteq A\left[  Y\right]  $
+and we consider $A\left[  Y\right]  $ as a subring of $B\left[  Y\right]  $ as
+explained in Definition 7.)
+\end{quote}
+
+\textit{Proof of Theorem 11.} First, note that%
+\begin{align*}
+\sum\limits_{\ell\in\mathbb{N}}I_{\ell}Y^{\ell}  &  =\sum\limits_{i\in
+\mathbb{N}}I_{i}Y^{i}\ \ \ \ \ \ \ \ \ \ \left(  \text{here we renamed }%
+\ell\text{ as }i\text{ in the sum}\right) \\
+&  =A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]
+=A_{\left[  I\right]  }.
+\end{align*}
+
+
+In order to verify Theorem 11, we have to prove the following two lemmata:
+
+\textit{Lemma }$\mathcal{E}^{\prime}$\textit{:} If $u$ is $n$-integral over
+$\left(  A,\left(  I_{\rho}J_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $,
+then $uY$ is $n$-integral over $\left(  A_{\left[  I\right]  },\left(
+J_{\tau}A_{\left[  I\right]  }\right)  _{\tau\in\mathbb{N}}\right)  $.
+
+\textit{Lemma} $\mathcal{F}^{\prime}$\textit{:} If $uY$ is $n$-integral over
+$\left(  A_{\left[  I\right]  },\left(  J_{\tau}A_{\left[  I\right]  }\right)
+_{\tau\in\mathbb{N}}\right)  $, then $u$ is $n$-integral over $\left(
+A,\left(  I_{\rho}J_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $.
+
+\textit{Proof of Lemma }$\mathcal{E}^{\prime}$\textit{:} Assume that $u$ is
+$n$-integral over $\left(  A,\left(  I_{\rho}J_{\rho}\right)  _{\rho
+\in\mathbb{N}}\right)  $. Then, by Definition 9 (applied to $\left(  I_{\rho
+}J_{\rho}\right)  _{\rho\in\mathbb{N}}$ instead of $\left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}}$), there exists some $\left(  a_{0},a_{1},...,a_{n}%
+\right)  \in A^{n+1}$ such that%
+\[
+\sum\limits_{k=0}^{n}a_{k}u^{k}=0,\ \ \ \ \ \ \ \ \ \ a_{n}%
+=1,\ \ \ \ \ \ \ \ \ \ \text{and}\ \ \ \ \ \ \ \ \ \ a_{i}\in I_{n-i}%
+J_{n-i}\text{ for every }i\in\left\{  0,1,...,n\right\}  .
+\]
+
+
+Note that $a_{k}Y^{n-k}\in A_{\left[  I\right]  }$ for every $k\in\left\{
+0,1,...,n\right\}  $ (because $a_{k}\in I_{n-k}J_{n-k}\subseteq I_{n-k}$
+(since $I_{n-k}$ is an ideal of $A$) and thus $a_{k}Y^{n-k}\in I_{n-k}%
+Y^{n-k}\subseteq\sum\limits_{i\in\mathbb{N}}I_{i}Y^{i}=A_{\left[  I\right]  }%
+$). Thus, we can define an $\left(  n+1\right)  $-tuple $\left(  b_{0}%
+,b_{1},...,b_{n}\right)  \in\left(  A_{\left[  I\right]  }\right)  ^{n+1}$ by
+$b_{k}=a_{k}Y^{n-k}$ for every $k\in\left\{  0,1,...,n\right\}  $. Then,%
+\begin{align*}
+\sum\limits_{k=0}^{n}b_{k}\cdot\left(  uY\right)  ^{k}  &  =\sum
+\limits_{k=0}^{n}a_{k}Y^{n-k}\cdot\left(  uY\right)  ^{k}=\sum\limits_{k=0}%
+^{n}a_{k}Y^{n-k}u^{k}Y^{k}=\sum\limits_{k=0}^{n}a_{k}u^{k}\underbrace
+{Y^{n-k}Y^{k}}_{=Y^{n}}=Y^{n}\cdot\underbrace{\sum\limits_{k=0}^{n}a_{k}u^{k}%
+}_{=0}=0;\\
+b_{n}  &  =\underbrace{a_{n}}_{=1}\underbrace{Y^{n-n}}_{=Y^{0}=1}=1,
+\end{align*}
+and%
+\[
+b_{i}=\underbrace{a_{i}}_{\substack{\in I_{n-i}J_{n-i}\\=J_{n-i}I_{n-i}%
+}}Y^{n-i}\in J_{n-i}\underbrace{I_{n-i}Y^{n-i}}_{\substack{\subseteq
+\sum\limits_{\ell\in\mathbb{N}}I_{\ell}Y^{\ell}\\=A_{\left[  I\right]  }%
+}}\subseteq J_{n-i}A_{\left[  I\right]  }%
+\]
+for every $i\in\left\{  0,1,...,n\right\}  $.
+
+Altogether, we now know that $\left(  b_{0},b_{1},...,b_{n}\right)  \in\left(
+A_{\left[  I\right]  }\right)  ^{n+1}$ and%
+\[
+\sum\limits_{k=0}^{n}b_{k}\cdot\left(  uY\right)  ^{k}%
+=0,\ \ \ \ \ \ \ \ \ \ b_{n}=1,\ \ \ \ \ \ \ \ \ \ \text{and}%
+\ \ \ \ \ \ \ \ \ \ b_{i}\in J_{n-i}A_{\left[  I\right]  }\text{ for every
+}i\in\left\{  0,1,...,n\right\}  .
+\]
+Hence, by Definition 9 (applied to $A_{\left[  I\right]  },$ $B\left[
+Y\right]  ,$ $\left(  J_{\tau}A_{\left[  I\right]  }\right)  _{\tau
+\in\mathbb{N}},$ $uY$ and $\left(  b_{0},b_{1},...,b_{n}\right)  $ instead of
+$A,$ $B,$ $\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}},$ $u$ and $\left(
+a_{0},a_{1},...,a_{n}\right)  $), the element $uY$ is $n$-integral over
+$\left(  A_{\left[  I\right]  },\left(  J_{\tau}A_{\left[  I\right]  }\right)
+_{\tau\in\mathbb{N}}\right)  $. This proves Lemma $\mathcal{E}^{\prime}$.
+
+\textit{Proof of Lemma }$\mathcal{F}^{\prime}$\textit{:} Assume that $uY$ is
+$n$-integral over $\left(  A_{\left[  I\right]  },\left(  J_{\tau}A_{\left[
+I\right]  }\right)  _{\tau\in\mathbb{N}}\right)  $. Then, by Definition 9
+(applied to $A_{\left[  I\right]  },$ $B\left[  Y\right]  ,$ $\left(  J_{\tau
+}A_{\left[  I\right]  }\right)  _{\tau\in\mathbb{N}},$ $uY$ and $\left(
+p_{0},p_{1},...,p_{n}\right)  $ instead of $A,$ $B,$ $\left(  I_{\rho}\right)
+_{\rho\in\mathbb{N}},$ $u$ and $\left(  a_{0},a_{1},...,a_{n}\right)  $),
+there exists some $\left(  p_{0},p_{1},...,p_{n}\right)  \in\left(  A_{\left[
+I\right]  }\right)  ^{n+1}$ such that%
+\[
+\sum\limits_{k=0}^{n}p_{k}\cdot\left(  uY\right)  ^{k}%
+=0,\ \ \ \ \ \ \ \ \ \ p_{n}=1,\ \ \ \ \ \ \ \ \ \ \text{and}%
+\ \ \ \ \ \ \ \ \ \ p_{i}\in J_{n-i}A_{\left[  I\right]  }\text{ for every
+}i\in\left\{  0,1,...,n\right\}  .
+\]
+For every $k\in\left\{  0,1,...,n\right\}  $, we have%
+\begin{align*}
+p_{k}  &  \in J_{n-k}A_{\left[  I\right]  }=J_{n-k}\sum\limits_{i\in
+\mathbb{N}}I_{i}Y^{i}\ \ \ \ \ \ \ \ \ \ \left(  \text{since }A_{\left[
+I\right]  }=\sum\limits_{i\in\mathbb{N}}I_{i}Y^{i}\right) \\
+&  =\sum\limits_{i\in\mathbb{N}}J_{n-k}I_{i}Y^{i}=\sum\limits_{i\in\mathbb{N}%
+}I_{i}J_{n-k}Y^{i},
+\end{align*}
+and thus, there exists a sequence $\left(  p_{k,i}\right)  _{i\in\mathbb{N}%
+}\in A^{\mathbb{N}}$ such that $p_{k}=\sum\limits_{i\in\mathbb{N}}p_{k,i}%
+Y^{i}$, such that $p_{k,i}\in I_{i}J_{n-k}$ for every $i\in\mathbb{N}$, and
+such that only finitely many $i\in\mathbb{N}$ satisfy $p_{k,i}\neq0$. Thus,%
+\begin{align*}
+\sum\limits_{k=0}^{n}p_{k}\cdot\left(  uY\right)  ^{k}  &  =\sum
+\limits_{k=0}^{n}\sum\limits_{i\in\mathbb{N}}p_{k,i}Y^{i}\cdot\underbrace
+{\left(  uY\right)  ^{k}}_{\substack{=u^{k}Y^{k}\\=Y^{k}u^{k}}%
+}\ \ \ \ \ \ \ \ \ \ \left(  \text{since }p_{k}=\sum\limits_{i\in\mathbb{N}%
+}p_{k,i}Y^{i}\right) \\
+&  =\sum\limits_{k=0}^{n}\sum\limits_{i\in\mathbb{N}}p_{k,i}\underbrace
+{Y^{i}\cdot Y^{k}}_{=Y^{i+k}}u^{k}\\
+&  =\sum\limits_{k=0}^{n}\sum\limits_{i\in\mathbb{N}}p_{k,i}Y^{i+k}u^{k}%
+=\sum\limits_{k\in\left\{  0,1,...,n\right\}  }\sum\limits_{i\in\mathbb{N}%
+}p_{k,i}Y^{i+k}u^{k}\\
+&  =\sum\limits_{\left(  k,i\right)  \in\left\{  0,1,...,n\right\}
+\times\mathbb{N}}p_{k,i}Y^{i+k}u^{k}=\sum_{\ell\in\mathbb{N}}\sum
+\limits_{\substack{\left(  k,i\right)  \in\left\{  0,1,...,n\right\}
+\times\mathbb{N};\\i+k=\ell}}p_{k,i}\underbrace{Y^{i+k}}_{=Y^{\ell}}u^{k}\\
+&  =\sum_{\ell\in\mathbb{N}}\sum\limits_{\substack{\left(  k,i\right)
+\in\left\{  0,1,...,n\right\}  \times\mathbb{N};\\i+k=\ell}}p_{k,i}Y^{\ell
+}u^{k}=\sum_{\ell\in\mathbb{N}}\sum\limits_{\substack{\left(  k,i\right)
+\in\left\{  0,1,...,n\right\}  \times\mathbb{N};\\i+k=\ell}}p_{k,i}%
+u^{k}Y^{\ell}.
+\end{align*}
+Hence, $\sum\limits_{k=0}^{n}p_{k}\cdot\left(  uY\right)  ^{k}=0$ becomes
+$\sum\limits_{\ell\in\mathbb{N}}\sum\limits_{\substack{\left(  k,i\right)
+\in\left\{  0,1,...,n\right\}  \times\mathbb{N};\\i+k=\ell}}p_{k,i}%
+u^{k}Y^{\ell}=0$. In other words, the polynomial $\sum\limits_{\ell
+\in\mathbb{N}}\underbrace{\sum\limits_{\substack{\left(  k,i\right)
+\in\left\{  0,1,...,n\right\}  \times\mathbb{N};\\i+k=\ell}}p_{k,i}u^{k}}_{\in
+B}Y^{\ell}\in B\left[  Y\right]  $ equals $0$. Hence, its coefficient before
+$Y^{n}$ equals $0$ as well. But its coefficient before $Y^{n}$ is
+$\sum\limits_{\substack{\left(  k,i\right)  \in\left\{  0,1,...,n\right\}
+\times\mathbb{N};\\i+k=n}}p_{k,i}u^{k}$. Hence, $\sum
+\limits_{\substack{\left(  k,i\right)  \in\left\{  0,1,...,n\right\}
+\times\mathbb{N};\\i+k=n}}p_{k,i}u^{k}$ equals $0$.
+
+Thus,%
+\begin{align*}
+0  &  =\sum\limits_{\substack{\left(  k,i\right)  \in\left\{
+0,1,...,n\right\}  \times\mathbb{N};\\i+k=n}}p_{k,i}u^{k}=\sum\limits_{k\in
+\left\{  0,1,...,n\right\}  }\sum_{\substack{i\in\mathbb{N};\\i+k=n}%
+}p_{k,i}u^{k}=\sum\limits_{k\in\left\{  0,1,...,n\right\}  }p_{k,n-k}u^{k}\\
+&  \ \ \ \ \ \ \ \ \ \ \left(
+\begin{array}
+[c]{c}%
+\text{since }\left\{  i\in\mathbb{N}\text{\ }\mid\ i+k=n\right\}  =\left\{
+i\in\mathbb{N}\ \mid\ i=n-k\right\}  =\left\{  n-k\right\}  \text{ (because
+}n-k\in\mathbb{N}\text{,}\\
+\text{since }k\in\left\{  0,1,...,n\right\}  \text{) yields }\sum
+\limits_{\substack{i\in\mathbb{N};\\i+k=n}}p_{k,i}u^{k}=\sum\limits_{i\in
+\left\{  n-k\right\}  }p_{k,i}u^{k}=p_{k,n-k}u^{k}%
+\end{array}
+\right)  .
+\end{align*}
+
+
+Note that%
+\begin{align*}
+\sum\limits_{i\in\mathbb{N}}p_{n,i}Y^{i}  &  =p_{n}\ \ \ \ \ \ \ \ \ \ \left(
+\text{since }\sum\limits_{i\in\mathbb{N}}p_{k,i}Y^{i}=p_{k}\text{ for every
+}k\in\left\{  0,1,...,n\right\}  \right) \\
+&  =1=1\cdot Y^{0}%
+\end{align*}
+in $A\left[  Y\right]  ,$ and thus the coefficient of the polynomial
+$\sum\limits_{i\in\mathbb{N}}p_{n,i}Y^{i}\in A\left[  Y\right]  $ before
+$Y^{0}$ is $1;$ but the coefficient of the polynomial $\sum\limits_{i\in
+\mathbb{N}}p_{n,i}Y^{i}\in A\left[  Y\right]  $ before $Y^{0}$ is $p_{n,0};$
+hence, $p_{n,0}=1$.
+
+Define an $\left(  n+1\right)  $-tuple $\left(  a_{0},a_{1},...,a_{n}\right)
+\in A^{n+1}$ by $a_{k}=p_{k,n-k}$ for every $k\in\left\{  0,1,...,n\right\}
+.$ Then, $a_{n}=p_{n,n-n}=p_{n,0}=1$. Besides,%
+\[
+\sum\limits_{k=0}^{n}a_{k}u^{k}=\sum\limits_{k=0}^{n}p_{k,n-k}u^{k}%
+=\sum\limits_{k\in\left\{  0,1,...,n\right\}  }p_{k,n-k}u^{k}=0.
+\]
+Finally, $a_{k}=p_{k,n-k}\in I_{n-k}J_{n-k}$ (since $p_{k,i}\in I_{i}J_{n-k}$
+for every $i\in\mathbb{N}$) for every $k\in\left\{  0,1,...,n\right\}  $. In
+other words, $a_{i}\in I_{n-i}J_{n-i}$ for every $i\in\left\{
+0,1,...,n\right\}  $.
+
+Altogether, we now know that%
+\[
+\sum\limits_{k=0}^{n}a_{k}u^{k}=0,\ \ \ \ \ \ \ \ \ \ a_{n}%
+=1,\ \ \ \ \ \ \ \ \ \ \text{and}\ \ \ \ \ \ \ \ \ \ a_{i}\in I_{n-i}%
+J_{n-i}\text{ for every }i\in\left\{  0,1,...,n\right\}  .
+\]
+Thus, by Definition 9 (applied to $\left(  I_{\rho}J_{\rho}\right)  _{\rho
+\in\mathbb{N}}$ instead of $\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}$),
+the element $u$ is $n$-integral over $\left(  A,\left(  I_{\rho}J_{\rho
+}\right)  _{\rho\in\mathbb{N}}\right)  $. This proves Lemma $\mathcal{F}%
+^{\prime}$.
+
+Combining Lemmata $\mathcal{E}^{\prime}$ and $\mathcal{F}^{\prime}$, we obtain
+that $u$ is $n$-integral over $\left(  A,\left(  I_{\rho}J_{\rho}\right)
+_{\rho\in\mathbb{N}}\right)  $ if and only if $uY$ is $n$-integral over
+$\left(  A_{\left[  I\right]  },\left(  J_{\tau}A_{\left[  I\right]  }\right)
+_{\tau\in\mathbb{N}}\right)  $. This proves Theorem 11.
+
+For the sake of completeness, we mention the following trivial fact (which
+shows why Theorem 11 generalizes Theorem 7):
+
+\begin{quote}
+\textbf{Theorem 12.} Let $A$ and $B$ be two rings such that $A\subseteq B$.
+Let $n\in\mathbb{N}$. Let $u\in B$.
+
+We know that $\left(  A\right)  _{\rho\in\mathbb{N}}$ is an ideal
+semifiltration of $A$ (according to Theorem 10 \textbf{(a)}).
+
+Then, the element $u$ of $B$ is $n$-integral over $\left(  A,\left(  A\right)
+_{\rho\in\mathbb{N}}\right)  $ if and only if $u$ is $n$-integral over $A$.
+\end{quote}
+
+\textit{Proof of Theorem 12.} In order to verify Theorem 12, we have to prove
+the following two lemmata:
+
+\textit{Lemma }$\mathcal{L}$\textit{:} If $u$ is $n$-integral over $\left(
+A,\left(  A\right)  _{\rho\in\mathbb{N}}\right)  $, then $u$ is $n$-integral
+over $A$.
+
+\textit{Lemma} $\mathcal{M}$\textit{:} If $u$ is $n$-integral over $A$, then
+$u$ is $n$-integral over $\left(  A,\left(  A\right)  _{\rho\in\mathbb{N}%
+}\right)  $.
+
+\textit{Proof of Lemma }$\mathcal{L}$\textit{:} Assume that $u$ is
+$n$-integral over $\left(  A,\left(  A\right)  _{\rho\in\mathbb{N}}\right)  $.
+Then, by Definition 9 (applied to $\left(  A\right)  _{\rho\in\mathbb{N}}$
+instead of $\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}$), there exists some
+$\left(  a_{0},a_{1},...,a_{n}\right)  \in A^{n+1}$ such that%
+\[
+\sum\limits_{k=0}^{n}a_{k}u^{k}=0,\ \ \ \ \ \ \ \ \ \ a_{n}%
+=1,\ \ \ \ \ \ \ \ \ \ \text{and}\ \ \ \ \ \ \ \ \ \ a_{i}\in A\text{ for
+every }i\in\left\{  0,1,...,n\right\}  .
+\]
+
+
+Define a polynomial $P\in A\left[  X\right]  $ by $P\left(  X\right)
+=\sum\limits_{k=0}^{n}a_{k}X^{k}$. Then, $P\left(  X\right)  =\sum
+\limits_{k=0}^{n}a_{k}X^{k}=\underbrace{a_{n}}_{=1}X^{n}+\sum\limits_{k=0}%
+^{n-1}a_{k}X^{k}=X^{n}+\sum\limits_{k=0}^{n-1}a_{k}X^{k}$. Hence, the
+polynomial $P$ is monic, and $\deg P=n$. Besides, $P\left(  u\right)  =0$
+(since $P\left(  X\right)  =\sum\limits_{k=0}^{n}a_{k}X^{k}$ yields $P\left(
+u\right)  =\sum\limits_{k=0}^{n}a_{k}u^{k}=0$). Thus, there exists a monic
+polynomial $P\in A\left[  X\right]  $ with $\deg P=n$ and $P\left(  u\right)
+=0$. Hence, $u$ is $n$-integral over $A$. This proves Lemma $\mathcal{L}$.
+
+\textit{Proof of Lemma }$\mathcal{M}$\textit{:} Assume that $u$ is
+$n$-integral over $A$. Then, there exists a monic polynomial $P\in A\left[
+X\right]  $ with $\deg P=n$ and $P\left(  u\right)  =0$. Since $\deg P=n$,
+there exists some $\left(  n+1\right)  $-tuple $\left(  a_{0},a_{1}%
+,...,a_{n}\right)  \in A^{n+1}$ such that $P\left(  X\right)  =\sum
+\limits_{k=0}^{n}a_{k}X^{k}$. Thus, $a_{n}=1$ (since $P$ is monic, and $\deg
+P=n$). Also, $\sum\limits_{k=0}^{n}a_{k}X^{k}=P\left(  X\right)  $ yields
+$\sum\limits_{k=0}^{n}a_{k}u^{k}=P\left(  u\right)  =0$. Altogether, we now
+know that $\left(  a_{0},a_{1},...,a_{n}\right)  \in A^{n+1}$ and%
+\[
+\sum\limits_{k=0}^{n}a_{k}u^{k}=0,\ \ \ \ \ \ \ \ \ \ a_{n}%
+=1,\ \ \ \ \ \ \ \ \ \ \text{and}\ \ \ \ \ \ \ \ \ \ a_{i}\in A\text{ for
+every }i\in\left\{  0,1,...,n\right\}  .
+\]
+Hence, by Definition 9 (applied to $\left(  A\right)  _{\rho\in\mathbb{N}}$
+instead of $\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}$), the element $u$
+is $n$-integral over $\left(  A,\left(  A\right)  _{\rho\in\mathbb{N}}\right)
+$. This proves Lemma $\mathcal{M}$.
+
+Combining Lemmata $\mathcal{L}$ and $\mathcal{M}$, we obtain that $u$ is
+$n$-integral over $\left(  A,\left(  A\right)  _{\rho\in\mathbb{N}}\right)  $
+if and only if $u$ is $n$-integral over $A$. This proves Theorem 12.
+
+Finally, let us generalize Theorem 8 \textbf{(c)}:
+
+\begin{quote}
+\textbf{Theorem 13.} Let $A$ and $B$ be two rings such that $A\subseteq B$.
+Let $\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}$ and $\left(  J_{\rho
+}\right)  _{\rho\in\mathbb{N}}$ be two ideal semifiltrations of $A$.
+
+Let $x\in B$ and $y\in B$. Let $m\in\mathbb{N}$ and $n\in\mathbb{N}$. Assume
+that $x$ is $m$-integral over $\left(  A,\left(  I_{\rho}\right)  _{\rho
+\in\mathbb{N}}\right)  ,$ and that $y$ is $n$-integral over $\left(  A,\left(
+J_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $. Then, $xy$ is $nm$-integral
+over $\left(  A,\left(  I_{\rho}J_{\rho}\right)  _{\rho\in\mathbb{N}}\right)
+$.
+\end{quote}
+
+\textit{Proof of Theorem 13.} First, a trivial observation:
+
+\textit{Lemma }$\mathcal{I}^{\prime}$\textit{:} Let $A$, $A^{\prime}$ and
+$B^{\prime}$ be three rings such that $A\subseteq A^{\prime}\subseteq
+B^{\prime}$. Let $\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}$ be an ideal
+semifiltration of $A$. Let $v\in B^{\prime}$. Let $n\in\mathbb{N}$. If $v$ is
+$n$-integral over $\left(  A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}%
+}\right)  $, then $v$ is $n$-integral over $\left(  A^{\prime},\left(
+I_{\rho}A^{\prime}\right)  _{\rho\in\mathbb{N}}\right)  $. (Note that $\left(
+I_{\rho}A^{\prime}\right)  _{\rho\in\mathbb{N}}$ is an ideal semifiltration of
+$A^{\prime}$, according to Lemma $\mathcal{J}$.)
+
+\textit{Proof of Lemma }$\mathcal{I}^{\prime}$\textit{:} Assume that $v$ is
+$n$-integral over $\left(  A,\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}%
+}\right)  $. Then, by Definition 9 (applied to $B^{\prime}$ and $v$ instead of
+$B$ and $u$), there exists some $\left(  a_{0},a_{1},...,a_{n}\right)  \in
+A^{n+1}$ such that%
+\[
+\sum\limits_{k=0}^{n}a_{k}v^{k}=0,\ \ \ \ \ \ \ \ \ \ a_{n}%
+=1,\ \ \ \ \ \ \ \ \ \ \text{and}\ \ \ \ \ \ \ \ \ \ a_{i}\in I_{n-i}\text{
+for every }i\in\left\{  0,1,...,n\right\}  .
+\]
+But $\left(  a_{0},a_{1},...,a_{n}\right)  \in A^{n+1}$ yields $\left(
+a_{0},a_{1},...,a_{n}\right)  \in\left(  A^{\prime}\right)  ^{n+1}$ (since
+$A\subseteq A^{\prime}$), and $a_{i}\in I_{n-i}$ yields $a_{i}\in
+I_{n-i}A^{\prime}$ (since $I_{n-i}\subseteq I_{n-i}A^{\prime}$) for every
+$i\in\left\{  0,1,...,n\right\}  $. Thus, $\left(  a_{0},a_{1},...,a_{n}%
+\right)  \in\left(  A^{\prime}\right)  ^{n+1}$ and%
+\[
+\sum\limits_{k=0}^{n}a_{k}v^{k}=0,\ \ \ \ \ \ \ \ \ \ a_{n}%
+=1,\ \ \ \ \ \ \ \ \ \ \text{and}\ \ \ \ \ \ \ \ \ \ a_{i}\in I_{n-i}%
+A^{\prime}\text{ for every }i\in\left\{  0,1,...,n\right\}  .
+\]
+Hence, by Definition 9 (applied to $B^{\prime}$, $A^{\prime}$, $\left(
+I_{\rho}A^{\prime}\right)  _{\rho\in\mathbb{N}}$ and $v$ instead of $B$, $A$,
+$\left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}$ and $u$), the element $v$ is
+$n$-integral over $\left(  A^{\prime},\left(  I_{\rho}A^{\prime}\right)
+_{\rho\in\mathbb{N}}\right)  $. This proves Lemma $\mathcal{I}^{\prime}$.
+
+Now let us prove Theorem 13.
+
+We have $\left(  J_{\rho}\right)  _{\rho\in\mathbb{N}}=\left(  J_{\tau
+}\right)  _{\tau\in\mathbb{N}}$. Hence, $y$ is $n$-integral over $\left(
+A,\left(  J_{\tau}\right)  _{\tau\in\mathbb{N}}\right)  $ (since $y$ is
+$n$-integral over $\left(  A,\left(  J_{\rho}\right)  _{\rho\in\mathbb{N}%
+}\right)  $).
+
+Consider the polynomial ring $A\left[  Y\right]  $ and its $A$-subalgebra
+$A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  $. We
+will abbreviate the ring $A\left[  \left(  I_{\rho}\right)  _{\rho
+\in\mathbb{N}}\ast Y\right]  $ by $A_{\left[  I\right]  }$. We have
+$A_{\left[  I\right]  }\subseteq B\left[  Y\right]  $, because $A_{\left[
+I\right]  }=A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast
+Y\right]  \subseteq A\left[  Y\right]  $ and we consider $A\left[  Y\right]  $
+as a subring of $B\left[  Y\right]  $ as explained in Definition 7.
+
+Theorem 7 (applied to $x$ and $m$ instead of $u$ and $n$) yields that $xY$ is
+$m$-integral over $A\left[  \left(  I_{\rho}\right)  _{\rho\in\mathbb{N}}\ast
+Y\right]  $ (since $x$ is $m$-integral over $\left(  A,\left(  I_{\rho
+}\right)  _{\rho\in\mathbb{N}}\right)  $). In other words, $xY$ is
+$m$-integral over $A_{\left[  I\right]  }$ (since $A\left[  \left(  I_{\rho
+}\right)  _{\rho\in\mathbb{N}}\ast Y\right]  =A_{\left[  I\right]  }$).
+
+On the other hand, Lemma $\mathcal{I}^{\prime}$ (applied to $A_{\left[
+I\right]  }$, $B\left[  Y\right]  $, $\left(  J_{\tau}\right)  _{\tau
+\in\mathbb{N}}$ and $y$ instead of $A^{\prime}$, $B^{\prime}$, $\left(
+I_{\rho}\right)  _{\rho\in\mathbb{N}}$ and $v$) yields that $y$ is
+$n$-integral over $\left(  A_{\left[  I\right]  },\left(  J_{\tau}A_{\left[
+I\right]  }\right)  _{\tau\in\mathbb{N}}\right)  $ (since $y$ is $n$-integral
+over $\left(  A,\left(  J_{\tau}\right)  _{\tau\in\mathbb{N}}\right)  $, and
+$A\subseteq A_{\left[  I\right]  }\subseteq B\left[  Y\right]  $).
+
+Hence, Theorem 8 \textbf{(c)} (applied to $A_{\left[  I\right]  },$ $B\left[
+Y\right]  $, $\left(  J_{\tau}A_{\left[  I\right]  }\right)  _{\tau
+\in\mathbb{N}}$, $y$, $xY$, $m$ and $n$ instead of $A,$ $B$, $\left(  I_{\rho
+}\right)  _{\rho\in\mathbb{N}}$, $x$, $y$, $n$ and $m$ respectively) yields
+that $y\cdot xY$ is $mn$-integral over $\left(  A_{\left[  I\right]  },\left(
+J_{\tau}A_{\left[  I\right]  }\right)  _{\tau\in\mathbb{N}}\right)  $ (since
+$y$ is $n$-integral over $\left(  A_{\left[  I\right]  },\left(  J_{\tau
+}A_{\left[  I\right]  }\right)  _{\tau\in\mathbb{N}}\right)  $, and $xY$ is
+$m$-integral over $A_{\left[  I\right]  }$). Since $y\cdot xY=xyY$ and
+$mn=nm$, this means that $xyY$ is $nm$-integral over $\left(  A_{\left[
+I\right]  },\left(  J_{\tau}A_{\left[  I\right]  }\right)  _{\tau\in
+\mathbb{N}}\right)  $. Hence, Theorem 11 (applied to $xy$ and $nm$ instead of
+$u$ and $n$) yields that $xy$ is $nm$-integral over $\left(  A,\left(
+I_{\rho}J_{\rho}\right)  _{\rho\in\mathbb{N}}\right)  $. This proves Theorem 13.
+
+\begin{center}
+\color{blue} \textbf{References} \color{black}
+\end{center}
+
+[1] J. S. Milne, \textit{Algebraic Number Theory}, version 3.02.\newline%
+\texttt{http://jmilne.org/math/CourseNotes/math676.html}
+
+[2] Craig Huneke and Irena Swanson, \textit{Integral Closure of Ideals, Rings,
+and Modules}, London Mathematical Society Lecture Note Series, 336. Cambridge
+University Press, Cambridge, 2006.
+
+
+\end{document}
