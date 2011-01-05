@@ -46,8 +46,8 @@ for $name (@files)
 
     print FILE "\\begin{document}\n\n";
     print FILE "\\tableofcontents\n\n";
-    print FILE "\\setcounter{chapter}{$i}";
-    print FILE "\\input{chapters/$name}\n\n";
+    print FILE "\\setcounter{chapter}{$i}\n\n";
+    print FILE "\\input{chapters/$name.tex}\n\n";
     print FILE "\\end{document}";
 
 
