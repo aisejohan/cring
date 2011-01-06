@@ -96,8 +96,8 @@ for $fl (@files)
     print MK2  $str . "\n\n";
 
     
-    $str2 = "ch". $fl . ".tex: " . "aux/ch" . $fl . ".tex" . " CRing.aux chapters/" . $fl . ".tex\n\tpdflatex -src aux/ch" . $fl . ".tex\n". "\tpdflatex -src aux/ch" . $fl . ".tex";
-
+    $str2 = "sch". $fl . ".pdf: " . "aux/ch" . $fl . ".tex" . " chapters/" . $fl . ".tex\n\tpdflatex -src aux/ch" . $fl . ".tex\n". "\tpdflatex -src aux/ch" . $fl . ".tex";
+    print MK2 $str2 . "\n\n";
 
 }
 
