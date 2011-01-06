@@ -41,7 +41,11 @@ for $name (@files)
 #copyright
     print FILE "\\pagestyle{fancy}\n\\fancyhead{}\n\\fancyfoot{}\n\\fancyhead[C]{CRing Project, Chapter $j}\n \\fancyfoot[C]{\\thepage}\n\n";
     print FILE "\\tableofcontents\n\n";
-    print FILE "\\textbf{Copyright 2011 the CRing Project. This file is part of the CRing Project, which is released under the GNU Free Documentation License, Version 1.2.}\n\n";
+
+    if ($name ne "license")
+    {
+	print FILE "\\textbf{Copyright 2011 the CRing Project. This file is part of the CRing Project, which is released under the GNU Free Documentation License, Version 1.2.}\n\n";
+    }
 
 
     print FILE "\\setcounter{chapter}{$i}\n\n";
