@@ -1271,10 +1271,10 @@ $R$ is finite as it is finitely generated. This proves one version of the
 Nullstellensatz.
 
 
-\subsection{Another version} Another version of the Nullstellensatz, which is
+ Another version of the Nullstellensatz, which is
 more precise, says:
 
-\begin{theorem}
+\begin{theorem} \label{gennullstellensatz}
 Let $I \subset \mathbb{C}[x_1, \dots, x_n]$. Let $V \subset \mathbb{C}^n$ be
 the subset of $\mathbb{C}^n$ defined by the ideal $I$ (i.e. the zero locus of
 $I$).
@@ -1299,19 +1299,20 @@ true.
 The intersection of all primes in a DVR is zero, but the intersection of all
 maximals is nonzero.
 \end{example}
-\begin{proof}
+
+\begin{proof}[Proof of \cref{gennullstellensatz}] 
 It now suffices to show that for every $\mathfrak{p} \subset \mathbb{C}[x_1,
 \dots, x_n]$ prime, we have
 \[ \mathfrak{p} = \bigcap_{\mathfrak{m} \supset I \ \mathrm{maximal}}
 \mathfrak{m}  \]
 since every radical ideal is an intersection of primes.
 
-How can we prove this? Well, let $R = \mathbb{C}[x_1, \dots,
+Let $R = \mathbb{C}[x_1, \dots,
 x_n]/\mathfrak{p}$. This is a domain finitely generated over $\mathbb{C}$. We
 want to show that the intersection of maximal ideals in $R$ is zero. This is
 equivalent to the above displayed equality.
 
-So fix $f \in R - \left\{0\right\}$. Let $R' = R[f^{-1}]$. Then $R'$ is also an
+So fix $f \in R - \left\{0\right\}$. Let $R'$ be the localization $R'= R_f$. Then $R'$ is also an
 integral domain, finitely generated over $\mathbb{C}$.	$R'$ has a maximal
 ideal $\mathfrak{m}$ (which a priori could be zero). If
 we look at the map $R' \to R'/\mathfrak{m}$, we get a map into a field
