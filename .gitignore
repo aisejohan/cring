@@ -9,3 +9,6 @@
 *.swp
 *.thm
 *.*~
+*.tar.gz
+*.tar.bz2
+*.zip
