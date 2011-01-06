@@ -2,23 +2,9 @@
 ## read list of chapters
 
 
-open (CR, "<", "../CRing.tex") or die "damn";
+open (CR, "<", "tmp/chapterlist.txt") or die;
 
-@lines = <CR>;
-
-#get chapter names
-
-for $line (@lines)
-{
-    if ( $line =~ m/chapters\//)
-    {
-	
-	$line =~ /chapters\/([a-z]*).tex/; 
-	push(@files, $1);
-    }
-
-}
-
+@files = <CR>;
 
 
 #create placeholder files for each chapter
@@ -29,8 +15,9 @@ $i = -1;
 
 for $name (@files)
 {
+    chop($name);
 
-    $tmpname = "../aux/ch" .  $name . ".tex";
+    $tmpname = "aux/ch" .  $name . ".tex";
 
     open (FILE, ">", $tmpname) or die "error opening";
 
@@ -42,10 +29,16 @@ for $name (@files)
     print FILE "\\externaldocument[MAIN-]{CRing}\n\n";
 
 
-    print FILE "\\newcommand{\\rref}[1]{\\cref{MAIN-#1}}\n\n";
+    print FILE "\\newcommand{\\rref}[1]{\\cref{MAIN-#1}}\n\n\\usepackage{shorttoc}";
 
     print FILE "\\begin{document}\n\n";
-    print FILE "\\tableofcontents\n\n";
+
+#copyright
+
+    print FILE "\\shorttableofcontents{table}{2}\\tableofcontents\n\n";
+    print FILE "\textbf{Copyright 2011 the CRing Project. This file is part of the CRing Project, which is released under the GNU Free Documentation License, Version 1.2.}\n\n";
+
+
     print FILE "\\setcounter{chapter}{$i}\n\n";
     print FILE "\\input{chapters/$name.tex}\n\n";
     print FILE "\\end{document}";
@@ -61,12 +54,12 @@ for $name (@files)
 
 #edit makefile
 
-open(MK, "<", "../makefile");
+open(MK, "<", "makefile");
 @mk = <MK>;
 
 close MK;
 
-open(MK2, ">", "../makefile");
+open(MK2, ">", "makefile");
 
 
 
@@ -87,9 +80,15 @@ print MK2 "\n\n";
 
 for $fl (@files)
 {
+    
     $str = "ch". $fl . ".pdf: " . "aux/ch" . $fl . ".tex" . " CRing.aux chapters/" . $fl . ".tex\n\tpdflatex -src aux/ch" . $fl . ".tex\n". "\tpdflatex -src aux/ch" . $fl . ".tex";
 
     print MK2  $str . "\n\n";
+
+    
+    $str2 = "ch". $fl . ".tex: " . "aux/ch" . $fl . ".tex" . " CRing.aux chapters/" . $fl . ".tex\n\tpdflatex -src aux/ch" . $fl . ".tex\n". "\tpdflatex -src aux/ch" . $fl . ".tex";
+
+
 }
 
 

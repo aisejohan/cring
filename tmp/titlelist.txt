@@ -13,4 +13,5 @@ Completions
 Differentials and smoothness
 Homological Algebra
 Flatness revisited
-
+\'Etale, unramified, and smooth morphisms
+GNU Free Documentation License

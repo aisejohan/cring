@@ -2,10 +2,12 @@
 
 ## read list of chapters from CRing.tex
 
+## THIS IS MEANT TO BE EXECUTED FROM THE HOME DIRECTORY OF THE PROJECT
 
-$foo = $ARGV[0];
 
-open (CR, "<", $foo) or die "failed";
+
+
+open (CR, "<", "CRing.tex") or die "failed";
 
 @lines = <CR>;
 
@@ -22,22 +24,22 @@ for $line (@lines)
 
 }
 
-open F, ">", "chapterlist.txt";
-open F2, ">", "titlelist.txt";
+open F, ">", "tmp/chapterlist.txt";
+open F2, ">", "tmp/titlelist.txt";
 
 
 for $f (@files)
 {
     print F $f . "\n";
     
-    open G, "<", "../chapters/$f.tex" or die "failed";
+    open G, "<", "chapters/$f.tex" or die "failed";
     @str = <G>;
 
     for $s (@str)
     {
 	if ($s =~ m/\\chapter{/)
 	{
-	    $s =~ /\\chapter{(([a-z]|[A-Z]|\s|\$|\\)*)}/;
+	    $s =~ /\\chapter{(([a-z]|[A-Z]|\s|\$|\\|'|,)*)}/;
 	    print F2 $1 . "\n";
 	    last;
 

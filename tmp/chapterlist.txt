@@ -14,3 +14,4 @@ smoothness
 homological
 flat
 etale
+license

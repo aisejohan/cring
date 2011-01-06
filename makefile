@@ -17,6 +17,14 @@ preview:
 new_date:
 	date +"%B %e, %Y." > other/lastupdated.tex	
 
+update_tmp:
+	perl scripts/makenamelist.perl
+	perl scripts/script.perl
+
+
+tarball: CRing.tex chapters/*.tex other/* aux/*.tex scripts/*  tmp/* makefile
+	tar cvjf CRing.tar.bz2 CRing.tex chapters/*.tex other/* aux/*.tex scripts/*  tmp/* makefile	zip -r CRing.zip CRing.tex chapters/*.tex other/* aux/*.tex scripts/*  tmp/* makefile
+
 clean:
 	rm -f *.log *.pdf *.dvi *.out *.log *.toc *.aux *.fdb_latexmk *.blg *.bbl *.thm
 
@@ -29,7 +37,7 @@ CRing.aux: chapters/*.tex CRing.tex other/*.tex
 	bibtex CRing
 	pdflatex CRing
 
-#chapters start 
+#chapters start  (please do not delete this comment!)
 
 
 chcategories.pdf: aux/chcategories.tex CRing.aux chapters/categories.tex
@@ -96,5 +104,9 @@ chetale.pdf: aux/chetale.tex CRing.aux chapters/etale.tex
 	pdflatex -src aux/chetale.tex
 	pdflatex -src aux/chetale.tex
 
-chapters:  chcategories.pdf chfoundations.pdf chfields.pdf chthreeimportantfunctors.pdf chspec.pdf chgraded.pdf chnoetherian.pdf chintegrality.pdf chfactorization.pdf chdedekind.pdf chdimension.pdf chcompletion.pdf chsmoothness.pdf chhomological.pdf chflat.pdf chetale.pdf
+chlicense.pdf: aux/chlicense.tex CRing.aux chapters/license.tex
+	pdflatex -src aux/chlicense.tex
+	pdflatex -src aux/chlicense.tex
+
+chapters:  chcategories.pdf chfoundations.pdf chfields.pdf chthreeimportantfunctors.pdf chspec.pdf chgraded.pdf chnoetherian.pdf chintegrality.pdf chfactorization.pdf chdedekind.pdf chdimension.pdf chcompletion.pdf chsmoothness.pdf chhomological.pdf chflat.pdf chetale.pdf chlicense.pdf
 
