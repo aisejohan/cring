@@ -1,3 +1,8 @@
+## This does a bunch of useful things like fixing the makefile (to reflect the latest chapter list)
+## it also generates mini-chapter files in the aux/ diretory
+
+## THIS SHOULD BE RUN FROM THE MAIN DIRECTORY
+
 
 ## read list of chapters
 
@@ -29,18 +34,19 @@ for $name (@files)
     print FILE "\\externaldocument[MAIN-]{CRing}\n\n";
 
 
-    print FILE "\\newcommand{\\rref}[1]{\\cref{MAIN-#1}}\n\n\\usepackage{shorttoc}";
+    print FILE "\\newcommand{\\rref}[1]{\\cref{MAIN-#1}}\n\n\\usepackage[tight]{shorttoc}";
 
     print FILE "\\begin{document}\n\n";
-
+    $j = $i+1;
 #copyright
-
-    print FILE "\\shorttableofcontents{table}{2}\\tableofcontents\n\n";
-    print FILE "\textbf{Copyright 2011 the CRing Project. This file is part of the CRing Project, which is released under the GNU Free Documentation License, Version 1.2.}\n\n";
+    print FILE "\\pagestyle{fancy}\n\\fancyhead{}\n\\fancyfoot{}\\fancyhead[C]{CRing Project, Chapter $j} \\fancyfoot[C]{\\thepage}\n\n";
+    print FILE "\\tableofcontents\n\n";
+    print FILE "\\textbf{Copyright 2011 the CRing Project. This file is part of the CRing Project, which is released under the GNU Free Documentation License, Version 1.2.}\n\n";
 
 
     print FILE "\\setcounter{chapter}{$i}\n\n";
     print FILE "\\input{chapters/$name.tex}\n\n";
+    print FILE "\\anothertoc{CRing}{CRing Project contents}{0}\n\n";
     print FILE "\\end{document}";
 
 

@@ -12,14 +12,20 @@
 
 \newcommand{\rref}[1]{\cref{MAIN-#1}}
 
-\usepackage{shorttoc}\begin{document}
+\usepackage[tight]{shorttoc}\begin{document}
 
-\shorttableofcontents{table}{2}\tableofcontents
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}\fancyhead[C]{CRing Project, Chapter 2} \fancyfoot[C]{\thepage}
 
-	extbf{Copyright 2011 the CRing Project. This file is part of the CRing Project, which is released under the GNU Free Documentation License, Version 1.2.}
+\tableofcontents
+
+\textbf{Copyright 2011 the CRing Project. This file is part of the CRing Project, which is released under the GNU Free Documentation License, Version 1.2.}
 
 \setcounter{chapter}{1}
 
 \input{chapters/fields.tex}
+
+\anothertoc{CRing}{CRing Project contents}{0}
 
 \end{document}
