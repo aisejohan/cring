@@ -284,41 +284,9 @@ where the individual maps are not necessarily isomorphisms. Nonetheless, I
 claim that the map on inverse limits is an isomorphism. This will imply that
 completion is indeed an exact functor.
 
-
-\subsection{The Artin-Rees Lemma}
-Essentially, to say that this map is an isomorphism is to say that the
-filtrations $I^n M'$ and $I^n M \cap M'$ on $M'$ are \emph{comparable.} To
-prove this, and to complete the proof of exactness, it suffices to show:
-\begin{proposition}[Artin-Rees lemma] Let $R$ be noetherian, $I \subset R$ an
-ideal. Suppose $M$ is a finitely generated $R$-module and $M' \subset M$ a submodule. Then
-there is a  constant $c$ such that
-\[ I^{n+c} M \cap M' \subset I^n M'.  \]
-So the two filtrations $I^n M \cap M', I^n M'$ on $M$ are equivalent up to a
-shift.
-\end{proposition} 
-\begin{proof} 
-Define a new ring $R' = R \oplus It \oplus I^2 t^2 + \dots$, which is a subring of
-$R[t]$. The coefficient of $t^n $ is required to belong to $I^n$. 
-
-\begin{lemma} 
-Hypotheses as above, $R'$ is noetherian.
-\end{lemma} 
-\begin{proof} 
-Choose generators $x_1, \dots, x_n \in I$; then there is a map $R[y_1, \dots,
-y_n] \to R'$ sending $y_i \to x_i t$. This is surjective. Hence by the basis
-theorem, $R'$ is noetherian.
-\end{proof} 
-
-Let $N = M \oplus  IM t \oplus I^2 M [t] \oplus \dots \subset M[t] = M
-\otimes_R R[t]$. Note that $N$ is an $R'$-module. It is in fact a finitely
-generated $R'$-module, hence noetherian, since $M$ was finitely generated over
-$R$. Let $N' = N \cap M'[t]$. In particular
-\[ N' = M' \oplus (M' \cap IM ) t \oplus \dots.  \]
-So $N' \subset N$ is finitely generated. Choose generators for $N'$, and let
-$c$ be the largest degree (exponent of $t$) that occurs.
-I claim that $c$ works.  This is easy to check, but we're out of time. We'll
-talk about this more next week. 
-\end{proof} 
+But this follows because the filtrations $\left\{I^n M'\right\},
+\left\{I^n M \cap M'\right\}$ are equivalent in view of the Artin-Rees lemma,
+\cref{artinrees}.
 \end{proof} 
 \lecture{10/25}
 
