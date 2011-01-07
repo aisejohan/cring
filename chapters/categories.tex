@@ -70,6 +70,10 @@ morphisms are maps of Lie algebras (i.e. homomorphisms).\footnote{Feel free to
 omit if the notion of Lie algebra is unfamiliar.}
 \item  $\mathcal{C} = \mathbf{Vect}_k$; the objects are vector spaces over a
 field $k$, and the morphisms are linear maps.
+\item  This example is slightly more subtle. Here the category $\mathcal{C}$
+has objects consisting of topological spaces, but the morphisms between two
+topological spaces $X,Y$ are the \emph{homotopy classes} of maps $X \to Y$.
+Since composition respects homotopy classes, this is well-defined.
 \end{enumerate}
 \end{example}
 
@@ -170,6 +174,12 @@ the identity
 maps and composition.
 \end{definition}
 
+In detail, the last two conditions state the following. First, if $X \in
+\mathcal{C}$, then $F(1_X)$ is the identity morphism $1_{F(X)}: F(X) \to F(X)$. 
+The second is that if $A \stackrel{f}{\to} B \stackrel{g}{\to} C$ are
+morphisms in $\mathcal{C}$, 
+then $F(g \circ f) = F(g) \circ F(f)$ as morphisms $F(A) \to F(C)$.
+Alternatively, we can say that $F$ \emph{preserves commutative diagrams.}
 
 \begin{example}
 There is a functor from $\mathbf{Sets} \to \mathbf{AbelianGrp}$ sending a set
@@ -205,14 +215,29 @@ X \ar[r]^{i_{g_1}} \ar[rd]_{i_{g_1g_2}} & X \ar[d]^{i_{g_2}} \\ & X
 So a functor $B_G \to \mathbf{Sets}$ is just a left $G$-action on a set $X$.
 \end{example}
 
-Sometimes these are called \textbf{covariant functors}. Indeed:
+Sometimes what we have described above are called \textbf{covariant functors}. Indeed:
 
 \begin{definition}
-A \textbf{contravariant functor} from $\mathcal{C}
-\stackrel{F}{\to}\mathcal{D}$ is similar
-data except that now a map $X \to Y$ now goes to a map $FY \to FX$. Composites
+A \textbf{contravariant functor}  $\mathcal{C}
+\stackrel{F}{\to}\mathcal{D}$ (between categories $\mathcal{C}, \mathcal{D}$) is similar
+data except that now a map $X \stackrel{f}{\to} Y$ now goes to a map $FY
+\stackrel{F(f)}{\to} FX$. Composites
 are required to be preserved, albeit in the other direction.
 \end{definition}
+
+A contravariant functor also preserves commutative diagrams, except that the
+arrows have to be reversed. For instance, if $F: \mathcal{C} \to \mathcal{D}$
+is contravariant and the diagram
+\[ \xymatrix{
+A \ar[d] \ar[r] &  C\\
+B \ar[ru]
+}\]
+is commutative in $\mathcal{C}$, then the diagram
+\[ \xymatrix{
+A   & \ar[l] \ar[ld] C\\
+B \ar[u] 
+}\]
+commutes in $\mathcal{D}$.
 
 As you might guess:
 
@@ -247,11 +272,9 @@ Show that there is a contravariant functor $\mathcal{C} \to
 \mathcal{C}^{op}$.
 \end{exercise}
 
-There is room, nevertheless, for something else. You could have something that
-sent an object to a map.
-This is, I think, the reason for Maclane and Eilenberg to describe the next
-property.
-
+There is room, nevertheless, for something else. Instead of having
+something that sends objects to other objects, one could have something that
+sends an object to a map.
 
 
 \section{Natural transformations}
@@ -294,14 +317,6 @@ is a functor, then $F(f): FX \to FY$ is an isomorphism.
 \end{theorem}
 This is going to have a really stupid proof, but there is an important point
 lurking here.
-\begin{example}
-Let $\mathcal{C}$ be the homotopy category of topological spaces
-$\mathbf{hoT}$. The objects are topological spaces and the morphisms between
-$X, Y$ are the continuous maps $X \to Y$ modulo the relation of being
-homotopic. Homology is actually a functor from $\mathbf{hoT}$ to the category
-of graded abelian groups.
-\end{example}
-
 
 Hold on. Wait a second. Do we even know what an isomorphism in a category even
 is? No, we don't.
@@ -394,7 +409,7 @@ There is a philosophical point to be made here. We have characterized an object
 uniquely in terms of mapping properties. We have characterized it
 \emph{uniquely up to unique isomorphism,} which is really the best you can do
 in mathematics. Two sets aren't generally the ``same,'' but they may be
-isomorphic up to unique isomorphism. They're different (unless you're Luke),
+isomorphic up to unique isomorphism. They're different,
 but the sets are isomorphic up
 to unique isomorphism.
 
