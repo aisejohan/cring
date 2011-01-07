@@ -7,21 +7,6 @@
 \title{Math 210A Problem Set 6}
 \input{other/amsdata.tex}
 
-\subsection*{1}
-
-Suppose that an $n \times n$ matrix $A$ over a ring $R$ is invertible. This
-means that there exists $A^{-1}$ so that $A A^{-1} = I$, so hence
-$1 = \det I = \det(A A^{-1}) = (\det A) (\det A^{-1})$, and therefore, 
-$\det A$ must be a unit in $R$.
-
-Suppose instead that an $n \times n$ matrix $A$ over a ring $R$ is not
-invertible. This means that there does not exist a matrix $B$ such that 
-$A B = I$. For any ring element $r \in R$, we can define a matrix $A_r$ as the
-matrix that is the identity matrix except that the $1,1$ position has value $r$
-instead of 1. Then $\det A_r = r$, and $A A_r \ne I$, so that
-$1 = \det T \ne \det A \det A_r = r \det A$. Since this is true for every $r
-\in R$, we see that $\det A$ is not a unit in $R$.
-
 
 \subsection*{2}
 
@@ -65,77 +50,7 @@ entry of $(x_1, x_2, \dots, x_n)$, so therefore our nontrivial solution to $AX
 = 0$ is actually $(0, 0, \dots, 0)$, which is trivial. Hence, 
 we must conclude that $\det A \ne 0$.
 
-\newpage
 
-\subsection*{3(b)}
-
-We have the diagram
-\[ 
-\xymatrix{
-A \ar[r]^k \ar[d]^\a & B \ar[r]^l \ar[d]^\b 
-	& C \ar[r]^m \ar[d]^\g & D \ar[r]^n \ar[d]^\d & E \ar[d]^\e  \\
-F \ar[r]_p & G \ar[r]_q & H \ar[r]_r & I \ar[r]_s & J 
-}
-\] 
-where the rows are exact at $B, C, D, G, H, I$ and the squares commute. In
-addition, suppose that $\a, \b, \d, \e$ are isomorphisms. We will show that
-$\g$ is an isomorphism.
-
-\noindent
-\emph{We show that $\g$ is surjective:}
-
-Suppose that $h \in H$. Since $\d$ is surjective, there exists an element 
-$d \in D$ such that $r(h) = \d(d) \in I$.
-By the commutativity of the rightmost square, $s(r(h)) = \e(n(d))$. 
-The exactness at $I$ means that $\im r = \ker s$, so hence
-$\e(n(d)) = s(r(h)) = 0$. Because $\e$ is injective, $n(d) = 0$.
-Then $d \in \ker(n) = \im(m)$ by exactness at $D$.
-Therefore, there is some $c \in C$ such that $m(c) = d$.
-Now, $\d(m(c)) = \d(d) = r(h)$ and by the commutativity of squares, 
-$\d(m(c)) = r(\g(c))$, so therefore $r(\g(c)) = r(h)$. Since $r$ is a
-homomorphism, $r(\g(c) - h) = 0$. Hence $\g(c) - h \in \ker r = \im q$ by
-exactness at $H$.
-
-Therefore, there exists $g \in G$ such that $q(g) = \g(c) - h$.
-$\b$ is surjective, so there is some $b \in B$ such that $\b(b) = g$ and hence
-$q(\b(b)) = \g(c) - h$. By the commutativity of squares, 
-$q(\b(b)) = \g(l(b)) = \g(c) - h$. Hence 
-$h = \g(c) - \g(l(b)) = \g(c - l(b))$, and therefore $\g$ is surjective.
-
-So far, we've used that $\b$ and $\g$ are surjective, $\e$ is injective, and
-exactness at $D$, $H$, $I$.
-
-\noindent
-\emph{We show that $\g$ is injective:}
-
-Suppose that $c \in C$ and $\g(c) = 0$.
-Then $r(\g(c)) = 0$, and by the commutativity of squares, 
-$\d(m(c)) = 0$. Since $\d$ is injective, $m(c) = 0$, so
-$c \in \ker m = \im l$ by exactness at $C$. 
-Therefore, there is $b \in B$ such that $l(b) = c$.
-Then $\g(l(b)) = \g(c) = 0$, and by the commutativity of squares, 
-$q(\b(b)) = 0$. Therefore, $\b(b) \in \ker q$, and by exactness at $G$, 
-$\b(b) \in \ker q = \im p$.
-
-There is now $f \in F$ such that $p(f) = \b(b)$. Since $\a$ is surjective, this
-means that there is $a \in A$ such that $f = \a(a)$, so then 
-$\b(b) = p(\a(a))$. By commutativity of squares, 
-$\b(b) = p(\a(a)) = \b(k(a))$, and hence $\b(k(a) - b) = 0$.
-Since $\b$ is injective, we have $k(a) -b = 0$, so $k(a) = b$.
-Hence $b \in \im k = \ker l$ by commutativity of squares, so $l(b) = 0$.
-However, we defined $b$ to satisfy $l(b) = c$, so therefore $c = 0$ and hence
-$\g$ is injective.
-
-Here, we used that $\a$ is surjective, $\b, \d$ are injective, and exactness at
-$B, C, G$.
-
-Putting the two statements together, we see that $\g$ is both surjective and
-injective, so $\g$ is an isomorphism. We only used that $\b, \d$ are
-isomorphisms and that $\a$ is surjective, $\e$ is injective, so we can slightly
-weaken the hypotheses; injectivity of $\a$ and surjectivity of $\e$ were
-unnecessary.
-
-\newpage
 
 \subsection*{4}
 
@@ -268,76 +183,6 @@ $m/s = f(m')/st = S^{-1}f(m'/st)$, so therefore $m/s \in \im(S^{-1}f)$. This
 shows that $\ker(S^{-1}g) \subset \im(S^{-1}f)$, and hence that
 $\ker (S^{-1}g) = \im (S^{-1}f)$. This implies the desired exactness at 
 $S^{-1}m$.
-
-
-\subsection*{6(b)}
-
-Suppose that $0 \to A \xrightarrow u B \xrightarrow v C \to 0$ is exact.
-We want to show that $\Hom(M, \cdot)$ is a left-exact covariant functor, 
-which means that 
-$$
-0 \to \Hom(M, A) \xrightarrow{\ol u} \Hom(M, B) \xrightarrow{\ol v} \Hom(M, C)
-$$ 
-is exact. Here, if $f \in \Hom(M,A)$ and $g \in \Hom(M, B)$, we define 
-$\ol u$ and $\ol v$ via $\ol u(f) = u \circ f$ and 
-$\ol v(g) = v \circ g$.
-
-Suppose that $f \in \Hom(M, A)$. If $u \circ f = 0$ then 
-$(u \circ f)(m) = 0$ for all $m \in M$. Since $u$ is an injection, we see that
-$f(m) = 0$ for all $m$. Therefore, $\ol u (f) = 0$ implies that $f = 0$, and
-hence $\ol u:\Hom(M, A) \to \Hom(M, B)$ is an injection.
-
-Observe that $v \circ u = 0$ by the exactness at $B$. 
-Any element of $\im(\ol u)$ can be written as $\ol u(f)$ for some
-$f \in \Hom(M, A)$. This satisfies 
-$\ol v (\ol u (f)) = v \circ u \circ f = 0 \circ f = 0$, so hence
-$\ol u(f) \in \ker (\ol v)$ and therefore $\im(\ol u) \subset \ker (\ol v)$.
-
-Now, suppose that $g \in \ker(\ol v) \subset \Hom(M, B)$. Then 
-$\ol v(g) = v \circ g = 0$. Therefore, 
-$v(g(M)) = 0$ so that $g(M) \subset \ker v = \im u$ by the exactness at $B$.
-Since $u$ is injective, it is an isomorphism onto its image, so therefore 
-$f = u^{-1} \circ g \in \Hom(M, A)$ is well-defined.
-Therefore, $\ol u(f) = u \circ f = g$, and hence $g \in \im (\ol u)$.
-Therefore, $\ker(\ol v) \subset \im (\ol u)$, and hence
-$\ker (\ol v) = \im(\ol u)$ and we have our desired exactness at $\Hom(M, B)$.
-
-
-\subsection*{6(c)}
-
-Suppose that $0 \to A \xrightarrow u B \xrightarrow v C \to 0$ is exact.
-We want to show that $\Hom(\cdot, M)$ is a left-exact contravariant functor, 
-which means that 
-$$
-0 \to \Hom(C, M) \xrightarrow{\ol v} \Hom(B, M) \xrightarrow{\ol u} \Hom(A, M)
-$$ 
-is exact. Here, if $f \in \Hom(B,M)$ and $g \in \Hom(C, M)$, we define 
-$\ol u$ and $\ol v$ via $\ol v(g) = g \circ v$ and 
-$\ol u(f) = f \circ u$.
-
-Suppose that $g \in \Hom(C, M)$. If $\ol v(g) = g \circ v = 0$ then 
-$(g \circ v)(b) = 0$ for all $b \in B$. Since $v$ is a surjection, this means
-that $g(C) = 0$ and hence $g = 0$. Therefore, $\ol(v)$ is injective, and we
-have exactness at $\Hom(C, M)$.
-
-Observe that $v \circ u = 0$ by the exactness at $B$. 
-Any element of $\im(\ol v)$ can be written as $\ol v(g)$ for some
-$g \in \Hom(C, M)$. This satisfies 
-$\ol u (\ol v (g)) = g \circ v \circ u = g \circ 0 = 0$, so hence
-$\ol v(g) \in \ker (\ol u)$ and therefore $\im(\ol v) \subset \ker (\ol u)$.
-
-Now, suppose that $f \in \ker(\ol u) \subset \Hom(B, M)$. Then 
-$\ol u(f) = f \circ u = 0$. Therefore, 
-$f(u(A)) = 0$, so that $f(\im u) = 0$. Now, since $\ker v = \im u$ by the
-exactness at $B$, we have  
-$C \cong B / \ker v = B / \im u$, so that we have a well-defined map
-$v^{-1} : C \to B / \im u$.
-Combined with $f (\im u) = 0$, we can define a well-defined map 
-$g = f \circ v^{-1} \in \Hom(C, M)$. This new map satisfies $f = g \circ v$
-Therefore, $\ol v(g) = g \circ v = f$, and hence $f \in \im (\ol v)$.
-Therefore, $\ker(\ol u) \subset \im (\ol v)$, and hence
-$\ker (\ol u) = \im(\ol v)$ and we have our desired exactness at $\Hom(B, M)$.
-
 
 
 \end{document}
