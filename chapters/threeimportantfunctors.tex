@@ -497,6 +497,7 @@ image landing inside $N'$ (i.e. factors through $N'$) if and only if it
 composes to zero in $N''$.
 \end{proof}
 
+\newcommand{\ol}[1]{\mathbf{#1}}
 This functor $\hom_R(M, \cdot)$  is not exact in general.  Indeed:
 \begin{example}
 Suppose $R = \mathbb{Z}$, $M = \mathbb{Z}/2\mathbb{Z}$. There is a short exact
@@ -509,6 +510,48 @@ Let us apply $\hom_R(M, \cdot)$. We get a \emph{complex}
 The last term is $\mathbb{Z}/2\mathbb{Z}$; everything else is zero. This is not
 exact at the last point.
 \end{example}
+
+
+\begin{proposition} 
+If $M$ is a module, then $\hom_R(-,M)$ is a left-exact contravariant functor.
+\end{proposition} 
+\add{this proof needs to be fixed}
+\begin{proof} 
+Suppose that $0 \to A \xrightarrow u B \xrightarrow v C \to 0$ is exact.
+We want to show that $\hom(\cdot, M)$ is a left-exact contravariant functor, 
+which means that 
+$$
+0 \to \hom(C, M) \xrightarrow{\ol v} \hom(B, M) \xrightarrow{\ol u} \hom(A, M)
+$$ 
+is exact. Here, if $f \in \hom(B,M)$ and $g \in \hom(C, M)$, we define 
+$\ol u$ and $\ol v$ via $\ol v(g) = g \circ v$ and 
+$\ol u(f) = f \circ u$.
+
+Suppose that $g \in \hom(C, M)$. If $\ol v(g) = g \circ v = 0$ then 
+$(g \circ v)(b) = 0$ for all $b \in B$. Since $v$ is a surjection, this means
+that $g(C) = 0$ and hence $g = 0$. Therefore, $\ol(v)$ is injective, and we
+have exactness at $\hom(C, M)$.
+
+Observe that $v \circ u = 0$ by the exactness at $B$. 
+Any element of $\im(\ol v)$ can be written as $\ol v(g)$ for some
+$g \in \hom(C, M)$. This satisfies 
+$\ol u (\ol v (g)) = g \circ v \circ u = g \circ 0 = 0$, so hence
+$\ol v(g) \in \ker (\ol u)$ and therefore $\im(\ol v) \subset \ker (\ol u)$.
+
+Now, suppose that $f \in \ker(\ol u) \subset \hom(B, M)$. Then 
+$\ol u(f) = f \circ u = 0$. Therefore, 
+$f(u(A)) = 0$, so that $f(\im u) = 0$. Now, since $\ker v = \im u$ by the
+exactness at $B$, we have  
+$C \cong B / \ker v = B / \im u$, so that we have a well-defined map
+$v^{-1} : C \to B / \im u$.
+Combined with $f (\im u) = 0$, we can define a well-defined map 
+$g = f \circ v^{-1} \in \hom(C, M)$. This new map satisfies $f = g \circ v$
+Therefore, $\ol v(g) = g \circ v = f$, and hence $f \in \im (\ol v)$.
+Therefore, $\ker(\ol u) \subset \im (\ol v)$, and hence
+$\ker (\ol u) = \im(\ol v)$ and we have our desired exactness at $\hom(B, M)$.
+
+\end{proof} 
+
 
 \subsection{Projective modules}
 

@@ -471,28 +471,27 @@ The rest of the proof is now an application of the Chinese remainder theorem.  S
 Now, consider the norm $N^L_K(x)$; the first condition implies that it is congruent to 1 modulo $\mathfrak{p}$.  But the second implies that  the norm is in $\mathfrak{Q} \cap K = \mathfrak{p}$, contradiction.
 \end{proof}
 
-\newcommand{\ol}[1]{\overline{#1}}
 \subsection{The decomposition and inertia groups}
 Now, let's zoom in on a given prime $\mathfrak{p} \subset A$.  We know that $G$ acts transitively on the set $\mathfrak{P}_1, \dots, \mathfrak{P}_g$ of primes lying above $\mathfrak{p}$; in particular, there are at most $[L:K]$ of them.  
 
 \begin{definition} If $\mathfrak{P}$ is any one of the $\mathfrak{P}_i$, then the stabilizer in $G$ of this prime ideal is called the \textbf{decomposition group} $G_{\mathfrak{P}}$. \end{definition}
 We have, clearly, $(G: G_{\mathfrak{P}}) = g$.
 
-Now if $ \sigma \in G_{\mathfrak{P}}$, then $\sigma$ acts on the residue field $B/\mathfrak{P}$ while fixing the subfield $A/\mathfrak{p}$.  In this way, we get a homomorphism $\sigma \to \ol{\sigma}$ from $G$ into the automorphism group of $B/\mathfrak{P}$ over $A/\mathfrak{p})$ (we don't call it a Galois group because we don't yet know whether the extension is Galois).
+Now if $ \sigma \in G_{\mathfrak{P}}$, then $\sigma$ acts on the residue field $B/\mathfrak{P}$ while fixing the subfield $A/\mathfrak{p}$.  In this way, we get a homomorphism $\sigma \to \overline{\sigma}$ from $G$ into the automorphism group of $B/\mathfrak{P}$ over $A/\mathfrak{p})$ (we don't call it a Galois group because we don't yet know whether the extension is Galois).
 
 The following result will be crucial in constructing the so-called ``Frobenius elements'' of crucial use in class field theory.
 
-\begin{proposition} Suppose $A/\mathfrak{p}$ is perfect. Then $B/\mathfrak{P}$ is Galois over $A/\mathfrak{p}$, and the homomorphism $\sigma \to \ol{\sigma}$ is surjective from $G_{\mathfrak{P}} \to G(B/\mathfrak{P}/A/\mathfrak{p})$.
+\begin{proposition} Suppose $A/\mathfrak{p}$ is perfect. Then $B/\mathfrak{P}$ is Galois over $A/\mathfrak{p}$, and the homomorphism $\sigma \to \overline{\sigma}$ is surjective from $G_{\mathfrak{P}} \to G(B/\mathfrak{P}/A/\mathfrak{p})$.
 \end{proposition}
 \begin{proof}
-In this case, the extension $B/\mathfrak{P}/A/\mathfrak{p}$ is separable, and we can choose $\ol{x} \in B/\mathfrak{P}$ generating it by the primitive element theorem.  We will show that $\ol{x}$ satisfies a polynomial equation  $\ol{P}(X) \in A/\mathfrak{p}[X]$ all of whose roots lie in $B/\mathfrak{P}$, which will prove that the residue field extension is Galois.  Moreover, we will show that all the nonzero roots of $\ol{P}$ in $B/\mathfrak{P}$ are conjugates of $\ol{x}$ under elements of $G_{\mathfrak{P}}$.  This latter will imply surjectivity of the homomorphism $\sigma \to \ol{\sigma}$, because it shows that any conjugate of $\ol{x}$ under $G(B/\mathfrak{P}/A/\mathfrak{p})$ is a conjugate under $G_{\mathfrak{P}}$.
+In this case, the extension $B/\mathfrak{P}/A/\mathfrak{p}$ is separable, and we can choose $\overline{x} \in B/\mathfrak{P}$ generating it by the primitive element theorem.  We will show that $\overline{x}$ satisfies a polynomial equation  $\overline{P}(X) \in A/\mathfrak{p}[X]$ all of whose roots lie in $B/\mathfrak{P}$, which will prove that the residue field extension is Galois.  Moreover, we will show that all the nonzero roots of $\overline{P}$ in $B/\mathfrak{P}$ are conjugates of $\overline{x}$ under elements of $G_{\mathfrak{P}}$.  This latter will imply surjectivity of the homomorphism $\sigma \to \overline{\sigma}$, because it shows that any conjugate of $\overline{x}$ under $G(B/\mathfrak{P}/A/\mathfrak{p})$ is a conjugate under $G_{\mathfrak{P}}$.
 
-We now construct the aforementioned polynomial.   Let $x \in B$ lift $\ol{x}$.  Choose $y \in B$ such that $y \equiv x \mod \mathfrak{P}$ but $y \equiv 0 \mod \mathfrak{Q}$ for the other primes $\mathfrak{Q}$ lying over $\mathfrak{p}$.  We take $P(X) = \prod_{\sigma \in G} (X - \sigma(y)) \in A[X]$. Then the reduction $\ol{P}$ satisfies $\ol{P}(\ol{x})= \ol{P}(\ol{y}) = 0$, and $\ol{P}$ factors completely (via $\prod_{\sigma} (X - \ol{\sigma(t)})$) in $B/\mathfrak{P}[X]$.  This implies that the residue field extension is Galois, as already stated. 
-But it is also clear that the polynomial $\ol{P}(X)$ has roots of zero and $\sigma(\ol{y}) = \sigma(\ol{x})$ for $\sigma \in G_{\mathfrak{P}}$.  This completes the proof of the other assertion, and hence the proposition.
+We now construct the aforementioned polynomial.   Let $x \in B$ lift $\overline{x}$.  Choose $y \in B$ such that $y \equiv x \mod \mathfrak{P}$ but $y \equiv 0 \mod \mathfrak{Q}$ for the other primes $\mathfrak{Q}$ lying over $\mathfrak{p}$.  We take $P(X) = \prod_{\sigma \in G} (X - \sigma(y)) \in A[X]$. Then the reduction $\overline{P}$ satisfies $\overline{P}(\overline{x})= \overline{P}(\overline{y}) = 0$, and $\overline{P}$ factors completely (via $\prod_{\sigma} (X - \overline{\sigma(t)})$) in $B/\mathfrak{P}[X]$.  This implies that the residue field extension is Galois, as already stated. 
+But it is also clear that the polynomial $\overline{P}(X)$ has roots of zero and $\sigma(\overline{y}) = \sigma(\overline{x})$ for $\sigma \in G_{\mathfrak{P}}$.  This completes the proof of the other assertion, and hence the proposition.
 \end{proof}
 
 \begin{definition} 
-The kernel of the map $\sigma \to \ol{\sigma}$ is called the \textbf{inertia
+The kernel of the map $\sigma \to \overline{\sigma}$ is called the \textbf{inertia
 group} $T_{\mathfrak{P}}$.  Its fixed field is called the \textbf{inertia
 field}.
 \end{definition}

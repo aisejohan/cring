@@ -745,9 +745,100 @@ sequences of the form $M' \to M \to M'' \to 0$, i.e. $F$ preserves cokernels.
 A functor is exact if and only if it is both left and right exact.  
 
 
+
 \add{split exact sequences}
 
 \add{further explanation, exactness of filtered colimits}
+
+
+\subsection{The five lemma}
+
+\renewcommand{\a}{\mathbf{a}}
+\renewcommand{\b}{\mathbf{b}}
+\renewcommand{\c}{\mathbf{c}}
+\renewcommand{\d}{\mathbf{d}}
+\newcommand{\e}{\mathbf{e}}
+\newcommand{\g}{\mathbf{g}}
+\begin{theorem} 
+Suppose given a commutative diagram
+\[ \xymatrix{
+A \ar[d] \ar[r] &  B \ar[d] \ar[r] &  C \ar[d]  \ar[r] &  D \ar[d] \ar[r] & E \ar[d]  \\
+A' \ar[r] &  B' \ar[r] &  C' \ar[r] &  D' \ar[r] &  E'
+}\]
+such that the rows are exact and the four vertical maps $A \to A', B \to B', D
+\to D', E \to E'$ are isomorphisms. Then $C \to C'$ is an isomorphism.
+\end{theorem}
+
+This is the type of proof that goes by the name of ``diagram-chasing,'' and
+is best thought out visually for oneself, even though we give a complete proof. 
+
+\begin{proof} 
+We have the diagram
+\[ 
+\xymatrix{
+A \ar[r]^k \ar[d]^\a & B \ar[r]^l \ar[d]^\b 
+	& C \ar[r]^m \ar[d]^\g & D \ar[r]^n \ar[d]^\d & E \ar[d]^\e  \\
+F \ar[r]_p & G \ar[r]_q & H \ar[r]_r & I \ar[r]_s & J 
+}
+\] 
+where the rows are exact at $B, C, D, G, H, I$ and the squares commute. In
+addition, suppose that $\a, \b, \d, \e$ are isomorphisms. We will show that
+$\g$ is an isomorphism.
+
+\emph{We show that $\g$ is surjective:}
+
+Suppose that $h \in H$. Since $\d$ is surjective, there exists an element 
+$d \in D$ such that $r(h) = \d(d) \in I$.
+By the commutativity of the rightmost square, $s(r(h)) = \e(n(d))$. 
+The exactness at $I$ means that $\im r = \ker s$, so hence
+$\e(n(d)) = s(r(h)) = 0$. Because $\e$ is injective, $n(d) = 0$.
+Then $d \in \ker(n) = \im(m)$ by exactness at $D$.
+Therefore, there is some $c \in C$ such that $m(c) = d$.
+Now, $\d(m(c)) = \d(d) = r(h)$ and by the commutativity of squares, 
+$\d(m(c)) = r(\g(c))$, so therefore $r(\g(c)) = r(h)$. Since $r$ is a
+homomorphism, $r(\g(c) - h) = 0$. Hence $\g(c) - h \in \ker r = \im q$ by
+exactness at $H$.
+
+Therefore, there exists $g \in G$ such that $q(g) = \g(c) - h$.
+$\b$ is surjective, so there is some $b \in B$ such that $\b(b) = g$ and hence
+$q(\b(b)) = \g(c) - h$. By the commutativity of squares, 
+$q(\b(b)) = \g(l(b)) = \g(c) - h$. Hence 
+$h = \g(c) - \g(l(b)) = \g(c - l(b))$, and therefore $\g$ is surjective.
+
+So far, we've used that $\b$ and $\g$ are surjective, $\e$ is injective, and
+exactness at $D$, $H$, $I$.
+
+\emph{We show that $\g$ is injective:}
+
+Suppose that $c \in C$ and $\g(c) = 0$.
+Then $r(\g(c)) = 0$, and by the commutativity of squares, 
+$\d(m(c)) = 0$. Since $\d$ is injective, $m(c) = 0$, so
+$c \in \ker m = \im l$ by exactness at $C$. 
+Therefore, there is $b \in B$ such that $l(b) = c$.
+Then $\g(l(b)) = \g(c) = 0$, and by the commutativity of squares, 
+$q(\b(b)) = 0$. Therefore, $\b(b) \in \ker q$, and by exactness at $G$, 
+$\b(b) \in \ker q = \im p$.
+
+There is now $f \in F$ such that $p(f) = \b(b)$. Since $\a$ is surjective, this
+means that there is $a \in A$ such that $f = \a(a)$, so then 
+$\b(b) = p(\a(a))$. By commutativity of squares, 
+$\b(b) = p(\a(a)) = \b(k(a))$, and hence $\b(k(a) - b) = 0$.
+Since $\b$ is injective, we have $k(a) -b = 0$, so $k(a) = b$.
+Hence $b \in \im k = \ker l$ by commutativity of squares, so $l(b) = 0$.
+However, we defined $b$ to satisfy $l(b) = c$, so therefore $c = 0$ and hence
+$\g$ is injective.
+
+Here, we used that $\a$ is surjective, $\b, \d$ are injective, and exactness at
+$B, C, G$.
+
+Putting the two statements together, we see that $\g$ is both surjective and
+injective, so $\g$ is an isomorphism. We only used that $\b, \d$ are
+isomorphisms and that $\a$ is surjective, $\e$ is injective, so we can slightly
+weaken the hypotheses; injectivity of $\a$ and surjectivity of $\e$ were
+unnecessary.
+
+\end{proof} 
+
 
 \section{Ideals}
 
@@ -1202,7 +1293,7 @@ one.
 \end{example} 
 
 Another way of saying this is that the free module $\bigoplus_I R$ represents
-the functor $M \to M^I$. We have already seen a special case of this for $I$ a
+the functor on modules sending $M$ to the \emph{set} $ M^I$. We have already seen a special case of this for $I$ a
 one-element set (\rref{moduleunderlyingsetrepresentable}).
 
 The next claim is that free modules form a reasonably large class of the
@@ -1219,6 +1310,33 @@ We let $F$ to be the free $R$-module on the elements $e_m$, one for each $m
 by describing the image of each of the generators $e_m$: we just send each
 $e_m$ to $m \in M$. It is clear that this map is surjective.
 \end{proof} 
+
+
+We close by making a few remarks on matrices.
+Let $M$ be a free module of rank $n$, and fix an isomorphism $M \simeq R^n$.
+Then we can do linear algebra with $M$, even though we are working over a
+ring and not necessarily a field, at least to some extent.
+For instance, we can talk about $n$-by-$n$ matrices over the ring $R$, and
+then each of them induces a transformation, i.e. a module-homomorphism, $M \to
+M$; it is easy to see that every module-homomorphism between free modules is
+of this form. Moreover, multiplication of matrices corresponds to composition
+of homomorphisms, as usual.
+ 
+\begin{example} Let us consider the question of when the transformation
+induced by an $n$-by-$n$ matrix is invertible. The answer is similar to the
+familiar one from linear algebra in the case of a field. Namely, the condition
+is that the determinant be invertible.
+
+Suppose that an $n \times n$ matrix $A$ over a ring $R$ is invertible. This
+means that there exists $A^{-1}$ so that $A A^{-1} = I$, so hence
+$1 = \det I = \det(A A^{-1}) = (\det A) (\det A^{-1})$, and therefore, 
+$\det A$ must be a unit in $R$.
+
+Suppose instead that an $n \times n$ matrix $A$ over a ring $R$ has an
+invertible determinant. Then, using Cramer's rule, we can actually construct
+the inverse of $A$.
+\end{example} 
+
 
 \subsection{Finitely generated modules}
 
