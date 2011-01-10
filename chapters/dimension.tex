@@ -1100,7 +1100,7 @@ $\ell(R/\mathfrak{m}^t)$ for $t \gg 0$.
 Let $R$ be a local noetherian ring.
 The following is now clear from what we have shown:
 
-\begin{theorem}[Krull's Hauptidealsatz]
+\begin{theorem} \label{hauptv1}
 $R$ has dimension $1$ if and only if there is a nonzerodivisor $x \in \mathfrak{m}$ such that
 $R/(x)$ is artinian.
 \end{theorem} 
@@ -1133,6 +1133,14 @@ Sometimes, the height is called the \textbf{codimension}. This corresponds to
 the codimension in $\spec R$ of the corresponding irreducible closed subset of
 $\spec R$.
 \end{remark} 
+
+\begin{theorem}[Krull's Hauptidealsatz]  Let $R$ be a noetherian ring, and $x
+\in R$ a nonzerodivisor. If $\mathfrak{p} \in \spec R$ is minimal over $x$,
+then $\mathfrak{p}$ has height one.
+\end{theorem} 
+\begin{proof} 
+Immediate from \cref{hauptv1}.
+\end{proof} 
 
 \begin{theorem}[Artin-Tate]
 Let $A$ be a noetherian domain. Then the following are equivalent:
