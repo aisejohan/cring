@@ -5,7 +5,7 @@ There are three functors that will be integral to our study of commutative
 algebra in the future: localization, the tensor product, and $\hom$.
 While localization is an \emph{exact} functor, the tensor product and $\hom$
 are not. The failure of exactness in those cases leads to the theory of
-flatness and projectivity, and eventually the \emph{derived functors}
+flatness and projectivity (and injectivity), and eventually the \emph{derived functors}
 $\mathrm{Tor}$ and $\mathrm{Ext}$ that crop up in commutative algebra.
 
 \section{Localization}
@@ -871,19 +871,27 @@ is bijective.
 
 \section{The tensor product}
 
+We shall now introduce the third functor of this chapter: the tensor product.
+The tensor product's key property is that it allows one to ``linearie''
+bilinear maps. When taking the tensor product of rings, it provides a
+categorical coproduct as well.
+
 \subsection{Bilinear maps}
 Let $R$ be a commutative ring, as usual.
-We have just seen that the $\hom$-sets of $R$-modules are themselves
+We have seen that the $\hom$-sets $\hom_R(M,N)$ of $R$-modules $M,N$ are themselves
 $R$-modules.
 Consequently, if we have three $R$-modules $M,N,P$, we can think about
 module-homomorphisms
 \[ M \stackrel{\lambda}{\to}\hom_R(N,P).  \]
 Suppose $x \in M, y \in N$.  Then we can consider
-\[ \lambda(x) \in \hom_R(N,P)  \]
-and thus the element
-\[ \lambda(x)(y) \in P.  \]
-We denote this element $\lambda(x)(y)$ by $\lambda(x,y)$ for convenience; it
-is a function of two variables $M \times N \to P$. There are
+\( \lambda(x) \in \hom_R(N,P)  \)
+and thus we can consider the element
+\( \lambda(x)(y) \in P.  \)
+We denote this element $\lambda(x)(y)$, which depends on the variables $x \in
+M, y \in N$, by $\lambda(x,y)$ for convenience; it
+is a function of two variables $M \times N \to P$.
+
+There are
 certain properties of $\lambda(\cdot, \cdot)$ that we list below.
 Fix $x , x' \in M$; $y, y' \in N; \ a \in R$. Then:
 \begin{enumerate}
@@ -895,10 +903,10 @@ $R$-module homomorphism.
 \item  $\lambda(x+x', y) = \lambda(x,y) + \lambda(x', y)$ because
 $\lambda$ is additive.
 \item   $\lambda(ax, y) = a\lambda(x,y)$ because $\lambda$ is an $R$-module
-$R$-module homomorphism.
+homomorphism.
 \end{enumerate}
 
-Conversely, given a function of two variables satisfying the above properties,
+Conversely, given a function $\lambda: M \times N \to P$ of two variables satisfying the above properties,
 it is easy to see that we can get a morphism of $R$-modules $M \to
 \hom_R(N,P)$.
 
@@ -906,10 +914,11 @@ it is easy to see that we can get a morphism of $R$-modules $M \to
 
 \begin{definition}
 An \textbf{$R$-bilinear map $\lambda: M \times N \to P$} is a map satisfying
-the above conditions. In particular, it has to be $R$-linear in each variable.
+the above listed conditions. In other words, it is required to be $R$-linear
+in each variable separately.
 \end{definition}
 
-The previous discussion shows that there is a bijection between $R$-bilinear
+The previous discussion shows that there is a \emph{bijection} between $R$-bilinear
 maps $M \times N \to P$ with $R$-module maps $M \to \hom_R(N,P)$.
 Note that the first interpretation is symmetric in $M,N$; the second, by
 contrast, can be interpreted in terms of the old concepts of an $R$-module map.
@@ -921,6 +930,10 @@ Prove that a $\mathbb{Z}$-bilinear map out of $\mathbb{Z}/2 \times
 \end{exercise}
 
 \subsection{The tensor product}
+
+Let us keep the notation of the previous section: in particular, $M,N, P$ will
+be modules over a commutative ring $R$.
+
 Given a bilinear map $M \times N \to P$ and a homomorphism $P \to P'$, we can
 clearly get a bilinear map $M \times N \to P'$ by composition.
 In particular, given $M,N$, there is a \emph{contravariant functor} from
@@ -940,7 +953,7 @@ for all $R$-modules $Q$, the composition of $P \to Q$ with $M \times N
 gives a \textbf{bijection}
 \[ \hom_R(P,Q) \simeq \left\{\mathrm{bilinear \ maps} \ M \times N \to
 Q\right\}  \]
-So, given a bilinear map $M \times N \to Q$, there is a \textbf{unique} map $P
+So, given a bilinear map $M \times N \to Q$, there is a \textit{unique} map $P
 \to Q$ making the diagram
 \[
 \xymatrix{
@@ -956,13 +969,12 @@ Alternatively, $P$ \emph{corepresents} the functor $Q \to
 
 General nonsense says that given $M,N$, an universal $R$-bilinear map $M
 \times N \to P$ is
-\textbf{unique} up to isomorphism (if it exists). This is a general category
-theoretic observation, and follows from \emph{Yoneda's lemma}.
-We can give a direct proof.
+\textbf{unique} up to isomorphism (if it exists). This  follows from \emph{Yoneda's lemma}.
+For convenience, we give a direct proof.
 
 Suppose $M \times N \stackrel{\lambda}{\to} P$ was universal and $M \times N
-\stackrel{\lambda'}{\to} P'$ was also
-universal. Then by the universal property, there would be maps $P \to P'$
+\stackrel{\lambda'}{\to} P'$ is also
+universal. Then by the universal property, there are unique maps $P \to P'$
 and $P' \to P$ making the
 following diagram commutative:
 \[
@@ -974,6 +986,7 @@ M \times N \ar[ru]^{\lambda} \ar[rd]^{\lambda'} & \\
 \]
 These compositions $P \to P' \to P, P' \to P \to P'$ have to be the identity
 because of the uniqueness part of the universal property.
+As a result, $P \to P'$ is an isomorphism.
 
 We shall now show that this universal object does indeed exist.
 
@@ -984,7 +997,8 @@ Given $M,N$, a universal bilinear map out of $M \times N$ exists.
 Before proving it we make:
 \begin{definition}
 We denote the codomain of the universal map out of $M \times N $ by $M
-\otimes_R N$. This is called the \textbf{tensor product} of $M,N$.
+\otimes_R N$. This is called the \textbf{tensor product} of $M,N$, so there
+is a universal bilinear map out of $M \times N$ into $M \otimes_R N$.
 \end{definition}
 
 \begin{proof}[Proof of \rref{tensorexists}] We will simply give
@@ -1012,11 +1026,10 @@ that it is universal, but this is actually quite direct.
 Suppose we had a bilinear map $\lambda: M \times N \to P$.  We must construct
 a linear map $M
 \otimes_R N \to P$.
-To do this, we can just give a map on generators, and shows that it is zero on
+To do this, we can just give a map on generators, and show that it is zero on
 each of the relations.
 It is easy to see that to make the appropriate diagrams commute, the linear
 map $M \otimes N \to P$ has to send $x \otimes y \to \lambda(x,y)$.
-
 This factors
 through the relations on $x \otimes y$ by bilinearity and leads to an
 $R$-linear map $M \otimes_{R} N \to P$ such that the following diagram
@@ -1031,16 +1044,20 @@ y$ generate it.
 \end{proof}
 
 
-The theory of the tensor product allows you to do away with bilinear maps and
+The theory of the tensor product allows one to do away with bilinear maps and
 just think of linear maps.
 
-Given $M, N$, we have constructed an object $M \otimes_R N$. It remains to see
-the functoriality. I claim that $(M,N) \to M \otimes_R N$ is a \emph{covariant
+Given $M, N$, we have constructed an object $M \otimes_R N$. We now wish to  see
+the functoriality of the tensor product. In fact, $(M,N) \to M \otimes_R N$ is a \emph{covariant
 functor} in two variables from $R$-modules to $R$-modules.
 In particular, if $M \to M', N \to N'$ are morphisms, there is a canonical map
-\[ M \otimes_R N \to M' \otimes_R N'.  \]
+\begin{equation} \label{tensorisfunctor} M \otimes_R N \to M' \otimes_R N'.
+\end{equation}
+To obtain \cref{tensorisfunctor}, we take the natural bilinear map $M \times N \to M' \times N'
+\to M' \otimes_R N'$ and use the universal property of $M \otimes_R N$ to get
+a map out of it.
 
-
+\subsection{Basic properties of the tensor product}
 We make some observations and prove a few basic properties. As the proofs will
 show, one powerful way to prove things about an object is to reason about its
 universal property. If two objects have the same universal property, they are
