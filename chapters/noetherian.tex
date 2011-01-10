@@ -1092,6 +1092,22 @@ means that primary decomposition is unique for torsion modules.
 Any torsion group is a direct sum of the $p$-power torsion over all primes $p$. 
 \end{example} 
 
+\begin{exercise} 
+Suppose $R$ is a noetherian ring and $R_{\mathfrak{p}}$ is a domain for each prime ideal
+$\mathfrak{p} \subset R$. Then $R$ is a finite direct product $\prod R_i$ for
+each $R_i$ a domain.
+
+To see this, consider the minimal primes $\mathfrak{p}_i \in \spec R$. There
+are finitely many of them, and argue that since every localization is a domain,
+$\spec R$ is disconnected into the pieces $V(\mathfrak{p}_i)$.
+It follows that there is a decomposition $R = \prod R_{i}$ where $\spec R_i$
+has $\mathfrak{p}_i$ as the unique minimal prime. 
+Each $R_i$ satisfies the same condition as $R$, so we may reduce to the case
+of $R$ having a unique minimal prime ideal. In this case, however, $R$ is
+reduced, so its unique minimal prime ideal must be zero.
+\end{exercise} 
+
+
 
 \section{Artinian rings and modules}
 
