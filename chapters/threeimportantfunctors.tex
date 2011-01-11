@@ -834,10 +834,20 @@ find a free
 \[ F \to M^{\vee} \to 0.\]
 Now dualizing gives an exact sequence of $R$-modules
 \[ 0 \to M^{\vee \vee} \to F^{\vee}. \]
-But, by Pontryagin duality, we have  a canonical isomorphism $M \simeq M^{\vee \vee}$ (indeed,
-as $R$-modules).
+However, there is a natural map (of $R$-modules) $M \to M^{\vee \vee}$: given $m \in M$, we can
+define a functional $\hom(M, \mathbb{Q}/\mathbb{Z}) \to \mathbb{Q}/\mathbb{Z}$
+by evaluation at $m$. One can check that this is a homomorphism. Moreover, this morphism $M \to M^{\vee \vee}$ is actually injective: if $m \in M$ were
+in the kernel, then by definition every functional $M \to
+\mathbb{Q}/\mathbb{Z}$ must vanish on $m$. It is easy to see (using
+$\mathbb{Z}$-injectivity of $\mathbb{Q}/\mathbb{Z}$) that this cannot happen
+if $m \neq 0$: we could just pick a nontrivial functional on the monogenic
+\emph{subgroup} $\mathbb{Z} m$ and extend to $M$.
 
-We claim now that $F^{\vee}$ is injective.  This will prove the theorem.
+
+
+We claim now that $F^{\vee}$ is injective.  This will prove the theorem, as
+we have the composite of monomorphisms $M \hookrightarrow M^{\vee \vee} \hookrightarrow F^{\vee}$ that
+embeds $M$ inside an injective module.
 
 \begin{lemma} The dual of a  free $R$-module $F$ is an injective
 $R$-module.
