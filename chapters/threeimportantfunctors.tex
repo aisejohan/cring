@@ -694,6 +694,7 @@ In particular, any projective modules is free.
 \end{exercise}
 
 \subsection{Injective modules}
+\label{ssecinj}
 
 We have given a complete answer to the question of when the functor
 $\hom_R(M,-)$ is exact. We have shown that there are a lot of such
@@ -779,7 +780,7 @@ $M'$ and completes the proof.
 \begin{exercise} 
 \cref{divisibleimpliesinj} works over any principal ideal domain.
 \end{exercise} 
-\begin{exercise}[Baer]
+\begin{exercise}[Baer] \label{baercriterion}
 Let $N$ be an $R$-module such that for any ideal $I \subset R$, any morphism
 $I \to N$ can be extended to $R \to N$. Then $N$ is injective. (Imitate the
 above argument.)
@@ -876,8 +877,211 @@ is bijective.
 
 \end{proof} 
 
+\subsection{The small object argument}
 
-\add{the explanation via the small object argument}
+There is another, more set-theoretic approach to showing that any $R$-module
+$M$ can be imbedded in an injective module.
+This approach, which constructs the injective module by  a transfinite
+colimit of push-outs, is essentially analogous to the ``small object
+argument'' that one uses in homotopy theory to show that certain categories
+(e.g. the category of CW complexes) are model categories in the sense of
+Quillen; see \cite{Ho07}.
+While this method is somewhat abstract and more complicated than the one of 
+\cref{ssecinj}, it is also more general. In \cite{Gr57}, it is used to
+show that many other abelian categories (a term we do not define) have the
+same property that any object can be imbedded in an injective. This is
+important in homological algebra, where it is necessary to define derived
+functors.
+
+
+We first begin with a few remarks on smallness.
+Let $B_{\alpha}, \alpha \in \mathcal{A}$ be an inductive system of objects in some
+category $\mathcal{C}$, indexed by
+an ordinal $\mathcal{A}$. Let us assume that $\mathcal{C}$ has (small)
+colimits. If $A$ is an object of $\mathcal{C}$, then there is a
+natural map
+\[ \varinjlim \hom(A, B_\alpha) \to \hom(A, \varinjlim B_\alpha)  \]
+because if one is given a map $A \to B_\beta$ for some $\beta$, one
+naturally gets a map from $A$  into the colimit by composing with $B_\beta
+\to \varinjlim B_\alpha$. (Note that the left colimit is one of sets!)
+
+
+In general, this map is neither injective or surjective.
+
+\begin{example} 
+Consider the category of sets. Let $A = \mathbb{N}$ and $B_n = \left\{1,
+\dots, n\right\}$ be the inductive system indexed by the natural numbers
+(where $B_n \to B_{m}, n \leq m$ is the obvious map). Then $\varinjlim B_n =
+\mathbb{N}$, so there is a map
+\[ A \to \varinjlim B_n  \]
+which does not factor as 
+\[ A \to B_m  \]
+for any $m$. Consequently, $\varinjlim \hom(A, B_n) \to \hom(A, \varinjlim
+B_n)$ is not surjective.
+\end{example} 
+
+\begin{example} 
+Next we give an example where the map fails to be injective. Let $B_n =
+\mathbb{N}/\left\{1,  2, \dots, n\right\}$, that is the quotient set of
+$\mathbb{N}$ with the first $n$ elements collapsed to one element.
+There are natural maps $B_n \to B_m$ for $n \leq m$, so the
+$\left\{B_n\right\}$ form an inductive system. It is easy to see that the
+colimit $\varinjlim B_n = \left\{\ast \right\}$: it is the one-point set.
+Now it follows that $\hom(A, \varinjlim B_n)$ is a one-element set.
+
+However, $\varinjlim \hom(A , B_n)$ is \emph{not} a one-element set. 
+Consider the family of maps $A \to B_n$ which are just the natural projections
+$\mathbb{N} \to \mathbb{N}/\left\{1, 2, \dots, n\right\}$ and the family of
+maps $A \to B_n$ which map the whole of $A$ to the class of $1$.
+These two families of maps are distinct at each step and thus are distinct in
+$\varinjlim \hom(A, B_n)$, but they induce the same map $A \to \varinjlim B_n$.
+\end{example} 
+
+
+Nonetheless, if $A$ is a \emph{finite set}, it is easy to see that for any
+sequence of sets $B_1 \to B_2 \to \dots$, we have
+\[ \varinjlim \hom(A, B_n) = \hom(A, \varinjlim B_n).  \]
+\begin{proof} 
+Let $f: A \to \varinjlim B_n$. The range of $A$ is finite, containing say
+elements $c_1, \dots, c_r \in \varinjlim B_n$. These all come from some
+elements in $B_N$ for $N$ large by definition of the colimit. Thus we can
+define $\widetilde{f}: A \to B_N$ lifting $f$ at a finite stage.
+
+Next, suppose two  maps $f_n: A \to B_m,
+g_n : A \to B_m$  define the same map $A \to \varinjlim B_n$.
+Then each of the finitely many elements of $A$ gets sent to the same point in
+the colimit. By definition of the colimit for sets, there is $N \geq m$ such
+that the finitely many elements of $A$ get sent to the same points in $B_N$
+under $f$ and $g$. This shows that $\varinjlim \hom(A, B_n) \to \hom(A,
+\varinjlim B_n)$ is injective.
+\end{proof} 
+
+
+The essential idea is that $A$ is ``small'' relative to the long chain of
+compositions $B_1 \to B_2 \to \dots$, so that it has to factor through a
+finite step.
+
+Let us generalize this.
+
+\begin{definition} 
+Let $\mathcal{C}$ be a category, $I $ a class of maps, and $\omega$ an ordinal.
+An object $A \in \mathcal{C}$ is said to be $\omega$-\textbf{small} if
+whenever $\{B_\alpha\}$ is an inductive system parametrized by $\omega$ with
+maps in $I$, then
+the map
+\[ \varinjlim \hom(A, B_\alpha) \to \hom(A, \varinjlim B_\alpha)  \]
+is an isomorphism. 
+\end{definition} 
+
+Our definition varies slightly from that of \cite{Ho07}, where only ``nice''
+transfinite sequences $\left\{B_\alpha\right\}$ are considered.
+
+In our applications, we shall begin by restricting ourselves to the category
+of $R$-modules for a fixed commutative ring $R$.
+We shall also take $I$ to be the set of \emph{monomorphisms,} or
+injections.\footnote{There are, incidentally, categories, such as the category
+of rings, where a categorical epimorphism may not be a surjection of sets.}
+Then each of the maps
+\[ B_\beta \to \varinjlim B_\alpha  \]
+is an injection, so it follows that 
+$\hom(A, B_\beta )\to \hom (A, \varinjlim  B_\alpha)$ is one, and in
+particular the canonical map
+\begin{equation} \label{homcolimmap} \varinjlim \hom(A, B_\alpha) \to \hom (A,
+\varinjlim  B_\alpha)  \end{equation}
+is an \emph{injection.}
+We can in fact interpret the $B_\alpha$'s as subobjects of the big module
+$\varinjlim B_\alpha$, and think of their union as $\varinjlim B_\alpha$.
+(This is not an abuse of notation if we identify $B_\alpha$ with the image in
+the colimit.)
+
+We now want to show that modules are always small for ``large'' ordinals
+$\omega$.
+For this, we have to digress to do some set theory:
+
+\begin{definition} 
+Let $\omega$ be an ordinal, and $\kappa$ a cardinal. Then $\omega$ is
+\textbf{$\kappa$-filtered} if every collection $C$ of ordinals strictly less
+than $\omega$ and of cardinality at most $\kappa$ has an upper bound strictly
+less than $\omega$.
+\end{definition} 
+
+\begin{example} \label{limitordfinfiltered}
+A limit ordinal (e.g. the natural numbers $\omega_0$) is $\kappa$-filtered for any finite cardinal $\kappa$.
+\end{example} 
+
+\add{wait this is stupid}
+
+\begin{proposition} 
+Let $\kappa$ be a cardinal. Then there exists a $\kappa$-filtered ordinal
+$\omega$.
+\end{proposition} 
+\begin{proof} 
+If $\kappa$ is finite, \cref{limitordfinfiltered} shows that any limit ordinal
+will do.  Let us thus assume that $\kappa$ is infinite.
+
+Consider the smallest ordinal $\omega$ whose cardinality is strictly greater
+than that of $\kappa$. Then we claim that $\omega$ is $\kappa$-filtered.
+Indeed, if $C$ is a collection of at most $\kappa$ ordinals strictly smaller
+than $\omega$, then each of these ordinals is of size at most $\kappa$. Thus
+the union of all the ordinals in $C$ (which is an ordinal) is of size at most
+$\kappa$, and provides an upper bound as in the definition.
+\end{proof} 
+
+
+\begin{proposition} 
+Let $M$ be a module, $\kappa$ the cardinality of the set of its submodules.
+Then if $\omega$ is $\kappa$-filtered, then $M$ is $\omega$-small (with
+respect to injections).
+\end{proposition} 
+
+The proof is straightforward, but let us first think about a special case. If
+$M$ is finite, then the claim is that for any inductive system
+$\left\{B_\alpha\right\}$ with injections between them, parametrized by a
+limit ordinal, any map $M \to
+\varinjlim B_\alpha$ factors through one of the $B_\alpha$. But this is clear. 
+$M$ is finite, so since each element in the image must land inside one of the
+$B_\alpha$, so does the whole thing.
+\begin{proof} 
+We need only show that the map \cref{homcolimmap} is a surjection when
+$\omega$ is $\kappa$-filtered.
+Let $f: A \to \varinjlim B_\alpha$ be a map.
+Consider the subobjects $\{f^{-1}(B_\alpha)\}$ of $A$, where $B_\alpha$ is considered as a
+subobject of the colimit. If one of these, say $f^{-1}(B_\beta)$, fills $A$,
+then the map factors through $B_\beta$.
+
+So suppose to the contrary that all of the $f^{-1}(B_\alpha)$ were proper
+subobjects of $A$.
+However, we know that
+\[ \bigcup f^{-1}(B_\alpha) = f^{-1}(\bigcup B_\alpha) = A.  \]
+Now there are at most $\kappa$ different subobjects of $A$ that occur among
+the $f^{-1}(B_\alpha)$, by hypothesis. 
+Thus we can find a set $A$ of cardinality at most $\kappa$ such that as
+$\alpha'$ ranges over $A$, the
+$f^{-1}(B_{\alpha'})$ range over \emph{all} the $f^{-1}(B_\alpha)$.
+
+However, $A$ has an upper bound $\widetilde{\omega} < \omega$. In particular,
+all the $f^{-1}(B_{\alpha'})$ are contained in
+$f^{-1}(B_{\widetilde{\omega}})$. It follows that
+$f^{-1}(B_{\widetilde{\omega}}) = A$. 
+In particular, the map $f$ factors through $B_{\widetilde{\omega}}$.
+\end{proof} 
+
+From this, we will be able to deduce the existence of lots of injectives.
+Let us recall the criterion of Baer (\cref{baercriterion}): a module $Q$ is
+injective if and only if in every commutative diagram
+\[ \xymatrix{
+\mathfrak{a} \ar[d]  \ar[r] &  Q \\
+R \ar@{-->}[ru]
+}\]
+for $\mathfrak{a} \subset R$ an ideal, the dotted arrow exists.
+
+\begin{theorem} 
+Let $M$ be an $R$-module. Then there is an embedding $M \hookrightarrow Q$ for
+$Q$ injective.
+\end{theorem} 
+\begin{proof} 
+
+\end{proof} 
 
 \section{The tensor product}
 
@@ -1179,7 +1383,7 @@ ring-homomorphism $\phi:R \to R'$.  In this case, any $R'$-module can be
 regarded as
 an $R$-module.
 In particular, there is a canonical functor of \emph{restriction}
-\[ R'-\mathrm{modules} \to R-\mathrm{modules}.  \]
+\[ R'\mbox{-}\mathrm{modules} \to R\mbox{-}\mathrm{modules}.  \]
 
 We shall see that the tensor product provides an \emph{adjoint} to this
 functor.
@@ -1187,7 +1391,7 @@ Namely, if $M$ has an $R$-module
 structure, then $M \otimes_R R'$ has an $R'$ module structure where $R'$ acts
 on the right. Since the tensor product is functorial, this gives a functor
 in the opposite direction:
-\[ R-\mathrm{modules} \to R'-\mathrm{modules}.  \]
+\[ R\mbox{-}\mathrm{modules} \to R'\mbox{-}\mathrm{modules}.  \]
 
 
 Let $M'$ be an $R'$-module and $M$ an $R$-module. In view of the above,
