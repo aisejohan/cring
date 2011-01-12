@@ -1340,11 +1340,17 @@ the inverse of $A$.
 
 \subsection{Finitely generated modules}
 
+The notion of a ``finitely generated'' module is analogous to that of a
+finite-dimensional vector space.
+
 \begin{definition} 
 An $R$-module $M$ is \textbf{finitely generated} if there exists a surjection
 $R^n \to M$ for some $n$. In other words, it has a finite number of elements
 whose ``span'' contains $M$.
 \end{definition} 
+
+The basic properties of finitely generated modules follow from the fact that
+they are stable under extensions and quotients.
 
 \begin{proposition} \label{exact-fingen}
 Let $0 \to M' \to M \to M'' \to 0$ be an exact sequence. If $M', M''$ are
@@ -1379,14 +1385,21 @@ submodules which are \emph{not} finitely generated. As we shall see in
 \rref{noetherian}, this does not happen over \emph{noetherian} rings.
 
 
+
+\begin{example} 
+Consider the ring $R=\mathbb{C}[X_1, X_2, \dots,]$ and the ideal $(X_1, X_2,
+\dots)$. This ideal is a submodule of the finitely generated $R$-module $R$,
+but it is not finitely generated.
+\end{example} 
+
 \begin{exercise} 
 Show that a quotient of a finitely generated module is finitely generated.
 \end{exercise}
 
-\begin{example} 
+\begin{exercise} 
 Consider a \emph{split} exact sequence $0 \to M' \to M \to M'' \to 0$. In this
 case, show that if $M$ is finitely generated, so is $M'$.
-\end{example} 
+\end{exercise} 
 
 
 \subsection{Finitely presented modules}
