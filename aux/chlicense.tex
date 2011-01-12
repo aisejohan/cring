@@ -16,6 +16,8 @@
 
 \begin{document}
 
+\nocite{*}
+
 \pagestyle{fancy}
 \fancyhead{}
 \fancyfoot{}
@@ -29,5 +31,9 @@
 \input{chapters/license.tex}
 
 \anothertoc{CRing}{CRing Project contents}{0}
+
+\renewcommand{\bibname}{CRing Project bibliography}
+\bibliographystyle{alpha}
+\bibliography{other/references.bib}
 
 \end{document}

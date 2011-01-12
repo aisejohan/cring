@@ -18,8 +18,8 @@ new_date:
 	date +"%B %e, %Y." > other/lastupdated.tex	
 
 update_tmp:
-	perl scripts/makenamelist.perl
-	perl scripts/script.perl
+	perl -w scripts/makenamelist.perl
+	perl -w scripts/script.perl
 
 
 tarball: CRing.tex chapters/*.tex other/* aux/*.tex scripts/*  tmp/* makefile
@@ -43,6 +43,7 @@ CRing.aux: chapters/*.tex CRing.tex other/*.tex
 
 chcategories.pdf: aux/chcategories.tex CRing.aux chapters/categories.tex
 	pdflatex -src aux/chcategories.tex
+	bibtex chcategories
 	pdflatex -src aux/chcategories.tex
 
 schcategories.pdf: aux/chcategories.tex chapters/categories.tex
@@ -51,6 +52,7 @@ schcategories.pdf: aux/chcategories.tex chapters/categories.tex
 
 chfoundations.pdf: aux/chfoundations.tex CRing.aux chapters/foundations.tex
 	pdflatex -src aux/chfoundations.tex
+	bibtex chfoundations
 	pdflatex -src aux/chfoundations.tex
 
 schfoundations.pdf: aux/chfoundations.tex chapters/foundations.tex
@@ -59,6 +61,7 @@ schfoundations.pdf: aux/chfoundations.tex chapters/foundations.tex
 
 chfields.pdf: aux/chfields.tex CRing.aux chapters/fields.tex
 	pdflatex -src aux/chfields.tex
+	bibtex chfields
 	pdflatex -src aux/chfields.tex
 
 schfields.pdf: aux/chfields.tex chapters/fields.tex
@@ -67,6 +70,7 @@ schfields.pdf: aux/chfields.tex chapters/fields.tex
 
 chthreeimportantfunctors.pdf: aux/chthreeimportantfunctors.tex CRing.aux chapters/threeimportantfunctors.tex
 	pdflatex -src aux/chthreeimportantfunctors.tex
+	bibtex chthreeimportantfunctors
 	pdflatex -src aux/chthreeimportantfunctors.tex
 
 schthreeimportantfunctors.pdf: aux/chthreeimportantfunctors.tex chapters/threeimportantfunctors.tex
@@ -75,6 +79,7 @@ schthreeimportantfunctors.pdf: aux/chthreeimportantfunctors.tex chapters/threeim
 
 chspec.pdf: aux/chspec.tex CRing.aux chapters/spec.tex
 	pdflatex -src aux/chspec.tex
+	bibtex chspec
 	pdflatex -src aux/chspec.tex
 
 schspec.pdf: aux/chspec.tex chapters/spec.tex
@@ -83,6 +88,7 @@ schspec.pdf: aux/chspec.tex chapters/spec.tex
 
 chgraded.pdf: aux/chgraded.tex CRing.aux chapters/graded.tex
 	pdflatex -src aux/chgraded.tex
+	bibtex chgraded
 	pdflatex -src aux/chgraded.tex
 
 schgraded.pdf: aux/chgraded.tex chapters/graded.tex
@@ -91,6 +97,7 @@ schgraded.pdf: aux/chgraded.tex chapters/graded.tex
 
 chnoetherian.pdf: aux/chnoetherian.tex CRing.aux chapters/noetherian.tex
 	pdflatex -src aux/chnoetherian.tex
+	bibtex chnoetherian
 	pdflatex -src aux/chnoetherian.tex
 
 schnoetherian.pdf: aux/chnoetherian.tex chapters/noetherian.tex
@@ -99,6 +106,7 @@ schnoetherian.pdf: aux/chnoetherian.tex chapters/noetherian.tex
 
 chintegrality.pdf: aux/chintegrality.tex CRing.aux chapters/integrality.tex
 	pdflatex -src aux/chintegrality.tex
+	bibtex chintegrality
 	pdflatex -src aux/chintegrality.tex
 
 schintegrality.pdf: aux/chintegrality.tex chapters/integrality.tex
@@ -107,6 +115,7 @@ schintegrality.pdf: aux/chintegrality.tex chapters/integrality.tex
 
 chfactorization.pdf: aux/chfactorization.tex CRing.aux chapters/factorization.tex
 	pdflatex -src aux/chfactorization.tex
+	bibtex chfactorization
 	pdflatex -src aux/chfactorization.tex
 
 schfactorization.pdf: aux/chfactorization.tex chapters/factorization.tex
@@ -115,6 +124,7 @@ schfactorization.pdf: aux/chfactorization.tex chapters/factorization.tex
 
 chdedekind.pdf: aux/chdedekind.tex CRing.aux chapters/dedekind.tex
 	pdflatex -src aux/chdedekind.tex
+	bibtex chdedekind
 	pdflatex -src aux/chdedekind.tex
 
 schdedekind.pdf: aux/chdedekind.tex chapters/dedekind.tex
@@ -123,6 +133,7 @@ schdedekind.pdf: aux/chdedekind.tex chapters/dedekind.tex
 
 chdimension.pdf: aux/chdimension.tex CRing.aux chapters/dimension.tex
 	pdflatex -src aux/chdimension.tex
+	bibtex chdimension
 	pdflatex -src aux/chdimension.tex
 
 schdimension.pdf: aux/chdimension.tex chapters/dimension.tex
@@ -131,6 +142,7 @@ schdimension.pdf: aux/chdimension.tex chapters/dimension.tex
 
 chcompletion.pdf: aux/chcompletion.tex CRing.aux chapters/completion.tex
 	pdflatex -src aux/chcompletion.tex
+	bibtex chcompletion
 	pdflatex -src aux/chcompletion.tex
 
 schcompletion.pdf: aux/chcompletion.tex chapters/completion.tex
@@ -139,6 +151,7 @@ schcompletion.pdf: aux/chcompletion.tex chapters/completion.tex
 
 chsmoothness.pdf: aux/chsmoothness.tex CRing.aux chapters/smoothness.tex
 	pdflatex -src aux/chsmoothness.tex
+	bibtex chsmoothness
 	pdflatex -src aux/chsmoothness.tex
 
 schsmoothness.pdf: aux/chsmoothness.tex chapters/smoothness.tex
@@ -147,6 +160,7 @@ schsmoothness.pdf: aux/chsmoothness.tex chapters/smoothness.tex
 
 chhomological.pdf: aux/chhomological.tex CRing.aux chapters/homological.tex
 	pdflatex -src aux/chhomological.tex
+	bibtex chhomological
 	pdflatex -src aux/chhomological.tex
 
 schhomological.pdf: aux/chhomological.tex chapters/homological.tex
@@ -155,6 +169,7 @@ schhomological.pdf: aux/chhomological.tex chapters/homological.tex
 
 chflat.pdf: aux/chflat.tex CRing.aux chapters/flat.tex
 	pdflatex -src aux/chflat.tex
+	bibtex chflat
 	pdflatex -src aux/chflat.tex
 
 schflat.pdf: aux/chflat.tex chapters/flat.tex
@@ -163,6 +178,7 @@ schflat.pdf: aux/chflat.tex chapters/flat.tex
 
 chetale.pdf: aux/chetale.tex CRing.aux chapters/etale.tex
 	pdflatex -src aux/chetale.tex
+	bibtex chetale
 	pdflatex -src aux/chetale.tex
 
 schetale.pdf: aux/chetale.tex chapters/etale.tex
@@ -171,6 +187,7 @@ schetale.pdf: aux/chetale.tex chapters/etale.tex
 
 chlicense.pdf: aux/chlicense.tex CRing.aux chapters/license.tex
 	pdflatex -src aux/chlicense.tex
+	bibtex chlicense
 	pdflatex -src aux/chlicense.tex
 
 schlicense.pdf: aux/chlicense.tex chapters/license.tex

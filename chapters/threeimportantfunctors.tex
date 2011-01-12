@@ -895,7 +895,7 @@ functors.
 
 
 We first begin with a few remarks on smallness.
-Let $B_{\alpha}, \alpha \in \mathcal{A}$ be an inductive system of objects in some
+Let $\{B_{\alpha}\}, \alpha \in \mathcal{A}$ be an inductive system of objects in some
 category $\mathcal{C}$, indexed by
 an ordinal $\mathcal{A}$. Let us assume that $\mathcal{C}$ has (small)
 colimits. If $A$ is an object of $\mathcal{C}$, then there is a
@@ -913,7 +913,7 @@ Consider the category of sets. Let $A = \mathbb{N}$ and $B_n = \left\{1,
 \dots, n\right\}$ be the inductive system indexed by the natural numbers
 (where $B_n \to B_{m}, n \leq m$ is the obvious map). Then $\varinjlim B_n =
 \mathbb{N}$, so there is a map
-\[ A \to \varinjlim B_n  \]
+\[ A \to \varinjlim B_n,  \]
 which does not factor as 
 \[ A \to B_m  \]
 for any $m$. Consequently, $\varinjlim \hom(A, B_n) \to \hom(A, \varinjlim
@@ -922,12 +922,12 @@ B_n)$ is not surjective.
 
 \begin{example} 
 Next we give an example where the map fails to be injective. Let $B_n =
-\mathbb{N}/\left\{1,  2, \dots, n\right\}$, that is the quotient set of
+\mathbb{N}/\left\{1,  2, \dots, n\right\}$, that is, the quotient set of
 $\mathbb{N}$ with the first $n$ elements collapsed to one element.
 There are natural maps $B_n \to B_m$ for $n \leq m$, so the
 $\left\{B_n\right\}$ form an inductive system. It is easy to see that the
 colimit $\varinjlim B_n = \left\{\ast \right\}$: it is the one-point set.
-Now it follows that $\hom(A, \varinjlim B_n)$ is a one-element set.
+So it follows that $\hom(A, \varinjlim B_n)$ is a one-element set.
 
 However, $\varinjlim \hom(A , B_n)$ is \emph{not} a one-element set. 
 Consider the family of maps $A \to B_n$ which are just the natural projections
@@ -965,7 +965,8 @@ Let us generalize this.
 
 \begin{definition} 
 Let $\mathcal{C}$ be a category, $I $ a class of maps, and $\omega$ an ordinal.
-An object $A \in \mathcal{C}$ is said to be $\omega$-\textbf{small} if
+An object $A \in \mathcal{C}$ is said to be $\omega$-\textbf{small} (with
+respect to $I$) if
 whenever $\{B_\alpha\}$ is an inductive system parametrized by $\omega$ with
 maps in $I$, then
 the map
@@ -999,7 +1000,7 @@ $\omega$.
 For this, we have to digress to do some set theory:
 
 \begin{definition} 
-Let $\omega$ be an ordinal, and $\kappa$ a cardinal. Then $\omega$ is
+Let $\omega$ be a \emph{limit} ordinal, and $\kappa$ a cardinal. Then $\omega$ is
 \textbf{$\kappa$-filtered} if every collection $C$ of ordinals strictly less
 than $\omega$ and of cardinality at most $\kappa$ has an upper bound strictly
 less than $\omega$.
@@ -1009,7 +1010,6 @@ less than $\omega$.
 A limit ordinal (e.g. the natural numbers $\omega_0$) is $\kappa$-filtered for any finite cardinal $\kappa$.
 \end{example} 
 
-\add{wait this is stupid}
 
 \begin{proposition} 
 Let $\kappa$ be a cardinal. Then there exists a $\kappa$-filtered ordinal
@@ -1024,7 +1024,7 @@ than that of $\kappa$. Then we claim that $\omega$ is $\kappa$-filtered.
 Indeed, if $C$ is a collection of at most $\kappa$ ordinals strictly smaller
 than $\omega$, then each of these ordinals is of size at most $\kappa$. Thus
 the union of all the ordinals in $C$ (which is an ordinal) is of size at most
-$\kappa$, and provides an upper bound as in the definition.
+$\kappa$, so is strictly smaller than $\omega$, and it provides an upper bound as in the definition.
 \end{proof} 
 
 
@@ -1073,13 +1073,98 @@ injective if and only if in every commutative diagram
 \mathfrak{a} \ar[d]  \ar[r] &  Q \\
 R \ar@{-->}[ru]
 }\]
-for $\mathfrak{a} \subset R$ an ideal, the dotted arrow exists.
+for $\mathfrak{a} \subset R$ an ideal, the dotted arrow exists. In other
+words, we are trying to solve an \emph{extension problem} with respect to the
+inclusion $\mathfrak{a} \hookrightarrow R$ into the module $M$.
+
+If $M$ is an $R$-module, then in general we may have a semi-complete diagram as above. In
+it, we can form the \emph{push-out}
+\[ \xymatrix{
+\mathfrak{a} \ar[d]  \ar[r] &  Q \ar[d] \\
+R \ar[r] &  R \oplus_{\mathfrak{a}} Q 
+}.\]
+Here the vertical map is injective, and the diagram commutes.  The point is
+that we can extend $\mathfrak{a} \to Q$ to $R$ \emph{if} we extend $Q$ to the
+larger module $R \oplus_{\mathfrak{a}} Q$.
+
+
+The point of the small object argument is to repeat this procedure
+transfinitely many times.
 
 \begin{theorem} 
 Let $M$ be an $R$-module. Then there is an embedding $M \hookrightarrow Q$ for
 $Q$ injective.
 \end{theorem} 
 \begin{proof} 
+We start by defining a functor $\mathbf{M}$ on the category of $R$-modules.
+Given $N$, we consider the set of all maps $\mathfrak{a} \to N$ for
+$\mathfrak{a} \subset R$ an ideal, and consider the  push-out
+\begin{equation} \label{hugediag}
+\xymatrix{
+\bigoplus \mathfrak{a}\ar[r] \ar[d]  & N \ar[d] \\
+\bigoplus R \ar[r] &  N \oplus_{\bigoplus \mathfrak{a}} \bigoplus R
+}
+\end{equation}
+where the direct sum of copies of $R$ is taken such that every copy of an
+ideal $\mathfrak{a}$ corresponds to one copy of $R$.
+We define $\mathbf{M}(N)$ to be this push-out. Given a map $N \to N'$, there
+is a natural morphism of diagrams \eqref{hugediag}, so $\mathbf{M}$ is a
+functor.
+Note furthermore that there is a natural transformation
+\[ N \to \mathbf{M}(N),  \]
+which is \emph{always an injection.}
+
+The key property of $\mathbf{M}$ is that if $\mathfrak{a} \to N$ is any
+morphism, it can be extended to $R \to \mathbf{M}(N)$. The idea will now be to
+apply $\mathbf{M}$ a transfinite number of times and to use the small object
+property. 
+
+
+We define for each ordinal $\omega$ a functor $\mathbf{M}_{\omega}$ on the
+category of $R$-modules, together with a natural injection $N \to
+\mathbf{M}_{\omega}(N)$. We do this by transfinite induction. 
+First, $\mathbf{M}_1 = \mathbf{M}$ is the functor defined above.
+Now, suppose given an ordinal $\omega$, and suppose $\mathbf{M}_{\omega'}$ is
+defined for $\omega' < \omega$. If $\omega$ has an immediate predecessor
+$\widetilde{\omega}$, we let
+$$\mathbf{M}_{\omega} = \mathbf{M} \circ \mathbf{M}_{\widetilde{\omega}}.$$
+If not, we let $\mathbf{M}_{\omega}(N) = \varinjlim_{\omega' < \omega}
+\mathbf{M}_{\omega'}(N)$. 
+It is clear that the $\mathbf{M}_{\omega}$ form an inductive system over
+ordinals $\omega$, so this is reasonable. 
+
+Let $\kappa$ be the cardinality of the set of ideals in $R$, and let $\Omega$
+be a $\kappa$-filtered ordinal.
+The claim is as follows.
+
+\begin{lemma} 
+For any $N$, $\mathbf{M}_{\Omega}(N)$ is injective.
+\end{lemma} 
+
+If we prove this, we will be done. In fact, we will have shown that there is a
+\emph{functorial} embedding of a module into an injective.
+Thus, we have only to prove this lemma.
+
+\begin{proof} 
+By Baer's criterion (\cref{baercriterion}), it suffices to show that if
+$\mathfrak{a} \subset R$ is an ideal, then any map $f: \mathfrak{a} \to
+\mathbf{M}_{\Omega}(N)$ extends to $R \to \mathbf{M}_{\Omega}(N)$. However, we
+know since $\Omega$ is a limit ordinal that 
+\[ \mathbf{M}_{\Omega}(N) = \varinjlim_{\omega < \Omega}
+\mathbf{M}_{\omega}(N),  \]
+so by \cref{}, we find that 
+\[ \hom_R(\mathfrak{a}, \mathbf{M}_{\Omega}(N)) = \varinjlim_{\omega < \Omega}
+\hom_R(\mathfrak{a}, \mathbf{M}_{\omega}(N)).   \]
+This means in particular that there is some $\omega' < \Omega$ such that $f$
+factors through the submodule $\mathbf{M}_{\omega'}(N)$, as
+\[ f: \mathfrak{a} \to \mathbf{M}_{\omega'}(N) \to \mathbf{M}_{\Omega}(N).  \]
+However, by the fundamental property of the functor $\mathbf{M}$, we know that
+the map $\mathfrak{a} \to \mathbf{M}_{\omega'}(N)$ can be extended to 
+\[ R \to \mathbf{M}( \mathbf{M}_{\omega'}(N)) = \mathbf{M}_{\omega' + 1}(N),  \]
+and the last object imbeds in $\mathbf{M}_{\Omega}(N)$.
+In particular, $f$ can be extended to $\mathbf{M}_{\Omega}(N)$.
+\end{proof} 
+
 
 \end{proof} 
 

@@ -38,6 +38,9 @@ for $name (@files)
 
     print FILE "\n\n\\begin{document}\n\n";
     $j = $i+1;
+
+    print FILE "\\nocite{*}\n\n";
+
 #copyright
     print FILE "\\pagestyle{fancy}\n\\fancyhead{}\n\\fancyfoot{}\n\\fancyhead[C]{CRing Project, Chapter $j}\n \\fancyfoot[C]{\\thepage}\n\n";
     print FILE "\\tableofcontents\n\n";
@@ -51,6 +54,8 @@ for $name (@files)
     print FILE "\\setcounter{chapter}{$i}\n\n";
     print FILE "\\input{chapters/$name.tex}\n\n";
     print FILE "\\anothertoc{CRing}{CRing Project contents}{0}\n\n";
+
+    print FILE "\\renewcommand{\\bibname}{CRing Project bibliography}\n\\bibliographystyle{alpha}\n\\bibliography{other/references.bib}\n\n";
     print FILE "\\end{document}";
 
 
@@ -91,7 +96,7 @@ print MK2 "\n\n";
 for $fl (@files)
 {
     
-    $str = "ch". $fl . ".pdf: " . "aux/ch" . $fl . ".tex" . " CRing.aux chapters/" . $fl . ".tex\n\tpdflatex -src aux/ch" . $fl . ".tex\n". "\tpdflatex -src aux/ch" . $fl . ".tex";
+    $str = "ch". $fl . ".pdf: " . "aux/ch" . $fl . ".tex" . " CRing.aux chapters/" . $fl . ".tex\n\tpdflatex -src aux/ch" . $fl . ".tex\n". "\tbibtex ch" . $fl ."\n".  "\tpdflatex -src aux/ch" . $fl . ".tex";
 
     print MK2  $str . "\n\n";
 
