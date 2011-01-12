@@ -1040,7 +1040,7 @@ $\left\{B_\alpha\right\}$ with injections between them, parametrized by a
 limit ordinal, any map $M \to
 \varinjlim B_\alpha$ factors through one of the $B_\alpha$. But this is clear. 
 $M$ is finite, so since each element in the image must land inside one of the
-$B_\alpha$, so does the whole thing.
+$B_\alpha$, so all of $M$ lands inside some finite stage.
 \begin{proof} 
 We need only show that the map \cref{homcolimmap} is a surjection when
 $\omega$ is $\kappa$-filtered.
@@ -1052,14 +1052,15 @@ then the map factors through $B_\beta$.
 So suppose to the contrary that all of the $f^{-1}(B_\alpha)$ were proper
 subobjects of $A$.
 However, we know that
-\[ \bigcup f^{-1}(B_\alpha) = f^{-1}(\bigcup B_\alpha) = A.  \]
+\[ \bigcup f^{-1}(B_\alpha) = f^{-1}\left(\bigcup B_\alpha\right) = A.  \]
 Now there are at most $\kappa$ different subobjects of $A$ that occur among
 the $f^{-1}(B_\alpha)$, by hypothesis. 
 Thus we can find a set $A$ of cardinality at most $\kappa$ such that as
 $\alpha'$ ranges over $A$, the
 $f^{-1}(B_{\alpha'})$ range over \emph{all} the $f^{-1}(B_\alpha)$.
 
-However, $A$ has an upper bound $\widetilde{\omega} < \omega$. In particular,
+However, $A$ has an upper bound $\widetilde{\omega} < \omega$ as $\omega$ is
+$\kappa$-filtered. In particular,
 all the $f^{-1}(B_{\alpha'})$ are contained in
 $f^{-1}(B_{\widetilde{\omega}})$. It follows that
 $f^{-1}(B_{\widetilde{\omega}}) = A$. 
@@ -1108,14 +1109,15 @@ $\mathfrak{a} \subset R$ an ideal, and consider the  push-out
 where the direct sum of copies of $R$ is taken such that every copy of an
 ideal $\mathfrak{a}$ corresponds to one copy of $R$.
 We define $\mathbf{M}(N)$ to be this push-out. Given a map $N \to N'$, there
-is a natural morphism of diagrams \eqref{hugediag}, so $\mathbf{M}$ is a
+is a natural morphism of diagrams \cref{hugediag}, so $\mathbf{M}$ is a
 functor.
 Note furthermore that there is a natural transformation
 \[ N \to \mathbf{M}(N),  \]
 which is \emph{always an injection.}
 
 The key property of $\mathbf{M}$ is that if $\mathfrak{a} \to N$ is any
-morphism, it can be extended to $R \to \mathbf{M}(N)$. The idea will now be to
+morphism, it can be extended to $R \to \mathbf{M}(N)$, by the very
+construction of $\mathbf{M}(N)$. The idea will now be to
 apply $\mathbf{M}$ a transfinite number of times and to use the small object
 property. 
 
@@ -1130,7 +1132,7 @@ $\widetilde{\omega}$, we let
 $$\mathbf{M}_{\omega} = \mathbf{M} \circ \mathbf{M}_{\widetilde{\omega}}.$$
 If not, we let $\mathbf{M}_{\omega}(N) = \varinjlim_{\omega' < \omega}
 \mathbf{M}_{\omega'}(N)$. 
-It is clear that the $\mathbf{M}_{\omega}$ form an inductive system over
+It is clear (e.g. inductively) that the $\mathbf{M}_{\omega}(N)$ form an inductive system over
 ordinals $\omega$, so this is reasonable. 
 
 Let $\kappa$ be the cardinality of the set of ideals in $R$, and let $\Omega$
@@ -1171,7 +1173,7 @@ In particular, $f$ can be extended to $\mathbf{M}_{\Omega}(N)$.
 \section{The tensor product}
 
 We shall now introduce the third functor of this chapter: the tensor product.
-The tensor product's key property is that it allows one to ``linearie''
+The tensor product's key property is that it allows one to ``linearize''
 bilinear maps. When taking the tensor product of rings, it provides a
 categorical coproduct as well.
 
