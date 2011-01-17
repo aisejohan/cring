@@ -101,7 +101,7 @@ for $fl (@files)
     print MK2  $str . "\n\n";
 
     
-    $str2 = "sch". $fl . ".pdf: " . "aux/ch" . $fl . ".tex" . " chapters/" . $fl . ".tex\n\tpdflatex -src aux/ch" . $fl . ".tex\n". "\tpdflatex -src aux/ch" . $fl . ".tex";
+    $str2 = "sch". $fl . ".pdf: " . "aux/ch" . $fl . ".tex" . " chapters/" . $fl . ".tex\n\tpdflatex -src aux/ch" . $fl . ".tex\n";
     print MK2 $str2 . "\n\n";
 
 }
