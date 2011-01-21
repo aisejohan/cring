@@ -158,8 +158,8 @@ are categories of structured sets (of possibly different types), there may be a
 way to associate objects in $\mathcal{D}$ to objects in $\mathcal{C}$. For
 instance, to every group $G$ we can associate its \emph{group ring}
 $\mathbb{Z}[G]$
- (\add{definition or reference}).
-In many cases, given a map between objects in $c\mathcal{C}$ preserving the
+ (which we do not define here).
+In many cases, given a map between objects in $\mathcal{C}$ preserving the
 relevant structure, there will be an induced map on the corresponding objects
 in $\mathcal{D}$. It is from here that we define a \emph{functor.}
 
@@ -250,7 +250,7 @@ set with a \emph{right} $G$-action.
 On the category $\mathbf{Vect}$ of vector spaces over a field $k$, we
 have
 the contravariant functor
-\[ V \to V^{\ast}.  \]
+\[ V \mapsto V^{\ast}.  \]
 sending a vector space to its dual $V^{\ast} = \hom(V,k)$.
 Given a map $V \to W$ of vector spaces, there is an induced map
 \[ W^{\ast} \to V^{\ast}  \]
@@ -258,7 +258,7 @@ given by the transpose.
 \end{example}
 
 \begin{example}
-If we map $B_G \to B_G$ sending $\ast \to \ast$ and $g \to g^{-1}$, we get a
+If we map $B_G \to B_G$ sending $\ast \mapsto \ast$ and $g \mapsto g^{-1}$, we get a
 contravariant functor.
 \end{example}
 
@@ -408,16 +408,16 @@ isomorphisms.
 There is a philosophical point to be made here. We have characterized an object
 uniquely in terms of mapping properties. We have characterized it
 \emph{uniquely up to unique isomorphism,} which is really the best you can do
-in mathematics. Two sets aren't generally the ``same,'' but they may be
-isomorphic up to unique isomorphism. They're different,
+in mathematics. Two sets are not generally the ``same,'' but they may be
+isomorphic up to unique isomorphism. They are different,
 but the sets are isomorphic up
 to unique isomorphism.
 
-Now we're going to talk about a bunch of other examples, which can all be
-phrased via initial or terminal objects in some weird category. This,
+Now we are going to talk about a bunch of other examples, which can all be
+phrased via initial or terminal objects in some category. This,
 therefore, is the proof for \emph{everything} we will do in this section.
 
-Say we have a diagram
+Suppose we have a diagram
 \[
 \xymatrix{
 A \ar[d] \ar[r] &  B \ar[d] \\
@@ -492,7 +492,7 @@ We now want to generalize the push-out.
 Instead of a shape with $A,B,C$, we do something more general.
 
 Start with a \textbf{small} category $I$: this is not meant in a pejorative
-sense, but that the objects of $I$ form a set. What you're supposed to picture
+sense, but that the objects of $I$ form a set. One is supposed to picture
 is that $I$ is something like the category
 \[
 \xymatrix{

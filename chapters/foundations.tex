@@ -1,3 +1,4 @@
+
 \chapter{Foundations}
 \label{foundations}
 
@@ -692,8 +693,8 @@ $R$-modules.
 The pair of maps is a \textbf{complex} if $g \circ f = 0: M \to N \to P$.
 This is equivalent to the condition that $\im(f) \subset \ker(g)$. 
 
-This complex is \textbf{exact} (or exact at $N$) if $\im(f) = \ker(g)$. So
-anything that is killed when mapped to $P$ actually comes from something in
+This complex is \textbf{exact} (or exact at $N$) if $\im(f) = \ker(g)$.
+In other words, anything that is killed when mapped to $P$ actually comes from something in
 $M$. 
 
 \end{definition} 
@@ -745,20 +746,82 @@ sequences of the form $M' \to M \to M'' \to 0$, i.e. $F$ preserves cokernels.
 A functor is exact if and only if it is both left and right exact.  
 
 
+\subsection{Split exact sequences}
 
-\add{split exact sequences}
+Let $f: A \to B$ be a map of sets which is injective. Then there is a map $g: A
+\to B$ such that the composite $g \circ f: A \stackrel{f}{\to} B
+\stackrel{g}{\to} A$ is the identity. Namely, we define $g$ to be the inverse
+of $f$ on $f(A)$ and arbitrarily on $B-f(A)$.
+Conversely, if $f: A \to B$ admits an element $g: B \to A$ such that $g \circ f
+= 1_A$, then $f$ is injective. This is easy to see, as any $a \in A$ can be
+``recovered'' from $f(a)$ (by applying $g$).
+
+In general, however, this observation does not generalize to arbitrary
+categories.
+
+\begin{definition} 
+Let $\mathcal{C}$ be a category. A morphism $A \stackrel{f}{\to} B$ is called a
+\textbf{split injection} if there is $g: B \to A$ with $g \circ f = 1_A$.
+\end{definition} 
+
+\begin{exercise}[General nonsense]
+Suppose $f: A \to B$ is a split injection. Show that $f$ is a categorical monomorphism.
+(Idea: the map $\hom(C,A) \to \hom(C,B)$ becomes a split injection of sets
+thanks to $g$.)
+\end{exercise} 
+
+\add{what is a categorical monomorphism? Maybe omit the exercise}
+
+In the category of sets, we have seen above that \emph{any} monomorphism is a
+split injection. This is not true in other categories, in general.
+
+\begin{exercise} 
+Consider the morphism $\mathbb{Z} \to \mathbb{Z}$ given by multiplication by
+2. Show that this is not a split injection: no left inverse $g$ can exist.
+\end{exercise} 
+
+We are most interested in the case of modules over a ring.
+
+\begin{proposition} 
+A morphism $f: A \to B$ in the category of $R$-modules is a split injection if
+and only if:
+\begin{enumerate}
+\item $f$ is injective. 
+\item $f(A)$ is a direct summand in $B$.
+\end{enumerate}
+\end{proposition} 
+The second condition means that there is a submodule $B' \subset B$ such that
+$B = B' \oplus f(A)$ (internal direct sum). In other words, $B = B'  + f(A)$
+and $B' \cap f(A) = \left\{0\right\}$.
+\begin{proof} 
+Suppose the two conditions hold, and we have a module $B'$ which is a
+complement to $f(A)$.
+Then we define a left inverse
+\[ B \stackrel{g}{\to} A  \]
+by letting $g|_{f(A)} = f^{-1}$ (note that $f$ becomes an \emph{isomorphism}
+$A \to f(A)$) and $g|_{B'}=0$. It is easy to see that this is indeed a left
+inverse, though in general not a right inverse, as $g$ is likely to be
+non-injective.
+
+Conversely, suppose $f: A \to B$ admits a left inverse $g: B \to A$. The usual
+argument (as for sets) shows that $f$ is injective. The essentially new
+observation is that $f(A) $ is a direct summand in $B$. To define the
+complement, we take $\ker(g) \subset B$.
+It is easy to see (as $g \circ f = 1_A$) that $\ker(g) \cap f(A) =
+\left\{0\right\}$. Moreover, $\ker(g) +f(A)$ fills $B$: given $b \in B$, it is
+easy to check that
+\[ b - f(g(b)) \in \ker(g).  \]
+Thus we find that the two conditions are satisfied.
+\end{proof} 
+
+
+
 
 \add{further explanation, exactness of filtered colimits}
 
 
 \subsection{The five lemma}
 
-\renewcommand{\a}{\mathbf{a}}
-\renewcommand{\b}{\mathbf{b}}
-\renewcommand{\c}{\mathbf{c}}
-\renewcommand{\d}{\mathbf{d}}
-\newcommand{\e}{\mathbf{e}}
-\newcommand{\g}{\mathbf{g}}
 \begin{theorem} 
 Suppose given a commutative diagram
 \[ \xymatrix{
@@ -777,7 +840,7 @@ We have the diagram
 \[ 
 \xymatrix{
 A \ar[r]^k \ar[d]^\a & B \ar[r]^l \ar[d]^\b 
-	& C \ar[r]^m \ar[d]^\g & D \ar[r]^n \ar[d]^\d & E \ar[d]^\e  \\
+	& C \ar[r]^m \ar[d]^g & D \ar[r]^n \ar[d]^\d & E \ar[d]^\e  \\
 F \ar[r]_p & G \ar[r]_q & H \ar[r]_r & I \ar[r]_s & J 
 }
 \] 

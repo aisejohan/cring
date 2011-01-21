@@ -1204,6 +1204,48 @@ In particular, $f$ can be extended to $\mathbf{M}_{\Omega}(N)$.
 
 \end{proof} 
 
+\subsection{Split exact sequences}
+
+\add{additive functors preserve split exact seq}
+Suppose that 
+$\xymatrix@1{0 \ar[r] & L \ar[r]^\psi & M \ar[r]^f & N \ar[r] & 0}$ 
+is a split short exact sequence.
+Since $\Hom_R (D, \cdot)$ is a left-exact functor, we see that 
+$$\xymatrix@1{0 \ar[r] 
+	& \Hom_R(D, L) \ar[r]^{\psi'} 
+	& \Hom_R(D, M) \ar[r]^{\f'} 
+	& \Hom_R(D, N)}$$
+is exact. In addition, 
+$\Hom_R (D, L \oplus N) \cong \Hom_R(D, L) \oplus \Hom_R (D, N)$. Therefore, in
+the case that we start with a split short exact sequence $M \cong L \oplus N$,
+applying $\Hom_R (D, \cdot)$ does yield a split short exact sequence
+$$\xymatrix@1{0 \ar[r] 
+	& \Hom_R(D, L) \ar[r]^{\psi'} 
+	& \Hom_R(D, M) \ar[r]^{\f'} 
+	& \Hom_R(D, N) \ar[r] & 0}.$$
+
+Now, assume that 
+$$\xymatrix@1{0 \ar[r] 
+	& \Hom_R(D, L) \ar[r]^{\psi'} 
+	& \Hom_R(D, M) \ar[r]^{\f'} 
+	& \Hom_R(D, N) \ar[r] & 0}$$
+is a short exact sequence of abelian groups for all $R$-modules $D$.
+Set $D = R$ and using $\Hom_R (R, N) \cong N$ yields that 
+$\xymatrix@1{0 \ar[r] & L \ar[r]^\psi & M \ar[r]^f & N \ar[r] & 0}$ 
+is a short exact sequence.
+
+Set $D = N$, so we have
+$$\xymatrix@1{0 \ar[r] 
+	& \Hom_R(N, L) \ar[r]^{\psi'} 
+	& \Hom_R(N, M) \ar[r]^{\f'} 
+	& \Hom_R(N, N) \ar[r] & 0}$$
+Here, $\f'$ is surjective, so the identity map of $\Hom_R (N, N)$ lifts to a
+map $g \in \Hom_R (N, M)$ so that $f \circ g = \f'(g) = id$.
+This means that $g$ is a splitting homomorphism for the sequence 
+$\xymatrix@1{0 \ar[r] & L \ar[r]^\psi & M \ar[r]^f & N \ar[r] & 0}$, 
+and therefore the sequence is a split short exact sequence.
+
+
 \section{The tensor product}
 
 We shall now introduce the third functor of this chapter: the tensor product.
