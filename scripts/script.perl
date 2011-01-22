@@ -55,7 +55,7 @@ for $name (@files)
     print FILE "\\input{chapters/$name.tex}\n\n";
     print FILE "\\anothertoc{CRing}{CRing Project contents}{0}\n\n";
 
-    print FILE "\\renewcommand{\\bibname}{CRing Project bibliography}\n\\bibliographystyle{alpha}\n\\bibliography{other/references.bib}\n\n";
+    print FILE "\\renewcommand{\\bibname}{CRing Project bibliography}\n\\bibliographystyle{alpha}\n\\bibliography{other/references}\n\n";
     print FILE "\\end{document}";
 
 
