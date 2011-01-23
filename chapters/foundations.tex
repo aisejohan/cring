@@ -1170,31 +1170,12 @@ So $I = (n)$.
 \end{proof} 
 \end{example} 
 
-
-\begin{exercise} 
-A domain $R$ is \textbf{euclidean} if there is a map $v: R \to
-\mathbb{Z}_{\geq 0}$
-such that $v(xy) = v(x)v(y)$ and such that a type of division algorithm
-holds: if $a,b \in R$ with $b \neq 0$, there are $q,r \in R$ such that
-\[ a = qb + r  \]
-and $v(r)< v(b)$. Prove that a euclidean domain is principal.
-\end{exercise} 
-
-\begin{exercise} \label{gaussianintegersareprincipal}
-Prove that $\mathbb{Z}[i]$ is principal. (Use the previous exercise.)
-\end{exercise} 
-
-\begin{exercise} \label{polyringisprincipal}
-Prove that the polynomial ring $F[t]$ for $F$ a field is principal. 
-\end{exercise} 
-
 \subsection{Unique factorization domains}
 
-The integers $\mathbb{Z}$ are especially nice because of the Fundamental
-Theorem of Arithmetic, which states that every integer has a unique
+The integers $\mathbb{Z}$ are especially nice because of the fundamental
+theorem of arithmetic, which states that every integer has a unique
 factorization into primes. This is not true for every integral domain.
 
-First, we need a generalization of prime integer:
 \begin{definition} 
 An element of a domain $R$ is \textbf{irreducible} if it cannot be written
 as the product of two non-unit elements of $R$.
@@ -1228,7 +1209,7 @@ are UFDs. In particular, in  \rref{gaussianintegersareprincipal} and
 so they also have unique factorization.
 \end{example}
 
-\begin{theorem} 
+\begin{theorem} \label{PIDUFD} 
 Every principal ideal domain is a unique factorization domain.
 \end{theorem} 
 
@@ -1264,6 +1245,101 @@ q_m$. By induction, this shows that the factorization of $x$ is unique up to
 order and multiplication by units.
 \end{proof} 
 
+
+\subsection{Euclidean domains}
+
+A euclidean domain is a special type of principal ideal domain. In practice,
+it will often happen that one has an explicit proof that a given domain is
+euclidean, while it might not be so trivial to prove that it is a UFD without
+the general implication below.
+
+\begin{definition}
+An integral domain $R$ is a \textbf{euclidean domain} if there is a function
+$|\cdot |:R\to \mathbb \mathbb{Z}_{\geq 0}$ (called the norm) such that the following hold.
+\begin{enumerate}
+\item $|a|=0$ iff $a=0$.
+\item For any nonzero $a,b\in R$ there exist $q,r\in R$ such that $b=aq+r$ and $|r|<|a|$.
+\end{enumerate}
+In other words, the norm is compatible with division with remainder.
+\end{definition}
+\begin{theorem}
+A euclidean domain is a principal ideal domain.
+\end{theorem}
+\begin{proof}
+Let $R$ be an euclidean domain, $I\subseteq R$ and ideal, and $b$ be the nonzero element of smallest norm in $I$.
+Suppose $ a\in I$. Then we can write $ a = qb + r$ with $ 0\leq r < |b|$, but since $ b$ has minimal nonzero absolute value, $ r = 0$ and $ b|a$. Thus $ I=(b)$ is principal.
+\end{proof}
+
+
+As we will see, this implies that any euclidean domain admits \emph{unique
+factorization.}
+
+\begin{proposition} 
+Let $F$ be a field. Then the polynomial ring $F[t]$ is a euclidean domain. 
+In particular, it is a PID.
+\end{proposition} 
+\begin{proof} 
+We define \add{} 
+\end{proof} 
+
+
+\begin{exercise} \label{gaussianintegersareprincipal}
+Prove that $\mathbb{Z}[i]$ is principal. 
+(Define the norm as $N(a+ib) = a^2 + b^2$.)
+\end{exercise} 
+
+\begin{exercise} \label{polyringisprincipal}
+Prove that the polynomial ring $F[t]$ for $F$ a field is principal. 
+\end{exercise} 
+
+
+It is \emph{not} true that a PID is necessarily euclidean. Nevertheless, it
+was shown in \cite{Gre97} that the converse is ``almost'' true. Namely,
+\cite{Gre97} defines the notion of an \textbf{almost euclidean domain.}
+A domain $R$ is almost euclidean if there is a function $d: R \to
+\mathbb{Z}_{\geq 0}$ such that
+\begin{enumerate}
+\item $d(a) = 0$ iff $a = 0$. 
+\item $d(ab) \geq d(a)$ if $b \neq 0$.
+\item  If $a,b \in R - \left\{0\right\}$, then either $b \mid a$ or there is 
+$r \in (a,b)$ with $d(r)<d(b)$.
+\end{enumerate}
+
+It is easy to see by the same argument that an almost euclidean domain is a PID.
+(Indeed, let $R$ be an almost euclidean domain, and $I \subset R$ a nonzero
+ideal. Then choose $x \in I - \left\{0\right\}$ such that $d(x)$ is minimal among elements in
+$I$. Then if $y \in I - \left\{0\right\}$, either $x \mid y$ or $(x,y) \subset I$ contains an
+element with smaller $d$. The latter cannot happen, so the former does.)
+However, in fact:
+\begin{proposition}[\cite{Gre97}]
+A domain is a PID if and only if it is almost euclidean.
+\end{proposition} 
+\begin{proof} 
+Indeed, let $R$ be a PID. Then $R$ is a UFD (\rref{PIDUFD}), so for any $x \in R$,
+there is a factorization into prime elements, unique up to units. If $x$
+factors into $n$ elements, we define $d(x)=n$; we set $d(0)=0$.
+The first two conditions for an almost euclidean domain are then evident. 
+
+Let $x = p_1 \dots p_m$ and $y = q_1 \dots q_n$ be two elements of $R$,
+factored into irreducibles. Suppose $x \nmid y$. Choose a generator $b$ of the (principal) ideal $(x,y)$; then obviously $y
+\mid b$ so $d(y) \leq d(b)$. But if $d(y) = d(b)$, then the
+number of factors of $y$ and $b$ is the same, so  $y \mid b$ would imply
+that $y$ and $b$ are associates. This is a contradiction, and implies that
+$d(y)<d(b)$.
+
+\end{proof} 
+
+
+\begin{remark} 
+We have thus seen that a euclidean domain is a PID, and a PID is a UFD. Both
+converses, however, fail. By Gauss's lemma (\rref{}), the
+polynomial ring $\mathbb{Z}[X]$ has unique factorization, though the ideal
+$(2, X)$ is not principal. 
+
+In \cite{Ca88}, it is shown that the ring $\mathbb{Z}[\frac{1+
+\sqrt{-19}}{2}]$ is a PID but not euclidean (i.e. there is \emph{no} euclidean
+norm on it).
+\end{remark} 
 \subsection{The Chinese remainder theorem}
 
 \begin{theorem}[Chinese remainder theorem] Let $I_1, \dots I_n$ be ideals in a
