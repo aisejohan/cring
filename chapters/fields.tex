@@ -15,82 +15,96 @@ A knowledge of field extensions will thus be useful.
 
 
 \section{General remarks}
-
-\subsection{Examples of fields}
-Let us begin by 
-\begin{example}
-One of the most familiar examples of a field is $\mathbb{Q}$.
-\end{example}
+Let us begin by providing several examples of fields. The reader should
+recall (\cref{maximalfield}) that if $R$ is a ring and $I \subset R$ an
+ideal, then $R/I$ is a field precisely when $I$ is maximal.
 
 \begin{example}
-Another common field class of fields is the class of finite fields, for example
-$\mathbb{Z}/(2)$.
+One of the most familiar examples of a field is the rational
+numbers $\mathbb{Q}$.
 \end{example}
 
-\begin{exercise} In fact, for any maximal ideal $\mathfrak{m}\subseteq R$, the
-quotient $R/\mathfrak{m}$ is a field. 
-\end{exercise}
-
-\begin{example} If $F$ is a field and $R$ is any ring, then any ring homomorphism $f:F\rightarrow
-R$ is either injective or the zero map (in which case $R=0$); this is because $ker(f)$ is an ideal in
-$F$ but there are only two ideals, $(0)$ and $(1)$. If $f$ is identically
-zero, then $1=0$ in $R$ so $R=0$ too.
+\begin{example}
+If $p$ is a prime number, then $\mathbb{Z}/(p)$ is a field. Indeed, $(p)$ is a
+maximal ideal. Thus, fields may be finite. 
 \end{example}
+
+
+\begin{example} 
+In a principal ideal domain, every prime ideal is principal. It can be shown
+that if $k$ is a field, then the polynomial ring $k[x]$ is a PID. 
+It follows that if $P \in k[x]$ is an irreducible polynomial (that is, a
+nonconstant polynomial
+that does not admit a factorization into terms of smaller degrees), then
+$k[x]/(P)$ is a field. It contains a copy of $k$ in a natural way.
+
+This is a very general way of constructing fields. For instance, $\mathbb{C}$
+can be constructed as $\mathbb{R}[x]/(x^2 + 1)$.
+\end{example} 
+
+\begin{exercise} 
+What is $\mathbb{C}[x]/(x^2 + 1)$?
+\end{exercise} 
+
+
+\begin{example} 
+If $k$ is a field, then we can consider the set of \emph{rational functions}
+over $k$. This is the quotient field of the polynomial ring $k[x]$; in other
+words, it is the set of quotients $F/G$ for $F, G \in k[x]$ with the obvious
+equivalence relation.
+\end{example} 
+
+\add{euclidean domains --- principal }
+
+Here is a fancier example of a field.
+\begin{example} 
+\label{meromorphicfn}
+Let $X$ be a Riemann surface. Let $\mathbb{C}(X)$ denote the
+set of meromorphic functions on $X$; clearly $\mathbb{C}(X)$ is a ring under
+multiplication and addition of functions. It turns out that in fact
+$\mathbb{C}(X)$ is a
+field; this is because if a function $f(z)$ is meromorphic, so is $1/f(z)$. For example,
+let $S^2$ be the Riemann sphere; then we know from complex
+analysis that the ring of meromorphic functions $\mathbb{C}(S^2)$ is the
+field of rational functions $\mathbb{C}(z)$. 
+\end{example}
+
+
+\subsection{Field extensions}
+
+Let us now cover the basic facts specific to fields.
+
+\begin{proposition} \label{fieldinj} If $F$ is a field and $R$ is any ring, then any ring homomorphism $f:F\rightarrow
+R$ is either injective or the zero map (in which case $R=0$).
+\end{proposition}
+
+\begin{proof} Indeed, $\ker(f)$ is an ideal in
+$F$ but there are only two ideals in $F$, namely $(0)$ and $(1)$. If $f$ is identically
+zero, then $1=f(1)=0$ in $R$, so $R=0$ too.
+\end{proof}
 
 \begin{definition} If $F$ is a field contained in a field $G$, then $G$ is said
-to be a field extension of $F$.
+to be a \textbf{field extension} of $F$.
 \end{definition}
 
-There are plenty of field extensions coming from both number theory and
-geometry.
+So if $F, F'$ are fields, and $F \to F'$ is any ring-homomorphism, we see by 
+\cref{fieldinj} that it is injective, and $F'$ can be regarded as an extension
+of $F$.
+This is completely different than the situation for general rings. 
 
-\begin{example} For example let $X$ be a Riemann surface. Let $k(X)$ denote the
-set of meromorphic functions on $X$; clearly $k(X)$ is a ring under
-multiplication and addition of functions. It turns out that in fact $k(X)$ is a
-field, this is because if $f(z)$ is meromorphic, so is $1/f(z)$. For example,
-let $\mathbb{C}_{\infty}$ be the Riemann sphere; then we know from complex
-analysis that the ring of meromorphic functions $k(\mathbb{C}_{\infty}$ is the
-field of rational functions $\mathbb{C}(z)$. More is true. In fact, there is
-always a holomorphic function $X\rightarrow \mathbb{C}_{\infty}$ obtained by
-taking a meromorphic function $f\in k(X)$ and considering it as a holomorphic
-function $f:X\rightarrow\mathbb{C}_{\infty}$. In this case, $f$ induces a map
-$k(\mathbb{C}_{\infty})\rightarrow k(X)$ by composing with $f$. In particular,
-this map is an injection meaning that $k(X)$ is a field extension of
-$\mathbb{C}[z]$.
-\end{example}
 
-\begin{example} The previous example is a more specific case of a general
-phenomenon in geometry; let $C_1$ and $C_2$ be smooth projective curves (over a
-field $k$). Then a morphism $f:C_1\rightarrow C_2$ makes $k(C_1)$ into a field
-extension $k(C_2)$ 
-\end{example}
+\begin{example} 
+If $X$ is a Riemann surface, then the field of meromorphic functions
+$\mathbb{C}(X)$ (see \cref{meromorphicfn}) is an extension field of
+$\mathbb{C}$, because any element of $\mathbb{C}$ induces a
+meromorphic---indeed, holomorphic---constant function on $X$.
+\end{example} 
 
-\begin{definition}An element $\alpha\in F$ is said to be algebraic over $E$ if
-$\alpha$ is the root of some polynomial with coefficients in $E$. If all
-elements of $F$ are algebraic then $F$ is said to be an algebraic extension. If
-$E\subseteq F$ is a field extension then $F$ is also a vector space over $E$
-(the scalar action is just multiplication in $F$). The dimension of $F$
-considered as an $E$-vector space is called the degree of the extension and is
-denoted $[F:E]$. If $[F:E]<\infty$ then $F$ is said to be a finite extension
-(note that all finite extensions are algebraic). Field extensions are sometimes
-denoted $F/E$ for $E\subseteq F$.
-\end{definition}
-
-Algebraic number theory is in fact the study of algebraic extensions, in
-particular, a field extensions $K$ of $\mathbb{Q}$ is said to be a number field
-if it is a finite extension of $\mathbb{Q}$.
-
-Since field extensions $F/E$ are always vector spaces, there is a basis $B$ for
-$F$ such that any element of $F$ is the linear combination of elements of $B$
-with coefficients in $E$. Returning to the previous example, if $K$ is the
-smallest field that contains $\mathbb{Q}$ and an algebraic number $\alpha$,
-then$[K:\mathbb{Q}]$ is the degree of the minimal polynomial $f(x)$ of $\alpha$.
 
 
 \subsection{The characteristic of a field}
 \label{more-fields}
 
-\noindent
 Let $F$ be a field. As $\mathbf{Z}$ is the intial object of the category of
 rings, there is a ring map $f : \mathbf{Z} \to F$, see
 \rref{integersinitial}.
@@ -126,128 +140,32 @@ which is either $\mathbf{Q} \subset F$ if the characteristic is zero, or
 $\mathbf{F}_p \subset F$ if the characteristic is $p > 0$.
 \end{definition}
 
-\section{Field extensions}
+\subsection{Algebraic extensions}
 
-
-
-\subsection{Transcendental Extensions}
-There is a distinguished type of transcendental extension: those that are
-``purely transcendental.'' 
-\begin{definition} A field extension $E'/E$ is purely transcendental if it is
-obtained by adjoining a set $B$ of algebraically independent elements. A set of
-elements is algebraically independent over $E$ if there is no nonzero polynomial$P$
-with coefficients in $E$ such
-that $P(b_1,b_2,\cdots b_n)=0$ for any finite subset of elements $b_1, \dots,
-b_n \in B$.
+\begin{definition}An element $\alpha\in F$ is said to be algebraic over $E$ if
+$\alpha$ is the root of some polynomial with coefficients in $E$. If all
+elements of $F$ are algebraic then $F$ is said to be an algebraic extension. If
+$E\subseteq F$ is a field extension then $F$ is also a vector space over $E$
+(the scalar action is just multiplication in $F$). The dimension of $F$
+considered as an $E$-vector space is called the degree of the extension and is
+denoted $[F:E]$. If $[F:E]<\infty$ then $F$ is said to be a finite extension
+(note that all finite extensions are algebraic). Field extensions are sometimes
+denoted $F/E$ for $E\subseteq F$.
 \end{definition}
 
-\begin{example} The field $\mathbb{Q}(\pi)$ is purely transcendental; in
-particular, $\mathbb{Q}(\pi)\cong\mathbb{Q}(x)$ with the isomorphism fixing
-$\mathbb{Q}$. \end{example}
-Similar to the degree of an algebraic extension, there is a way of keeping
-trackof the number of algebraically independent generators that are required to
-generate a purely transcendental extension.
-\begin{definition} Let $E'/E$ be a purely transcendental extension generated by
-some set of algebraically independent elements $B$. Then the transcendence
-degree $trdeg(E'/E)=\#(B)$ and $B$ is called a transcendence basis for $E'/E$
-(we will see later that $trdeg(E'/E)$ is independent of choice of basis).
-\end{definition}
-In general, let $F/E$ be a field extension, we can always construct an
-intermediate extension $F/E'/E$ such that $F/E'$ is algebraic and $E'/E$ is
-purely transcendental. Then if $B$ is a transcendence basis for $E'$, it is
-alsocalled a transcendence basis for $F$. Similarly, $trdeg(F/E)$ is defined to
-be
-$trdeg(E'/E)$.
-\begin{theorem} Let $F/E$ be a field extension, a transcendence basis exists.
-\end{theorem}
-\begin{proof} Let $A$ be an algebraically independent subset of $F$. Now pick a
-subset $G\subseteq F$ that generates $F/E$, we can find a transcendence basis
-$B$ such that $A\subseteq B\subseteq G$. Define a collection of algebraically
-independent sets $\mathcal{B}$ whose members are subsets of $G$ that contain
-$A$. The set can be partially ordered inclusion and contains at least one
-element, $A$. The union of elements of $\mathcal{B}$ is algebraically
-independent since any algebraic dependence relation would have occured in one
-ofthe elements of $\mathcal{B}$ since the polynomial is only allowed to be over
-finitely many variables. The union also satisfies $A\subseteq
-\bigcup\mathcal{B}\subseteq G$ so by Zorn's lemma, there is a maximal element
-$B\in\mathcal{B}$. Now we claim $F$ is algebraic over $E(B)$. This is because
-ifit wasn't then there would be a transcendental element $f\in G$ (since
-$E(G)=F$)such that $B\cup\{f\}$ wold be algebraically independent contradicting
-the
-maximality of $B$. Thus $B$ is our transcendence basis. \end{proof}
-Now we prove that the transcendence degree of a field extension is independent
-of choice of basis.
-\begin{theorem} Let $F/E$ be a field extension. Any two transcendence bases for
-$F/E$ have the same cardinality. This shows that the $trdeg(E/F)$ is well
-defined. \end{theorem}
-\begin{proof} 
-Let $B$ and $B'$ be two transcendence bases. Without loss of generality, we can
-assume that $\#(B')\leq \#(B)$. Now we divide the proof into two cases: the
-first case is that $B$ is an infinite set. Then for each $\alpha\in B'$, there
-is a finite set $B_{\alpha}$ such that $\alpha$ is algebraic over
-$E(B_{\alpha})$ since any algebraic dependence relation only uses finitely many
-indeterminates. Then we define $B^*=\bigcup_{\alpha\in B'} B_{\alpha}$. By
-construction, $B^*\subseteq B$, but we claim that in fact the two sets are
-equal. To see this, suppose that they are not equal, say there is an element
-$\beta\in B\setminus B^*$. We know $\beta$ is algebraic over $E(B')$ which is
-algebraic over $E(B^*)$. Therefor $\beta$ is algebraic over $E(B^*)$, a
-contradiction. So $\#(B)\leq \sum_{\alpha\in B'} \#(B_{\alpha})$. Now if $B'$ is
-finite, then so is $B$ so we can assume $B'$ is infinite; this means
-\begin{equation} \#(B)\leq \sum_{\alpha\in B'}\#(B_{\alpha})=\#(\coprod
-B_{\alpha})\leq \#(B'\times\mathbb{Z})=\#(B')\end{equation} with the inequality $\#(\coprod
-B_{\alpha}) \leq \#(B'\times \mathbb{Z})$ given by the correspondence
-$b_{\alpha_i}\mapsto (\alpha,i)\in B'\times \mathbb{Z}$ with $B_\alpha =
-\{b_{\alpha_1},b_{\alpha_2}\cdots b_{\alpha_{n_\alpha}}\}$ Therefore in the
-infinite case, $\#(B)=\#(B')$.
+Algebraic number theory is in fact the study of algebraic extensions, in
+particular, a field extensions $K$ of $\mathbb{Q}$ is said to be a number field
+if it is a finite extension of $\mathbb{Q}$.
 
-Now we need to look at the case where $B$ is finite. In this case, $B'$ is also
-finite, so suppose $B=\{\alpha_1,\cdots\alpha_n\}$ and
-$B'=\{\beta_1,\cdots\beta_m\}$ with $m\leq n$. We perform induction on $m$: if
-$m=0$ then $F/E$ is algebraic so $B=\null$ so $n=0$, otherwise there is an
-irreducible polynomial $f\in E[x,y_1,\cdots y_n]$ such that
-$f(\beta_1,\alpha_1,\cdots \alpha_n) = 0$. Since $\beta_1$ is not algebraic over
-$E$, $f$ must involve some $y_i$ so without loss of generality, assume $f$ uses
-$y_1$. Let $B^*=\{\beta_1,\alpha_2,\cdots\alpha_n\}$. We claim that $B^*$ is a
-basis for $F/E$. To prove this claim, we see that we have a tower of algebraic
-extensions $F/E(B^*,\alpha_1)/E(B^*)$ since $\alpha_1$ is algebraic over
-$E(B^*)$. Now we claim that $B^*$ (counting multiplicity of elements) is
-algebraically independent over $E$ because if it weren't, then there would be an
-irreducible $g\in E[x,y_2,\cdots y_n]$ such that
-$g(\beta_1,\alpha_2,\cdots\alpha_n)=0$ which must involve $x$ making $\beta_1$
-algebraic over $E(\alpha_2,\cdots \alpha_n)$ which would make $\alpha_1$
-algebraic over $E(\alpha_2,\cdots \alpha_n)$ which is impossible. So this means
-that $\{\alpha_2,\cdots\alpha_n\}$ and $\{\beta_2,\cdots\beta_m\}$ are bases for
-$F$ over $E(\beta_1)$ which means by induction, $m=n$. \end{proof}
-
-\begin{example} Consider the field extension $\mathbb{Q}(e,\pi)$ formed by
-adjoining the numbers $e$ and $\pi$. This field extension has transcendence
-degree at least $1$ since both $e$ and $\pi$ are transcendental over the
-rationals. However, this field extension might have transcendence degree $2$ if
-$e$ and $\pi$ are algebraically independent. Whether or not this is true is
-unknown and the problem of determining $trdeg(\mathbb{Q}(e,\pi))$ is an open
-problem.\end{example}
-\begin{example} let $E$ be a field and $F=E(t)/E$. Then $\{t\}$ is a
-transcendence basis since $F=E(t)$. However, $\{t^2\}$ is also a transcendence
-basis since $E(t)/E(t^2)$ is algebraic. This illustrates that while we can
-always decompose an extension $F/E$ into an algebraic extension $F/E'$ and a
-purely transcendental extension $E'/E$, this decomposition is not unique and
-depends on choice of transcendence basis. \end{example}
-\begin{exercise} If we have a tower of fields $G/F/E$, then $trdeg(G/E)=trdeg(F/E)+trdeg(G/F)$. \end{exercise}
-
-\subsection{Linearly Disjoint Field Extensions}
-Let $k$ be a field, $K$ and $L$ field extensions of $k$. Suppose also that $K$ and $L$ are embedded in some larger field $\Omega$. 
-
-\begin{definition} The compositum of $K$ and $L$ written $KL$ is $k(K\cup L)=L(K)=K(L)$. 
-\end{definition}
+Since field extensions $F/E$ are always vector spaces, there is a basis $B$ for
+$F$ such that any element of $F$ is the linear combination of elements of $B$
+with coefficients in $E$. Returning to the previous example, if $K$ is the
+smallest field that contains $\mathbb{Q}$ and an algebraic number $\alpha$,
+then$[K:\mathbb{Q}]$ is the degree of the minimal polynomial $f(x)$ of $\alpha$.
 
 
 
-\begin{definition} $K$ and $L$ are said to be linearly disjoint over $k$ if the following map is injective:
-\begin{equation} \theta: K\otimes_k L\rightarrow KL \end{equation} defined by $x\otimes y\mapsto xy$. 
-\end{definition}
-
-
-\section{Algebraic closure}
+\subsection{Algebraic closure}
 
 \begin{definition} 
 Let $F$ be a field. An \textbf{algebraic closure} of $F$ is a field
@@ -724,5 +642,147 @@ correspond.
 
 \begin{proof} This combines \rref{fixed_field}, \rref{fixing_subgroup}, and \rref{normal}.
 \end{proof}
+
+
+\section{Transcendental Extensions}
+
+
+There is a distinguished type of transcendental extension: those that are
+``purely transcendental.'' 
+\begin{definition} A field extension $E'/E$ is purely transcendental if it is
+obtained by adjoining a set $B$ of algebraically independent elements. A set of
+elements is algebraically independent over $E$ if there is no nonzero polynomial$P$
+with coefficients in $E$ such
+that $P(b_1,b_2,\cdots b_n)=0$ for any finite subset of elements $b_1, \dots,
+b_n \in B$.
+\end{definition}
+
+\begin{example} The field $\mathbb{Q}(\pi)$ is purely transcendental; in
+particular, $\mathbb{Q}(\pi)\cong\mathbb{Q}(x)$ with the isomorphism fixing
+$\mathbb{Q}$. \end{example}
+Similar to the degree of an algebraic extension, there is a way of keeping
+trackof the number of algebraically independent generators that are required to
+generate a purely transcendental extension.
+\begin{definition} Let $E'/E$ be a purely transcendental extension generated by
+some set of algebraically independent elements $B$. Then the transcendence
+degree $trdeg(E'/E)=\#(B)$ and $B$ is called a transcendence basis for $E'/E$
+(we will see later that $trdeg(E'/E)$ is independent of choice of basis).
+\end{definition}
+In general, let $F/E$ be a field extension, we can always construct an
+intermediate extension $F/E'/E$ such that $F/E'$ is algebraic and $E'/E$ is
+purely transcendental. Then if $B$ is a transcendence basis for $E'$, it is
+alsocalled a transcendence basis for $F$. Similarly, $trdeg(F/E)$ is defined to
+be
+$trdeg(E'/E)$.
+\begin{theorem} Let $F/E$ be a field extension, a transcendence basis exists.
+\end{theorem}
+\begin{proof} Let $A$ be an algebraically independent subset of $F$. Now pick a
+subset $G\subseteq F$ that generates $F/E$, we can find a transcendence basis
+$B$ such that $A\subseteq B\subseteq G$. Define a collection of algebraically
+independent sets $\mathcal{B}$ whose members are subsets of $G$ that contain
+$A$. The set can be partially ordered inclusion and contains at least one
+element, $A$. The union of elements of $\mathcal{B}$ is algebraically
+independent since any algebraic dependence relation would have occured in one
+ofthe elements of $\mathcal{B}$ since the polynomial is only allowed to be over
+finitely many variables. The union also satisfies $A\subseteq
+\bigcup\mathcal{B}\subseteq G$ so by Zorn's lemma, there is a maximal element
+$B\in\mathcal{B}$. Now we claim $F$ is algebraic over $E(B)$. This is because
+ifit wasn't then there would be a transcendental element $f\in G$ (since
+$E(G)=F$)such that $B\cup\{f\}$ wold be algebraically independent contradicting
+the
+maximality of $B$. Thus $B$ is our transcendence basis. \end{proof}
+Now we prove that the transcendence degree of a field extension is independent
+of choice of basis.
+\begin{theorem} Let $F/E$ be a field extension. Any two transcendence bases for
+$F/E$ have the same cardinality. This shows that the $trdeg(E/F)$ is well
+defined. \end{theorem}
+\begin{proof} 
+Let $B$ and $B'$ be two transcendence bases. Without loss of generality, we can
+assume that $\#(B')\leq \#(B)$. Now we divide the proof into two cases: the
+first case is that $B$ is an infinite set. Then for each $\alpha\in B'$, there
+is a finite set $B_{\alpha}$ such that $\alpha$ is algebraic over
+$E(B_{\alpha})$ since any algebraic dependence relation only uses finitely many
+indeterminates. Then we define $B^*=\bigcup_{\alpha\in B'} B_{\alpha}$. By
+construction, $B^*\subseteq B$, but we claim that in fact the two sets are
+equal. To see this, suppose that they are not equal, say there is an element
+$\beta\in B\setminus B^*$. We know $\beta$ is algebraic over $E(B')$ which is
+algebraic over $E(B^*)$. Therefor $\beta$ is algebraic over $E(B^*)$, a
+contradiction. So $\#(B)\leq \sum_{\alpha\in B'} \#(B_{\alpha})$. Now if $B'$ is
+finite, then so is $B$ so we can assume $B'$ is infinite; this means
+\begin{equation} \#(B)\leq \sum_{\alpha\in B'}\#(B_{\alpha})=\#(\coprod
+B_{\alpha})\leq \#(B'\times\mathbb{Z})=\#(B')\end{equation} with the inequality $\#(\coprod
+B_{\alpha}) \leq \#(B'\times \mathbb{Z})$ given by the correspondence
+$b_{\alpha_i}\mapsto (\alpha,i)\in B'\times \mathbb{Z}$ with $B_\alpha =
+\{b_{\alpha_1},b_{\alpha_2}\cdots b_{\alpha_{n_\alpha}}\}$ Therefore in the
+infinite case, $\#(B)=\#(B')$.
+
+Now we need to look at the case where $B$ is finite. In this case, $B'$ is also
+finite, so suppose $B=\{\alpha_1,\cdots\alpha_n\}$ and
+$B'=\{\beta_1,\cdots\beta_m\}$ with $m\leq n$. We perform induction on $m$: if
+$m=0$ then $F/E$ is algebraic so $B=\null$ so $n=0$, otherwise there is an
+irreducible polynomial $f\in E[x,y_1,\cdots y_n]$ such that
+$f(\beta_1,\alpha_1,\cdots \alpha_n) = 0$. Since $\beta_1$ is not algebraic over
+$E$, $f$ must involve some $y_i$ so without loss of generality, assume $f$ uses
+$y_1$. Let $B^*=\{\beta_1,\alpha_2,\cdots\alpha_n\}$. We claim that $B^*$ is a
+basis for $F/E$. To prove this claim, we see that we have a tower of algebraic
+extensions $F/E(B^*,\alpha_1)/E(B^*)$ since $\alpha_1$ is algebraic over
+$E(B^*)$. Now we claim that $B^*$ (counting multiplicity of elements) is
+algebraically independent over $E$ because if it weren't, then there would be an
+irreducible $g\in E[x,y_2,\cdots y_n]$ such that
+$g(\beta_1,\alpha_2,\cdots\alpha_n)=0$ which must involve $x$ making $\beta_1$
+algebraic over $E(\alpha_2,\cdots \alpha_n)$ which would make $\alpha_1$
+algebraic over $E(\alpha_2,\cdots \alpha_n)$ which is impossible. So this means
+that $\{\alpha_2,\cdots\alpha_n\}$ and $\{\beta_2,\cdots\beta_m\}$ are bases for
+$F$ over $E(\beta_1)$ which means by induction, $m=n$. \end{proof}
+
+\begin{example} Consider the field extension $\mathbb{Q}(e,\pi)$ formed by
+adjoining the numbers $e$ and $\pi$. This field extension has transcendence
+degree at least $1$ since both $e$ and $\pi$ are transcendental over the
+rationals. However, this field extension might have transcendence degree $2$ if
+$e$ and $\pi$ are algebraically independent. Whether or not this is true is
+unknown and the problem of determining $trdeg(\mathbb{Q}(e,\pi))$ is an open
+problem.\end{example}
+
+\begin{example} let $E$ be a field and $F=E(t)/E$. Then $\{t\}$ is a
+transcendence basis since $F=E(t)$. However, $\{t^2\}$ is also a transcendence
+basis since $E(t)/E(t^2)$ is algebraic. This illustrates that while we can
+always decompose an extension $F/E$ into an algebraic extension $F/E'$ and a
+purely transcendental extension $E'/E$, this decomposition is not unique and
+depends on choice of transcendence basis. \end{example}
+
+\begin{exercise} If we have a tower of fields $G/F/E$, then $trdeg(G/E)=trdeg(F/E)+trdeg(G/F)$. \end{exercise}
+
+\begin{example} 
+Let $X$ be a compact Riemann surface. Then the function field $\mathbb{C}(X)$
+(see \cref{meromorphicfn}) has transcendence degree one over $\mathbb{C}$. In
+fact, \emph{any} finitely generated extension of $\mathbb{C}$ of transcendence
+degree one arises from a Riemann surface. There is even an equivalence of
+categories between the category of compact Riemann surfaces and
+(non-constant) holomorphic maps 
+and the opposite category of finitely generated extensions of $\mathbb{C}$ and
+morphisms of $\mathbb{C}$-algebras. See \cite{Fo81}.
+
+There is an algebraic version of the above statement as well. Given an
+(irreducible) algebraic curve in projective space over an algebraically
+closed field $k$ (e.g. the complex numbers), one can consider its ``field of rational
+functions:'' basically, functions that look like quotients of polynomials,
+where the denominator does not identically vanish on the curve. 
+There is a similar anti-equivalence of categories between smooth projective curves and
+non-constant morphisms of curves and finitely generated extensions of $k$ of
+transcendence degree one. See \cite{Ha77}.
+\end{example} 
+
+
+\subsection{Linearly Disjoint Field Extensions}
+Let $k$ be a field, $K$ and $L$ field extensions of $k$. Suppose also that $K$ and $L$ are embedded in some larger field $\Omega$. 
+
+\begin{definition} The compositum of $K$ and $L$ written $KL$ is $k(K\cup L)=L(K)=K(L)$. 
+\end{definition}
+
+
+
+\begin{definition} $K$ and $L$ are said to be linearly disjoint over $k$ if the following map is injective:
+\begin{equation} \theta: K\otimes_k L\rightarrow KL \end{equation} defined by $x\otimes y\mapsto xy$. 
+\end{definition}
 
 
