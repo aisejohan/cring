@@ -1738,6 +1738,56 @@ $\rho\circ\psi=\id_{\hom_R(M,N)}$.\\
 
 
 \end{example}
+
+
+We now interpret localization as a tensor product.
+\begin{proposition} \label{locisbasechange}
+Let $R$ be a commutative ring, $S \subset R$ a multiplicative subset. Then
+there
+exists a canonical isomorphism of functors:
+\[ \phi:  S^{-1}M \simeq S^{-1 }R \otimes_R M . \]
+\end{proposition}
+\begin{proof}
+Here is a construction of $\phi$. If $x/s \in S^{-1}M$ where $x \in M, s \in
+S$, we define
+\[ \phi(x/s) = (1/s) \otimes m.  \]
+Let us check that this is well-defined. Suppose $x/s = x'/s'$; then this means
+there is $t \in S$ with
+\[ xs't = x'st . \]
+
+From this we need to check that $\phi(x/s) = \phi(x'/s')$, i.e. that $1/s
+\otimes x$ and $1/s' \otimes x'$ represent the same elements in the tensor
+product. But we know from the last statement that
+\[ \frac{1}{ss't} \otimes xs't = \frac{1}{ss't} x'st \in S^{-1}R \otimes M \]
+and the first is just
+\[ s't( \frac{1}{ss't} \otimes x) = \frac{1}{s} \otimes x  \]
+by linearity, while the second is just
+\[ \frac{1}{s'} \otimes x'  \]
+similarly. One next checks that $\phi$ is an $R$-module homomorphism, which we
+leave to the reader.
+
+Finally, we need to describe the inverse. The inverse $\psi: S^{-1}R \otimes M
+\to S^{-1}M$ is easy to construct because it's a map out of the tensor product,
+and we just need to give a bilinear map
+\[ S^{-1} R \times M \to S^{-1}M , \]
+and this sends $(r/s, m)$ to $mr/s$.
+
+It is easy to see that $\phi, \psi$ are inverses to each other by the
+definitions.
+\end{proof}
+
+It is, perhaps, worth making a small categorical comment, and offering an
+alternative argument.
+We are given two functors $F,G$ from $R$-modules to $S^{-1}R$-modules, where
+$F(M) = S^{-1}R \otimes_R M$ and $G(M) = S^{-1}M$.
+By the universal property, the map $M \to S^{-1}M$ from an $R$-module to a
+tensor product gives  a natural map
+\[ S^{-1}R \otimes_R M \to S^{-1}M,  \]
+that is a natural transformation $F \to G$.
+Since it is an isomorphism for free modules, it is an isomorphism for all
+modules by a standard argument.
+
+
 \section{Exactness properties of the tensor product}
 
 In general, the tensor product is not exact; it is only exact on the right,
@@ -1802,7 +1852,7 @@ $M \otimes N''$.  In particular, we have to quotient out by
 so that if we kill off $x \otimes n'$ for $n' \in N' \subset N$, then we get $M
 \otimes N''$. This is a direct proof.
 
-You can also give a conceptual proof.  We'd like to know that $M \otimes N''$
+One can also give a conceptual proof.  We would like to know that $M \otimes N''$
 is the cokernel of $M \otimes N' \to M \otimes N''$. In other words, we'd like
 to know that if we mapped $M \otimes_R N$ into some $P$ and the pull-back to $M
 \otimes_R N'$, it'd factor uniquely through $M \otimes_R N''$.
@@ -1845,6 +1895,63 @@ which is not exact.
 Let $R$ be a ring, $I, J \subset R$ ideals. Show that $R/I \otimes_R R/J
 \simeq R/(I+J)$.
 \end{exercise}
+
+\subsection{A characterization of right-exact functors}
+
+Let us consider additive functors on the category of $R$-modules. So far,
+we know a very easy way of getting such functors: given an $R$-module $N$, we
+have a functor
+\[ T_N: M \to M \otimes_R N.  \]
+In other words, we have a way of generating a functor on the category of
+$R$-modules for each $R$-module. These functors are all right-exact, as we
+have seen.
+Now we will prove a converse.
+
+\begin{proposition} 
+Let $F$ be a right-exact functor on the category of $R$-modules that commutes
+with direct sums. Then $F$ is isomorphic to some $T_N$.
+\end{proposition} 
+\begin{proof} 
+The idea is that $N$ will be $F(R)$.
+
+Without the right-exactness hypothesis, we shall construct a natural morphism
+\[  F(R) \otimes M \to F(M) \]
+as follows. Given $m \in M$, there is a natural map $R \to M$ sending $1 \to
+m$. This identifies $M = \hom_R(R, M)$. But functoriality gives a map $F(R)
+\times \hom_R(R, M) \to F(M)$, which is clearly $R$-linear; the universal
+property of the tensor product now produces the desired transformation
+$T_{F(R)} \to F$.
+
+It is clear that $T_{F(R)}(M) \to F(M)$ is an isomorphism for $M = R$, and
+thus for $M$ free, as both $T_{F(R)}$ and $F$ commute with direct sums. Now
+let $M$ be any $R$-module. There is a ``free presentation,'' that is an exact
+sequence
+\[ R^I \to R^J \to M \to 0  \]
+for some sets $I,J$; we get a commutative, exact diagram
+\[ \xymatrix{
+T_{F(R)}(R^I)\ar[d]  \ar[r] & T_{F(R)} (R^J) \ar[d]  \ar[r] & T_{F(R)} (M) \ar[d]  \ar[r] &  0  \\
+F(R^I) \ar[r] &  F(R^J) \ar[r] & F( M )\ar[r] &  0 
+}\]
+where the leftmost two vertical arrows are isomorphisms. A diagram chase now
+shows that $T_{F(R)}(M) \to F(M)$ is an isomorphism. In particular, $F \simeq
+T_{F(R)}$ as functors.
+\end{proof} 
+
+Without the hypothesis that $F$ commutes with arbitrary direct sums, we could only draw
+the same conclusion on the category of \emph{finitely presented} modules; the
+same proof as above goes through, though $I$ and $J$ are required to be
+finite.\footnote{Recall that an additive functor commutes with finite direct
+sums.}
+\begin{proposition} 
+Let $F$ be a right-exact functor on the category of finitely presented $R$-modules that commutes
+with direct sums. Then $F$ is isomorphic to some $T_N$.
+\end{proposition} 
+
+From this we can easily see that localization at a multiplicative subset $S
+\subset R$ is given by tensoring with $S^{-1}R$. Indeed, localization is a
+right-exact functor on the category of $R$-modules, so it is given by
+tensoring with some module $M$; applying to $R$ shows that $M=S^{-1}R$.
+
 \subsection{Flatness}
 In some cases, though, the tensor product is exact.
 
@@ -1870,7 +1977,7 @@ is exact), then $P$ is flat.
 \end{example}
 \begin{proof}
 If $P  = \bigoplus_A R$ is free, then tensoring with $P$ corresponds to taking
-the direct sum $A$ times, i.e.
+the direct sum $|A|$ times, i.e.
 \[ P \otimes_R M = \bigoplus_A M.  \]
 This is because tensoring with $R$ preserves (finite or direct) infinite sums.
  The functor $M \to \bigoplus_A M$ is exact, so free
@@ -1881,62 +1988,20 @@ module. So if $P$ is projective, $P \oplus P' \simeq \bigoplus_A R$ for some
 $P'$. Then we have that
 \[ (P \otimes_R M) \oplus (P' \otimes_R M) \simeq \bigoplus_A M.  \]
 If we had an injection $M \to M'$, then there is a direct sum decomposition
-yields a sequence of  maps
-\[ P \otimes_R M' \to P \otimes_R M \to P \otimes_R M \oplus P \otimes_R M'
-\to \bigoplus_A M  \]
-and the composition map is injective since its sum with $P' \otimes
-M' \to P' \otimes M'$ is injective.  FIX \end{proof}
-
-
-
-We now interpret localization as a tensor product.
-\begin{theorem}
-Let $R$ be a commutative ring, $S \subset R$ a multiplicative subset. Then
-there
-exists a canonical isomorphism of functors:
-\[ \phi:  S^{-1}M \simeq S^{-1 }R \otimes_R M . \]
-\end{theorem}
-In particular, $S^{-1}R $ is a flat $R$-module, because localization is an
-exact functor.
-\begin{proof}
-Here is a construction of $\phi$. If $x/s \in S^{-1}M$ where $x \in M, s \in
-S$, we define
-\[ \phi(x/s) = (1/s) \otimes m.  \]
-Let us check that this is well-defined. Suppose $x/s = x'/s'$; then this means
-there is $t \in S$ with
-\[ xs't = x'st . \]
-
-From this we need to check that $\phi(x/s) = \phi(x'/s')$, i.e. that $1/s
-\otimes x$ and $1/s' \otimes x'$ represent the same elements in the tensor
-product. But we know from the last statement that
-\[ \frac{1}{ss't} \otimes xs't = \frac{1}{ss't} x'st \in S^{-1}R \otimes M \]
-and the first is just
-\[ s't( \frac{1}{ss't} \otimes x) = \frac{1}{s} \otimes x  \]
-by linearity, while the second is just
-\[ \frac{1}{s'} \otimes x'  \]
-similarly. One next checks that $\phi$ is an $R$-module homomorphism, which we
-leave to the reader.
-
-Finally, we need to describe the inverse. The inverse $\psi: S^{-1}R \otimes M
-\to S^{-1}M$ is easy to construct because it's a map out of the tensor product,
-and we just need to give a bilinear map
-\[ S^{-1} R \times M \to S^{-1}M , \]
-and this sends $(r/s, m)$ to $mr/s$.
-
-It is easy to see that $\phi, \psi$ are inverses to each other by the
-definitions.
+yields a diagram of maps
+\[ \xymatrix{
+P \otimes_R M \ar[d] \ar[r] &  \bigoplus_A M \ar[d]  \\
+P \otimes_R M' \ar[r] &  \bigoplus_A M'
+}.\]
+A diagram-chase now shows that the vertical map is injective. Namely, the
+composition $P \otimes_R M \to \bigoplus_A M'$ is injective, so the vertical
+map has to be injective too.
 \end{proof}
 
-It is, perhaps, worth making a small categorical comment, and offering an
-alternative argument.
-We are given two functors $F,G$ from $R$-modules to $S^{-1}R$-modules, where
-$F(M) = S^{-1}R \otimes_R M$ and $G(M) = S^{-1}M$.
-By the universal property, the map $M \to S^{-1}M$ from an $R$-module to a
-tensor product gives  a natural map
-\[ S^{-1}R \otimes_R M \to S^{-1}M,  \]
-that is a natural transformation $F \to G$.
-
-
+\begin{example} 
+If $S \subset R$ is a multiplicative subset, then  $S^{-1}R $ is a flat $R$-module, because localization is an
+exact functor.
+\end{example} 
 
 Let us make a few other comments.
 
@@ -1957,6 +2022,13 @@ It is easy to check that this defines an action of $R'$ on $M \otimes_R R'$.
 etc.)
 
 \end{remark}
+
+\begin{proposition} 
+Let $M$ be a finitely presented $R$-module, $N$ an $R$-module. Let $S$ be a
+flat $R$-algebra.  Then the natural map
+\[ \hom_R(M,N) \otimes_R S \to \hom_S( M \otimes_R S, N \otimes_R S)  \]
+is an isomorphism.
+\end{proposition} 
 
 \subsection{Tensor products of algebras}
 There is one other basic property of tensor products to discuss before moving

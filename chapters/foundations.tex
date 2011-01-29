@@ -1340,7 +1340,15 @@ In \cite{Ca88}, it is shown that the ring $\mathbb{Z}[\frac{1+
 \sqrt{-19}}{2}]$ is a PID but not euclidean (i.e. there is \emph{no} euclidean
 norm on it).
 \end{remark} 
+
 \subsection{The Chinese remainder theorem}
+
+Let $m,n$ be relatively prime integers. Suppose $a, b \in \mathbb{Z}$; then
+one can show that the two congruences $x \equiv a \mod m$
+and $x \equiv b \mod n$ can be solved simultaneously in $x \in \mathbb{Z}$.
+The solution is unique, moreover, modulo $mn$.
+The Chinese remainder theorem generalizes this fact:
+
 
 \begin{theorem}[Chinese remainder theorem] Let $I_1, \dots I_n$ be ideals in a
 ring $R$ which satisfy $I_i + I_j = R$ for $i \neq j$. Then we have $I_1 \cap
