@@ -1349,6 +1349,24 @@ to a maximal ideal in $R$.
 This maximal ideal does not contain $f$ by construction.
 \end{proof}
 
+\begin{exercise} 
+Prove the following result, known as ``Zariski's lemma'' (which easily implies
+the Nullstellensatz): if $k$ is a field, $k'$ a field extension of $k$ which
+is a finitely generated $k$-\emph{algebra}, then $k'$ is finite algebraic over
+$k$. Use the following argument of McCabe (in \cite{Mc76}):
+\begin{enumerate}
+\item $k'$ contains a subring $S$ of the form $S= k[ x_1, \dots, x_t]$ where
+the $x_1, \dots, x_t$ are algebraically independent over $k$, and $k'$ is
+algebraic over the quotient field of $S$ (which is a polynomial ring). 
+\item  If $k'$ is not algebraic over $k$, then $S \neq k$ is not a field.
+\item Show that there is $y \in S$ such that $k'$ is integral over $S_y$.
+Deduce that $S_y$ is a field.
+\item Since $\spec (S_y) = \left\{0\right\}$, argue that $y$ lies in every
+non-zero prime ideal of $\spec S$. Conclude that $1+y \in k$, and $S$ is a
+field---contradiction.
+\end{enumerate}
+\end{exercise} 
+
 \section{Serre's criterion and its variants}
 \subsection{Reducedness}
 
