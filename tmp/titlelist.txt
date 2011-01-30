@@ -3,8 +3,8 @@ Foundations
 Fields and Extensions
 Three important functors
 The $\spec$ of a ring
-Graded and filtered rings
 Noetherian rings and modules
+Graded and filtered rings
 Integrality and valuation rings
 Unique factorization and the class group
 Dedekind domains

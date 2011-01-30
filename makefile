@@ -86,15 +86,6 @@ schspec.pdf: aux/chspec.tex chapters/spec.tex
 	pdflatex -src aux/chspec.tex
 
 
-chgraded.pdf: aux/chgraded.tex CRing.aux chapters/graded.tex
-	pdflatex -src aux/chgraded.tex
-	bibtex chgraded
-	pdflatex -src aux/chgraded.tex
-
-schgraded.pdf: aux/chgraded.tex chapters/graded.tex
-	pdflatex -src aux/chgraded.tex
-
-
 chnoetherian.pdf: aux/chnoetherian.tex CRing.aux chapters/noetherian.tex
 	pdflatex -src aux/chnoetherian.tex
 	bibtex chnoetherian
@@ -102,6 +93,15 @@ chnoetherian.pdf: aux/chnoetherian.tex CRing.aux chapters/noetherian.tex
 
 schnoetherian.pdf: aux/chnoetherian.tex chapters/noetherian.tex
 	pdflatex -src aux/chnoetherian.tex
+
+
+chgraded.pdf: aux/chgraded.tex CRing.aux chapters/graded.tex
+	pdflatex -src aux/chgraded.tex
+	bibtex chgraded
+	pdflatex -src aux/chgraded.tex
+
+schgraded.pdf: aux/chgraded.tex chapters/graded.tex
+	pdflatex -src aux/chgraded.tex
 
 
 chintegrality.pdf: aux/chintegrality.tex CRing.aux chapters/integrality.tex
@@ -194,5 +194,5 @@ schlicense.pdf: aux/chlicense.tex chapters/license.tex
 	pdflatex -src aux/chlicense.tex
 
 
-chapters:  chcategories.pdf chfoundations.pdf chfields.pdf chthreeimportantfunctors.pdf chspec.pdf chgraded.pdf chnoetherian.pdf chintegrality.pdf chfactorization.pdf chdedekind.pdf chdimension.pdf chcompletion.pdf chsmoothness.pdf chhomological.pdf chflat.pdf chetale.pdf chlicense.pdf
+chapters:  chcategories.pdf chfoundations.pdf chfields.pdf chthreeimportantfunctors.pdf chspec.pdf chnoetherian.pdf chgraded.pdf chintegrality.pdf chfactorization.pdf chdedekind.pdf chdimension.pdf chcompletion.pdf chsmoothness.pdf chhomological.pdf chflat.pdf chetale.pdf chlicense.pdf
 

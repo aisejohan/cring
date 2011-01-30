@@ -3,8 +3,8 @@ foundations
 fields
 threeimportantfunctors
 spec
-graded
 noetherian
+graded
 integrality
 factorization
 dedekind
