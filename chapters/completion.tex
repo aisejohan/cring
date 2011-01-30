@@ -368,6 +368,26 @@ which belong to the completion but not to $\hat{R}_I \otimes M = \mathbb{Z}_p
 [t]$. 
 \end{remark} 
 
+\begin{remark} 
+By the Krull intersection theorem, if $R$ is a local noetherian ring, then the
+map from $R \to \hat{R}$ is an injection.
+\end{remark} 
+
+
+\section{Hensel's lemma} One thing that you might be interested in doing is solving
+Diophantine equations. Say $R = \mathbb{Z}$; you want to find solutions to a
+polynomial $f(X) \in \mathbb{Z}[X]$. Generally, it is very hard to find
+solutions. However, there are easy tests you can do that will tell you if there
+are no solutions. For instance, reduce mod a prime. One way you can prove that
+there are no solutions is to show that there are no solutions mod 2. 
+
+But there might be solutions mod 2 and yet you might not be sure about
+solutions in $\mathbb{Z}$. So you might try mod 4, mod 8, and so on---you get a
+whole tower of problems to consider. If you manage to solve all these equations
+, you can solve the equations in the 2-adic integers $\mathbb{Z}_2 =
+\hat{\mathbb{Z}}_{(2)}$.
+
+
 \subsection{The Krull intersection theorem}
 
 We now prove a useful consequence of the Artin-Rees lemma and Nakayama's
@@ -396,20 +416,6 @@ abelian groups $I/\mathfrak{m}^i I $ where the maps are surjections; to say
 that this limit is zero is to say that $I = \mathfrak{m}I$. So $I = 0$ by
 Nakayama. 
 \end{proof} 
-
-\section{Hensel's lemma} One thing that you might be interested in doing is solving
-Diophantine equations. Say $R = \mathbb{Z}$; you want to find solutions to a
-polynomial $f(X) \in \mathbb{Z}[X]$. Generally, it is very hard to find
-solutions. However, there are easy tests you can do that will tell you if there
-are no solutions. For instance, reduce mod a prime. One way you can prove that
-there are no solutions is to show that there are no solutions mod 2. 
-
-But there might be solutions mod 2 and yet you might not be sure about
-solutions in $\mathbb{Z}$. So you might try mod 4, mod 8, and so on---you get a
-whole tower of problems to consider. If you manage to solve all these equations
-, you can solve the equations in the 2-adic integers $\mathbb{Z}_2 =
-\hat{\mathbb{Z}}_{(2)}$.
-
 But the Krull intersection theorem implies that $\mathbb{Z} \to \mathbb{Z}_2$
 is injective. So if you expected that there was a unique solution in
 $\mathbb{Z}$, you might try looking at the solutions in $\mathbb{Z}_2$ to be
