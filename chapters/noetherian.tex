@@ -105,11 +105,10 @@ variables is not noetherian. Note that the ring itself is finitely generated
 (by the element $1$), but there are ideals that are not finitely generated.
 \end{exercise} 
 
-\begin{exercise} 
+\begin{remark} 
 Let $R$ be a ring such that every \emph{prime} ideal is finitely generated.
-Then $R$ is noetherian. (Hint: show that, in any ring, an ideal maximal with respect to the
-condition of being not finitely generated is prime.)
-\end{exercise} 
+Then $R$ is noetherian. See \rref{primenoetherian}, or prove it as
+an exercise. \end{remark}
 
 \subsection{Stability properties}
 \begin{proposition} \label{exactnoetherian}
@@ -131,7 +130,7 @@ $N$---as the homomorphic image of $\widetilde{N}$---is finitely generated
 So $M''$ is noetherian.
 
 Suppose $M', M''$ noetherian. We prove $M$ noetherian.
-Let's verify the ascending chain condition. Consider
+We verify the ascending chain condition. Consider
 \[ M_1 \subset M_2 \subset \dots \subset M.  \]
 Let $M_i''$ denote the image of $M_i$ in $M''$ and let $M'_i$ be the
 intersection of $M_i$ with $M'$. Here we think of $M'$ as a submodule of $M$.
@@ -143,7 +142,7 @@ that $n \geq N$ implies
 
 We claim that this implies, for such $n$, 
 \[ M_n = M_{n+1}.  \]
-Why? Say $x \in M_{n+1} \subset M$. Then $x$ maps into something in $M''_{n+1} = M''_n$.  
+Indeed, say $x \in M_{n+1} \subset M$. Then $x$ maps into something in $M''_{n+1} = M''_n$.  
 So there is something in $M_n$, call it $y$, such that $x,y$ go to the same
 thing in $M''$. In particular, 
 \[ x - y \in M_{n+1} \]
@@ -268,6 +267,7 @@ Any ring $R$ can be obtained as a filtered direct limit of noetherian rings.
 \begin{proof} 
 Indeed, $R$ is the filtered direct limit of its finitely generated subrings. 
 \end{proof} 
+
 This observation is sometimes useful in commutative algebra and algebraic
 geometry, in order to reduce questions about arbitrary commutative rings to
 noetherian rings. Noetherian rings have strong finiteness hypotheses that let
@@ -1331,3 +1331,12 @@ implies that $R$ itself is artinian.
 The theory of artinian rings is thus a special case of the theory of noetherian
 rings.
 
+\begin{exercise} 
+If $R$ is an artinian ring, and $S$ is a finite $R$-algebra (finite as an
+$R$-module), then $S$ is artinian.
+\end{exercise} 
+
+\begin{exercise} 
+Let $M$ be an artinian module over a commutative ring $R$, $f: M \to M$ an \emph{injective} homomorphism.
+Show that $f$ is surjective, hence an isomorphism. 
+\end{exercise} 
