@@ -1,0 +1,98 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{22}
+ \sektion{Lecture 22}
+
+ Recall that a typical maximal ideal in $k[x_1,\dots, x_n]$ is of the form $I(y)$, where
+ $y\in \bar k^n$ is an algebraic point.
+
+ Let $K/k$ be a fixed extension. As usual, we have the ideal $I(\{y\})$ for every $y\in
+ K^n$, and we have $k[y]$, the coordinate ring $k[x_1,\dots, x_n]/I(\{y\}) = k[y_1,\dots,
+ y_n]$, which is an affine $k$-algebra.
+ \begin{definition}
+   If $y,z\in K^n$, then we say that $y$ \emph{specializes to} $z$ (written
+   $y\rightsquigarrow z$) if there is a $k$-algebra homomorphism $k[y]\to k[z]$ taking
+   $y_i$ to $z_i$ (in particular, it is surjective).
+ \end{definition}
+ Clearly $y\rightsquigarrow z$ if and only if $I(y)\subseteq I(z)$. Furthermore, this
+ occurs if and only if $z\in \bbar {\{y\}}=V_K\bigl(I(y)\bigr)$. Therefore, we can thing
+ of $\bbar {\{y\}}$ as $\{z|y\rightsquigarrow z\}$.
+ \begin{definition}
+   If $y,z\in K^n$, $y\rightsquigarrow z$, and $z\rightsquigarrow y$, then we say that
+   $y$ and $z$ are \emph{$k$-conjugate} (written $ y\leftrightsquigarrow z$).
+ \end{definition}
+ It follows immediately that $y\leftrightsquigarrow z$ if and only if $\bbar {\{z\}} =
+ \bbar {\{y\}}$. In particular, $k$-conjugacy is an equivalence relation; we write $[y]$
+ for the equivalence class of $y$. Note that $[y]\subseteq \bbar {\{y\}}$.
+ \begin{definition}
+   We say that $y=(y_1,\dots, y_n)\in K^n$ is \emph{$k$-algebraic} if each $y_i$ is
+   algebraic over $k$.
+ \end{definition}
+ Note $y$ is algebraic if and only if $k[y]$ is a field ($\Leftarrow$ follows from
+ Zariski's Lemma), which occurs if and only if $I(y)$ is maximal. Moreover, if $y$ is
+ algebraic, then $y \rightsquigarrow z$ implies that $y\leftrightsquigarrow z$. i.e.\
+ ``algebraic points cannot be further specialized''.\footnote{``Being algebraic is very
+ special, and you cannot make it more special.''} So in the case when $y$ is algebraic,
+ $[y]=\bbar {\{y\}}$.
+ \begin{remark}
+   Any $k$-point (\emph{$k$-rational point}) is always algebraic.
+ \end{remark}
+ \begin{example}
+   $k=\QQ$ and $K=\QQ[\sqrt[3]{2}]$, with $y=\sqrt[3]{2}$. Then $[y]=\bbar
+   {\{y\}}=V_K(x^3-2)=\{y\}$. So $y$ is a closed point, but not a $k$-rational point.
+
+   If we take $K$ to be the normal hull (Galois hull) of $k(y)$, then $[y]=V_K(x^3-2) =
+   \{y,\omega y,\omega^2 y\}$, where $\omega^3=1$.
+ \end{example}
+ \begin{example}
+   Choose $k$ a field which is not perfect, with characteristic $p>0$. Then there is some
+   $a\in k\smallsetminus k^p$. Take $y\in \bar k$ such that $y^p=a$. Then consider any
+   $K$ which contains $y$. Then $[y]=V_K(x^p-a)=\{y\}$, so $y$ is closed!
+ \end{example}
+
+ Given a $k$-algebraic set $Y\subseteq K^n$, we can construct a map $\varphi:Y\to \spec
+ k[Y]$, given by $y\mapsto I(y)$ (which is always prime). Since $I(Y)\subseteq I(y)$, we
+ get that $I(y)\in \spec k[Y]$. Let $\varphi(y)=\p_y= I(y)/I(Y)$. The map $\varphi$ is
+ always continuous. To see this, consider a closed set $\V(\bar J)\subseteq \spec k[Y]$,
+ where $J\supseteq I(Y)$. Then $\varphi^{-1}\bigl(\V(\bar J)\bigr) = Y\cap V(J)$, which
+ is closed.
+
+ In general, $\varphi$ is neither 1-to-1 nor onto. Let's describe the image and fibers of
+ $\varphi$.
+
+ \begin{theorem}
+   Let $y,z\in  Y$. Then
+   \begin{enumerate}
+     \item $\varphi(y)=\varphi(z)$ if and only if $y\leftrightsquigarrow z$. In
+     particular, the fibers of $\varphi$ are the $k$-conjugacy classes in
+     $Y$.\footnote{Since $Y$ is closed, a conjugacy class that intersects $Y$ must be
+     contained in $Y$.}
+
+     \item $y\in Y_{alg}$ (i.e.~$y$ is algebraic) if and only if $\varphi(y)\in \Max
+     k[Y]$. In particular, $\varphi(Y_{alg})=\Max k[Y]$ and the fiber containing $y$ is
+     $\bbar {\{y\}}$.
+
+     \item A prime $\p/I(Y)\in \spec k[Y]$ is in the image of $\varphi$ if and only if
+     $\p=I\bigl(V_K(\p)\bigr)$ and $V_K(\p)$ has a generic point.
+   \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+   Items 1 and 2 are clear. Let's do $\Rightarrow$ for 3. Suppose $\p/I(Y)$ is in the
+   image of $\varphi$, so $\p=I(y)$, then $\p=I\bigl(V_K(\p)\bigr)$ by \anton{}. Since
+   $V_K(\p) = V_K\bigl( I(y)\bigr)$, $y$ is a generic point for $V_K(\p)$. The converse
+   is dry formal work \anton{}.
+ \end{proof}
+ Special cases of 3 above:
+ \begin{enumerate}
+   \item if $\bar k \subseteq K$, then we can delete the hypothesis
+   $\p=I\bigl(V_K(\p)\bigr)$ because of the NSS.
+
+   \item If $K$ is a ``universal domain'' ($K=\bar K$, and $K/k$ has infinite
+   transcendence degree), then $\varphi$ is onto because we can remove the condition that
+   $V_K(\p)$ has a generic point.
+
+   \item If $K=\bar k$, $\im \varphi = \Max (k[Y])$. Moreover, there is a 1-to-1
+   correspondence $\{k$-subvarieties of $Y\}\leftrightarrow \spec k[Y]$, with
+   $V\leftrightarrow I(V)/I(Y)$.
+
+   \item If $K=\bar k=k$, then $\varphi(a_1,\dots, a_n)=(x_1-a_1,\dots, x_n-a_n)/I(Y)$.
+ \end{enumerate}

@@ -1,0 +1,1134 @@
+\documentclass{article}
+\usepackage{amsmath,
+            latexsym,
+            amssymb}
+\usepackage[all]{xy}
+
+ \newcommand\<{\triangleleft}
+ \renewcommand{\a}{\ensuremath{\mathfrak{a}}}
+ \DeclareMathOperator{\ann}{ann}
+ \DeclareMathOperator{\ass}{Ass}
+ \DeclareMathOperator{\aut}{Aut}
+ \newcommand\C{\mathcal{C}}
+ \newcommand{\CC}{\ensuremath{\mathbb{C}}}
+ \newcommand{\D}{\ensuremath{\mathcal{D}}}
+ \DeclareMathOperator{\End}{End}
+ \newcommand{\F}{\ensuremath{\mathcal{F}}}
+ \newcommand{\FF}{\ensuremath{\mathbb{F}}}
+ \newcommand{\HH}{\ensuremath{\mathbb{H}}}
+ \let\hom\relax % kills the old hom
+ \DeclareMathOperator{\hom}{Hom}
+ \renewcommand{\labelitemi}{--}                    % changes the default bullet in itemize
+ \newcommand{\id}{\mathrm{Id}}
+ \DeclareMathOperator{\im}{im}
+ \newcommand{\m}{\ensuremath{\mathfrak{m}}}
+ \DeclareMathOperator{\Max}{Max}
+ \DeclareMathOperator{\Min}{Min}
+ \newcommand{\MM}{\ensuremath{\mathbb{M}}}
+ \DeclareMathOperator{\nil}{Nil}
+ \newcommand\p{\mathfrak{p}}
+ \renewcommand\P{\mathfrak{P}}
+ \newcommand\q{\mathfrak{q}}
+ \newcommand{\QQ}{\ensuremath{\mathbb{Q}}}
+ \DeclareMathOperator{\rad}{rad}
+ \newcommand{\RR}{\ensuremath{\mathbb{R}}}
+ \newcommand{\smaltrix}[4]{\ensuremath{\left( %
+            \begin{smallmatrix} #1 & #2 \\ #3 & #4 \end{smallmatrix} \right)}}
+ \DeclareMathOperator{\spec}{Spec}
+ \DeclareMathOperator{\supp}{Supp}
+ \newcommand{\V}{\mathcal{V}}
+ \newcommand\Z{\mathcal{Z}}
+ \newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+
+ \openout0=\jobname solved.txt
+ \openout1=lastupdated.html
+ \newenvironment{exercise}[1]{\gdef\currentEx{#1}\begin{trivlist}\item[]%
+                \textbf{Exercise #1.} \it}{\end{trivlist}}
+ \makeatletter
+ \newenvironment{solution}[1]{\def\x{#1}\begin{trivlist}\item[]\hspace*{-.5em}[\x]}
+                {\hspace*{\fill} $\blacksquare$
+                \protected@write0{}{\currentEx, \x}
+                \end{trivlist}}
+ \makeatother
+
+\begin{document}
+
+ \write1{\today}
+ \closeout1
+
+ {\large \noindent Solutions for Chapter III. Updated \today.}
+
+ \begin{exercise}{III.1}
+   Let $d=4b+1$ ($b\in \ZZ$) be square-free. Show that the integral closure of $\ZZ$ in
+   $\QQ(\sqrt d)$ has free $\ZZ$-basis $\{1,\alpha\}$, where $\alpha=(1+\sqrt d)/2$.
+ \end{exercise}
+ \begin{solution}{anton@math}
+   \underline{Observation}: Let $R$ be a normal domain with fraction field $K$, and let
+   $L$ be a field extension of $K$. If an element $\ell\in L$ is integral over $R$ then
+   the minimal polynomial $p(x)\in K[x]$ of $\ell$ lies in $R[x]$. To see this, assume
+   $\ell$ satisfies some monic $g(x)\in R[x]$. Then $p(x)$ divides $g(x)$ in $K[x]$. Then
+   all the roots of $p(x)$ in $\overline K$ also satisfy $g$, so they are integral over
+   $R$. Thus, the coefficients of $p$ are integral $R$, so they are in $R$.
+
+   We will show that any integral element of $\QQ(\sqrt d)$ is in $\ZZ+\alpha \ZZ$. It is
+   clear that $1$ and $\alpha$ are $\ZZ$-linearly independent. Note that every element of
+   $\QQ(\sqrt d)$ can be written as $\frac rs +\frac nm \sqrt d$, with $r,s,n,m\in \ZZ$
+   because we can clear denominators in the usual way. Moreover, we may assume that $r$
+   and $s$ are relatively prime, and that $n$ and $m$ are relatively prime. Assume such
+   an element is integral. If $n=0$, then we get that $\frac rs$ is integral; since $\ZZ$
+   is normal, it follows that $\frac rs$ is an integer. If $n\neq 0$, then the minimal
+   polynomial is
+   \[
+    \biggl( x-\Bigl(\frac rs+\frac nm \sqrt d\Bigr)\biggr)\biggl( x-\Bigl(\frac rs-\frac nm
+    \sqrt d\Bigr)\biggr) = x^2- \frac {2r}s x + \frac{r^2}{s^2}- \frac{n^2}{m^2}d.
+   \]
+   By the observation, we must have $\frac{2r}{s},\frac{r^2}{s^2}- \frac{n^2}{m^2}d\in
+   \ZZ$. Since $gcd(r,s)=1$, we must have $s|2$, so $s=1$ or 2.\\
+   \textit{Case 1}: $s=1$. Then we must have $\frac{n^2}{m^2}d\in \ZZ$, so $m^2|n^2d$.
+   Since $d$ is square-free, any prime dividing $m$ must divide $n$ (with at least as
+   much multiplicity), so $m|n$. Thus, we have $\frac rs + \frac nm \sqrt d\in
+   \ZZ+\ZZ\sqrt d \subseteq \ZZ + \ZZ\alpha$.\\
+   \textit{Case 2}: $s=2$. In this case, $r$ is odd, so $r^2$ is 1 modulo 4. We must have
+   $\frac 14 - \frac{n^2}{m^2}d\in \ZZ$, so we must have that $\frac{4n^2 d}{m^2}\in
+   1+4\ZZ$. Since $d$ is square-free and $gcd(n,m)=1$, we must have $m=2$, and $n$ is
+   odd. Thus, $\frac rs +\frac nm \sqrt d = \frac r2 + \frac n2 \sqrt d$, with $r$ and
+   $n$ both odd. Such an element is in $\ZZ+\alpha\ZZ$.
+ \end{solution}
+
+ \begin{exercise}{III.2}
+  Let $R \subset S$ be rings, and let $x,y \in S$ such that $x^2,y^2
+  \in R$.  Find a monic equation satisfied by $x+y$ over $R$.
+ \end{exercise}
+ \begin{solution}{annejls@math}
+  Consider $p(t)= t^4-2(x^2+y^2)t +(x^2+y^2)^2-4x^2y^2$, which is a
+  polynomial over $R$ because $x^2,y^2 \in R$.  We see that $p(t)=(t^2-(x^2+y^2))^2-4x^2
+  y^2$, so $p(x+y) = ((x+y)^2-(x^2+y^2))^2-4x^2y^2=(2xy)^2-4x^2y^2=0$.
+ \end{solution}
+
+ \begin{exercise}{III.3}
+   (Reciprocal polynomial trick) Show that a unit $u$ in a ring is integral over a
+   subring $R$ if and only if $u\in R[u^{-1}]$.
+ \end{exercise}
+ \begin{solution}{anton@math}
+   If $u$ is integral over $R$, then $u^n+a_1 u^{n-1}+\cdots + a_n=0$, with $a_i\in R$.
+   Multiplying through by $u^{-n+1}$, we get $u = -a_1-a_2u^{-1}-\cdots -a_n u^{-n+1}\in
+   R[u^{-1}]$.
+
+   Conversely, if $u = b_0+ b_1 u^{-1}+\cdots +b_n u^{-n}\in R[u^{-1}]$, the multiplying
+   through by $u^n$, we get $u^{n+1}+b_0 u^{n-1}+\cdots + b_n=0$, so $u$ is integral over
+   $R$.
+ \end{solution}
+
+ \noindent {\it In Exercises 4-11, $\,S/R\,$ denotes an integral ring extension.}
+
+ \begin{exercise}{III.4}
+  For $u \in R$, show that $u \in U(R)$ iff $u \in U(S)$.
+ \end{exercise}
+ \begin{solution}{David Brown, brownda@math}
+  Let $u \in R \cap U(S)$. As $u^{-1} \in S$ is integral over $R$,
+  exercise III.3 implies that $u^{-1} \in R[u] = R$ (and thus $u \in U(R)$).
+  Conversely, $U(R) \subset U(S)$.
+ \end{solution}
+
+ \begin{exercise}{III.5}
+  Show that it, if $J$ is any regular ideal in $S$, then $J \cap R
+  \neq 0$.  Does this result hold if $J$ is not regular?
+ \end{exercise}
+ \begin{solution}{annejls@math}
+  Take $x \in J$ a regular element.  Now, $S/R$ is integral, so we
+  have $x^n + a_{n-1}x^{n-1} + \dots + a_0 = 0$, where each $a_i\in R$. By assumption, $x$
+  is regular, so $a_0 \neq 0$.  But we see that $a_0$ is a multiple of $x$ in $S$, so $a_0$
+  is in J.  So, $a_0$ is a
+  non-zero element of $J \cap R$. \\
+   The result does not hold if $J$ is not regular.  Trivially, if
+  $R=S$, then $J=0$ verifies this.  For an example with proper containment, consider $R=k
+  \subset k[x]/(x^2) = S$, where $k$ is a field.  Then, $J=(x)$ is a non-regular ideal such
+  that $J \cap R = 0$.
+ \end{solution}
+
+ \begin{exercise}{III.6}
+  Let $\p=\mathfrak{P}\cap R$, where $\mathfrak{P}\in\spec(S)$.  Show that
+  $S_\mathfrak{P}/R_\p$ may not be an integral extension.
+ \end{exercise}
+ \begin{solution}{ecarter@math}
+   Let $S=\QQ[x]$ and $R=\QQ[t]$, where $t=x^2-1$.  Then it is clear that
+   $S/R$ is an integral extension, since $x$ is a root of the monic polynomial
+   $X^2-t+1$ over $R$.
+
+   Let $\p=(t)$ and $\mathfrak{P}=(x-1)$.  Then $\mathfrak{P}\cap R$ is the
+  kernel of the composite
+   ring homomorphism $R\to S\to \QQ$.  Here the first map is the inclusion
+  map, and the second map
+   is evaluation at $x=1$.  Since this corresponds to evaluation at $t=0$,
+  $\mathfrak{P}\cap R=\p$.
+   Similarly, $\p= (x+1)\cap R$.
+
+   Suppose $\frac{1}{x+1}$ satisfies
+   some monic polynomial equation which, after clearing denominators, has
+  the form
+   \[
+         f_n X^n+f_{n-1} X^{n-1}+\cdots+f_0=0,
+  \]
+   where each $f_i\in R$ and $f_n\notin\p$.  Then we have that
+   \[
+         \frac{f_n}{(x+1)^n}
+                 = -\frac{ f_{n-1}+f_{n-2}(x+1)+\cdots+f_0 (x+1)^{n-1} }{(x+1)^{n-1} }
+  \]
+  so that
+  \[
+         f_n = (x+1)(-f_{n-1} - f_{n-2}(x+1)-\cdots-f_0 (x+1)^{n-1} ).
+  \]
+  Thus $f_n\in (x+1)$.  However, since $\p= (x+1)\cap R$, $f_n\in\p$, which is a
+  contradiction. Therefore $\frac{1}{x+1}$ is not integral over $R$.
+ \end{solution}
+
+ \begin{exercise}{III.7}
+   Let $\p\in \spec (R)$ be such that only one prime $\P\in \spec (S)$ lies over $\p$.
+   Show that $S_\P=S_\p$. (In particular, here, $S_\P/R_\p$ would be an integral
+   extension.) (\textbf{Hint.} First show that $S_\p$ is a local ring.)
+ \end{exercise}
+ \begin{solution}{los@math, anton@math}
+   The primes of $S_\p$ correspond to the primes $\P'\in \spec S$ such that $\P'\cap
+   R\subseteq \p$. In particular, $\P S_\p$ is the only prime lying over $\p R_\p$. Also,
+   $S_\p$ is integral over $R_\p$ (by Corollary 1.4). Thus, we have reduced to the case
+   where $(R,\p)$ is local. For any prime $\P'\in \spec S$, we have $\P'\cap R\subseteq
+   \p=\P\cap R$ because $\p$ is the maximal ideal of $R$. By incomparability,
+   $\P'\subseteq \P$, so $\P$ is the unique maximal ideal of $S$. Thus, $S_\P=S=S_\p$.
+ \end{solution}
+
+ \begin{exercise}{III.8}
+   Suppose ${}_R S$ is generated by $n$ elements.
+
+   (1) Show that, for any $\m\in \Max R$, at most $n$ maximal ideals of $S$ lie over
+   $\m$. Using this, show that, if $r=|\Max R| < \infty$, then $|\Max S|\le rn$. (Cf.~the
+   earlier result (I.5.15))
+
+   (2) Show that only finitely many prime ideals of $S$ lie over a given prime ideal in
+   $R$.
+ \end{exercise}
+ \begin{solution}{los@math, anton@math} \def\M{\mathfrak{M}}
+   (1) Since ${}_R S$ is generated by $n$ elements, we have that $\dim_{R/\m} (S/\m S)\le
+   n$. In particular $S/\m S$ is finite length over itself, so it is artinian. By
+   Akizuki-Cohen, $S/\m S \cong \prod S/\M_i^t$ for some $t$, where the $\M_i$ are the
+   maximal ideals of $S/\m S$. By incomparability, only maximal ideals can lie over a
+   maximal ideal, so the $\M_i$ correspond to the maximal ideals lying over $\m$. Since
+   each $S/\M_i^t$ has dimension at least 1 over $R/\m$, there are at most $n$ of them.
+   Again, since only maximal ideals lie over maximal ideals, we get $|\Max S|\le n|\Max
+   R|$.
+
+   (2) If $\p\in \spec R$, then $S_\p$ is integral over $R_\p$ and ${}_{R_\p}S_\p$ is
+   generated by $n$ elements. By part (the solution to) (1), there are at most $n$ prime
+   ideals of $S_\p$ over $\p$. But the primes of $S_\p$ lying over $\p$ correspond
+   exactly to the prime ideals of $S$ lying over $\p$.
+ \end{solution}
+
+ \begin{exercise}{III.9}
+  Show that it is possible for infinitely many prime ideals of $S$ to
+  lie over a prime $\p \in Spec(R)$.
+ \end{exercise}
+ \begin{solution}{annejls@math}
+  Consider $R=k[x_1^2,x_2^2, \dots ] \subset k[x_1,x_2, \dots ]=S$,
+  where $k$ is a field.  Then, any $\q = (x_1- \epsilon _1,x_2 - \epsilon _2, \dots )$
+  where each $\epsilon _i= \pm 1$, lies over $\p=(x_1 ^2-1, x_2 ^2-1, \dots)$.
+ \end{solution}
+ \begin{solution}{lam@math}
+   {\it Discussion.}  Oh that was pretty smart $\dots\,\;$
+   $^*\,\!_{\smile}\,\!^*$.   A really nice feature of Anne's counterexample is that $R$ and
+   $S$ are both {\it normal domains.}  I will strengthen Exercise 9 by demanding a
+   counterexample of this nature\,!
+
+   \medskip
+   I once said that the ring $\,S=k\times k\times \cdots\,$ gives us lots of
+   counterexamples, so what I had in mind this time was some dumb construction like: taking
+   $\,k$ above to be ${\mathbb Z}_2$ and viewing $S$  as an algebra over $\,R=k$.  Surely
+   $\,S/R\,$ is integral (after all $S$ is Boolean), and {\it all\/} primes of $\,S\,$ can
+   only lie over $(0)$. There are infinitely many such primes, e.g.~$S\cdot (1-e_i)\,$ for
+   the unit vectors $\,e_i$.  Okay --- $S$ is not a domain, but a $0$-dimensional
+   counterexample deserves a consolation prize ...
+ \end{solution}
+
+ \begin{exercise}{III.10}
+  Show that the functorial map $\phi$ from $\spec(S)$ to $\spec(R)$ is a closed map; that
+  is, $\phi$ takes closed sets to closed sets.
+ \end{exercise}
+ \begin{solution}{Jonah (jblasiak@math)}
+  Let $V(I)$, $I \< S$, be a closed set in $\spec(S)$.  Put $J = R \cap I$, which is an
+  ideal in $R$.  The image of $V(I)$ is the set $\{p \cap R | I \subseteq p\}$.  This is
+  clearly a subset of $V(J)$, and we will show it is equal to $V(J)$.  There is a natural
+  inclusion $i': R/J \hookrightarrow S/I$ since $J$ is the kernel of the composition $R
+  \hookrightarrow S \rightarrow S/I$.  The image of $V(I)$ is equal to the image of
+  $\spec(S/I)$ under the map $\phi' : \spec(S/I) \rightarrow \spec(R/J)$ corresponding to
+  $i'$.  It is not hard to see that $S/I$ is an integral extension of $R/J$: any $s \in S$
+  satisfies a monic polynomial with coefficients in $R$; just consider these coefficients
+  mod $J$ and this gives a monic polynomial satisfied by $\bar{s} \in S/I$.  Now Going Up
+  Theorem 1.10 (1) applies, so the image of $\spec(S/I)$ under $\phi'$ is $\spec(R/J)$ and
+  therefore the image of $V(I)$ under $\phi$ is $V(J)$.
+ \end{solution}
+
+ \begin{exercise}{III.11}
+     For a given integral extension $S/R$, show that the conclusion of the Going-Down
+     theorem 2.5 is equeivalent to each of the following statements:
+     \begin{enumerate}
+         \item for any $\p\in \spec(R)$, the set of primes of $S$ lying over $\p$
+             is the set of minimal primes over $\p S$
+         \item for any $I\lhd R$, the set of primes of $R$ minimal over $I$ is the
+             set of contractions of the primes of $S$ minimal over $IS$.
+     \end{enumerate}
+ \end{exercise}
+ \begin{solution}{Lars Kindler, lars\_k@berkeley.edu}
+     Let the conclusion of the Going-Down Theorem be denoted by
+     (\textasteriskcentered). First let (\textasteriskcentered) hold and let $\p$ be a
+     prime of $R$. Let  $\mathfrak{P}$ be a prime of $S$ minimal over $\p S$, denote $\mathfrak{P}\cap R$
+     by $\p'$ and assume $\p\subsetneq \p'$. Then by (\textasteriskcentered) there is
+     a $\mathfrak{P}'\subsetneq \mathfrak{P}$ with $\p S\subset \mathfrak{P}'$, which
+     is a contradiction. Conversely let $\mathfrak{P}\in \spec S$
+     with $\mathfrak{P}\cap R = \p$, then $\p S \subset \mathfrak{P}$. If
+     $\mathfrak{P}$ is not minimal over $\p S$, then there is a prime
+     $\mathfrak{P}'\subsetneq \mathfrak{P}$ that also contains $\p S$ and contracts to
+     $\p$, which contradicts the incomparability theorem, so $\mathfrak{P}$ is minimal
+     over $\p S$, which proves (\textasteriskcentered) $\Rightarrow$ (1).\\
+     Next, assume (1) holds and let $I\lhd R$. Let $\p\in \spec R$ be minimal over
+     $I$, then there is a $\mathfrak{P}\in \spec R$ over $\p$, which by (1) is minimal
+     over $\p S \supset IS$. If there is a $\mathfrak{P}'\in \spec S$ with
+     $IS\subset\mathfrak{P}'\subsetneq \mathfrak{P}$, then $\p
+     S\not\subset\mathfrak{P}'$, so $\mathfrak{P}'\cap R\subsetneq \p$ is a prime
+     containing $I$ which is a contradiction. Conversely, let $\mathfrak{P}\in \spec
+     S$ be minimal over $IS$ and define $\p:=\mathfrak{P}\cap R\supset I$. Assume
+     there is a $\p'\in\spec R$ with $I\subset \p'\subsetneq \p$, then by (1)
+     $\mathfrak{P}$ is not minimal over $\p' S$, so there is a $\mathfrak{P}'\in \spec
+     S$ over $\p'$, with $IS\subset\p' S\subset \mathfrak{P}'\subsetneq
+     \mathfrak{P}$; a contradiction. This proves (1) $\Rightarrow$ (2).\\
+     Now let (2) hold. Given $\mathfrak{P}'\in\spec S$ and $\p':=\mathfrak{P}'\cap R$,
+     let $\p\in\spec R$ be a prime ideal of $R$ with $\p\subsetneq \p'$. Then
+     $\p S\subset \mathfrak{P}'$, and $\mathfrak{P}'$ is not minimal over $\p S$,
+     since in that case (2) would imply $\mathfrak{P}'\cap R=\p\neq \p'$. So there
+     is a prime $\mathfrak{P}\subsetneq \mathfrak{P}'$ minimal over $\p S$, which by
+     assumption means $\mathfrak{P}\cap R= \p$, i.e. (\textasteriskcentered) holds.
+ \end{solution}
+
+ \begin{exercise}{III.12}(New Version)
+   Show that a domain $R$ is normal iff, for any $\,a\in R\,$ and any domain $\,S\,$ that
+   is an integral extension of $\,R$, $\,aS\cap R=aR$.
+ \end{exercise}
+ \begin{solution}{Jonah (jblasiak@math)}
+  First assume $R$ is normal and let $K$ be the quotient field of $R$.  It is clear that
+  $aR \subseteq a S \cap R$.  Now suppose $r \in R$ and $r =  a s$ for some $s \in S$.  $S$
+  is an integral extension of $R$ so there exists an equation $s^n + c_{n-1} s^{n-1} +
+  \ldots + c_0 = 0$, with coefficients $c_i$ in $R$.  Multiplying by $a^n$ we obtain $r^n +
+  c_{n-1} a r^{n-1} + \ldots + c_0 a^n = 0$.  This is now an equation in $R$, which can
+  also be viewed as an equation in $K$, and therefore $\frac{r}{a}$  satisfies a monic
+  polynomial with coefficients in $R$ (we would like to just say $s = \frac{r}{a}$ , but
+  this is not an equation in $K$ because $S$ is not a subring of $K$).  Since $R$ is
+  normal, $\frac{r}{a} = s' \in R$.  This yields the equation $r-r = a (s - s')$ in $S$,
+  which implies $a = 0$ or $s = s'$, as $S$ is a domain.  If $a = 0$, the result is easy,
+  and if $s = s'$, then $ r = a s' \in a R$.
+
+  Conversely, let $S$ be the integral closure of $R$ in $K$.  Suppose $s = \frac{r}{a}$ is
+  an element of $S$, with $r, a \in R$.  Since $a S \cap R = a R$, $a s = r$ is in $a R$.
+  Thus $a s = a s'$, for some $s' \in R$, which implies $s = s' \in R$ since $S$ is a
+  domain.  Therefore $S = R$, so $R$ is normal.
+ \end{solution}
+
+ \begin{exercise}{III.13}
+   Let $T = \ZZ[x]/(x^2-x,2x)$. Referring to the notations of (2.14), show that
+   $\varphi(\bar x)=(0,\bar 1)\in S$ defines a ring isomorphism from $T$ to $S$. Compute
+   the ideals $\varphi^{1}(\P)$ and $\varphi^{-1}(\P')$, and show \emph{directly} that
+   $\varphi^{-1}(\P')$ is a minimal in $T $that provides a counterexample to ``Going
+   Down'' for the integral extension $T/\ZZ$.
+ \end{exercise}
+ \begin{solution}{los@math, anton@math}
+   Recall that $S=\ZZ\times \ZZ/2$, $\P=0\times \ZZ/2$, and $\P'=\ZZ\times 0$. Since
+   $\varphi(\bar x)$ satisfies the appropriate relations in $S$, $\varphi$ is a
+   homomorphism. Since $(n,\bar n+\bar k)=\varphi(n+k\bar x)$, $\varphi$ is surjective.
+   Every element of $T$ can clearly be written as $n$ or $n+\bar x$, and it is immediate
+   that none of these (except zero) is sent to zero, so $\varphi$ is injective. Note that
+   $\varphi^{-1}(0,\bar 1) = \bar x$ and $\varphi^{-1}(1,0)=1-\bar x$.
+
+   We have that $\varphi^{-1}(\P) = (\bar x)$, and $\varphi^{-1}(\P')=(1-\bar x)$. Since
+   $\bar x(1-\bar x)=0$, any prime in $T$ contains either $\bar x$ or $1-\bar x$. So any
+   prime properly contained in $(1-\bar x)$ must contain $\bar x$, contradicting $\bar
+   x\not\in (1-\bar x)$. Thus, $(1-\bar x)$ is minimal.
+
+   $(1-\bar x)\cap \ZZ$ is the kernel of the map $\ZZ\hookrightarrow T\to T/(1-\bar
+   x)\cong \ZZ/2$, which is the ideal $2\ZZ$. Since $2\ZZ$ is not minimal, we have
+   contradicted ``Going Down''.
+ \end{solution}
+
+ \begin{exercise}{III.14}
+  Let $I$ be a 0-dimensional ideal in an affine $k$-algebra $S$, where $k$ is
+  a field. Show that $S$ is integral over its subring $R=k+I$.
+ \end{exercise}
+ \begin{solution}{Manuel Reyes; mreyes@math}
+  The hypotheses imply that $\overline{S}:=S/I$ is a 0-dimensional noetherian
+  ring, hence artinian (see the comments under (2.11)). Then by (II.4.20), $%
+  \dim _{k}\overline{S}<\infty $. So $\overline{S}$ is algebraic over $k$,
+  hence integral over $k$. Taking any $s\in S$, this means that there is some
+  monic polynomial $f\in k\left[ x\right] $ such that $f\left( s\right) \in I$%
+  . This means that $g\left( x\right) :=f\left( x\right) -f\left( s\right) \in
+  R\left[ x\right] $ is a monic polynomial such that $g\left( s\right) =0$. So
+  $s$ is integral over $R$, and hence the extension $S\supseteq R$ is
+  integral. (Note that in fact the only coefficient of $g$ that might possibly
+  lie in $R\smallsetminus k$ is its constant coefficient!)
+ \end{solution}
+
+ \begin{exercise}{III.15}
+    Supply a proof for Prop. 3.8, and for the last conclusion in
+    (1.4).
+ \end{exercise}
+ \begin{solution}{Soroosh}
+    Recall proposition 3.8 claims that if $s_i \in S$ are almost
+    integral over $R$, then $R[s_1,...,s_n]$ is contained in a f.g.
+    $R$-submodule of $S$. In particular, all elements of $S$ that
+    are almost integral over $R$ form a subring of $S$.
+    We prove this by induction. When $n=1$, then $R[s_1]$ is contained
+    in a f.g. $R$ submodule of $S$ by definition of almost integrality
+    of $s_1$. Now assume that $R[s_1,...,s_m]$ is contained in a f.g.
+    submodule of $S$, say $T_1$, for some $m$.
+    We want to show that $R[s_1,...,s_m,s_{m+1}]=R[s_1,...,s_m][s_{m+1}]$
+    is also contained in a f.g. submodule of $S$.
+    Note that $R[s_{m+1}]$ is contained in a f.g. submodule, say $T_2$,
+    since $s_{m+1}$ is almost integral.
+    Choose a set of generators for $T_1$ and $T_2$, say
+    \begin{eqnarray*}
+        T_1&=& a_1R+\cdots+a_kR, \\
+        T_2&=& b_1R+\cdots+b_lR.
+    \end{eqnarray*}
+    Let $T$ be the $R$ module generated by all $a_ib_j$'s. We want to
+    show $R[s_1,\dots,s_{m+1}]$ is contained in $T$. It is enough to
+    show that $s_1^{\alpha_1}\dots s_{m+1}^{\alpha_{m+1}}$ is contained
+    in $T$ for all such $(\alpha_1,\dots,\alpha_{m+1})$,
+    since they are generators for $R[s_1,\dots,s_{m+1}$.
+    However by assumption
+    \begin{eqnarray*}
+        s_1^{\alpha_1}\dots s_m^{\alpha_m}&=& u_1a_1+\cdots+u_ka_k, \\
+        s_{m+1}^{\alpha_{m+1}}&=& v_1b_1+\cdots+v_lb_l, \\
+        \Rightarrow
+        s_1^{\alpha_1}\dots s_{m+1}^{\alpha_{m+1}}&=& \sum u_iv_j ba_ib_j,
+    \end{eqnarray*}
+    which implies $s_1^{\alpha_1}\dots s_{m+1}^{\alpha_{m+1}} \in T$
+    which is finitely generated.
+
+    As for the last conclusion in (1.4), recall that we want to prove
+    that if $C$ is the integral closure of $S$ in $R$, then for any
+    multiplicative set $M$, $M^{-1}C$ is the integral closure of $M^{-1}S$
+    in $M^{-1}R$. To see this, let $s \in M^{-1}S$. We want
+    to show that $s$ is integral over $M^{-1}R$ if and only
+    if $s\in M^{-1}C$. Assume $s$ is integral.
+    Since $s \in M^{-1}S$, we can find $n\in M$ such that $ns \in S$.
+    We have $ns \in M^{-1}C$ if and only if $s \in M^{-1}C$. Furthermore,
+    since $n$ is a unit in $M^{-1}R$, we have $ns$ is still integral
+    over $R$. Therefore we may as well assume that $s \in S$.
+    We can find a monic polynomial
+    $f(x)=x^n+a_{n-1}x^{n-1}+\dots+a_0$ with $a_i \in M^{-1}R$ such
+    that $f(s)=0$. Letting $a_i=r_i/m_i$ we can clear the denominators
+    to get a polynomial
+    $g(x)=mx^n+b_{n-1}x^{n-1}+\cdots+a_0$ such that $g(s)=0$.
+    Now
+    \begin{eqnarray*}
+        m^{n-1}g(x)&=& (mx)^n+b_{n-1}(mx)^{n-1}+\cdots+m^{n-1}a_0 \\
+        &=& G(mx).
+    \end{eqnarray*}
+    Therefore $ms$ is integral over $R$, which implies $ms \in C$.
+    That means $s \in M^{-1}C.$
+
+    To prove the converse, assume that $s \in M^{-1}C$. Then for some
+    $m \in M$ we have $ms \in C$, which means we can find monic
+    polynomial $g(x)=x^n+b_{n-1}x^{n-1}+\cdots+b_0,$ with $b_i \in R$,
+    such that $g(ms)=0$. Let
+    \begin{eqnarray*}
+        f(x)&=& \frac{g(mx)}{m^n} \\
+        &=& x^n+\frac{b_{n-1}}{m}x^{n-1}+\cdots+\frac{b_0}{m^n}.
+    \end{eqnarray*}
+    Note that the coefficients of $f$ are all in $M^{-1}R$, and hence
+    $s$ is a root of a monic polynomial over $M^{-1}R$, which means
+    $s$ is integral over $M^{-1}R$.
+ \end{solution}
+
+ \begin{exercise}{III.16}
+  Show that a domain $R$ with quotient field $K$ is normal iff, for every
+  nonzero finitely generated
+  ideal $I$ in $R$, $\{ s\in K: sI\subseteq I\}$ equals $R$.
+ \end{exercise}
+ \begin{solution}{ecarter@math}
+  First suppose the latter condition is satisfied, and let $q=a/b$ be
+  integral over $R$, where $a,b\in R$
+   and $b\neq 0$.  Then for some $n$ and some $f_0,f_1,\dots,f_{n-1}\in R$,
+   \[
+         q^n = f_0 + f_1 q + \cdots + f_{n-1} q^{n-1}.
+  \]
+  Let $I=(a^{n-1}b, a^{n-2}b^2,\dots,b^n)$.  For each $k\geq 2$,
+  $qa^{n-k}b^k=a^{n-k+1}b^{k-1}\in I$. Then since
+  \[
+         qa^{n-1}b
+                 = q^n b^n
+                 = b^n(f_0 + f_1 q+\cdots + f_{n-1} q^{n-1})\in I,
+  \]
+  $qI\subseteq I$, which implies that $q\in R$ by hypothesis.  Therefore $R$ is normal.
+
+  Now suppose $R$ is normal.  Let $I$ be a nonzero finitely generated ideal in $R$ and let
+  $s\in K$ be such that $sI\subseteq I$.  Let $a_1,a_2,\dots,a_n$ be nonzero elements of
+  $I$ which generate it. For each $i$, $sa_i\in I$, so there exist
+  $b_{1i},b_{2i},\dots,b_{ni}$ such that
+  \[
+         sa_i = b_{1i}a_1 + b_{2i}a_2 + \cdots + b_{ni}a_n.
+  \]
+  Then for a given element $r_1 a_1+\cdots + r_n a_n$ of $I$, where each $r_i\in R$,
+  multiplication by $s$ corresponds to the matrix multiplication
+  \[
+         \begin{pmatrix}
+                 b_{11} & b_{12} & \cdots & b_{1n} \\
+                 b_{21} & b_{22} & \cdots & b_{2n} \\
+                 \vdots & \vdots & & \vdots \\
+                 b_{n1} & b_{n2} & \cdots & b_{nn}
+         \end{pmatrix}
+         \begin{pmatrix}
+                 r_1 \\ r_2 \\ \vdots \\ r_n
+         \end{pmatrix}
+  \]
+  Call the matrix on the left $A$.  Then by Cayley-Hamilton, $A$ satisfies the polynomial
+  $\chi_A(\lambda)=\det(\lambda I-A)$, which is monic with coefficients in $R$.  Therefore
+  $\chi_A(s)a_1=0$.  Since $a_1\neq 0$ and $R$ is a domain, $\chi_A(s)=0$. Then since $s$
+  is integral over $R$, $s\in R$.
+ \end{solution}
+
+ \begin{exercise}{III.17}
+   Let $R$ be a UFD with $2\in U(R)$. For any non-zero $r\in R$ not divisible by the
+   square of any prime element, show that $S=R[x]/(x^2-r)$ is a normal domain.
+ \end{exercise}
+ \begin{solution}{anton@math}
+   \underline{Note}: If $r=u^2$ for some $u\in U(R)$, then it is not divisible by the
+   square of any prime element, but $S$ is obviously not a domain. The result may hold
+   when $r$ is a unit but not the square of a unit, but I will assume $r\not\in U(R)$.
+
+   First observe that $S=R\oplus xR$, with the multiplication rule $(a+bx)(c+dx)=ac+bdr+
+   (ad+bc)x$. To see that $S$ is a domain, assume $(a+bx)(c+dx)=ac+bdr+ (ad+bc)x = 0+0x$.
+   We can factor out $gcd(a,b)$ and $gcd(c,d)$, so we can assume $gcd(a,b)=gcd(c,d)=1$
+   (note that here we are using the assumption that $a+bx$ and $c+dx$ are non-zero). If a
+   prime $p$ divides $a$, then since $ad+bc=0$, we have that $p|c$. Since $ac+bdr=0$, we
+   get $p^2|r$, contradicting that $r$ is square free. Thus, $a$ must be a unit in $R$,
+   and $c$ must be a unit by symmetry. If $p|b$, then since $ac+bdr=0$, we get $p|ac$,
+   contradicting that $a,c\in U(R)$. Thus, $b$ must also be a unit, and $d$ must be a
+   unit by symmetry. Since $ac+bdr=0$, we get that $r$ is a unit, a contradiction.
+
+
+   Clearing denominators in the usual way, we can write any element of $Q(S)$ as $\frac
+   ab +\frac cd x$, with $a,b,c,d\in R$; we may assume $a$ and $b$ are relatively prime
+   and $c$ and $d$ are relatively prime. Assume such an element is integral. If $c=0$,
+   then $\frac ab$ is integral over $R$, so $\frac ab\in R$ since $R$ is normal. If
+   $c\neq 0$, then the minimal polynomial over $Q(R)$ is
+   \[
+    \biggl(y-\Bigl(\frac ab +\frac cd x\Bigr)\biggr)\biggl(y+\Bigl(\frac ab-\frac cd
+    x\Bigr)\biggr) = y^2-\frac{2a}b y + \frac{a^2}{b^2}-\frac{c^2}{d^2}r.
+   \]
+   By the observation in the solution of problem III.1, we must have $\frac{2a}{b}\in R$
+   and $\frac{a^2}{b^2}-\frac{c^2}{d^2}r\in R$. Since $2\in U(R)$, we have that $a/b\in
+   R$, so we must have $\frac{c^2}{d^2}r\in R$, so $d^2|c^2r$ in $R$. Since $r$ is
+   square-free, any prime dividing $d$ must divide $c$ (with at least as much
+   multiplicity), so $d|c$. Thus, $\frac ab +\frac cd x\in S$, so $S$ is normal.
+ \end{solution}
+
+ \begin{exercise}{III.18}
+  If $T/S$ is integral and $S/R$ is almost integral, show that $T/R$
+  is almost integral.  Using this, show that, for any ring extension $S/R$, the complete
+  integral closure of $R$ in $S$ is integrally closed in $S$.
+ \end{exercise}
+ \begin{solution}{annejls@math}
+  Take $t \in T$.  We must find a f. g. $R$-submodule $N \subset T$ that contains $R[t]$.
+  Now, $T/S$ is integral, so there exist $s_1, s_2, \dots, s_n \in S$ such that $t^n+s_1
+  t^{n-1} + \dots + s_n=0.$ Next, $S/R$ is almost integral, so by Prop. 3.8, there exists a
+  f.g. $R$-module $M$ with $R[s_1, s_2, \dots, s_n ] \subset M \subset S$. Let $N = M
+  +Mt+\dots +Mt^{n-1}$, which is f. g. over $R$ because $M$ is.  This yields $R[t] \subset
+  R[s_1, s_2, \dots, s_n, t ] \subset N
+  \subset S$, as desired.
+
+  Now, consider any ring extension $S/R$.  Let $C$ be the complete integral closure of $R$
+  in $S$.  For $s \in S$, we have $R \subset C$ an almost integral extension and $C \subset
+  C[s]$ an integral extension, so from the first part of this exercise, $R \subset C[s]$ is
+  almost integral.  In particular, $s$ is almost integral over $R$. However, $C$ is the
+  complete integral closure of $R$ in $S$, so $s \in C$.
+ \end{solution}
+
+ \begin{exercise}{III.19}
+  In the case where $D\neq K$ in (3.6), name an ideal in the non-noetherian
+  domain $R$ in (3.7) that is not f.g. Do the same for the normal domain $%
+  R=\bigcup_{i\geq 0}R_{i}$ constructed after the proof of (3.19).
+ \end{exercise}
+ \begin{solution}{mreyes@math}
+  The ring from example (3.6) is $R=D+xK\left[ x\right] \subseteq K\left[ x \right] $. Let
+  \[
+  I=xK\left[ x\right] =\left\{ f\left( x\right) \in R:f\left( 0\right) =0\right\}
+  \vartriangleleft R\text{.}
+  \]%
+  We claim that $I$ is not finitely generated. Indeed, assume for contradiction that $I$ is
+  finitely generated. For $f\left( x\right) =a_{1}x+\cdots +a_{n}x^{n}\in I$, it is
+  straightforward to verify that the function $\varphi :I\rightarrow K$ given by $f\mapsto
+  a_{1}$ is a $D$-module homomorphism. For any $s\in K$, $sx\in I$ implies that $\varphi $
+  is surjective. This means that $K$ is also a finitely generated $D$-module. But a
+  module-finite ring extension is integral, and because $D$ is normal this means that
+  $D=K$, a contradiction. So $I$ cannot be finitely generated.
+
+  In (3.19), we set $R_{i}=\mathbb{Q}\left[ x,\frac{y}{x^{i}}\right] $ for $%
+  i\geq 0$, and we have $R=\bigcup_{i\geq 0}R_{i}\subseteq
+  %TCIMACRO{\U{211a} }%
+  %BeginExpansion
+  \mathbb{Q}
+  %EndExpansion
+  \left[ x,y\right] _{x}$. We claim that the ideal $I=\bigcup_{i\geq 0}\left(
+  \frac{y}{x^{i}}\right) $ is not finitely generated; assume for contradiction that it is
+  f.g. It is easy to see that this is finitely generated iff the ascending chain of ideals
+  \[
+  \left( y\right) \subseteq \left( \frac{y}{x}\right) \subseteq \left( \frac{y%
+  }{x^{2}}\right) \subseteq \cdots
+  \]%
+  stabilizes, say $\left( \frac{y}{x^{n}}\right) =\left( \frac{y}{x^{n+1}}%
+  \right) $. In particular, $\frac{y}{x^{n+1}}\in \left( \frac{y}{x^{n}}%
+  \right) $. So there exists $f\in R$ such that $\frac{y}{x^{n+1}}=f\frac{y}{%
+  x^{n}}$. Then the equation $\frac{y}{x^{n}}=xf\frac{y}{x^{n}}$ and the fact
+  that $R$ is a domain imply that $1=xf$. Consider that the map $\mathbb{Q}%
+  \left[ x,y\right] \rightarrow \mathbb{Q}\left( x\right) $ given by
+  evaluating $y$ at $0$ sends $x$ to a unit. So it extends to a map $%
+  %TCIMACRO{\U{211a} }%
+  %BeginExpansion
+  \mathbb{Q}
+  %EndExpansion
+  \left[ x,y\right] _{x}\rightarrow \mathbb{Q}\left( x\right) $ given by evaluating $y$ at
+  $0$. This then restricts to a map $\varepsilon
+  :R\rightarrow \mathbb{Q}\left( x\right) $. Writing $f=g\left( x,\frac{y}{%
+  x^{m}}\right) $ for some $g\in \mathbb{Q}\left[ t_{1},t_{2}\right] $, applying
+  $\varepsilon $ to the equation $1=xf$ gives $1=xg\left( x,0\right) $ in $\mathbb{Q}\left(
+  x\right) $, where $g\left( x,0\right) $ is a polynomial in $x$, a contradiction. So $I$
+  must not have been finitely generated.
+ \end{solution}
+
+ \begin{exercise}{III.20}
+   Referring to the notations and assumptions in (3.21), we have shown that the domain
+   $R$ there has complete integral closure $R^\dag = K[x]$. If $D$ is completely normal,
+   show that $R$ is completely integrally closed in $K[x]$ (that is, if $\alpha\in K[x]$
+   is almost integral over $R$ (\emph{as an element of $K[x]$}), then $\alpha\in R$).
+ \end{exercise}
+ \begin{solution}{los@math, anton@math}
+   Recall that $K$ is the field of fractions of $D$, and $R=xK[x]+ D$. Assume $\alpha\in
+   K[x]$ is almost integral over $R$, so $R[\alpha]\subseteq T\subseteq K[x]$, with $T$ a
+   finitely generated module over $R$. Since almost integral elements form a ring, we may
+   add an element of $R$ to $\alpha$ without changing whether it is almost integral.
+   Since $xK[x]\subseteq R$, we may assume $\alpha\in K$.
+
+   It is easy to see that the constant terms of the generators of $T$ generate the module
+   $T_0$ of constant terms of elements of $T$ (as a $D$-module). In particular, $T_0$ is
+   a finitely generated $D$-module. Now we have that $D[\alpha]$ (the ring constant terms
+   of $R[\alpha]$) is contained in $T_0$. Since $D$ is completely normal, we get that
+   $\alpha \in D\subseteq R$. Thus, $R$ is completely integrally closed in $K[x]$.
+ \end{solution}
+
+ \begin{exercise}{III.21}
+   Show that the quotient field of $\ZZ[[x]]$ is not $\QQ(\!(x)\!)$ by considering the
+   power series $\sum_{n=0}^\infty 2^{-n^2}x^n$. How about the power series for $e^x$?
+ \end{exercise}
+ \begin{solution}{anton@math}
+   If the power series $\sum_{n=0}^\infty a_n x^n\in \QQ[[x]]$ is in the quotient field
+   of $\ZZ[[x]]$, then there is some $\sum_{n=0}^\infty b_n x^n\in \ZZ[[x]]$ so that
+   $\sum_{i=0}^n a_i b_{n-i}$,the coefficients of the product, are in $\ZZ$ for each $n$.
+   In particular, $a_n b_0\in \ZZ + \sum_{i=0}^{n-1} a_i \ZZ$. If $b_0=0$, we may divide
+   the power series by the lowest power of $x$ that appears to get a power series that
+   satisfies the above condition and has a constant term. So we may assume $b_0\neq 0$.
+
+   Assume that the first power series, with $a_i=2^{-i^2}$, is in the quotient field of
+   $\ZZ[[x]]$. Then $2^{-n^2}b_0\in \ZZ + \sum_{i=0}^{n-1} 2^{-i^2}\ZZ = 2^{-(n-1)^2}\ZZ$.
+   It follows that $2^{2n-1}|b_0$. But this must hold for all $n$, a contradiction.
+
+   Assume that the second power series, with $a_i = 1/i!$, is in the quotient field of
+   $\ZZ[[x]]$. Then $b_0/n!\in \ZZ + \sum_{i=0}^{n-1} \ZZ \cdot 1/i! \subseteq
+   \ZZ[1/(n-1)!]$. If $n$ is prime, it follows that $n|b_0$. But this must hold for all
+   primes $n$, a contradiction.
+ \end{solution}
+ \begin{solution}{lam@math}
+   {\it Discussion.}  I liked Anton's solution!  The $e^x$ example was cute; just don't
+   assign it as homework to your Math 1B students.  In the meantime, I have now found
+   good references for this Exercise: see Hutchins's ``Examples of Commutative Rings'',
+   pp.~102-103. Hutchins used the example $a_n=(n+1)^{-1}$.  This does work but is a
+   little surprising, since $a_n$ goes to zero much more slowly than in the two examples
+   above, and $a_n$ fails the Ratio Test.  But Hutchins's Example 96(b) is truly nice ---
+   except for the fact that he totally botched up his Taylor series!  [I have come to
+   find out that Hutchins's book is not error-free.  For instance, in Example 93, he was
+   confusing ``completely normal'' with ``goodness'' (that is, the $(*)$ property in our
+   Lecture Notes).  This makes Example 93 very confusing to follow.  Fortunately, he
+   realized this later, and acknowledged his mistake on the Errata sheet.  In general,
+   the (*) property {\it does not\/} imply ``completely normal'' --- except for, say,
+   valuation rings as we have seen.]
+
+   \medskip
+   In Example 96(d), Hutchins wondered what is the integral closure of $\,{\mathbb
+   Z}[[x]]\,$ in $\,{\mathbb Q}(\!(x)\!)$.  I don't know the answer.  [Gilmer: 1967]
+   (referred to on p.\,97) contains much information on $\,Q(R[[x]])\,$ for a general domain
+   $\,R$.
+ \end{solution}
+
+ \begin{exercise}{III.22}
+   Let $K$ be a field. If $\{R_i\}$ is a family of valuation rings
+   of $K$ forming a chain (w.r.t. inclusion), show that $R = \cap_iR_i
+   \in \text{Val}(K)$. What about the case where $\{R_i\}$ does not
+   form a chain?
+ \end{exercise}
+ \begin{solution}{David Brown, brownda@math}
+   Suppose $0 \neq x \not \in R$. Then there exists an $i$ such that
+   $x \not \in R_i$. But then since the $R_i$ form a chain, $x \not
+   \in R_j$ for all $j \geq i$. But then, since each $R_j$ is a
+   valuation ring, $x^{-1} \in R_j$ for all $j \geq i$. Since
+   $\{R_i\}$ form a chain, $x^{-1} \in R_i$ for all $i$, so $x \in
+   R$.
+
+   However, $2/3$ and $3/2 \not \in \ZZ_{(2)} \cap \ZZ_{(3)}$\
+ \end{solution}
+
+ \begin{exercise}{III.23}
+   Let $R \subset S$ be rings, with $c_1, c_2 \in S$.  If $c_j$ is integral over $I_j
+   \triangleleft R$ ($j=1,2$), show that $c_1 c_2$ is integral over $I_1 I_2$, and that $r_1
+   c_1 + r_2 c_2$ is integral over $I_1 + I_2$ for all $r_j\in R$.
+ \end{exercise}
+ \begin{solution}{annejls@math}
+   Let $C$ be the integral closure of $R$ in $S$, and as usual let $C(I)$ denote the set of
+   elements of S that are integral over $I$.  Recall that by Prop. 1.6, if $I \triangleleft
+   R$, then $C(I)= \sqrt{IC}$. So, to prove the first part, we need only show that $c_1 c_2
+   \in \sqrt{(I_1 I_2)C}$.  We have from the proposition, $c_i \in \sqrt{I_i C}$, so $c_1 ^
+   m \in I_1 C$ and $c_2 ^ n \in I_2 C$ for some $m,n$. Thus, $(c_1 c_2) ^ {\text{max} (m,
+   n)} \in I_1 I_2 C$, so $c_1 c_2 \in \sqrt{I_1 I_2 C}$.
+
+   To prove the second part, we must show that $r_1 c_1 + r_2 c_2 \in \sqrt{(I_1+ I_2 ) C}$.
+   However, $C$ contains $R$, and $\sqrt{(I_1+ I_2 ) C}$ is an ideal of $C$, so we need only
+   show that each $c_i \in \sqrt{(I_1+ I_2 ) C}$.  This follows, because $c_i \in \sqrt{I_i
+   C} \subset \sqrt{(I_1 +I_2)C}$.
+ \end{solution}
+
+ \begin{exercise}{III.24}
+   Let $K=k(x)$ where $k$ is a field, and let $\pi(x)=x^n+a_1x^{n-1}+\cdots+a_n\in k[x]$ be
+   irreducible and different from $x.$ Let $R=k[x]_{(\pi)}\in$ Val$_k(K),$ and write
+   $y=1/x.$ By (4.23), there should exist a monic irreducible polynomial $\pi'(y)\in k[y]$
+   such that $R=k[y]_{(\pi')}.$ Find $\pi'(y).$
+ \end{exercise}
+ \begin{solution}{shenghao@math}
+   $a_n\ne0,$ since if $a_n=0,$ then $x|\pi(x),$ and so $\pi(x)$ is irreducible only when
+   $\pi(x)=x,$ which has been excluded.  Divide $\pi(x)$ by $a_nx^n$ we get
+   $a_n^{-1}+a_1a_n^{-1}y+\cdots+y^n,$ and this is our $\pi'(y).$
+ \end{solution}
+
+ \begin{exercise}{III.25}
+  Let $\left( R,\mathfrak{m}\right) $ be a noetherian local domain with $m\neq
+  0$. If all nonzero ideals of $R$ have the form $\mathfrak{m}^{i}$ ($i\geq 0$%
+  ), show that $R$ is a DVR.
+ \end{exercise}
+ \begin{solution}{Manuel Reyes; mreyes@math}
+  If $i\geq j$ we have $\mathfrak{m}^{i}\subseteq \mathfrak{m}^{j}$, so the ideals of $R$
+  form a chain. So $R$ is a valuation ring; in particular it is
+  normal. Also, if $\mathfrak{p=m}^{n}\neq 0$ is a prime of $R$, then $%
+  \mathfrak{p\supseteq m}^{n}$ implies that $\mathfrak{p\supseteq m}$. So $%
+  \mathfrak{p=m}$ is maximal, and $\dim R=1$. Now $R$ is a noetherian normal domain of
+  dimension 1, so $R$ is a DVR by (4.4)(2).
+ \end{solution}
+ \begin{solution}{lam@math}
+    Here's another way. By Nakayama, there exists $\,\pi
+   \in {\mathfrak m}\setminus {\mathfrak m}^2$. Then $(\pi)\neq {\mathfrak m}^i\,$ for
+   $i\geq 2$ forces $\,(\pi)={\mathfrak m}$. Now (4.4)(3) implies $R$ is a DVR.
+ \end{solution}
+
+ \begin{exercise}{III.26}
+  Let $\left( R,\mathfrak{m}\right) $ be a valuation ring of principal type.
+  (1) Show that $\mathfrak{p:=}\bigcap_{n=0}^{\infty }\mathfrak{m}%
+  ^{n}\subsetneq \mathfrak{m}$, and that $\mathfrak{p}$ is a prime containing all
+  nonmaximal primes of $R$. (2) If $\dim R=2$, show that $\spec \left( R\right) =\left\{
+  \left( 0\right)
+  ,\mathfrak{p},\mathfrak{m}\right\} $%
+  , and that $\mathfrak{p}$ is not f.g.
+ \end{exercise}
+ \begin{solution}{Manuel Reyes; mreyes@math}
+  (1) Let $0\neq \pi \in R$ be such that $\mathfrak{m}=\left( \pi \right) $. Assume for
+  contradiction that $\mathfrak{m}=\mathfrak{m}^{2}$; then $\pi \in \left( \pi ^{2}\right)
+  $. So $\pi =r\pi ^{2}$ for some $r\in R$, and because $R$ is a domain this means that
+  $1=r\pi $. So $\pi \in U\left( R\right) $,
+  contradicting that $\pi \in \mathfrak{m}$. Hence we must have $\mathfrak{%
+  p\subseteq m}^{2}\subsetneq \mathfrak{m}$. By (4.8)(G), we know that $%
+  \mathfrak{p}$ is prime. Finally, let $\mathfrak{q}$ be a nonmaximal prime in
+  $R$. Then because $\mathfrak{m\nsubseteq q}$, we must have $\mathfrak{%
+  q\subseteq p}$ by (4.8). So $\mathfrak{p}$ indeed contains all nonmaximal primes of $R$.
+
+  (2) Now suppose that $\dim \left( R\right) =2$, and let $\mathfrak{q}\in
+  \spec\left( R\right) \smallsetminus \left\{ \mathfrak{p},\mathfrak{m%
+  }\right\} $. Because $\mathfrak{q}$ is nonmaximal, $\mathfrak{q\subseteq p}$%
+  . But $\mathfrak{q\neq p}$ implies that
+  \[
+  \left( 0\right) \subseteq \mathfrak{q\subsetneq p\subsetneq m}\text{.}
+  \]%
+  Then because $\dim \left( R\right) =2$, we must have $\mathfrak{q=}\left(
+  0\right) $. So $\spec\left( R\right) =\left\{ \left( 0\right) ,%
+  \mathfrak{p},\mathfrak{m}\right\} $. Now for any $a\in \mathfrak{p}%
+  \subsetneq \mathfrak{m}=\left( \pi \right) $, write $a=\pi b$. Then
+  because $%
+  \pi \notin \mathfrak{p}$ and $\mathfrak{p}$ is prime, we must have $b\in
+  \mathfrak{p}$. So $x=\pi b\in \mathfrak{mp}$ implies that $\mathfrak{p}=%
+  \mathfrak{mp}$. If $\mathfrak{p}$ were finitely generated, then Nakayama's
+  lemma would imply that $\mathfrak{p=}\left( 0\right) $, contradicting that $%
+  \dim R=2$. So $\mathfrak{p}$ cannot be f.g.
+ \end{solution}
+
+ \begin{exercise}{III.27}
+   (This supersedes the earlier Exercise 27.) Let $\,\alpha\in K$, where $K$ is the
+   quotient field of a normal domain $R$. Let $\,I\,$ be the kernel of the $R$-algebra
+   homomorphism $\,\varphi:R\,[x]\rightarrow K\,$ defined by $\varphi(x) =\alpha$.  Using
+   (6.11), show that $\,I\,$ is generated by a set of linear polynomials in $\,R\,[x]$.
+   If $\,R\,$ is a UFD, show that $\,I\,$ is generated by a single linear polynomial.
+ \end{exercise}
+ \begin{solution}{los@math}
+   Let $J$ denote the subideal of $I$ generated by the elements of $I$ of degree 1. Let
+   $f(x) = c_0 + c_1x + \cdots + c_nx^n \in I$. We will show by induction on $n$ that $f
+   \in J$. For $n \leq 1$ there is nothing to show. Therefore assume $n > 1$. We  show
+   below that $c_n{\alpha} \in R$. Assume this is the case. Then the polynomial $g(x) =
+   c_nx-c_n\alpha$ is either 0 or an element of $I$ of degree 1. Therefore $x^{n-1}g(x)
+   \in J$. The polynomial $f_1(x)=f(x) - x^{n-1}g(x)$ has degree $<n$ and belongs to $I$,
+   hence by the induction hypothesis actually belongs to $J$. This in turn shows that $f
+   \in J$, which is what we wanted.
+
+   Next we show $c_n\alpha \in R$. For this, because $R$ is normal it will be enough by
+   (6.11) to show that $c_n\alpha \in V$ for every valuation ring $V$ of $K$ containing
+   $R$. Let $V$ be such a valuation ring, and $v$ the associated valuation. If $\alpha
+   \in V$, then it is clear that $c_n\alpha \in V$, because $c_n \in R \subseteq V$.
+   Assume therefore that $\alpha \notin V$, or, equivalently, $v(\alpha) < 0$. From
+   $f(\alpha)=0$ we get the relation $-c_n{\alpha}^n =  c_0 + c_1\alpha + \cdots +
+   c_{n-1}{\alpha}^{n-1}$. Therefore we have
+   \begin{align*}
+   v(c_n\alpha) + (n-1)v(\alpha) = v(c_n{\alpha}^n)
+   &\geq \min_{0 \leq i \leq n-1}{v(c_i{\alpha}^i)} \\
+   &= \min_{0 \leq i \leq n-1}{(v(c_i) + iv(\alpha))} \\
+   &\geq (n-1)v(\alpha),
+   \end{align*}
+   the last inequality holding because $v(c_i) \geq 0$ and $v(\alpha) < 0$. Cancelling
+   the term $(n-1)v(\alpha)$ on both sides, we obtain $v(c_n{\alpha}) \geq 0$. This means
+   that $c_n\alpha \in V$, which was what we needed to show.
+
+   Now we prove the last statement. Assume that $R$ is a unique factorization domain. Let
+   $\{b_{\lambda}x - a_{\lambda} : \lambda \in \Lambda\}$ be the collection of nonzero
+   linear polynomials in $I$. Thus for all $\lambda$ we have $\alpha =
+   a_{\lambda}/b_{\lambda}$. Let $a/b$ be an expression for $\alpha$ in lowest form. This
+   makes sense, because $R$ is a unique factorization domain. It is then clear that the
+   linear polynomial $bx-a$ belongs to $I$ and divides every $b_{\lambda}x -
+   a_{\lambda}$. Therefore $I$ is generated by $bx-a$.
+ \end{solution}
+
+ \begin{exercise}{III.28}
+   Show that the valuation ring associated with the valuation $v$ constructed in (5.18)
+   indeed has residue field isomorphic to $k$ as claimed.
+ \end{exercise}
+ \begin{solution}{los@math, anton@math}
+   Recall that $(\Gamma,+,\le)$ is an ordered abelian group, $K$ is the field of
+   fractions of the group algebra $k[\Gamma]$, and $v\Bigl( \frac{f_\alpha
+   t_\alpha+\cdots}{g_\beta t_\beta +\cdots}\Bigr)=\alpha-\beta$, where $f_\alpha
+   t_\alpha$ and $g_\beta t_\beta$ are the lowest order terms in the numerator and
+   denominator, respectively.
+
+   The valuation ring $R$ is the ring of quotients $\frac{f_\alpha
+   t_\alpha+\cdots}{g_\beta t_\beta +\cdots}$ with $\beta\le \alpha$, and the maximal
+   ideal $\m$ is the set of such terms with $\beta< \alpha$. It is clear that $R/\m$
+   contains an isomorphic copy of $k$. Moreover, $\frac{f_\alpha
+   t_\alpha+\cdots}{g_\alpha t_\alpha +\cdots} - \frac{f_\alpha}{g_\alpha} =
+   \frac{g_\alpha(f_\alpha+\cdots) - f_\alpha(g_\alpha+\cdots)}{g_\alpha(g_\alpha
+   t_\alpha + \cdots)} \in \m$. That is, every element of $R\smallsetminus \m$ differs
+   from an element of $k$ by something in $\m$. It follows that $R/\m\cong k$.
+ \end{solution}
+
+ \begin{exercise}{III.29}
+  Prove the following criterion from Krull's {\it Idealtheorie,}
+  S.~110:
+
+  \smallskip\noindent
+  ``Kriterium: {\it ${\mathfrak V}\,$ ist dann und nur dann Bewertungsring,
+  wenn in $\,{\mathfrak V}\,$ die Menge aller Nichteinheiten ein Ideal
+  bildet und wenn jeder echte\break
+  Zwischenring zwischen $\,{\mathfrak V}\,$ und dem Quotientenk\"orper
+  $\,{\mathfrak K}\,$ ein Reziprokes einer Nichteinheit von
+  $\,{\mathfrak V}\,$ enth\"alt.}''
+ \end{exercise}
+ \begin{solution}{Lars Kindler, lars\_k@berkeley.edu}
+     Upon request, here is a solution in German:\\
+     Sei zun\"achst $\mathfrak{V}$ ein Bewertungsring. Dann ist $\mathfrak{V}$ lokaler
+     Ring mit maximalem Ideal $\m=\mathfrak{V}\setminus U(\mathfrak{V})$. Ist $\mathfrak{S}$ ein echter
+     Zwischenring zwischen $\mathfrak{V}$ und $\mathfrak{K}$ und ist $a/b\in
+     \mathfrak{S}\setminus \mathfrak{V}$, also $a,b\in \mathfrak{V}$, $b\in \m$ und
+     $b\not| a$, so ist $b=ab'$ f\"ur ein geeignetes $b'\in \mathfrak{V}$, da
+     $\mathfrak{V}$ nach Vorraussetzung ein Bewertungsring ist, und $a/b=1/b'\in
+     \mathfrak{S}\setminus \mathfrak{V}$. Das wiederum bedeutet $b'\in \m$, wie
+     behauptet.\\
+     Umgekehrt sei nun $\mathfrak{V}$ ein Ring mit dem Ideal
+     $\m:=\mathfrak{V}\setminus U(\mathfrak{V})$ und der Eigenschaft dass es zu jedem
+     Zwischenring $\mathfrak{S}\supset \mathfrak{V}$ in $\mathfrak{K}$ ein $x\in \m$
+     gibt, mit $1/x\in \mathfrak{S}$. Dann ist $\mathfrak{V}$ lokaler Ring mit
+     maximalem Ideal $\m$ und f\"ur ein Element $x\in U(\mathfrak{K})$ gilt nach
+     Chevalleys Lemma $\m \mathfrak{V}[x]\subsetneq \mathfrak{V}[x]$ oder
+     $\m\mathfrak{V}[x^{-1}] \subsetneq \mathfrak{V}[x^{-1}]$. Nach Vorraussetzung
+     folgt nun $\mathfrak{V}[x]=\mathfrak{V}$ oder
+     $\mathfrak{V}[x^{-1}]=\mathfrak{V}$, das hei\ss t $\mathfrak{V}$ ist Bewertungsring.
+ \end{solution}
+
+ \begin{exercise}{III.30}
+   Let $v:k\twoheadrightarrow \Gamma _{\infty }$ be a valuation on a field $k$
+   with valuation ring $\left( R,\mathfrak{m}\right) $. For $f\left( x\right)
+   =\sum_{i}a_{i}x^{i}\in k\left[ x\right] $, define $v^{\prime }\left(
+   f\right) =\min \left\{ v\left( a_{i}\right) \right\} \in \Gamma _{\infty }$.
+   Show that $v^{\prime }$ is a valuation on $k\left[ x\right] $, which extends
+   uniquely to a valuation on $k\left( x\right) $ with valuation ring $R\left[ x%
+   \right] _{\mathfrak{m}\left[ x\right] }$ and the same value group $\Gamma $.
+   (The residue field of this valuation ring is the rational function field $%
+   \left( R/\mathfrak{m}\right) \left( x\right) $.)
+ \end{exercise}
+ \begin{solution}{Manuel Reyes; mreyes@math}
+   First let $f\left( x\right) =\sum a_{i}x^{i}$ and $g\left( x\right) =\sum
+   b_{i}x^{i}$ be any elements of $k\left[ x\right] $. Choose $a_{m}$ and $b_{n}
+   $ with minimal valuations among the coefficients of $f$ and~$g$,
+   respectively, and such that $m$ and $n$ are minimal. We have $fg=\sum
+   c_{k}x^{k}$, where $c_{k}=\sum_{i+j=k}a_{i}b_{j}$. First consider that
+   because each $v\left( a_{i}b_{j}\right) =v\left( a_{i}\right) +v\left(
+   b_{j}\right) \geq v\left( a_{m}\right) +v\left( b_{n}\right) =v\left(
+   a_{m}b_{n}\right) $, we have $v\left( c_{k}\right) \geq \min \left\{ v\left(
+   a_{i}b_{j}\right) :i+j=k\right\} \geq v\left( a_{m}b_{n}\right) $ for all $k$%
+   . Now we claim that $v\left( c_{m+n}\right) =v\left( a_{m}b_{n}\right) $.
+   Suppose that a pair of nonnegative integers $\left( i,j\right) \neq \left(
+   m,n\right) $ is such that $i+j=m+n$. Then we must have $i<m$ or $j<n$, say $%
+   i<m$ without loss of generality. Then by minimality of $m$, this means that $%
+   v\left( a_{i}\right) >v\left( a_{m}\right) $. So $v\left( a_{i}b_{j}\right)
+   >v\left( a_{m}b_{j}\right) \geq v\left( a_{m}b_{n}\right) $. Then
+   Proposition (5.8) implies that $v\left( c_{k}\right) =v\left(
+   a_{m}b_{n}\right) $. So
+   \begin{eqnarray*}
+   v^{\prime }\left( fg\right)  &=&\min \left\{ v\left( c_{k}\right) \right\}
+   \\
+   &=&v\left( c_{m+n}\right)  \\
+   &=&v\left( a_{m}b_{n}\right)  \\
+   &=&v\left( a_{m}\right) +v\left( b_{n}\right)  \\
+   &=&v^{\prime }\left( f\right) +v^{\prime }\left( g\right) \text{,}
+   \end{eqnarray*}%
+   showing that $v^{\prime }$ satisfies property (1) of valuations. Keeping the
+   same notations as above, for all $i$ we must have $v\left(
+   a_{i}+b_{i}\right) \geq \min \left\{ v\left( a_{i}\right) ,v\left(
+   b_{i}\right) \right\} \geq \min \left\{ v\left( a_{m}\right) ,v\left(
+   b_{n}\right) \right\} $. So
+   \begin{eqnarray*}
+   v^{\prime }\left( f+g\right)  &=&\min \left\{ v\left( a_{i}+b_{i}\right)
+   \right\}  \\
+   &\geq &\min \left\{ v\left( a_{m}\right) ,v\left( b_{n}\right) \right\}  \\
+   &=&\min \left\{ v^{\prime }\left( f\right) ,v^{\prime }\left( g\right)
+   \right\} \text{.}
+   \end{eqnarray*}%
+   Thus $v^{\prime }$ also satisfies property (2) for valuations, and $%
+   v^{\prime }$ is a valuation.
+
+   Proposition (5.9) now implies that $v^{\prime }$ extends uniquely to the
+   quotient field $k\left( x\right) $ of $k\left[ x\right] $. The fact that $%
+   \left( R,\mathfrak{m}\right) $ is the valuation ring of $v$ and the
+   definition of $v^{\prime }$ together imply that
+   \begin{eqnarray*}
+   R\left[ x\right] &=&\left\{ f\in k\left[ x\right] :v^{\prime }\left(
+   f\right) \geq 0\right\} \text{,} \\
+   \mathfrak{m}\left[ x\right] &=&\left\{ f\in k\left[ x\right] :v^{\prime
+   }\left( f\right) >0\right\} \text{,} \\
+   R\left[ x\right] \smallsetminus \mathfrak{m}\left[ x\right] &=&\left\{ f\in k%
+   \left[ x\right] :v^{\prime }\left( f\right) =0\right\} \text{.}
+   \end{eqnarray*}%
+   Let $S\subseteq k\left( x\right) $ be the valuation ring of $v^{\prime }$;
+   clearly $R\left[ x\right] _{\mathfrak{m}\left[ x\right] }\subseteq S$. So
+   suppose that $\frac{f\left( x\right) }{g\left( x\right) }\in S$, with $g\neq
+   0$. This means that $v^{\prime }\left( \frac{f}{g}\right) \geq 0$, or $%
+   v^{\prime }\left( f\right) \geq v^{\prime }\left( g\right) $ Let $c$ be a
+   (nonzero) coefficient of $g$ with minimal valuation, so that $v^{\prime
+   }\left( g\right) =v\left( c\right) $. Then $v^{\prime }\left( c^{-1}g\right)
+   =0$, implying that $c^{-1}g\in R\left[ x\right] \smallsetminus \mathfrak{m}%
+   \left[ x\right] $. It follows that $v^{\prime }\left( c^{-1}f\right) \geq
+   v^{\prime }\left( c^{-1}g\right) =0$, so that $c^{-1}f\in R\left[ x\right] $%
+   . Hence $\frac{f}{g}=\frac{c^{-1}f}{c^{-1}g}\in R\left[ x\right] _{\mathfrak{%
+   m}\left[ x\right] }$, proving that $S=R\left[ x\right] _{\mathfrak{m}\left[ x%
+   \right] }$.
+ \end{solution}
+
+ \begin{exercise}{III.31}
+  Show that, in a valuation ring $\left( R,\mathfrak{m}\right) $, $\mathfrak{m}
+  $ is a principal ideal iff $\mathfrak{m}^{n}$ is a principal ideal for some $%
+  n\geq 1$.
+ \end{exercise}
+ \begin{solution}{Manuel Reyes; mreyes@math}
+  The "only if" part being clear, let us prove the "if" direction. Suppose
+  that $\mathfrak{m}^{n}$ is principal. If $\mathfrak{m}^{n}=0$, then the fact
+  that $R$ is a domain implies that $\mathfrak{m}=0$ is principal. Otherwise
+  we have $\mathfrak{m}^{n}\neq 0$, which means that $\mathfrak{m}\neq 0$. In
+  this case we want to show that $R$ is of principal type. So assume for
+  contradiction that this is not the case, namely $\mathfrak{m}=\mathfrak{m}%
+  ^{2}$. Then $\mathfrak{m}=\mathfrak{m}^{2}=\cdots =\mathfrak{m}^{n}$ is
+  principal, contradicting that $R$ was not of principal type.
+ \end{solution}
+
+ \begin{exercise}{III.32}
+  Show that a valuation ring $R$ is a UFD iff $R$ is a DVR or a field.
+ \end{exercise}
+ \begin{solution}{Manuel Reyes; mreyes@math}
+  We will actually prove that for a valuation ring $R$, the following are
+  equivalent:
+
+  $\left( 1\right) $ $R$ is a UFD
+
+  $\left( 2\right) $ The principal ideals of $R$ satisfy ACC
+
+  $\left( 3\right) $ $R$ is a PID
+
+  $\left( 4\right) $ $R$ is a DVR or a field.
+
+  The implication $\left( 4\right) \Rightarrow \left( 1\right) $ is clear,$%
+  \left( 1\right) \Rightarrow \left( 2\right) $ follows from (6.16), and $%
+  \left( 3\right) \Rightarrow \left( 4\right) $ is (4.4)(1). For $\left(
+  2\right) \Rightarrow \left( 3\right) $, let $R$ be a valuation ring whose
+  principal ideals satisfy the ACC. To see that $R$ is a PID let $%
+  I\vartriangleleft R$, and let $\mathcal{F}$ be the family of principal
+  ideals contained in $I$. Then $\mathcal{F}$ is nonempty since $\left(
+  0\right) \subseteq I$. By the chain condition, $\mathcal{F}$ has a maximal
+  element, say $\left( a\right) \subseteq I$. If $I\neq \left( a\right) $,
+  there exists $b\in I\smallsetminus \left( a\right) $. Because $R$ is a
+  valuation ring (specifically, a Bezout ring), $\left( a,b\right) $ is a
+  principal ideal in $I$ strictly containing $\left( a\right) $, contradicting
+  the maximality of $\left( a\right) $. So $I=\left( a\right) $ is principal,
+  and $R$ is a PID.
+ \end{solution}
+ \begin{solution}{Lars Kindler, lars\_k@berkeley.edu}
+     First, let $R$ be a UFD. By (4.9) it suffices to show that $\dim R\leq 1$ and that
+     $\m$ is principal. If $\dim R = 0$ then $R$ is a field, so we may assume $\dim
+     R>0$. Let $\p\neq (0)$ be a prime ideal in $R$. Then there is a prime element
+     $p\in \p$ and every element $x\in \m$ is either in $(p)$ or we have $x|p$. But $x|p$
+     also implies $x\in (p)$, since $p$ is prime. Thus $\m=(p)=\p$, which shows that
+     $\m$ is principal and $\dim R=1$, and hence $R$ is a DVR. The converse is clear,
+     since if $R$ is a PID or a field then $R$ is a UFD.
+ \end{solution}
+
+ \begin{exercise}{III.33}
+  For a normal domain $R$, show that every irreducible monic polynomial in $R[x]$ is prime.
+ \end{exercise}
+ \begin{solution}{Jonah (jblasiak@math)}
+  Let $K$ be the quotient field of $R$, and let $h(x)$ be an irreducible monic polynomial
+  in $R[x]$. $K[x]$ is a UFD, so $h(x)$ factors (in $K[x]$) into a product of primes, and
+  we may assume each of these primes is a monic polynomial.  Let $f(x)$ be one such prime
+  factor; then by normality of $R$ and Monicity Lemma 3.2, $f(x) \in R[x]$.  This holds
+  for all prime factors, so by irreducibility of $h(x)$ in $R[x]$, there must only be one
+  prime factor, i.e. h(x) is prime in $K[x]$.  By Proposition 6.19, $h(x)$ is prime in
+  $R[x]$.
+ \end{solution}
+
+ \begin{exercise}{III.34} (Slight modification of (6.18).)  If $R$ is a UFD, show that,
+   for any nonzero $a\in R$, every prime in $\text{Ass}(R/aR)$ is principal.  Show that
+   the converse holds if $R$ is a noetherian domain.
+ \end{exercise}
+ \begin{solution}{ecarter@math}
+   Let $R$ be a UFD, let $a$ be a nonzero element of $R$, and let $\p$ be the annihilator of
+   some nonzero $b\in R/aR$.  Write $a=p_1\cdots p_n$, where each $p_i$ is prime.  Then
+   since $a\in\p$, we may suppose without loss of generality that $p_1\in\p$. Since $a$
+   divides $p_1 b$ in $R$, we can write $p_1b=a q_1\cdots q_m$ where each $q_i$ is prime.
+   Since $a$ does not divide $b$ in $R$, none of the $q_i$'s is an associate of $p_1$. Then
+   $b=p_2\cdots p_n q_1\cdots q_m$.  Then for any $c\in\p$, $a$ divides $cb$ in $R$ so that
+   $p_1$ divides $cq_1\cdots q_m$ in $R$.  Therefore $c\in (p_1)$, which shows that $\p$ is
+   generated by $p_1$ as desired.
+
+   Conversely, suppose $R$ is a noetherian domain and let $\mathfrak{P}$ be a nonzero prime
+   ideal. Then there exists a nonzero $a\in\mathfrak{P}$, and $\mathfrak{P}$ contains a
+   prime $\p$ which is minimal over $aR$.  Since $aR=\text{ann}(R/aR)$,
+   $\p\in\text{Ass}(R/aR)$ by propisition 6.4 of chapter I.  Therefore $\p=(p)$ for some
+   $p\in\p$, so $\mathfrak{P}$ contains a prime element. Therefore $R$ is a UFD.
+ \end{solution}
+
+ \begin{exercise}{III.35}
+   (Slight modification of (6.20).)  Let $R$ be a domain whose principal ideals satisfy the
+   ACC, and let $S$ be a multiplicative set generated by a set of prime elements in $R$.
+   Show that a prime $\mathfrak{P} \in $Spec($R$) disjoint from $S$ is principal iff its
+   localization $ \mathfrak{P} _ S$ is principal.
+ \end{exercise}
+
+ \begin{solution}{annejls@math}
+   The forward implication is clear: if $\mathfrak{P}= (a)$, then $ \mathfrak{P}_ S = (a)$.
+   For the reverse, assume $\mathfrak{P} _ S = (a/s)$, where $a \in R,$ $s \in S$.  We now
+   repeat the argument in the proof of Nagata's theorem.  Let $S$ be generated by some prime
+   elements $\pi_i$.  If $a $ is divisible by some $\pi _i$: $a = a' \pi_i$, then replace
+   $a$ by $a'$.  Repeat as long as such a $\pi_i$ exists; this process terminates in a
+   finite number of steps by the ACC on principal ideals.  Note that we have $\mathfrak{P}_S
+   = (a)_S$.  Now, we claim that $\mathfrak{P}=(a)_R$.  Writing $\mathfrak{P} =
+   \mathfrak{P}_S \cap R$, we see that $\mathfrak{P} \supset (a)_R$ follows.  For the
+   reverse containment, consider $c = a \frac{ b}{t} \in \mathfrak{P}_S \cap R$, with $c, b
+   \in R$, $t \in S$.  Now, $t$ is a product of $\pi _i$'s, none of which divide $a$ from
+   our ``trimming down,'' so $t$ divides $b$.  In other words, $b/t \in R$, so $c = a \frac{
+   b}{t} \in (a)_R$, as desired.
+ \end{solution}
+
+ \begin{exercise}{III.36}
+  For any field $k$, use Nagata's theorem (6.20) to show that the noetherian ring $R$
+  defined in (6.22) is a UFD.  ({\bf Hint.} Let $t=z ^{-1}$, $u=t^3 x$, and $v=t^2 y$.
+  Show that $z=u^2 +v^3$, and compute $R[z^{-1}]$.)
+ \end{exercise}
+ \begin{solution}{annejls@math}
+  We have $R= k[x,y,z]/(x^2 + y^3 -z^7)$, where $k = \mathbb{F}_2$.  $R$ is Noetherian, so
+  by Nagata's theorem, it suffices to show that $R_z$ is a UFD.  We have $t=z ^{-1}$ a unit
+  in $R_z$, so we can make the change of variables $u=t^3 x$ and $v=t^2 y$.  That is, $R_z
+  = k[x,y,z, t]/(x^2 + y^3 -z^7, tz-1)= k[u,v,z, z^{-1}]/((u/t^{3})^2 + (u/t^2)^3 -z^7,
+  tz-1)= k[u,v,z,z^{-1}]/(u^2+v^3-z)=k[u,v]_{u^2+v^3}$.  This is the localization of a UFD,
+  so it is a UFD.
+ \end{solution}
+
+ \begin{exercise}{III.37}
+  For any field $k$, show that the affine algebras $k[x,y,z]/(x^2-yz)$
+  and $k[w,x,y,z]/(wx-yz)$ are not UFDs.
+ \end{exercise}
+ \begin{solution}{anton@math, los@math}
+   We will use the following fact. {\em Lemma:} Let $R$ be a domain, and let $a \in R$ be
+  a nonzero element. Then the kernel of the map $\varphi$ of $R[t]$-algebras from
+  $R[s,t]$ to $R[t,t^{-1}]$ such that $\varphi(s)=a/t$ is generated by $st-a$. (In
+  particular, this shows that the ideal generated by $st-a$ is prime.) {\em Proof:} Let
+  $I= \ker(\varphi)$, and let $J=(st-a)$. It is clear that $J \subseteq I$. Any
+  polynomial $f \in R[s,t]$ is congruent modulo $J$ to one of the form $f_1(t) +
+  sf_2(s)$. On the other hand, it is clear that any element of the kernel of $\varphi$
+  that is of this form is zero. Therefore $I=J$.
+    Set $A_1=k[x,y,z]/(x^2-yz)$. By the lemma, $A_1$ is isomorphic to the subring
+  $A_1'=k[x,y,x^2/y]$ of $B_1=k[x,y,y^{-1}]$. (Here $R=k[x]$.)  We will show that the
+  element $y$ of $A_1'$ is irreducible. Suppose $y=fg$, with $f,g \in A_1'$. Since $y$ is
+  invertible in $B_1$, each of $f$ and $g$ must be invertible in $B_1$. The invertible
+  elements of $B_1$ are precisely the monomials $cy^n$, with $n \in \ZZ$ and $c \in k$ a
+  nonzero constant. However, it is clear that of these, only those with $n \geq 0$ belong
+  to $A_1'$. One of $f$ and $g$ must actually therefore be a constant, hence invertible
+  in $A_1'$. Thus $y$ is irreducible in $A_1 \cong A_1'$. If $A_1$ is to be a UFD, $y$
+  must also be prime. However, $A_1/(y) \cong k[z][x]/(x^2)$, which is not a domain.
+  Therefore $A_1$ cannot be a UFD.
+    Now let $A_2=k[x,y,z,w]/(wx-yz)$. By the lemma, $A_2$ is isomorphic to the subring
+  $A_2'=k[w,x,y,wx/y]$ of $B_2=k[w,x,y,y^{-1}]$. Invoking identical arguments to those in
+  the case of $A_1$, we see that $y$ is irreducible in $A_2$. But $A_2/(y) \cong
+  k[z][w,x]/(wx)$ is not a domain. Therefore $y$ is not a prime element of $A_2$, and
+  this ring is therefore not a UFD.
+ \end{solution}
+
+ \begin{exercise}{III.38}
+  Let $R\subseteq S$ be rings such that $S\,\backslash R$ is closed
+  under multiplication. Show that $R$ is integrally closed in $S$.
+ \end{exercise}
+ \begin{solution}{igusa@math}
+   Assume that $R$ is not integrally closed in $S$. Let $s\in
+   S\,\backslash R$ be integral over $R$. Let $f(x)\in R[x]$ be a minimal (monic) polynomial
+   satisfied by $s$ over $R$. Write $f(x)=x^n+a_1x^{n-1}+...+a_n$ with $a_i\in R$. Then in
+   particular, $s^n+a_1s^{n-1}+...+a_{n-1}s=\neg a_n\in R$. So, setting
+   $t=s^{n-1}n+a_1s^{n-2}+...+a_{n-1}$ we have that $st\in R$ and therefore $t\in R$ since
+   $s\notin R$ and $S\,\backslash R$ is closed under multiplication. Letting
+   $g(x)=x^{n-1}n+a_1x^{n-2}+...+a_{n-1}-t$ we have that $g\in R[x]$ and $g(s)=0$ and
+   $\deg(g)=\deg(f)-1$ contradicting the minimality of $f$.
+ \end{solution}
+
+ \begin{exercise}{III.39}
+  Show that $S \supseteq R$ is an integral extension iff, for every $\mathfrak{P} \in
+  \spec(S)$, $S/\mathfrak{P}$ is an integral extension of $R/{R \cap \mathfrak{P}}$.
+ \end{exercise}
+ \begin{solution}{anton@math, los@math}
+  The ``only if'' direction is clear. Assume therefore that $S$ is an extension of $R$
+  which is not integral. Let $s$ be an element of $S$ which is not integral over $R$, and
+  let $T$ be the multiplicative subset $\{f(s): f \in R[T],\  \mbox{$f$ monic}\}$ of $S$.
+  Since $s$, by hypothesis, is not integral over $R$, we have $0 \notin T$, hence
+  $T^{-1}S \neq 0$. Let $\mathfrak{P}$ be the contraction to $S$ of any prime ideal of
+  $T^{-1}S$. Then $\mathfrak{P}$ is prime and $\mathfrak{P} \cap T = \emptyset$. This
+  shows that for this choice of $\mathfrak{P}$, the quotient $S/\mathfrak{P}$ is not
+  integral over $R/{R \cap \mathfrak{P}}$, completing the proof of the equivalence.
+ \end{solution}
+
+\end{document}

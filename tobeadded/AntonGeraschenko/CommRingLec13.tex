@@ -1,0 +1,99 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{13}
+ \sektion{Lecture 13}
+
+ \begin{example}
+  \begin{enumerate}
+   \item Prime ideals are primary.
+
+   \item In a rad-nil local ring (0-dimensional local ring), any proper ideal is primary.
+   As a consequence, if $\m\in \Max R$ for any ring $R$, and $\m^n\subseteq \q\subseteq
+   \m$, then $\q$ is $\m$-primary.
+
+   \item In a UFD, a principal ideal $(a)$ is primary if and only if $a$ is 0 or a power
+   of an irreducible element; see Ex.\ 52.
+
+   \item In $R=k[x,y]$, where $k$ is a field. Then $I=(x^2,xy)$ is \emph{not} primary. In
+   the factor ring, $y$ is a zero-divisor because $xy\in I$, but $y$ is not nilpotent
+   modulo $I$.
+
+   \item Let $\q=(y^2,x+yz)\< k[x,y,z]$. We claim that $\q$ is $\p$-primary for
+   $\p=(x,y)$. First check that $\p=\sqrt \q$. $R/\q = k[x,y,z]/(y^2,x+yz)\cong
+   k[y,z]/(y^2)$, in which every zero-divisor is nilpotent because $(y^2)$ is primary in
+   $k[y,z]$.
+  \end{enumerate}
+  \vspace*{-1.7\baselineskip}
+ \end{example}
+ \begin{theorem}[Lasker-Noether Primary Decomposition]
+   Let $R$ be noetherian and $N\subsetneq M$, with $M/N$ finitely generated. Then $N$ has
+   a minimal primary decomposition in $M$.
+ \end{theorem}
+ \begin{proof}
+   First write $N=Q_1\cap \cdots \cap Q_n$, where the $Q_i$ are irreducible. By Noether's
+   theorem, each $Q_i$ is $\p_i$-primary for some prime $\p_i$.
+
+   If $\p_i=\p_j$, we may replace $Q_i$ and $Q_j$ by $Q_i\cap Q_j$, which is also
+   $\p_i$-primary. Now we may assume the $\p_i$ are distinct.
+
+   Now remove unneeded $Q_i$ until we have a minimal decomposition.
+ \end{proof}
+ What can we say about uniqueness? Recall some facts about localization of modules at a
+ multiplicative set $S\subseteq R$.
+ \begin{definition}
+   The \emph{$S$-saturation of $Q$} is $\{m\in M|sm\in Q\text{ for some }s\in S\}$.
+ \end{definition}
+ \begin{exercise}
+   The saturation of $Q$ is $Q^{ec}$, the contraction of the extension of $Q$, i.e.\
+   ``$Q_S\cap M$''$=i^{-1}(Q_S)$, where $i:M\to M_S$.
+ \end{exercise}
+ \begin{lemma}
+   $Q\subsetneq M$. Suppose $S\cap \Z(M/Q)=\varnothing$, then $Q^{ec}=Q$.
+ \end{lemma}
+ \begin{proof}
+   if $m\in Q^{ec}$, then $sm\in Q$ for some $s\in S$, which implies $m\in Q$ since
+   $s\not\in \Z(M/Q)$. The reverse inclusion is clear.
+ \end{proof}
+ We will apply this to the situation where $Q$ is a $\p$-primary submodule of $M$ and
+ $S=R\smallsetminus \p$.
+
+ \begin{theorem}[Main Uniqueness Theorem]
+   Same hypotheses as in the Lasker-Noether Theorem. Let $N=Q_1\cap \cdots \cap Q_n$ be
+   \emph{any} minimal primary decomposition, where $Q_i$ is $\p_i$-primary. Then
+   \begin{enumerate}
+     \item $\ass (M/N) = \{\p_1,\dots, \p_n\}$. In particular, all the $\p_i$ are
+     uniquely determined (up to permutation).
+
+     \item If $\p\in \ass (M/N)_*$ is an isolated prime, then $Q_i=N^{ec}$ (with respect
+     to localization at $\p_i$). In particular, $Q_i$ is uniquely determined.
+   \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+  \begin{enumerate}
+   \item[]
+   \item
+   $M/N\hookrightarrow \bigoplus M/Q_i$, so
+   $\ass(M/N)\subseteq \bigcup \ass (M/Q_i) = \{\p_1,\dots, \p_n\}$.
+   Now let's show that $\p_1\in \ass (M/N)$. Fix $x\in
+   (Q_2\cap\cdots \cap Q_n)\smallsetminus Q_1$ (such an $x$ exists by minimality of the
+   decomposition). Since $\p_1$ is finitely generated ($R$ noetherian),
+   $\p_1^{k+1}x\subseteq Q_1$ for some $k\gg 1$; choose the minimal such $k$. Then there
+   is some $y\in \p_1^k x\smallsetminus Q_1$. Then we have $\bar y \in M/N$ is non-zero,
+   and that $\p_1 y=0\in M/N$, so $\p_1\subseteq \ann (\bar y)$. For the reverse
+   inclusion, suppose $r\bar y=0$, so $ry\in N\subseteq Q_1$. Thus, $r\in
+   \Z(M/Q_1)=\p_1$.
+
+   \item Let $\p=\p_i$ be an isolated prime. By assumption, $\p_j\not\subseteq \p$ for
+   $j\neq i$. Choose $k$ large enough so that $\p_j^k M\subseteq Q_j$ (for $j\neq i$)
+   ($M/N$ finitely generated). But $\p_j^k\not\subseteq \p$. Now consider localization at
+   $\p$; we get $(\p_j)_{\p}^k M_\p = M_\p = (Q_j)_\p$ for each $j\neq i$. Localizing the
+   equation $N=Q_1\cap \cdots \cap Q_n$, we get
+   \[
+    N_\p=(Q_1\cap \cdots \cap Q_n)_\p = \bigcap_j (Q_j)_\p = (Q_i)_\p.
+   \]
+   So we get $N^{ec}=Q_i^{ec} = Q_i$.\qedhere
+  \end{enumerate}
+ \end{proof}
+ \begin{example}[A point from last time]
+   The $\p_i$ being distinct doesn't guarantee minimality of the decomposition. If
+   $N=Q_1\cap Q_2\cap Q_3$. Choose some $\p$ containing
+ \end{example}

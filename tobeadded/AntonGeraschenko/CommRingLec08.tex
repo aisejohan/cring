@@ -1,0 +1,130 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{8}
+ \sektion{Lecture 8}
+
+ A topological point: $\spec R$ is always $T_0$ (each point has a neighborhood that
+ misses \emph{some} other point). $\spec R$ is $T_1$ (points are closed) if and only if
+ it is $T_2$ (Hausdorff) if and only if $\dim R=0$.\anton{check this}
+ \begin{remark}
+   The separation axioms are called $T_i$ because they are ``Trennung's'' axioms.
+ \end{remark}
+ \begin{corollary}[to the last theorem]
+   The following are equivalent.
+   \begin{itemize}
+     \item $R$ is von Neumann regular
+     \item $R$ is reduced and $\dim R=0$
+     \item $R_\m$ is a field for all $\m\in \Max(R)$ (In particular, $R$ is
+     ``locally noetherian'').
+   \end{itemize}
+ \end{corollary}
+
+ \begin{proposition}
+   If $R$ is artinian, then
+   \begin{enumerate}
+     \item $\dim R=0$,
+     \item $J:=\rad R$ is nilpotent, and
+     \item $R$ is semi-local.
+   \end{enumerate}
+ \end{proposition}
+ \begin{proof}
+   (2) see notes
+
+   (1) For each $a\in R$, $aR\supseteq a^2R\supseteq \cdots$ stabilizes (i.e.\ $R$ is
+   strongly $\pi$-regular), so $\dim R=0$ by Theorem from last time.
+
+   (3) Among all finite products of maximal ideals, choose one that is minimal, say
+   $I=\m_1\cdots \m_n$. Then for any maximal ideal $\m$, $\m I = I$ by minimality, so
+   $I\subseteq \m$, so some $\m_i\subseteq \m$ for some $i$ since $\m$ is prime. Then
+   $\m=\m_i$ by maximality.
+ \end{proof}
+ This gives a characterization of semi-local rings $R$ via chain conditions.
+ \begin{corollary}
+   A ring $R$ is semi-local if and only if $R/\rad R$ is artinian.
+ \end{corollary}
+ \begin{proof}
+   ($\Leftarrow$) Assume $R/J$ is artinian ($J:=\rad R$), so $R/J$ is semi-local. By any
+   maximal ideal in $R$ contains $J$, so they are in bijection with maximal ideals of
+   $R/J$. So $R$ is semi-local.
+
+   ($\Rightarrow$) If $R$ is semi-local, with maximal ideals $\m_1$,\dots, $\m_n$. In
+   \S 2, we showed that since $J=\m_1\cap \cdots \cap \m_n$, $R/J \cong \prod_{i=1}^n
+   R/\m_i$. So $R/J$ is a finite product of fields, so it is artinian.
+ \end{proof}
+ \begin{lemma}[Key Lemma for Akizuki]
+   Let $R$ be a ring with (not necessarily distinct) maximal ideals $\m_1$,\dots $\m_n$
+   such that $\m_1\cdots \m_n=0$. Then $R$ is noetherian if and only if $R$ is artinian.
+ \end{lemma}
+ \begin{proof}
+   Look at the filtration
+   \[
+    R\supseteq \m_1 \supseteq \m_1\m_2 \supseteq \cdots \supseteq \m_1\cdots\m_n =0.
+   \]
+   The filtration factor $\m_1\cdots \m_i/\m_1\cdots \m_{i+1}$ is a $R/\m_{i+1}$ vector
+   space. In a vector space, noetherian and artinian are both equivalent to finite
+   dimensional. $R$ is noetherian if and only if each filtration factor is noetherian,
+   which occurs if and only if each factor is artinian, which occurs if and only if $R$
+   is artinian!
+ \end{proof}
+ \begin{theorem}[Akizuki]
+   For any ring $R$, the following are equivalent.
+   \begin{enumerate}
+     \item $R$ is artinian.
+     \item $R$ is noetherian and $\dim R=0$.
+     \item ${}_R R$ has finite length.
+     \item \emph{All} finitely generated modules ${}_R M$ have finite length.
+     \item There is a faithful module ${}_R M$ of finite length.
+     \item There is a faithful finitely generated artinian module ${}_R M$.
+   \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+   $3\Rightarrow 4\Rightarrow 1\Rightarrow 2 \Rightarrow 5 \Rightarrow 3$ and
+   $5\Rightarrow 6\Rightarrow 1$
+
+   ($3\Rightarrow 4$) We have ${}_R R^n\twoheadrightarrow M$, and $lg(R^n)=n\cdot lg(R)
+   \ge lg(M)$.
+
+   ($4\Rightarrow 1$) Apply $(4)$ to ${}_R R$.
+
+   ($1\Rightarrow 2$) We already have $\dim R=0$ from the Proposition. We also know that
+   $R$ is semi-local, with maximal ideals $\m_1$,\dots, $\m_n$. Then $\rad R = \m_1\cap
+   \cdots\cap \m_n\supseteq \m_1\cdots \m_n$ is nilpotent. So $(\m_1\cdots\m_n)^t=0$ for
+   some big $t$. Then by the Key lemma, $R$ is noetherian.
+
+   ($2\Rightarrow 5$) From the second example of noetherian induction, $(0)=\p_1\cdots
+   \p_n$ (every ideal contains a finite product of primes). Since $\dim R=0$, these
+   $\p_i$ are maximal. By the Key lemma, $R$ is artinian, so ${}_RR$ is a faithful module
+   of finite length.
+
+   ($5\Rightarrow 3$) If ${}_R M$ is finite length, it is finitely generated, say $M =
+   Rm_1+\cdots Rm_k$. We have a map $R\to M^k=M\oplus \cdots \oplus M$ given by $r\mapsto
+   (rm_1,\cdots ,rm_k)$. This is an $R$-module homomorphism, and it is injective because
+   $M$ is faithful (no $r$ can kill all the generators). Now $lg(R)\le k\cdot lg(M)<
+   \infty$.
+
+   ($5\Rightarrow 6$)  ${}_RR$ is already a faithful module of finite length.
+
+   ($6\Rightarrow 1$) Same argument as $5\Rightarrow 3$, but with ``finite length''
+   replaced by ``artinian''.
+ \end{proof}
+ \begin{remark}
+   ($6$) is not equivalent to ($6'$) There is a faithful artinian module ${}_R M$. For
+   example, take $R=\ZZ$ and $M = \varinjlim \ZZ/p^n\ZZ$, the Pr\"ufer $p$-group. Then
+   $M$ is artinian (all the submodules are $\ZZ/p^k\ZZ$), and faithful, but not finitely
+   generated.
+ \end{remark}
+ \begin{remark}
+   Note that artinian implies noetherian! This statement is true for rings (even
+   non-commutative rings), but not for modules. Take the same example $M = \varinjlim
+   \ZZ/p^n\ZZ$ over $\ZZ$. However, there is a module-theoretic statement which is
+   related.
+ \end{remark}
+ \begin{corollary}
+   For a finitely generated module $M$ over any commutative ring $R$, the following are
+   equivalent.
+   \begin{enumerate}
+     \item $M$ is an artinian module.
+     \item $M$ has finite length (i.e.\ is noetherian and artinian).
+     \item $R/\ann M$ is an artinian ring.
+   \end{enumerate}
+ \end{corollary}
+ Note that we don't assume that $R$ is noetherian (as in Eisenbud).

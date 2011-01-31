@@ -1,0 +1,102 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{24}
+ \sektion{Lecture 24}
+
+ Typos: p 73 (proof 4.1) ``$g^m$ prime to $g$'' should be ``$g^m$ prime to $1+g$''\\
+ p 76, ref to $\ast$ in rmk 4.15 should ref to 4.16.
+
+ \begin{example}
+   $k\subsetneq R\subseteq S=k[x]$, then $S/R$ is integral because $x$ is integral over
+   $R$, since $R$ must contain some monic polynomial in $x$.
+ \end{example}
+ \begin{theorem}[Going Up]
+   Let $S/R$ be integral.
+   \begin{enumerate}
+     \item (Lying over) For every $\p\in \spec R$, there is some $\mathfrak{P}\in \spec
+     S$ so that $\mathfrak{P}\cap R=\p$. This means that $\spec S\to \spec R$ is
+     surjective.
+
+     \item (Going up) If $I\subseteq \p\subseteq R$ and $J\subseteq S$ lying over $I$,
+     then there is some prime $\mathfrak{P}\supseteq J$ lying over $\p$.
+
+     \item (Incomparability) If $\mathfrak{P}\subsetneqq \mathfrak{P}'$, then $\mathfrak{P}\cap R\subsetneqq
+     \mathfrak{P}'\cap R$.
+   \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+   (1) First assume $(R,\p)$ is local, then $\p S\neq S$, so $\p S$ is in some maximal
+   ideal $\m\subseteq S$, then $\m\cap R$ contains $\p$ and is prime (in particular, not
+   all of $R$), so it is equal to $\p$. In the general case, just localize at $\p$ first.
+
+   (2) Pass to the integral extension $R/I\hookrightarrow S/J$ and apply Lying over.
+
+   (3) Pass to $R/\p\hookrightarrow S/\mathfrak{P}$ to assume $\p=0$ and $\mathfrak{P}=0$.
+   Then we need to prove that if $\mathfrak{P}'\neq 0$, then $\p:=R\cap \mathfrak{P}'\neq
+   0$. Choose $x\in \mathfrak{P}'\smallsetminus \{0\}$; then we have
+   $x^n+a_1x^{n-1}+\cdots + a_n=0$, with $n$ minimal. Then
+   $a_n=-x(x^{n-1}+a_1x^{n-2}+\cdots )\in \mathfrak{P}'\cap R$. Finally, since $n$ is
+   minimal and $S$ ($S/\mathfrak{P}$) is a domain, $a_n\neq 0$.
+ \end{proof}
+ \begin{corollary}
+   Let $S/R$ be integral.
+   \begin{enumerate}
+     \item If $\mathfrak{P}\in \spec S$, then $\mathfrak{P}$ is maximal if and only if
+     $\mathfrak{P}\cap R\in \Max R$.
+
+     \item $\rad R = R\cap \rad S $.
+
+     \item If $S$ is a domain, then $R$ is a field if and only if $S$ is a field.
+
+     \item If $S$ is (semi-)local, then so is $R$.
+   \end{enumerate}
+ \end{corollary}
+ We also get the following analog of the Eakin-Nagata Theorem
+ \begin{corollary}
+   Let $R\subseteq S$ be rings, such that $S$ is module-finite (in particular integral)
+   over $R$. Then $R$ is artinian if and only if $S$ is artinian.
+ \end{corollary}
+ \begin{proof}
+   $\Rightarrow$ A finitely generated module over an artinian ring is artinian, so ${}_R
+   S$ is artinian, so ${}_S S$ is artinian.
+
+   $\Leftarrow$ If $S$ is artinian, then it is noetherian, then by Eakin-Nagata, $R$ is
+   also noetherian. Since $S$ is artinian, every prime is maximal, so $R$ is also
+   0-dimensional. By Akizuki, $R$ is artinian.
+ \end{proof}
+
+ \subsektion{\S 2. Going Down Theorem and Krull Dimension}
+ \begin{definition}
+   Let $Q(R) = \bigl(\C(R)\bigr)^{-1} R$ be the total ring of fractions of $R$. We say
+   that $R$ is \emph{integrally closed} if it is equal to its integral closure in $Q(R)$.
+   If $R$ is an integrally closed domain, then we say it is a \emph{normal domain}.
+ \end{definition}
+ \begin{remark}
+   Any localization of a normal domain is again a normal domain.
+ \end{remark}
+ \begin{proposition}
+   Any UFD is a normal domain.
+ \end{proposition}
+ \begin{proof}
+   Let $a/b$ be integral over $R$. We may assume $a/b$ is in lowest terms ($a$ and $b$
+   have no common prime divisors), with $b$ not a unit. Then we have
+   $(a/b)^n+c_1(a/b)^{n-1}+\cdots+ c_n=0$, so $a^n+c_1 a^{n-1}b+\cdots + c_nb^n=0$. It
+   follows that $b|a^n$, so some prime dividing $b$ divides $a$, a contradiction.
+ \end{proof}
+ \begin{lemma}
+   Let $R$ be a normal domain with $Q(R)=K$, let $L$ be a field extension of $K$, and let
+   $s\in L$ be algebraic over $K$ with minimal polynomial $f(x)=x^n+c_1x^{n-1}+\cdots
+   + c_n\in K[x]$. Given $I\< R$, $s$ is integral over $I$ if and only if $c_i\in \sqrt
+   I$ for all $i$. In particular, $s$ is integral over $R$ if and only if $f(x)\in R[x]$.
+ \end{lemma}
+ \begin{proof}
+   ($\Leftarrow$) Suppose $c_i \sqrt I$ for all $i$. Then $s$ is integral over $\sqrt I$,
+   and so integral over $I$.
+
+   ($\Rightarrow$) Assume $s$ is integral over $I$. Let $(x-s_1)\cdots (x-s_n)$ be a
+   complete factorization of $f$ is $\bbar K[x]$, say with $s_1=s$. Then $K(s_j)\cong
+   K(s)$ for each $j$, so each $s_j$ is integral over $I$ \anton{you can see this easier
+   because the minimal poly must divide the monic}. Each $c_j$ is an elementary symmetric
+   function in the $s_i$, so $c_j$ is integral over $I$. Since $R$ is integrally closed,
+   $c_j\in R$. Finally, the only elements of $R$ that are integral over $I$ are in $\sqrt
+   I$.
+ \end{proof}

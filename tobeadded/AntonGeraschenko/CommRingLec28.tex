@@ -1,0 +1,61 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{28}
+ \sektion{Lecture 28}
+
+ \begin{definition}
+   A ring $R$ is called \emph{good} (called \emph{property $\ast$} in the notes) if for
+   every non-unit $a\in R$, $\bigcap (a^i)=0$.
+ \end{definition}
+ ``good'' is a necessary condition for certain normality properties.
+ \begin{proposition}
+   $R$ is good if any of the following hold.
+   \begin{enumerate}
+     \item $R$ is a UFD.
+     \item $R$ is a noetherian domain.
+     \item $R$ is completely normal.
+     \item $R[[x]]$ is completely normal.
+   \end{enumerate}
+ \end{proposition}
+ \begin{proof}
+   1 and 2 we've done already \anton{}. Assume $R$ is a bad domain, so $0\neq d=\bigcap
+   (a^i)$ for some $a\in R$. Then $d(a^{-1})^i\in R$ for all $i$. Then $a^{-1}\not\in R$
+   is almost integral over $R$, contradicting complete normality.
+
+   Believe for the moment that there is an $f=x+b_2x^2+\cdots \in \ZZ[[x]]$ such that
+   $f^2-f+x=0$. Now replace $x$ by $\frac{x}{a^2}$. Then we have
+   $f(x/a^2)^2-f(x/a)+x/a^2=0$, so if we define $g:= a\cdot f(x/a^2)$, we have
+   $g^2-ag+x=0$, so $g$ is integral over $A=R[[x]]$ (even over $R[x]$). Note that $dg\in
+   A$ since $d$ ``clears'' the denominators, so $g\in Q{A}$. But $g\not\in A$, which we
+   can see by expanding it (we get a $1/a$ coefficient).
+
+   Finally, the $f$ above can be constructed by looking at the constraints on the $b_i$,
+   or solve with the quadratic equation ... you get catalan numbers as coefficients.
+ \end{proof}
+
+ picture
+ \[\xymatrix{
+  &R\ UFD \ar[d]\\
+  R\ cn\ar[r] \ar@/^/[rr] & R\ g & R\ n \ar@{.>}[l]|{\times}\\
+  R[[x]]\ cn \ar@{<->}[u] \ar[rr] &  & R[[x]]\ n \ar[lu] \ar[u]\\
+   & R\ ndom \ar[uu]
+ }\]
+
+ \begin{example}[a normal $R$ with $A=R[[x]]$ not normal]
+   Take $R_0=\QQ[x,y]\subseteq \QQ[x,y/x]\subseteq \QQ[x,y/x^2]\subseteq \cdots$, so
+   $R_i=\QQ[x,y/x^i]$. Consider $R= \bigcup R_i$. Each $R_i\cong \QQ[x,t]$ is normal,
+   from which it is easy to prove that $R$ is normal, but $x^i|y$ for all $i$, and $x$ is
+   not a unit. So $R$ is bad.
+ \end{example}
+ For another example, refine the $D+(x)$ idea. Take $D$ a normal domain, with
+ $D\subsetneq K=Q(D)$. Define $R= D+(x)\subseteq K[x]$.
+ \begin{proposition}
+   $R$ is normal and has complete integral closure $R^\dag = K[x]$ and is bad.
+ \end{proposition}
+ \begin{proof}
+   Suppose $g\in K(x)=Q(R)$ is integral over $R$, so $g^n+f_1g^{n-1}+\cdots + f_n=0$,
+   with $f_i\in R$. Evaluating at 0, we see that $g(0)$ is integral over $D$, so $g(0)\in
+   D$, so $g\in R$. Thus, $R$ is normal.
+
+   Take a non-unit $a\in D$, then $x/a^i\in R$ for all $i$, so $x\in \bigcap (a^i)$, so
+   $R$ is bad.
+ \end{proof}

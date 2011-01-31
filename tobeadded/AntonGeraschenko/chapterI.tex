@@ -1,0 +1,1932 @@
+\documentclass{article}
+\usepackage{amsmath,
+            latexsym,
+            amssymb}
+\usepackage[all]{xy}
+
+ \newcommand\<{\triangleleft}
+ \renewcommand{\a}{\ensuremath{\mathfrak{a}}}
+ \DeclareMathOperator{\ann}{ann}
+ \DeclareMathOperator{\ass}{Ass}
+ \DeclareMathOperator{\aut}{Aut}
+ \newcommand\C{\mathcal{C}}
+ \newcommand{\CC}{\ensuremath{\mathbb{C}}}
+ \newcommand{\D}{\ensuremath{\mathcal{D}}}
+ \DeclareMathOperator{\End}{End}
+ \newcommand{\F}{\ensuremath{\mathcal{F}}}
+ \newcommand{\FF}{\ensuremath{\mathbb{F}}}
+ \newcommand{\HH}{\ensuremath{\mathbb{H}}}
+ \let\hom\relax % kills the old hom
+ \DeclareMathOperator{\hom}{Hom}
+ \renewcommand{\labelitemi}{--}                    % changes the default bullet in itemize
+ \newcommand{\id}{\mathrm{Id}}
+ \DeclareMathOperator{\im}{im}
+ \newcommand{\m}{\ensuremath{\mathfrak{m}}}
+ \DeclareMathOperator{\Max}{Max}
+ \DeclareMathOperator{\Min}{Min}
+ \newcommand{\MM}{\ensuremath{\mathbb{M}}}
+ \DeclareMathOperator{\nil}{Nil}
+ \newcommand\p{\mathfrak{p}}
+ \renewcommand\P{\mathcal{P}}
+ \newcommand\q{\mathfrak{q}}
+ \newcommand{\QQ}{\ensuremath{\mathbb{Q}}}
+ \DeclareMathOperator{\rad}{rad}
+ \newcommand{\RR}{\ensuremath{\mathbb{R}}}
+ \newcommand{\smaltrix}[4]{\ensuremath{\left( %
+            \begin{smallmatrix} #1 & #2 \\ #3 & #4 \end{smallmatrix} \right)}}
+ \DeclareMathOperator{\spec}{Spec}
+ \DeclareMathOperator{\supp}{Supp}
+ \newcommand{\V}{\mathcal{V}}
+ \newcommand\Z{\mathcal{Z}}
+ \newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+
+ \openout0=\jobname solved.txt
+ \openout1=lastupdated.html
+ \newenvironment{exercise}[1]{\gdef\currentEx{#1}\begin{trivlist}\item[]%
+                \textbf{Exercise #1.} \it}{\end{trivlist}}
+ \makeatletter
+ \newenvironment{solution}[1]{\def\x{#1}\begin{trivlist}\item[]\hspace*{-.5em}[\x]}
+                {\hspace*{\fill} $\blacksquare$
+                \protected@write0{}{\currentEx, \x}
+                \end{trivlist}}
+ \makeatother
+
+\begin{document}
+
+ \write1{\today}
+ \closeout1
+
+ {\large \noindent Solutions for Chapter I. Updated \today.}
+ \begin{exercise}{I.1}
+   Give a proof for the fact (used in the proof of (1.1)) that any unipotent element in a
+   commutative ring is a unit. Does this work over a noncommutative ring?
+
+   Clarification: ``unipotent'' means ``unit plus a nilpotent''.
+ \end{exercise}
+ \begin{solution}{anton@math}
+   Assume $x=u+r$ is unipotent, where $uv=vu=1$ and $r$ is nilpotent. So for some $n$,
+   $0=(1-vx)^n=\sum_{i=0}^n \binom{n}{i}(-vx)^i$. Then $1 = x \cdot \sum_{i=1}^n \binom ni
+   v^i(-x)^{i-1}$ so $x$ is invertible.
+
+   The result is false over noncommutative rings. Let $R$ be a nonzero ring. Then
+   $\smaltrix 0110$ is a unit in $\MM_2(R)$, $\smaltrix 0{-1}00$ is nilpotent, but
+   $\smaltrix 0110 + \smaltrix 0{-1}00 = \smaltrix 0010$ is not a unit since its
+   determinant is not invertible.
+ \end{solution}
+
+ \begin{exercise}{I.2}
+   (Snapper) Show that $a_0 + a_1x + \cdots + a_n x^n$ is nilpotent in $R[x]$ if
+   and only if all $a_i$ are nilpotent in $R$; that is, $\nil (R[x])=(\nil R)[x]$. Show
+   that these are also equal to $\rad (R[x])$ by using Theorem 1.1.
+ \end{exercise}
+ \begin{solution}{anton@math}
+   Observation: if $a$ and $b$ are commuting ring elements, with $a^n=b^m=0$, then
+   $(a+b)^{n+m}=0$ (since every term in the expansion has a factor of either $a^n$ or
+   $b^m$). So the set of nilpotent elements in a commutative ring is closed under
+   addition.
+
+   If all of the $a_i$ are nilpotent, then $a_i x^i$ is nilpotent for all $i$, so
+   $a_0+a_1x+\cdots +a_nx^n$ is nilpotent by the observation. Conversely, if
+   $(a_0+a_1x+\cdots a_nx^n)^m=0$, then the leading term, $(a_n x^n)^m$, must be zero, so
+   $a_nx^n$ is nilpotent (and therefore $a_n$ is nilpotent). Then $a_0+a_1x+\cdots
+   a_{n-1}x^{n-1}$ is nilpotent by the observation (we've added $-a_nx^n$, which is
+   nilpotent). By induction on degree, the rest of the $a_i$ are nilpotent.
+
+   What is Theorem 1.1? Anyway, it is clear that $\nil (R[x])\subseteq \rad (R[x])$, so
+   we just need to show the reverse inclusion. If $f=a_0+a_1x+\cdots + a_nx^n$ is in
+   $\rad(R[x])$, then $1+xf$ is invertible. For any prime ideal $\mathfrak p\subseteq R$,
+   we get a homomorphism $R[x]\to (R/\mathfrak p) [x]$ by reducing the coefficients
+   modulo $\mathfrak p$, and the image of $1+xf$ must be invertible. But the only
+   invertible elements of $(R/\mathfrak p)[x]$ are constants because $R/\mathfrak p$ is a
+   domain (when you multiply non-constant polynomials, the leading terms cannot
+   cancel). Thus, the coefficients $a_i$ all lie in $\mathfrak p$. Since this is true for
+   every prime ideal, each $a_i$ is in the intersection of all primes, so it is
+   nilpotent. By the first part of the exercise, $f$ is nilpotent.
+ \end{solution}
+
+ \begin{exercise}{I.3} %% replace XXXX with the exercise number, like I.20
+    Prove that if $f=a_0+a_1x+a_2x^2+...+a_kx^k \in R[x]$ is
+    invertible, then $a_0$ is a unit and $a_1,...,a_k$ are nilpotent.
+ \end{exercise}
+
+ \begin{solution}{Soroosh}
+    First, notice that if $f$ is invertible in $R[x]$, $\alpha$ is a nilpotent
+    element, and $h$ is any polynomial in $R[x]$, then $f+\alpha g$ is also
+    invertible. In fact, in any commutative ring $S$ with have that if $u$ is
+    a unit, and $\nu$ is a nilpotent element, then $u+\nu$ is a unit as well,
+    since \[u^{-1}(1-\nu u^{-1}+\nu^2 u^{-2}-\dots \]
+    is a finite sum and the inverse of $u+\nu$. Therefore, without loss of
+    generality we can assume that none of the $a_i$'s are zero divisor,
+    and we'll try to show that $f$ is just a constant function.
+
+    Now, consider $f$ as an element in $R[[x]]$. Elements of $R[[x]]$ are
+    invertible if and only if their constant term $\alpha_0$ is
+    invertible. Therefore $a_0$ must be a unit in $R$. Assume without
+    loss of generality that $a_0=1$.
+    From now on assume that $f(x)=1+a_1x+\dots+a_nx^n$ with $a_n$ not
+    nilpotent. We will show that if $n>0$ then there is a contradiction.
+
+    Assume that $n > 0$.
+    Let \[g(x)=1/f(x)=\sum_{k=0}^\infty b_kx^k \] be the formal
+    inverse of $f$. By our assumption $g$ is a polynomial, and
+    hence there is an $K$ such that $b_k=0$ for all $k>K$. Assume
+    without loss of generality that $K$ is the smallest such value,
+    that is $b_K \neq 0$.
+    By expanding $g(x)f(x)=1$ we get that  $b_i$'s satisfy
+    the recurrence relation
+    \[ a_n b_i+a_{n-1}b_{i+1}+...+a_0 b_{i+n}=0, \]
+    for $i+n>0$.
+    This gives us
+    \[\begin{array}{ccccc
+    }
+        a_n b_{K}+a_{n-1}b_{K+1}+\dots+a_0 b_{n+K}&=& a_n b_K &=&  0 \\
+        a_n b_{K-1}+a_{n-1}b_{K}+\dots+a_0 b_{n-1+K}&=& a_n b_{K-1}+a_{n-1}b_K &=&  0 \\
+        \vdots &=& \vdots &=& \vdots \\
+        a_n b_{0}+a_{n-1}b_{1}+\dots+a_0 b_{n}&=& a_n b_0+a_{n-1}b_1+\dots+a_0b_n &=&  0.
+    \end{array}\]
+    We can write this in terms of a (lower triangular) matrix $A b = 0$ with
+    $b=(b_K, b_{K-1}, \dots, b_0)^T$, and $A=(\alpha_{ij})$ with
+    $\alpha_{ij}=a_{n-j+i}$. Now, doing row reduction, without using the
+    division we get that $a_n^{K+1}=0$, which implies $a_n$ is a nilpotent element,
+    contradicting our assumption. Therefore if we subtract away all the nilpotent
+    elements of $f$ we are left with a unit. That is
+    $a_0$ is a unit, and $a_1,\dots,a_n$ are all nilpotent elements.
+ \end{solution}
+  \begin{solution}{Shenghao Sun; shenghao@math}
+    Joel helped me out with the following argument. First, if $f\in U(R[x])$ then $a_{0}\in
+    U(R)$ because if $(a_{0}+a_{1}x+\cdots)(b_{0}+b_{1}x+\cdots)=1$ then $a_{0}b_{0}=1.$
+    Assume $a_{0}=1$ and let $g=1-f.$
+
+    Claim:if $A$ is an integral domain, then $g=0.$
+
+    Assume $(1+a_{1}x+\cdots+a_{n}x^{n})(1+b_{1}x+\cdots+b_{m}x^{m})=1,$ then $a_{n}b_{m}=0,$
+    but neither of them is $0,$ a contradiction.
+
+    Now let $A$ be a general commutative ring. For any prime ideal $\mathfrak{p}\subset A,$
+    since a ring homomorphism sends a unit to a unit, the reduction-mod-$\mathfrak{p}$ map
+    defines $U(A[x])\to U(\frac{A}{\mathfrak{p}}[x]),$ which sends $1-g$ to $1-\bar{g}.$
+    Since $\frac{A}{\mathfrak{p}}$ is an integral domain, $\bar{g}=0,$ which means
+    $a_{i}\in\mathfrak{p},$ for any prime $\mathfrak{p}.$ Therefore
+    $a_{i}\in\bigcap\mathfrak{p}=Nil(A),$ for all $i.$
+ \end{solution}
+
+ \begin{exercise}{I.4}
+   (1) Show that the Prime Avoidance Theorem does not apply if the $I_1$, \dots, $I_n$ in
+   $(1.3)$ are replaced by an infinite family of prime ideals.\\
+   (2) Show that the theorem applies without assuming any of the ideals $I_i$ to be
+   prime, but assuming that $A\< R$ and $R$ contains an infinite field.
+ \end{exercise}
+ \begin{solution}{anton@math}
+   (1) Let $R=\ZZ$ and $A=\{2,3,4,\dots\}$. Then $A$ is contained in the union of all
+   prime ideals, but is not contained in any one prime ideal. Gregory told me this
+   example.
+
+   (2) Let $k\subseteq R$ be an infinite field. We induct on $n$. If $n$ is 1 or 2, we
+   already have the theorem. For larger $n$, we may assume $A\not\subseteq I_1\cup \cdots
+   \hat I_j\cdots \cup I_n$ for each $j$, so there is some $a_j\in A \smallsetminus
+   (I_1\cup \cdots \hat I_j\cdots \cup I_n)$. Since $A$ is in $\bigcup I_j$, we must have
+   that $a_j\in I_j$. Now consider $a_1+ca_2\in A$, where $c$ is a non-zero element of
+   $k$. For each such $c$, we must have $a_1+ca_2\in I_{j(c)}$ for some $j(c)$. Note that
+   $j(c)$ is never 2, for otherwise we get $a_1\in I_2$. Since $k$ has an infinite number
+   of non-zero elements, there must be distinct elements $c,c'\in k$ such that $j(c)=j(c')$. That is,
+   $a_1+ca_2,a_1+c'a_2\in I_{j(c)}$. But then $(c-c')a_2\in I_{j(c)}$, and $(c-c')\in k$
+   is invertible, so $a_2\in I_{j(c)}$, which is a contradiction.
+ \end{solution}
+ \begin{exercise}{I.5}
+   Assume $R\neq 0$. If ${}_R M$ can be generated by $n$ elements, show that any set of
+   $n+1$ (or more) elements in $M$ is linearly dependent. (\textbf{Hint.} Reduceto the
+   case where $M\cong R^n$.)
+ \end{exercise}
+ \begin{solution}{anton@math}
+   First let's prove the result for $R^n$. Clearly if each set of size $n+1$ is
+   dependent, all larger sets are also dependent. If $\alpha_1,\dots, \alpha_{n+1}\in
+   R^n$, then we can make them the columns of a matrix $A$. Since $A$ is an $n\times
+   (n+1)$ matrix, its rank is at most $n$, so by the third theorem of McCoy, the columns
+   of $A$ are linearly dependent.
+
+   Now if $M$ is any module generated by $n$ elements, we have a surjection
+   $R^n\twoheadrightarrow M$. If $\alpha_1,\dots, \alpha_{n+1}\in M$, then take some preimages
+   $\hat \alpha_1,\dots,\hat\alpha_{n+1}$. By the preceding paragraph, these preimages
+   are dependent. A homomorphism preserves linear dependence, so the original
+   $\alpha_1,\dots, \alpha_{n+1}$ are dependent.
+ \end{solution}
+ \begin{exercise}{I.6} For $A\in\mathbb{M}_{n}\left(  R\right)  $ (where $R\neq0$),
+  show that $A$ is a left 0-divisor in $\mathbb{M}_{n}\left(  R\right)  $ iff $A$ is a
+  right 0-divisor, iff $\det\left(  A\right)  \in\mathcal{Z}\left( R\right)$.
+  \end{exercise}
+
+  \begin{solution}{Manuel Reyes; mreyes@math}
+  To begin, we show that $A$ is a left 0-divisor iff there
+  exists a nontrivial vector solution to $Av=0$. \ First, if such a solution $v\neq0$
+  exists, we may let $B\in\mathbb{M}_{n}\left(  R\right) \smallsetminus\left\{  0\right\}
+  $ be the matrix all of whose columns are $v$. \ Then clearly $AB=0$. \ Conversely,
+  suppose $AB=0$ with $B\in \mathbb{M}_{n}\left(  R\right)  \smallsetminus\left\{
+  0\right\}  $. \ Then $B$ must have a nonzero column, say $v$, and it follows that $Av=0$.
+  \ Thus $A$ is a left 0-divisor iff there exists a nontrivial solution to $Av=0$, iff
+  $\det\left(  A\right)  \in\mathcal{Z}\left(  R\right)  $. \
+
+  By a symmetric argument we have that $A$ is a right 0-divisor iff there exists
+  a nontrivial solution to $wA=0$, iff $\det\left(  A\right)  \in\mathcal{Z}%
+  \left(  R\right)  $.
+  \end{solution}
+
+ \begin{exercise}{I.7}
+   For $I_{1},\cdots,I_{n}\lhd R,$ show that $R=\bigoplus_{i}I_{i}$ iff there
+   exist idempotents $e_{1},\cdots,e_{n}$ with sum $1$ such that $e_{i}e_{j}=0$ for all
+   $i\neq j$ and $I_{i}=e_{i}R$ for all $i.$ In this case, show that each $I_{i}$ is a ring
+   with identity $e_{i},$ and $R\cong\prod_{i=1}^{n}I_{i}$ in the category of rings. Show
+   that any isomorphism of $R$ with a direct product of $n$ rings arises in this way.
+ \end{exercise}
+ \begin{solution}{Shenghao Sun; shenghao@math}
+   ($\Rightarrow$) Suppose
+   $R=\bigoplus_{i}I_{i}.$ Then $1$ can be written uniquely as $1=e_{1}+\cdots+e_{n},$ where
+   $e_{i}\in I_{i}.$ For any $i\neq j, \ e_{i}e_{j}\in I_{i}\cap I_{j}=0.$ Certainly
+   $e_{i}R\subset I_{i}.$ For any $x\in I_{i},\
+   x=x(e_{1}+\cdots+e_{n})=xe_{1}+\cdots+xe_{n},$ and $xe_{j}\in I_{j}$ for all $j.$ Since
+   $R$ is the direct sum of those ideals, have $xe_{j}=0$ for all $j\neq i$ and $x=xe_{i}\in
+   e_{i}R.$ Hence $I_{i}=e_{i}R.$ In particular $e_{i}^{2}=e_{i},$ so they are idempotents.
+
+   ($\Leftarrow$) Suppose we have idempotents $e_{i}$ with those conditions. Then take
+   $I_{i}=e_{i}R,$ and we will show $R=\bigoplus_{i}I_{i}.$ $I_{1}+\cdots +I_{n}=R$ because
+   $e_{1}+\cdots+e_{n}=1.$ Next we will show if there're two representations
+   $\sum_{i}x_{i}=\sum_{i}y_{i}$ with $x_{i},y_{i}\in I_{i},$ then $x_{i}=y_{i}$ for all
+   $i.$ Subtracting we reduce the problem to showing if $\sum_{i}x_{i} =0,$ then all
+   $x_{i}=0.$ Since $I_{i}=e_{i}R,$ say $x_{i}=e_{i}r_{i}$ for $r_{i}\in R.$
+   Multiplying by $e_{i_{0}},$ using $e_{i_{0}}e_{j}=\begin{cases}0,\ \text{if $i_{0}\neq j$,} \\
+   e_{i_{0}},\ \text{if $j=i_{0}$}\end{cases}$ we obtain $e_{i_{0}}r_{i_{0}}=0,$ so all
+   $x_{i}=0,$ and hence $R=\bigoplus_{i}I_{i}.$
+
+   In this case, $I_{i}$ is closed under addition and multiplication, and $xe_{i}=x$ for all
+   $x\in I_{i},$ and (obviously) multiplication is distributive over addition, so $I_{i}$ is
+   a ring with identity $e_{i}.$ In the category of rings, the product $\prod_{i}R_{i}$ of
+   rings $R_{i}$ is the cartesian product of those sets, with addition and multiplication
+   defined coordinate-wise, and the identity is $(1,\cdots,1).$ In our case addition is
+   operated coordinate-wise, and $1=e_{1}+\cdots+e_{n},$ as it should be. So it remains to
+   check multiplication. Each element $x$ in $R$ is given by its coordinates $r_{i}\in R$ in
+   the way $x=\sum_{i}e_{i}r_{i}.$ Using $e_{i}e_{j}=\begin{cases}0,\ \text{if $i\neq j$,}
+   \\ e_{i},\ \text{if $i=j.$}\end{cases}$ we have
+   $$(\sum_{i}e_{i}r_{i})(\sum_{i}e_{i}s_{i})=\sum_{i}e_{i}r_{i}s_{i},$$
+   as expected.
+
+   Now assume $R=\prod_{i}R_{i}$ for $n$ rings $R_{i}.$ Define $I_{i}= 0\times\cdots\times
+   R_{i}\times\cdots\times0=\{(0,\cdots,r_{i},\cdots,0)|r_{i} \in R_{i}\}\subset R.$ Then
+   each $I_{i}$ is an ideal in $R,$ generated by $e_{i}=(0,\cdots,1, \cdots,0),$ and these
+   $e_{i}$'s are orthogonal and idempotent.
+ \end{solution}
+ \begin{exercise}{I.8}
+     If $R=\bigoplus_{i=1}^n I_i$ as in Exer. 7, show that any $A\lhd R$ has
+     the form $\bigoplus_{i} A_i$ where $A_i \lhd I_i$ for all $i$. For
+     such an ideal $A$ show that $A\in \text{Spec}(R)$ iff for some $i$,
+     $A_i\in\text{Spec}(I_i)$ and $A_j = I_j$ for all $j\neq i$. Prove the same statement with
+     ``$\text{Spec}$`` replaced by ''$\text{Min}$`` and by ''$\text{Max}$``.
+ \end{exercise}
+ \begin{solution}{Lars Kindler; lars\_k@berkeley.edu}
+     For every $i$ let $e_i$ denote the element $e_i=(0,\ldots,0,1,0,\ldots,0)$ ($1$
+     at the $i$-th position) and write $A_i$ for the projection of $e_i A$ onto the $i$-th
+     component. Then we have $A=\bigoplus_{i=1}^n A_i$ since $e_i A\subset A$ for every $i$ and
+     every element $x\in A$ can be written as $x=\sum_i e_i x$.\\
+     Furthermore the $A_i$ are ideals in $I_i$: Since for $x,y\in A_i$ the corresponding
+     elements $(0,\ldots,0,x,0,\ldots,0)$ and $(0,\ldots,0,y,0,\ldots,0)$ are in $A$,
+     so is their sum. Projection shows that $x+y$ is in $A_i$. The same method shows, that $I_i
+     A_i=A_i$. So the $A_i$ are indeed ideals, als claimed.\\
+     If $A_i=I_i$ for all but exactly one $i$, say $i=1$, and $A_1$ is prime in $I_1$ then $A$ is
+     prime in $R$, since it clearly is an ideal and for $x,y\in R$ the product $xy$ is in $A$ if and only if $x_1 y_1 \in
+     A_1$, but this implies $x_1\in A_1$ or $y_1\in A_1$, so $x\in A$ or $y\in A$, since all the
+     other factors are $I_i$.\\
+     Conversely let $A$ be an arbitrary prime ideal of $R$, this implies $A\neq R$, so for some $i$ we have $A_i\neq
+     I_i$; without loss of generality we may assume $I_1\neq A_1$. Then $A_1$ is prime, for the
+     multiplication is componentwise and $A$ is prime. Now assume there is another $i$ with
+     $A_i\neq I_i$, say $i=2$. Let $x_1\in I_1\setminus A_1$ and $x_2\in I_2\setminus A_2$. Then the
+     elements $(x_1,0,\ldots)$ and $(0,x_2,0,\ldots)$ are both not in $A$, but their product is
+     $0$ and thus in $A$. This is a contradiction to the primality of $A$, so we indeed have
+     $A_i=I_i$ for all but one index $i$.\\
+     If $A$ is a minimal prime then so is $A_1$, since a strictly smaller prime of $I_1$
+     contained in $A_1$ would produce a prime ideal (as shown above) strictly contained in $A$.
+     If on the other hand $A_1$ is a minimal prime then $A:=A_1 \oplus I_2 \ldots \oplus I_n$ is
+     a minimal prime of $R$, because a strictly smaller prime would have a prime strictly smaller than
+     $A_1$ as its first direct summand. For the maximal case the argument is exactly the same.
+ \end{solution}
+
+ \begin{exercise}{I.9}
+     A ring $S\neq 0$ is called \emph{indecomposable} (or \emph{connected}) if it is not
+     isomorphic to a direct product of two nonzero rings. [By Ex. 7, this is equivalent to $S$
+     having only trivial idempotents ($e=e^2\in S \Rightarrow e\in \{0,1\}$).] If
+     $R=\bigoplus_{i=1}^n I_i = \bigoplus_{j=1}^m J_j$ where each $I_i, J_j$ is indecomposable
+     as a ring, show that $n=m$ and that, after a permutation of the indices, $I_i=J_i$ for all
+     $i$.
+ \end{exercise}
+ \begin{solution}{Lars Kindler; lars\_k@berkeley.edu}
+     We use Ex. 7: Let $E:=\left\{ e_1,\ldots,e_n \right\}$ and $F:=\left\{
+     f_1,\ldots,f_m \right\}$ be the sets of idempotents so that $I_i=e_i R$ and $J_j =
+     f_j R$ for all $i,j$. For every $i$ we can write $e_i=(x_1,\ldots,
+     x_m)\in\bigoplus_{j=1}^m J_j$, with $x_j\in J_j$ and idempotent. Since the $J_j$ are
+     all indecomposable, the $x_j$ are all trivial idempotents in $J_j$, so $e_i$ is the
+     sum of (different) elements of $F$, say $e_i=\sum_{k} f_k$. But since $f_k f_k' = 0$
+     for $k\neq k'$ we have $f_k\in \left(\sum_k f_k\right) R=e_i R = I_i$ for all $k$,
+     which implies, that there is actually only one summand in the sum $\sum_k f_k$,
+     since otherwise $I_i$ would not be indecomposable. Since all the $e_i$ different the
+     proposition follows.
+%    If e.g. $E$
+%    is properly contained in $F$, then for every $i$ there is a $j$, such that $I_i=e_i R =
+%    f_j R = J_j$, which implies $E=F$ (since otherwise some of the $J_j$ would be trivial
+%    which is wrong by hypothesis), and thus $n=m$ and $I_i=J_i$ for all $i$ after some permutation of the
+%    indices.\\
+%    If on the other hand neither of theses sets is properly contained in the other, then there
+%    is a nontrivial idempotent $e_i \in E\setminus F$, which can be written as
+%    $e_i=\sum_{j=1}^m x_j$, with $x_j\in J_j$ idempotent. Because of the indecomposability of
+%    the $J_j$ the $x_j$ are trivial idempotents in $J_j$, so $e_i$ is a sum of (different)
+%    elements of $F$.
+ \end{solution}
+
+ \begin{exercise}{I.10}
+   Show that not all rings are finite direct products of
+   indecomposable rings, but noetherian rings are.
+ \end{exercise}
+
+ \begin{solution}{David Brown, brownda@math}
+ Let $k$ be any field, and let $R = \prod _{i \in \mathbb{N}} k$.
+ Then
+ \[
+ R \cong k \times R.
+ \]
+ Suppose that $R$ were the finite direct product of indecomposable
+ rings
+ \[
+ R \cong \bigoplus_{i = 1}^{n} I_{i}.
+ \]
+ then we also would have
+ \[
+ R \cong k \times \bigoplus_{i = 1}^{n} I_{i},
+ \]
+ but this contradicts uniqueness of decomposition (Ex. I.9).\\
+
+ Now suppose that $R$ is not the finite direct product of
+ indecomposable rings. Then $R$ is necessairly decomposable, so
+ by Ex. I.7 we have
+ \[
+ R \cong R_{1} \times R_{1}', 1 = e_{1} + e_{1}'
+ \]
+ for some non-zero orthogonal idempotents
+ $e_{1}$ and $e_{1}'$. We can assume that $R_{1}$ decomposes
+ into $R_{2} \times R_{2}'$, with $e_{1} = e_{2} + e_{2}'$
+ and $R_{2}$ decomposable, and inductively set
+ \[
+ R_{i} \cong R_{i+1} \times R_{i+1}', e_{i} = e_{i+1} + e_{i+1}'.
+ \]
+ Now define the increasing chain of ideals
+ \[
+ I_{n} = \bigg<e_{i}' : i \leq n \bigg>.
+ \]
+ For all $n$, $I_{n+1} \neq I_{n}$. Indeed, we would then have
+ \[
+ e_{i+1}' = a_{1}e_{1}' + \cdots + a_{n}e_{n}',
+ \]
+ but multiplication by $e_{n+1}$ gives $e_{i+1}' = 0$, a contradiction.
+ We conclude that $R$ is not noetherian.
+ \end{solution}
+
+ \begin{exercise}{I.11}
+   Using the last exercise, show that a von Neumann regular ring is noetherian if and
+   only if it is a finite direct product of fields.
+ \end{exercise}
+ \begin{solution}{anton@math}
+   A finite direct product of fields is clearly noetherian and von Neumann regular.
+
+   By exercise I.10, a noetherian ring is a finite direct product of indecomposable
+   rings. If the ring is von Neumann regular, then each direct factor must be von Neumann
+   regular (since the equation $a=axa$ holds in each factor). So we must show that an
+   indecomposable von Neumann regular ring is a field. To see this, recall that in a von
+   Neumann regular ring, every element $a$ has a pseudo-inverse $x$, satisfying $a=axa$.
+   Then $xaxa=xa$, so $xa$ is idempotent. By indecomposability, $xa=0$ or 1. If $xa=0$,
+   then $a=axa=0$; if $xa=1$, then $a$ is invertible. This means that all non-zero
+   elements are invertible, so we are in a field.
+ \end{solution}
+
+ \begin{exercise}{I.12}
+  \begin{enumerate}
+   \item For an \emph{arbitrary} direct product $R=\prod_i R_i$,
+       show that $\nil(R)\subset \prod_i
+       \nil(R_i)$ and $\rad(R)=\prod_i\rad(R_i)$.
+   \item If each $R_i$ is reduced (resp. J-semisimple, von Neumann regular), prove the
+       same for $R$.
+   \item Show that the inclusion in the relation for the nilradicals in (1) cannot be
+       replaced by an equality relation in general.
+  \end{enumerate}
+ \end{exercise}
+ \begin{solution}{Lars Kindler, lars\_k@berkeley.edu}
+  \begin{enumerate}
+   \item Let $R=\prod_i R_i$ and $(x_i)_i$ an element of $\nil(R)$. Then there is a
+       $n\in \mathbb{N}$, such that $0=(x_i)_i^n=(x_i^n)$ so $(x_i)_i\in\prod_i
+       \nil(R_i)$ and $\nil(R)\subset \prod_i \nil(R_i)$.\\
+       We now observe that an element $(x_i)_i$ in $R=\prod_i R_i$ is
+       invertible in $R$ if and only if $x_i$ is invertible in every $R_i$.
+       $\rad(R)$ can be characterized as the set of elements $x=(x_i)_i\in R$ such that
+       $1+Rx\subset U(R)$. But $1+Rx=\prod_i \left(1+R_i x_i\right)$, so
+       $1+Rx\subset U(R)=\prod_i U(R_i)$ if and only if $1+R_i x_i \subset U(R_i)$
+       for every $i$
+       and thus  $x=(x_i)_i$ is in
+       $\rad(R)$ if and only if $x_i\in \rad(R_i)$ for every $i$.
+   \item $R_i$ is reduced for every $i$ if and only if $\nil(R_i)=(0)$, so by part 1 we
+       have $(0)=\prod_i \nil(R_i)\supset \nil(R)$. Similarily, if $R_i$ is
+       J-semisimple for every $i$ we have $\rad(R_i)=\left( 0 \right)$ for every
+       $i$, so $(0)=\prod_i\rad(R_i)=\rad(R)$, so $R$ is J-semisimple.\\
+       $R$ is von Neumann regular if for every $x\in R$ there is a $y\in R$ such
+       that $x=xyx$. Let $x=(x_i)_i\in R=\prod_i R_i$. If each $R_i$ is von
+       Neumann regular then for every $i$ we have a $y_i\in R_i$ with $x_i=x_i y_i
+       x_i$, so in $R$ we have $(x_i)_i=(x_i)_i(y_i)_i(x_i)_i$ and thus $R$ is von
+       Neumann regular.
+   \item Let $R$ be the product $\prod_{i\geq 2} R_i = \prod_{i\geq 2}k[x_i]/\left( x_i^i \right)$ for some
+       ring $k$. Then the element $(\overline{x_i})_i\in R$ is not nilpotent, since for every
+       $n\in \mathbb{N}$ we have $\overline{x_{n+1}}^n\neq 0$, but each
+       $\overline{x_i}$ is nilpotent in $R_i=k[x_i]/\left(x_i^i\right)$, so
+       $\nil(R)\subsetneq \prod_i \nil(R_i)$.
+  \end{enumerate}
+ \end{solution}
+
+ \begin{exercise}{I.13}
+  Show that the direct product of any finite family of semilocal rings is semilocal.  Do
+  the same with ``semilocal'' replaced by ``noetherian'', ``artinian'', ``0-dimensional'',
+  or ``PIR''.  For each of these cases, does the same conclusion hold for \emph{arbitrary}
+  direct products?
+ \end{exercise}
+
+ \begin{solution}{ecarter@math}
+   By induction, it suffices to show that each claim holds for direct products of two
+   rings.  First, we will show that any ideal $I$ of $R\times S$ has the form
+   $\a\times\mathfrak{b}$ for some $\a\< R$ and $\mathfrak{b}\< S$, both not
+   necessarily proper.  Given $I\< R\times S$, let
+   \[
+           \a=\{ a\in R\mid (a,s)\in I\;\text{for some}\; s\in S\}
+   \]
+   and
+   \[
+           \mathfrak{b} = \{b\in S\mid (r,b)\in I\;\text{for some}\; r\in R\}.
+   \]
+   Then if $a,a'\in\a$, there exist $s,s'\in S$ such that $(a,s),(a',s')\in I$,
+   so $(a+a',s+s')\in I$.  Also, if $r\in R$, $(ra,s)=(r,1)\cdot (a,s)\in I$, so
+   $\a\< R$.  Similarly, $\mathfrak{b}\< S$.  Now, let $a\in\a$ and
+   $b\in\mathfrak{b}$.  Then there exist $r\in R$ and $s\in S$ such that
+   $(a,s),(r,b)\in I$.  Then
+   \[
+           (a,b) = (a,s)\cdot (1,0) + (r,b)\cdot (0,1) \in I.
+   \]
+   Therefore $I=\a\times\mathfrak{b}$.
+
+   Let $R$ and $S$ be semilocal.  Every maximal ideal of $R\times S$ has the form
+   $\m\times S$ for some maximal $\m\< R$ or $R\times\mathfrak{n}$ for some maximal
+   $\mathfrak{n}\< S$.  There are finitely many of each type, so $R\times S$ is
+   semilocal.
+
+   Let $R$ and $S$ be noetherian, and let
+   \[
+           \a_0\times\mathfrak{b}_0
+                   \subseteq \a_1\times\mathfrak{b}_1
+                   \subseteq\cdots
+   \]
+   be an increasing chain of ideals in $R\times S$.  The chains
+   $\a_0\subseteq\a_1\subseteq\cdots$ and
+   $\mathfrak{b}_0\subseteq\mathfrak{b}_1\subseteq\cdots$ both stabilize,
+   so the chain of ideals in $R\times S$ stabilizes as well.  Therefore $R\times S$ is
+   noetherian.
+
+   Similarly, if $R$ and $S$ are both artinian, then $R\times S$ is also artinian.
+
+   Let $R$ and $S$ be 0-dimensional rings.  Let $\a\times\mathfrak{b}\< R\times S$ be
+   a prime ideal.  Then $(1,0)\cdot (0,1)=(0,0)\in\a\times\mathfrak{b}$, so either
+   $1\in\a$ or $1\in\mathfrak{b}$.  Suppose $1\in\mathfrak{b}$.  If $(r,1)$ and
+   $(r',1)$ are such that $(r,1)\cdot (r',1)=(rr',1)\in\a\times\mathfrak{b}$, then
+   either $(r,1)$ or $(r',1)$ is in $\a\times\mathfrak{b}$.  Therefore $\a$ is a
+   prime ideal, and hence maximal since $R$ is 0-dimensional.  Similarly, if
+   $1\in\a$, then $\mathfrak{b}$ is a prime ideal, and hence maximal.  In both cases,
+   $\a\times\mathfrak{b}$ is maximal, so $R\times S$ is 0-dimensional.
+
+   Let $R$ and $S$ be PIRs.  Then any ideal $(a)\times (b)$ is generated by $(a,b)$,
+   so $R\times S$ is also a PIR.
+
+   An infinite product of semilocal rings can fail to be semilocal, as demonstrated
+   by $R=k\times k\times\cdots$, which has a maximal ideal for each copy of $k$
+   consisting of all elements of $R$ with the corresponding value being equal to 0.
+   This example also shows that an infinite direct product of noetherian rings can
+   fail to be noetherian, since we have the infinite ascending chain of ideals
+   \[
+           \a_i = \{ (b_1,b_2,\dots) \mid b_j=0\;\forall j\geq i\}.
+   \]
+   This ring also has an infinite descending chain of ideals
+   \[
+           \mathfrak{b}_i = \{ (c_1,c_2,\dots) \mid c_j=0\;\forall j\leq i\},
+   \]
+   so an infinite direct product of artinian rings can fail to be artinian. The ring
+   $R$ contains an ideal $k\oplus k\oplus\cdots$ which is not principal, since any
+   element of this ideal has only zeroes past a certain point, while there are other
+   elements of the ideal which do not have only zeroes past that point. Therefore an
+   infinite direct product of PIRs can fail to be a PIR.
+
+   Any 0-dimensional ring is rad-nil.  Consider the example $R=\prod_{i\geq 2}
+   R_i=\prod_{i\geq 2} k[x_i]/(x_i^i)$ from exercise 12. Each $R_i$ has a unique
+   prime $(x_i)$, so $\rad(R_i)=\nil(R_i)$, and $\rad(R)=\prod_{i\geq 2}\rad(R_i)$ by
+   exercise 12.  However,
+   \[
+       \nil(R)
+               \neq \prod_{i\geq 2}\nil(R_i)
+               = \prod_{i\geq 2}\rad(R_i)
+               = \rad(R),
+   \]
+   so this is an example of an infinite direct product of 0-dimensional rings failing
+   to be 0-dimensional.
+ \end{solution}
+
+ \begin{exercise}{I.14}
+     Show that $0$ is the only idempotent contained in $\text{rad}(R)$.
+     Deduce from this that any local ring is indecomposable.
+ \end{exercise}
+ \begin{solution}{Lars Kindler; lars\_k@berkeley.edu}
+     Let $x\in \text{rad}(R)$ be an idempotent. Then we have $x(1-x)=0$, but $1-x$ is a unit, so
+     $x=0$. If $R$ is a local ring with maximal ideal $\mathfrak{m}$ then the only idempotent
+     which is not a unit is $0$, since every non-invertible element is contained in
+     $\mathfrak{m}=\text{rad}(R)$. Exercise 7 now implies that $R$ is indecomposable.
+ \end{solution}
+
+  \begin{exercise}{I.15} Let $R$ be a power series ring $A[[x_{1},\cdots,x_{n}]],$
+    where $A$ is a ring with Jacobson radical $J.$ Show that
+    $rad(R)=J+\sum_{i=1}^{n}Rx_{i}.$ Deduce from this that, if $A$ is local, so is $R.$
+  \end{exercise}
+  \begin{solution}{Shenghao Sun; shenghao@math} $1+J\subset U(A)\subset U(R),$ so $J\subset
+    rad(R).$ For any $r\in R, h=1+rx_{i}+(rx_{i})^{2}+\cdots$ is Cauchy because
+    $(rx_{i})^{n}\subset(x_{1} ,\cdots,x_{n})^{n}R,$ and $R$ is complete, so $h$ is
+    convergent in $R$ and $h=\frac{1}{1-rx_{i}}.$ This shows $1+Rx_{i}\subset U(R),$ so
+    $Rx_{i}\subset rad(R).$ Hence $J+\sum_{i}Rx_{i}\subset rad(R).$ Since $a\in A,\ af=1$
+    for some $f\in R\Rightarrow f\in A,$ we have $U(R)\cap A=U(A).$ For any $f\in R$ we
+    have $f-f(0,\cdots,0)\in(x_{1},\cdots,x_{n}).$ Now let $f\in rad(R).$ For any $a\in A,\
+    1+af\in U(R).$ Now $1+af= 1+af(\underline{0})+a(f-f(\underline{0}))$ is a unit, and
+    $a(f-f(\underline{0}))\in (x_{1},\cdots,x_{n})\subset rad(R),$ so if we subtract we get
+    a unit $1+af(\underline{0})$ in $R,$ which is a scalar, so it's a unit in $A.$ Then
+    $1+f(\underline{0})A\subset U(A)\Rightarrow f(\underline{0})\in rad(A)=J,$ so
+    $f=f(\underline{0})+(f-f(\underline{0}))\in J+(x_{1},\cdots,x_{n}).$ This completes the
+    proof that $rad(R)=J+(x_{1},\cdots,x_{n}).$  A ring $A$ is local iff $rad(A)$ is
+    maximal. Note that $\frac{R}{\sum_{i}Rx_{i}}= A.$ So if $A$ is local, then
+    $\frac{R}{rad(R)}=\frac{R}{rad(A)+\sum_{i}Rx_{i}}= \frac{A}{rad(A)}$ is a field, so
+    $rad(R)$ is maximal in $R$ and therefore $R$ is also local.
+  \end{solution}
+
+ \begin{exercise}{I.16}
+  If $f:R\to S$ is a surjective ring homomorphism, show that $f(\rad R)\subseteq \rad S$.  Show
+  that equality holds if $\ker(f)\subseteq\rad(R)$, or if $R$ is a semilocal ring.  Give an example where
+  the equality fails.
+ \end{exercise}
+
+ \begin{solution}{ecarter@math}
+   Since $f$ is surjective, $S\cong R/\a$, where $\a=\ker(f)$.  Then the maximal ideals of
+   $R/\a$ are the maximal ideals of $R$ which contain $\a$.
+   In this notation, $f(\rad R)=\rad R/(\rad R\cap\a)$.
+   Since $\rad R$ is a subset of the intersection of all maximal ideals of $R$ which contain $\a$,
+   $f(\rad R)\subseteq\rad S$.
+
+   If $\a=\ker(f)\subseteq\rad(R)$, the the intersection of all maximal ideal of $R$ is the same as the
+   intersection of all maximal ideals of $R$ containing $\a$, so
+   $f(\rad R)=\rad R/(\rad R\cap\a)=\rad R/\a=\rad S$.
+
+   If $R$ is semilocal, let $\m_1,\dots,\m_s$ be the maximal ideals of $R$.  If all of these maximal ideal
+   contain $\a$, then $f(\rad R)=\rad S$ be the above argument.  By reordering if necessary, suppose
+   $\m_1,\dots,\m_r$ do not contain $\a$, while $\m_{r+1},\dots,\m_s$ do.  For each $1\leq i\leq r$,
+   $\m_i+\a=R$, so that $\m_i$ generated $R/\a$.  Therefore,
+   \begin{align*}
+    \rad R/(\rad R\cap\a)
+        &= (\m_1\cdots\m_s)/(\m_1\cdots\m_s\cap\a) \\
+        &= (\m_{r+1}\cdots\m_s)/(\m_{r+1}\cdots\m_s\cap\a)
+   \end{align*}
+   which is equal to $\rad S$, since $\m_{r+1},\dots,\m_s$ are exactly the ideals of $R$ containing $\a$.
+
+   Let $R=k[x]$ and $S=k[x]/(x^2)$, with $f:k[x]\to k[x]/(x^2)$ being the obvious quotient map.  Then
+   $\rad R=0$ so that $f(\rad R)=0$, but $\rad S=(x)/(x^2)$.
+ \end{solution}
+
+  \begin{exercise}{I.17} For any $I\lhd R$ lying in $rad(R)$ such that $R/I$
+    is J-semisimple, show that $I=rad(R).$
+  \end{exercise}
+  \begin{solution}{Shenghao Sun; shenghao@math} By Ex.16 we know that
+    $rad(R/I)=rad(R)/I$ since $I=\ker(R\twoheadrightarrow R/I) \subset rad(R).$ Then $R/I$
+    being Jacobson-semisimple $\Rightarrow\ rad(R/I)=0 \Rightarrow I=rad(R).$
+  \end{solution}
+
+ \begin{exercise}{I.18}
+   For any ring $R$, show that $\operatorname*{rad}(  R) \subseteq\{  r\in R:r+U( R)
+   \subseteq U(  R) \}  $. Is this an equality?
+ \end{exercise}
+ \begin{solution}{Manuel Reyes, mreyes@math}
+   Let $r\in\rad(  R)  $. Then for any $u\in U(
+   R)  $, we have $r+u=u(  1+u^{-1}r)  $. Now $1+u^{-1}%
+   r\in1+\rad(  R)  \subseteq U(  R)  $. This means that $r+u$ is a product of two units and
+   thus is itself a unit. This gives the desired inclusion.
+
+   The inclusion is not an equality. As a counterexample, let $A$ be a reduced ring with
+   nonzero radical, and let $a\in\rad A\smallsetminus \{  0\}  $. (More specifically,
+   according to Exercise I.15 we may let $A=k[  [  x] ] $, where $k$ is a field, and let
+   $a=x$.) Let $R=A[  y]  $ be the polynomial ring in one variable over $A$.  Because $A$ is
+   reduced, Exercise I.3 shows that $U( R) =U( A)  $. The fact that
+   $a\in\operatorname*{rad}A$ implies that
+   \[
+   a+U(  R)  =a+U(  A)  \subseteq U(  A)
+   =U(  R)  \text{,}%
+   \]
+   so $a\in\{  r\in R:r+U(  R)  \subseteq U(  R) \}  $. However $1+ay\notin U( A) =U( R) $,
+   and $1+Ra\nsubseteq U( R)  $ implies that $a\notin \rad( R)  $. Hence the inclusion is
+   strict in this case.
+ \end{solution}
+
+ \begin{exercise}{I.19}
+   Show that any ring $R$ with $\left\vert U\left(  R\right)
+   \right\vert <\infty$ is rad-nil. \ Deduce from this that any reduced ring $R$ with
+   $\left\vert U\left(  R\right)  \right\vert <\infty$ is Jacobson semisimple.
+ \end{exercise}
+
+ \begin{solution}{Manuel Reyes; mreyes@math}
+   Let $r\in\operatorname*{rad}\left(  R\right)$. Then for all positive integers $m$,
+   $1+r^{m}\in1+\operatorname*{rad}\left( R\right) \subseteq U\left(  R\right)  $. \
+   Because $U\left(  R\right)  $ is finite, there exist $n,k>0$ such that
+   $1+r^{n}=1+r^{n+k}$. \ Taking the difference of each side of the equation gives
+   $r^{n}\left(  1-r^{k}\right) =r^{n}-r^{n+k}=0$. \ But
+   $1-r^{k}\in1+\operatorname*{rad}\left(  R\right) \subseteq U\left(  R\right)  $, so
+   the previous equation implies that $r^{n}=0$. \ Thus $R$ is rad-nil.
+
+   Now for any reduced ring $R$ with $\left\vert U\left(  R\right)  \right\vert <\infty$, we
+   have $\operatorname*{rad}\left(  R\right)  \subseteq \operatorname*{Nil}\left(  R\right)
+   =0$. \ So $R$ is $J$-semisimple.
+ \end{solution}
+
+ \begin{exercise}{I.20}
+   Suppose $\mathcal{Z}\left(  R\right)  \subseteq
+   \operatorname*{rad}\left(  R\right)  $, and $aR+bR=dR$, where $a,b,d\in R$ and
+   $d\neq0$. \ If $a=dx$ and $b=dy$, show that $xR+yR=R$.
+ \end{exercise}
+
+ \begin{solution}{Manuel Reyes; mreyes@math.berkeley.edu}
+   Because $aR+bR=dR$, there exist $m,n\in R$ with $am+bn=d$. \ Then%
+   \begin{align*}
+   d  & =am+bn\\
+   & =dxm+dyn\text{.}%
+   \end{align*}
+   This implies that $d\left(  xm+yn-1\right)  =0$. \ Because $d\not =0$ we have
+   $\alpha:=xm+yn-1\in\mathcal{Z}\left(  R\right)  \subseteq\operatorname*{rad}%
+   \left(  R\right)  $. \ But then
+   \[
+   xm+yn=1+\alpha\in1+\operatorname*{rad}\left(  R\right)  \subseteq U\left(
+   R\right)  \text{.}%
+   \]
+   It follows that $xR+yR=R$. \
+ \end{solution}
+
+ \begin{exercise}{I.21}
+   Show that a reduced ring $R \neq 0$ that is not a domain has at
+   least two minimal prime ideals.
+ \end{exercise}
+
+ \begin{solution}{David Brown, brownda@math}
+   Suppose that $R$ is a reduced domain with only one minimal prime
+   $\q$. Then
+   \[
+   (0) = \nil R =  \bigcap_{\p \in \spec R} \p = \bigcap_{\p
+   \text{ minimal}} \p
+   = \q.
+   \]
+   Thus $(0)$ is prime, i.e. $R$ is an integral domain. We conclude that
+   $R$ has at least two minimal primes.
+ \end{solution}
+
+ \begin{exercise}{I.22}
+   For $I,J\< R$, show that $\sqrt I\cap \sqrt J = \sqrt{I\cap J}$. How much would you
+   bet on this equaling $\sqrt{IJ}$, or $\sqrt I \sqrt J$?
+ \end{exercise}
+ \begin{solution}{anton@math}
+   The radical of an ideal is the intersection of primes containing it. Given a prime
+   $\p$, I claim that the following are equivalent:
+   \begin{enumerate}
+     \item[1.] $IJ\subseteq \p$
+     \item[2.] $I\subseteq \p$ or $J\subseteq \p$
+     \item[3.] $I\cap J \subseteq \p$
+   \end{enumerate}
+   $1\Rightarrow 2$ is the definition of prime ideal. $2\Rightarrow 3$ is obvious.
+   $3\Rightarrow 1$ follows from the fact that $IJ\subseteq I\cap J$. It follows that
+   $\sqrt I \cap \sqrt J = \sqrt{I\cap J} = \sqrt{IJ}$.
+
+   However, $\sqrt I \cap \sqrt J\neq \sqrt I \sqrt J$ in general. For example, let $I=J$
+   be a radical ideal not equal to its square (like $(2)\subseteq \ZZ$). Then $\sqrt I
+   \cap \sqrt J=I$, but $\sqrt I \sqrt J = I^2$.
+ \end{solution}
+
+ \begin{exercise}{I.23}
+  Show that, with respect to the inclusion relation, the set $\mathcal{F}$ of
+  radical ideals in a ring forms a complete lattice with $0$ and $1$. (This
+  means that, in the poset $\mathcal{F}$, any subset has a "sup" and an "inf",
+  and $\mathcal{F}$ has a largest element and a smallest element.) Show that
+  every element in $\mathcal{F}$ is the "inf" of a set of prime ideals. Is $%
+  \mathcal{F}$ closed with respect to ideal sums and ideal products?
+ \end{exercise}
+
+ \begin{solution}{Manuel Reyes, mreyes@math}
+  Let $R$ be the ring in question. Let $\left\{ \mathfrak{a}_{i}:i\in
+  I\right\} \subseteq \mathcal{F}$ be a collection of radical ideals, and let $%
+  \mathfrak{b}\in \mathcal{F}$. Suppose that $\mathfrak{b}\subseteq
+  \mathfrak{a}_{i}$ for all $i$. Then $\mathfrak{b}\subseteq \bigcap
+  \mathfrak{a}_{i}$, and $\bigcap \mathfrak{a}_{i}\subseteq \mathfrak{a}_{j}$
+  for all $j$. Because each $\mathfrak{a}_{i}$ is an intersection of prime
+  ideals, so is $\bigcap \mathfrak{a}_{i}$. Hence $\bigcap \mathfrak{a}%
+  _{i}\in \mathcal{F}$ and we may set the inf of the family $\left\{ \mathfrak{%
+  a}_{i}\right\} $ to be
+  \[
+  \bigwedge_{i\in I}\mathfrak{a}_{i}:=\bigcap_{i\in I}\mathfrak{a}_{i}\text{.}
+  \]
+  Now suppose that $\mathfrak{a}_{i}\subseteq \mathfrak{b}$ for all $i$.
+  Then $\sum \mathfrak{a}_{i}\subseteq \mathfrak{b}$, which implies that $%
+  \sqrt{\sum \mathfrak{a}_{i}}\subseteq \sqrt{\mathfrak{b}}=\mathfrak{b}$.
+  Clearly $a_{j}\subseteq \sqrt{\sum a_{i}}$ for all $j$. Because $\sqrt{%
+  \sum \mathfrak{a}_{i}}\in \mathcal{F}$, we may set the sup of the family to
+  be
+  \[
+  \bigvee_{i\in I}a_{i}:=\sqrt{\sum_{i\in I}\mathfrak{a}_{i}}\text{.}
+  \]%
+  Finally, $\mathcal{F}$ has $\nil\left( R\right) $ as a smallest
+  element and has $R$ as a largest element. So $\mathcal{F}$ is a complete
+  lattice. Now for any $\mathfrak{a}\in \mathcal{F}$, we have $\mathcal{V}%
+  \left( \mathfrak{a}\right) =\left\{ \mathfrak{p}\in \spec R:%
+  \mathfrak{p}\supseteq \mathfrak{a}\right\} \subseteq \mathcal{F}$. So
+  \[
+  \mathfrak{a}=\sqrt{\mathfrak{a}}=\bigcap_{\mathfrak{p}\in V\left( \mathfrak{a%
+  }\right) }\mathfrak{p}=\bigwedge_{p\in V\left( a\right) }\mathfrak{p}
+  \]%
+  is the inf of a set of of prime ideals in $\mathcal{F}$ (note that, by
+  convention, the empty intersection is equal to $R$).
+
+  In general, the set $\mathcal{F}$ is not closed with respect to ideal sums
+  and ideal products. Taking $R=k\left[ x,y\right] $ for some field $k$, the
+  ideals $\left( y\right) $ and $\left( x^{2}-y\right) $ are both prime, hence
+  radical. However, the sum $\left( y\right) +\left( x^{2}-y\right) =\left(
+  x^{2},y\right) $ and the product $\left( x\right) ^{2}=\left( x^{2}\right) $
+  are not radical ideals because they both contain $x^{2}$ while neither of
+  them contains $x$.
+ \end{solution}
+
+ \begin{exercise}{I.24}
+   For a ring $R$, show that the following are equivalent: (1) $R$ is local; (2) $R/\rad
+   (R)$ is a field; (3) $R\smallsetminus U(R)$ is an ideal of $R$; (4) $R\smallsetminus
+   U(R)$ is an additive group; (5) $R\neq 0$ and for any $n$, $a_1+\cdots + a_n\in U(R)$
+   implies that some $a_i\in U(R)$; (6) $R\neq 0$ and $a+b\in U(R)\Rightarrow a\in U(R)$
+   or $b\in U(R)$.
+ \end{exercise}
+ \begin{solution}{anton@math}\\
+   ($1\Leftrightarrow 2$) $R$ is local $\Leftrightarrow$ $\rad R$ is a maximal ideal
+   $\Leftrightarrow$ $R/\rad R$ is a field.\\
+   ($1\Leftrightarrow 3$) $R\smallsetminus U(R)$ is the union of all maximal ideals in
+   $R$, which is an ideal if and only if there is a single maximal ideal.\\
+   ($1\Rightarrow 4$) $R\smallsetminus U(R)$ is the maximal ideal, so it is an
+   additive group.\\
+   ($4\Rightarrow 5$) If $R\smallsetminus U(R)$ is an additive group, a sum of non-units
+   will always be a non-unit.\\
+   ($5\Rightarrow 6$) Take $n=2$.\\
+   ($6\Rightarrow 3$) By (6), the sum of non-units is a non-unit, and multiplying a
+   non-unit by something cannot ever make it a unit, so $R\smallsetminus U(R)$ is an
+   ideal.
+ \end{solution}
+
+ \begin{exercise}{I.25}
+   For a ring $R$, show that the following are equivalent:(0) $|\spec (R)|=1$; (1) $R$ is
+   local and rad-nil; (2) $R/\nil (R)$ is a field; (3) $R\smallsetminus U(R) = \nil (R)$.
+   (Recall from (A), (B) in (5.3) that such rings $R$ need not be noetherian.)
+ \end{exercise}
+ \begin{solution}{anton@math}\\
+   ($0\Rightarrow 1$) If $R$ has a unique prime ideal (which is then the only maximal
+   ideal), then the intersection of primes ($\nil R$) is the same as the intersection of
+   maximal ideals ($\rad R$).\\
+   ($1\Rightarrow 2$) If $R$ is local, with maximal ideal $\m$, and the intersection of
+   prime ideals ($\nil R$) is $\rad R$ ($=\m$), then $R/\nil R = R/\m$ is a field.\\
+   ($2\Rightarrow 3$) If $R/\nil R$ is a field, $\nil R$ is a maximal ideal, and
+   therefore the only prime ideal, so it is the complement of $U(R)$.\\
+   ($3\Rightarrow 0$) $R\smallsetminus U(R)=\nil R$ is the union of maximal ideals, which
+   is an ideal only if it is the unique maximal ideal. Since $\nil R$ is the intersection
+   of primes, it is also the unique prime ideal of $R$.
+ \end{solution}
+
+ \begin{exercise}{I.26}
+   For any integral domain $k$, show that $k[x_1, \dots, x_n]/(x_1\cdot \dots \cdot x_n)$ is
+   a reduced ring.
+ \end{exercise}
+ \begin{solution}{derman@math}
+   \paragraph{Remark:}  I think that $k$ reduced is sufficient.
+   It suffices to show that $I=(x_1\cdot \dots \cdot x_n)$ is radical in $k[x_1, \dots,
+   x_n]$.  Note that since $I$ is a monomial ideal, a polynomial $f\in I$ if and only each
+   monomial which appears with a nonzero coefficient in $f$ is divisible by $x_1\cdot \dots
+   \cdot x_n$. To show that $I=\sqrt{I}$ we take an arbitrary$ f\in \sqrt{I}$ and induct on
+   the number of terms of $f$.  If $f$ is a single term $f=am, a\in k, m$ a monomial then
+   $a^nm^n\in I$.  But since $a^n\ne 0$ as $k$ is reduced, we have $x_1\cdot \dots \cdot
+   x_n$ divides $m^n$ and thus it also divides $m$.  So $am\in I$.
+
+   For the induction step, place any term order on the monomials of $k[x_1, \dots, x_n]$.
+   Let $a_\nu m_\nu$ be the leading term of $f$, where $a_\nu\in k$ and $m_\nu$ a monomial.
+   Then the leading term of $f^n$ is $(a_\nu)^n(m_\nu)^n\ne 0$ because $k$ is reduced.  If
+   $f^n\in I$ thent $(m_\nu)^n$ is divisible by $x_1\cdot \dots \cdot x_n$ and thus $m_\nu$
+   is also divisible by $x_1\cdot \dots \cdot x_n$.  Then we have that $(f-a_\nu
+   m_\nu)^n=\sum_{i=0}^n (-1)^if^{n-i}(a_\nu m_\nu)^i=f^n-\m_\nu\cdot (\text{other
+   stuff})\in I$ as $f^n\in I$ and $m_\nu \in I$.  But $(f-a_\nu m_\nu)$ has one less term
+   than $f$, and thus by induction hypothesis, $(f-a_\nu m_\nu)^n\in I \Rightarrow (f-a_\nu
+   m_\nu)\in I \Rightarrow f\in I$.
+ \end{solution}
+ \begin{solution}{dustin@math}
+   We will prove that the ideal $I = (x_1\cdots x_n)$ is reduced in the ring $R=k[x_1,
+   \ldots x_n]$ by showing that it is the intersection of prime ideals.
+
+   First I claim that the ideals $(x_i)$ are prime for each $i$. The quotient $R/(x_i)$ is
+   isomorphic to $k[x_1,\ldots,\hat{x_i},\ldots, x_n]$ by the substitution $x_i \mapsto 0$.
+   Thus $R/(x_i)$ is a domain, so $(x_i)$ is prime.
+
+   Second I claim that $I$ is the intersection of the $(x_i)$ for $1\leq i \leq n$. If $r
+   \in I$, then clearly $r \in (x_i)$ for all $i$. Conversely, suppose $r$ is in the
+   intersection of all the $(x_i)$. We can write $r$ as the sum of monomials, and for each
+   $i$, each monomial has a factor of $x_i$. But this means that each monomial must have a
+   factor of $x_1 \cdots x_n$, so $r$ is divisible by $x_1\cdots x_n$, so $r \in I$. Thus,
+   $I$ is the intersection of prime ideals, so it is reduced.
+ \end{solution}
+
+ \begin{exercise}{I.27}
+   Show that, for any noetherian ring $R, Nil(R)$ is nilpotent.
+ \end{exercise}
+ \begin{solution}{derman@math}
+    First note that $Nil(R)$ is an ideal of $R$.  (If $a^{n}=0$ and $b^m=0$ then
+    $(a+b)^{n+m}=0$.  Also $(ra)^n=r^na^n=0$ for all $r\in R, a\in Nil(R)$.)
+
+    Since $R$ is Noetherian, we can choose $f_1, \dots f_s$ which generate $Nil(R)$, and
+    where $f_i^{e_i}=0$.  Then for any $g=\sum a_if_i \in Nil(R)$ it follows that $g^{\sum
+    e_i}=0$.  This is because of the pigeonhole principle.  Namely, since $g^{\sum e_i}$ can
+    be written as a sum consisting of terms that look like $(a_1f_1)^{b_1}\cdot \dots
+    (a_nf_n)^{b_n}$ where $\sum b_i=\sum e_i$ it follows that at least one of the $b_i\geq
+    e_i$ and thus this whole term equals zero. Thus $Nil(R)$ is nilpotent.
+ \end{solution}
+ \begin{exercise}{I.28}
+ Show that an artinian ring $R$ is local iff $\mathcal Z(R) = \nil(R)$.
+ \end{exercise}
+ \begin{solution}{dustin@math}
+ First, I claim that every element of any artinian ring $R$ is either a zero divisor or a
+ unit. Let $r \in R$. Consider the descending chain of ideals $(r) \supset (r^2) \supset
+ \cdots$. By the artinian condition, this chain stabilizes, so $(r^n) = (r^{n+1})$ for
+ some $n$. This means that there exists $s \in R$ such that $r^{n+1}s = r^n$, or
+ equivalently $r^n(rs - 1) = 0$. If $rs - 1 = 0$, then $r$ is a unit. If not, then $rs - 1
+ \neq 0$. In this case, for some $k > 0$, $x = (rs-1)r^{k-1}$ is non-zero, but $rx = 0$,
+ so $r$ is a zero divisor.
+
+ Let $R$ be a local artinian ring. Let $\mathfrak p$ be any prime ideal in $R$. Because
+ the ideals of $R/\mathfrak p$ lift to ideals in $R$, preserving inclusion and equality,
+ $R/\mathfrak p$ is also artinian. Since $\mathfrak p$ is prime, $R/\mathfrak p$ is a
+ domain, so $\mathcal Z(R/\mathfrak p) = \{0\}$. By the previous paragraph, $R/\mathfrak
+ p$ must be a field, so $\mathfrak p$ is in fact a maximal ideal. Since $R$ is local,
+ there is therefore only a single prime ideal and so $\nil(R)$ is exactly the unique
+ maximal ideal in $R$. Furthermore, $\mathcal Z(R)$ is the set of non-units, which is also
+ equivalent to the maximal ideal.
+
+ Conversely, let $R$ be an artinian ring such that $\mathcal Z(R) = \nil(R)$. The
+ nilradical is an ideal and I claim that it is in fact the unique maximal ideal. Any
+ proper ideal in $R$ must be disjoint from the units, so it must be contained in $\mathcal
+ Z(R)$ by the first paragraph. Thus $\mathcal Z(R) = \nil(R)$ is the unique maximal ideal
+ in $R$.
+ \end{solution}
+
+ \begin{exercise}{I.29}
+     For any artinian ring $R$, show that there exists an integer $n_0$
+     such that, for all $n\geq n_0$ and all $\mathfrak{m}\in \Max(R)$,
+     there is a ring isomorphism $R/\mathfrak{m}^n\cong R_{\mathfrak{m}}$.
+ \end{exercise}
+ \begin{solution}{Lars Kindler, lars\_k@berkeley.edu}
+     We can write $R$ as a finite product $R=R_1\times\ldots\times R_k$ of local artinian rings
+     $(R_i,\widehat{\mathfrak{m}}_i)$. Then the maximal ideals of $R$ are just
+     $\mathfrak{m}_i=R_1\times\ldots\times R_{i-1}\times \widehat{\mathfrak{m}}_i\times
+     R_{i+1}\times\ldots\times R_k$
+     (see exercise 8) and for each $i\in\left\{
+     1,\ldots,k \right\}$ we define the integer $n_i$ to be the unique number for which
+     $\widehat{\mathfrak{m}}_i^{n_i-1}\neq (0)$ and
+     $\widehat{\mathfrak{m}}_i^{n_i}=(0)$ (in a local artinian ring the maximal ideal is
+     nilpotent).\\
+     Now observe that for all $n\geq n_i$ we have $R/\mathfrak{m_i}^n \cong
+     R_i/\widehat{\mathfrak{m}}_i^n\cong R_i \cong R_{\mathfrak{m}_i}$, where the third
+     isomorphism is just the localization of the projection $(x_1,\ldots,x_k)\mapsto x_i$.
+     Indeed we have $(R_i)_{\widehat{m}_i}=R_i$ and for $x/s\in R_{\mathfrak{m}_i}$ with
+     $x_i/s_i=0$ in $R_i$, there is a $t_i\in R_i\setminus\widehat{\mathfrak{m}}_i$ such that $t_ix_i=0$.
+     But this means we have $t=(0,\ldots,0,t_i,0,\ldots,0)\in R\setminus\mathfrak{m}_i$, $tx=0$
+     and thus $x/s=0$ in $R_{\mathfrak{m_i}}$. So the surjective morphism
+     $R_{\mathfrak{m_i}}\rightarrow R_i$ is injective and therefore an isomorphism.
+     It follows that $n_0:=\max\left\{ n_1,\ldots,n_k \right\}$ is the integer we are looking for.
+ \end{solution}
+
+ \begin{exercise}{I.30}
+  True or False: if $M$ is a f.g. module over a noetherian ring $R$ and $M= P +Q$, then
+  $\ass(M) = \ass(P) \cup \ass(Q)$?
+ \end{exercise}
+ \begin{solution}{Jonah}
+  This is false.  Take $R = \ZZ$, $M = \ZZ \oplus \ZZ/6\ZZ$, $P = ((1,2)) \cong \ZZ$, and
+  $Q = ((1,3)) \cong \ZZ$.  $P +Q = M$ since $(1,3) - (1,2) = (0,1) \in P+Q$ and therefore
+  $(1,0) = (1,3) - 3(0,1) \in P+Q$.  $\ass(P) = \ass(Q) = \{(0)\}$ whereas $\ass(M) =
+  \{(0),(2),(3)\}$.
+ \end{solution}
+
+ \begin{exercise}{I.31}
+  True or False: a module over a local ring $(R,\m)$ is f.g. if $M/\m M$ is f.g. over $R/\m$?
+ \end{exercise}
+ \begin{solution}{igusa@math}
+   False: Let $k$ be a field, let $R=k[x]_{(x)}$, and let $M=k(x)$\\
+  $M$ is clearly not finitely generated over $R$, but $\m M=xM=M$ so \\$M/\m M=M/M=0$ which
+  is finitely generated over $R/\m=k$
+ \end{solution}
+
+ \begin{exercise}{I.32}
+Let $f : M \to N$ be an $R$-module homomorphism, where $N$ is f.g. Show that $f$ is
+surjective iff $\bar{f} : M/\m M \to N/\m N$ is surjective for every $\m \in \Max(R)$.
+ \end{exercise}
+
+ \begin{solution}{siveson@math}
+   Suppose $f$ is surjective and let $\m  \in \Max(R)$. Then for any $x \in N/\m N$, $x$ is
+   the image of $n$ under the map $N \to N/\m N$ for some $n \in N$. Since $f$ is
+   surjective, $f(m) = n$ for some $m \in M$. Then $\bar{f}(\bar{m}) = \bar{n} = x$ so
+   $\bar{f}$ is surjective for any $\m $.
+
+   Now suppose that $\bar{f}: M/\m M \to N/\m N$ is surjective for every $\m  \in \Max(R)$.
+   Let $C = \textup{coker}(f)$, so
+   $$M \to N \to C \to 0$$ is exact. Now $f$ is surjective iff $C =
+   0$ iff $C_{\m } = 0$ for all $\m  \in \Max(R)$. Since tensoring is right exact,
+   $$M_{\m } \to N_{\m } \to C_{\m } \to
+   0$$ is exact. Since $N$ is a f.g. $R$-module, $N_{\m }$ is finitely generated as an
+   $R_{\m }$-module, and since $N_{\m } \twoheadrightarrow C_{\m }$, $C_{\m }$ is also
+   finitely generated as an $R_{\m }$-module. Since $R_{\m }$ is a local ring with
+   maximal ideal $\m _{\m }$, Nakayama's lemma then says that $\m _{\m }C_{\m } = C_{\m }
+   \Rightarrow C_{\m } = 0$.  So to prove that $f$ is surjective, we need only show
+   $\m_{\m }C_{\m } = C_{\m }$ for all $\m $. But $\bar{f}: M/\m M \to N/\m N$ is
+   surjective for every $\m  \in \Max(R)$, so $C/\m C = \textup{coker}(\bar{f}) = 0$ for
+   all $\m $. Then localizing at $\m $, we get $C_{\m }/\m _{\m }C_{\m } = 0$ for all $\m
+   $. So $\m_{\m }C_{\m } = C_{\m }$ for all $\m $, and hence $f$ is surjective.
+ \end{solution}
+
+ \begin{exercise}{I.33}
+   If $M$ is a f.g.\ module over a local ring $R$ show that any minimal (that is,
+   ``unshrinkable'') set of generators for $M$ has constant cardinality, namely,
+   $\mu_R(M)$. Does the same statement hold over a semilocal ring?
+ \end{exercise}
+ \begin{solution}{anton@math}
+   Let $\m\subseteq R$ be the maximal ideal, and let $x_1,\dots, x_n$ be a set of
+   generators for $M$. Then the images $\bar x_1,\dots, \bar x_n$ generate $M/\m M$ as an
+   $R/\m$ vector space. If one of these, say $\bar x_n$, can be removed (so that the rest
+   generate $M/\m M$), then by Nakayama's Lemma, $x_1,\dots, x_{n-1}$ generate $M$ (let
+   $N$ be the submodule generated by $x_1,\dots, x_n$). Thus, any minimal set of
+   generators has size $\dim_{R/\m} M/\m M$, which must therefore be equal to $\mu_R(M)$.
+
+   The result is not true in a semilocal ring. Let $R$ be the ring $\ZZ$ semilocalized at
+   the primes $(2)$ and $(3)$. Then $\mu_R(R)=1$ because the element $1$ generates. The
+   two elements $2$ and $3$ also generate. However, since $2$ and $3$ are not units
+   (i.e.\ neither can generate $R$ by itself), this generating set is minimal.
+ \end{solution}
+
+ \begin{exercise}{I.34}
+   Find an example of a ring $R$ such that, for any positive integers $n$, $m$, there
+   exists an $R$-module $M$ with $\mu_R(M)=n$ but $M$ has a minimal set $S$ of generators
+   with $|S|=n+m$. (\textbf{Hint.} Use Euclid's theorem on the infinitude of primes.
+   Author's solemn pledge: this hint works!)
+ \end{exercise}
+ \begin{solution}{anton@math}
+   Let $R=\ZZ$. First we'll do the case $n=1$. Clearly $\mu_R(R)=1$. Let $p_1$,
+   \dots, $p_{m+1}$ be the first $m+1$ primes. Then let $S=\{p_1\cdots \hat p_i\cdots
+   p_{m+1}\}_{1\le i\le m+1}$. $S$ generates $R$ because it is a set of relatively prime
+   integers, but if one removes $p_1\cdots\hat p_i\cdots p_{m+1}$, every element of the
+   remaining set is divisible by $p_i$, so the set no longer generates.
+
+   For larger $n$, choose $M=\ZZ ^n$. Then $\mu_R(M)=n$ by the ``rank property'' in the
+   corollary to McCoy's third theorem (which tells us that $M$ cannot be generated by
+   fewer than $n$ elements). Then let $e_i$ be the element of $M$ with a 1 in the $i$-th
+   place and zeros elsewhere, and let $S=\{e_i\}_{i< n}\cup \{p_1\cdots \hat p_i\cdots
+   p_{m+1}\cdot e_n\}_{1\le i\le m+1}$. By essentially the same argument as in the
+   previous paragraph, this is a minimal generating set for $M$.
+ \end{solution}
+
+ \begin{exercise}{I.35}
+  Let $I_1, \ldots, I_n \lhd R$ be such that $I_1 + \dots + I_n \neq R$. For $M=
+  \bigoplus_i R/I_i$, show that $\mu_R(M) = n$. Does this formula still hold if $I_1 +
+  \ldots + I_n = R$?
+ \end{exercise}
+ \begin{solution}{Jonah}
+   Let $e_i \in M$ be the image of 1 in the $i$th summand $R/I_i$ and 0 in the
+   other summands.  These clearly generate $M$ so $\mu_R(M) \leq n$.
+   To see that no smaller generating set exists suppose $f_1, \ldots, f_k$ generate $M$.
+   Choose some maximal ideal $m$ containing $I_1, \ldots, I_n$.
+   $M$ surjects onto $M/mM$ so the images $\bar{f_i}$ of the $f_i$ generate
+   $M/mM$.  This is equivalent to the $\bar{f_i}$ generating $M/mM$ as
+   a module over $R/m$.  Now since $M/mM \equiv \bigoplus_i (R/I_i)/m(R/I_i)
+   \equiv (R/m)^n$ linear algebra tells us $k \geq n$.
+
+   This formula does not necessarily hold if $I_1 + \ldots + I_n = R$.  For
+   example, take $R = \ZZ$, $I_1 = (2)$, and $I_2 = (3)$.  $(1,1)$
+   generates the module $M = \ZZ/2\ZZ \oplus \ZZ/3\ZZ$.
+ \end{solution}
+
+ \begin{exercise}{I.36}
+   For any $_R M$ and any multiplicative set $S\subseteq R$, show that
+   $\text{ann}(M)_S\subseteq\text{ann}(M_S)$.  If $M$ is f.g., show that
+   equality holds.
+   Give an example to show that equality fails in general.
+ \end{exercise}
+ \begin{solution}{ecarter@math}
+   Any element of $\text{ann}(M)_S$ has the form $r/s$ for some $r\in\text{ann}(M)$
+   and some $s\in S$.  Let $m/s'\in M_S$.  Then
+   \[
+           (r/s)(m/s')=(rm)/(ss')=0/(ss')=0.
+   \]
+   Therefore $r/s\in\text{ann}(M_S)$.
+
+   Now suppose $M$ is generated over $R$ by $m_1,m_2,\dots,m_n$, and let
+   $r/s\in\text{ann}(M_S)$.  Then $(rm_i)/s=0$ in $M_S$ for each $i$.  This means
+   that for each $i$, there exists $s_i\in S$ such that $s_i r m_i=0$ in $M$. If we
+   let $s_0=\prod_{i=1}^n s_i$, then $s_0\in S$ and $s_0 r m_i=0$ for all $i$. Since
+   the $m_i$'s generate $M$, $s_0 r\in\text{ann}(M)$, so that $r/s=(s_0 r)/(s_0
+   s)\in\text{ann}(M)_S$.
+
+   For a field $k$, let $R=k[x]$, $S=\{1,x,x^2,\dots\}$, and
+   $M=\bigoplus_{n=1}^\infty k[x]/(x^n)$. Then $\text{ann}(M)=\bigcap_{n=1}^\infty
+   (x^n)=(0)$ so that $\text{ann}(M)_S=(0)$. However, for all $n>0$,
+   $(k[x]/(x^n))_S=0$, so $M_S=0$.  Therefore $\text{ann}(M_S)=R_S$.
+ \end{solution}
+
+ \begin{exercise}{I.37}
+     Let $=k\times k \times \ldots$ where $k$ is a field, and let $M$ be
+     the ideal $k\oplus k \oplus\ldots$. Show that
+     $\operatorname{Supp}(M)=\spec R\setminus V(M)$. Does the equality
+     $\operatorname{Supp}(M)=V(\operatorname{ann}(M))$ hold in this example? What is
+     ``wrong''?
+ \end{exercise}
+ \begin{solution}{Lars Kindler, lars\_k@berkeley.edu}
+     First, let $\mathfrak{p}\in V(M)$ and $m=(m_i)_i\in M$. Then infinitely many
+     coordinates of $m$ are zero and only finitely many are nonzero. Pick a $s\in R$
+     such that for all $i$ the coordinate $s_i$ is zero if $m_i$ is nonzero and nonzero if
+     $m_i$ is zero. Then $s$ is not in $\mathfrak{p}$, since otherwise $s+m\in U(R)$
+     would be in $\mathfrak{p}$. But we also have $sm=0$, so $M_{\mathfrak{p}}=0$.\\
+     Now let $\mathfrak{p}\in \spec(R)\setminus V(M)$. Then an element $x\in
+     M\setminus\mathfrak{p}$ is invertible in $R_\mathfrak{p}$, so
+     $M_{\mathfrak{p}}=R_\mathfrak{p}\neq 0$, and thus we have
+     $\operatorname{Supp}(M)=\spec(R)\setminus V(M)$ as claimed.\\
+     We have $\operatorname{ann}(M)=(0)$, since an element in the annihilator would have
+     to kill each element $e_i=(\delta_{ij})_j$, where $\delta$ is the Kronecker symbol.
+     This means $V(\operatorname{ann}(M))=\spec(R)$, but by what we have shown in the
+     first part we have a strict inclusion $\operatorname{Supp}(M)\subsetneqq \spec R$,
+     since $V(M)\neq \emptyset$. Together this gives $\operatorname{Supp}(M)\subsetneqq
+     V(\operatorname{ann}(M))$. The ``wrong'' thing is that $M$ is not finitely
+     generated!
+ \end{solution}
+
+ \begin{exercise}{I.38}
+     For any f.g. module ${}_R M$, show that $\operatorname{Supp}(M)=\spec(R)$ iff
+     $\operatorname{ann}(M)\subset\nil(R)$.
+ \end{exercise}
+ \begin{solution}{Lars Kindler, lars\_k@berkeley.edu}
+  ``$\Rightarrow$'': Suppose there is an $a\in \operatorname{ann}(M)\setminus\nil(R)$
+  and hence a $\mathfrak{p}\in\spec(R)$ such that $a\not\in \mathfrak{p}$, since
+  $\nil(R)$ is the intersection of all primes in $R$. But this means
+  $M_\mathfrak{p}=0$, since for every $m/t\in M_{\mathfrak{p}}$, where $t\in
+  R\setminus\mathfrak{p}$ and $m\in M$, we have
+  $m/t=(am)/(at)=0$. This contradicts the hypothesis $\spec(R)=\operatorname{Supp}(M)$.\\
+  ``$\Leftarrow$'': Now let $M=\sum_{i=1}^n R x_i$ be f.g. and
+  $\operatorname{ann}(M)\subset \nil(R)$. Assume that there is a
+  $\mathfrak{p}\in\spec(R)$ such that $M_\mathfrak{p}=0$. Then we have for every
+  $i\in\left\{ 1,\ldots,n \right\}$ an $a_i\in R\setminus\mathfrak{p}$ with $a_i x_i = 0$
+  and since $R\setminus\mathfrak{p}$ is a multiplicative set we have
+  $a:=a_1\cdot\ldots\cdot a_n\in R\setminus\mathfrak{p}$. But we also have $aM=0$ which
+  is a contradiction, since $ \operatorname{ann}(M) \subset\nil(R)$ implies
+  $\operatorname{ann}(M)\subset\mathfrak{p}$.
+ \end{solution}
+
+ \begin{exercise}{I.39}
+  Give an example of a f.g. module over a noetherian ring such that for every $n$, $M$
+  has a prime filtration of length $n$.
+ \end{exercise}
+ \begin{solution}{derman@math}
+  Set $R=\ZZ$ and $M=\ZZ$.  Then the prime filtration $\ZZ\supset 2\ZZ \supset 4\ZZ
+  \supset \dots 2^{n-1}\ZZ \supset 0$ has length $n$.  The first $n$ factors are
+  isomorphic to $\ZZ / 2\ZZ$ and the last one is isomorphic to $\ZZ/(0)$.
+ \end{solution}
+
+ \begin{exercise}{I.40}
+ Give an example of f.g. modules $N\subset M$ over a noetherian ring with
+ $Ass(M/N)\subsetneq Ass(M)$.
+ \end{exercise}
+ \begin{solution}{derman@math}
+ Let $R=\mathbb Z[x]$, $M=\mathbb Z_2[x]$ and $N=(x)\mathbb Z_2[x]$.  Then
+ $Ass(M/N)=\{(2,x)\}$ and $Ass(M)=\{(2)\}$.
+ \end{solution}
+
+ \begin{exercise}{I.41}
+   Give a direct proof that $\dim(R)=0$ implies $C(R)=U(R)$ using the fact that every
+   minimal prime consists of $0$-divisors.
+ \end{exercise}
+ \begin{solution}{derman@math}
+    Since $\dim(R)=0$ it follows maximal ideals are the same as minimal primes.  Thus if
+   $a\notin U(R)$ then $(a)$ belongs to a maximal ideal $\mathfrak m$.  But $\mathfrak m$
+   is also a minimal prime, and thus $a$ must be a zero divisor.  So $C(R)\subseteq
+   U(R)$.  The other inclusion always holds.
+ \end{solution}
+
+ \begin{exercise}{I.42}
+     Show that any ring $R$ can be embedded in a Marot ring.
+     (\textbf{Hint}. This exercise is somewhat related to Ex. 41).
+ \end{exercise}
+ \begin{solution}{Lars Kindler, lars\_k@berkeley.edu}
+     Let $T=\mathcal{C}(R)^{-1}R$ be the total ring of quotients of $R$.
+     Then the localization map $R\rightarrow T$ is injective and we claim
+     that $T$ is a Marot ring.
+     Let $x/c$ be a regular element in $T$ which means we have $x/c\cdot y/c'\neq
+     0$ for all nonzero $y/c'\in T$. Since we have only
+     inverted regular elements, this is equivalent to
+     $xy\neq 0$ for all $y\neq 0$, i.e. to $x\in \mathcal{C}(R)$. We have
+     shown that $\mathcal{C}(T)\subseteq U(T)$, but $U(T)\subseteq \mathcal{C}(T)$ is trivial, so
+     we have $\mathcal{C}(T)=U(T)$ and thus $T$ is a Marot ring, since there are no
+     regular ideals.
+ \end{solution}
+
+ \begin{exercise}{I.43}
+   Let $\left(  R,\mathfrak{m}\right)  $ be a noetherian local ring such that
+   $\mathfrak{m}\smallsetminus\mathfrak{m}^{2}\subseteq\mathcal{Z}\left( R\right)  $. \
+   Show that $\mathfrak{m=}\mathcal{Z}\left(  R\right)  $, and
+   $\mathfrak{m\in}\operatorname*{Ass}\left(  R\right)  $.
+ \end{exercise}
+ \begin{solution}{mreyes@math}
+   First suppose that $\mathfrak{m}=\mathfrak{m}^{2}$. \ Because $R$ is
+   noetherian, $\mathfrak{m}$ is a finitely generated $R$-module. \ Also because
+   $R$ is local, $\mathfrak{m=}\operatorname*{rad}R$. \ So by Nakayama's Lemma,
+   we must have $\mathfrak{m=}0$. \ So $R$ is a field and the claim clearly follows.
+
+   So we may now assume that $\mathfrak{m\neq m}^{2}$. \ By Theorem 6.2, there
+   exist primes $\mathfrak{p}_{1},\ldots,\mathfrak{p}_{n}\subseteq R$ and
+   elements $r_{i}\in R$ such that $\mathcal{Z}\left(  R\right)  =\bigcup
+   \mathfrak{p}_{i}$ and each $\mathfrak{p}_{i}=\operatorname*{ann}\left(
+   r_{i}\right)  $. \ Now $\mathfrak{m\smallsetminus m}^{2}\subseteq
+   \mathcal{Z}\left(  R\right)  $ implies that $\mathfrak{m\subseteq}%
+   \mathcal{Z}\left(  R\right)  \cup\mathfrak{m}^{2}\mathfrak{=p}_{1}\cup
+   \cdots\cup\mathfrak{p}_{n}\cup\mathfrak{m}^{2}$. \ Then since
+   $\mathfrak{m\nsubseteq m}^{2}$, the Prime Avoidance Theorem implies that
+   $\mathfrak{m\subseteq p}_{i}$ for some $i$. \ By maximality of $\mathfrak{m}$,
+   this means that $\mathfrak{m=p}_{i}=\operatorname*{ann}\left(  r_{i}\right)
+   $. \ At this point we have that $\mathfrak{m\in}\operatorname*{Ass}\left(
+   R\right)  $. \ Also, $\mathfrak{m=p}_{i}\subseteq\mathcal{Z}\left(  R\right)
+   $. \ Because $R$ is local, $R\smallsetminus\mathfrak{m=}U\left(  R\right)  $.
+   \ This means that $\mathfrak{m=}\mathcal{Z}\left(  R\right)  $, completing the
+   proof. \
+ \end{solution}
+ \begin{solution}{Lars Kindler, lars\_k@berkeley.edu}
+    Assume $\m \neq 0$. If $\m^2\not\subset \mathcal{Z}(R)$, then $\m^2$ is a regular
+    ideal. Furthermore, if $a,b\in \mathcal{C}(R)$ are elements such that $ab\in
+    \m^2$, then either $a\in \m^2$ or $b\in \m^2$, because $\mathcal{C}(R)\cap
+    (\m\setminus\m^2) = \varnothing$. So since $R$ in particular is a Marot ring we see
+    that $\m^2$ is prime which implies $\m^2=\m$, so by Nakayama's Lemma we get
+    $\m=0$, which is a contradiction.\\
+    Now the maximality of $\m=\mathcal{Z}(R)$ implies $\m\in \ass(R)$ by Prime Avoidance, because
+    $\mathcal{Z}(R)$ is a finite union of associated primes.
+ \end{solution}
+ \begin{solution}{lam@math}
+   If you are not yet totally tired of this exercise, here's a third solution!
+
+   \medskip
+   As in Manny's solution, we may assume there exists an element $x\in {\mathfrak
+   m}\setminus {\mathfrak m}^2$. By hypothesis, ${\mathfrak m}\setminus {\mathfrak
+   m}^2\subseteq \bigcup_{i=1}^n {\mathfrak p}_i$, where ${\mathfrak p}_i$ ranges over ${\rm
+   Ass}(R)$. Consider any $\,y\in {\mathfrak m}^2$. We have $x+y^p\notin {\mathfrak m}^2$
+   for all $p$, so by the Pigeon-Hole Principle, there exist $p<q$ such that
+   $x+y^p,\,x+y^q\in {\mathfrak p}_i$ for some $i$. Then, $y^p(1-y^{q-p})\in {\mathfrak
+   p}_i\Rightarrow y\in {\mathfrak p}_i \Rightarrow y\in {\mathcal Z}(R)$. This shows that
+   $\,{\mathfrak m}={\mathcal Z}(R)$.  By (6.2), ${\mathfrak m}\,a=0$ for some $\,a\neq 0$,
+   so ${\mathfrak m} ={\rm ann}(a)\in {\rm Ass}(R)$.
+ \end{solution}
+
+
+ \begin{exercise}{I.44}
+   For $\m\in \Max(R)$, show that the following are equivalent: (1) $\m\in \ass (R)$; (2)
+   $\m$ is not dense in $R$; (3) $\ann(\ann (\m))=\m$.
+ \end{exercise}
+ \begin{solution}{anton@math}
+   ($1\Rightarrow 2$) If $\m\in \ass R$, then $\m=\ann(r)$ for some $r\in R$, so
+   $r\cdot \m=0$,  so $\m$ is not dense.
+
+   ($2\Rightarrow 3$) If $S\subseteq R$ is a set, then $\ann(S)=R$ if and only if
+   $S=\varnothing$ or $\{0\}$. If $\m$ is not dense, then $\ann(\m)$ is not one of these,
+   so $\ann(\ann \m)\neq R$. But $\ann(\ann \m)$ is an ideal which clearly contains $\m$,
+   so it must be $\m$ since $\m$ is maximal.
+
+   ($3\Rightarrow 1$) If $\ann(\ann \m)=\m\neq R$, then $\ann(\m)$ contains a non-zero
+   element, $r$. Then $\ann (r)$ is a proper ideal of $R$ which contains $\m$, so
+   $\ann(r)=\m$ by maximality of $\m$. Thus, $\m\in \ass R$.
+ \end{solution}
+
+ \begin{exercise}{I.45}
+  (Elaboration of (5.11).) Show that a f.g. module $M$ over a noetherian ring $R$ has
+  finite length iff $\ass(M) \subseteq \Max(R)$, iff there exist (not necessarily distinct)
+  $m_i \in \Max(R)$ such that $m_1 \dots m_n M = 0$.  Give examples to show that , for
+  these equivalences, the assumptions that $M$ be f.g. and $R$ be noetherian are both
+  essential.
+ \end{exercise}
+ \begin{solution}{Jonah, jblasiak@math}
+  $M$ has finite length implies that any submodule has finite length so if $M$ contains a
+  submodule isomorphic to $R/p$, then $R/p$ has finite length as an $R$ module.  This is
+  equivalent to having finite length as an $R/p$ module so $R/p$ is an artinian ring and
+  therefore of dimension 0.  Thus $p$ is maximal.  Since $p$ is an associated prime of $M$
+  if and only if $R/p$ is isomorphic to a submodule of $M$ we have that $\ass(M) \subseteq
+  \Max(R)$.
+
+  Now assume that $\ass(M) \subseteq \Max(R)$.  All associated primes
+  are then isolated primes and corollary 6.8 implies $\sqrt{\ann(M)} =
+  \bigcap \{p:p \in \ass(M)\}$.  Let $p_1, p_2, \ldots, p_n$ be the
+  associated primes of $M$.  We have that $p_1 p_2 \ldots p_n
+  \subseteq \sqrt{\ann(M)}$ and therefore $p_1 p_2 \ldots p_n
+  \subseteq \sqrt{0}$ in $R/\ann(M)$.  Since $R$ is noetherian
+  (Exercise 27) $\sqrt{0}$ is nilpotent thus there exists an $r$ such
+  that $p_1^r p_2^r \ldots p_n^r \subseteq \ann(M)$.  Then $p_1^r
+  p_2^r \ldots p_n^r M = 0$, as desired.
+
+  Now suppose there exist $m_i \in \Max(R)$ such that $m_1 \dots m_n M
+  = 0$.
+  $$0 = m_1 \dots m_n M \subseteq m_2 \dots m_n M \subseteq \ldots
+  \subseteq m_n M \subseteq M$$ is a finite filtration of $M$.  The
+  $i$th filtration factor is a vector space over $R/m_i$.  It is
+  finite dimensional because $M$ is noetherian, and therefore it has a
+  finite composition series.  Putting these composition series
+  together for each vector space yields a finite composition series
+  for $M$.
+
+  If $M$ is not f.g. both equivalences fail.  For instance, take $R =
+  k$ a field and $M = \bigoplus_{\ZZ} k$.  $\ass(M) = \{(0)\} =
+  \Max(R)$, but $M$ doesn't have finite length.  Another example is
+  with $R = \RR[x]$ and $M = \bigoplus_{i \in \ZZ} R/(x-i)$.  $\ass(M)
+  = \{ (x-i) : i \in \ZZ\} \subseteq \Max(R)$ because all point
+  annihilators are products of some $(x-i)$s.  However no finite
+  product of maximal ideals can kill every element of $M$ : just
+  choose an element that is 1 in the summand corresponding to
+  $R/(x-j)$, where $j$ is such that $(x-j)$ does not appear in the
+  list of maximals.
+
+  Both equivalences also fail if $R$ is not noetherian.  Take $R =
+  k[x_1, \ldots,x_n,\ldots]/(x_1^2,x_2^2, \ldots)$ and $M = R$.  $M$
+  has no associated primes, but is not of finite length.  For
+  instance, $0 \subset (x_1) \subset (x_1, x_2) \subset \ldots$ is an
+  infinite chain of distinct submodules.  For the other equivalence
+  take $R = k \times k \times \ldots$ and $M = R$.  $R$ is 0
+  dimensional so $\ass(M) \subseteq \Max(R)$.  However if we suppose
+  there exist $m_i \in \Max(R)$ such that $m_1 \dots m_n M = 0$, then
+  $m_1 \dots m_n = 0$.  It is easy to see there are infinitely many
+  maximal ideals, so take one, $m$ say, not equal to any of the $m_i$.
+  Then $m_1 \dots m_n \subset m$ and $m$ prime implies $m_i \subseteq
+  m$ for some $i$, contradiction.
+ \end{solution}
+
+ \begin{exercise}{I.46}
+   For a module $M$ of finite length (over any ring $R$), let
+   $R/\mathfrak{m}_{i}\ (\mathfrak{m}_{i}\in Max(R))$ be the distinct
+   types of composition factors of $M,$ occurring with multiplicities
+   $n_{i}>0.$ Show that
+   $n_{i}=length_{R_{\mathfrak{m}_{i}}}M_{\mathfrak{m}_{i}},$ and that the
+   localization map $M\to\bigoplus_{i}M_{\mathfrak{m}_{i}}$ is an
+   isomorphism of $R$-modules.
+ \end{exercise}
+ \begin{solution}{Shenghao Sun, shenghao@math.}
+  Let $0=M_{0}\subset M_{1}\subset\cdots\subset M_{n}=M$ be a composition series of $M.$
+  Localization commutes with quotient, so
+  $\frac{(M_{j+1})_{\m_{i}}}{(M_{j})_{\m_{i}}}=(M_{j+ 1}/M_{j})_{\m_{i}}.$ Say
+  $M_{j+1}/M_{j}\cong R/\m_{i'}.$ If $\m_{i}=\m_{i'},$ then
+  $(R/\m_{i})_{\m_{i}}=k(\m_{i})$ is the residue field of $\m_{i};$ if
+  $\m_{i}\neq\m_{i'},$ then $\m_{i}+\m_{i'}=R$ and therefore
+  $(R/\m_{i'})_{\m_{i}}=\frac{R}{\m_{i'}}\otimes_{R}\frac{R}{\m_{i}}=\frac{R}{\m_{i'}+
+  \m_{i}}=0.$ Note that $k(\m_{i})$ is a simple $R_{\m_{i}}$-module. Localizing the above
+  composition series at $\m_{i}$ we get a composition series for $M_{\m_{i}}$ over
+  $R_{\m_{i}},$ some of $\subset$ becoming $=,$ and the number of proper inclusion left
+  is $n_{i}.$ On the other hand, that number is also $length_{R_{\m_{i}}}M_{\m_{i}}.$
+
+  An $R$-linear map $f:M\to N$ is an isomorphism if and only if $f_{\m}:M_{\m}\to N_{\m}$
+  is an isomorphism, for any $\m\in Max(R).$ Let $\m,\mathfrak{n}\in Max(R).$ Then
+  $R_{\m}\otimes_{R}R_{\mathfrak{n}}=\begin{cases}R_{\m},\ \text{if
+  }\m=\mathfrak{n}; \\ 0,\ \text{otherwise.}\end{cases}.$ So the map
+  $M\to\bigoplus_{i}M_{\m_{i}}$ becomes an isomorphism if we localize at any one of
+  $\m_{i}.$ For any other maximals $\m,$ applying localization to the composition series
+  for $M$ we find $M_{\m}=0,$ so again we get an isomorphism.
+ \end{solution}
+
+ \begin{exercise}{I.47}
+     Let $I\lhd R$, where $R$ is a noetherian ring.
+     \begin{enumerate}
+         \item Show that $R/I$ is artinian iff $R/\sqrt{I}$ is artinian.
+         \item If $R$ is semilocal, show that $R/I$ is artinian iff $I\supseteq \rad(R)^n$
+             for some $n\geq 1$.
+     \end{enumerate}
+ \end{exercise}
+ \begin{solution}{Lars Kindler, lars\_k@berkeley.edu}
+     \begin{enumerate}
+         \item Since $I\subseteq \sqrt{I}$ we have a homomorphism $R/I\rightarrow
+             R/\sqrt{I}$, so $R/I$ being artinian implies $R/\sqrt{I}$ being artinian.\\
+             Now assume $R/\sqrt{I}$ is artinian and let
+             $\bar{\mathfrak{p}}_1\subseteq\bar{\mathfrak{p}}_2$ be primes of $R/I$. They
+             correspond to primes $\mathfrak{p}_1\subseteq \mathfrak{p}_2$ of $R$
+             containing $I$, which
+             in turn correspond to primes $\tilde{\mathfrak{p}}_1\subseteq
+             \tilde{\mathfrak{p}}_2$ of $R/\sqrt{I}$, since every prime containing
+             $I$ also contains the radical of $I$. So since $R/\sqrt{I}$ is artinian
+             we have $\tilde{\mathfrak{p}}_1=\tilde{\mathfrak{p}}_2$ and thus
+             $\bar{\mathfrak{p}}_1=\bar{\mathfrak{p}}_2$, i.e $R/I$ is a $0$-dimensional
+             noetherian ring and thus artinian.
+         \item If $R/I$ is artinian then $\rad(R/I)$ is nilpotent, i.e. there is a $n\in
+             \mathbb{N}$ such that
+             $\rad(R/I)^{n}=\left( \bigcap \mathfrak{p}\right)^n+ I = 0 + I$, where
+             $\mathfrak{p}$ ranges over all the primes of $R$ containing $I$. But this
+             means $\rad(R)^n\subseteq \left( \bigcap \mathfrak{p} \right)^n \subset
+             I$.\\
+             Now assume $I\supseteq\rad(R)^n=( \bigcap_{i=1}^k
+             \mathfrak{m}_i)^n=\mathfrak{m}_1^n\cdot\ldots\cdot\mathfrak{m}_k^n$, where $\max(R)=\left\{
+             \mathfrak{m}_1,\ldots,\mathfrak{m}_k\right\}$.  Two primes
+             $\bar{\mathfrak{p}}_1\subseteq \bar{\mathfrak{p}}_2$ of $R/I$ correspond to primes
+             $\mathfrak{p}_1\subseteq \mathfrak{p}_2$ of $R$ containing $I$, so we
+             have
+             $\mathfrak{p_2}\supseteq\mathfrak{p}_1\supseteq I \supseteq \mathfrak{m}_1^n\cdot\ldots\cdot\mathfrak{m}_k^n$,
+             which means $\mathfrak{p}_2=\mathfrak{p}_1=\mathfrak{m}_i$ for some $i\in
+             \left\{ 1,\ldots,k \right\}$. It follows that
+             $\bar{\mathfrak{p}}_1=\bar{\mathfrak{p}}_2$ in $R/I$, so $R/I$ again is a
+             $0$-dimensional noetherian ring and therefore artinian.
+     \end{enumerate}
+ \end{solution}
+
+ \begin{exercise}{I.48}
+   (Nagata [${\it Na_1}$]) Show that $R$ is noetherian if it is locally noetherian
+   (that is, $R_{\m}$ is noetherian for every $\m \in \Max(R)$) and $R/(a)$ is
+   semilocal for every $a \in R \setminus \{0\}$. ({\bf Hint.} To show that
+   $I \< R$ is f.g., pick $a_1,\ldots,a_n$ such that $I$ and $(a_1,
+   \ldots,a_n)$ are contained in exactly the same maximal ideals ${\m}_j$.
+   Then pick $b_{jk} \in I$ that generate $I_{{\m}_j}$, and show that
+   $\{a_i, b_{jk}\}$ generates $I$.)
+ \end{exercise}
+ \begin{solution}{los@math}
+   Let $I_k$ be an increasing sequence of ideals in $R$ for $k \geq 0$. We must show that
+   the sequence $I_k$ is stationary. We may assume that $I_0
+   \neq 0$. Let $a \in I_0 \setminus \{0\}$. It will be enough to show that the sequence
+   of ideals $I_k/(a)$ in $R/(a)$ is stationary. Thus, replacing $R$ with $R/(a)$,
+   which satisfies the same hypotheses as $R$ since a quotient of a locally noetherian
+   (resp. semilocal) ring is again locally noetherian (resp. semilocal), we may assume
+   that $R$ itself is semilocal. Let $\m_j$, $j=1,\ldots,n$, denote the maximal ideals of $R$.
+   For each $j$, the sequence of ideals ${(I_k)}_{\m_j}$ of the noetherian ring $R_{\m_j}$
+   is increasing, hence stationary. Since there are only finitely many $j$, there is therefore
+   a $K \geq 0$ such that for all $j=1,\ldots,n$ and all $k \geq K$, we have ${(I_{k+1})}_{\m_j}=
+   {(I_k)}_{\m_j}$. Let $k \geq K$. Then, for all $\m \in \Max(R)$, we have
+   ${(I_{k+1}/I_k)}_{\m} \cong {(I_{k+1})}_{\m}/{(I_k)}_{\m}=0$. Hence $I_{k+1}/I_k=0$,
+   and the sequence $I_k$ is stationary.
+ \end{solution}
+
+ \begin{exercise}{I.49}
+    (Stable Range $1$ Property) If $Ra+Rb=R$ in a semilocal ring $R$,
+    show that there exists $r \in R$ such that $a+rb \in U(R)$.
+ \end{exercise}
+ \begin{solution}{Soroosh}
+    Let $\m_1, \m_2,...,\m_n$ be the set of all maximal ideal in $R$.
+    Note that if $x \in R \setminus \bigcup_{i} \m_i$, then $x \in U(R)$.
+    Otherwise, $xR$ is a proper ideal, which means that it must be
+    contained in a maximal ideal.
+
+    Assume without loss of generality that $a \in \m_i$ for
+    $1 \leq i \leq k$ but $a \not \in \m_i$ for $i>k$. We first
+    show that
+    \[\Bigl( \bigcap_{i=k+1}^n \m_i \Bigr) \setminus \Bigl( \bigcup_{i=1}^k \m_i \Bigr)\]
+    is not empty. Note that $\bigcap_{i=k+1}^n \m_i$ is an ideal
+    (hence it is closed
+    under addition and multiplication), and each $\m_i$ for $i \leq k$ is
+    prime. If the above set is empty, then by prime avoidance theorem
+    we get that $\bigcap_{i=k+1}^n \m_i$ is contained in $\m_j$ for
+    some $j \leq k$. This certainly can't happen. Therefore the above set
+    is not empty. Let $r$ be an element in the above set.
+    Then $r \in \m_i$ if and only if $a \not \in \m_i$.
+
+    Note that since $bR+aR=R$ we have that if $a \in \m_i$ then
+    $b \not \in \m_i$. Therefore $a \in \m_i$ implies that
+    $br \not \in \m_i$ since $\m_i$'s are all maximal, and hence prime.
+    Furthermore if $a \not \in \m_i$ then $r \in \m_i$ and therefore
+    $br \in \m_i$. Thus $br \in \m_i$ if and only $a \not \in \m_i$.
+
+    Now consider $a+br$. By above construction we get that $a+br$
+    avoids all the maximal ideals, since each maximal ideal contains exatly
+    one of $a$ and $br$. Therefore $a+br \in R \setminus \bigcup \m_i$,
+    which we've shown it is exactly the set of units.
+ \end{solution}
+
+ \begin{exercise}{I.50}
+  (D. D. Anderson) Let $I\vartriangleleft R$. If all minimal prime ideals over
+  $I$ are finitely generated modulo $I$, show that there are only finitely many
+  minimal prime ideals over $I$. (This result generalizes the fact that
+  $\left\vert \Min\left(  R\right)  \right\vert <\infty$ for a
+  noetherian ring $R$.)
+ \end{exercise}
+ \begin{solution}{mreyes@math}
+  We may assume that $R\neq0$. Note that by replacing $R$ with $R/I$ we reduce
+  to the following problem: If all minimal primes of $R$ are finitely generated,
+  then $R$ has only finitely many minimal primes. We will prove this latter
+  statement. Let $\mathcal{F}$ denote the family of all finite products of (not
+  necessarily distinct) minimal primes of $R$. We claim that $0\in\mathcal{F}$.
+  If this is the case, say $0=\mathfrak{p}_{1}\cdots\mathfrak{p}_{n}$ (with the
+  $\mathfrak{p}_{i}$ not necessarily distinct), then for any minimal prime
+  $\mathfrak{p}$ of $R$ we have $\mathfrak{p\supseteq p}_{1}\cdots
+  \mathfrak{p}_{n}$. This implies that some $\mathfrak{p}_{i}\subseteq
+  \mathfrak{p}$, and thus $\mathfrak{p=p}_{i}$ by minimality of $\mathfrak{p}$.
+  So $\Min\left(  R\right)  =\left\{  \mathfrak{p}_{1}%
+  ,\ldots,\mathfrak{p}_{n}\right\}  $ is finite.
+
+  So assume for contradiction that $0\notin\mathcal{F}$. Letting $\mathcal{C}$
+  be the collection of ideals that do not contain any element of $\mathcal{F}$,
+  we have $0\in\mathcal{C}$. We will use Zorn's Lemma to produce a maximal
+  element of $\mathcal{C}$. Let $\left\{  J_{i}\right\}  $ be a chain of ideals
+  in $\mathcal{C}$, and let $J^{\prime}=%
+  %TCIMACRO{\tbigcup }%
+  %BeginExpansion
+  {\textstyle\bigcup}
+  %EndExpansion
+  J_{i}$. Assume for contradiction that there exists $F\in\mathcal{F}$ such that
+  $F\subseteq J^{\prime}$. Because $F$ is a product of finitely generated
+  ideals, $F=\left(  f_{1},\ldots,f_{r}\right)  $ is a finitely generated ideal.
+  Choosing (withouth loss of generality) $J_{i_{1}}\subseteq\cdots\subseteq
+  J_{i_{r}}$ such that $f_{j}\in J_{i_{j}}$, we have $F\subseteq J_{i_{r}}$ with
+  $J_{i_{r}}\in\mathcal{C}$, a contradiction. So Zorn's Lemma applies and
+  $\mathcal{C}$ indeed has some maximal element which we will call $J$.
+
+  If $J$ is prime it contains a minimal prime of $R$ (Proposition 2.3), which is
+  an element of $\mathcal{F}$. But this contradicts that $J\in\mathcal{C}$, so
+  $J$ cannot be prime. Also, because $R\neq0$ and the ideal $R$ contains all
+  elements of $\mathcal{F\neq\varnothing}$, we cannot have $J=R$. So there exist
+  $a_{1},a_{2}\in R\smallsetminus J$ such that $a_{1}a_{2}\in J$. For
+  $J_{i}=J+\left(  a_{i}\right)  $, we have each $J_{i}\supsetneq J$. By
+  maximality of $J$, there must exist $F_{1},F_{2}\in\mathcal{F}$ with
+  $F_{i}\subseteq J_{i}$. But then $F_{1}F_{2}\subseteq J_{1}J_{2}\subseteq J$
+  and $F_{1}F_{2}\in\mathcal{F}$ (clearly $\mathcal{F}$ is closed under ideal
+  products). This contradicts $J\in\mathcal{C}$, so it must be the case that
+  $0\in\mathcal{F}$ as claimed.
+ \end{solution}
+
+ \begin{exercise}{I.51}
+  Prove the analogue of (8.14) for primary ideals.
+ \end{exercise}
+ \begin{solution}{Jonah (jblasiak@math) and Anton}
+  Let $I$ be a proper regular ideal in a Marot ring $R$.  Assume that, for all $a,b \in
+  \C(R)$, $ab \in I$ implies either $a \in I$ or $b \in \sqrt{I}$. Then $I$ is primary.  We
+  mimic the proof of 8.14.  Suppose there exist $x \notin I$ and $y \notin \sqrt{I}$ such
+  that $xy \in I$.  Then $I + (x)$ is generated by its regular elements, so it must contain
+  an element $a \in \C(R) \backslash I$.  In addition, $\sqrt{I} + (y)$ is generated by its
+  regular elements, so it must contain an element $b \in \C(R) \backslash \sqrt{I}$.  We
+  can write $b = s +ry$, where $s^k \in I$ and $r \in R$.  But then $a b^k = a (s+ry)^k \in
+  (I + (x))(I + (y)) \subseteq I$, where the middle containment follows from the binomial
+  theorem.  We have $a \notin I$, and $b \notin \sqrt{I}$ implies $b^k \notin \sqrt{I}$,
+  but this contradicts our original assumption since $a$ and $b^k$ are regular.
+ \end{solution}
+
+ \begin{exercise}{I.52}
+   Show that, in a PID, the primary ideals are $(0)$ and $(p^n)$, where $p$ is a nonzero
+   prime element and $n \geq 1$.
+ \end{exercise}
+ \begin{solution}{siveson@math}
+   Let $R$ be a PID, and $P \lhd R$ a primary ideal. If $P = (0)$ then we're done, so we can
+   assume $P=(a)$ with $a \in R$ and $a \neq 0$. If $a$ is irreducible, then $a$ is prime,
+   so we can assume $a$ is not irreducible.  Then $a = a_1a_2\cdots a_t$ with each $a_i$
+   irreducible. Then $a_1a_2\cdots a_t \in P$ but $a_2\cdots a_t \notin P$ (this is because
+   if $a_2\cdots a_t$ were in $P$, then $a_2\cdots a_t = ra_1a_2\cdots a_t$, so then $a_1$
+   is a unit since $R$ is a PID and hence also a UFD). So since $P$ is primary, $a_1^n =
+   r(a_1\cdots a_t) \in P$ for some $n$. But since $R$ is a UFD, and we can write things
+   uniquely as a product of irreducibles (up to multiplication by a unit), $a_i = u_i
+   a_1^{k_i}$ for some unit $u_i$ and some $k_i$ for $2 \leq i \leq t$. Then $a = ua_1^m$
+   for some unit $u$ and some $m$, and hence $P = (a_1^m)$ where $a_1$ is irreducible (and
+   prime).
+
+   Now the ideal $P = (0)$ is primary since it is prime. So we just need to check now that
+   the ideals $(p^n)$ are primary for all $n \geq 1$ and all nonzero primes $p$.  If $ab \in
+   (p^n)$, then $ab = rp^n$ for $r \in R$. Writing $a$, $b$, and $r$ as products of
+   irreducibles, $a_1 \cdots a_t b_1 \cdots b_s = r_1 \cdots r_m p^n$. But since $a_i \notin
+   (p^n)$ for all $i$, and because we are in a UFD, $b_i = up$ for some $i$ and some unit $u
+   \in R$. So $b_i^n \in (p^n) \Rightarrow b^n \in (p^n)$. Hence $(p^n)$ is also primary.
+ \end{solution}
+
+ \begin{exercise}{I.52'}
+  Let $\pi$ be an irreducible element in $R$, where $R$ is a UFD. Show that\\
+  (1) $(\pi^n)$ is a primary ideal for all $n > 0$, and \\
+  (2) any nonzero primary ideal in $(\pi)$ has the form $(\pi^n)$.
+ \end{exercise}
+ \begin{solution}{siveson@math}
+  (1) The argument used in I.52 will work to show this (replacing $p$ by $\pi$), as it only
+  used the fact that $p$ was irreducible and the ring was a UFD.\\
+  (2) Let $I \subset (\pi)$ be a nonzero primary ideal. Then $I$ is generated by elements
+  of the form $a_i\pi$ ($a_i \in R$), so we can write $I = \pi J$ where $J$ is the ideal
+  generated by the $a_i$.  Suppose $\pi^n \notin I$ for any $n$. Then because $I$ is
+  primary and $a \pi \in I$ for all $a \in J$, each $a \in I$.  Then $J \subseteq I = \pi
+  J \subseteq J$, and hence $J = \pi J$. Then inductively, $J = \pi^k J$ for any $k$.
+  Since $\pi$ is irreducible and $J = I \neq 0$, this is not possible, because then there
+  is a nonzero $j \in J = \pi^k J$, meaning that $j$ contains as many powers of $\pi$ as
+  we want when we write it as a product as irreducibles.  Therefore $\pi^n \in I$ for
+  some $n$, which we can assume to be of minimal degree (so $\pi^c \notin I$ for $c <n$),
+  so $(\pi^n) \subseteq I$.  Supposed there is some $x \in I$ with $x \notin (\pi^n)$.
+  Then $x = \pi^m a$, where $a$ does not contain $\pi$ as a factor, and $m < n$. Now
+  $\pi^m \notin I$ (otherwise this would contradict the minimality of $n$), so $a^k \in I
+  = \pi J$ for some $k$, but then writing $a^k$ as a product of irreducibles, since it is
+  in $\pi J$, $a$ must contain $\pi$ as a factor, which is a contradiction. Hence $x \in
+  (\pi^n)$ for all $x \in I \Rightarrow (\pi^n) = I$.\\
+  Now given any nonzero principal ideal $I$ in a UFD, it is contained in some $(\pi)$, so
+  by (1) and (2), it is primary iff it is of the form $(\pi^n)$.
+ \end{solution}
+
+ \begin{exercise}{I.53}
+  Give an example of a dense ideal that is not a regular ideal.  Which result in the text
+  implies that this is impossible in a noetherian ring?
+ \end{exercise}
+ \begin{solution}{Jonah}
+   The ring $R = k[x_1,\ldots,x_n,\ldots]/(x_1^2,x_2^2, \ldots)$ and the maximal ideal $I =
+  (x_1, x_2, \ldots)$ is an example.  No elements of I are regular
+  because any polynomial is killed by the product of all the $x_i$'s
+  that appear in that polynomial.  I is dense because any element of
+  the ring only annihilates finitely many of the $x_i$.  This is
+  impossible in a noetherian ring because if an ideal is not regular
+  then it is contained in the set of zero divisors and therefore is
+  contained in a point annihilator (Theorem 6.2).
+ \end{solution}
+
+ \begin{exercise}{I.54}
+  Does Vasconcelos's Theorem 8.9 hold for non f.g. modules?
+ \end{exercise}
+ \begin{solution}{mreyes@math}
+  Certainly not. \ Indeed, let $R\neq0$ be any ring, and consider the countably
+  generated free module $_{R}M=\oplus_{n=1}^{\infty}e_{i}R$. \ Then for
+  $f\in\operatorname*{End}\left(  _{R}M\right)  $ given by $e_{1}\mapsto0$ and
+  $e_{i}\mapsto e_{i-1}$ for $i>1$, we see that $f$ is surjective but not
+  injective. \
+ \end{solution}
+
+ \begin{exercise}{I.55}
+  For a module $M$ over a noetherian ring $R$, show that $\p \in
+  \text{Ass}(M)$ iff $\p$ is a minimal prime over a point annihilator
+  of $M$.
+ \end{exercise}
+ \begin{solution}{David Brown, brownda@math.berkeley.edu}
+  If $\p \in \text{Ass}$ then $\p$ is by definition a point
+  annihilator, thus minimal over itself. Conversely, let $\p$ be
+  minimal over a point annihilator. As $R$ is noetherian, $\p$ is
+  finitely generated, so by proposition 3.16, $\p \in \text{Ass}(M)$
+  iff $\p_{\p} \in \text{Ass}(M_{\p})$. Now $\p_{\p}$ is minimal over
+  some point annihilator $I$. Let $I'$ be a maximal point annihilator
+  containing $I$. As $R_{\p}$ is noetherian, $I'$ exists, and by
+  Proposition 3.10 $I' \in \text{Ass}(M_{\p})$. But $R_{\p}$ is local
+  with maximal ideal $\p_{\p} \supset I'$ which is minimal over $I$,
+  so we must have $\p_{\p} = I'$. We conclude that $\p \in
+  \text{Ass}(M)$.
+ \end{solution}
+
+ \begin{exercise}{I.56}
+  For a module $M$ over an Artinian ring $R$, show that $\text{Ass}(M)
+  = \text{Supp}(M)$.
+ \end{exercise}
+ \begin{solution}{David Brown, brownda@math.berkeley.edu}
+  Artin $\Rightarrow$ noetherian and 0-dimensional, and that all
+  primes are f.g. Thus by Proposition 3.16, a prime $0 \neq \p \in \text{Supp}(M)$ is in
+  $\text{Ass}(M)$ iff $\p_{\p} \in \text{Ass}(M_{\p})$. But $A_{\p}$
+  is Artinian and local, with unique prime ideal $p_{\p}$, and so if
+  a maximal point annihilator exists then it must be $p_{\p}$, which
+  by Proposition 3.10 would imply that $\p_{\p} \in
+  \text{Ass}(M_{\p})$.
+
+  Suppose that for every $m \in M$, $\text{Ann}(m) \not \subset \p$.
+  Then we would have $M_{\p} = 0$, contradicting $\p \in
+  \text{Supp}(M)$. Thus we can choose $m$ such that $\text{Ann}(m) \subset \p$.
+  Then $\text{Ann}(m/1) \subset \p_{\p}$, and we have a point
+  annihilator. We conclude that $\p \in \text{Ass}(M)$.
+ \end{solution}
+
+ \begin{exercise}{I.57}
+   For modules over a local ring $R$, show that $\mu_R(M\oplus N) = \mu_R(M)+\mu_R(N)$.
+   Does this formula hold over semilocal rings?
+ \end{exercise}
+ \begin{solution}{anton@math}
+   If $\{m_i\}$ and $\{n_j\}$ generate $M$ and $N$, respectively, then $\{(m_i,0)\}\cup
+   \{(0,n_i)\}$ generates $M\oplus N$, and if $\{x_k\}$ generate $M\oplus N$, then the
+   projections onto $M$ (resp.\ $N$) generate $M$ (resp.\ $N$). Therefore,
+   \[
+   \max\{\mu_R(M),\mu_R(N)\}\le \mu_R(M\oplus N) \le \mu_R(M)+\mu_R(N).
+   \]
+   If either $\mu_R(M)$ or $\mu_R(N)$ is an infinite cardinal, then these two bounds are
+   equal, so we get the result.
+
+   So we may assume that $\mu_R(M)$ and $\mu_R(N)$ are finite. In this case, Nakayama's
+   lemma tells us that $\mu_R(M) = \dim_k M/\m M$, where $k=R/\m$ is the residue field of
+   $R$. So
+   \begin{align*}
+    \mu_R(M\oplus N) &= \dim_k (M\oplus N)/\m(M\oplus N) \\
+    &= \dim_k M/\m M + \dim_k N/\m N =
+    \mu_R(M) + \mu_R(N).
+   \end{align*}
+
+   The result doesn't hold over semilocal rings. Let $R$ be $\ZZ$, semilocalized at the
+   primes $(2)$ and $(3)$. Then $\mu(\ZZ/3 \oplus \ZZ/2) = \mu(\ZZ/6) = 1$.
+ \end{solution}
+
+ \begin{exercise}{I.58}
+ Let $R$ be a ring, and $M_i, i \in I$ be a collection of $R$-modules. Is it true
+ that $\text{Ass} (\bigoplus_{i \in I} M_{i}) = \bigcup_{i \in I}\text{Ass} (M_{i})$?
+ \end{exercise}
+ \begin{solution}{David Brown, brownda@math.berkeley.edu}
+  \emph{Yes!} For one inclusion, a prime $\p \in M_{i}$ is equivalent
+  to the inclusion of $R$-modules
+  \[
+  R/\p \to M_{i} \to \bigoplus_{i \in I} M_{i},
+  \]
+  and so $\p \in \text{Ass} \left(\bigoplus_{i \in I} M_{i}\right)$
+
+  Conversely, given a prime $\p \in \text{Ass} \left(\bigoplus_{i \in I}
+  M_{i}\right)$, and hence an inclusion
+  \[
+  R/\p \xrightarrow{i}  \bigoplus_{i \in I} M_{i},
+  \]
+  consider the image $i(1) = (m_{i})_{i \in I}$. Let $I'$ be the set
+  of all $i \in I$ such that $m_{i} \neq 0$. Then $I'$ is finite, and
+  $i$ factors through the finite direct sum
+  \[
+  R/\p \to \bigoplus_{i \in I'} M_{i} \to  \bigoplus_{i \in I} M_{i}.
+  \]
+  We conclude by $3.8, (2)$ that $\p \in \text{Ass}\left(\bigoplus_{i \in I'}
+  M_{i}\right) = \bigcup_{i \in I'}\text{Ass}(M_{i})$.
+ \end{solution}
+
+ \begin{exercise}{I.59}
+  Show that a f.g. ideal $I = r_1R + \cdots + r_nR$ contained in a
+  minimal prime $\p$ of $R$ is not dense.
+ \end{exercise}
+ \begin{solution}{David Brown, brownda@math.berkeley.edu}
+  In the local ring $R_{\p}$, $\p$ is maximal and minimal, so is the
+  unique prime. Hence $\nil(R_{\p}) = \p$. Choose $n_i$ such that
+  $r_i^{n_i} = 0$ in $R_{\p}$, i.e. there exists an $a_i \not \in \p$
+  such that $a_ir_i^{n_i} = 0$ in $R$. Then $a := a_1\ldots a_n \neq 0$,
+  because otherwise $a_i \in \p$ for some $i$. Now choose a tuple
+  $(m_1,\ldots,m_n)$ maximal w.r.t the property that $b := a \cdot r_1^{m_1}
+  \ldots r_n^{m_n} \neq 0$. Then for each $i$, $b\cdot r_i = 0$.
+  As $b$ is non-zero by construction we conclude that $I$ is not
+  dense.
+ \end{solution}
+
+ \begin{exercise}{I.60}
+   (For philosophical discussions.) In teaching mathematical induction in an introductory
+   course in abstract algebra, it is incumbent upon an instructor to stress the need to
+   ``begin the induction''; that is, to check the case $n=1$. (``Otherwise, you can prove
+   $n=n+1$.'') In the Noetherian Induction Principle (4.9), what happened to the ``beginning
+   of the induction''?
+ \end{exercise}
+ \begin{solution}{los@math}
+   {\bf Noetherian Induction Principle 4.9.} {\em Let $R$ be a noetherian ring, and $\P$
+   be a certain property that we want to test on a family $\F$ of ideals in $R$. Suppose
+   it is known that an ideal $I \in \F$ satisfies $\P$ whenever all ideals in $\F$ properly
+   containing $I$ satisfy $\P$. Then all ideals in $\F$ satisfy $\P$.}
+
+   \noindent
+   Let $\F'$ be the family of all ideals of $R$, and let $\P'$ denote the following
+   property for ideals $I \in \F'$. An ideal $I$ satisfies $\P'$ if either: $I$ belongs to
+   $\F$ and satisfies $\P$; or $I$ does not belong to $\F$. Then the statement above is
+   equivalent to the same statement with $\F$ and $\P$ replaced by $\F'$ and $\P'$,
+   respectively. Under the hypotheses stated above, the ideal $R \in \F'$ necessarily satisfies $\P'$,
+   since there are no ideals properly containing it. The induction may be considered to
+   ``begin'' with $R$ in this sense.
+
+   \noindent
+   {\it Note:} The fact that in the above statement $\F$ is called
+   a ``family'' while $\P$ is called a ``property'' obscures the fact that the only relevant set
+   is the subset of $\F'$ consisting of those elements of $\F$ which do not satisfy $\P$, i.e.,
+   the set of elements of $\F'$ not satisfying $\P'$.
+ \end{solution}
+
+ \begin{exercise}{I.61}
+  Let $Q \subsetneq M$ be $\p$-primary. Show that, for any $r \in R \setminus
+  \text{ann}(M/Q)$, $Q:r = \{m \in M : rm \in Q \}$ is also $\p$-primary.
+ \end{exercise}
+
+ \begin{solution}{siveson@math}
+  First note that $Q:r \subsetneq M$ since $r \in R \setminus
+  \text{ann}(M/Q)$ so $rx \notin Q$ for some $x \in M$.\\
+  Now we first show that $Q:r$ is primary. Let $a \in R$ and $x \in M \setminus (Q:r)$
+  (so $rx \in M \setminus Q$), and suppose that $ax \in Q:r$, meaning $arx \in Q$.  Since
+  $rx \in M \setminus Q$ and $arx \in Q$, since $Q$ is primary, $a^nM \subseteq Q
+  \subseteq Q:r$ for some $n$. Hence $Q:r$ is primary.\\
+  Now we just need to show that $\sqrt{\text{ann}(M/(Q:r))} = \sqrt{\text{ann}(M/Q)} =
+  \p$. First of all, if $a \in R$ and $a^nM \subseteq Q$ (meaning $a \in
+  \sqrt{\text{ann}(M/Q)}$), then since $Q \subseteq Q:r$, we have $a^nM \subseteq Q:r$,
+  so we have containment in one direction: $\sqrt{\text{ann}(M/(Q:r))} \supseteq
+  \sqrt{\text{ann}(M/Q)}$. Now if $a \in R$ and $a^nM \subseteq Q:r$ for some $n$
+  (meaning $a \in \sqrt{\text{ann}(M/(Q:r))}$), then $a^nrm \in Q$ for all $m \in M$. But
+  there is some $x \in M \setminus (Q:r)$, so $rx \notin Q$ but $a^nrx \in Q$. Then since
+  $Q$ is primary, $(a^n)^mM \subseteq Q$ for some $m$, meaning $a \in
+  \sqrt{\text{ann}(M/Q)}$. This gives us containment in the other direction, so we get
+  equality $\sqrt{\text{ann}(M/(Q:r))} = \sqrt{\text{ann}(M/Q)} = \p$, so $Q:r$ is also
+  $\p$-primary.
+ \end{solution}
+
+ \begin{exercise}{I.62}
+  Given $\mathfrak{q}\subseteq\m\in\Max(R)$ in a noetherian ring $R$, show that the
+  following are equivalent:
+
+  (1) $\mathfrak{q}$ is $\m$-primary.
+
+  (2) $\mathfrak{q}\supseteq\m^n$ for some $n$.
+
+  (3) $R/\mathfrak{q}$ is local artinian.
+ \end{exercise}
+
+ \begin{solution}{ecarter@math}
+  $(2)\implies (1)$: Let $a,b\in R$ such that $ab\in\mathfrak{q}$ and
+  $b\notin\mathfrak{q}$. Then $b\notin\m^n$.  Since $\m$ is prime, $b\notin\m$.  Then
+  $ab\in\m$ but $b\notin\m$, so $a\in\m$.  Therefore $a^n\in\mathfrak{q}$, so
+  $\mathfrak{q}$ is primary.  Since $\m\subseteq\sqrt{\mathfrak{q}}$ and $\m$ is already
+  maximal, $\m=\sqrt{\mathfrak{q}}$, so $\mathfrak{q}$ is $\m$-primary.
+
+  $(1)\implies (3)$: Since $\sqrt{\mathfrak{q}}=\m$ is maximal,
+  $R/\mathfrak{q}$ has a unique
+  prime.  Since $R/\mathfrak{q}$ is also noetherian, it must be local
+  artinian.
+
+  $(3)\implies (2)$: Since $R/\mathfrak{q}$ is local artinian, it has a unique prime,
+  $\m$.  In a noetherian ring, any ideal contains a finite product of prime ideals, so
+  $\m^n$ must be equal to the zero ideal in $R/\mathfrak{q}$ for some $n$.  Therefore
+  $\m^n\subseteq\mathfrak{q}$.
+ \end{solution}
+
+ \begin{exercise}{I.63}
+     For an artinian ring $R$, let $(0)=\mathfrak{q}_1\cap \ldots\cap \mathfrak{q_n}$
+     be a MPD. Show that this gives a natural ring isomorphism $R\cong \prod_{i=1}^n
+     R/\mathfrak{q}_i$, where each $R/\mathfrak{q}_i$ is local artinian.
+ \end{exercise}
+ \begin{solution}{Lars Kindler, lars\_k@berkeley.edu}
+     Let $\mathfrak{m}_i$ denote $\sqrt{\ann(R/\mathfrak{q}_i)}$ so that each of the
+     $\mathfrak{q}_i$ is $\mathfrak{m}_i$-primary. Then the
+     Lasker-Noether Theorem tells us that
+     $\ass(R/(0))=\ass(R)=\{\mathfrak{m}_1,\ldots,\mathfrak{m}_n\}$ and
+     $\dim R = 0$ implies that the $\mathfrak{m}_i$ are maximal ideals and thus
+     isolated, so the  $\mathfrak{q}_i$ are uniquely determined.\\
+     Now $R$ is noetherian and rad-nil, so $\rad(R)$ is nilpotent, i.e. there is a $t$
+     such that we have the decomposition
+     $0=(\mathfrak{m}_1\cap\ldots\cap\mathfrak{m}_k)^t=\mathfrak{m}^t_1\cdot\ldots\cdot\mathfrak{m}_k^t=\mathfrak{m}_1^t\cap
+     \ldots\cap\mathfrak{m}_k^t$. Now $\mathfrak{m}_i^t$ is $\mathfrak{m}_i$-primary
+     and since we have seen that $\ass(R)=\{\mathfrak{m}_1,\ldots,\mathfrak{m}_n\}$,
+     this decomposition must be a MPD by the Lasker-Noether theorem, hence we have $\mathfrak{q}_i = \mathfrak{m}_i^t$ and by the
+     Chinese Remainder Theorem $R\cong \prod_{i=1}^n R/\mathfrak{q}_i$, with
+     $R/\mathfrak{q}_i=R/\mathfrak{m}_i^t$ local artinian.
+ \end{solution}
+
+ \begin{exercise}{I.64}
+  Show that a power of a prime ideal need not be primary.  (Hint. Let
+  $R=k[x,y,z]/(xy-z^2)$, and consider the prime ideal $(\overline{x}, \overline{z})$.)
+ \end{exercise}
+ \begin{solution}{ecarter@math}
+  Since $R/(\overline{x},\overline{z})\cong k[x,y,z]/(xy-z^2,x,z)\cong k[y]$ is an
+  integral domain, $(\overline{x},\overline{z})$ is prime.  However,
+  \[
+     R/(\overline{x}^2, \overline{x}\overline{z}, \overline{z}^2)
+             \cong k[x,y,z]/(xy-z^2, x^2, xz, z^2) = k[x,y,z]/(xy,x^2, xz, z^2).
+  \]
+  In this ring, $y$ is a zero-divisor which is not nilpotent.  Therefore
+  $(\overline{x}^2, \overline{x}\overline{z},
+  \overline{z}^2)=(\overline{x},\overline{z})^2$ is not primary.
+ \end{solution}
+
+ \begin{exercise}{I.65}
+   If an ideal $\q \< R$ is $\p$-primary, show that $\q[x]$ is $\p[x]$-primary in the polynomial
+   ring $R[x]$.
+ \end{exercise}
+ \begin{solution}{los@math}
+   First, note that $\p[x]$ is indeed a prime ideal, since it is the kernel of the projection
+   morphism $R[x] \rightarrow (R/\p)[x]$, where $(R/\p)[x]$ is a domain because $R/\p$ is.
+   We may assume $\q=0$, since $R[x]/\q[x] \cong (R/\q)[x]$ and $\p[x]/\q[x]$
+   corresponds to $(\p/\q)[x]$ under this isomorphism. Thus we are reduced to showing that if a
+   ring $R$ satisfies $\nil(R)=\p=\Z(R)$ for a prime ideal $\p$, then $\nil(R[x])=\p[x]=\Z(R[x])$.
+   That $\nil(R[x])=\p[x]$ is clear from Exercise 1.2 and the equality $\nil(R)=\p$. This also shows
+   $\p[x] = \nil(R[x]) \subseteq \Z(R[x])$. Conversely, let $f \in \Z(R[x])$. Theorem 1.2 shows
+   that all the coefficients of $f$ are in $\Z(R)=\p$, so $f \in \p[x]$. Hence $\Z(R[x]) \subseteq
+   \p[x]$ and we are done.
+ \end{solution}
+
+ \begin{exercise}{I.66} Use Exer. 65 to show that, for the prime ideal $\p = (x_1, \ldots ,x_m)
+   \< k[x_1, \ldots ,x_n]$ (where $k$ is a field and $1 \leq m \leq n$), every power $\p^r$ $(r>0)$
+   is $\p$-primary.
+ \end{exercise}
+ \begin{solution}{los@math}
+   It follows easily by induction from Exercise 65 that,
+   under the same hypotheses,
+   for any $s \geq 0$, the ideal $\q[x_1,\ldots,x_s]$ is $\p[x_1,\ldots,x_s]$-primary
+   in the ring $R[x_1,\ldots,x_s]$. In Exercise 66, let $R=k[x_1,\ldots,x_m]$, and let $\m$ be the
+   maximal ideal of $R$ generated by $x_1,\ldots,x_m$. Then $\m^r$ is $\m$-primary by Remark (7.4)(2).
+   Identifying $k[x_1,\ldots,x_n]$ with $R[x_{m+1},\ldots,x_n]$, we clearly have
+   $\p=\m[x_{m+1},\ldots,x_n]$
+   and $\p^r=\m^r[x_{m+1},\ldots,x_n]$. Applying the previous remark with $s=n-m$, it follows that
+   $\p^r$ is $\p$-primary.
+ \end{solution}
+
+ \begin{exercise}{I.67}
+   Show that, in the noetherian ring $k[x_1, \ldots , x_n]$ (where $k$ is a field and $n \geq 2$),
+   the primary ideal $(x_1,x_2)^2$ is not irreducible.
+ \end{exercise}
+ \begin{solution}{los@math}
+   Let $R=k[x_3,\ldots,x_n]$ and let $I$, $J$ and $K$ be the ideals $(x_1,x_2)^2$, $(x_1,x_2^2)$
+   and $(x_1^2,x_2)$ of $R[x_1,x_2]$, respectively. We also have $I=(x_1^2,x_1x_2,x_2^2)$.
+   Elements $f$ of the ideal $I$ (resp. $J$, resp. $K$) are characterized by the following property:
+   for every monomial $a_{{i_1}{i_2}}x_1^{i_1}x_2^{i_2}$ appearing in $f$ (viewed as an element
+   of $R[x_1,x_2]$), we have $i_1 \geq 2$; $i_1 \geq 1$ and $i_2 \geq 1$; or $i_2 \geq 2$ (resp.
+   $i_1 \geq 1$ or $i_2 \geq 2$, resp. $i_1 \geq 2$ or $i_2 \geq 1$). From these considerations it
+   is clear that $I \neq J$, $I \neq K$ and $I = J \cap K$, hence $I$ is not irreducible.
+ \end{solution}
+
+ \begin{exercise}{I.68}
+   Let $\p = (x,y) \subseteq k[x,y,z]$, where $k$ is a field. Then $\q = (y^2, x+yz)$ and
+   $\q' = (y^2, -x+yz)$ are $\p$-primary by (7.4)(5). Show that $\q+\q'$ is not primary.
+ \end{exercise}
+ \begin{solution}{los@math}
+   {\it Note:} It must be assumed that ${\rm char}(k) \neq 2$ in order for the conclusion to hold.
+   We will make this assumption.
+
+   \noindent
+   We have $\q + \q' = (y^2,x+yz,-x+yz) = (y^2,2yz,x-yz) = (y^2,yz,x-yz) = (y^2,yz,x)$, the
+   third equality holding because 2 is invertible in $k$ by assumption. Thus
+   $k[x,y,z]/(\q+\q') \cong k[y,z]/(y^2,yz)$. By Example (7.4)(4), we see that $\q+\q'$ is not
+   primary.
+ \end{solution}
+
+ \begin{exercise}{I.69}
+   Prove the following module-theoretic analogue of the first part of (7.4)(2): if $Q \subsetneq
+   {}_RM$ is such that $\sqrt{\ann(M/Q)} = \m \in \Max(R)$, then $Q$ is $\m$-primary.
+ \end{exercise}
+ \begin{solution}{los@math}
+   {\it Note:} The ideal $\m$ wasn't originally defined in the statement of the exercise. Also, the
+   assumption $Q \neq M$ is superfluous.
+
+   \noindent
+   First we make a general remark about primary submodules. If
+   $I$ is an ideal of $R$ and $N \subseteq M$ are $R/I$-modules,
+   we can also view $M$ and $N$ as $R$-modules. It is obvious from the
+   definitions that if $\p$ is any prime ideal of $R$ containing $I$,
+   then $N$ is a $\p$-primary submodule of ${}_RM$ if and only if $N$
+   is $\p/I$-primary as a submodule of ${}_{R/I}M$. Now in the situation
+   of the exercise, we may assume $Q=0$, replacing $M$ with $M/Q$.
+   Furthermore, by the foregoing argument, we may without loss of
+   generality replace $R$ with $R/{\ann(M)}$ and hence assume $\ann(M)=0$.
+   In particular, $M \neq 0$.
+   We now have by assumption $\nil(R)=\m \in \Max(R)$. In other words,
+   $R$ is a rad-nil local ring with maximal ideal $\m$. In order to
+   show that $0$ is $\m$-primary in $M$, we need only show $\Z(M)=\m$.
+   Because $M \neq 0$, we have $\nil(R) \subseteq \Z(M)$, which proves the
+   inclusion $\m \subseteq \Z(M)$. Conversely, let $a \in \Z(M)$. The element
+   $a$ cannot be invertible in $R$, for otherwise multiplication by $a$ would be an
+   automorphism of $M$, contradicting $a \in \Z(M)$. But $R$ is a local ring, so in fact
+   $a \in \m$. Thus $\Z(M) \subseteq \m$, which proves that $0$ is $\m$-primary in $M$.
+ \end{solution}
+
+ \begin{exercise}{I.70}
+     Show that a prime ideal is irreducible, and an irreducible radical ideal is prime.
+ \end{exercise}
+ \begin{solution}{Lars Kindler, lars\_k@berkeley.edu}
+     Let $R$ be a ring and $\p\lhd R$ a prime ideal. Assume
+     $\p=I\cap J$, where $I,J\lhd R$ and $I\neq \p\neq J$. Pick an
+     element $x\in J\setminus \p$, then for all $a\in I$ we have $ax\in
+     I\cap J=\p$ and since $\p$ is prime this implies
+     $I=\p$ which is a contradiction.\\
+     An irreducible radical ideal $I$ is the intersection of all primes containing it,
+     i.e. $I=\bigcap_{\alpha\in \mathfrak{A}} \mathfrak{p}_\alpha$, for some index set
+     $\mathfrak{A}$. Now let $b\not\in I$ and define
+     $\mathfrak{A}_1:=\{\alpha\in\mathfrak{A}|b\in \mathfrak{p}_\alpha\}\subsetneqq
+     \mathfrak{A}$ and $\mathfrak{A}_2=\mathfrak{A}\setminus\mathfrak{A}_1\neq
+     \varnothing$. Then we have $I=\bigcap_{\alpha\in
+     \mathfrak{A}_1}\mathfrak{p}_\alpha \cap \bigcap_{\alpha\in
+     \mathfrak{A}_2}\mathfrak{p}_\alpha$, so since $I$ is irreducible and $b\not\in I$
+     this implies $I=\bigcap_{\alpha\in \mathfrak{A}_2}\mathfrak{p}_\alpha$. But then
+     $ab\in I$ implies $a\in I$ and thus $I$ is prime.
+ \end{solution}
+
+ \begin{solution}{lam@math}
+  \textit{Another Solution to 2nd Part:}
+
+  \medskip\noindent
+  Suppose there exist $a,b\notin I$ with $ab\in I$. We claim $I\subseteq
+  (I+(a))\cap (I+(b))$ is an equality (which would show $I$ is not irreducible). Let
+  $x=i+ar=j+bs$, where $i,j\in I$. Then $ai+a^2r=aj+abs\Rightarrow a^2r\in I\Rightarrow
+  ar\in I \Rightarrow x\in I$.
+ \end{solution}
+
+ \begin{exercise}{I.71}
+  Let $A$ be a UFD with prime ideal $\p$ containing an irreducible element $\pi$ such
+  that $(\pi) \subsetneq \p$.  Let $M$ be the $A$-module $\bigoplus A/(p)$, where $(p)$
+  ranges over principal ideas of $A$ generated by irreducible elements $p$ such that $(p)
+  \neq (\pi)$. For the split-null extension $R := A \oplus M$ constructed in (5.3)(B), show
+  that
+  \smallskip
+  \noindent (1) $\C(R) = \{(u \pi^k,m) : u\in \text{U}(A), \; k\geq0 ; \; m \in M\}$.\\
+  (2) The ideal $\p \oplus M \< R$ is regular, but is \textit{not} generated by regular
+  elements.\\
+  (Thus, $R$ is not a Marot ring.)
+ \end{exercise}
+ \begin{solution}{Jonah (jblasiak@math) and Anton}
+  Since $A$ is a UFD the only way the product of two elements can be zero is if one of the
+  $A$ summands of one of the elements is 0.  Now simply compute the following product for
+  an arbitrary nonzero element $a = u \pi_1^{r_1} \pi_2^{r_2} \ldots \pi_k^{r_k}$ of $A$
+  (where $u \in \text{U}(A)$ and the $\pi_i$ are irreducible), and $m_1, m_2 \in M$: $(a,
+  m_1) \cdot (0, m_2) = (0, a \; m_2)$.  So $(a, m_1)$ is a zero divisor iff $a$
+  annihilates some nonzero element of $M$ iff $\pi_i \neq \pi$ for some $i$.  This proves
+  (1).
+
+  The ideal $I = \p \oplus M$ is regular since it contains $(\pi, 0)$.  It is easy to see from (1) that the regular elements of $I$ generate the subideal $(\pi) \oplus M$.  This is an ideal and is proper since the $A$ summand of a product of two elements is determined only by the $A$ summands of the elements: for any $x \in \p \backslash (\pi)$ $(x, 0) \in \p \oplus M$ and $(x, 0) \notin (\pi) \oplus M$ .
+ \end{solution}
+
+
+ \closeout0
+\end{document}

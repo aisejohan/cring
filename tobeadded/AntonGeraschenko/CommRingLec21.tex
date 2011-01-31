@@ -1,0 +1,70 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{21}
+ \sektion{Lecture 21}
+
+ \begin{theorem}[Strong NSS]
+   For any field $k$, let $J\< A=k[x_1,\dots, x_n]$. Then $g\in A$ vanishes on $V_{\bar
+   k}(J)$ if and only if $g\in \sqrt J$. That is, $I\bigl(V_{\bar k}(J)\bigr)=\sqrt J$.
+ \end{theorem}
+ \begin{proof}
+   We need only to prove $\Rightarrow$, as the other direction is trivial. This is often
+   done with the Rabinowich trick, but we will take a ring-theoretic approach. First note
+   that $\sqrt J = \bigcap_{J\subseteq \p} \p =\bigcap_{J\subseteq \m}\m$ since $A$ is a
+   Hilbert ring. So it suffices to check that $g\in \m$ for each $\m\supseteq J$. We saw
+   last time that a maximal ideal is exactly the vanishing ideal of an algebraic
+   point $a=(\alpha_1,\dots, \alpha_n)\in \bar k^n$, $\m=\I(\{a\})$. Since $J$ vanishes on
+   $\{a\}$, $a\in V_{\bar k}(J)$. By assumption, $g(a)=0$, so $g\in \m$, as desired.
+ \end{proof}
+ \begin{remark}
+   We used the Weak NSS in the proof that maximal ideals are vanishing ideals of
+   algebraic points.
+ \end{remark}
+ \begin{corollary}
+   Let $f,g\in A[x_1,\dots, x_n]$, and assume $f$ is square-free and non-zero. Then $f|g$
+   if and only if $V_{\bar k}(f)\subseteq V_{\bar k}(g)$.
+ \end{corollary}
+ \begin{proof}
+   $\Rightarrow$ is trivial. By the strong NSS applied to $J=(f)$. Since $g$ vanishes on
+   $V_{\bar k}(J)$, $g^r=f\cdot h$ for some $h$. Each prime dividing $f$ must then divide
+   $g$. Since $f$ is square-free, $f|g$.
+ \end{proof}
+ \begin{theorem}
+   Let $J\< A$, where $A$ is an affine $k$-algebra. Then $A/J$ is artinian if and only if
+   $\dim_k A/J< \infty$. If $A$ is a polynomial ring, then this occurs if and only if
+   $|V_{\bar k}(J)|$ is finite. Furthermore, $|V_{\bar k}(J)|\le \dim_k A/J$.
+ \end{theorem}
+ \begin{warning}
+   In the literature, such a $J$ is called a ``zero-dimensional'' ideal. This is confusing
+   because $A/J$ is artinian if it is zero-dimensional \emph{as a ring}, not as a
+   $k$-vector space.
+ \end{warning}
+ \begin{proof}
+   If $A/J$ is finite-dimensional over $k$, then it is clearly artinian. For the other
+   direction, apply Akizuki-Cohen \anton{} to reduce to: An affine \emph{local} artinian
+   $k$-algebra $(R,\m)$ is finite dimensional over $k$. If $R$ is a field, then we are
+   done by Zariski's lemma. In particular, $\dim_k R/\m < \infty$. We also know that $\m$
+   is nilpotent (the jacobson radical in an artinian ring is always nilpotent) and that
+   $\dim_k \m^i/\m^{i+1} <\infty$ because $\m^i/\m^{i+1}$ is finitely generated over
+   $R/\m$. It follows that $\dim_k R<\infty$.
+
+   Now let's consider the case where $A=k[x_1,\dots, x_n]$. We want to show that $\dim
+   A/J< \infty$ (i.e.~$A/J$ is artinian) if and only if $V_{\bar k}(J)$ is finite and
+   that $|V_{\bar k}(J)|\le \dim_k A/J$. First reduce to the case $k=\bar k$; the
+   conditions do not change when you tensor up to $\bar k$. We may also assume that $J$
+   is radical; again, the conditions don't change when we replace $J$ by $\sqrt J$ (uses
+   exercise I.47), noting that $|V_{\bar k}(J)|$ stays the same, and $\dim_k A/J$ gets
+   smaller.
+
+   Recall that $J=\sqrt J=\bigcap_{\m\supseteq J} \m$, and each $\m$ is of the form
+   $(x_1-a_1,\dots, x_n-a_n)$, where $(a_1,\dots, a_n)\in V_k(J)$. For the implication
+   $\Rightarrow$, we note that if $A/J$ is artinian, then it is semi-local, so there are
+   only finitely many $\m$ containing $J$, so $V_k(J)$ is finite. For the implication
+   $\Leftarrow$, we note that $|V_k(J)|<\infty$ is the number of maximal ideals
+   containing $J$, so $A/J$ is semi-local with Jacobson radical equal to zero (since $J$
+   is radical). By an earlier fact \anton{} $A/J=\frac{A/J}{\rad (A/J)}$ is the product of
+   all its residue fields (all of which are $k$), so $\dim_k A/J = |V_{k}(J)|$.
+ \end{proof}
+
+ Connection between $k$-algebraic sets $Y\subseteq K^n$ and $\spec k[Y]$. There is a
+ canonical map $\varphi:Y\mapsto \spec k[Y]$, but it is neither one-to-one nor onto in
+ general.

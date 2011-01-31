@@ -1,0 +1,111 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{18}
+ \sektion{Lecture 18}
+
+ noetherian $\Rightarrow$ subspaces are noetherian $\Rightarrow$ subspaces are compact.
+ If $K\supseteq k$, then the $k$-topology on $K^n$ is noetherian (hence compact).
+
+ \begin{proposition}
+   If $X$ is a non-empty topological space, then the following are equivalent.
+   \begin{enumerate}
+     \item $X$ is not the union of two proper closed subsets.
+     \item Any two non-empty open sets intersect.
+     \item Any non-empty open set is dense in $X$.
+   \end{enumerate}
+ \end{proposition}
+ \begin{proof}
+   easy exercise.
+ \end{proof}
+ In this case, we call $X$ \emph{irreducible}. In particular, ``irreducible subspace'' is
+ meaningful (a subspace which is irreducible in the subspace topology).
+ \begin{corollary}
+   $Y\subseteq X$ is an irreducible subspace if and only if $\bbar Y$ is irreducible.
+ \end{corollary}
+ \begin{proof}
+   Follows from the fact that an open set intersects $Y$ is and only if it intersects
+   $\bbar Y$.
+ \end{proof}
+ \begin{example}
+   Singleton subspaces (and therefore their closures) are irreducible.
+ \end{example}
+ \begin{definition}
+   A maximal irreducible subset $Y$ of $X$ is called an \emph{irreducible component} of $X$.
+ \end{definition}
+ Such a $Y$ is always closed because $Y\subseteq \bbar Y$, which is irreducible, so by
+ maximality, $Y=\bbar Y$.
+ \begin{proposition}
+   \begin{enumerate}
+     \item Any irreducible set in $X$ is contained in some irreducible component.
+     \item $X$ is the union of its irreducible components.
+   \end{enumerate}
+ \end{proposition}
+ \begin{proof}
+   (1) Zorn's Lemma.
+   (2) Every point is in some irreducible component by (1).
+ \end{proof}
+ Note that in a Hausdorff space, any two points are separated by open sets, so they
+ cannot be in an irreducible component together, i.e.\ only irreducible sets are points.
+
+ \begin{theorem}
+   If $X$ is noetherian, then the number of irreducible components is finite. If
+   $\{X_i\}$ are the irreducible components, all of them are needed to cover $X$.
+ \end{theorem}
+ \begin{proof}
+   If $X_i$ can be omitted, it is contained in the remaining union, so it must be
+   contained in one of the other components (since it is irreducible), contradicting the
+   fact that it is a maximal irreducible set.
+
+   \anton{}
+ \end{proof}
+ \begin{theorem}
+   Given $k\subseteq K$, let $X\subseteq K^n$ be a $k$-algebraic set. The irreducible
+   components of $X$ (in the $k$-topology) are given by $V_K(\p_i)$, where the $\p_i$
+   are the minimal primes over the ideal $I(X)$. Moreover, $\p_i=I\bigl(V(\p_i)\bigr)$.
+ \end{theorem}
+ Note that it would be wrong to say that $I\bigl(V(\p)\bigr)=\p$ for all primes because
+ $V(\p)$ may be empty. Note that we don't use the Nullstellensatz.
+ \begin{proof}
+   check the proof in the notes \anton{}.
+ \end{proof}
+
+ \underline{Generic Points}: For a subset $Y\subseteq X$, a point $y\in Y$ is called a
+ generic point of $Y$ if $\bbar{\{y\}}=Y$. Note that to have a generic point, $Y$ must be
+ closed and irreducible. In general, these conditions are not sufficient! In classical
+ algebraic geometry, even $k$-varieties need not have generic points!
+ \begin{example}
+   Let $k=\bar k$, and $Y=V(y-x^2)$, the parabola. $Y$ is irreducible, but it has no
+   generic point in the $k$-topology because points are closed (since $k=\bar k$).
+ \end{example}
+ Classically, we take $k\subseteq K$ to have infinite transcendence degree (e.g.\
+ $\QQ\subseteq \CC$). In this case, $k$-varieties in $K^n$ will have generic points. In
+ the example above, take $K=\text{Frac}\left(\frac{k[s,t]}{(t^2-s)}\right)$. Then $(\bar
+ s, \bar t)$ is a generic point for the parabola.
+
+ \subsektion{\S 3. Zariski Prime Spectrum}
+ \begin{tabular}{c|c|c|}
+    & algebraic & geometric\\ \hline
+   Classical & $k[x_1,\dots, x_n]$ & $K^n$, $k$-algebraic sets, etc. \\ \hline
+   Grothendieck & any (commutative) $R$ & $\spec R$
+ \end{tabular}\\
+ Define $\V(J)=\{\p\in \spec R| J\subseteq \p\}$.
+ \begin{theorem}
+  \begin{enumerate}\item[]
+   \item Taking $\V(J)$ to be closed sets gives a topology on $\spec R$.
+   \item The sets $\D(f) = \spec R\smallsetminus \V(f)$, $f\in R$, are a basis for
+         the topology.
+   \item $\spec R$ is a compact $T_0$ space.\footnote{Given two points, one of them
+         (you don't know which) has an open neighborhood avoiding the other.}
+  \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+  (1) This follows from $\bigcap \V(J_\alpha)=\V\bigl( \sum J_\alpha \bigr)$ and
+  $\V(J_1)\cup \V(J_2)=\V(J_1\cap J_2)$.
+
+  (2) An open set is of the form $\spec R\smallsetminus \V(J) = \bigcup_{f\in J}\D(f)$.
+
+  (3) If $\p,\p'\in \spec R$ are distinct, then there is some $f\in \p\smallsetminus \p'$
+  or $f\in \p'\smallsetminus \p$, say the former. Then $\D(f)$ contains $\p'$ but note
+  $\p$. This proves $T_0$. If you have a cover, then refine it to a cover by open sets of
+  the form $\D(f_\alpha)$. Then the $f_\alpha$ generate the unit ideal \anton{}, so a
+  finite number of them give 1, so those $\D(f_\alpha)$ cover.
+ \end{proof}

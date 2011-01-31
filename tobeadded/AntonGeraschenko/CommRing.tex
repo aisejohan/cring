@@ -1,0 +1,364 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%    This is the main document for the Math 274 notes. To compile     %%
+%%    these notes, you should put the following files in the same      %%
+%%    directory:                                                       %%
+%%    CommRing.tex (this file),                                        %%
+%%    CommRingpre.tex,                                                 %%
+%%    CommRingLec01.tex, CommRingLec02.tex,...                         %%
+%%    CommRingBib.bib                                                  %%
+%%                                                                     %%
+%%    If you are using MiKTeX, you can TeXify:                         %%
+%%    (1)-(6) texify CommRing.tex (Shift+Ctrl+X in WinEdt)             %%
+%%    Otherwise, you should run the following commands:                %%
+%%    (1) latex CommRing                                               %%
+%%    (2) makeindex CommRing                                           %%
+%%       (Note to Cygwin users: makeindex will complain if you use     %%
+%%       the Cygwin shell for this; use cmd instead.)                  %%
+%%    (3) bibtex CommRing                                              %%
+%%    (4) latex CommRing                                               %%
+%%    (5) makeindex CommRing                                           %%
+%%    (6) latex CommRing                                               %%
+%%                                                                     %%
+%%    Next, if you want to make a pdf, you should convert to ps        %%
+%%    first, because converting directly to pdf kills the              %%
+%%    hyperlinks and pstricks stuff.                                   %%
+%%    (7) dvips CommRing                                               %%
+%%    (8) ps2pdf CommRing.ps                                           %%
+%%                                                                     %%
+%%    Anton                                                            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \newif\ifproofmode     % True if for proofreading
+ \newif\iflilbook       % True if for making a little book
+ \proofmodetrue
+ \lilbookfalse
+%  \proofmodefalse
+%  \lilbooktrue
+
+ \iflilbook
+   \documentclass[twoside]{article}
+ \else
+   \documentclass[12pt]{article}
+ \fi
+
+ %\usepackage{ascii}
+ %\usepackage{graphicx}     % I don't like including graphics ... I'd rather draw them
+ %\usepackage{latexsym}     % I don't think I use any of these symbols
+ %\usepackage{titlesec}     % maybe one day I'll learn this package
+ %\usepackage{xcolor}       % If I ever want to use color ... I think this loads with pstricks
+
+ \usepackage{mathdots}      % For \iddots, which are backwords \ddots. Load before amsmath
+ \usepackage{amsmath}       % I think this gives me some symbols
+ \usepackage{amsthm}        % Does theorem stuff
+ \usepackage{amssymb}       % more symbols and fonts
+ \usepackage{empheq}        % Some more extensible arrows, like \xmapsto
+% package hyperref is loaded last
+ \usepackage{ifthen}        % For conditional stuff
+ \usepackage{makeidx}       % For making the index
+ \usepackage{manfnt}        % This package has the cool ``warning sign'' \dbend
+ \usepackage{mathrsfs}      % Sheafy font \mathscr{}
+ \usepackage{multicol}      % Supports muliple columns
+ \usepackage{picinpar}      % for pictures in paragraphs
+ \usepackage{pstricks}      % PStricks ... only used for shading here
+ \usepackage{relsize}       % contextually size fonts
+ \usepackage{graphicx}      % for the rotating
+ \usepackage{titletoc}      % Table of Contents stuff
+     \titlecontents{section}[0em]{\addvspace{1em}}{\thecontentslabel}{}{\titlerule*{} \textbf{\thecontentspage}}
+     \titlecontents{subsection}[2em]{}{\thecontentslabel}{}{\titlerule*{}\thecontentspage}
+ \usepackage[all]{xy}       % Include XY-pic
+    \SelectTips{cm}{10}     % Use the nicer arrowheads
+    \everyxy={<2.5em,0em>:} % Sets the scale I like
+    \xyoption{web}          % Include the lattice feature, I don't know why%
+                            % it isn't loaded already
+
+ \ifthenelse{\boolean{proofmode}}{%
+      \usepackage[colorlinks, linkcolor=red!40!blue!40!black, pagebackref]{hyperref}
+                            % This allows hyperlinks, and no longer needs pdflatex%
+                            % because dvips, ps2pdf remembers hyperlinks now.
+%      \usepackage{showidx}    % For showing the index entries in the corner of the page
+                            % must go after hyperref
+    }{
+     \usepackage[colorlinks, pagebackref]{hyperref}
+                            % This allows hyperlinks, and no longer needs pdflatex%
+                            % because dvips, ps2pdf remembers hyperlinks now.
+    }
+
+ \makeatletter
+%    \ifproofmode
+%      \renewcommand\@showidx[1]{%
+%      \insert\indexbox{\scriptsize
+%        \hsize1.5\marginparwidth
+%        \hangindent\marginparsep \parindent\z@
+%        \everypar{}\let\par\@@par \parfillskip\@flushglue
+%        \lineskip\normallineskip
+%        \baselineskip .8\normalbaselineskip\sloppy
+%        \raggedright \leavevmode
+%        \vrule \@height .7\normalbaselineskip \@width \z@\relax
+%            \hfuzz=100pt #1\relax
+%        \vrule \@height \z@ \@depth .3\normalbaselineskip \@width \z@}}
+%    \fi
+   \renewenvironment{theindex}{
+     \@restonecoltrue\if@twocolumn\@restonecolfalse\fi
+     \columnseprule \z@  \columnsep 30\p@
+     \parindent\z@ \parskip\z@ \@plus .3\p@\relax
+     \twocolumn[\sektion{\indexname}\indexpreamble]
+     \let\item\@idxitem
+   }{\if@restonecol\onecolumn\else\clearpage\fi}
+ \makeatother
+
+%%%%%%% Pagestyle stuff %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \usepackage{fancyhdr}
+     %%%%%%%% Stuff to get marginpars like I like 'em (assumes single-sided pages) %%%%%
+     \usepackage{calc}
+     \reversemarginpar
+     \newlength\fullwidth
+     \setlength\fullwidth{\textwidth+2\marginparsep}
+%     \setlength\marginparwidth{1.7\marginparwidth}
+     \newcommand\mpar[2][\ ]{\marginpar{\parbox{\marginparwidth}{\raggedleft\scriptsize #1}%
+                     \rlap{\hspace*{\fullwidth}{\parbox{\marginparwidth}{\raggedright\scriptsize #2}}}}}
+     %%%%%%% End marginpar stuff %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+     %%%%%%% Stuff for keeping track of sections %%%%%%%%%%%%%%%%%%%%%%%%
+      \newcommand{\sektion}[1]{\newpage \section*{#1} \gdef\sectitle{#1}%
+                              \addcontentsline{toc}{section}{#1}%
+                              \setcounter{footnote}{0}}
+      \newcommand{\subsektion}[1]{\subsection*{#1}%
+                              \addcontentsline{toc}{subsection}{#1}}
+      \newcommand\sectitle{} %This is the empty section title, before any section title is set
+      \newcounter{lecture}
+      \setcounter{lecture}{0}
+     %%%%%%% End stuff for keeping track of sections %%%%%%%%%%%%%%%%%%%%
+   \pagestyle{fancy}
+   \fancyhf{} %delete the current section for header and footer
+ \ifthenelse{\boolean{lilbook}}{%
+   \usepackage[bindingoffset=.25in,%
+             paperheight=8.5in,%
+             paperwidth=5.5in,%
+             outer=.5in,%
+             inner=.5in,%
+             bottom=.25in,%
+             top=.25in,%
+             includeheadfoot]{geometry}
+   \addtolength{\headwidth}{-.5in}
+   \fancyhead[LE,RO]{\thepage}
+   \fancyhead[LO]{\sectitle}
+   \fancyhead[RE]{Notes for Math 261A - Lie groups and Lie algebras}
+%   \setlength{\headheight}{14.5pt}
+ }{
+   \usepackage[paperheight=11in,%
+             paperwidth=8.5in,%
+             outer=1.3in,%
+             inner=1.3in,%
+             bottom=.7in,%
+             top=.7in,%
+             includeheadfoot]{geometry}
+   \addtolength{\headwidth}{.55in}
+   \fancyhead[R]{\thepage}
+   \fancyhead[L]{\sectitle}
+   \setlength{\headheight}{14.5pt}
+ }
+     % \renewcommand{\headrulewidth}{0in}
+  \raggedbottom
+%%%%%%% End Pagestyle stuff %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%% Theorem Styles %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ %% Make the equation counter reset each lecture %%
+ \makeatletter
+    \@addtoreset{equation}{lecture}
+ \makeatother
+
+ \theoremstyle{plain}
+ \newtheorem{theorem}[equation]{Theorem}
+ \newtheorem*{claim}{Claim}
+ \newtheorem*{lemma*}{Lemma}
+ \newtheorem{lemma}[equation]{Lemma}
+ \newtheorem{corollary}[equation]{Corollary}
+ \newtheorem{proposition}[equation]{Proposition}
+
+ \theoremstyle{definition}
+ \newtheorem{definition}[equation]{Definition}
+ \makeatletter
+ \newenvironment{example}[1][]{%
+    \begin{trivlist} \item[]%
+    \refstepcounter{equation}\textbf{Example~\theequation}%
+    \@ifnotempty{#1}{\the\thm@notefont \ (#1)}\textbf{.} }%
+    {\hspace*{\fill}$\bullet$ \end{trivlist}}
+ \makeatother
+% \newtheorem{example}[equation]{Example}
+ \newtheorem{exercise}{$\blacktriangleright$
+                       \hypertarget{Ex\theexercise}{Exercise}}[lecture]
+
+ \theoremstyle{remark}
+ \newtheorem{remark}[equation]{Remark}
+
+    %%%%%%%% Solutions %%%%%%%%%%
+ \ifthenelse{\boolean{proofmode}}{%
+    \usepackage[nosolutionfiles]{answers}}{%
+    \usepackage{answers}}
+ \Newassociation{solution}{Solution}{exSolutions}
+ \ifthenelse{\boolean{proofmode}}{%
+    \renewenvironment{Solution}[1]{%\small%
+        \begin{trivlist} \item \textit{Solution}~#1.}{%
+            \hspace*{\fill} $\blacksquare$\end{trivlist}}%
+ }{% else
+    \renewenvironment{Solution}[1]{%
+        \begin{trivlist} \item \textbf{Solution \hyperlink{Ex#1}{#1}.}}{\end{trivlist}}%
+ }
+
+  %%%%%%%% Warnings %%%%%%%%%%
+ \newenvironment{warning}{%
+    \begin{trivlist} \item[] \noindent%
+    \begingroup\hangindent=2pc\hangafter=-2
+    \clubpenalty=10000%
+    \hbox to0pt{\hskip-\hangindent\dbend\hfill}\ignorespaces
+    \refstepcounter{equation}\textit{Warning}~\theequation.}%
+    {\endgraf\endgroup\end{trivlist}}
+%%%%%%%%%%%%%%%% End theorem styles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%% Anton's Shortcuts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \ifthenelse{\boolean{proofmode}}{%
+    \newcommand{\anton}[1]{[[\index{"!@notes and corrections}\ensuremath{\bigstar\bigstar\bigstar} #1]]}}{%
+    \newcommand{\anton}[1]{}}
+ \newcommand\<{\triangleleft}
+ \renewcommand{\a}{\ensuremath{\mathfrak{a}}}
+ \DeclareMathOperator{\ann}{ann}
+ \DeclareMathOperator{\ass}{Ass}
+ \DeclareMathOperator{\aut}{Aut}
+ \newcommand{\bbar}[1]{\overline{#1}}
+ \newcommand\C{\mathcal{C}}
+ \newcommand{\CC}{\ensuremath{\mathbb{C}}}
+ \DeclareMathOperator{\coker}{coker}
+ \newcommand{\D}{\ensuremath{\mathcal{D}}}
+ \DeclareMathOperator{\End}{End}
+ \newcommand{\F}{\mathcal{F}}
+ \newcommand{\FF}{\ensuremath{\mathbb{F}}}
+ \newcommand{\HH}{\ensuremath{\mathbb{H}}}
+ \let\hom\relax % kills the old hom
+ \DeclareMathOperator{\hom}{Hom}
+ \renewcommand{\labelitemi}{--}                    % changes the default bullet in itemize
+ \newcommand{\I}{\mathcal{I}}
+ \newcommand{\id}{\mathrm{Id}}
+ \DeclareMathOperator{\im}{im}
+ \newcommand{\m}{\ensuremath{\mathfrak{m}}}
+ \DeclareMathOperator{\Max}{Max}
+ \DeclareMathOperator{\Min}{Min}
+ \newcommand{\MM}{\ensuremath{\mathbb{M}}}
+ \DeclareMathOperator{\nil}{Nil}
+ \newcommand{\ork}{\textrm{o-rk}}
+ \newcommand\p{\mathfrak{p}}
+ \renewcommand\P{\mathfrak{P}}
+ \newcommand\q{\mathfrak{q}}
+ \newcommand{\QQ}{\ensuremath{\mathbb{Q}}}
+ \DeclareMathOperator{\rad}{rad}
+ \newcommand{\RR}{\ensuremath{\mathbb{R}}}
+ \newcommand{\smaltrix}[4]{\ensuremath{\left( %
+            \begin{smallmatrix} #1 & #2 \\ #3 & #4 \end{smallmatrix} \right)}}
+ \DeclareMathOperator{\spec}{Spec}
+ \DeclareMathOperator{\supp}{Supp}
+ \newcommand{\V}{\mathcal{V}}
+ \newcommand\Z{\mathcal{Z}}
+ \newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+
+ \renewcommand{\thelecture}{\arabic{lecture}}
+ \renewcommand{\theequation}{\thelecture.\arabic{equation}}
+%%%%%%%%%%%%% End Anton's shortcuts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\makeindex
+
+ \def\W{\Omega}
+
+\begin{document}
+% \title{\vspace*{-2cm} Notes for Math 274 \\ Commutative Rings \vspace*{-12mm}}
+% \author{}
+% \date{}
+% \maketitle
+% \phantomsection    % This makes the hyperref package happier for some reason
+% \ifthenelse{\boolean{proofmode}}{}{\Opensolutionfile{exSolutions}[ExerciseSolutions]}
+% {\thispagestyle{empty}
+%  \vspace*{-2em}
+%  \addcontentsline{toc}{section}{Contents}
+%  \tableofcontents
+% }
+ {
+% \input{CommRingpre}}{
+
+ \input{CommRingLec01}}{
+ \input{CommRingLec02}}{
+ \input{CommRingLec03}}{
+ \input{CommRingLec04}}{
+ \input{CommRingLec05}}{
+ \input{CommRingLec06}}{
+ \input{CommRingLec07}}{
+ \input{CommRingLec08}}{
+ \input{CommRingLec09}}{
+ \input{CommRingLec10}}{
+ \input{CommRingLec11}}{
+ \input{CommRingLec12}}{
+ \input{CommRingLec13}}{
+ \input{CommRingLec14}}{
+ \input{CommRingLec15}}{
+ \input{CommRingLec16}}{
+ \input{CommRingLec17}}{
+ \input{CommRingLec18}}{
+ \input{CommRingLec19}}{
+ \input{CommRingLec20}}{
+ \input{CommRingLec21}}{
+ \input{CommRingLec22}}{
+ \input{CommRingLec23}}{
+ \input{CommRingLec24}}{
+ \input{CommRingLec25}}{
+ \input{CommRingLec26}}{
+ \input{CommRingLec27}}{
+ \input{CommRingLec28}}{
+ \input{CommRingLec29}}{
+ \input{CommRingLec30}}{
+ \input{CommRingLec31}}{
+ \input{CommRingLec32}}{
+ \input{CommRingLec33}}{
+ \input{CommRingLec34}}{
+ \input{CommRingLec35}}{
+ \input{CommRingLec36}}{
+ \input{CommRingLec37}}{
+ \input{CommRingLec38}}{
+ \input{CommRingLec39}}{
+ \input{CommRingLec40}}{
+ \input{CommRingLec41}}{
+ \input{CommRingLec42}}{
+% {\ifthenelse{\boolean{proofmode}}{}{%
+%    \Closesolutionfile{exSolutions}
+%    \sektion{Solutions to (some) Exercises}
+%    \input{ExerciseSolutions}}}
+% {\newpage \gdef\sectitle{References}
+% \addcontentsline{toc}{section}{References}
+%  \nocite{Adams:LELG,
+%          Adams:LLG,
+%          Borel:LAG,
+%          CSM:LLGLA,
+%          Fuchs,
+%          FulHar,
+%          Hatcher,
+%          Helgason,
+%          Humphreys:LART,
+%          Kac:IDLA,
+%          Knapp:LGBI,
+%          Knutson:261A,
+%          Knutson:261B,
+%          Lee:ISM,
+%          Montgomery,
+%          OnishchikVinberg,
+%          Serre:CSLA,
+%          Warner}
+%  \bibliography{CommRingBib}
+%  \bibliographystyle{alpha}
+%  }
+% {\newcommand\indexpreamble{%
+%  \textbf{Bold} page numbers indicate that the index entry was defined, used
+%  in a theorem, or proven on that page. \textit{Italic} page numbers indicate that the index
+%  entry was exemplified or used in an example on that page. If the index entry is a
+%  result, then the page number is \textbf{bold} only for the pages on which the result
+%  is proven.
+% \bigskip}\printindex
+ }
+
+\end{document}

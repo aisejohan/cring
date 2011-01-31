@@ -1,0 +1,131 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{17}
+ \sektion{Lecture 17}
+
+ \subsektion{Chapter II. Affine Varieties and the Nullstellensatz (``NSS'')}
+ \S 1. Affine algebraic sets\\
+ \S 2. General Topology\\
+ \S 3. Zariski Prime Spectrum\\
+ \S 4. Hilbert's Nullstellensatz
+
+ \smallskip
+
+ \begin{proposition}[``Going Up'']
+   Let $R\subseteq S$ be commutative rings with unit, and let $S$ be finitely generated
+   as an $R$-module. Then if $R$ is noetherian, so is $S$.
+ \end{proposition}
+ \begin{proof}
+   ${}_R S$ is a noetherian, so ${}_S S$ is noetherian, i.e.\ $S$ is noetherian as a
+   ring.
+ \end{proof}
+ \begin{theorem}[Eakin-Nagata-(Formanek)\footnote{Formanek did something that works
+    for non-commutative rings.}, ``Going Down'']
+   The converse of the above proposition is true.
+ \end{theorem}
+
+ \subsektion{\S 1. Affine algebraic sets}
+
+ We fix some fields $k\subseteq K$, fix $A=k[x_1,\dots,x_n]$, and let $K^n$ be $n$-space
+ over $K$.
+
+ Let $S\subseteq A$ be a subset. Define $V_K(S)=\{a\in K^n|f(a)=0 \text{ for all }f\in
+ S\}$; we call this an algebraic $k$-set. Clearly, we may replace $S$ by the ideal it
+ generates, so we will always take $S$ to be an ideal. Since $A$ is noetherian, $S$ is
+ always finitely generated.
+
+ On the other hand, if $Y\subseteq K^n$ is a subset, then we can define $I(Y)$, the
+ ideal in $A$ of functions vanishing on $Y$. Note that $I(Y)$ is always a radical ideal.
+
+ Both directions are inclusion-reversing. We always have $Y\subseteq
+ V_K\bigl(I(Y)\bigr)$, trivially. Equality holds if and only if $Y=V_k($something). It is
+ also clear that $J\subseteq I\bigl(V_K(J)\bigr)$. Equality holds if and only if
+ $J=I$(something).
+
+ \begin{definition}
+   The \emph{Zariski $k$-topology} on $K^n$ has closed sets of the form $V_K(J)$.
+ \end{definition}
+ In this topology, the $k$-points are closed because $(a_1,\dots,a_n)$ is the vanishing
+ set of $(x_1-a_1,\dots, x_n-a_n)\< A$. You get a topology because $\bigcap_i
+ V_K(J_i)=V_K\bigl(\sum_i J_i\bigr)$ (this is an arbitrary intersection!) and
+ $V_K(J_1)\cup V_K(J_2)=V(J_1\cap J_2)$.
+
+ \begin{enumerate}
+   \item If $Y\subseteq K^n$ is a subset, then the closure of $Y$ is
+   $V_K\bigl(I(Y)\bigr)$.
+
+   \item If $J\< A$, then $\sqrt J\subseteq I\bigl(V_K(J)\bigr)$. In general, this is not
+   an equality.
+ \end{enumerate}
+ \begin{theorem}[Hilbert's Nullstellensatz]
+   If $\bar k\subseteq K$, then $\sqrt J= I\bigl(V_K(J)\bigr)$.
+ \end{theorem}
+ We will prove this theorem in \S 4.
+
+ The problem with general $k\subseteq K$ is as follows.
+ \begin{example}
+   Let $k=K=\RR$ and $J=(x^2+y^2)$. Then $J$ is a prime ideal, so $J=\sqrt J$. However,
+   $V_K(J)=\{(0,0)\}$, so $I\bigl(V_K(J)\bigr)=(x,y)$, which is strictly larger than
+   $\sqrt J$.
+
+   Even worse, if $J=(x^2+y^2+1)$, then $J$ is still radical, but $V_K(J)=\varnothing$,
+   so $I\bigl(V_K(J)\bigr)=A$.
+ \end{example}
+ \begin{definition}
+   An \emph{affine $k$-algebra} is a finitely generated (as an algebra) commutative
+   $k$-algebra. (i.e.\ these are homomorphic images of $k[x_1,\dots, x_n]$)
+ \end{definition}
+ By the Hilbert basis theorem, affine $k$-algebras are always noetherian.
+ \begin{definition}
+   If $Y$ is a $k$-algebraic set in $K^n$, then the \emph{$k$-coordinate ring $k[Y]$ of
+   $Y$} is $A/I(Y)$.
+ \end{definition}
+ Since $I(Y)$ is always radical, $k[Y]$ is always reduced.
+ \begin{definition}
+   An algebraic $k$-set $Y$ is \emph{$k$-irreducible} if it is non-empty and cannot be
+   written as the union of two proper closed subsets. We also call $Y$ a \emph{variety}.
+ \end{definition}
+ \begin{proposition}
+   A $k$-algebraic set $Y\subseteq K^n$ is irreducible if and only if $I(Y)$ is prime if
+   and only if $k[Y]$ is a domain.
+ \end{proposition}
+ In this case, we define $k(Y)=Q(k[Y])$ to be the function field of $Y$.
+ \begin{warning}
+   If you start with $J\in \spec A$, $V_K(J)$ need not be a variety!
+ \begin{example}
+   Let $k=K=\FF_2$ and let $J=(x+y)$, which is prime. Then $V_K(J)=\{(0,0),(1,1)\}$,
+   which is not irreducible since $K^2$ is discrete! In particular,
+   $I\bigl(V_K(J)\bigr)=(x,y)\cap (x+1,y+1)\supsetneq J$.
+ \end{example}
+ \end{warning}
+
+ \subsektion{\S 2. General Topology}
+ \begin{proposition}
+   For a topological space $X$, the following are equivalent.
+   \begin{enumerate}
+     \item Open sets in $X$ satisfy ACC.
+     \item Every non-empty family of open sets has a maximal member.
+     \item Every non-empty family of closed sets has a minimal member.
+     \item Closed sets in $X$ satisfy DCC.
+   \end{enumerate}
+ \end{proposition}
+ \begin{proof}
+   Easy.
+ \end{proof}
+ \begin{definition}
+   If any of the above hold, we call $X$ \emph{noetherian}.
+ \end{definition}
+ \begin{proposition}
+   Noetherian spaces are compact.
+ \end{proposition}
+ \begin{proof}
+   Given a cover of a noetherian space $X$, consider the family of finite unions. There
+   is a maximal member, which must cover all of $X$ by maximality.
+ \end{proof}
+ \begin{corollary}
+   For $k\subseteq K$, every $k$-algebraic set, with the Zariski topology, is noetherian
+   and hence compact.
+ \end{corollary}
+ \begin{proof}
+   Since $A$ is noetherian, $K^n$ is noetherian as a topological space. Finally, closed
+   subsets of noetherian  spaces are noetherian.
+ \end{proof}

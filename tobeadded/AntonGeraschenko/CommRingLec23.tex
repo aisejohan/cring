@@ -1,0 +1,81 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{23}
+ \sektion{Lecture 23}
+
+ \subsektion{Chapter III. Integral Extensions and Normal Domains.}% Dimension Theory.}
+ \S 1. Going up Theorem. (Cohen-Siedenberg theorems)\\
+
+ \subsektion{\S 1. Going Up Theorem}
+ Let $R\subseteq S$ be a ring extension, and let $I\< R$.
+ \begin{definition}
+   We say $s\in S$ is \emph{integral over $I$} if there is a monic $p\in I[x]\subseteq
+   R[x]$ so that $p(s)=0$. If every $s\in S$ is integral over $R$, then we say that $S/R$
+   is an \emph{integral extension}.
+ \end{definition}
+ \begin{example}
+   If $S$ and $R$ are fields, then $S/R$ integral is the same as $S/R$ being algebraic.
+ \end{example}
+ \begin{example}
+   If every $s\in S$ satisfies $s^{n(s)}=s$ (with each $n(s)\ge 2$), then $S$ is integral
+   over any sub-ring. The same is true if $S$ is any ring of algebraic integers (as soon
+   as all the coefficients are integers, we're on the gravy train).
+ \end{example}
+ \begin{example}
+   If $d\in \ZZ$, then $\sqrt d$ is always integral over $\ZZ$. More interestingly, if
+   $d=1+4b$, then $\alpha=\frac{1+\sqrt d}{2}$ is integral over $\ZZ$ because
+   $\alpha^2-\alpha-b=0$.
+ \end{example}
+ \begin{example}
+   Let $M\subseteq R$ be a multiplicatively closed set, and let $S/R$ be an integral
+   extension, then $M^{-1}S/M^{-1}R$ is integral.
+ \end{example}
+ \begin{proposition}
+   If $S/R$ is a ring extension, and $s\in S$, then the following are equivalent.
+   \begin{enumerate}
+     \item $s$ is integral over $R$.
+     \item $R[s]$ is module-finite over $R$.
+     \item $s\in T$ for some \underline{ring} $T$ between $R$ and $S$ that is
+     module-finite over $R$.
+     \item There is a faithful $R[s]$-module $M$ that is module-finite over $R$.
+   \end{enumerate}
+   In particular, if $S/R$ is module-finite, then it is integral.
+ \end{proposition}
+ \begin{proof}
+   $1\Rightarrow 2\Rightarrow 3\Rightarrow 4$ are clear. $4\Rightarrow 1$ follows from
+   the determinant trick: we get $R[s]\hookrightarrow \End_R(M)$ \anton{finish}.
+ \end{proof}
+ \begin{corollary}
+   If $s_1,\dots, s_n$ are integral over $R$, then $R[s_1,\dots, s_n]$ is module-finite
+   over $R$. In particular, the elements of $S$ that are integral over $R$ form a
+   sub-ring of $S$, called the \emph{integral closure} of $R$ inside $S$.
+ \end{corollary}
+ \begin{corollary}[Transitivity of integrality]
+   If $T/S$ and $S/R$ are integral, then $T/R$ is integral.
+ \end{corollary}
+ \begin{proposition}
+   Let $I\< R\subseteq S$, and let $C$ be the integral closure of $R$ in $S$. Then the
+   elements of $S$ that are integral over $I$ are exactly $\sqrt{I\cdot C}$ (the radical
+   in $C$, though it doesn't matter). In particular, it is an ideal in $C$.
+ \end{proposition}
+ \begin{remark}
+   Note that the elements integral over $I$ are the same as the elements integral over
+   $\sqrt I$. If $S=R$, then the result says that elements of $R$ integral over $I$ are
+   exactly $\sqrt I$.
+ \end{remark}
+ \begin{proof}
+   Let $c\in C$ be integral over $R$, so $c^n+a_1c^{n-1}+\cdots +a_n=0$ with $a_j\in I$.
+   It follows immediately that $c\in \sqrt {I\cdot C}$. For the other containment, let
+   $c\in \sqrt {I\cdot C}$. Let $c^n=b_1c_1+\cdots + b_mc_m$, where $b_j\in I$ and
+   $c_j\in C$. Then $M=R[c,c_1,\dots, c_m]$ is module-finite over $R$. Now $c^nM\subseteq
+   \sum b_iM\subseteq I\cdot M$. By the determinant trick, $c^n$ is integral over $I$.
+   Hence $c$ is integral over $I$.\anton{why not just use the proposition above}
+ \end{proof}
+ \begin{lemma}
+   If $I\< R$ is a proper ideal and $S/R$ is integral, then $I\cdot S\neq S$.
+ \end{lemma}
+ \begin{proof}
+   Assume not, so $1=a_1s_1+\cdots+a_ns_n$, with $a_j\in I$ and $s_j\in S$. Then
+   $M=R[s_1,\dots, s_n]$ is module-finite over $R$. Now we have $I\cdot M=M$. By the
+   determinant trick, there is some $a\in I$ so that $(1-a)M=0$, so $1=a\in I$,
+   contradicting that $I$ is proper.
+ \end{proof}

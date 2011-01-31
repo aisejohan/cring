@@ -1,0 +1,97 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{33}
+ \sektion{Lecture 33}
+
+ If $k$ is a field, and $F = k(x_1,\dots, x_{n-1})$, $K= k(x_1,\dots, x_n) = F(x_n)$.
+ Then there is an $R\in Val_k(K)$ of principal type with residue field $k$ and $\dim
+ R=\ell$ for any $0\le \ell\le n$.
+
+ ``Compose and induct'':$\xymatrix@C+1pc{ K=F(x_n) \ar[r]^<>(.5){(x_n)\text{-adic}} \ar@{-->}[dr] &
+ F_\infty \ar[d]\\
+ & k_\infty}$
+
+ \subsektion{\S 5 Krull Valuations}
+ In this section KV means ``Krull valuation'' and OAG means ``ordered abelian group''.
+
+ \begin{definition}
+   An \emph{OAG} is an (additive) abelian group $(\Gamma, \le)$, where $\le$ is a total
+   ordering of $\Gamma$ that respects the addition (i.e.~$a\le b\Rightarrow a+c\le b+c$).
+ \end{definition}
+ Given such a $\Gamma$, we define the \emph{positive cone} of $\Gamma$ by
+ $\Gamma^+:=\{a\in \Gamma| a\ge 0\}$. $\Gamma^+$ is a sub-monoid of $\Gamma$ that
+ satisfies the properties $\Gamma^+\cap -\Gamma^+ = \{0\}$ and $\Gamma^+\cup
+ -\Gamma^+=\Gamma$. Conversely, if $P\subseteq \Gamma$ is a sub-monoid satisfying these
+ properties, and $\Gamma$ does not have an order, then we may define an order by $a\le b
+ \Leftrightarrow b-a\in P$.
+
+ \begin{remark}
+ \begin{trivlist}
+   \item
+   \item -- An OAG is always torsion-free.
+   \item -- Any subgroup of an OAG is also an OAG.
+   \item -- We may reverse the order and get another OAG. Note that this is not true for
+   ordered fields ($1=1\cdot 1$ implies that $1$ is in the positive cone).
+   \item -- Morphisms of OAGs are order-preserving.
+   \item -- Given OAGs $(\Gamma_i,\le)$, we may define an order on $\Gamma = \Gamma_1\times
+   \cdots \Gamma_n$ lexicographically. In the case $n=2$, the positive cone looks like
+   $(\Gamma_1^+\smallsetminus 0)\times \Gamma_2 \cup 0\times \Gamma_2^+$.
+ \end{trivlist}
+ \end{remark}
+ \begin{example}
+   The zero group, $\ZZ$, $\QQ$, \dots (irrational stuff), $\RR$ are OAGs with their
+   usual orderings. For instance, if $\alpha_1,\dots, \alpha_n\in \RR$ are $\QQ$-linearly
+   independent, then we may take $\Gamma$ to be $\sum \alpha_i \ZZ$ or $\sum \alpha_i
+   \QQ$. For example, $\ZZ[\sqrt 2]$ and $\ZZ[\sqrt[3] 2]$. These are isomorphic to
+   $\ZZ^2$ and $\ZZ^3$. Note that you can also put lexicographic orderings on these
+   groups.
+ \end{example}
+
+ \begin{definition}
+   Given a domain $A$, a \emph{KV} is a map to an OAG $v:A\smallsetminus \{0\}\to \Gamma$
+   such that
+   \begin{enumerate}
+     \item $v(ab)=v(a)+v(b)$ for $a,b$ non-zero.
+     \item $v(a+b)\ge \min\{v(a), v(b)\}$ if $a,b$, and $a+b$ are non-zero.
+   \end{enumerate}
+ \end{definition}
+ It is useful to introduce $\Gamma_\infty := \Gamma \sqcup \{\infty\}$, and define
+ $v(0)=\infty$ and $\Gamma< \infty$. We also define $a+\infty = \infty$ for all $a\in A$,
+ $\infty+\infty=\infty$ (this is different from what we did with places)
+
+ \begin{proposition}
+   \begin{enumerate}
+     \item $v(\pm 1)=0$.
+     \item $v(-a)=v(a)$ for all $a\in A$.
+     \item (Predictable value property) If $v(a_1), \dots, v(a_n)$ are all distinct, then
+     $v(a_1+\cdots +a_n)=\min \{v(a_i)\}$.
+   \end{enumerate}
+ \end{proposition}
+ \begin{proposition}
+   $v:A\smallsetminus \{0\} \to \Gamma$ as above can be uniquely extended to a KV
+   $v:Q(A)\smallsetminus \{0\} \to \Gamma$.
+ \end{proposition}
+ \begin{proof}
+   Uniqueness is easy because we must have $v(a/b)=v(a)-v(b)$ for $a,b$ non-zero. For
+   existence, use this formula as a definition and verify the conditions in the
+   definition.\footnote{``I don't think I've ever checked this.''}
+ \end{proof}
+ \begin{definition}
+   If $v:K^\times \to \Gamma$ is a KV on a field $K$, then the image $v(K^\times)$ is called
+   the \emph{value group} of $v$. It is an OAG (unlike in the case of a domain, where you
+   only get a monoid).
+ \end{definition}
+ \begin{definition}
+   $|\cdot|:A\smallsetminus \{0\}\to \Gamma$, where $\Gamma$ is a (multiplicative) OAG,
+   is called a \emph{KV} if $|ab|=|a|\cdot |b|$ and $|a+b|\ge \max \{|a|,|b|\}$ for
+   $a,b$, and $a+b$ non-zero.
+ \end{definition}
+ This is the same definition, but with $\Gamma$ written multiplicatively and the order
+ reversed. These are also called \emph{non-archimedean absolute values} when $\Gamma =
+ \RR_{> 0}$ and $A$ is a field. Instead of introducing ``$\infty$'', we introduce
+ ``$0$''.
+
+ \begin{theorem}
+   A valuation on a field $v:K\to \Gamma_\infty$ determines a valuation ring $R_v:=
+   \{a\in K|v(a)\ge 0\}\in Val(K)$. Conversely, a valuation ring $R\in Val(K)$ determines
+   a KV $v_R:K^\times \to \Gamma_R:=K^\times /U(R)$, suitably ordered.
+ \end{theorem}

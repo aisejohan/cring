@@ -1,0 +1,93 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{41}
+ \sektion{Lecture 41}
+
+ In the notes, p.~129, line 7 (statement of (6.19)), the ``if'' part needs a correction.
+
+ We replace $B$ by $S$ and $A$ by $R$.
+
+ Basic trick:\\
+ $(\ast)$ If $B/A$ is an integral extension of $k$-domains, then $tr.d._k B=tr.d._k A$.
+ This is because the field extension $Q(A)\subseteq Q(B)$ is algebraic.
+
+ \begin{theorem}
+   Keep all notation from before.
+   \begin{enumerate}
+     \item $n=tr.d._k S$
+     \item for $I\< S$, $tr.d._k S/I\le tr.d._k S$
+     \item $n$ is the largest integer $d$ such that $S$ has $d$ algebraically independent elements
+     \item for all $k$-subalgebras $T\subseteq S$, $tr.d._k T\le tr.d._k S$.
+   \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+   (1) Let $\P\in \spec S$, $\p=\P\cap R$. Then $R/\p\subseteq S\P$ is integral. By
+   $(\ast)$, $tr.d._k S/\P = tr.d._k R/\p\le n$. By Going Up, there is a $\P_0\in \spec
+   S$ (which we may assume is minimal) so that $\P_0\cap R=(0)$. Now we have $R\subseteq
+   S/\P_0$. By $(\ast)$, $n=tr.d._k R= tr.d._k S/\P_0\le tr.d._k S$.
+
+   (2) Consider $I\< S$. We may assume $I\in \spec S$. By what we did in part (1), we get
+   $tr.d._k (S/I)\le n=tr.d._k S$.
+
+   (3) Let $d$ be as defined. We already know $n\le d$. Say that $R_0=k[t_1,\dots, t_d]$
+   is a polynomial algebra in $S$. Say $\Min S=\{\P_1,\dots, \P_r)$, and let $\p_i =
+   \P_i\cap R_0$. We have that
+   \[
+   \p_1\cdots \p_r \subseteq \P_1\cdots \P_r \cap R_0 \subseteq \nil (S)\cap R_0 = \nil R_0 =
+   0.
+   \]
+   It follows that some $\p_i$ is zero, say $\p_1=0$. By $(\ast)$ applied to
+   $R_0=R_0/\p_1\subseteq S/\P_1$ to get $d=tr.d._k R_0 = tr.d._k S/\P_1 \le tr.d._k
+   S=n$.
+
+   (4) follows from (3) immediately.
+ \end{proof}
+ In $k[x_1,\dots, x_n]$, there is an obvious chain of primes
+ \[
+  (0)\subsetneq (x_1)\subsetneq \cdots \subsetneq (x_1,\dots, x_n)
+ \]
+ which implies that $\dim k[x_1,\dots, x_n]\ge n$.
+ \begin{theorem} \label{lec41T:dim=trd}
+   For every affine $k$-algebra $S$, $\dim S=tr.d._k S$.
+ \end{theorem}
+ \begin{remark}
+   This theorem includes Zariski's Lemma, which says that an affine algebra over $k$
+   which is a field must be a finite algebraic extension. To see this from the theorem,
+   let $S$ be a field, then $\dim S=0$. It follows that $tr.d._k S=0$, so $S$ is
+   algebraic over $k$. It is finite because $S$ is finitely generated.
+
+   This provides an alternative approach to Hilbert's Nullstellensatz.
+ \end{remark}
+ Before we prove the theorem, we need a lemma.
+ \begin{lemma}
+   Let $S$ be a $k$-affine domain with $tr.d._k S=n$, and let $\p\in \spec_1 S$. Then
+   $tr.d._k (S/\p)=n-1$.
+ \end{lemma}
+ \begin{proof}
+   \underline{Case 1}: assume $S=k[x_1,\dots, x_n]$ is a polynomial algebra. In this
+   case, height 1 primes are principal, so $\p=(f)$ for some $f$. Say $f$ has positive
+   degree with respect to $x_1$, so $f = g_r(x_2,\dots, x_n)x_1^r + \cdots$. We have
+   that $k[x_2,\dots, x_n]\cap (f)=(0)$ (just look at degree with respect to $x_1$). It
+   follows that $k[x_2,\dots, x_n]\hookrightarrow S/(f)$, so $\bar x_2,\dots, \bar x_n$
+   are algebraically independent in $S/\p$. By $\bar x_1$ is algebraic over $Q(k[\bar
+   x_2,\dots, \bar x_n])$ as witnessed by $f$. This, $tr.d._k S/\p=n-1$.
+
+   \underline{Case 2}: reduction to case 1. Let $R=k[x_1,\dots, x_n]$ be a Noether
+   normalization for $S$, and let $\p_0=\p\cap R$. Observe that Going Down applies
+   (because $S$ is a domain and $R$ is normal). It follows that $ht_R(\p_0)=ht_S(\p)=1$.
+   By case 1, we get that $tr.d. (R/\p_0)=n-1$. By $(\ast)$, we get that $tr.d.
+   R/\p_0=tr.d. (S/\p)$.
+ \end{proof}
+ \begin{proof}[Proof of Theorem \ref{lec41T:dim=trd}]
+   Let $n=tr.d._k S$. We induct on $n$. If $n=0$, then $S$ is algebraic over $k$. Then
+   for any minimal prime $\P\subseteq S$, $S/\P$ is a field. Thus, minimal primes are
+   maximal, so $S$ has dimension 0.
+
+   Now assume the equation is true up to $n-1$. After replacing $S$ by a Noether
+   normalization (without affecting $\dim S$ or $tr.d._k S$), we may assume
+   $S=k[x_1,\dots, x_n]$ is a polynomial algebra. Consider any prime chain of length $r$
+   in this polynomial algebra. Let $\p$ be the smallest non-zero prime in the chain, and
+   let $f\in \p$ be a non-zero irreducible, then $(f)$ is prime and contained in $\p$. By
+   case 1 of the Lemma, $tr.d._k S/(f)=n-1$. By the inductive hypothesis, $\dim
+   S/(f)=n-1$. But $S/(f)$ has a prime chain of length $r-1$. Thus, $r-1\le n-1$, so
+   $r\le n$.
+ \end{proof}

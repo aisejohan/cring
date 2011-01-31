@@ -1,0 +1,78 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{11}
+ \sektion{Lecture 11}
+
+ \begin{definition}
+   $\p\in \left\{\begin{array}{c}\ass (M)_* \\ \ass(M)^*\\ \ass (M)\smallsetminus
+   \ass(M)_*\end{array} \right\}$ is called $\left\{\begin{array}{c}\emph{isolated}
+   \\
+   \emph{maximal}\\ \emph{embedded}\end{array} \right\}$.
+ \end{definition}
+ \begin{example}
+   Let $R=\ZZ$ and $M=\ZZ\oplus \ZZ/60$. Then $\ass M = \{(0),(2),(3),(5)\}$, so $(0)$ is
+   an isolated prime, and $(2)$, $(3)$, and $(5)$ are embedded maximal primes.
+ \end{example}
+ \begin{example}
+   $k$ a field, $R=k[x,y]$, $M=R/I$ for $I=x\cdot (x,y)$. Then $\ass
+   (R/I)=\{(x),(x,y)\}$, so $(x)$ is an isolated prime and $(x,y)$ is a maximal embedded
+   prime.
+ \end{example}
+ \begin{example}
+   $R=k[x,y]$, $M=R/I$ with $I=(xy)$. Then $\ass (R/I)=\{(x),(y)\}$, so both primes are
+   isolated and maximal, and there are no embedded prime.
+ \end{example}
+
+ If we look at $\ass (R/I)$, then things are much simpler when $I$ is a radical ideal. By
+ the stuff in lecture 5, all $\p\in \ass(R/I)$ are minimal primes over $I$. Then there
+ cannot be any containments, so $\ass(R/I)$ has no comparisons as a poset. Therefore, all
+ primes ``associated to $I$'' are isolated (there are no embedded primes).
+
+ \begin{definition}
+   The \emph{total ring of quotients} of a commutative ring $R$, denoted $Q(R)$, is the
+   localization of $R$ at $\C(R)$.
+ \end{definition}
+ Note that $R\hookrightarrow Q(R)$, and if you invert anything else, you kill stuff.
+
+ \begin{theorem}
+   A noetherian ring $R$ is reduced if and only if $Q(R)$ is a finite direct product of
+   fields.
+ \end{theorem}
+ \begin{proof}\def\P{\mathfrak{P}}
+   ($\Leftarrow$) is clear because $R\subseteq Q(R)$, and $Q(R)$ is reduced.
+
+   ($\Rightarrow$) $\Z(R) = \p_1\cup \cdots \p_n$ where $\p_i$ are the minimal primes, so
+   $Q(R)$ is the semi-localization of $R$ at these primes. Since $R$ is reduced, $\bigcap
+   \p_i=\sqrt{(0)}=(0)$. So $Q(R)$ is semi-local, with maximal ideals $\P_1$, \dots,
+   $\P_n$. Since $\bigcap \p_i=(0)$, we also get $\bigcap \P_i=(0)$. To see this, assume
+   $x\in \bigcap \P_i$, then $x=\frac{p_i}{s_i}$ for each $i$. Then $s_1\cdots s_n x\in
+   \p_i$ for each $i$, so it is zero. Since each $s_i$ is regular, we get $x=0$.
+   Then we get
+   \[
+    Q(R)/(0) \cong \prod Q(R)/\P_i
+   \]
+   so $Q(R)$ is a finite direct product of fields.
+ \end{proof}
+ \begin{example}
+   If $R$ is not noetherian, the result fails. Let $R=k\times k\times \cdots$. Then $R$
+   is reduced and von Neumann regular, so it is zero-dimensional, so $C(R)=U(R)$. In
+   particular $Q(R)=R$, which is not a finite product of fields.
+ \end{example}
+
+ \begin{definition}
+   A prime filtration of a module $M$ is a finite filtration where each consecutive
+   quotient is $R/\p$.
+ \end{definition}
+ \begin{theorem}
+   A finitely generated module $M$ over a noetherian ring $R$ has a prime filtration.
+   Furthermore, $\ass(M)_* = \{\p_1,\dots, \p_k\}_*$, where $\p_1,\dots, \p_k$ are the
+   primes occurring in the filtration.
+ \end{theorem}
+ \begin{proof}
+   Go from the bottom and use the fact that (over a noetherian ring) every non-zero
+   module has an associated prime. $R/\p_1\hookrightarrow M$, then $R/\p_2\hookrightarrow
+   M/(R/\p_1)$, etc.
+
+   Finally, apply the Star principle to the containment $\ass (M)\subseteq \{\p_1,\dots,
+   \p_k\} \subseteq \supp (M)$. We already saw that any supporting prime contains an
+   associated prime.
+ \end{proof}

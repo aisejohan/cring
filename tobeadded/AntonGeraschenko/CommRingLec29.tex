@@ -1,0 +1,98 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{29}
+ \sektion{Lecture 29}
+
+ If $L/K$ is a finite field extension, then there is a trace function $T_{L/K}:L\to K$.
+ Any $\ell\in L$ is a $K$-linear operator $L\to L$, so it has a trace valued in $K$. Note
+ that if $L'/L$ is another finite extension, $T_{L'/K}= T_{L/K} \circ T_{L'/L}$.
+ \begin{theorem}
+   Let $R$ be a normal domain, with $K=Q(R)$, $L/K$ be a finite separable field
+   extension, and let $S$ be the integral closure of $R$ in $L$. Then $L=Q(S)$ and there
+   is a $K$-basis $\{u_i\}$ of $L$ so that $S\subseteq \bigoplus Ru_i$.
+ \end{theorem}
+ \begin{proof}
+   We need two facts:
+   \begin{enumerate}
+     \item $T(S)\subseteq R$. To see this, let $s\in S$, then we have $T(s)=T_{K(s)/K}
+     \bigl( T_{L/K(s)}(s)\bigr) = [L:K(s)] \cdot T_{K(s)/K}(s)$, which is in $R$ because
+     the minimal polynomial of $s$ has coefficients in $R$ (since $s$ is integral over
+     $R$).
+
+     \item The $K$-bilinear pairing $(x,y) = T(xy)$ is non-degenerate. This follows from
+     the separability of $L$ over $K$.
+   \end{enumerate}
+   Let $\alpha\in L$. Then there is some nonzero $r\in R$ so that $r\alpha$ is
+   integral over $R$. To see this, clear denominators in the minimal polynomial of
+   $\alpha$ to get $r\alpha^n + \cdots =0$; then multiply by $r^{n-1}$ to get
+   $(r\alpha)^n+\cdots = 0$. Therefore, there is a $K$-basis $\{v_i\}$ of $L$ so that
+   $\{v_i\}\subseteq S$. It follows that $Q(S)=L$. Let $\{u_i\}$ be the ``dual
+   $K$-basis'' of $\{v_i\}$ with respect to the pairing above. For any $s\in S$, we
+   have $s = \sum a_i u_i$ with $a_i\in K$. Then $(s,v_j)=a_j = T(s\cdot v_j)$ is in the
+   image of $S$ under $T$, which is in $R$.
+ \end{proof}
+ \begin{corollary}
+   Assume in the situation above that $R$ is noetherian. Then $S$ is module-finite over
+   $R$ and is therefore a noetherian normal domain. If $R$ is a PID, then $S$ is free
+   over $R$ of rank $[L:K]$.
+ \end{corollary}
+ In the classical case, $R=\ZZ$ and $K=\QQ$. Then $L$ is a number field, and $S$ is the
+ ring of algebraic integers in $L$. The corollary above says that $S$ is a noetherian
+ normal domain of dimension $1$ (a.k.a.~a \emph{Dedekind domain}), and is free over
+ $\ZZ$. In fact, if $R$ is Dedekind, then we can show that $S$ is Dedekind without the
+ separability assumption.
+
+ \subsektion{\S 4. Valuation Domains}
+ 1932: Krull wrote a paper, Allgemeine Bewerungstheorie.\\
+ 1935: Krull wrote a book, Idealtheorie.
+
+ \emph{Valuation rings} (or \emph{valuation domains}) are
+ \begin{itemize}
+   \item local
+   \item always normal
+   \item noetherian if and only if they are DVRs (or fields)
+   \item possibly infinite dimensional
+ \end{itemize}
+ \begin{proposition}
+   For any domain $R$ with quotient field $K$, the following are equivalent.
+   \begin{enumerate}
+     \item For every non-zero $x\in K$, either $x\in R$ or $x^{-1}\in R$.
+     \item For $a,b\in R$, either $a|b$ or $b|a$ in $R$.
+     \item The ideals in $R$ form a chain under inclusion. In particular, $R$ is local.
+   \end{enumerate}
+ Such an $R$ is called a \emph{valuation ring of $K$}.
+ \end{proposition}
+ \begin{proof}
+   $3\Rightarrow 2 \Rightarrow 1$ are immediate. Let's do $1\Rightarrow 3$. Assume $3$
+   does not hold, so there are ideals $I,J\< R$ with no inclusion relation. Let $a\in
+   I\smallsetminus J$ and $b\in J\smallsetminus I$. Then consider $x=a/b\in K$;
+   $x\not\in R$ and $x^{-1}\not\in R$, lest $a\in J$ or $b\in I$.
+ \end{proof}
+ \begin{definition}
+   $Val(K)$ is the set of valuation rings of $K$ (including $K$ in particular).
+ \end{definition}
+ Let $\m\in \Max R$, with $R$ a valuation ring. Then $K^\times = U(R)\sqcup
+ \m\smallsetminus \{0\}\sqcup \bigl\{x^{-1}| x\in (\m\smallsetminus \{0\})\smallsetminus
+ \{0\}\bigr\}$.
+
+ \begin{proposition}
+   Let $L/K$ be a field extension, $(V,\p)\in Val(L)$, and let $R=V\cap K$ and
+   $\m=\p\cap K$. Then $(R,\m)\in Val(K)$. That is, $Val($-$)$ is a contravariant functor.
+ \end{proposition}
+ \begin{proof}
+   For $x\in K\smallsetminus R$, $x^{-1}\in V\cap K=R$, so $R$ is a valuation ring of
+   $K$. Now we will show that $R\smallsetminus \m = U(R)$ to prove that $\m$ is the
+   unique maximal ideal of $R$. Take $x\in R\smallsetminus \m$, then $x^{-1}\in V\cap
+   K=R$.
+ \end{proof}
+ \begin{example}
+   Let $K$ be an algebraic extension of $\FF_p$. What is $Val(K)$? Take any $R\in
+   Val(K)$. Then $\FF_p\subseteq R \subseteq K$, so $R$ is a field. Since $Q(R)=K$, we
+   have $R=K$
+ \end{example}
+ \begin{example}
+   Let $R=\ZZ$ and $K=\QQ$. Then $Val(K)=\{\QQ, \ZZ_{(p)}\}$. To see this, let $(R,\m)\in
+   Val(K)$, with $R\neq K$. Then $\m\neq 0$, so $\ZZ\cap \m=(p)$ for some prime $p$. It
+   follows that $\ZZ\smallsetminus (p)\subseteq U(R)$, so $\ZZ_{(p)}\subseteq R$. But
+   $\ZZ_{(p)}$ is a maximal subring of $\QQ$.
+ \end{example}
+ 

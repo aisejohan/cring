@@ -1,0 +1,144 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{10}
+ \sektion{Lecture 10}
+
+ \subsektion{\S 6 Associated Primes over Noetherian Rings}
+
+ \begin{proposition}
+   \begin{enumerate}
+     \item[]
+     \item If $R$ is noetherian and ${}_R M\neq 0$, then $\ass M \neq \varnothing$.
+     \item If ${}_R M$ is noetherian, then $|\ass M| < \infty$.
+   \end{enumerate}
+ \end{proposition}
+ \begin{example}
+   The following usually give good counter-examples. Look at $M=\QQ/\ZZ$ or look at
+   $R=k\times k\times \cdots$, where $k$ is a field. Notice that $M$ is faithful over
+   $\ZZ$.
+ \end{example}
+ \begin{proof}
+   (1) If $M\neq 0$, then the set of point annihilators is non-empty, so there is a maximal
+   element by the noetherian hypothesis. By Herstein's lemma, we've found an associated
+   prime.
+
+   (2) Let $\p_1,\p_2,\cdots \in \ass M$ be an infinite number of distinct associated
+   primes of $M$. Then you can find some $R/\p_1\hookrightarrow M$. Since $\ass
+   (R/\p_1)=\{\p_1\}$, the other primes must be associated primes of $M/(R/\p_1)$. This
+   gives you an ascending chain of submodules of $M$, contradicting the noetherian
+   hypothesis.
+ \end{proof}
+ \begin{theorem}[6.2]
+   Let $M\neq 0$ be a module over a noetherian ring $R$. Then $\Z(M)=\bigcup \p_i$, where
+   the $\p_i$ are maximal point annihilators. If $M$ is finitely generated, then this is
+   a \emph{finite} union, and any ideal $A\subseteq \Z(M)$ lies in some $\p_i$. In
+   particular, $Am=0$ for some non-zero element $m\in M$. (This last part is Theorem 82
+   of Kaplansky\footnote{Kaplansky says it is one of the most useful facts about
+   commutative rings.})
+ \end{theorem}
+ \begin{proof}
+   It is enough to show $\Z(M)\subseteq \bigcup \p_i$. Note that $\Z(M)$ is the union of
+   all point annihilators. Since $R$ is noetherian, every point annihilator is in some
+   maximal point annihilator.
+
+   If $M$ is finitely generated, then $\ass M$ is finite by the proposition, so the union
+   is finite. If $A\subseteq \Z(M)$ is closed under addition and multiplication, then by
+   prime avoidance, $A$ is in some $\p_i=\ann m_i$.
+ \end{proof}
+ In general, for a given $M$, the set $\ass M$ is the important set of primes, as far as
+ the behavior of $M$ is concerned.
+ \begin{proposition}
+  Let $R$ be a noetherian ring.
+  \begin{enumerate}
+   \item Let $M'\subseteq M$ over $R$, and let $m\in M$. Then $m\in M'$
+   if and only if $m/1\in M'_\p$ for every $\p\in \ass (M/M')$.
+
+   \item $f:M\to Q$ is injective if and only if $f:M_\p\to Q_\p$ is injective for
+   every $\p\in \ass M$.
+
+   \item $g:N\to M$ is surjective if and only if $g_\p:N_\p\to M_\p$ is surjective for
+   every $\p\in \ass (M/g(N)) = \ass (\coker g)$.
+ \end{enumerate}\end{proposition}
+ \begin{proof}
+  First we do the ``if'' parts:
+  \begin{enumerate}
+   \item We may replace $M$ by $M/M'$ and assume $M'=0$. Suppose $m\neq 0$, then $\ann
+   m\subseteq \p\in \ass M$ (some maximal annihilator) by the noetherian hypothesis on
+   $R$. Then if $m/1=0$ in $M_\p$, there is some $x\in R\smallsetminus \p$ so that
+   $xm=0$, contradicting $\ann m\subseteq \p$.
+
+   \item[2,3.] If $f(m)=0$, then $m/1\in M_\p$ must be zero because $f_\p(m/1)=0$ and
+   $f_\p$ are all injective. By part (1), $m=0$. For (3), use part (1), with $M'=g(N)$.
+
+   \[\xymatrix{
+     M_\p \ar@{^(->}[r]^{f_\p} & Q_\p\\
+     M \ar[u] \ar[r]^f & Q\ar[u]
+   }\qquad\qquad
+   \xymatrix{
+     N_\p \ar@{->>}[r]^{g_\p} & M_\p\\
+     N \ar[u] \ar[r]^g & M\ar[u]
+   }\]
+  \end{enumerate}
+  the ``only if'' parts are elsewhere
+ \end{proof}
+ From now on, assume $R$ is noetherian and $M$ is finitely generated. We will write
+ $I=\ann M$. Let $(B,\le)$ be a poset. The set of maximal elements of $B$ is denoted
+ $B^*$. Similarly, $B_*$ is the set of minimal elements.
+ \begin{example}
+   $\spec (R)^*=\Max(R)$ and $\spec (R)_* =\Min(R)$. Finally, $\V(I)_*$ is the set of
+   minimal primes over $R$.
+ \end{example}
+
+ Given $R$ and $M$ as above, we want to study $\ass(M)^*$ and $\ass(M)_*$.
+ \begin{lemma}[Star Principle]
+   Let $A\subseteq (B,\le)$.
+   \begin{enumerate}
+     \item If for every $b\in B$, there is an $a\in A$ so that $b\le a$, then $A^*=B^*$.
+     \item If for every $b\in B$, there is an $a\in A$ so that $a\le b$, then $A_*=B_*$.
+   \end{enumerate}
+ \end{lemma}
+ \begin{proof}
+   Totally obvious.
+ \end{proof}
+ \begin{theorem}
+   For the given $M$, $\ass (M)^*=\{$point annihilators$\}^*=\{$ideals $\subseteq
+   \Z(M)\}^*$.
+ \end{theorem}
+ \begin{proof}
+   Clearly $\ass (M)\subseteq \{$point annihilators$\}\subseteq \{$ideals $\subseteq
+   \Z(M)\}$. To get the desired conclusion, it suffices to check that every ideal
+   $A\subseteq \Z(M)$ is contained in some associated prime. This is Theorem 10.3.
+ \end{proof}
+ How about $\ass(M)_*$? The following proposition is key.
+ \begin{proposition} \label{lec10P:minlAss}
+  \begin{enumerate}
+   \item[]
+   \item Any minimal prime $\p$ over $I=\ann (M)$ is in $\ass M$.
+   \item $\ass (R/I)\subseteq \ass (M)$.
+  \end{enumerate}
+ \end{proposition}
+ \begin{proof}
+   (1) By an earlier result, $\p_\p$ is a minimal prime over $\ann(M_\p)\supseteq I_\p$.
+   Thus, $\p_\p\subseteq \Z(M_\p)$ because minimal primes always consist of
+   zero-divisors. Since $M_\p$ is finitely generated over the noetherian ring $R_\p$,
+   $\p_\p$ must annihilate some nonzero $m/1$. But $\p_\p$ is maximal in $R_\p$, so
+   $\p_\p=\ann (m/1)$, so $\p_\p\in \ass (M_\p)$. By 5.5 (3.16), $\p\in \ass M$.
+
+   (2) Let $\p_0\in \ass (R/I)$. Write $\p_0 = I:b$ for some $b\not\in I$. Look at
+   $N=bM\neq 0$. Then $\ann (N)=\{r\in R|rbM=0\} = \{r\in R|rb\in I\}=I:b = \p_0$. Thus,
+   $\p_0$ is a minimal prime over $\ann(N)=\p_0$, so it is an associated prime of $N$. It
+   follows that $\p_0\in \ass M$.
+ \end{proof}
+
+ \begin{theorem}
+   $\ass (M)_* = \supp (M)_* = \V(I)_* = \ass (R/I)_*$.
+ \end{theorem}
+ \begin{proof}
+   Let $\V(I)_*= \{\p_1,\dots, \p_n\}$. $\V(I)=\ass(R/I)_*$ by applying the first
+   equality to $M=R/I$. $\supp M=\V(I)$, so applying $-_*$ we get the second equality.
+
+   It happens that $\ass (M)_* = \supp (M)_*$ even if $M$ is not finitely generated.
+   First note that $\ass M \subseteq \supp M$. Now we need to show that any supporting
+   prime $\p$ contains an associated prime. We have that $M_\p\neq 0$, so $M_\p$ has an
+   associated prime $(\p_0)_\p$ with $\p_0\subseteq \p$ (since $R_\p$ is noetherian).
+   Since $R$ is noetherian, $\p_0$ is finitely generated, so $\p_0\in \ass M$.
+ \end{proof}

@@ -1,0 +1,107 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{12}
+ \sektion{Lecture 12}
+
+ picture of history
+
+ Useful mnemonics (6.9):
+ \[
+  \bigcap \{\p\in \ass (M)_*\} = \sqrt{\ann (M)} \subseteq   \Z(M) =
+  \bigcup \{\p\in \ass (M)^*\}
+ \]
+ where the equalities require all noetherian hypotheses (though the containment is true
+ in general).
+ \begin{definition}[Lasker, 1905]
+   An ideal $\q\subsetneq R$ is \emph{primary} if $ab\in \q$ and $b\not\in \q$ implies
+   that $a^n\in \q$ for some $n$.
+ \end{definition}
+ We'd like to do primary decomposition for modules because it doesn't cost any more work,
+ so we need to generalize this definition.
+ \begin{definition}
+   If $M$ is an $R$-module. We call a submodule $Q\subsetneq M$ \emph{primary} (in $M$) if
+   $\sqrt{\ann (M/Q)}= \Z(M/Q)$ (you get ``$\subseteq$'' for free). i.e.\ for every $a\in
+   R$ and $x\in M\smallsetminus Q$ with $ax\in Q$, we have $a^n M\subseteq Q$ for some
+   $n$.
+ \end{definition}
+ \begin{warning}
+   This definition is not completely standard in the literature, and the fact that $M/Q$
+   may not be finitely generated often mucks things up.
+ \end{warning}
+
+ \begin{proposition}
+   Suppose $Q\subsetneq M$ is primary. Then $\q:= \ann (M/Q)$ is a primary ideal, and
+   $\p:=\sqrt \q$ is prime.
+ \end{proposition}
+ \begin{proof}
+   Clearly $\q\subsetneq R$ since $1\in R\smallsetminus \q$. Let $a,b\in R$, with $ab\in
+   \q$ and $b\not\in \q$. Then $abM\subseteq Q$ but $bM\not\subseteq Q$. So $a\in
+   \Z(M/Q)=\sqrt{\ann (M/Q)}$ (since $Q\subsetneq M$ is primary), so $a^n\in \q$ for some
+   $n$.
+
+   Finally, we check that $\p=\sqrt \q$ is prime. Let $ab\in \p$ with $b\not\in \p$. Then
+   we have $a^nb^n\in \q$ and $b^n\not\in \q$. Since $\q$ is primary, $(a^n)^N\in \q$ for
+   some $N$, so $a\in \p$, as desired.
+ \end{proof}
+ \begin{definition}
+   Henceforth we will say that $Q$ is \emph{$\p$-primary}.
+ \end{definition}
+ \begin{proposition}
+   If $Q,Q'\subsetneq M$ are both $\p$-primary, then $Q\cap Q'$ is $\p$-primary.
+ \end{proposition}
+ \begin{proof}
+   Let $\q=\ann (M/Q)$, $\q'=\ann (M/Q')$, and assume $a\in \Z\bigl(M/(Q\cap Q')\bigr)$,
+   with $ax\in Q\cap Q'$, where $x\not\in Q\cap Q'$. We may assume $x\not\in Q$. Then
+   $a\in \Z(M/Q)$, so  $a\in \sqrt \q=\p=\sqrt{\q'}$ since $Q$ is primary. Then
+   $a^nM\subseteq Q\cap Q'$ for some $n$, as desired.
+ \end{proof}
+ \begin{proposition}
+   Let $R$ be a noetherian ring, and let $Q\subsetneq M$ with $M/Q$ finitely generated.
+   Then $Q\subsetneq M$ is primary if and only if $|\ass(M/Q)|=1$. In fact, if $Q$ is
+   $\p$-primary, then $\ass (M/Q)=\{\p\}$.
+ \end{proposition}
+ \begin{proof}
+   ($\Rightarrow$) For this direction, we don't use that $M/Q$ is finitely generated. We
+   know that $\ass(M/Q)\neq \varnothing$ since $R$ is noetherian. Let $P\in \ass (M/Q)$,
+   then $P\supseteq \ann (M/Q)=:\q$, so $P\supseteq \sqrt \q=:\p$. On the other hand, if
+   $a\in P$, then $a=\ann(m)$, so $a\in \Z(M/Q)=\sqrt \q=\p$. So $P=\p$.
+
+   \def\P{\mathfrak{P}}
+   ($\Leftarrow$) Say $\ass (M/Q)=\{\P\}$. Then we get
+   \begin{align*}
+     \Z(M/Q) &= \bigcup \{P\in \ass (M/Q)^*\} \\ &= \P \\ &= \bigcap \{P\in
+     \ass(M/Q)_*\} \\ &=\sqrt{\ann(M/Q)}. \qedhere
+   \end{align*}
+ \end{proof}
+ \begin{definition}
+   A module $Q\subsetneq M$ is called \emph{irreducible} if it cannot be written as the
+   intersection of two strictly larger submodules.
+ \end{definition}
+ \begin{lemma}[Noether's Lemma]
+   Suppose $M$ is a noetherian module over a ring $R$. Then any $Q\subseteq M$ is a
+   finite intersection of irreducible submodules.
+ \end{lemma}
+ \begin{proof}
+   Noetherian induction. If all submodules containing $Q$ are finite intersections of
+   irreducibles, then so is $Q$.
+ \end{proof}
+ \begin{theorem}[Noether's Theorem]
+   Say $R$ is noetherian and $M/Q$ is finitely generated. If $Q$ is irreducible, then $Q$
+   is primary.
+ \end{theorem}
+ \begin{proof}
+   Assume $\p_1,\p_2\in \ass (M/Q)$. Say $R/\p_i \cong K_i/Q \subseteq M/Q$ for $i=1,2$.
+   If $Q\subsetneq K_1\cap K_2$, then there is some $x\in K_1\cap K_2\smallsetminus Q$,
+   which gives a non-zero element of $K_i/Q\subseteq M/Q$. But then the annihilator of
+   $x$ in $M/Q$ must be $\p_i$ (since $K_i/Q\cong R/\p_i$), so $\p_1=\p_2$, which would
+   imply that $Q$ is primary.
+
+   Thus, we may assume $Q=K_1\cap K_2$. \anton{finish}
+ \end{proof}
+ \begin{definition}
+   Suppose $N\subsetneq M$. Then an equality of the form $N=Q_1\cap \cdots \cap Q_n$ is
+   called a \emph{primary decomposition of $N$} if $Q_i$ is $\p_i$-primary, with all of
+   the $\p_i$ distinct. This decomposition is called \emph{minimal} (or
+   \emph{irreducible}) if no $Q_i$ can be omitted.
+ \end{definition}
+ Note that the decomposition if minimal exactly when $\bigcap_{i\neq j} Q_j\not\subseteq
+ Q_i$ for each $i$.

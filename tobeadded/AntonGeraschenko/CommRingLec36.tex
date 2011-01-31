@@ -1,0 +1,84 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{36}
+ \sektion{Lecture 36}
+
+ Results presented in the notes:
+ \begin{enumerate}
+   \item $K/k$ field extension, with $v:K^\times\twoheadrightarrow \Gamma$ trivial on
+   $k$, then $\ork \Gamma \le rk(\Gamma) \le tr.d._k K$.
+
+   \item $tr.d._k K=1$, $R\in Val_k(K)$, then $R$ is a DVR. See Hartshorne \S I.6.
+ \end{enumerate}
+
+ \begin{theorem}
+   Let $R\subseteq K$ is a sub-ring of a field, with integral closure $C$. Define
+   $T=\bigcap \{V\in Val_R(K)\}$. Then $C=T$. We could also define the intersection $T$
+   by restricting to those $V$ whose maximal ideals contract to a maximal ideal in $R$.
+   In particular, if $R$ is local, then we only intersect those $V$ which dominate $R$.
+ \end{theorem}
+ \begin{corollary}
+   A domain is normal if and only if it is an intersection of some family of valuation
+   rings of its quotient field.
+ \end{corollary}
+ \begin{proof}[Proof of Theorem]
+   $C\subseteq T$: each $V$ is normal and contains $R$, so integral elements over
+   $R$ are contained in each $V$.
+
+   Conversely, assume $x\not\in C$. By the reciprocal polynomial trick (Ex.~III.3)
+   $x\not\in R[x^{-1}]=S$. Then $x^{-1}\notin U(S)$ (let $x\in S$). Choose some $\p\in
+   \Max(S)$ containing $x^{-1}$. By the existence theorem, there is some $(V,\m)\in
+   Val(K)$ so that $S\subseteq V$ and $\m\cap S=\p$. We have that $x^{-1}\in \p\subseteq
+   \m$, so $x\not\in V$.
+
+   Claim: $\m\cap R$ is a maximal ideal in $R$.\\
+   $\m\cap R = \m\cap S\cap R = \p\cap R$. Consider the map $R\to S\to S/\p$; since
+   $x^{-1}$ is killed by the second map, the composition is onto, with kernel $\p\cap R$.
+   Since we chose $\p\in \Max (S)$, $S/\p$ is a field, so $\p\cap R$ is maximal.
+ \end{proof}
+
+ \begin{theorem}
+   Let $R$ be a noetherian domain with quotient field $K$. Then $R$ is normal if and only
+   if
+   \begin{trivlist}
+     \item[\rm (Nor1)] for any height 1 prime $\p\in R$, $R_\p$ is a DVR, and
+     \item[\rm (Nor2)] for any $0\neq a\in R$, all primes in the set $\ass \bigl(R/(a)\bigr)$
+     have height 1.
+   \end{trivlist}
+   In this case, $R = \bigcap_{ht(\p)=1} R_\p$.
+ \end{theorem}
+ \begin{proof}
+   Suppose Nor1 and Nor2. First we check $R=\bigcap_{ht(\p)=1} R_\p$. If this holds, then
+   since each $R_\p$ is normal, $R$ is normal. Let $a, b\in R$ with $a\neq 0$, an assume
+   $b/a\in R_\p$ for each $\p$ of height 1. Consider a minimal primary decomposition
+   $aR=\q_1\cap \cdots \cap \q_n$, with $\p_i=\sqrt{\q_i}$. Each $\p_i$ has height 1
+   \anton{}, so they are all isolated primes, so each $\q_i$ is determined: $\q_i =
+   aR_{\p_i}\cap R$. By assumption, $b\in aR_{\p_i}\cap R=\q_i$, so $b\in aR$, so
+   $b/a\in R$.
+
+   Now suppose $R$ is normal. To verify Nor1, take $\p$ of height 1. Then $R_\p$ is
+   clearly normal, local, noetherian, and dimension 1, so by an earlier characterization,
+   $R_\p$ is a DVR. To verify Nor2, consider $\p\in \ass (R/aR)$. Localize at $\p$, so we
+   may assume $(R,\p)$ is local. We want to show that $ht(\p)=1$. We can write $\p=aR:b$,
+   with $b\neq 0$ in $aR$, so $a^{-1}b\p\subseteq R$.
+
+   Case 1: If $a^{-1}b\p =R$, $\p=ab^{-1}R$, so $\p$ is principal with generator $a/b$.
+   This implies $R_\p$ is a DVR (being a noetherian local domain with principal maximal
+   ideal), so it is dimension 1, so $ht(\p)=1$.
+
+   Case 2: If $a^{-1}b\p \subsetneq R$, then $a^{-1}b\p\subseteq \p$, so by the
+   determinant trick, $a^{-1}b$ is integral over $R$. Since $R$ is normal, $a^{-1}b\in
+   R$, so $b\in aR$, a contradiction.
+ \end{proof}
+
+ Some other results follow.
+ \begin{theorem}
+   A noetherian domain $R$ is a UFD if and only if every height 1 prime is principal.
+ \end{theorem}
+ The proof depends on the following result.
+ \begin{theorem}
+   A domain $R$ is a UFD if and only if
+   \begin{enumerate}
+     \item every non-zero non-unit is a finite product of irreducible elements, and
+     \item every irreducible element generates a prime ideal.
+   \end{enumerate}
+ \end{theorem}

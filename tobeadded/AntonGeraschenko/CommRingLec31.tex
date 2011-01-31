@@ -1,0 +1,75 @@
+ Exercise III.6: replace ``$S_\mathfrak{P}/R_\p$ with $S_\mathfrak{P}/\im (R_\p)$.\\
+ III.21: $f(x) = \sum_{n=0}^\infty \frac{x^n}{2^{n^2}} \in \QQ((x))$. This exercise is a
+ little ``provisional''.
+
+ Notation: $D$-$Val(K)$ is the set of \emph{discrete} valuation rings of $K$ (this set
+ may be empty).
+ \begin{example}
+   If $K$ is an algebraic extension of $\FF_p$, then $Val(K)=\{K\}$,
+   $D$-$Val(K)=\varnothing$.
+ \end{example}
+ \begin{example}
+   Take $K$ so that $K^\times = (K^\times)^n$ for some fixed $n\ge 2$. Then
+   $D$-$Val(K)=\varnothing$. If $(R,(\pi))$ is a DVR of $K$, then $\pi=a^n$ for some $n$,
+   so $a$ is integral over $R$, so it is in $R$ (because $R$ is normal). But then
+   $(a)=(\pi)^m = (a)^{n+m}$. contradiction.
+ \end{example}
+
+ For any subring $R\subseteq K$, we defined $Val_R(K)$ to be the elements of $Val(K)$
+ which contain $R$. If $R\in Val(K)$, then $Val_R(K)$ is just the set of rings between
+ $R$ and $K$.
+
+ \begin{theorem}[4.12]
+   Describing all $R'$ so that $R\subseteq R'\subseteq K$, where $(R,\m)\in Val(K)$. A
+   typical $R'$ is of the form $R_\p$, where $\p\subseteq \m$ is a prime in
+   $R$. Furthermore, $\p R_\p \overset{!}{=} \p$ is the maximal ideal.
+ \end{theorem}
+ \begin{proof}
+   omitted.\anton{}
+ \end{proof}
+ Consequently, the map $\p\mapsto R_\p$ defines an inclusion reversing bijection $\spec R
+ \leftrightarrow Val_R(K)$. In particular, $Val_R(K)$ is a chain because $\spec R$ is a
+ chain. The longest chain is the Krull dimension of $R$. In particular, $\dim R=1$ if and
+ only if $R$ is a maximal subring of $K$. DVRs are 1-dimensional, but not all
+ 1-dimensional valuation rings are DVRs.
+
+ \begin{definition}
+   $Val^R(K) = \{R' \in Val(K)| R'\subseteq R\subseteq K\}$. This is only meaningful if
+   $R\in Val(K)$ since any ring containing a valuation ring is a valuation ring (so we
+   would have $Val^R(K)=\varnothing$ if $R\not\in Val(K)$).
+ \end{definition}
+ How do you tell the difference between $Val_R(K)$ and $Val^R(K)$? Well, $Val_R(K)$ has
+ the $R$ below, and $Val^R(K)$ has the $R$ above.
+
+ \begin{theorem}[4.13]
+   For $(R,\m)\in Val(K)$, there is an inclusion preserving bijection
+   $Val^R(K)\leftrightarrow Val(R/\m)$, with $R'\mapsto R'/\m =: \bbar {R'}$. Note that
+   $\m\subseteq \m'\subseteq R'\subseteq R$, so this makes sense.
+ \end{theorem}
+ \begin{corollary}[4.14, Dimension-Summation formula]
+   In the setting above, $\dim R' = \dim \bbar{R'} + \dim R$.
+ \end{corollary}
+ \begin{proof}
+   easy chain composition argument.
+ \end{proof}
+ This allows us to come up with examples of valuation rings with dimension bigger than 1.
+
+ \underline{Places}: intuitively, a place is a ``generalized field homomorphism'' that
+ may send may elements to ``$\infty$''.
+ \begin{definition}
+   Let $K$ and $\W$ be fields. Then a \emph{place} is a map $\phi:K\to \W\sqcup
+   \{\infty\} =: \W_\infty$ so that $\phi$ is a ``field homomorphism '' with the usual
+   rules of addition and multiplication for $\infty$ ($\infty \pm \infty$, $0/0$,
+   $\infty/\infty$, and $\infty\cdot 0$ are undefined).
+ \end{definition}
+ There is a triumvirate of ideas which are basically the same: valuation rings, places,
+ and Krull valuations.
+
+ Working with a place is equivalent to working with a valuation in the following way.
+ Suppose $\phi$ is a place, then define $R=\phi^{-1}(\W)$. $R$ is a valuation ring of $K$
+ \anton{}. Conversely, given a valuation ring $(R,\m)$ of $K$, there is a place $K\to
+ R/\m \sqcup \{\infty\}$, sending $R$ to $R/\m$ in the usual way, and $K\smallsetminus R$
+ to $\infty$.
+
+ We say $K\to \W_\infty$ is the \emph{trivial place} if $\phi(K)\subseteq \W$ (i.e.~a
+ good old field homomorphism)

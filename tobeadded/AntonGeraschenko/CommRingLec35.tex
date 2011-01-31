@@ -1,0 +1,107 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{35}
+ \sektion{Lecture 35}
+
+ The notes have been revised to contain some more stuff. When is $(R,\m)$ or principal
+ type? Here are some necessary and sufficient conditions (individually \dots any of them
+ is enough)
+ \begin{itemize}
+   \item $\m\neq\m^2$
+   \item $R$ surjects onto a DVR.
+   \item $\Gamma^+\smallsetminus \{0\}$ has a least element.
+ \end{itemize}
+
+ \underline{Any OAG $\Gamma$ is a valuation group}. That is, there is a surjective
+ valuation $v:K\twoheadrightarrow \Gamma_\infty$. For example, let $\Gamma=\QQ$ with the
+ usual ordering. This produces a valuation ring $(R,\m)$ which is not of principal type
+ ($\m=\m^2$).
+
+ To prove the result, form the group algebra $A=k\Gamma$ over a fixed field $k$, with
+ formal basis $\{t_\alpha|\alpha\in \Gamma\}$, with $t_\alpha t_\beta=t_{\alpha+\beta}$.
+ Given $f\in A$, we have $f=\sum a_\alpha t_\alpha = a_{\alpha_0}t_{\alpha_0} + $``higher
+ terms'' with $a_{\alpha_0}\neq0$ \dots we're taking $\alpha_0$ to be the least element
+ that appears. Define $v(f)=\alpha_0$. It is immediate that this $v$ is a valuation, and
+ that it surjects onto $\Gamma$. In particular, $A$ is a domain. Note that the residue
+ field is $k$.
+
+ \underline{Convex subgroups of an OAG}: A subgroup $G\subseteq \Gamma$ is called
+ \emph{convex} (or \emph{isolated}) if whenever $0\le a\le b$ and $b\in G$, we also have
+ $a\in G$.
+ \begin{theorem}
+   Convex subgroups are exactly the kernels of OAG morphisms.
+ \end{theorem}
+ \begin{proof}
+   If $G=\ker (\phi:\Gamma\to \Gamma')$ and $0\le a\le b$ with $\phi(b)=0$, then we get
+   $0\le \phi(a)\le 0$, so $\phi(a)=0$.
+
+   Conversely, if $G$ is a convex subgroup of $\Gamma$, then we declare a non-identity
+   coset positive if all elements are positive. After some checking, this makes
+   $\Gamma/G$ into an OAG, and the natural map $\Gamma\to \Gamma/G$ is an OAG morphism.
+   \anton{}
+ \end{proof}
+ \begin{lemma}
+   Convex subgroups of $\Gamma$ form a chain (under inclusion).
+ \end{lemma}
+ \begin{proof}
+   easy to check \anton{}
+ \end{proof}
+ \begin{definition}
+   The \emph{order-rank} of an OAG is the order type of the chain of convex subgroups. If
+   you're a baby, you can define $\ork(\Gamma)=n\in \ZZ$ if $\Gamma$ has exactly
+   $n+1$ convex subgroups, and $\infty$ otherwise.
+ \end{definition}
+ There is an order reversing bijection between convex subgroups of $\Gamma$ and prime
+ ideals in $R$ (any valuation ring with valuation group $\Gamma$), given by $G\mapsto
+ \{a\in R|v(a)>G\}$.
+ \[\xymatrix{
+ 0 & \m\\
+ \Gamma & (0)
+ }\]
+ \begin{itemize}
+   \item As a corollary, $\ork(\Gamma)=\dim R$.
+   \item $\ork(\Gamma)\le 1$ corresponds to $\Gamma$ being archimedean.
+   \item $\ork(\Gamma)\le rk(\Gamma) := \dim_\QQ(\QQ\otimes_\ZZ \Gamma)$.
+ \end{itemize}
+
+ \subsektion{\S 6. Characterizations of Normal Domains}
+ \begin{lemma}[Chevalley]
+   Let $K\supseteq V$ be rings, and let $u\in U(K)$. If $I\< V$ is a proper ideal, then
+   either $I\cdot V[u]\neq V[u]$ or $I\cdot V[u^{-1}]\neq V[u^{-1}]$.
+ \end{lemma}
+ \begin{proof}
+   Tricky calculation. \anton{}
+ \end{proof}
+ \begin{theorem}[Existence theorem for valuation rings]
+   Let $S$ be a sub-ring of a field $K$, and let $\p\in\spec S$. Then there exists a
+   valuation ring $(V,\m)\in Val(K)$ containing $S$ such that $\m\cap S=\p$.
+ \end{theorem}
+ \begin{proof}
+   Localize at $\p$ first, so we may assume $S$ is local and $\p$ is the maximal ideal.
+
+   Consider the family $\F=\{T| S\subseteq T\subseteq K, \p T\neq T\}$, ordered by
+   inclusion. It is easy to see that Zorn's lemma applies to give a maximal member $V$.
+   Then check that $V$ is a valuation ring of $K$: if $u,u^{-1}\in K\smallsetminus V$,
+   then you could extend $V$ by Chevalley's lemma, contradicting maximality, so either
+   $u\in V$ or $u^{-1}\in V$.
+ \end{proof}
+ \begin{definition}
+   Let $(S,\p)$ and $(V,\m)$ be local rings, with $S\subseteq V$. We say that $V$
+   \emph{deominates} $S$ (written $V\ge S$ or $S\le V$) if $\m\cap S=\p$.
+ \end{definition}
+ This can be understood in two alternative ways. It is sufficient for $\p\subseteq \m$,
+ or to say that $\p V\subsetneq V$.
+
+ In general, if $K/F$ is a field extension and $(V,\m)$ is a local ring in $K$, then
+ $(S,\p)=(F\cap V,F\cap \m)$ a local ring dominated by $(V,\m)$. To see that $S$ is
+ local, let $a\in S\smallsetminus \p\subseteq V\smallsetminus \m$, then $a$ is invertible
+ in $V$ and the inverse must lie in $F$, so $a$ is invertible in $S$.
+
+ Given a field $K$, define $Loc(K)$ to be the set of local rings in $K$.
+ \begin{theorem}
+   For every field $K$, $Loc(K)^*=Val(K)$, where $loc(K)$ is ordered by dominance.
+ \end{theorem}
+ \begin{proof}
+   If $S\in Loc(K)^*$, then there is a $V\in Val(K)$ so that $V\ge S$ \anton{}. This
+   implies $V=S$. Conversely, if $(V,\m)\in Val(K)$, then if $V'\ge V$ in $Loc(K)$,
+   $\m'\subseteq \m$, so $V'$ cannot dominate $V$, so $V$ is maximal in $Loc(K)$.
+ \end{proof}

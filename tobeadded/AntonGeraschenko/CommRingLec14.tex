@@ -1,0 +1,89 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{14}
+ \sektion{Lecture 14}
+
+ Combining Theorem \ref{lec05radNOembedded} and Proposition \ref{lec10P:minlAss}, we have
+ that $\ass (R/I) = \spec (R/I)_*$, i.e.\ $R/I$ has no embedded primes.
+
+ \begin{example}[Nonuniqueness of minimal primary decomposition (Noether)]
+  We saw last time that primary components at isolated primes are unique, but at embedded
+  primes, we don't have uniqueness. Take $R=k[x,y]$ where $k$ is a field. Let $I=x\cdot
+  (x,y)$, then $\ass (R/I) = \{\p_1=(x),\p_2=(x,y)\}$. $\p_1$ is isolated and $\p_2$ is
+  embedded.
+
+  Let's find some primary decompositions $I=\q_1\cap \q_2$. The $\q_1$ should be
+  unique since $\p_1$ is isolated: $\q_1$ is the saturation of $I$ with respect to
+  localization at $\p_1$. Since $xy\in I$, but $y\not\in \p_1$, so $x\in I^{ec}$, so
+  $I^{ec}=(x)=\q_1$.
+
+  Take $\q_{2,a}:=(x^2,y+ax)\supseteq (x,y)^2=\p_2^2$, so it is $\p_2$-primary. Clearly
+  $I\subseteq \q_1\cap \q_{2,a}$. To see that this is an equality, assume
+  $g_0x=g_1x^2+g_2(y+ax)$, then $x|g_2$ since we are in a UFD; but then $f\in I$, a
+  contradiction.
+
+  Finally, to contradict uniqueness, we must show that $\q_{2,a}\neq \q_{2,b}$ for $a\neq
+  b$. If $\q_{2,a}=\q_{2,b}$, then $\q_{2,a}$ contains $(b-a)x$, so it contains $x$. But
+  $R/\q_{2,a} \cong k[x]/(x^2)$, so $x\not\in \q_{2,a}$.
+
+  We could have also chosen $\q_2 = (x^2,xy,y^\mu)$ for $\mu\ge 2$. This way, we get
+  infinite non-uniqueness even if the ground field is not infinite.
+ \end{example}
+ \begin{example}
+  Here are some example types:
+  \begin{enumerate}
+    \item $I$ is primary, so $I=I$ is a MPD.
+
+    \item $R$ a UFD, and $(a)\neq (0)$. Then factor $a$ into irreducibles
+    $u\pi_1^{r_1}\cdots \pi_n^{r_n}$, then $(a) = \bigcap (\pi_i^{r_i})$ by CRT. Each
+    $(\pi_i^{r_i})$ is $(\pi_i)$-primary, and $(\pi_i)$ is an isolated prime.
+
+    \item If $R$ is a Dedekind domain and $\a\subseteq R$ is an ideal. Then we get
+    $\a=\p_1^{r_1}\cdots \p_n^{r_n} = \bigcap \p_i^{r_i}$ by CRT.
+  \end{enumerate}
+ \end{example}
+ \begin{example}
+  To appreciate machine computation, try doing the following by hand: $R=\QQ[x,y]$ and
+  $I=\bigl(x^2-(y+1)^3,(y^2-1)^2\bigr)$. Then $\p_1=(x^2-8,y-1)$ and $\p_2(x,y+1)$, which
+  are maximal (so they are both isolated since they are not comparable). The primary
+  components are $\q_1=\bigl(x^2-12y+4,(y-1)^2\bigr)$ and $\q_2=\bigl( x^2 ,
+  (y+1)^2\bigr)$.
+ \end{example}
+
+ \begin{theorem}
+   If $R$ is noetherian, and $I=\q_1\cap \cdots\cap \q_n$ is any MPD. Then $I=\sqrt I$ if
+   and only if $\q_1=\p_i$ for all $i$. In this case, $\p_1$,\dots, $\p_n$ are exactly
+   the minimal primes over $I$; in particular, the MPD is unique (up to permutation).
+ \end{theorem}
+ \begin{proof}
+   ($\Leftarrow$) Clear.
+
+   ($\Rightarrow$) Assume $I=\sqrt I$. By (6.12 Lam), MPD is unique (there are no
+   embedded primes). But we know that $\ass(R/I)=\{\p_1,\dots, \p_n\}$, the set of
+   minimal primes over $I$. However, $I=\p_1\cap\cdots \cap \p_n$ since $I$ is radical.
+   By uniqueness of the decomposition, $\q_i=\p_i$
+ \end{proof}
+ \begin{remark}[Non-existence of MPD]
+   Let $R$ be von Neumann regular. Observe that every ideal is radical since $a^2\in
+   I\Rightarrow a=a^2x\in I$. It follows that every primary ideal is prime. Take, for
+   example, $R=k\times k\times \cdots$. Then the zero ideal has no primary decomposition:
+   otherwise we would have $(0)=\p_1\cap \cdots \p_n$, which would imply that $\ass
+   R\subseteq \{\p_1,\cdots, \p_n\}$, which is false because $\ass R$ is infinite.
+ \end{remark}
+
+ \subsektion{\S 8 More Theorems on Noetherian Rings}
+
+ \begin{theorem}[Krull's Intersection Theorem, preliminary version]
+   Let $I$ is an ideal in a noetherian ring $R$, and $M$ is a finitely generated module.
+   Define $N:= \bigcap_{n=0}^\infty I^n M$. Then $I\cdot N=N$.
+ \end{theorem}
+ There will be a very slick proof in the notes. Here is another one.
+ \begin{proof}
+   Assume $IN\subsetneq N$. Take a MPD for $IN$ as a submodule of $M$, say $IN=Q_1\cap
+   \cdots \cap Q_n$, where $Q_i$ is $\p_i$-primary. Then $N\not\subseteq Q_i$ for some
+   $i$. Then $\ass\bigl( (N+Q_i)/Q_i\bigr)\subseteq \ass(M/Q_i)=\{\p_i\}$, so we must
+   have equality because over a noetherian ring, associated primes exist. Choose $k$ such
+   that $\p_i^k M\subseteq Q_i$ (since $\p_i$ is finitely generated). Then $I\cdot
+   \left(\frac{N+Q_i}{Q_i}\right)=0$, so $I\subseteq \ann
+   \left(\frac{N+Q_i}{Q_i}\right)\subseteq \p_i$. But $N\subseteq I^k M$ by definition of
+   $N$, and $I^k M\subseteq \p_i^k M \subseteq Q_i$. Contradiction.
+ \end{proof}

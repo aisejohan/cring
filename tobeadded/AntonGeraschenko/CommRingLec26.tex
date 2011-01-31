@@ -1,0 +1,63 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{26}
+ \sektion{Lecture 26}
+
+ \begin{example}
+   Counterexample for Going down when $R$ is normal, but $S$ is not a domain. Take
+   $S=\ZZ\times \ZZ_2$ and let $R=\ZZ\cdot 1_S$. The minimal primes in $S$ are
+   $\P''=(0)\times \ZZ_2$ and $\P'=\ZZ\times (0)$. $\P''$ contracts to
+   the minimal prime $(0)$, but $\P'$ contracts to $\p'=2R$, which is not minimal; that
+   is, we have $ht(\P')\lneq ht(\p')$.
+ \end{example}
+
+ \begin{proposition}
+   If $S/R$ is a ring extension, and $C\subseteq S$ is the integral closure of $R$, then
+   $C[x]$ is the integral closure of $R[x]$ in $S[x]$.
+ \end{proposition}
+ \begin{proof}
+   Clearly $C[x]$ is integral over $R[x]$ because $C$ and $x$ are integral over $R[x]$.
+   Now it suffices to show that $C[x]$ is integrally closed; i.e.~we've reduced to the
+   case where $R$ is integrally closed in $S$, and we'd like to show that $R[x]$ is
+   integrally closed in $S[x]$. Let $f\in S[x]$ be integral over $R[x]$, with
+   $G(t)=t^n+g_{n-1}(x)t^{n-1}+\cdots+g_0(x)\in R[x][t]$ monic so that $G(f)=0$. Choose
+   $r> \max\{\deg f, \deg g_i\}$, then $G(x^r)\in R[x]$ is monic! Now we adjust $f$ in
+   the following way: define $f_0=x^r-f\in S[x]$, which is monic. Define
+   $H(t):=G(x^r-t)\in R[x][t]$, so $H(f_0)=G(f)=0$. Say $H(t)=(-1)^nt^n +
+   h_{n-1}(x)t^{n-1}+\cdots+h_0(x)$, with $h_i\in R[x]$. We have $H(0)=h_0(x)=G(x^r)$ is
+   monic in $R[x]$, and since $H(f_0)=0$, we get that $f_0|h_0$. By the Monicity lemma
+   from last time, $f_0\in R[x]$. Then $f=x^r-f_0\in R[x]$.
+ \end{proof}
+ \begin{theorem}
+   A domain $R$ is normal if and only if $R[x]$ is normal.
+ \end{theorem}
+ \begin{proof}
+   $(\Leftarrow)$ If $\alpha\in K:=Q(R)$ is integral over $R$ and $R[x]$ is integrally
+   closed in $K(x)=Q(R[x])$, then $\alpha\in R[x]$ and $\alpha\in K$. But $R[x]\cap K=R$,
+   so $R$ is normal.
+
+   $(\Rightarrow)$ If $R$ is integrally closed in $K$, then by the proposition, $R[x]$ is
+   integrally closed in $K[x]$. Since $K[x]$ is a UFD, it is integrally closed in
+   $Q(K[x])=K(x)$. It follows that $R[x]$ is integrally closed in $K(x)=Q(R[x])$.
+ \end{proof}
+ \begin{definition}
+   If $S/R$ is a ring extension. An element $s\in S$ is \emph{almost integral} over $R$
+   if $R[s]\subseteq T\subseteq S$, where $T$ is some module-finite module over
+   $R$.\footnote{Krull made this definition in 1928. I didn't make it up last night.}
+ \end{definition}
+ \begin{remark}
+   The definition depends on $S$ (not just on $s$), because $R$ is to be found in $S$.
+   Note that the definition is the same as $\{s^i|i\ge 0\}\subseteq T$. Integral implies
+   almost integral (we can take $T=R[s]$). If $R$ is noetherian, then if $s$ is almost
+   integral over $R$, it is integral over $R$ (since $T$ is module-finite, so is $R[s]$).
+   If $s$ is almost integral over $R$, then it is also almost integral over any
+   $R'\supseteq R$.
+ \end{remark}
+ \begin{example}[$D+(x)$ construction] Almost integral is strictly weaker than integral.
+  Let $D$ be a normal domain with $K=Q(D)$, and let $R=\{f(x)\in K[x]|f(0)\in D\} =
+  D+x\cdot K[x]$. Let $S=K(x)$. Any element of $s\in K\subseteq K(x)$ is almost integral
+  over $R$ because $s^i x\in R$, so $s^i\in \frac{1}{x}R = T\subseteq S$. But if $s\in
+  K\smallsetminus D$, then $s$ is not integral over $R$; otherwise there would be some
+  monic $s^n+f_1(x)s^{n-1}+\cdots f_n(x)=0$. Taking $x=0$, we get that $s$ is integral
+  over $D$, so it is in $D$, a contradiction. Note that this implies that $R$ is not
+  noetherian.
+ \end{example}

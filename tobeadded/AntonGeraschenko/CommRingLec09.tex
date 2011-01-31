@@ -1,0 +1,111 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{9}
+ \sektion{Lecture 9}
+
+ \begin{itemize}
+   \item Every finitely generated module $M$ over an artinian ring $R$ has finite length.
+   \item Every finite length module $M$ over any (commutative) ring $R$ ``arises in this
+   way''
+ \end{itemize}
+
+ \begin{proof}[Proof of Corollary 8.9 (5.11)]
+   ($3\Rightarrow 2$)
+   \[
+    lg_R(M)=lg_{R/\ann M}(M) < \infty
+   \]
+   by Akizuki.
+
+   ($2\Rightarrow 1$) clear
+
+   ($1\Rightarrow 3$) $R/\ann M$ has a finitely generated faithful artinian module,
+   namely $M$. Now use Akizuki.
+ \end{proof}
+ \begin{theorem}[Akizuki-Cohen]
+   Any artinian ring $R$ is a \emph{finite} direct product of local artinian rings
+   $R_1$,\dots, $R_n$, whose isomorphism types (as rings) are uniquely determined.
+ \end{theorem}
+ \begin{proof}
+   Let $J=\rad R = \m_1\cap\cdots\cap \m_n$ ($R$ is semi-local by \anton{}). We also know
+   that $J$ is nilpotent, so $(\m_1\cdots\m_n)^t=0$ for large enough $t$. By the Chinese
+   Remainder Theorem,
+   \[
+     R=\frac{R}{\m_1^t\cdots \m_n^t} \cong \prod R/\m_i^t.
+   \]
+   But $R/\m_i^t$ is a local ring (with maximal ideal $\m_i/\m_i^t$) and artinian (being
+   a quotient of an artinian ring). Uniqueness follows from Exercise 9.
+ \end{proof}
+ \begin{definition}
+   $R$ is a \emph{principal ideal ring} (or \emph{PIR}) if every ideal of $R$ is
+   principal.
+ \end{definition}
+ \begin{theorem}[5.13]
+   Let $(R,\m)$ be a local artinian ring. Then the following are equivalent.
+   \begin{enumerate}
+     \item $R$ is a PIR.
+     \item $\m$ is principal.
+     \item $\dim_{R/\m}(\m/\m^2)\le 1$.
+     \item $R$ is a ``chain ring'' (for any ideals $I$ and $J$, either $I\subseteq J$ or
+     $J\subseteq I$).
+   \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+   ($1\Rightarrow 2\Rightarrow 3$) clear.
+
+   ($4\Rightarrow 2$) Let $\m=Ra_1+\cdots + Ra_n$. Since $R$ is a chain ring, we may
+   assume $Ra_1\supseteq Ra_i$. Then $\m = Ra_1$.
+
+   ($3\Rightarrow 1,4$) Find $a\in \m$ such that $\bar a$ generates $\m/\m^2$ over
+   $R/\m$. By Nakayama's lemma, $\m = Ra$. Let's show that any non-zero $I\< R$ is
+   principal. We know that $\m$ is nilpotent, so there is a largest integer $r$ such that
+   $I\subseteq \m^r$ (so $I\not\subseteq \m^{r+1}$. Let $y\in I\smallsetminus \m^{r+1}$.
+   We can write $y=ta^r$ because $y\in \m^r$. Then $t$ must be a unit, lest $y\in
+   \m^{r+1}$. So $Ra^r=Ry\subseteq I\subseteq Ra^r$. If follows that $I$ is principal,
+   and that all the ideals are of the form $\m^r$, proving (4).
+ \end{proof}
+ \begin{definition}
+   A 0-dimensional Gorenstein ring is a local artinian ring in which the zero ideal is
+   irreducible.
+ \end{definition}
+ \begin{example}
+   Finite rings are artinian. For example $\ZZ/60$. We have $\ZZ/60\cong \ZZ/4\times
+   \ZZ/3\times \ZZ/5$ illustrating Akizuki-Cohen.
+ \end{example}
+ \begin{example}
+   Let $A$ is any ring, and let $\m$ be a finitely generated maximal ideal in $A$. Let
+   $I$ be any ideal containing some $\m^k$. Then $R=A/I$ is artinian. The only prime
+   ideal is $\m/I$, so this is a local zero-dimensional ring ... it is noetherian because
+   all primes are finitely generated, so it is artinian.
+ \end{example}
+ \begin{example}
+   In a local artinian ring $(R,\m)$, we have the filtration
+   \[
+    R\supseteq \m\supseteq \cdots \supseteq \m^n=0
+   \]
+   where consecutive quotients are vector spaces over $k=R/\m$. You may form a generating
+   function $f(t)$ out of these dimensions, which will be a polynomial. For example, use
+   the construction from the previous example, with $A=k[x,y]$, $\m=(x,y)$ and
+   $I=(x^3,y^4)$, so $R=A/I$. Then we get that $\m^6=0$, and
+   $f(t)=1+2t+3t^2+3t^3+2t^4+1t^5$ by inspection (just look at the number of (surviving)
+   generators in each line).
+   \[\xymatrix @dr @R=.5pc @C=.5pc{
+      1 & y & y^2 & y^3 & y^4 \ar@{-}[d] \ar@{-}[r] & y^5 \ar@{-}[r]& y^6\ar@{-}[r] & \\
+      x & xy & xy^2 & xy^3 & xy^4 \ar@{-}[d] & xy^5\\
+      x^2 & x^2y & x^2y^2 & x^2y^3 & x^2y^4 \ar@{-}[d] \\
+      x^3 \ar@{-}[r] \ar@{-}[d] & x^3y \ar@{-}[r]& x^3y^2 \ar@{-}[r]& x^3y^3 \ar@{-}[r]&\\
+      x^4 \ar@{-}[d]& x^4y & x^3y^2\\
+      x^5 \ar@{-}[d]& x^5y\\
+      x^6 \ar@{-}[d]\\
+      &
+   }\]
+
+   Note that in the case of a PIR, $f(t)=1+t+t^2+\cdots+t^{n-1}$ (the coefficient of $t$
+   is 1 if and only if you are in a PIR).
+ \end{example}
+ \begin{example}
+   ``a ring where $x^5=0$ but $x^6\neq 0$'' Let $A=k[x^2,x^3]\subseteq k[x]$; note that
+   $x\not\in A$. Take $I=x^5 A$ and let $R=A/I$, and find $f(t)$. Write a $k$-basis for
+   everything: $A$ has basis $\{1,x^2,x^3,x^4,\dots\}$; $I$ has basis
+   $\{x^5,x^7,x^8,x^9,\dots\}$. Then $f(t)=1+2t+t^2+t^3$.
+
+   Note that $A$ is the coordinate ring of the cuspidal cubic.
+ \end{example}

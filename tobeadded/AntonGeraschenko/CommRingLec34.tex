@@ -1,0 +1,84 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{34}
+ \sektion{Lecture 34}
+
+ There are non-archimedean absolute values ($|a+b|\le \max\{|a|,|b|\}$) and Krull
+ valuations. The archimedean absolute values are exactly the real Krull valuations.
+
+ \[\xymatrix{
+ K\ar[r]^v \ar[dr]_{\txt{non-arch\\ absolute \\ value}} & \Gamma_\infty \ar[d]^{e^{-x}\txt{ (order\\ reversing)}}\\
+  & **[r] \RR_{\ge 0}
+ }\]
+
+ An OAG $(\Gamma,\le)$ is called \emph{archimedean} if for all $x,y>0$ in
+ $\Gamma$ if there is some $n\in \mathbb{N}$ such that $nx>y$.
+
+ \begin{theorem}[H\"older, 1901]
+   $(\Gamma,\le)$ is archimedean if and only if it can be order embedded into
+   $(\RR,\le)$.
+ \end{theorem}
+ Thus, non-archimedean absolute values are the Krull valuations with archimedean ordered
+ group. How confusing!
+
+ Relating KVs to valuation rings. Suppose $v:K\to \Gamma_\infty$ is a KV, then we may
+ define $R_v:=\{a\in K| v(a)\ge 0\}$. This is a valuation ring with $\m_v=\{a\in
+ K|v(a)>0\}$. Conversely, if $R\in Val(K)$, define a KV $v:K^\times \to \text{Prin}(R)$,
+ where $\text{Prin}(R)$ is the group of principal fractional ideals $aR\subseteq {}_R K$,
+ where $a\in K^\times$. When $R$ is a valuation ring, $\text{Prin}(R)$ is an OAG, ordered
+ by REVERSE inclusion. Then define $v(a)=aR$ and check that $v(ab)=abR=aR\cdot
+ bR=v(a)+v(b)$ and that $v(a+b)=(a+b)R \supseteq v(a), v(b)$.
+
+ There is another useful view of the value group. Look at $K^\times /U(R)$, ordered by
+ $aU(R)\le bU(R)$ when $b/a\in R$. Then we have an order isomorphism $K^\times/U(R)\to
+ \text{Prin}(R)$, given by $aU(R)\mapsto aR$.
+
+ \begin{corollary}
+   There is a one to one correspondence between $Val(K)$ and equivalence classes of KVs
+   on $K$, where $v:K^\times\twoheadrightarrow \Gamma$ and $v':K^\times\twoheadrightarrow
+   \Gamma'$ are equivalent if there is an order isomorphism between $\Gamma$ and
+   $\Gamma'$.
+ \end{corollary}
+ \begin{definition}
+   A KV $K\twoheadrightarrow \Gamma\cong \ZZ$ is called a \emph{discrete valuation}.
+   Rings corresponding to discrete valuations are DVRs.
+ \end{definition}
+ \begin{example}
+   If $A$ is a UFD, with quotient field $K$ and some irreducible element $\pi$ (so $\pi$
+   generates a prime ideal). Define $v=v_\pi:A\smallsetminus\{0\}\to \ZZ$ by
+   $v(a)=\max\{n|\pi^n\text{ divides } a \text{ in } A\}$; this is called the $\pi$-adic
+   KV. It is easy to check that this is a KV. This valuation corresponds to the DVR
+   $A_{(\pi)}$. Here are some examples of such things.
+   \begin{itemize}
+     \item $A=\ZZ$ and $\pi=p$, then you get the usual $p$-adic valuation on $\QQ$.
+     \item $A=k[[x]]$ and $\pi=x$, then $v(f)$ is the order of vanishing (or of a pole) at
+     0.
+     \item $A=k[x]$, and $\pi$ a monic irreducible, then you get the $\pi(x)$-adic
+     valuation.
+     \item $A=k[x]$, and $v:k[x]\smallsetminus\{0\}\to \ZZ$ given by $f\mapsto -\deg(f)$.
+     This gives a discrete valuation on $k(x)$. This is the $1/x$-adic valuation!
+   \end{itemize}
+ \end{example}
+ \begin{example}
+   What is the transcendence degree of $k(\!(t)\!)$ over $k$? It must be $\infty$,
+   because it cannot be any integer like 17.
+
+   Then we can embed $K=k(x_1,\dots, x_n)\hookrightarrow k(\!(t)\!)$ and use the $t$-adic
+   valuation, giving a discrete valuation on $K$! We need to check that this valuation is
+   non-trivial.
+   \[\xymatrix{
+    K & k(\!(t)\!)\\
+    R & k[[t]]=V\\
+    \m & tV
+   }\]
+   We have $k\subseteq R/\m\hookrightarrow V/tV=k$, so $R/\m=k$. Thus, the valuation ring
+   $R$ is non-trivial (it is not all of $K$).
+ \end{example}
+
+ We haven't proven that $tr.d._k k(\!(t)\!)=\infty$, and I [Lam] think it is hard. Let's
+ show that $tr.d._\QQ \QQ(\!(t)\!)\ge 2$. We claim that $t$ and $e^t=\sum t^n/n!$ are
+ algebraically independent. Assume that $f_0(t)(e^t)^n + f_1(t)(e^t)^{n-1}+\cdots =0$. We
+ may assume that not all of the $f_i(t)$ are divisible by $t-1$. Then substitute $t=1$ to
+ get that $e$ is algebraic over $\QQ$, a contradiction!
+
+ For general $k$, we can also show that $t$ and $1+t^{1!}+t^{2!}+t^{3!}+\cdots$ are
+ algebraically independent.

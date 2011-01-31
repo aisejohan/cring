@@ -1,0 +1,90 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{42}
+ \sektion{Lecture 42}
+
+ What we would've done next:
+ \begin{enumerate}
+   \item Generalized princepal ideal theorem: $R$ noetherian, $\p$ minimal prime over
+   $(a_1,\dots, a_n$, then $ht(\p)\le n$.\\
+   Corollary 1: $\spec R$ satisfies DCC (the length of a chain from $\p$ is bounded by
+   $ht(\p)< \infty$ ($R$ noetherian, so $\p$ is finitely generated)).\\
+   Corollary 2: $R$ local $\Rightarrow$ $\dim R< \infty$\\
+   (Nagata): There exist ``bad noetherian rings'' which are infinite dimensional noetherian
+   domains.
+
+   \item $R$ noetherian of dimension $n$ $\Longrightarrow$ $\dim R[x] = n+1$.\\
+   In general, $n+1\le \dim R[x] \le 2n+1$ (``Seidenberg bounds''), and these bounds are
+   tight.
+ \end{enumerate}
+
+ \begin{definition}
+   A ring $R$ is \emph{catenary} if given any two primes $\p\subsetneq \p'$, any two
+   maximal prime chains from $\p$ to $\p'$ have the same length.
+ \end{definition}
+ Nagata showed that there are noetherian domains which are not catenary.
+
+ \begin{definition}
+   If $\p\in \spec R$, then $\dim \p:= \dim R/\p$.
+ \end{definition}
+ \begin{theorem}
+   Any $k$-affine algebra $S$ is catenary (even if $S$ is not a domain). In fact, any
+   saturated prime chain from $\p$ to $\p'$ has length $\dim \p - \dim \p'$. If $S$ is a
+   domain, then all maximal ideals have the same height.
+ \end{theorem}
+ \begin{proof}
+   Consider any chain $\p\subsetneq \p_1\subsetneq \cdots \subsetneq \p_r = \p'$. Then we
+   get the chain
+   \[
+    S/\p \twoheadrightarrow S/\p_1 \twoheadrightarrow \cdots \twoheadrightarrow S/\p_r
+    = S/\p'
+   \]
+   Here $\p_i/\p_{i-1}$ is height 1 in $S/\p_{i-1}$, so each arrow decreases the
+   transcendence degree by exactly 1. Therefore, $tr.d._k S/\p' = tr.d._k S/\p -r$.
+   \[
+    r = tr.d._k S/\p - tr.d._k S/\p' = \dim S/\p - \dim S/\p' = \dim \p-\dim \p'.
+   \]
+   To get the last statement, take $\p=0$ and $\p'=\m$. Then we get that $ht(\m)=\dim S$.
+ \end{proof}
+ Note that the last statement fails in general.
+ \begin{example}
+   Take $S=k\times k[x_1,\dots, x_n]$. Then $ht(0\times k[x_1,\dots, x_n])=0$, but
+   $ht\bigl(k\times (x_1,\dots, x_n)\bigr) = n$.
+ \end{example}
+ But that example is not connected.
+ \begin{example}
+   $S = k[x,y,z]/(xy,xz)$.
+ \end{example}
+ But this example is not a domain. In general, for any prime $\p$ in any ring $S$, we
+ have
+ \[
+    ht(\p) + \dim \p \le \dim S.
+ \]
+ \begin{theorem}
+   Let $S$ be an affine algebra, with $\Min S = \{\p_1,\dots, \p_r\}$. Then the following
+   are equivalent.
+   \begin{enumerate}
+     \item $\dim \p_i$ are all equal.
+     \item $ht(\p)+\dim \p =\dim S$ for all primes $\p\in \spec S$. In particular, if $S$
+     is a domain, we get this condition.
+   \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+   $(1\Rightarrow 2)$ $ht(\p)$ is the length of some saturated prime chain from $\p$ to
+   some minimal prime $\p_i$. This length is $\dim \p_i - \dim \p = \dim S - \dim \p$ (by
+   condition 1). Thus, we get $(2)$.
+
+   $(2\Rightarrow 1)$ Apply (2) to the minimal prime $\p_i$ to get $\dim \p_i=\dim S$ for
+   all $i$.
+ \end{proof}
+ We finish with a (non-affine) noetherian domain $S$ with maximal ideals of different
+ heights. We need the following fact.\\
+ \underline{Fact}: If $R$ is a ring with $a\in R$, then there is a canonical $R$-algebra
+ isomorphism $R[x]/(ax-1) \cong R[a^{-1}]$, $x\leftrightarrow a^{-1}$.
+ \begin{example}
+   Let $\bigl(R,(\pi)\bigr)$ be a DVR with quotient field $K$. Let $S=R[x]$, and assume
+   for now that we know that $\dim S=2$. Look at $\m_2=(\pi,x)$ and $\m_1=(\pi x-1)$.
+   Note that $\m_1$ is maximal because $S/\m_1 = K$. It is easy to show that
+   $ht(\m_1)=1$. However, $\m_2\supsetneq (x)\supsetneq (0)$, so $ht(\m_2)=2$.
+ \end{example}
+ Now let's come back to result I.1.1. The result we've just proven says that $ax-1\in
+ U(R[x])$ if and only if $a\in \nil R$.

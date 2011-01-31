@@ -1,0 +1,88 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{32}
+ \sektion{Lecture 32}
+
+ Supplemental points:
+ \begin{itemize}
+   \item A valuation ring is the same thing as a local B\'ezout domain.
+   \item A 1-dimensional valuation ring $(R,\m)$ with $\m$ principal is the same thing as a DVR.
+   \item If $R$ is a valuation ring and $n\le \infty$, then $\dim R=n$ if and only if
+   $|\spec R|=n+1$.
+   \item If $k\subseteq K$ is a subfield, then $Val_k(K)$ is the \emph{Zariski space} (or
+   \emph{Zariski Riemann Surface}) for $K/k$.
+ \end{itemize}
+
+ Composition of places: Let $(R,\m),(R',\m')\in Val(K)$, with $R'\subseteq R$ (so that
+ $\m\subseteq \m'\subseteq R'\subseteq R$). Then we showed that $R'\m\in Val(R/\m)$, so
+ it comes with a place $\sigma$ \anton{}, and we get a commutative diagram of places.
+ \[\xymatrix{
+  K \ar[r]^<>(.5)\phi_R \ar[dr]_{\phi'}^{R'} & (R,\m)_\infty \ar[d]^\sigma_{\frac{R'}{\m}}\\
+  & (R',\m')_\infty
+ }\]
+ That is, $\phi'=\sigma\circ \phi$. We shoed earlier that $\dim R'=\dim (R'/\m)+\dim R$.
+ We can phrase this as $\dim (\sigma\circ \phi)=\dim \sigma + \dim \phi$.
+
+ Valuation rings on $K=k(x)$. Let's construct examples of $R\in Val_k(K)$ (points in
+ the Zariski Riemann surface).
+ \begin{example}
+   Fix a monic irreducible $\pi(x)\in k[x]$, then define $R=k[x]_{(\pi)}$. $R$ is a DVR;
+   it is called the ``$\pi$-adic valuation ring''. $\W =
+   k[x]/(\pi) = k[\theta]$ (note that this is already a field), where $\theta = \bar x$.
+   The $\pi$-adic place is $\phi:K\to \W_\infty$, with $\phi(f/g) = f(\theta)/g(\theta)$.
+   Since $f/g$ can be assumed to be in lowest terms, we know when to send $f/g$ to
+   infinity.
+
+   In the special case where $\pi = x-a$, then $\theta = \bar x = a$, so the place is
+   $f/g\mapsto f(a)/g(a)$.
+ \end{example}
+ \begin{example}
+   Set $y = 1/x$, then $K=k(x)=k(y)$. Consider the $(y)$-adic place (or $1/x$ place) is
+   the one with valuation ring $k[y]_(y)$. Let's figure out what this ring is in terms of
+   $x$. If $r(x)$ is a non-zero rational function $\frac{a_0 x^n+\cdots+ a_n}{b_0x^m +\cdots
+   +b_m} = \frac{x^n(\cdots)}{x^m(\cdots)} = y^{m-n} \frac{a_0+\cdots+ a_n y^n}{b_0 +\cdots
+   +b_m y^m}$. Thus, $\phi(r(x)) =${\scriptsize $\begin{cases}
+     0 & m> n\\
+     \infty & m<n\\
+     a_0/b_0 & m=n
+   \end{cases}$}. So the valuation ring is $S=\{f/g|f,g\in k[x], g\neq 0, \deg f\le \deg
+   g\}$, with uniformizer $y=1/x$.
+ \end{example}
+ \begin{theorem}
+   $Val_k(K)$ is the exactly the set of rings described in the two examples above.
+ \end{theorem}
+ \begin{proof}
+   Same as in the computation of all valuation rings of $\QQ$.
+ \end{proof}
+ If $k=\bar k$, then there are only linear irreducibles, so we get a valuation ring in
+ $Val_k(K)$ for every point in $\mathbb{P}^1_k$. Thus the terminology ``Zariski Riemann
+ surface''.
+
+ \begin{definition}
+   A valuation ring $(R,\m)$ has \emph{principal type} if $\m = (\pi)\neq 0$. We still
+   call $\pi$ a uniformizer, but there is no noetherian hypothesis. Equivalently, we can
+   say that $\m$ is non-zero and finitely generated (because $R$ is B\'ezout).
+ \end{definition}
+ These rings emulate DVRs. In dimension 1, these are exactly DVRs. Note that if $R$ is
+ noetherian, Krull's principal ideal theorem doesn't apply, so $\m$ can have large height
+ even through it is principal. We say that a place has principal type if the
+ corresponding valuation ring does.
+
+ \begin{claim}
+   In the composition of places picture, if $\sigma$ (i.e.~$R'/\m$) has principal type,
+   then so does $\phi'$ (i.e.~$R'$ has principal type).
+ \end{claim}
+ \begin{proof}
+   Write $\m' = \pi R'+\m$, with $\pi\not\in \m$. Since $(\pi)\not\subseteq \m$, we
+   must have $\m\subseteq (\pi)$. This implies that $\m'=(\pi)$, so $R'$ has principal
+   type.
+ \end{proof}
+ \begin{example}
+   \[\xymatrix{
+    K = \QQ(x) \ar[r]^<>(.5)\phi_<>(.5){\QQ[x]_{(x)}} \ar[dr]_{\phi'} & \QQ_\infty \ar[d]^{\sigma_p}_{\ZZ_{(p)}}\\
+    & (\FF_p)_\infty
+   }\]
+   We get that $\phi'$ has principal type because the maximal ideal of $\ZZ_{(p)}$ is
+   principal. Let $R'$ be the valuation ring associated to $\phi'$. Then $\dim R'=2$ and
+   $R'$ has principal type. $R' = \{f(x)/g(x)\big| x\nmid g(x), f(0)/g(0)\in
+   \ZZ_{(p)}\}$. The uniformizer is $p$.
+ \end{example}

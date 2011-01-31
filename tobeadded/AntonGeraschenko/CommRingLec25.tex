@@ -1,0 +1,95 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{25}
+ \sektion{Lecture 25}
+
+ \begin{lemma}[Contracted prime criterion, II.3.15]
+   If $f:R\to C$, then $\p\in \spec R$ is a contracted prime (is $f^{-1}$ of a prime) if
+   and only if $\p=\p^{ec}$.
+ \end{lemma}
+ \begin{lemma}
+   If $S/R$ is integral, $I\< R$, and $s\in S$. Then $s$ is integral over $I$ if and only
+   if $s\in \sqrt{I\cdot S}$ if and only if the non-leading coefficients of the
+   irreducible polynomial of $s$ are in $\sqrt I$ (this last part assumes that $R$ is
+   normal and $S$ is a domain).
+ \end{lemma}
+
+ \begin{theorem}[Going Down]
+   If $S/R$ is integral, with $S$ a domain and $R$ a normal domain, then for every pair
+   of primes $\p\subseteq \p'\subseteq R$ and prime $\mathfrak{P}'$ lying over $\p'$,
+   there is a prime $\mathfrak{P}\in \spec S$ contained in $\mathfrak{P}'$ which lies
+   over $\p$.
+ \end{theorem}
+ \begin{proof}
+   It suffices to show that $\p$ is a contracted prime under $f:R\to
+   C=S_{\mathfrak{P}'}$; that is, to show that $\p=\p^{ec}=R\cap \p C$. If not, there is
+   an element $r\in R\cap \p C$ but $r\not\in \p$. We can write $r= s/t$ where $s\in \p
+   S$ and $t\in S\smallsetminus \mathfrak{P}'$.
+
+   picture
+
+   Let the minimal polynomial of $s$ over $K=Q(R)$ be $s^n+c_1s^{n-1}+\cdots + c_n=0$.
+   Then a minimal equation for $t$ over $K$ is obtained by dividing by $r^n$, so
+   $t^n+\frac{c_1}{r} t^{n-1} + \cdots + \frac{c_n}{r^n}=0$; let $c_i/r^i=d_i$. Since $t$
+   is integral over $R$, the $d_i$ are in $R$. We have that $s\in \p S$, so $s$ is
+   integral over $\p$, so $c_i\in \sqrt \p=\p$. Then $c_i=d_i r^i$, and $r\not\in \p$, so
+   $d_i\in \p$, so $t$ is integral over $\p$. Thus, $t\in \sqrt {\p S}\subseteq
+   \mathfrak{P}'$, contradicting that $t\not\in \mathfrak{P}'$.
+ \end{proof}
+
+ \underline{Krull dimension and height}.
+ \begin{definition}
+   If $\p\in \spec R$, then the \emph{height} of $\p$ is the supremum of lengths of
+   chains of primes contained in $\p$; $\p\supsetneq \p_1\supsetneq \cdots\supsetneq
+   \p_n$ has length $n$. Some people use the words \emph{rank} or \emph{altitude} instead
+   of height.
+ \end{definition}
+ In particular, $ht(\p)=0$ means that $\p$ is a minimal prime. If $R$ is a domain, then
+ note that $(0)$ is a prime, so the primes that you want to call ``minimal'' are actually
+ height 1.
+ \begin{definition}
+   The \emph{(Krull) dimension} of a ring $R$ is the supremum of heights of primes in
+   $R$.
+ \end{definition}
+
+ \begin{theorem}
+   Let $S/R$ be integral, then
+   \begin{enumerate}
+     \item $\dim R = \dim S$, and
+     \item for $\mathfrak{P}\in \spec S$, $\p=\mathfrak{P}\cap R$, then
+     $ht(\mathfrak{P})\le ht(\p)$, with equality if $S$ is a domain and $R$ is normal.
+   \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+   (1) By incomparability, prime chains in $S$ contract to prime chains in $R$, so $\dim
+   R\ge \dim S$. By going up, prime chains in $R$ lift to prime chains in $S$, so $\dim
+   R\le \dim S$.
+
+   (2) Incomparability also shows that $ht(\mathfrak{P})\le ht(\p)$. If $S$ is a domain
+   and $R$ is normal, then going down applies, so a prime chain from $\p$ lifts to a
+   prime chain from $\mathfrak{P}$ (without going down, you wouldn't get a chain with
+   upper bound $\mathfrak{P}$).
+ \end{proof}
+ In particular, if $\mathfrak{P}$ contracts to a minimal prime, then it is minimal. The
+ converse is not true in general.
+
+ \subsektion{\S 3. Normal and Completely Normal Domains}
+ \begin{lemma}
+   Let $f\in S[x]$ be monic, then $f=\prod (x-a_i)\in S'[x]$ for a suitable ring
+   extension $S'/S$.
+ \end{lemma}
+ \begin{proof}
+   Induct on $\deg f=n$, simultaneously over all rings. If $n=1$, we're done. If $n>1$,
+   then consider the embedding $S\hookrightarrow S[t]/\bigl(f(t)\bigr)$. Then we use the
+   division algorithm for monic polynomials, we get $f(x)=(x-t)g(x)$, and $g(x)$ has
+   smaller degree, so we can split it in some extension.
+ \end{proof}
+ \begin{lemma}[Monicity lemma]
+   Let $R$ be integrally closed in $S$, and let $f\in S[x]$ and $h\in R[x]$ be monic.
+   Then if $f|h$ in $S[x]$, then $f\in R[x]$.
+ \end{lemma}
+ \begin{proof}
+   By the previous lemma, we have $f=\prod (x-a_i)$ in some $S'$. Then each $a_i$
+   satisfies the monic $h$, so $a_i$ are integral over $R$. Let $b_i$ be the coefficients
+   of $f$, then the $b_i$ are symmetric functions in the $a_j$, so the $b_i$ are integral
+   over $R$. Since $R$ is integrally closed, $f\in R[x]$
+ \end{proof}

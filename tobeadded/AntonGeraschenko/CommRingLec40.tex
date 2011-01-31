@@ -1,0 +1,90 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{40}
+ \sektion{Lecture 40}
+
+ Two corrections to the notes:\\
+ p.~129, line 8: change ``Every'' to ``Up to associates, every''\\
+ p.~131, line 20: Change ``the polynomial ring'' to ``a polynomial ring''.
+
+ Note that a Krull domain is always completely normal (because DVRs are always completely
+ normal).
+
+ \begin{example}
+   \begin{enumerate}
+     \item Take $R$ a finite intersection of DVRs of $K$ (then the second condition is
+     automatically satisfied.
+     \item Noetherian normal domains are Krull. We can take $\{R_i\}=\{R_\p|\p\in \spec_1
+     R\}$. Recall that an element is in a finite number of height 1 primes.
+     \item UFDs are Krull. The defining family is the set of $R_{(\pi)}$, where $\pi$ is
+     a prime element.
+   \end{enumerate}
+   \vspace*{-1.7\baselineskip}
+ \end{example}
+ \begin{theorem}
+   $\{$Krull domains of dimension $\le 1\} = \{$Dedekind domains$\}$.
+ \end{theorem}
+ $\supseteq$ is clear. For the other direction, the only hard part is to show that $R$
+ is noetherian. We won't do it here.
+
+ Krull domains behave very well with respect to ``closure properties'':
+ \begin{enumerate}
+   \item $R$ Krull $\Longrightarrow$ any localization of $R$ is Krull.
+   \item $R$ Krull $\Longrightarrow$ $R[\{x_i\}_{i\in I}]$ is Krull.
+   \item $R$ Krull $\Longrightarrow$ $R[[x]]$ is Krull.
+   \item Let $R$ be Krull with $Q(R)=K$, and let $L$ be a finite extension of $K$, with
+   $S$ the integral closure of $R$ in $L$. If $R$ is Krull, then so is $S$.
+   \item (Mori-Nagata Theorem) If $R$ is a noetherian domain then the integral closure
+   $R^*$ is Krull.
+ \end{enumerate}
+ \begin{theorem}
+   If $R$ is Krull, then for every $\p\in \spec_1 R$, $R_\p$ is a DVR. Moreover,
+   $\{R_\p|\p\in \spec_1 R\}$ is a defining family for $R$.
+ \end{theorem}
+ \begin{definition}
+   If $R$ is a Krull domain, the \emph{divisor class group} is $Cl(R) =
+   \frac{D(R)}{div(K^\times)}$. $D(R)$ is the group of \emph{divisors}, the free abelian
+   group on the set of height 1 primes. For each height 1 prime $\p$, we have a valuation
+   $v_\p$. We define the set of \emph{principal divisors} to be $div(K^\times) = \{div(f)
+   = \sum v_\p(f) \p| f\in K^\times\}$.
+ \end{definition}
+ \begin{theorem}
+   If $R$ is a Krull domain, then $Cl(R)$ is trivial if and only if $R$ is a UFD.
+ \end{theorem}
+ $\Leftarrow$ is clear because each height 1 prime is principal. The other way is not
+ hard either.
+
+ Finally, the ideal class group $C(R)$ injects into $Cl(R)$ (with equality if $R$ is
+ regular, whatever that means).
+
+ \subsektion{Chapter IV: Dimension Theory}
+
+ \begin{definition}
+   Let $k$ be a field, and let $B$ be a $k$-algebra. We define $tr.d._k B = \sup
+   \{tr.d._k (B/\p)|\p\in \Min(B)\}$.
+ \end{definition}
+ \begin{theorem}[Noether normalization]
+   Let $k$ be a field, and $B$ an affine $k$-algebra. Then there exist algebraically
+   independent (over $k$) $x_1,\dots, x_n\in B$ such that $B$ is integral over
+   $A=k[x_1,\dots, x_n]$. In particular, since $B$ is finitely generated over $k$, it is
+   module-finite over $A$.
+ \end{theorem}
+ \begin{example}
+   Let $B=k[t^2,t^3]\subseteq k[t]$. Here $A=k[t^2]$, and it is clear that $t^3$ is
+   integral over $A$.
+ \end{example}
+ \begin{example}
+   Let $B=k[t,t^{-1}]$. Take $A=k[t+t^{-1}]$. Then note that $t$ and $t^{-1}$ satisfy
+   $(x-t)(x-t^{-1}) = x^2-(t+t^{-1})x+1\in A[x]$.
+ \end{example}
+ \begin{proof}
+   Write $B=k[y_1,\dots, y_m]$ and induct on $m$. The case $m=0$ is trivial. If
+   $y_1,\dots, y_m$ are algebraically independent, we take $A=B$ and we're done. Thus, we
+   may assume there is some dependence $f(y_1,\dots, y_m)=0$. Take $r$ larger than any
+   exponent in $f$. Define $z_i:=y_i-y_1^{r^{i-1}}$ for $i\ge 2$. Then we get that
+   $0=f(y_1,z_2+y_1^{r}, z_3+y_1^{r^2}, \dots, z_m + y_1^{r^m})$ has leading term
+   $by_1^N$ for some huge $N$ and $b\neq 0$. This equation tells us that $y_1$ is
+   integral over $B':=k[z_2,\dots, z_m]$. It is clear that all the other $y_i$ are also
+   integral over $B'$, so $B$ is integral over $B'$. By induction, we can find a
+   polynomial ring $A$ so that $B'$ is integral over $A$.
+ \end{proof}
+ It is clear that $tr.d._k B\le m$.

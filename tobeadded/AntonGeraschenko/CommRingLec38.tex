@@ -1,0 +1,107 @@
+ \stepcounter{lecture}
+ \setcounter{lecture}{38}
+ \sektion{Lecture 38}
+
+ Normality is a local property. If you localize a UFD, it is still a UFD, but if all the
+ localizations at maximal ideals are UFDs, the ring need not be a UFD, so being a UFD is
+ not a local property. For example, $R=\ZZ[\sqrt{-5}]$, then $2\cdot
+ 3=(1+\sqrt{-5})(1-\sqrt{-5})$ are two essensially different factorizations (you can
+ check that all the everything is irreducible using the norm). Since $R$ is the full ring
+ of algebraic integers of $\QQ[\sqrt{-5}]$, it is a Dedekind domain, so all its
+ localizations are DVRs, so they are UFDs.
+
+ How do you use the Nagata theorem to check if a domain $R$ is a UFD? Find a prime
+ element $p\in R$, and look at $R[1/p]$. We know by the theorem that if the later is a
+ UFD, then so is $R$. Perhaps we can find some UFD which localizes to $R[1/p]$.
+
+ For example, consider $R_n=\RR[x_0,\cdots ,x_n]/(x_0^2+\cdots +x_n^2-1)$, the coordinate
+ ring of the $n$-sphere, and let $A_n=R_n\otimes_\RR \CC$.
+ \begin{theorem}
+   (1) $R_n$ is a UFD if $n\ge 2$. (2) $A_n$ is a UFD if $n\ge 3$ (or if $n=1$).
+ \end{theorem}
+ \begin{proof}
+   (1) First we show that $1-x_0\in R$ is prime. To see this, note that
+   $R/(1-x_0)=\RR[x_1,\dots, x_n]/(x_1^2+\cdots +x_n^2=0)$. Since $n\ge 2$, the sum of
+   squares is irreducible, so it is prime. Thus, $R/(1-x_0)$ is a domain.
+
+   Let $t:=(1-x_0)^{-1}$. The localization is $\RR[x_0,\cdots ,x_n,t] = \RR[tx_1,\dots,
+   tx_n,t^{-1}]$ (all these adjunctions are done in the quotient ring of $R$). To see
+   this, note that $tx_i$ is in the left hand side, and $t^{-1}=1-x_0$ is also in the
+   left hand side. To see the reverse inclusion, note that $x_0=1-t^{-1}$ and
+   $x_i=t^{-1}\cdot tx_i$ for $i\ge 1$. Finally, $(tx_1)^2+\cdots
+   (tx_n)^2=t^2-t^2x_0^2=t^2-(t-1)^2=2t-1$, so $t$ is in the right hand side. But
+   $\RR[tx_1,\cdots, tx_n]$ is a polynomial ring (which contains $t$ by the computation
+   above), and the right hand side is the localization at $t$.
+
+   (2) For $n=1$, we have $\CC[x_0,x_1]/(x_0^2+x_1^2)$. We change variables to
+   $z=x_0+ix_1$ and $\bar z=x_0-ix_1$. Then the relation is $z\bar z=1$, so $\bar
+   z=z^{-1}$. Thus, we have the ring $\CC[z,z^{-1}]$, the Laurent polynomial ring, which
+   is a UFD.
+
+   Now we do $n\ge 3$.\\
+   \underline{Case 1}: $n=2k$ with $k\ge 2$. Do a change of variables to get
+   $A_n=\CC[z_0,\cdots, z_{2k}]/(z_0^2+z_1z_2+\cdots +z_{2k-1}z_{2k}=1)$. Now we check
+   that $z_1$ is a prime: $A/(z_1)=\CC[z_0, z_2,\cdots, z_{2k}]/(z_0^2+z_3z_4+\cdots
+   +z_{2k-1}z_{2k}=1) = A_{n-2}[z_2]$ which is a domain. Is $A[z_1^{-1}]$ a domain? Well,
+   $A[z_1^{-1}]=\CC[z_0,z_1,\rlap{\rule[3pt]{6pt}{.4pt}}z_2,z_3\cdots, z_{2k},
+   z_1^{-1}]/(z_0^2+z_1z_2+\cdots +z_{2k-1}z_{2k}=1) = \CC[z_0,z_1,z_3\cdots,
+   z_{2k}][z_1^{-1}]$ is a localization of a UFD, so it is a UFD.
+
+   \noindent \underline{Case 2}: $n=2k+1$ with $k\ge 1$. As in case 1, we change
+   variables to get $A_n=\CC[z_0,\cdots, z_{2k+1}]/(z_0z_1+\cdots +z_{2k-1}z_{2k}=1)$.
+   Then $z_0$ is a prime: $A_n/(z_0)\cong A_{n-2}[z]$ is a domain (this is why $n=2$
+   doesn't work, because $A_{n-2}=A_0$ is not a domain). Now check that
+   $A[z_0^{-1}]=\CC[z_0,\cdots, z_{2k+1},z_0^{-1}]/(z_0z_1+\cdots +z_{2k-1}z_{2k}=1) =
+   \CC[z_0,z_2,\cdots, z_{2k+1}][z_0^{-1}]$ is a localization of a UFD.
+ \end{proof}
+ \begin{theorem}
+   $R_1$ and $A_2$ are not UFDs.
+ \end{theorem}
+ Intuitively, $R_1=\RR[x,y]/(x^2+y^2=1)$, so we get $x^2=(1+y)(1-y)$, and we can believe
+ that these are two different factorizations. $A_1=\CC[x,y,z]/(x_2+y^2+z^2=1)$, so we get
+ $(x+iy)(x-iy)=(1-z)(1+z)$.
+
+ \subsektion{Chapter IV. Dedekind domains and Krull domains}
+ We will only give an overview.
+
+ Let $R$ be a domain, with $K=Q(R)$. A \emph{fractional ideal} is an $R$-submodule
+ $A\subseteq {}_R K$ so that there exists a non-zero $r\in R$ so that $rA\subseteq R$.
+ \begin{example}
+   \begin{itemize}
+   \item Any ideal $I\< R\subseteq K$ is a fractional ideal; actual ideals are
+   sometimes called \emph{integral} ideals.
+
+   \item If $A\subseteq {}_R K$ is finitely generated, then it is a fractional ideal.
+
+   \item $s\in K$ is almost integral (all powers have a common denominator) if and only
+   if $R[s]$ is a fractional ideal.
+   \end{itemize}
+   \vspace*{-1.7\baselineskip}
+ \end{example}
+ Given fractional ideals $A$ and $B$, $A\cdot B=\{\sum a_ib_i\}$ is a fractional ideal.
+ Thus, the set of fractional ideals $Id(R)$ forms a monoid (with identity $R$).
+ \begin{definition}
+   An $R$-submodule $A\subseteq {}_RK$ is called \emph{invertible} if there is some
+   $R$-submodule $B\subseteq {}_RK$ so that $A\cdot B=R$.
+ \end{definition}
+ Such an $A$ is always finitely generated as an $R$-module (express 1 as $\sum a_ib_i$
+ and show that the $a_i$ generate), so all invertible ideals are fractional ideals. The
+ invertible fractional ideals are exactly the invertible elements of the monoid $Id(R)$.
+ Let $Inv(R)$ be the group of invertible fractional ideals. We have that $Prin(R)$, the
+ set of principal fractional ideals, forms a subgroup. The factor group
+ $C(R)=Inv(R)/Prin(R)$ is called the \emph{ideal class group} of $R$.
+
+ \begin{definition}
+   A domain $R$ is \emph{Dedekind} if (1) $R$ is noetherian, (2) $R$ is normal, and (3)
+   $\dim R\le 1$.\footnote{Some people like to say $\dim R=1$ to exclude fields from
+   being Dedekind. We allow fields to be Dedekind so that PIDs $\Rightarrow$ Dedekind.
+   However, we like to think of Dedekind domains as locally DVRs, which fails for fields.
+   Whatever, you can never make everybody happy.}
+ \end{definition}
+ The following hold for Dedekind domains.
+ \begin{enumerate}
+   \item $R$ is a field or $R$ is noetherian with $R_\m$ a DVR for all $\m\in \Max R$.
+   \item All non-zero fractional ideals are invertible ($Id(R)=Inv(R)$).
+   \item Every ideal is a finite product of primes (note that we do not assume
+   noetherian)
+ \end{enumerate}
