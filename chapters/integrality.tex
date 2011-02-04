@@ -1576,42 +1576,8 @@ the union of the minimal primes, so it is $R - \mathfrak{m}$ as $R$ has one
 minimal (and maximal) ideal.  This is obviously an isomorphism: indeed, both
 are $M$.
 \end{proof}
-Let us return to the claim. It is called \textbf{prime avoidance}.
-We start by proving:
-\begin{proposition}
-Let $\mathfrak{p}_1, \mathfrak{p}_2, \dots, \mathfrak{p}_n$ be a finite set of
-primes of $R$. Suppose $I \subset R$ is not contained in any $\mathfrak{p}_i$.
-Then there is $x \in I$ such that $x $ is not contained in any
-$\mathfrak{p}_i$.
-\end{proposition}
-This implies the claim made earlier. In a noetherian ring, a nonminimal
-prime will contain an element
-which does not belong to any minimal prime. It follows that if $S = R -
-\bigcup_{\mathfrak{p} \ \mathrm{minimal}} \mathfrak{p}$, then $S$ contains an
-element of each nonminimal prime. So $S^{-1}R$ has only minimal primes.
 
-\begin{proof}
-Induction on $n$.
-
-When $n=1$, this is obvious.
-
-Suppose $n>1$ and the result is true for $n-1$. The inductive hypothesis states
-that for each $i \in [1, n]$, there is $x_i \in I$ which fails to lie in
-$\mathfrak{p}_i$ for $i \neq j$.
-If there is $i$ such that $x_i \notin \mathfrak{p}_i$, then we're done---take
-$x = x_i$. Assume otherwise, so each $x_i \in \mathfrak{p}_i$.
-
-We now take
-\[  x = \sum_i \prod_{j \neq i} x_j.  \]
-Then evidently $x \in I$, $I$ being an ideal. We now show that $x \notin
-\mathfrak{p}_i$ for each $i$. The reason is that there is one term in the sum
-which doesn't include the factor $x_i$, but is the product of the $x_j, j \neq
-i$; this doesn't belong to $\mathfrak{p}_i$ then. All the other terms in the
-sum include the factor $x_i$ so do belong to $\mathfrak{p}_i$. When we add up a
-bunch of things such that one doesn't belongs  $\mathfrak{p}_i$ and the others
-do, the sum isn't in $\mathfrak{p}_i$. This establishes prime avoidance.
-\end{proof}
-
+\add{proof of artianness}
 \begin{corollary}
 Let $R$ be a noetherian ring with no embedded primes (i.e. $\ass(R)$ consists
 of minimal primes).
