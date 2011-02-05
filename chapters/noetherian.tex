@@ -300,6 +300,21 @@ noetherian. So $M$ is a quotient of a noetherian module and is noetherian.
 
 \end{proof} 
 
+\subsection{Noetherian induction}
+\begin{theorem}[Noetherian Induction Principle]
+   Let $R$ be a noetherian ring, let $\mathcal{P}$ be a property, and let $\mathcal{F}$ be a family of
+   ideals $R$. Suppose the inductive step: if all ideals in $\mathcal{F}$ strictly larger than
+   $I\in \mathcal{F}$ satisfy $\mathcal{P}$, then $I$ satisfies $\mathcal{P}$. Then all ideals in
+   $\mathcal{F}$ satisfy $\mathcal{P}$.
+ \end{theorem}
+ \begin{proof}
+   Assume $\mathcal{F}_\text{crim} = \{J\in \mathcal{F}|J\text{ does not satisfy }\mathcal{P}\}\neq \varnothing$.
+   Since $R$ is noetherian, $\mathcal{F}_\text{crim}$ has a maximal member $I$. By maximality, all
+   ideals in $\mathcal{F}$ strictly containing $I$ satisfy $\mathcal{P}$, so $I$ also does by the inductive
+   step.
+ \end{proof}
+
+
 \section{Associated primes}
 
 We shall now begin the structure theory for noetherian modules. The first step
@@ -394,6 +409,17 @@ $R/\mathfrak{p} \hookrightarrow M$.
 Let $\mathfrak{p} \in \spec R$. Then $\ass(R/\mathfrak{p}) =
 \left\{\mathfrak{p}\right\}$.
 \end{exercise} 
+
+\begin{example}
+Take $R=k[x,y,z]$, where $k$ is an integral domain, and let $I = (x^2-yz,x(z-1))$. Any
+ prime associated to $I$ must contain $I$, so let's consider
+   $\mathfrak{p}=(x^2-yz,z-1)=(x^2-y,z-1)$, which is $I:x$. It is prime because $R/\mathfrak{p} = k[x]$,
+   which is a domain. To see that $(I:x)\subseteq \mathfrak{p}$, assume $tx\in I\subseteq \mathfrak{p}$; since
+   $x\not\in \mathfrak{p}$, $t\in p$, as desired.
+
+   There are two more associated primes, but we will not find them here.
+ \end{example}
+
 
 We shall start by proving that $\ass(M) \neq \emptyset$ for nonzero modules. 
 \begin{proposition} \label{assmnonempty} 

@@ -11,6 +11,7 @@ dedekind
 dimension
 completion
 smoothness
+linalg
 homological
 flat
 etale

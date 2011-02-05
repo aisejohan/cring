@@ -11,6 +11,7 @@ Dedekind domains
 Dimension theory
 Completions
 Differentials and smoothness
+Linear algebra over rings
 Homological Algebra
 Flatness revisited
 \'Etale, unramified, and smooth morphisms
