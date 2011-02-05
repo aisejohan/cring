@@ -45,7 +45,7 @@ of \textbf{morphisms} $\hom_{\mathcal{C}}(X, Y)$ (abbreviated $\hom(X,Y)$).
 \item For each object $X \in \ob\mathcal{C}$, there is an \textbf{identity
 morphism}
 $1 \in \hom_{\mathcal{C}}(X, X)$.
-\item Next, there is a \textbf{composition law}
+\item There is a \textbf{composition law}
 $\hom_{\mathcal{C}}(X, Y) \times \hom_{\mathcal{C}}(Y, Z) \to
 \hom_{\mathcal{C}}(X, Z), (g, f) \to g
 \circ f$ for every
@@ -55,7 +55,7 @@ the identity has no effect) and associative.
 \end{enumerate}
 \end{definition}
 
-We write $X \to Y$ to denote an element of $\hom_{\mathcal{C}}(X, Y)$.
+We shall write $X \to Y$ to denote an element of $\hom_{\mathcal{C}}(X, Y)$.
 
 $\mathcal{C}$ is the storehouse for mathematical objects: groups, Lie algebras,
 rings, etc.
@@ -105,11 +105,11 @@ has an associative and unital multiplication (not necessarily inverses).
 \end{example}
 
 There is, however, a major difference between category theory and set theory.
-There is \textbf{nothing} in the language of categories that lets you look
+There is \textbf{nothing} in the language of categories that lets one look
 \emph{inside} an object. We think of vector spaces having elements, spaces
 having points, etc.
 By contrast, categories treat these kinds of things as invisible. There
-is nothing ``inside'' of an object $X \in \mathcal{C}$. The only way to
+is nothing ``inside'' of an object $X \in \mathcal{C}$; the only way to
 understand $X$ is
 to understand the ways one can map into and out of $X$.
 
@@ -153,6 +153,8 @@ is equivalent to the assertion that
 
 
 \section{Functors}
+
+\subsection{Covariant functors}
 Let $\mathcal{C}, \mathcal{D}$ be categories. If $\mathcal{C}, \mathcal{D}$
 are categories of structured sets (of possibly different types), there may be a
 way to associate objects in $\mathcal{D}$ to objects in $\mathcal{C}$. For
@@ -186,12 +188,22 @@ There is a functor from $\mathbf{Sets} \to \mathbf{AbelianGrp}$ sending a set
 $S$ to a free abelian group on the set.
 \end{example}
 
-\begin{example}
+\begin{example}[For readers that know some algebraic topology]
 There is a functor from $\mathbf{TopSpaces} \to \mathbf{GradedAbGrp}$
 (categories of topological spaces and graded abelian groups) sending a
 space $X$ to its homology groups $H_*(X)$. We know that given a map of spaces,
 we get a map of graded abelian groups.
 \end{example}
+
+\begin{definition} 
+If $\mathcal{C}, \mathcal{D}, \mathcal{E}$ are categories, $F: \mathcal{C} \to
+\mathcal{D}, G: \mathcal{D} \to \mathcal{E}$ are covariant functors, then one
+can define a \textbf{composite functor}
+\[ F \circ G: \mathcal{C}  \to \mathcal{E}  \]
+This sends an object $X \in \mathcal{C}$ to $G(F(X))$.
+Similarly, a morphism $f :X \to Y$ is sent to $G(F(f)): G(F(X)) \to G(F(Y))$.
+We leave the reader to check that this is well-defined.
+\end{definition}
 
 \begin{exercise}
 What is the category of categories? (Ignore set-theoretic issues.)
@@ -239,7 +251,9 @@ F(B) \ar[u]
 }\]
 commutes in $\mathcal{D}$.
 
-As you might guess:
+One can, of course, compose contravariant functors.
+
+Similarly:
 
 \begin{example}
 A \textbf{contravariant} functor from $B_G$ to $\mathbf{Sets}$ corresponds to a
@@ -272,15 +286,66 @@ Show that there is a contravariant functor $\mathcal{C} \to
 \mathcal{C}^{op}$.
 \end{exercise}
 
+\subsection{Isomorphisms}
+
+Clasically, one can define an isomorphism of groups as a bijection that
+preserves the group structure. This does not generalize well to categories, as
+we do not have a notion of ``bijection.'' Thus we make:
+
+\begin{definition}
+An \textbf{isomorphism} between objects $X, Y$ in a category $\mathcal{C}$ is a
+map $f: X \to Y$ such that there exists $g: Y \to X$ with
+\[ g \circ f = 1_X, \quad f \circ g = 1_Y.  \]
+\end{definition}
+
+This is more correct than the idea of being one-to-one and onto. A bijection of
+topological spaces is not necessarily a homeomorphism.
+
+
+\begin{exercise}
+Work this out for yourselves. Suppose you have two functors $B_G \to
+\mathbf{Sets}$, i.e. $G$-sets. What's a natural transformation between them?
+\end{exercise}
+
+Now we want to prove a theorem.
+\begin{proposition}
+If $f: X \to Y$ is a map in $\mathcal{C}$, and $F: \mathcal{C} \to \mathcal{D}$
+is a functor, then $F(f): FX \to FY$ is an isomorphism.
+\end{proposition}
+
+The proof is quite straightforward, though there is an important point here.
+
+
+\begin{proof}
+If we have maps $f: X \to Y$ and $g : Y \to X$ such that the composites both
+ways are identities, then we can apply the functor $F$ to this, and we find
+that since
+\[ f \circ g = 1_Y, \quad g \circ f = 1_X,   \]
+that
+\[ F(f) \circ F(g) = 1_{F(Y)}, \quad F(g) \circ F(f) = 1_{F(X)}.  \]
+We have used the fact that functors preserve composition and identities. This
+implies that $F(f)$ is an isomorphism.
+\end{proof}
+
+Categories have a way of making things so general that they're trivial. Hence,
+it is called general abstract nonsense. The things that become meaningful in
+category theory are \textbf{not} the proofs. They are the \textbf{definitions}.
+What we just did is very much in the spirit I was describing of categories. The
+notion of isomorphism was defined in terms of properties of maps, not in terms
+of things intrinsic (like injections and surjections).
+
+What matters here is not the theorem, but the \emph{definition of an
+isomorphism.}
+
+
 There is room, nevertheless, for something else. Instead of having
 something that sends objects to other objects, one could have something that
 sends an object to a map.
 
 
+
 \section{Natural transformations}
 
-The original paper of Eilenberg and Maclane was called ``On a general theory of
-natural transformations.''
 
 
 Suppose $F, G: \mathcal{C} \to \mathcal{D}$ are functors.
@@ -305,62 +370,15 @@ what things really mean.
 However, we will use it to state theorems conveniently.
 
 
-\begin{exercise}
-Work this out for yourselves. Suppose you have two functors $B_G \to
-\mathbf{Sets}$, i.e. $G$-sets. What's a natural transformation between them?
-\end{exercise}
-
-Now we want to prove a theorem.
-\begin{theorem}
-If $f: X \to Y$ is a map in $\mathcal{C}$, and $F: \mathcal{C} \to \mathcal{D}$
-is a functor, then $F(f): FX \to FY$ is an isomorphism.
-\end{theorem}
-This is going to have a really stupid proof, but there is an important point
-lurking here.
-
-Hold on. Wait a second. Do we even know what an isomorphism in a category even
-is? No, we don't.
-
-\begin{definition}
-An \textbf{isomorphism} between objects $X, Y$ in a category $\mathcal{C}$ is a
-map $f: X \to Y$ such that there exists $g: Y \to X$ with
-\[ g \circ f = 1_X, \quad f \circ g = 1_Y.  \]
-\end{definition}
-
-This is more correct than the idea of being one-to-one and onto. A bijection of
-topological spaces is not necessarily a homeomorphism.
-
-
-\begin{proof}
-If we have maps $f: X \to Y$ and $g : Y \to X$ such that the composites both
-ways are identities, then we can apply the functor $F$ to this, and we find
-that since
-\[ f \circ g = 1_Y, \quad g \circ f = 1_X,   \]
-that
-\[ F(f) \circ F(g) = 1_{F(Y)}, \quad F(g) \circ F(f) = 1_{F(X)}.  \]
-We have used the fact that functors preserve composition and identities. This
-implies that $F(f)$ is an isomorphism.
-\end{proof}
-
-Categories have a way of making things so general that they're trivial. Hence,
-it is called general abstract nonsense. The things that become meaningful in
-category theory are \textbf{not} the proofs. They are the \textbf{definitions}.
-What we just did is very much in the spirit I was describing of categories. The
-notion of isomorphism was defined in terms of properties of maps, not in terms
-of things intrinsic (like injections and surjections).
-
-What's important here is not the theorem, but the \emph{definition of an
-isomorphism.}
-
-
 
 \section{Various universal constructions}
 
 Last time, we introduced the idea of a category, and showed that a functor
 takes isomorphisms to isomorphisms.  This was an amazing result with a trivial
 proof.  Today, we will characterize objects in terms of maps.
-\subsection{Initial and terminal objects}
 
+
+\subsection{Initial and terminal objects}
 
 \begin{definition}
 Let $\mathcal{C}$ be a category. An \textbf{initial object} in a category is an
@@ -412,6 +430,10 @@ in mathematics. Two sets are not generally the ``same,'' but they may be
 isomorphic up to unique isomorphism. They are different,
 but the sets are isomorphic up
 to unique isomorphism.
+
+\subsection{Pushs-outs and pull-backs}
+
+\add{pull-backs}
 
 Now we are going to talk about a bunch of other examples, which can all be
 phrased via initial or terminal objects in some category. This,
@@ -704,4 +726,4 @@ modulo the relation that $a \in F_i$ and $b \in F_{i'}$ are equivalent if and
 only if there is a later $i''$ with maps $i \to i'', i' \to i''$ such that
 $a,b$ both map to the same thing in $F_{i''}$.
 
-
+\add{Yoneda's lemma}
