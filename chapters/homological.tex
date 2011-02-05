@@ -1,6 +1,195 @@
 \chapter{Homological Algebra}
-\section{Origins of Homology: Simplicial Homology}
 
+
+Homological algebra begins with the notion of a \emph{differential object,}
+that is, an object with an endomorphism $A \stackrel{d}{\to} A$ such that $d^2 =
+0$. This equation leads to the obvious inclusion $\im(d) \subset \ker(d)$, but
+the inclusion generally is not equality. We will find that the difference
+between $\ker(d)$ and $\im(d)$, called the \emph{homology}, is a highly useful
+variant of a differential object: its first basic property is that if an exact
+sequence
+\[ 0 \to A' \to A \to A'' \to 0  \]
+of differential objects is given, the homology of $A$ is related to that of
+$A', A''$ through a long exact sequence. The basic example, and the one we
+shall focus on, is where $A$ is a
+chain complex, and $d$ the usual differential.
+In this case, homology simply measures the failure of a complex to be exact.
+
+After introducing these preliminaries, we develop the theory of \emph{derived
+functors}. Given a functor that is only left or right-exact, derived functors
+allow for an extension of a partially exact sequence to a long exact sequence.
+The most important examples to us, $\mathrm{Tor}$ and $\mathrm{Ext}$, provide
+characterizations of flatness, projectivity, and injectivity.
+
+We will then apply the general theory to commutative algebra proper. The use
+of homological machinery provides a new characterization of regular local
+rings and leads to proofs of several difficult results about them.
+
+\section{Complexes}
+
+
+\subsection{Chain complexes}
+The chain complex is the most fundamental construction in
+homological algebra.
+
+\begin{definition} A chain complex is a collection of modules
+over a ring $C_i$
+for integer values of $i$. Usually we will find that $C_i=0$ for
+negative values of $i$. Equipped with the $C_i$ are boundary
+operators
+$\partial_i:C_i\rightarrow C_{i-1}$ with the property that
+$\partial_{i-1}\partial_i=0$. Sometimes the boundary map is also
+called the
+``differential.'' Often, notation is abused and the indices for
+the boundary map are dropped.\end{definition}
+
+
+\begin{example} All exact sequences are chain complexes.
+\end{example}
+
+\begin{example} Any sequence of abelian groups for which the
+boundary operators
+are all $0$ is a chain complex. \end{example}
+
+We will see plenty of more examples in due time.
+
+\begin{definition} The submodule of cycles $Z_i\subseteq C_i$ is
+the kernel $\ker(\partial_i)$. The submodule of boundaries
+$B_i\subseteq C_i$ is the image $Im(\partial_{i+1})$. Thus
+homology is said to be ``cycles mod boundaries,'' i.e.
+$Z_i/B_i$.
+\end{definition}
+
+To further simplify notation, often all differentials regardless
+of what chain complex they are part of are denoted $\partial$,
+thus the commutativity relation on chain maps is
+$f\partial=\partial f$ with indices and distinction between the
+boundary operators dropped.
+
+
+\begin{definition} Let $C_*$ be a chain complex with boundary
+map $\partial_*$.
+We define the \textbf{homology} of the complex $C_*$ via
+$H_i(C_*)=\ker(\partial_i)/Im(\partial_{i+1})$.
+\end{definition}
+
+\begin{example} In a chain complex $C_*$ where all the boundary
+maps are
+trivial, $H_i(C_*)=C_i$. 
+\end{example}
+
+Often we will bundle all the modules $C_i$ of a chain complex
+together to form a graded module $C_*=\bigoplus_i C_i$. In this
+case, the boundary operator is a
+endomorphism that takes elements from degree $i$ to degree
+$i-1$. Similarly, we
+often bundle together all the homology modules to give a graded
+hHmology module
+$H_*(C_*)=\bigoplus_i H_i(C_*)$.
+
+\subsection{Functoriality}
+It turns out that chain complexes form a category when morphisms
+are appropriately defined.
+\begin{definition} A map of chain complexes $f:C_*\rightarrow
+D_*$, or a chain map, is a sequence of maps $f_i:C_i\rightarrow
+D_i$ such that $f\partial = \partial' f$ where $\partial$ is the
+boundary map of $C_*$ and $\partial'$ of $D_*$ (again we are
+abusing notation and dropping indices). \end{definition}
+\begin{theorem} Chain maps induce maps in homology in the same
+direction; in other words, homology is a covariant functor from
+the category of chain complexes to the category of graded
+modules.\end{theorem}
+\begin{proof}
+Let $f:C_*\rightarrow D_*$ be a chain map. Let $\partial$ and
+$\partial'$ be the differentials for $C_*$ and $D_*$
+respectively. Then we have a commutative diagram:
+
+\begin{equation}
+\begin{CD}
+C_{i+1} @>\partial_{i+1}>> C_i @>>\partial_i> C_{i-1}\\
+@VV f_{i+1} V          @VV f_i V             @VVf_{i-1} V\\
+D_{i+1} @>\partial'_{i+1}>> D_i @>>\partial'_i> D_{i-1}
+\end{CD}
+\end{equation}
+
+Now, in order to check that a chain map $f$ induces a map $f_*$
+on homology, we need to check that $f_*(Im(\partial))\subseteq
+Im(\partial')$ and $f_*(\ker(\partial))\subseteq
+\ker(\partial)$. We first check the condition on images: we want
+to look at $f_i(Im(\partial_{i+1}))$. By commutativity of $f$
+and the boundary maps, this is equal to
+$\partial'_{i+1}(Im(f_{i+1})$. Hence we have
+$f_i(Im(\partial_{i+1}))\subseteq Im(\partial_{i+1}')$. For the
+condition on kernels, let $x\in \ker(\partial_i)$. Then by
+commutativity, $\partial'_i(f_i(x))=f_{i-1}\partial_i(x)=0$.
+Thus we have that $f$ induces for each $i$ a homomorphism
+$f_i:H_i(C_*)\rightarrow H_i(D_*)$ and hence it induces a
+homomorphism on homology as a graded module. \end{proof}
+
+\subsection{Cochain complexes}
+Cochain complexes are much like chain complexes except the
+arrows point in the
+opposite direction.
+\begin{definition} A cochain complex is a series of modules
+$C^i$ for integer
+values of $i$ (again, it is common that $C^i=0$ for negative
+values of $i$). The
+cochain complex is also equipped with coboundary operators, also
+called
+differentials, $\partial^i:C^i\rightarrow C^{i+1}$ such that
+$\partial^{i+1}\partial^i=0$. Given a cochain complex $C^*$, we
+define the
+cohomology objects to be
+$h^i(C^*)=\ker(\partial^i)/Im(\partial^{i-1})$.
+\end{definition}
+Similarly, we can also turn cochain complexes and cohomology
+modules into a
+graded module.
+
+
+\begin{example}[The de Rham complex] Readers unfamiliar with differential
+forms may omit this example. Let $M$ be a smooth manifold. For each $p$, let
+$C^p(M)$ be the $\mathbb{R}$-vector space of smooth $p$-forms on $M$.
+We can make the $\left\{C^p(M)\right\}$ into a complex by defining the maps
+\[ C^p(M) \to C^{p+1}(M)  \]
+via $\omega \to d \omega$, for $d$ the exterior derivative. 
+(Note that $d^2 = 0$.)  This complex is called the \textbf{de Rham complex} of
+$M$, and its cohomology is called the \textbf{de Rham cohomology.} It is known
+that the de Rham cohomology is isomorphic to singular cohomology with real
+coefficients. 
+\end{example} 
+
+\subsection{Chain Homotopies}
+\begin{definition} A chain homotopy between two chain maps
+$f,g:C_*\rightarrow D_*$ is a series of homomorphisms
+$t^i:C^i\rightarrow D^{i-1}$ satisfying $f^i-g^i=\partial t^n+
+t^{n+1}\partial$. Again often notation is abused and the
+condition is written $f-g=\partial t +
+t\partial$.\end{definition}
+\begin{theorem} If two maps are chain homotopic, they are taken
+to the same induced map after applying the homology functor.
+\end{theorem}
+\begin{corollary} If two chain complexes are chain homotopic
+(there are maps $f: C_*\rightarrow D_*$ and $g:D_*\rightarrow
+C_*$ such that both $fg$ and $gf$ are chain homotopic to the
+identity), they have isomorphic homology. \end{corollary}
+
+\begin{theorem} Additive functors preserve chain homotopies
+\end{theorem}
+\begin{proof} Since an additive functor $F$ is a homomorphism on $Hom(-,-)$,
+the chain homotopy condition will be preserved; in
+particular, if $t$ is a chain homotopy, then $F(t)$ is a chain
+homotopy.\end{proof}
+
+In more sophisticated homological theory, one often makes the
+definition of the ``homotopy category of chain complexes.''
+\begin{definition} The homotopy category of chain complexes is
+the category $hKom(R)$ where objects are chain complexes of
+$R$-modules and morphisms are chain maps modulo chain homotopy.
+\end{definition}
+
+
+\subsection{Topological remarks}
 The first homology theory
 to be developed was simplicial homology - the study of homology
 of simplicial
@@ -47,176 +236,13 @@ homology in a
 general setting.
 \end{example}
 
-\section{Basic Definitions}
-
-\subsection{Chain complexes}
-The chain complex is the most fundamental construction in
-homological algebra.
-\begin{definition} A chain complex is a collection of modules
-over a ring $C_i$
-for integer values of $i$. Usually we will find that $C_i=0$ for
-negative values of $i$. Equipped with the $C_i$ are boundary
-operators
-$\partial_i:C_i\rightarrow C_{i-1}$ with the property that
-$\partial_{i-1}\partial_i=0$. Sometimes the boundary map is also
-called the
-``differential.'' Often, notation is abused and the indices for
-the boundary map are dropped.\end{definition}
-\begin{example} All exact sequences are chain complexes.
-\end{example}
-\begin{example} Any sequence of abelian groups for which the
-boundary operators
-are all $0$ is a chain complex. \end{example}
-We will see plenty of more examples in due time.
-\begin{definition} Let $C_*$ be a chain complex with boundary
-map $\partial_*$.
-We define homology objects
-$h_i(C_*)=\ker(\partial_i)/Im(\partial_{i+1})$.
-\end{definition}
-\begin{example} In a chain complex $C_*$ where all the boundary
-maps are
-trivial, $h_i(C_*)=C_i$. \end{example}
-
-Often we will bundle all the modules $C_i$ of a chain complex
-together to form a graded module $C_*=\bigoplus_i C_i$. In this
-case, the boundary operator is a
-endomorphism that takes elements from degree $i$ to degree
-$i-1$. Similarly, we
-often bundle together all the homology modules to give a graded
-homology module
-$h_*(C_*)=\bigoplus_i h_i(C_*)$.
-
-\subsection{Functoriality}
-It turns out that chain complexes form a category when morphisms
-are appropriately defined.
-\begin{definition} A map of chain complexes $f:C_*\rightarrow
-D_*$, or a chain map, is a sequence of maps $f_i:C_i\rightarrow
-D_i$ such that $f\partial = \partial' f$ where $\partial$ is the
-boundary map of $C_*$ and $\partial'$ of $D_*$ (again we are
-abusing notation and dropping indices). \end{definition}
-\begin{theorem} Chain maps induce maps in homology in the same
-direction; in other words, homology is a covariant functor from
-the category of chain complexes to the category of graded
-modules.\end{theorem}
-\begin{proof}
-Let $f:C_*\rightarrow D_*$ be a chain map. Let $\partial$ and
-$\partial'$ be the differentials for $C_*$ and $D_*$
-respectively. Then we have a commutative diagram:
-
-\begin{equation}
-\begin{CD}
-C_{i+1} @>\partial_{i+1}>> C_i @>>\partial_i> C_{i-1}\\
-@VV f_{i+1} V          @VV f_i V             @VVf_{i-1} V\\
-D_{i+1} @>\partial'_{i+1}>> D_i @>>\partial'_i> D_{i-1}
-\end{CD}
-\end{equation}
-
-Now, in order to check that a chain map $f$ induces a map $f_*$
-on homology, we need to check that $f_*(Im(\partial))\subseteq
-Im(\partial')$ and $f_*(\ker(\partial))\subseteq
-\ker(\partial)$. We first check the condition on images: we want
-to look at $f_i(Im(\partial_{i+1}))$. By commutativity of $f$
-and the boundary maps, this is equal to
-$\partial'_{i+1}(Im(f_{i+1})$. Hence we have
-$f_i(Im(\partial_{i+1}))\subseteq Im(\partial_{i+1}')$. For the
-condition on kernels, let $x\in \ker(\partial_i)$. Then by
-commutativity, $\partial'_i(f_i(x))=f_{i-1}\partial_i(x)=0$.
-Thus we have that $f$ induces for each $i$ a homomorphism
-$f_i:h_i(C_*)\rightarrow h_i(D_*)$ and hence it induces a
-homomorphism on homology as a graded module. \end{proof}
-
-As seen above, in homological algebra, one often deals with the
-images and kernels of boundary maps; we will simplify notation
-by introducing the following:
-\begin{definition} The submodule of cycles $Z_i\subseteq C_i$ is
-the kernel $\ker(\partial_i)$. The submodule of boundaries
-$B_i\subseteq C_i$ is the image $Im(\partial_{i+1})$. Thus
-homology is said to be ``cycles mod boundaries,'' i.e.
-$Z_i/B_i$.\end{definition}
-To further simplify notation, often all differentials regardless
-of what chain complex they are part of are denoted $\partial$,
-thus the commutativity relation on chain maps is
-$f\partial=\partial f$ with indices and distinction between the
-boundary operators dropped.
-
-\subsection{Cochain complexes}
-Cochain complexes are much like chain complexes except the
-arrows point in the
-opposite direction.
-\begin{definition} A cochain complex is a series of modules
-$C^i$ for integer
-values of $i$ (again, it is common that $C^i=0$ for negative
-values of $i$). The
-cochain complex is also equipped with coboundary operators, also
-called
-differentials, $\partial^i:C^i\rightarrow C^{i+1}$ such that
-$\partial^{i+1}\partial^i=0$. Given a cochain complex $C^*$, we
-define the
-cohomology objects to be
-$h^i(C^*)=\ker(\partial^i)/Im(\partial^{i-1})$.
-\end{definition}
-Similarly, we can also turn cochain complexes and cohomology
-modules into a
-graded module.
-
-
-\begin{example}[The de Rham complex] Readers unfamiliar with differential
-forms may omit this example. Let $M$ be a smooth manifold. For each $p$, let
-$C^p(M)$ be the $\mathbb{R}$-vector space of smooth $p$-forms on $M$.
-We can make the $\left\{C^p(M)\right\}$ into a complex by defining the maps
-\[ C^p(M) \to C^{p+1}(M)  \]
-via $\omega \to d \omega$, for $d$ the exterior derivative. 
-(Note that $d^2 = 0$.)  This complex is called the \textbf{de Rham complex} of
-$M$, and its cohomology is called the \textbf{de Rham cohomology.} It is known
-that the de Rham cohomology is isomorphic to singular cohomology with real
-coefficients. 
-\end{example} 
-
-\subsection{Chain Homotopies}
-Returning to algebraic topology as a motivation, originally
-homology was
+Originally homology was
 intended to be a homotopy invariant meaning that space with the
-same homotopy
-type would have isomorphic homology modules. In fact, any
-homotopy induces what
-is now known as a chain homotopy on the simplicial chain
-complexes; it can be
-shown that when such a chain homotopy exists, the homology
-modules are
-isomorphic.
-\begin{definition} A chain homotopy between two chain maps
-$f,g:C_*\rightarrow D_*$ is a series of homomorphisms
-$t^i:C^i\rightarrow D^{i-1}$ satisfying $f^i-g^i=\partial t^n+
-t^{n+1}\partial$. Again often notation is abused and the
-condition is written $f-g=\partial t +
-t\partial$.\end{definition}
-\begin{theorem} If two maps are chain homotopic, they are taken
-to the same induced map after applying the homology functor.
-\end{theorem}
-\begin{corollary} If two chain complexes are chain homotopic
-(there are maps $f: C_*\rightarrow D_*$ and $g:D_*\rightarrow
-C_*$ such that both $fg$ and $gf$ are chain homotopic to the
-identity), they have isomorphic homology. \end{corollary}
+same homotopy type would have isomorphic homology modules. In fact, any
+homotopy induces what is now known as a chain homotopy on the simplicial chain
+complexes.
 
-\begin{theorem} Additive functors preserve chain homotopies
-\end{theorem}
-\begin{proof} Since an additive functor $F$ is a homomorphism on $Hom(-,-)$,
-the chain homotopy condition will be preserved; in
-particular, if $t$ is a chain homotopy, then $F(t)$ is a chain
-homotopy.\end{proof}
-
-In more sophisticated homological theory, one often makes the
-definition of the ``homotopy category of chain complexes.''
-\begin{definition} The homotopy category of chain complexes is
-the category $hKom(R)$ where objects are chain complexes of
-$R$-modules and morphisms are chain maps modulo chain homotopy.
-\end{definition}
-
-In this setting, homology (resp. cohomology) is really a
-covariant (resp. contravariant) functor $h_i:hKom(R)\rightarrow
-Mod(R)$.
-
-\begin{exercise} ``Singular Homology'' Let $X$ be a topological
+\begin{exercise}[Singular homology] Let $X$ be a topological
 space and let $S^n$ be the set of all continuous maps
 $\Delta^n\rightarrow X$ where $\Delta^n$ is the convex hull of
 $n$ distinct points and the origin with orientation given by an
@@ -230,18 +256,18 @@ $\sum_{i=0}^n(-1)^i\sigma^n|_{\Delta^n_{\hat{i}}}$. Verify that
 $\partial^2=0$ (hence making $C_*$ into a chain complex known as
 the ``singular chain complex of $X$''. Its homology groups are
 the ``singular homology groups''. \end{exercise}
+
 \begin{exercise} Compute the singular homology groups of a
 point. \end{exercise}
 
-\section{Resolutions}
-\begin{definition} A projective object in an abelian category is
-an object $P$
-such that for any map $P\rightarrow M$ and a surjection
-$N\rightarrow M$, there
-is a lift $P\rightarrow N$ making the diagram commute.
-\end{definition}
 
-\begin{example} All free objects are projective. \end{example}
+\subsection{Projective resolutions}
+
+Fix a ring $R$.
+Let us recall (\rref{projective}) that an $R$-module $P$ is called
+\emph{projective} if the functor $N \to \hom_R(P,N)$ (which is always
+left-exact) is exact.
+
 Projective objects are useful in defining chain exact sequences
 known as ``projective resolutions.''
 
@@ -255,28 +281,23 @@ P_{i-2}\cdots\rightarrow P_1\rightarrow P_0\rightarrow M
 the $P_i$ are projective modules. \end{definition}
 
 
-\begin{theorem}An abelian category has enough projectives if
-each object has a
-projective resolution. In particular, the category of modules
-over a ring has
-enough projectives. \end{theorem}
-\begin{proof} Pick a generating set $S_0$ that generates $M$.
-Then take the free
-module generated by $S_0$, since free objects are projective,
-this free module
-is a projective object - call it $P_0$. Then we look at the
-kernel
-$\ker(P_0\rightarrow M)$. We pick a generating set for this call
-it $S_1$. Look
-at the free module generated by $S_1$, call it $P_1$; this
-object is also
-projective and maps onto $\ker(P_0\rightarrow M)$. Inductively
-repeating this
-construction gives a series of projective objects $P_i$ and an
-exact sequence
-with the last term being $M$. Hence we have constructed a
-projective resolution
-of $M$. \end{proof}
+\begin{proposition} Any module admits a projective resolution. \end{proposition}
+\begin{proof} 
+We construct the resolution inductively. 
+First, we take a projective module $P_0$ with $P_0 \twoheadrightarrow N$
+surjective by the previous part.  Given a portion of the resolution
+\[ P_n \to P_{n-1} \to \dots \to P_0 \twoheadrightarrow N \to 0  \]
+for $n \geq 0$, which is exact at each step, we consider $K = \ker(P_n \to
+P_{n-1})$. The sequence 
+\[ 0 \to K \to P_n \to P_{n-1} \to \dots \to P_0 \twoheadrightarrow N \to 0  \]
+is exact. So if $P_{n+1}$ is chosen such that it is projective and there is an
+epimorphism
+\( P_{n+1} \twoheadrightarrow K,  \)
+(which we can construct by \rref{freesurjection}), then
+\[ P_{n+1} \to P_n \to \dots  \]
+is exact at every new step by construction. We can repeat this inductively and
+get a full projective resolution.
+\end{proof}
 
 Here is a useful observation:
 \begin{proposition}
@@ -301,17 +322,138 @@ decomposed into the direct sum of torsion subgroups and free
 subgroups, all finitely generated abelian groups admit a
 resolution of the type shown above.\end{example}
 
+In general, projective resolutions are not at all unique. 
+Nonetheless, they \emph{are} unique up to chain homotopy. Thus a projective
+resolution is a rather good ``replacement'' for the initial module.
+
+\begin{proposition} 
+Let $M, N$ be modules and let $P_* \to M, P'_* \to N$ be projective
+resolutions. Let $f: M \to N$ be a morphism. Then there is a morphism
+\[ P_* \to P'_*  \]
+such that the following diagram commutes:
+\[ 
+\xymatrix{
+\dots \ar[r] &  P_1 \ar[r] \ar[d]  &  P_0 \ar[r] \ar[d]  &  M \ar[d]^f  \\
+\dots \ar[r] &  P'_1 \ar[r] &  P'_0 \ar[r] &  N
+}
+\]
+This morphism is unique up to chain homotopy.
+\end{proposition} 
+\begin{proof} 
+Let $P_* \to M$ and $P'_* \to N$ be projective resolutions. We will define a
+morphism of complexes $P_* \to P'_* $ such that the diagram commutes. 
+Let the boundary maps in $P_*, P'_*$ be denoted $d$  (by abuse of notation). 
+We have an exact diagram
+\[ 
+\xymatrix{
+\dots \ar[r] &  P_n \ar[r]^d &  P_{n-1} \ar[r]^d &  \dots \ar[r]^d & P_0
+\ar[r]&  M \ar[d]^{f} \ar[r] &  0 \\
+\dots \ar[r] &  P'_n \ar[r]^d &  P'_{n-1} \ar[r] &  \dots \ar[r]^d & P'_0 \ar[r] &  N \ar[r] &  0 
+}
+\]
+Since $P'_0 \twoheadrightarrow N$ is an epimorphism, the map $P_0 \to M \to N$ lifts
+to a map $P_0 \to P'_0$ making the diagram
+\[ \xymatrix{
+P_0 \ar[d] \ar[r] &  M \ar[d]^{f} \\ 
+P'_0 \ar[r] &  N
+}\]
+commute. 
+Suppose we have defined maps $P_i \to P'_i$ for $i \leq n$ such that the
+following diagram commutes:
+\[ 
+\xymatrix{
+P_n \ar[r]^d \ar[d]  &  P_{n-1} \ar[r]^d \ar[d] &  \dots \ar[r]^d & P_0
+\ar[d]  \ar[r]&  M \ar[d]^{f} \ar[r] &  0 \\
+P'_n \ar[r]^d &  P'_{n-1} \ar[r] &  \dots \ar[r]^d & P'_0 \ar[r] &  N \ar[r] &  0 
+}
+\]
+Then we will define $P_{n+1} \to P'_{n+1}$, after which induction will prove
+the existence of a map. To do this, note that 
+the map
+\[ P_{n+1} \to P_n \to P'_n \to P'_{n-1}  \]
+is zero, because this is the same as $P_{n+1} \to P_n \to P_{n-1} \to P'_{n-1}$
+(by induction, the diagrams before $n$ commute), and this is zero because two
+$P$-differentials were composed one after another. In particular, in the diagram
+\[ 
+\xymatrix{
+P_{n+1}   \ar[r] &  P_n \ar[d]  \\
+P'_{n+1} \ar[r] & P'_n
+},
+\]
+the image in $P'_n$ of $P_{n+1}$ lies in the kernel of $P'_n \to P'_{n-1}$,
+i.e. in the image $I$ of $P'_{n+1}$.  The exact diagram
+\[ 
+\xymatrix{
+& P_{n+1} \ar[d]  \\
+P'_{n+1} \ar[r] & I \ar[r] &  0
+}
+\]
+shows that we can lift $P_{n+1} \to I$ to $P_{n+1} \to P'_{n+1}$ (by
+projectivity). This implies that we can continue the diagram further and get a
+morphism $P_* \to P'_* $ of complexes. 	
+
+
+
+Suppose $f, g: P_* \to P'_*$ are two morphisms of the projective resolutions
+making $$\xymatrix{
+P_0 \ar[r] \ar[d] &  M \ar[d] \\ 
+P'_0 \ar[r] &  N
+}$$ commute. We will show that $f,g$ are chain homotopic. 
+
+For this,
+we start by defining $D_0: P_0 \to P'_1$ such that $dD_0 = f-g: P_0 \to P'_0$.
+This we can do because $f-g$ sends $P_0$ into $\ker(P'_0 \to N)$, i.e. into the
+image of $P'_1 \to P'_0$, and $P_0$ is projective.
+Suppose we have defined chain-homotopies $D_i: P_{i} \to P_{i+1}$ for $i \leq
+n$ such that $dD_i + D_{i-1}d = f-g$ for $i \leq n$. We will define $D_{n+1}$.
+There is a diagram
+\[ 
+\xymatrix{
+ & P_{n+1} \ar[d]  \ar[r] &  P_n \ar[ld]^{D_n}\ar[d] \ar[r] & P_{n-1}
+ \ar[ld]^{D_{n-1}} \ar[d]  \\
+P'_{n+2} \ar[r] & P'_{n+1}   \ar[r] &  P'_n  \ar[r] & P'_{n-1}  \\
+}\]
+where the squares commute regardless of whether you take the vertical maps to
+be $f$ or $g$ (provided that the choice is consistent). 	
+
+We would like to define $D_{n+1}: P_n \to P'_{n+1}$. 
+The key condition we need satisfied is that
+\[ d D_{n+1} = f - g - D_n d.  \]
+However, we know that, by the inductive hypothesis on the $D$'s
+\[ d( f- g - D_{n}d) = fd  - gd - dD_n d = fd - gd - (f-g)d + D_n dd = 0.  \]
+In particular, $f-g - D_n d$ lies in the image of $P'_{n+1} \to P'_n$.
+The projectivity of $P_n$ ensures that we can define $D_{n+1}$ satisfying the
+necessary condition. 
+
+\end{proof} 
+
+
+\begin{corollary} 
+Let $P_* \to M, P'_* \to M$ be projective resolutions of $M$. Then there are
+maps $P_* \to P'_*, P'_* \to P_* $ under $M$ such that the compositions are
+chain homotopic to the identity.
+\end{corollary} 
+\begin{proof} 
+Immediate.
+\end{proof} 
+
+\subsection{Injective resolutions}
+
+One can dualize all this to injective resolutions. \add{do this}
+
 \section{Derived functors}
 Often in homological algebra, we see that ``short exact
 sequences induce long exact sequences.'' Using the theory of
 derived functors, we can make this formal.
 
-\begin{definition} A right-exact functor is an additive functor
-between two abelian categories $F$ such that for every short
+Let us work in the category of modules over a ring $R$. Fix two such categories.
+Recall that a right-exact functor $F$ (from the category of modules over a
+ring to the category of modules over another ring) is an additive functor
+ such that for every short
 exact sequence $0\rightarrow A\rightarrow B\rightarrow
 C\rightarrow 0$, we get a exact sequence $F(A)\rightarrow
 F(B)\rightarrow F(C)\rightarrow 0$.
-\end{definition}
+
 We want a natural way to continue this exact sequence to the
 left; one way of doing this is to define the left derived
 functors.
@@ -324,14 +466,7 @@ complex denoted $L_iF$ are the left derived functors.
 
 For this definition to be useful, it is important to verify that
 deriving a functor yields functors independent on choice of
-resolution. To do this, we use the following lemma:
-
-\begin{lemma} Any two projective resolutions $P_*\rightarrow M$
-and $P_*'\rightarrow M$ are chain homotopic. \end{lemma}
-\begin{corollary}Since the functors we are deriving are
-additive, the chain complex $F(P_*)$ is homotopic to $F(P_*')$
-which means their homologies are isomorphic meaning the derived
-functors of $F$ agree.\end{corollary}
+resolution. This is clear by \rref{}.
 
 \begin{theorem} The following properties characterize derived
 functors: \begin{enumerate}
@@ -526,7 +661,6 @@ a direct
 summand in a projective module, so is projective.
 \end{proof}
 
-\subsection{Injective modules}
 
 Finally, we note that there is another way of constructing
 $\ext$. We
@@ -541,62 +675,6 @@ is an inclusion
 of $R$-modules, then any map $M_0 \to Q$ can be extended to $M
 \to Q$.
 \end{definition}
-
-
-\begin{example}
-An abelian group is injective if and only if it is divisible.
-That is, $Q$
-is injective
-if and only if $n: Q \to Q$ is surjective for each $n \in
-\mathbb{Z} -
-\left\{0\right\}$.
-In particular, $\mathbb{Q}$ and $\mathbb{Q}/\mathbb{Z}$ are
-injective.
-\end{example}
-
-An important fact is that:
-
-\begin{proposition}
-If $N$ is an $R$-module, there is an injection
-\[ 0 \to N \to Q,  \]
-where $Q$ is injective.
-\end{proposition}
-This is harder to see than the statement for projective modules.
-It is
-generally hard to give examples of injective modules.
-\begin{proof}[Idea of proof] If $N$ is injective, then we're
-done.
-
-If not, there is an injection $M \hookrightarrow M_0$ and a map
-$f_0: M_0 \to N$
-that does not extend to $M$. Let $N' = N \oplus_{M_0} M$ be the
-push-out, i.e.
-$(N \oplus M)/M_0$ where the map $M_0 \to N \oplus M$ is by
-$f_0$ and the
-inclusion. By construction, we have an inclusion $N \to N'$, and
-from the
-push-out construction, the map $M_0 \to N$ extends to $M \to
-N'$.
-
-The point is that $N'$ ``looks more injective'' than $N$. Repeat
-this
-construction \emph{many, many} times. Namely, if $N'$ is
-injective, you're
-done; if not, there's some piece of evidence $N'$ is not
-injective, and that
-piece of evidence lets you extend $N'$. The claim is that if
-you do it
-carefully, you eventually end up at an injective module.
-
-\end{proof}
-
-
-\begin{corollary}
-Injective resolutions of any $N$ exist. For any $N$, there is an
-exact sequence
-\[ 0 \to N \to Q^0 \to Q^1 \to \dots  \]
-where all the $Q_i$ are injective.
-\end{corollary}
 
 If we are given $M,N$, and an injective resolution $N \to Q_*$,
 we can look at
@@ -655,7 +733,6 @@ cohomology will be induced in each case. That will prove the
 result, but we
 shall not prove the claim.
 \end{proof}
-\lecture{11/19}
 
 Last time we were talking about $\ext$ groups over commutative
 rings. For $R$ a
@@ -678,7 +755,7 @@ and this cohomology
 consists of the $\ext$ groups.
 \end{proof}
 
-
+\section{Homological theory of local rings}
 \subsection{Depth} Let $(R, \mathfrak{m})$ be  a noetherian
 local ring. Let $k = R/\mathfrak{m}$.
 
