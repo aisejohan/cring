@@ -435,7 +435,7 @@ isomorphic up to unique isomorphism. They are different,
 but the sets are isomorphic up
 to unique isomorphism.
 
-\subsection{Pushs-outs and pull-backs}
+\subsection{Push-outs and pull-backs}
 
 \add{pull-backs}
 
@@ -757,6 +757,99 @@ Another way of saying this is that we have the disjoint union of the $F_i$
 modulo the relation that $a \in F_i$ and $b \in F_{i'}$ are equivalent if and
 only if there is a later $i''$ with maps $i \to i'', i' \to i''$ such that
 $a,b$ both map to the same thing in $F_{i''}$.
+
+
+\subsection{The initial object theorem}
+
+We now prove a fairly nontrivial result, due to Freyd. This gives a sufficient
+condition for the existence of initial objects.
+
+Let $\mathcal{C}$ be a category. Then we recall that $A \in \mathcal{C}$ if
+for each $X \in \mathcal{C}$, there is a \emph{unique} $A \to X$.
+Let us consider the weaker condition that for each $ X \in \mathcal{C}$, there
+exists \emph{a} map $A \to X$.
+
+\begin{definition} Suppose $\mathcal{C}$ has equalizers.
+If $A \in \mathcal{C}$ is such that $\hom_{\mathcal{C}}(A, X) \neq \emptyset$
+for each $X \in \mathcal{C}$, then $X$ is called \textbf{weakly initial.}
+\end{definition} 
+
+We now want to get an initial object from a weakly initial object. 
+To do this, note first that if $A$ is weakly initial and $B$ is any object
+with a morphism $B \to A$, then $B$ is weakly initial too. So we are going to take
+our initial object to be a very small subobject of $A$.
+It is going to be so small as to guarantee the uniqueness condition of an
+initial object. To make it small, we equalize all endomorphisms.
+
+\begin{proposition} 
+If  $A$ is a weakly initial object in $\mathcal{C}$,
+then the equalizer of all endomorphisms $A \to A$ is initial for $\mathcal{C}$.
+\end{proposition} 
+\begin{proof} 
+Let $A'$ be this equalizer; it is endowed with a morphism $A'\to A$. Then let us recall what this means. For any two
+endomorphisms $A \rightrightarrows A$, the two pull-backs $A'
+\rightrightarrows A$ are equal. Moreover, if $B \to A$ is a morphism that has
+this property, then $B$ factors uniquely through $A'$.
+
+Now $A' \to A$ is a morphism, so by the remarks above, $A'$ is weakly initial:
+to each $X \in \mathcal{C}$, there exists a morphism $A' \to X$.
+However, we need to show that it is unique.
+
+So suppose given two maps $f,g: A' \rightrightarrows X$. We are going to show
+that they are equal. If not, consider their equalizer $O$.
+Then we have a morphism $O \to A'$ such that the postcompositions with $f,g$
+are equal. But by weak initialness, there is a map $A \to O$; thus we get a
+composite
+\[ A \to O \to A'.  \]
+We claim that this is a \emph{section} of the embedding $A'\to A$.
+This will prove the result. Indeed, we will have constructed a section $A \to
+A'$, and since it factors through $O$, the two maps
+\[ A \to O \to A' \rightrightarrows X  \]
+are equal. Thus, composing each of these with the inclusion $A' \to A$ shows
+that $f,g$ were equal in the first place.
+
+Thus we are reduced to proving:
+\begin{lemma} 
+Let $A$ be an object of a category $\mathcal{C}$. Let $A'$ be the equalizer of
+all endomorphisms of $A$. Then any morphism $A \to A'$ is a section of the
+inclusion $A' \to A$.
+\end{lemma} 
+\begin{proof} 
+Consider the canonical inclusion $i: A' \to A$. We are given some map $s: A
+\to A'$; we must show that $si = 1_{A'}$.
+Indeed, consider the composition
+\[ A' \stackrel{i}{\to} A \stackrel{s}{\to} A' \stackrel{i}{\to} A .\]
+Now $i$ equalizes endomorphisms of $A$; in particular, this composition is the
+same as 
+\[ A' \stackrel{i}{\to} A \stackrel{\mathrm{id}}{\to} A; \]
+that is, it equals $i$. So the map $si: A' \to A$ has the property that $isi =
+i$ as maps $A' \to A$. But $i$ being a monomorphism, it follows that $si  =
+1_{A'}$.
+\end{proof} 
+\end{proof} 
+
+\add{define complete and cocomplete}
+\add{monics and epics}
+\begin{theorem}[Freyd]
+Let $\mathcal{C}$ be a complete category. Then $\mathcal{C}$ has an initial
+object if and only if the following \textbf{solution set condition holds:}
+there is a set $\left\{X_i, i \in I\right\}$ of objects in $\mathcal{C}$ such
+that any $X \in \mathcal{C}$ can be mapped into by one of these.
+\end{theorem} 
+
+The idea is that the family $\left\{X_i\right\}$ is somehow weakly universal
+\emph{together.}
+\begin{proof} 
+If $\mathcal{C}$ has an initial object, we may just consider that as the
+family $\left\{X_i\right\}$: we can hom out (uniquely!) from a universal
+object into anything, or in other words a universal object is weakly universal.
+
+Suppose we have a ``weakly universal family'' $\left\{X_i\right\}$. Then the
+product $\prod X_i$ is weakly universal. Indeed, if $X \in \mathcal{C}$,
+choose some $i'$ and a morphism $X_{i'} \to X$ by the hypothesis. Then this map
+composed with the projection from the product gives a map  $\prod X_i \to
+X_{i'} \to X$.
+\end{proof} 
 
 \section{Yoneda's lemma}
 
