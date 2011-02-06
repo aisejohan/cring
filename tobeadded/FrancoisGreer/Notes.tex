@@ -1,0 +1,376 @@
+\documentclass[10 pt]{article}
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0em}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{mathrsfs}
+\usepackage{mycmds}
+\usepackage[all]{xy}
+
+\newtheorem{cor}{Corollary}[section]
+\newtheorem{lem}{Lemma}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{propconstr}{Proposition-Construction}[section]
+\newtheorem{ax}{Axiom}
+\newtheorem{conj}{Conjecture}[section]
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{defn}{Definition}[section]
+\newtheorem{rem}{Remark}[section]
+
+\newcommand\bdefn{\begin{defn}}
+\newcommand\bthm{\begin{thm}}
+\newcommand\blem{\begin{lem}}
+\newcommand\brem{\begin{rem}}
+\newcommand\bprop{\begin{prop}}
+\newcommand\bproof{\begin{proof}}
+\newcommand\bcor{\begin{cor}}
+\newcommand\bpropconstr{\begin{propconstr}}
+\newcommand\edefn{\end{defn}}
+\newcommand\ethm{\end{thm}}
+\newcommand\elem{\end{lem}}
+\newcommand\erem{\end{rem}}
+\newcommand\ecor{\end{cor}}
+\newcommand\eprop{\end{prop}}
+\newcommand\eproof{\end{proof}}
+\newcommand\epropconstr{\end{propconstr}}
+
+\newcommand{\nc}{\newcommand}
+\nc{\ov}{\overline}
+\nc{\ul}{\underline}
+\nc{\us}{\underset}
+\nc{\os}{\overset}
+\nc{\id}{\text{id}}
+\nc{\coker}{\text{coker}}
+\nc{\Funct}{\text{Funct}}
+\nc{\N}{\mathbb N}
+\nc{\La}{\Leftarrow}
+\nc{\Ra}{\Rightarrow}
+\nc{\LRa}{\Leftrightarrow}
+\nc{\bu}{\bullet}
+\nc{\Spec}{\text{Spec}\,}
+\nc{\Specm}{\text{Specm}\,}
+\nc{\Tor}{\text{Tor}}
+\nc{\Tot}{\text{Tot}}
+\nc{\Cone}{\text{Cone}}
+\nc{\Ext}{\text{Ext}}
+\nc{\Ann}{\text{Ann}}
+\nc{\Pic}{\text{Pic}}
+\nc{\Div}{\text{Div}}
+\nc{\gr}{\text{gr}}
+\nc{\m}{\mathfrak m}
+\nc{\p}{\mathfrak p}
+\nc{\q}{\mathfrak q}
+
+
+\begin{document}
+
+\section\Large\bf GROTHENDIECK R-POINTS \rm
+
+Recall that given a map of commutative rings $\phi:A\rightarrow B$, we have a map $\Phi:\Spec A \rightarrow \Spec B$ given by taking pre-images of prime ideals.\\
+\bprop Let $\phi:A\rightarrow B$ be a map of commutative rings such that $B$ is finitely generated as an $A$-module.  Then $\Phi$ is a closed map.\eprop
+
+Proof:  Let $V(J)\subset \Spec B$ be a closed set.  We know from PS 4 that $\ov{\Phi(V(J))}=V(I)$, where $I=\phi^{-1}(J)$.  We want to show that $\Phi(V(J))$ is closed, i.e. $\Phi(V(J))=V(I)$.  Equivalently we want the far left map  \\
+
+\xymatrix{
+\Spec(B/J) \ar@{^{(}->}[r] \ar[d] & \Spec B \ar[d]^{\Phi}\\
+\Spec(A/I) \ar@{^{(}->}[r]        & \Spec A\\
+}
+to be surjective.  Here we are identifying $V(I)$ with $\Spec(A/I)$ and $V(J)$ with $\Spec(B/J)$.  Note that by definition, $A/I \hookrightarrow B/J$ is injective.  Thus, we are reduced to showing that if $A\hookrightarrow B$ then $\Spec B\twoheadrightarrow \Spec A$.  Let $\dot{\p}\in \Spec A$.  Then consider the following commutative diagram:\\
+
+\xymatrix{
+\Spec B_\p/\p_\p B_\p  \ar[r] \ar[d] & \Spec B_\p \ar[r] \ar[d]& \Spec B \ar[d] \\
+\Spec A_\p/\p_\p \ar[r] & \Spec A_\p \ar[r] & \Spec A\\
+}
+
+By Nakayama's Lemma, $B_\p/\p_\p B_\p\neq 0$, so $\Spec B_\p/\p_\p B_\p$ is non-empty.  Since $A_\p/\p_\p$ is a field, $\Spec A_\p/\p_\p$ has one point.  Therefore, the far left map is surjective.  This completes the proof because $\p\in\Spec A$ has horizontal pre-image $\p_\p$, which has horizontal pre-image $0$.  By commutativity of the diagram, we obtain a pre-image in $\Spec B$. $\blacksquare$\\
+
+In what follows, let $k$ be algebraically closed, and let $A$ be a finitely generated $k$-algebra.  Recall that $\Specm A$ denotes the set of maximal ideals in $A$.  Consider the natural $k$-algebra structure on $\Funct(\Specm A, k)$.  We have a map
+$$A \rightarrow \Funct(\Specm A, k)$$
+which comes from the Weak Nullstellensatz as follows.  Maximal ideals $\m\subset A$ are in bijection with maps $\varphi_\m:A\rightarrow k$ where $\ker(\varphi_\m)=\m$, so we define $a\longmapsto [\m\longmapsto \varphi_\m(a)]$.  If $A$ is reduced, then this map is injective because if $a\in A$ maps to the zero function, then $a\in \cap\, \m$ $\Ra$ $a$ is nilpotent $\Ra$ $a=0$.\\
+
+\bdefn A function $f\in \Funct(\Specm A,k)$ is called {\bf algebraic} if it is in the image of $A$ under the above map.  (Alternate words for this are {\bf polynomial} and {\bf regular}.) \edefn
+
+Let $A$ and $B$ be finitely generated $k$-algebras and $\phi:A\rightarrow B$ a homomorphism.  This yields a map $\Phi:\Specm B\rightarrow \Specm A$ given by taking pre-images (see PS4 problem 7).
+
+\bdefn A map $\Phi:\Specm B\rightarrow \Specm A$ is called {\bf algebraic} if it comes from a homomorphism $\phi$ as above.\edefn
+
+To demonstrate how these definitions relate to one another we have the following proposition.
+
+\bprop A map $\Phi:\Specm B\rightarrow \Specm A$ is algebraic if and only if for any algebraic function $f\in \Funct(\Specm A,k)$, the pullback $f\circ \Phi\in \Funct(\Specm B,k)$ is algebraic.\eprop
+
+Proof:  [$\Ra$] Suppose that $\Phi$ is algebraic.  It suffices to check that the following diagram is commutative:\\
+
+\xymatrix{
+\Funct(\Specm A,k) \ar[r]^{-\circ\Phi} & \Funct(\Specm B,k) \\
+A \ar[u] \ar[r]_{\phi} & B \ar[u]\\
+}
+
+where $\phi:A\rightarrow B$ is the map that gives rise to $\Phi$.\\
+
+[$\La$] Suppose that for all algebraic functions $f\in \Funct(\Specm A,k)$, the pull-back $f\circ\Phi$ is algebraic.  Then we have an induced map, obtained by chasing the diagram counter-clockwise:
+
+\xymatrix{
+\Funct(\Specm A,k) \ar[r]^{-\circ\Phi} & \Funct(\Specm B,k) \\
+A \ar[u] \ar@{-->}[r]_{\phi} & B \ar[u]\\
+}
+
+From $\phi$, we can construct the map $\Phi':\Specm B \rightarrow \Specm A$ given by $\Phi'(\m)=\phi^{-1}(\m)$.  I claim that $\Phi=\Phi'$.  If not, then for some $\m\in \Specm B$ we have $\Phi(\m)\neq \Phi'(\m)$.  By definition, for all algebraic functions $f\in \Funct(\Specm A,k)$, $f\circ\Phi=f\circ\Phi'$ so to arrive at a contradiction we show the following lemma:\\
+Given any two distinct points in $\Specm A=V(I)\subset k^n$, there exists some algebraic $f$ that separates them.  This is trivial when we realize that any polynomial function is algebraic, and such polynomials separate points.  $\blacksquare$
+
+\bdefn A {\bf space} (or {\bf functor}) $X$ is an assignment of every ring $R$ to a set $X(R)$ such that for any homomorphism $\alpha:R\rightarrow R'$, there exists a map of sets $X(\alpha):X(R)\rightarrow X(R')$.  Furthermore,\\
+(i) If $\alpha=\id$, then $X(\alpha)=\id$.\\
+(ii) If $\alpha:R\rightarrow R'$ and $\beta: R'\rightarrow R''$ then $X(\beta\circ \alpha)=X(\beta)\circ X(\alpha)$.\edefn
+
+Example:  Any ring $A$ gives rise to a space $\Spec A$ defined as follows:
+$$(\Spec A)(R):=\Hom_{k-alg}(A,R)$$
+
+\bdefn Let $X$ and $Y$ be spaces.  A map of spaces (or {\bf natural transformation}) $\Phi:X\rightarrow Y$ is an assignment for any $R$, $\Phi_R:X(R)\rightarrow Y(R)$ such for any homomorphism $\alpha:R\rightarrow R'$ the following diagram commutes:
+\xymatrix{
+X(R) \ar[r]^{\Phi_R} \ar[d]_{X(\alpha)} & Y(R) \ar[d]^{Y(\alpha)} \\
+X(R')\ar[r]_{\Phi_{R'}} & Y(R') \\
+}
+\edefn
+
+Example:  Let $\varphi:A\rightarrow B$ be a ring homomorphism.  This yields a map of spaces from $\Spec B\rightarrow \Spec A$ by pre-composition.  It satisfies the axions since the following diagram commutes.\\
+
+\xymatrix{
+\Hom(B,R) \ar[r]^{-\circ\varphi} \ar[d]_{\alpha\circ -} & \Hom(A,R) \ar[d]^{\alpha\circ -}\\
+\Hom(B,R')\ar[r]_{-\circ\varphi} & \Hom(A,R')\\
+}
+It turns out that such maps of spaces are the {\it only} ones from $\Spec B\rightarrow \Spec A$.  More precisely,
+
+\bprop (Yoneda's Lemma) For two $k$-algebras $A$ and $B$, there is a natural bijection between maps of $k$-algebras from $A\rightarrow B$ and maps of spaces $\Spec B\rightarrow \Spec A$, given by pre-composition. \eprop
+
+Proof:  Given $\phi\in Hom_{k-alg}(A,B)$, define $\Phi(R): Hom_{k-alg}(B,R) \rightarrow Hom_{k-alg}(A,R)$ via precomposition, i.e. map $T\longmapsto T\circ\phi$.  We must check that the assignment $\Phi(R)$ is a map of spaces.  Let $\psi:R\rightarrow R'$ be a $k$-algebra homomorphism.  The diagram\\
+
+\xymatrix{
+Hom_{k-alg}(B,R) \ar[r]^{-\circ\phi} \ar[d]^{\psi\circ -} & Hom_{k-alg}(A,R) \ar[d]_{\psi\circ-} \\
+Hom_{k-alg}(B,R')\ar[r]^{-\circ\phi} & Hom_{k-alg}(A,R')
+}
+
+commutes because $\psi\circ(T\circ\phi)=(\psi\circ T)\circ\phi$.\\
+Now suppose we are given a map of spaces, $\Phi(R)$.  We have $\Phi(B):Hom_{k-alg}(B,B)\rightarrow Hom_{k-alg}(A,B)$.  Define $\phi:=(\Phi(B))(\id_B)$.  We must verify that the correspondence is bijective:
+$$\phi \longmapsto \Phi:=-\circ\phi \longmapsto \phi':= (\Phi(B))(\id_B)$$
+but $(\Phi(B))(\id_B)=id_B\circ\phi=\phi$.  In the other direction,
+$$\Phi\longmapsto \phi:=(\Phi(B))(\id_B) \longmapsto \Phi':=-\circ\phi$$
+We must check that $\Phi(R)$ coincides with $\Phi'(R)$ for an arbitrary $k$-algebra $R$.  Let $\rho\in Hom_{k-alg}(B,R)$.  Consider the following diagram, which commutes by naturality of $\Phi$:\\
+
+\xymatrix{
+Hom_{k-alg}(B,B) \ar[r]^{\Phi(B)} \ar[d]^{\rho\circ -} & Hom_{k-alg}(A,B) \ar[d]_{\rho\circ-} \\
+Hom_{k-alg}(B,R) \ar[r]^{\Phi(R)} & Hom_{k-alg}(A,R)
+}
+
+Chasing the map $\id_B\in Hom_{k-alg}(B,B)$ around the diagram both ways yields:
+$$(\Phi(R))(\rho) = \rho\circ\phi = (\Phi'(R))(\rho)$$
+as desired. $\blacksquare$
+
+\bprop Let $X$ be a space.  Then we have $\Hom_{spaces}(\Spec R,X)=X(R)$. \eprop
+
+Proof:  Let $\Phi$ be a map of spaces, so we have an assignment $\Phi_R:(\Spec R)(R)\rightarrow X(R)$.  Since $(\Spec R)(R)=\Hom(R,R)$ we can take $\Phi_R(\id)\in X(R)$.  Conversely, suppose we are given an element $x\in X(R)$.  We want for each $R'$ a map from $\Hom(R,R')\rightarrow X(R')$.  We define such a map as follows.  If $\varphi:R\rightarrow R'$ then
+$$\varphi \longmapsto X(\varphi)(x)\in X(R')$$
+It is trivial to check that this is indeed a map of spaces, and that the two constructions are inverses of each other. $\blacksquare$
+
+\bprop (Cayley-Hamilton Theorem) \eprop
+
+Proof:  ?
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\section\Large\bf HOMOLOGICAL ALGEBRA \rm
+
+Let $R$ be a commutative ring.
+
+\bdefn A {\bf complex} $M^\bu$ is a sequence of $R$-modules $\{M^i\}$ with maps $d^i:M^i\rightarrow M^{i+1}$
+$$\dots \os{d^{-3}}\longrightarrow M^{-2} \os{d^{-2}}\longrightarrow M^{-1} \os{d^{-1}}\longrightarrow M^0 \os{d^{0}}\longrightarrow M^1 \os{d^{1}}\longrightarrow M^2\os{d^{2}}\longrightarrow \dots$$
+such that $d^i\circ d^{i-1}=0$, i.e. $\Im d^{i-1}\subset \ker d^i$.  \edefn
+
+\bdefn The {\bf $i$-th cohomology} is the quotient module
+$$H^i(M^\bu):= \ker d_i/\Im d_{i-1}$$
+A complex is called {\bf acyclic} if it is exact at each index, i.e. $H^i(M^\bu)=0$ for all $i$.\edefn
+
+\bdefn We define $\Hom_R(M^\bu,N^\bu)$ to be the set of maps of complexes from $M^\bu \rightarrow N^\bu$.  Such a map is an element $\{\varphi^i\}\in\us{i}\prod \Hom_R(M^i,N^i)$ such that for all $i$, the following diagram is commutative.
+
+\xymatrix{
+M^{i} \ar[r]^{d_M^{i}} \ar[d]_{\varphi^{i}} & M^{i+1} \ar[d]_{\varphi^{i+1}} \\
+N^{i} \ar[r]^{d_N^{i}}        & N^{i+1} \\
+}
+\edefn
+
+\bpropconstr A map of complexes $\varphi:M^\bu\rightarrow N^\bu$ induces a map of cohomologies $H^i(M^\bu)\rightarrow H^i(N^\bu)$ for all $i$. \epropconstr
+
+Proof:  We define the map by restricting $\varphi^i$ to $\ker d_M^i$.  Since each square is commutative, $\varphi^i$ maps $\ker d_M^i \rightarrow \ker d_N^i$ and $\Im d_M^{i-1}\rightarrow \Im d_N^{i-1}$.  Thus, the induced map is well-defined on $H^i(M^\bu)$. $\blacksquare$
+
+\bdefn A map of complexes is a {\bf quasi-isomorphism} if it induces an isomorphism of cohomologies.\edefn
+
+\bdefn Let $\varphi$ and $\psi$ be maps of complexes from $M^\bu\rightarrow N^\bu$.  A homotopy from $\varphi$ to $\psi$ is an element $\{h^i\}\in \prod \Hom_R(M^i,N{i-1})$ such that
+$$\varphi^i-\psi^i = h^{i+1}\circ d^i_M + d^{i-1}_N\circ h^i$$
+\edefn
+
+\blem If $\varphi$ and $\psi$ are homotopic, then their induced maps of cohomologies coincide.\elem
+
+Proof:  Let $m\in\ker(d^i_M)$.  Then
+$$\varphi^i(m)-\psi^i(m)= h^{i+1}\circ d^i_M(m) + d^{i-1}_N\circ h^i(m)= d^{i-1}_N\circ h^i(m) \in \Im(d^{i-1}_N)$$
+which is zero in the cohomology $H^i(N^\bu)$. $\blacksquare$
+
+\bprop If we have a short exact sequence of complexes $0\rightarrow M_1^\bu\rightarrow M_2^\bu \rightarrow M_3^\bu\rightarrow 0$, this induces a long exact sequence of cohomologies:
+$$\dots\rightarrow H^{i-1}(M_3^\bu)\rightarrow H^i(M_1^\bu)\rightarrow H^i(M_2^\bu)\rightarrow H^i(M_3^\bu) \rightarrow H^{i+1}(M_1)\rightarrow \dots$$
+\eprop
+
+Proof:  This was problem 1(b) on PS7, so we omit the proof here. $\blacksquare$
+
+\bdefn A map is {\bf null-homotopic} if it is homotopic to the zero map.\edefn
+
+\bdefn A map $\varphi:M^\bu\rightarrow N^\bu$ is a homotopy equivalence if there exists some $\psi:N^\bu\rightarrow M^\bu$ such that
+$$\id_{N^\bu}\simeq \varphi\circ \psi$$
+$$\id_{M^\bu}\simeq \psi\circ \varphi$$
+where $\simeq$ denotes homotopy.
+\edefn
+
+\blem A homotopy equivalence is a quasi-isomorphism.\elem
+
+Proof:  This follows directly from the definition.\\
+
+Example:  Not every quasi-isomorphism is a homotopy equivalence.  Consider the complex
+$$\dots \rightarrow 0\rightarrow\Z\os{\cdot 2}\rightarrow \Z\rightarrow 0\rightarrow 0\rightarrow\dots$$
+so $H^0=\Z/2\Z$ and all cohomologies are 0.  We have a quasi-isomorphism from the above complex to the complex
+$$\dots \rightarrow 0\rightarrow 0 \rightarrow \Z/2\Z\rightarrow 0\rightarrow 0\rightarrow\dots$$
+but no inverse can be defined (no map from $\Z/2\Z\rightarrow \Z$).
+
+\bdefn If $M^\bu$ is a complex then for any integer $k$, we define a new complex $M^\bu[k]$ by shifting indices, i.e. $(M^\bu[k])^i:=M^{i+k}$.\edefn
+
+\bdefn If $f:M^\bu\rightarrow N^\bu$ is a map of complexes, we define a complex $\Cone(f):=\{N^i\oplus M^{i+1}\}$ with differential
+$$d(n^i,m^{i+1}):= (d_N^i(n_i)+(-1)^i\cdot f(m^{i+1}, d_M^{i+1}(m^{i+1}))$$
+\edefn
+
+Remark:  This is a special case of the total complex construction to be seen later.
+
+\bprop A map $f:M^\bu\rightarrow N^\bu$ is a quasi-isomorphism if and only if $\Cone(f)$ is acyclic.\eprop
+
+Proof:  Note that by definition we have a short exact sequence of complexes
+$$0\rightarrow N^\bu\rightarrow \Cone(f)\rightarrow M^\bu[1]\rightarrow 0$$
+so by Proposition 2.1, we have a long exact sequence
+$$\dots \rightarrow H^{i-1}(\Cone(f))\rightarrow H^{i}(M)\rightarrow H^{i}(N)\rightarrow H^{i}(\Cone(f))\rightarrow\dots$$
+so by exactness, we see that $H^i(M)\simeq H^i(N)$ if and only if $H^{i-1}(\Cone(f))=0$ and $H^i(\Cone(f))=0$.  Since this is the case for all $i$, the claim follows. $\blacksquare$
+
+\bdefn Let $M^\bu$ and $N^\bu$ be complexes. We define the {\bf inner Hom} complex $\left(\ul{\Hom}(M^\bu,N^\bu)\right)^\bu$ as:
+$$\left(\ul{\Hom}(M^\bu,N^\bu)\right)^i:= \prod_n \Hom(M^n,N^{n+i})$$
+with differential $(d\varphi)(m^n):=d_N^{n+i}\circ\varphi^n(m^n)+ (-1)^{i+1}\cdot \varphi^{n+1}\circ d_M^n(m^n)$.
+\edefn
+
+Remark:  From the definition of the inner Hom complex, we have that $\ker(d^0)=\Hom(M^\bu,N^\bu)$, the usual maps of complexes.  Similarly, $\Im(d^{-1})$ are those maps that are null-homotopic.  Thus, the cohomology $H^0(\left(\ul{\Hom}(M^\bu,N^\bu)\right)^\bu)$ can be thought of us as maps of complexes, up to homotopy.  This is denoted
+$$hHom(M^\bu,N^\bu):=H^0(\left(\ul{\Hom}(M^\bu,N^\bu)\right)^\bu)$$
+
+\blem Let $M^\bu$ be an acyclic complex.  Let $P^\bu$ be a complex of projective modules that is bounded from above, i.e. $P^i=0$ for $i>0$.  Then the complex $\ul{\Hom}(P^\bu,M^\bu)$ is acyclic.  \elem
+
+Proof: This can be shown by a simple diagram chase. $\blacksquare$
+
+\bcor Let $M_1^\bu\rightarrow M_2^\bu$ be a quasi-isomorphism, and let $P^\bu$ be as in the lemma above.  Then $\ul{\Hom}(P^\bu,M_1^\bu)\rightarrow \ul{\Hom}(P^\bu,M_2^\bu)$ is a quasi-isomorphism (let us call this map $\phi$). \ecor
+
+Proof: Consider the acyclic complex $\Cone(f)$.  By the lemma, $\ul{\Hom}(P^\bu,\Cone(f))$ is acyclic.  We want to show that $\Cone(\phi)$ is acyclic.  I claim that the two complexes are isomorphic:
+$$\ul{\Hom}(P^\bu,M_2^\bu)^i\oplus \ul{\Hom}(P^\bu,M_1^\bu)^{i+1}\simeq \prod_n \Hom(P^n,M_2^{n+i}\oplus M_1^{n+i+1})$$
+which is true by the universal property of the direct sum.  It can be checked that the differentials are the same. $\blacksquare$
+
+\bprop Let $M$ be an $R$-module.\\
+(i)  There exists a complex of projective modules called the {\bf projective resolution} of $M$:\\
+\xymatrix{
+\dots \ar[r] &P^{-2} \ar[r] &P^{-1}\ar[r] &P^0\ar[r]\ar[d]& 0\\
+& & & M & \\
+}
+
+such that $H^0(P^\bu)=M$ and $H^i(P^\bu)=0$ for $i\neq 0$.\\
+
+(ii)  If we have two such resolutions $P_1^\bu$ and $P_2^\bu$, then there exist unique (up to homotopy) maps of complexes $\alpha$ and $\beta$ such that $\alpha\circ\beta=\id$, $\beta\circ \alpha=\id$, and the triangle below commutes (up to homotopy):\\
+\xymatrix{
+P_1^\bu \ar@/^/[rr]^\alpha \ar[rd]  && P_2^\bu \ar@/^/[ll]^\beta \ar[ld]\\
+& M & \\
+}
+\eprop
+
+Proof: (i) Since free $R$-modules are projective, we can just take a free resolution, i.e. let $P^0$ be a free module surjecting onto $M$ with kernel $K^0$, $P^1$ a free module surjecting onto $K^0$ and so on.\\
+(ii) For this, we consider $M$ as a complex:
+$$\dots\rightarrow 0\rightarrow M\rightarrow 0\rightarrow \dots$$
+Since $\Cone (\phi)$ is acyclic, we have that $\phi$ is a quasi-isomorphism.  In particular,
+$$H^0(\ul{\Hom}(P_1^\bu,P_2^\bu))\simeq H^0(\ul{\Hom}(P_1^\bu,M))$$
+The resolution gives us a map of complexes $P_1^\bu\rightarrow M^\bu$, i.e. an element of the right-hand side.  The corresponding element of the left-hand side is $\alpha$.  An analagous construction yields $\beta$, and they are inverses by uniqueness of the construction. $\blacksquare$
+
+\bdefn Let $M$ and $N$ be $R$-modules.  Let $P^\bu$ be a projective resolution for $M$.  We define
+$$\Tor^R_i(M,N):= H^{-i}(P^\bu\us{A}\otimes N)$$
+\edefn
+
+Remark:  $\Tor^R_0(M,N)=\coker(P^{-1}\otimes N\rightarrow P^0\otimes N)\simeq \coker(P^{-1}\rightarrow P^0)\otimes N\simeq M\otimes N$, so $\Tor$ can be seen as a generalization of the tensor product.  Also, as a direct consequence of this definition, we see that $M$ is flat if and only if $\Tor^R_1(M,N)=0$ for all $R$-modules $N$.
+
+\bprop Let $M$ and $N$ be $R$-modules.  Then\\
+(i) $\Tor^R_i(M,N)$ is independent of the choice of projective resolution.\\
+(ii) $\Tor^R_i(M,N)\simeq\Tor^R_i(N,M)$, despite the asymmetry in the definition.
+\eprop
+
+Proof: (i) If we take two different projective resolutions $P_1^\bu$ and $P_2^\bu$, then by proposition 2.3(ii), we have $\alpha$ and $\beta$ which induce isomorphisms on the cohomologies:\\
+
+\xymatrix{
+P_1^\bu \otimes N \ar@/^/[r]^\alpha  & P_2^\bu \otimes N\ar@/^/[l]^\beta\\
+}
+
+(ii) Let $P^\bu$ be a projective resolution for $M$ and $Q^\bu$ a projective resolution for $N$.  Consider the bi-complex $P^\bu\otimes Q^\bu$ and define $\Tot(P^\bu\otimes Q^\bu)$ complex with $n$-th term
+$$\us{i+j=n}\oplus\, P^i\otimes Q^j $$
+and differential $d^n(m^{i,j}):= d_v^{i,j}(m^{i,j})+(-1)^i\cdot d_h^{i,j}(m^{i,j})$.  From problem 3 of PS7, we see that this is indeed a complex, and there is a canonical quasi-isomorphism from $\Tot(P^\bu\otimes Q^\bu)$ to $P^\bu\otimes N$ and to $M\otimes Q^\bu$. $\blacksquare$
+
+\bcor If $0\rightarrow M_1\rightarrow M_2\rightarrow M_3$ is a short exact sequence of $R$-modules, then for any $R$-module $N$, there exists a long exact sequence:
+$$\dots\rightarrow \Tor_i^R(M_1,N)\rightarrow \Tor_i^R(M_2,N)\rightarrow \Tor_i^R(M_3,N)\rightarrow \Tor_{i-1}^R(M_1,N)\rightarrow\dots$$
+
+\ecor
+
+Proof: Take a projective resolution $Q^\bu$ for $N$.  Since projective implies flat, we have a short exact sequence of complexes:
+$$0\rightarrow M_1\otimes Q^\bu\rightarrow M_2\otimes Q^\bu\rightarrow M_3\otimes Q^\bu\rightarrow 0$$
+the result follows from applying the long exact cohomology sequence construction. $\blacksquare$
+
+\bdefn Let $M$ and $N$ be $R$-modules.  Let $P^\bu$ be a projective resolution for $M$.  Consider the complex:
+$$0\rightarrow \Hom(P^0,N)\rightarrow \Hom(P^{-1},N)\rightarrow \Hom(P^{-2},N)\rightarrow \dots$$
+We define $\Ext^i_R(M,N)$ to be the $i$-th cohomology of this complex.
+\edefn
+
+Remark:  From the definition, $\Ext_R^0(M,N)=\Hom(M,N)$ and $M$ is projective if and only if $\Ext_R^1(M,N)=0$ for all $R$-modules $N$.
+
+\bdefn A module $I$ is {\bf injective} if given an injection $L_1\hookrightarrow L_2$ and a map from $L_1\rightarrow I$, there exists a map from $L_2\rightarrow I$ such that the following triangle commutes:\\
+
+\xymatrix{
+L_1 \ar[dr] \ar[r] & L_2 \ar[d] \\
+{} & I\\
+}
+\edefn
+
+\bprop Any module can be imbedded into an injective module. \eprop
+
+Proof:  This was problem 2 on PS7, so we omit the proof here. $\blacksquare$\\
+
+Remark:  This allows us to take injective resolutions $0\rightarrow M\rightarrow I^0\rightarrow I^1\rightarrow\dots$ that are unique up to homotopy (also shown on PS7).\\
+
+\bprop Let $M$ and $N$ be $R$-modules.  Let $I^\bu$ be a projective resolution for $M$.  Consider the complex:
+$$0\rightarrow \Hom(M,I^0)\rightarrow \Hom(M,I^1)\rightarrow \Hom(M,I^2)\rightarrow \dots$$
+We can define $\Ext^i_R(M,N)$ as the $i$-th cohomology of this complex as well.\eprop
+
+Proof:  Use the same argument as for $\Tor$ symmetry (with the $\Tot$ complex).
+
+\bprop (i) If $0\rightarrow N_1\rightarrow N_2\rightarrow N_3$ is a short exact sequence of $R$-modules, then for any $R$-module $M$, there exists a long exact sequence: 
+$$\dots\rightarrow \Ext^i_R(M,N_1)\rightarrow \Ext^i_R(M,N_2)\rightarrow \Ext^i_R(M,N_3)\rightarrow \Ext^{i+1}_R(M,N_1)\rightarrow\dots$$
+(ii) If $0\rightarrow M_1\rightarrow M_2\rightarrow M_3$ is a short exact sequence of $R$-modules, then for any $R$-module $N$, there exists a long exact sequence:
+$$\dots\rightarrow \Ext^i_R(M_3,N)\rightarrow \Ext^i_R(M_2,N)\rightarrow \Ext^i_R(M_1,N)\rightarrow \Ext^{i+1}_R(M_3,N)\rightarrow\dots$$
+\eprop
+
+Proof: Use the same argument as for the $\Tor$ long exact sequence.
+
+
+
+\end{document}
