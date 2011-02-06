@@ -758,5 +758,139 @@ modulo the relation that $a \in F_i$ and $b \in F_{i'}$ are equivalent if and
 only if there is a later $i''$ with maps $i \to i'', i' \to i''$ such that
 $a,b$ both map to the same thing in $F_{i''}$.
 
+\section{Yoneda's lemma}
+
+\add{this section is barely fleshed out}
+
+Let $\mathcal{C}$ be a category.
+In general, we have said that there is no way to study an object in  a
+category other than by considering maps into and out of it.
+We will see that essentially everything about $X \in \mathcal{C}$ can be
+recovered from these hom-sets.
+We will thus get an embedding of $\mathcal{C}$ into a category of functors.
+
+\subsection{The functors $h_X$}
+
+We now use the structure of a category to construct hom functors.
+\begin{definition} 
+Let $X \in \mathcal{C}$. We define the contravariant functor $h_X: \mathcal{C}
+\to \mathbf{Sets}$ via
+\[ h_X(Y) = \hom_{\mathcal{C}}(Y, X).  \]
+\end{definition} 
+
+This is, indeed, a functor. If $g: Y \to Y'$, then precomposition gives a map
+of sets
+\[ h_X(Y') \to h_X(Y),  \quad f \mapsto f \circ g \]
+which satisfies all the usual identities.
+
+As a functor, $h_X$ encodes \emph{all} the information about
+how one can map into $X$.
+It turns out that one can basically recover $X$ from $h_X$, though.
+
+\subsection{The Yoneda lemma}
+
+Let $X \stackrel{f}{\to} X'$ be a morphism in $\mathcal{C}$.
+Then for each $Y \in \mathcal{C}$, composition gives a map
+\[ \hom_{\mathcal{C}}(Y, X) \to \hom_{\mathcal{C}}(Y, X').  \]
+It is easy to see that this induces a \emph{natural} transformation
+\[ h_{X} \to h_{X'}.  \]
+Thus we get a map of sets
+\[ \hom_{\mathcal{C}}(X, X') \to \hom(h_X, h_{X'}),  \]
+where $h_X, h_{X'}$ lie in the category of contravariant functors $\mathcal{C}
+\to \mathbf{Sets}$.
+In other words, we have defined a \emph{covariant functor}
+\[ \mathcal{C} \to \mathbf{Fun}(\mathcal{C}^{op}, \mathbf{Sets}).  \]
+
+\begin{theorem}[Yoneda's lemma] If $X, X' \in \mathcal{C}$, then the map 
+$\hom_{\mathcal{C}}(X, X') \to \hom(h_X, h_{X'})$ is a bijection. That is,
+every natural transformation $h_X \to h_{X'}$ arises in one and only one way
+from a morphism $X \to X'$.
+\end{theorem} 
+
+
+\begin{theorem}[Strong Yoneda lemma]
+\end{theorem} 
+
+\subsection{Representable functors}
+
+\begin{definition} 
+A contravariant functor $F: \mathcal{C} \to \mathbf{Sets}$ is
+\textbf{representable} if it is naturally isomorphic to some $h_X$.
+\end{definition} 
+
+The point of a representable functor is that it can be realized as maps into a
+specific object. 
+In fact, let us look at a specific feature of the functor $h_X$. 
+Consider the object $\alpha \in h_X(X)$ that corresponds to the identity.
+Then any morphism
+\[ Y \to X  \]
+factors \emph{uniquely}
+as \[ Y \to X \stackrel{\alpha}{\to } X  \]
+(this is completely trivial!) so that 
+any element of $h_X(Y)$ is a $f^*(\alpha)$ for precisely one $f:  Y \to X$.
+
+\begin{definition} 
+Let $F: \mathcal{C} \to \mathbf{Sets}$ be a contravariant functor. A
+\textbf{universal object} for $\mathcal{C}$ is a pair $(X, \alpha)$ where $X
+\in \mathcal{C}, \alpha \in F(X)$ such that the following condition holds:
+if $Y$ is any object and $\beta \in F(Y)$, then there is a unique $f: Y \to X$
+such that $\alpha$ pulls back to $\beta$ under $f$. 
+
+In other words, $\beta = f^*(\alpha)$.
+\end{definition} 
+
+The condition of a universal object
+
+
+
+The article \cite{Vi08} by Vistoli contains a good introduction to and several
+examples of this theory.
+Here is one of them:
+
+\begin{example} 
+Consider the contravariant functor $F: \mathbf{Sets} \to \mathbf{Sets}$ that
+sends any set $S$ to its power set $2^S$ (i.e. the collection of subsets).
+This is a contravariant functor: if $f: S \to T$, there is a morphism
+\[ 2^T \to 2^S, \quad T' \mapsto f^{-1}(T').  \]
+
+This is a representable functor. Indeed, the universal object can be taken as
+the pair
+\[ * \left\{0,1\right\}, \left\{1\right\}).  \]
+
+To understand this, note that a subset $S;$ of $S$ determines its
+\emph{characteristic function} $\chi_{S'}: S \to \left\{0,1\right\}$ that
+takes the value $1$ on $S$ and $0$ elsewhere.
+If we consider $\chi_{S'}$ as a morphism $ S \to \left\{0,1\right\}$, we see
+that
+\[ S' = \chi_{S'}^{-1}(\{1\}).  \]
+Moreover, the set of subsets is in natural bijection with the set of
+characteristic functions, which in turn are precisely \emph{all} the maps $S
+\to \left\{0,1\right\}$. From this the assertion is clear.
+\end{example} 
+
+We shall meet some elementary criteria for the representability of
+contravariant functors in the next subsection. For now, we note\footnote{The
+reader unfamiliar with algebraic topology may omit these remarks.} that in
+algebraic topology, one often works with the \emph{homotopy category} of
+pointed CW complexes (where morphisms are pointed continuous maps modulo
+homotopy), any contravariant functor that satisfies two relatively mild conditions (a
+Mayer-Vietoris condition and a condition on coproducts), is automatically
+representable by a theorem of Brown. In particular, this implies that the
+singular cohomology functors $H^n(-, G)$ (with coefficients in some group $G$)
+are representable; the representing objects are the so-called
+Eilenberg-MacLane spaces  $K(G,n)$.  See \cite{Ha02}.
+
+
+\subsection{Limits as representable functors}
+
+\add{}
+
+\subsection{Criteria for representability}
+
+It is clear from the previous section 
+
+
+
+
 \add{Yoneda's lemma}
 \add{limits}
