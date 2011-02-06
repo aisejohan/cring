@@ -879,6 +879,34 @@ intersect $\mathfrak{p}$. In the end, you don't restrict to an
 open set, but
 to a direct limit of this.
 \end{remark} 
+\begin{exercise} 
+Say that    $R$ is \emph{semi-local} if it has finitely many maximal ideals.
+Let $\mathfrak{p}_1$, \dots, $\mathfrak{p}_n\subset R$ be primes. The complement of
+ the union, $S=R\smallsetminus \bigcup \mathfrak{p}_i$, is closed under multiplication, so we can
+ localize. $R[S^{-1}] = R_S$ is called the \emph{semi-localization}
+ \index{semi-localization} of $R$ at the $\mathfrak{p}_i$.
+ 
+ The result of semi-localization is always semi-local. To see this, recall that the ideals
+ in $R_S$ are in bijection with ideals in $R$ contained in $\bigcup
+ \mathfrak{p}_i$. Now use prime avoidance.
+\end{exercise}
+
+\begin{definition}
+   For a finitely generated $R$-module $M$, define $\mu_R(M)$ to be the smallest number
+   of elements that can generate $M$.
+ \end{definition}
+ This is not the same as the cardinality of a minimal set of generators. For example, 2
+ and 3 are a minimal set of generators for $\mathbb{Z}$ over itself, but $\mu_\mathbb{Z} (\mathbb{Z}) =1$.
+
+ \begin{theorem}
+   Let $R$ be semi-local with maximal ideals $\mathfrak{m}_1,\dots, \mathfrak{m}_n$. Let $k_i = R/\mathfrak{m}_i$. Then
+   \[
+     \mathfrak{m}u_R(M) = \mathfrak{m}ax \{\dim_{k_i} M/\mathfrak{m}_i M\}
+   \]
+ \end{theorem}
+\begin{proof} 
+\add{proof}
+\end{proof} 
 
 \section{Vista: sheaves on $\spec R$}
 

@@ -84,6 +84,10 @@ be too large for
 that.
 For instance, the collection of objects in $\mathbf{Sets}$ does not form a set.
 
+\begin{definition} 
+A category is \textbf{small} if the collection of objects is a set.
+\end{definition} 
+
 The standard examples of categories are the ones above: structured sets
 together with structure-preserving maps. Nonetheless, one can easily give
 other examples that are not of this form.
@@ -344,7 +348,7 @@ sends an object to a map.
 
 
 
-\section{Natural transformations}
+\subsection{Natural transformations}
 
 
 
@@ -513,8 +517,7 @@ Now we abstract on this idea further.
 We now want to generalize the push-out.
 Instead of a shape with $A,B,C$, we do something more general.
 
-Start with a \textbf{small} category $I$: this is not meant in a pejorative
-sense, but that the objects of $I$ form a set. One is supposed to picture
+Start with a small category $I$: recall that this means that the objects of $I$ form a set. One is supposed to picture
 is that $I$ is something like the category
 \[
 \xymatrix{
@@ -638,7 +641,29 @@ If $\mathcal{C}$ has all coproducts and coequalizers, then it has all colimits.
 \end{theorem}
 
 \begin{proof}
-Exercise. \add{proof} \end{proof}
+Let $F: I \to \mathcal{C}$ be a functor, where $I$ is a small category. We
+need to obtain an object $X$ with morphisms
+\[ Fi \to X, \quad i \in I  \]
+such that for each $f: i \to i'$, the diagram below commutes:
+\[ 
+\xymatrix{
+Fi \ar[d] \ar[r] &  Fi' \ar[ld] \\
+X
+}
+\]
+and such that $X$ is universal among such diagrams.
+
+To give such a diagram, however, is equivalent to giving a collection of maps
+\[ Fi \to X  \]
+that satisfy some conditions. So $X$ should be thought of as a quotient of the
+coproduct $\sqcup_i Fi$.
+Let us consider the coproduct $\sqcup_{i \in I, f} Fi$, where $f$ ranges over all
+morphisms in the category $I$ that start from $i$.
+We construct two maps 
+\[ \sqcup_f Fi \rightrightarrows \sqcup_f Fi,  \]
+whose coequalizer will be that of $F$. The first map is the identity. The
+second map sends a factor 
+\end{proof}
 
 \subsection{Filtered colimits}
 
@@ -658,8 +683,15 @@ An indexing category is \textbf{filtered} if the following hold:
 \begin{enumerate}
 \item Given $i_0, i_1 \in I$, there is a third object $i \in I$ such that both
 $i_0, i_1$ map into $i$.
+So there is a diagram
+\[ \xymatrix{
+i_0 \ar[rd] \\
+& i \\
+i_1 \ar[ru]
+}.\]
 \item Given any two maps $i_0 \rightrightarrows i_1$, there exists $i$ and $i_1
-\to i$ such that the two maps $i_0 \rightrightarrows i$ are equal. Any two ways
+\to i$ such that the two maps $i_0 \rightrightarrows i$ are equal:
+intuitively, any two ways
 of pushing an object into another can be made into the same eventually.
 \end{enumerate}
 \end{definition}
@@ -679,7 +711,7 @@ lack of torsion.
 \end{example}
 
 \begin{definition}
-Colimts over a filtered category are called \textbf{filtered colimits}.
+Colimits over a filtered category are called \textbf{filtered colimits}.
 \end{definition}
 
 \begin{example}
@@ -727,3 +759,4 @@ only if there is a later $i''$ with maps $i \to i'', i' \to i''$ such that
 $a,b$ both map to the same thing in $F_{i''}$.
 
 \add{Yoneda's lemma}
+\add{limits}
