@@ -1,0 +1,41 @@
+\documentclass{book}
+
+\input{other/packages.tex}
+
+\input{other/macros.tex}
+\input{other/theoremdef.tex}
+\input{other/formatting.tex}
+
+\usepackage{xr}
+
+\externaldocument[MAIN-]{CRing}
+
+\newcommand{\rref}[1]{\cref{MAIN-#1}}
+
+\usepackage[tight]{shorttoc}
+
+\begin{document}
+
+\nocite{*}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[C]{CRing Project, Chapter 13}
+ \fancyfoot[C]{\thepage}
+
+\tableofcontents
+
+\textbf{Copyright 2011 the CRing Project. This file is part of the CRing Project, which is released under the GNU Free Documentation License, Version 1.2.}
+
+\setcounter{chapter}{12}
+
+\input{chapters/linalg.tex}
+
+\anothertoc{CRing}{CRing Project contents}{0}
+
+\renewcommand{\bibname}{CRing Project bibliography}
+\bibliographystyle{alpha}
+\bibliography{other/references}
+
+\end{document}

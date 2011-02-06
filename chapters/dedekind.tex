@@ -4,7 +4,7 @@ The notion of a Dedekind domain allows one to generalize the usual unique
 factorization in principal ideal domains as in $\mathbb{Z}$ to settings such
 as the ring of integers in an algebraic number field. In general, a Dedekind
 domain does not have unique factorization, but the \emph{ideals} in a Dedekind
-domain do factor into a product of prime ideals. 
+domain do factor uniquely into a product of prime ideals. 
 We shall see that Dedekind domains have a short characterization in terms of
 the characteristics we have developed.
 
@@ -22,7 +22,8 @@ rough equivalent of the first chapter of
 
 \subsection{Definition}
 
-We start with the simplest case of a \emph{discrete valuation ring.}
+We start with the simplest case of a \emph{discrete valuation ring,} which is
+the local version of a Dedekind domain.
 Among the one-dimensional local noetherian rings, these will be the nicest.
 
 \begin{theorem} \label{DVRthm}
@@ -138,12 +139,12 @@ with maximal ideal $(T)$.
 In the proof of \cref{DVRthm}, we freely used the notion of associated primes,
 and thus some of the results of \cref{noetherian}.
 However, we can avoid all that and give a more ``elementary approach,'' as in
-\cite{CaF}.
+\cite{CaFr67}.
 
 
 Let us suppose that $R$ is an integrally closed, local noetherian domain of
 dimension one. We shall prove that the maximal ideal $\mathfrak{m} \subset R$
-is principal. This was the hard part of \cref{noetherian}, and the only part
+is principal. This was the hard part of \cref{DVRthm}, and the only part
 where we used associated primes earlier.
 \begin{proof}
 We will show that $\mathfrak{m}$ is principal, by showing it is \emph{invertible} (as will be seen below).   We divide the proof into steps:
@@ -172,7 +173,7 @@ Let $J$ be a maximal element, and suppose we have $ab \in J$, with  $a,b \notin 
 By symmetry it is enough to prove the other half for $a$, namely that $za \notin
 S$; but then if $za \in S$, we would have $z( (a) + J ) \subset S$, which implies $ ( (a) + J)^{-1} \neq S$, contradiction, for $J$ was maximal.
 
-Then it follows that $z(ab) = (za) b \in J^{-1} - S$, by applying the claim I just made twice.  But $ab \in J$, so $z(ab) \in S$, contradiction.
+Then it follows that $z(ab) = (za) b \in J^{-1} - S$, by applying the claim  just made twice.  But $ab \in J$, so $z(ab) \in S$, contradiction.
 \end{proof}
 
 
@@ -359,7 +360,7 @@ Then, by the following lemma, every prime ideal is principal.  Hence every ideal
 \begin{lemma} Let $R$ be a UFD, and let $\mathfrak{p}$ be a prime ideal which contains no proper prime subideal except for $0$.  Then $\mathfrak{p}$ is principal.
 \end{lemma}
 The converse holds as well; a domain is a UFD if and only if every prime ideal
-of height one is principal.  Cf. \cite{Ei95}.
+of height one is principal, by \rref{heightonefactoriality}.
 \begin{proof}
 First, $\mathfrak{p}$ contains an element $x \neq 0$, which we factor into irreducibles $\pi_1 \dots \pi_k$.  One of these, say $\pi_j$, belongs to $\mathfrak{p}$, so $\mathfrak{p} \supset (\pi_j)$. Since $\mathfrak{p}$ is minimal among nonzero prime ideals, we have $\mathfrak{p} = (\pi_j)$.  (Note that $(\pi_j)$ is prime by unique factorization.)
 \end{proof}
@@ -378,8 +379,12 @@ This can be generalized to the Krull-Azizuki theorem, cf. \cite{Bo68}.
 \begin{proof}  We need to check that $B$ is Noetherian, integrally, closed, and of dimension 1.
 
 \begin{itemize}
-\item Noetherian.  Indeed, I claim that $B$ is a finitely generated $A$-module, which obviously implies Noetherianness.  The $K$-linear map $(.,.): L \times L \to K$, $a,b \to \mathrm{Tr}(ab)$ is nondegenerate since $L$ is separable over $K$.  Let $F \subset B$ be a free module spanned by a $K$-basis for $L$.  Then since traces preserve integrality and $A$ is integrally closed, we have $B \subset F^*$, where $F^* := \{ x \in K: (x,F) \subset A \}$.  Now $F^*$ is $A$-free on the dual basis of $F$ though, so $B$ is a submodule of a f.g. $A$ module, hence a f.g. $A$-module.
-\item Integrally closed.  It is an integral closure, and integrality is transitive.
+\item Noetherian.  Indeed, $B$ is a finitely generated $A$-module, which
+obviously implies Noetherianness. To see this, note that the $K$-linear map
+$(.,.): L \times L \to K$, $a,b \to \mathrm{Tr}(ab)$ is nondegenerate since
+$L$ is separable over $K$ (\rref{}).  Let $F \subset B$ be a free module spanned by a $K$-basis for $L$.  Then since traces preserve integrality and $A$ is integrally closed, we have $B \subset F^*$, where $F^* := \{ x \in K: (x,F) \subset A \}$.  Now $F^*$ is $A$-free on the dual basis of $F$ though, so $B$ is a submodule of a f.g. $A$ module, hence a f.g. $A$-module.
+\item Integrally closed.  $B$ is the integral closure of $A$ in $L$, so it
+is integrally closed (integrality being transitive).
 \item Dimension 1.  Indeed, if $A \subset B$ is an integral extension of
 domains, then $\dim A = \dim B$. This follows essentially from the theorems of
 ``lying over'' and ``going up.'' Cf. \cite{Ei95}.
@@ -452,7 +457,7 @@ This completes the proof.
 Note that there is a one-to-one correspondence between extensions of the valuation on $K$ and primes of $S$ lying above $\mathfrak{m}$.   Indeed, the above proof indicated a way of getting valuations on $L$ from primes of $S$.  For an extension of the valuation on $K$ to $L$, let $\mathfrak{M} := \{ x \in S: \left| x \right| < 1\}$.
 \section{Action of the Galois group}
 
-This section will basically be commutative algebra.  Suppose we have an integral domain (we don't even have to assume it Dedekind) $A$ with quotient field $K$, a finite Galois extension $L/K$, with $B$ the integral closure in $L$.  Then the Galois group $G = G(L/K)$ acts on $B$; it preserves $B$ because it preserves equations in $A[X]$.
+ Suppose we have an integral domain (we don't even have to assume it Dedekind) $A$ with quotient field $K$, a finite Galois extension $L/K$, with $B$ the integral closure in $L$.  Then the Galois group $G = G(L/K)$ acts on $B$; it preserves $B$ because it preserves equations in $A[X]$.
 In particular, if $\mathfrak{P} \subset B$ is a prime ideal, so is $\sigma \mathfrak{P}$, and the set $\spec B$ of prime ideals in $B$ becomes a $G$-set.
 
 \subsection{The orbits of the Galois group} It is of interest to determine the orbits; this question has  a very clean answer.
