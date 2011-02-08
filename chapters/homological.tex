@@ -185,18 +185,37 @@ coefficients.
 
 \subsection{Chain Homotopies}
 
+In general, two maps of complexes $C_* \rightrightarrows D_*$ need not be
+equal to induce the same morphisms in homology. It is thus of interest to
+determine conditions when they do. One important condition is given by chain
+homotopy: chain homotopic maps are indistinguishable in homology. In algebraic
+topology, this fact is used to show that singular homology is a homotopy
+invariant.
+We will find it useful in showing that the construction (to be given later) of a
+projective resolution is essentially unique.
 
-\begin{definition} A chain homotopy between two chain maps
+\begin{definition} Let $C_*, D_*$ be chain complexes with differentials $d_i$. A chain homotopy between two chain maps
 $f,g:C_*\rightarrow D_*$ is a series of homomorphisms
-$t^i:C^i\rightarrow D^{i-1}$ satisfying $f^i-g^i=\partial t^n+
-t^{n+1}\partial$. Again often notation is abused and the
-condition is written $f-g=\partial t +
-t\partial$.
+$h^i:C^i\rightarrow D^{i-1}$ satisfying $f^i-g^i=d h^i+
+h^{n+1}d$. Again often notation is abused and the
+condition is written $f-g=d h +
+hd$.
 \end{definition}
 
-\begin{theorem} If two maps are chain homotopic, they are taken
+\begin{proposition} If two morphisms of complexes $f,g: C_* \to D_*$ are chain homotopic, they are taken
 to the same induced map after applying the homology functor.
-\end{theorem}
+\end{proposition}
+
+\begin{proof} 
+Write $\left\{d_i\right\}$ for the various differentials (in both complexes).
+Let $m\in Z_i(C)$, the group of $i$-cycles. 
+Suppose there is a chain homotopy $h$ between $f,g$ (that is, a set of
+morphisms $C_i \to D_{i-1}$).
+Then
+$$f^i(m)-g^i(m)= h^{i+1}\circ d^i(m) + d^{i-1}\circ h^i(m)= d^{i-1}\circ H^i(m) \in \Im(d^{i-1})$$
+which is zero in the cohomology $H^i(D)$. 
+\end{proof}
+
 
 \begin{corollary} If two chain complexes are chain homotopically equivalent
 (there are maps $f: C_*\rightarrow D_*$ and $g:D_*\rightarrow
@@ -311,7 +330,10 @@ Let us recall (\rref{projectives}) that an $R$-module $P$ is called
 left-exact) is exact.
 
 Projective objects are useful in defining chain exact sequences
-known as ``projective resolutions.''
+known as ``projective resolutions.'' In the theory of derived functors, the
+projective resolution of a module $M$ is in some sense a replacement for $M$:
+thus, we want it to satisfy some uniqueness and existence properties. The
+uniqueness is not quite true, but it is true modulo chain equivalence.
 
 \begin{definition} Let $M$ be an arbitrary module, a projective
 resolution of
@@ -324,6 +346,7 @@ the $P_i$ are projective modules. \end{definition}
 
 
 \begin{proposition} Any module admits a projective resolution. \end{proposition}
+The proof will even show that we can take a \emph{free} resolution.
 \begin{proof} 
 We construct the resolution inductively. 
 First, we take a projective module $P_0$ with $P_0 \twoheadrightarrow N$
@@ -347,6 +370,7 @@ If $R$ is noetherian, and $M$ is finitely generated, then we can
 choose a
 projective resolution where each $P_i$ is finitely generated.
 \end{proposition}
+We can even take a resolution consisting of finitely generated free modules.
 \begin{proof}
 To say that $M$ is finitely generated is to say that it is a
 quotient of a free module on
