@@ -14,8 +14,7 @@ residue field (that is, its quotient by the maximal ideal).
 A knowledge of field extensions will thus be useful.
 
 
-\section{General remarks}
-Let us begin by providing several examples of fields. The reader should
+To get started, let us begin by providing several examples of fields. The reader should
 recall (\cref{maximalfield}) that if $R$ is a ring and $I \subset R$ an
 ideal, then $R/I$ is a field precisely when $I$ is maximal.
 
@@ -71,16 +70,22 @@ field of rational functions $\mathbb{C}(z)$.
 \end{example}
 
 
-\subsection{Field extensions}
+\section{Field extensions}
 
-Let us now cover the basic facts specific to fields.
+\subsection{Definitions}
+
+In general, though, we are interested not so much in fields by themselves but
+in field \emph{extensions.} This is perhaps analogous to studying not rings
+but \emph{algebras} over a fixed ring.
+The nice thing for fields is that the notion of a ``field over another field''
+just recovers the notion of a field extension, by the next result.
 
 \begin{proposition} \label{fieldinj} If $F$ is a field and $R$ is any ring, then any ring homomorphism $f:F\rightarrow
 R$ is either injective or the zero map (in which case $R=0$).
 \end{proposition}
 
 \begin{proof} Indeed, $\ker(f)$ is an ideal in
-$F$ but there are only two ideals in $F$, namely $(0)$ and $(1)$. If $f$ is identically
+$F$. But there are only two ideals in $F$, namely $(0)$ and $(1)$. If $f$ is identically
 zero, then $1=f(1)=0$ in $R$, so $R=0$ too.
 \end{proof}
 
@@ -189,6 +194,12 @@ whose image contains $\alpha$. It is thus surjective, hence an isomorphism.
 \subsection{The characteristic of a field}
 \label{more-fields}
 
+In the category of rings, there is an \emph{initial object} $\mathbb{Z}$: any
+ring $R$ has a map from $\mathbb{Z}$ into it in precisely one way. For fields,
+there is no such initial object.
+Nonetheless, there is a family of objects such that every field can be mapped
+into in exactly one way by exactly one of them, and in no way by the others.
+
 Let $F$ be a field. As $\mathbb{Z}$ is the intial object of the category of
 rings, there is a ring map $f : \mathbb{Z} \to F$, see
 \rref{integersinitial}.
@@ -224,6 +235,11 @@ $\mathbb{F}_p \subset F$ if the characteristic is $p > 0$.
 It is easy to see that if $E/k$ is an extension, then the characteristic of
 $E$ is the same as the characteristic of $k$. 
 
+\begin{example} 
+The characteristic of $\mathbb{Z}/p$ is $p$, and that of $\mathbb{Q}$ is $0$.
+This is obvious from the definitions.
+\end{example} 
+
 \subsection{Finite extensions}
 If
 $F/E$ is a field extension,  then evidently  $F$ is also a vector space over $E$
@@ -240,10 +256,20 @@ denoted $[F:E]$. If $[F:E]<\infty$ then $F$ is said to be a
 $\mathbb{C}$ is obviously a finite extension of $\mathbb{R}$ (of degree 2).
 \end{example} 
 
+Let us now consider the degree of a monogenic extension.
+
 \begin{example} 
 If $k$ is any field, then the rational function field $k(t)$ is \emph{not} a
 finite extension. The elements $\left\{t^n, n \in \mathbb{Z}\right\}$
 are linearly independent over $k$.
+
+In fact, if $k$ is uncountable, then $k(t)$ is \emph{uncountably} dimensional
+as a $k$-vector space. To see this, we note that the family of elements
+$\left\{1/(t- \alpha), \alpha \in k\right\}$ is linearly independent over $k$. A
+nontrivial relation between them would lead to a contradiction: for instance,
+if one works over $\mathbb{C}$, then this follows because
+$\frac{1}{t-\alpha}$, when considered as a meromorphic function on
+$\mathbb{C}$, has a pole at $\alpha$ and nowhere else.
 \end{example} 
 
 \begin{example} 
@@ -278,10 +304,46 @@ Suppose given a tower $F/E/k$. Then
 \begin{proof} 
 Let $\alpha_1, \dots, \alpha_n \in F$ be an $E$-basis for $F$. Let $\beta_1,
 \dots, \beta_m \in E$ be a $k$-basis for $E$. Then 
-the set of products $\alpha_i \beta_j$ is a $k$-basis for $F$.
+the set of products $\{\alpha_i \beta_j, 1 \leq i \leq n, 1 \leq j \leq m\}$ is a $k$-basis for $F$. 
+Indeed, let us check first that they $k$-span $F$.
+
+By assumption, the $\left\{\alpha_i\right\}$ span $F$ over $E$. So if $f \in
+F$, there are $a_i \in E$ with 
+\[ f = \sum a_i\alpha_i,  \]
+and, for each $i$, we can write $a_i = \sum b_{ij} \beta_j$ for some $b_{ij} \in k$. Putting
+these together, we find
+\[ f = \sum_{i,j} b_{ij}\alpha_i \beta_j,  \]
+proving that the $\left\{\alpha_i \beta_j\right\}$ span $F$ over $k$.
+
+Suppose now that there existed a nontrivial relation
+\[ \sum_{i,j} c_{ij} \alpha_i \beta_j =0 \]
+for the $c_{ij} \in k$. In that case, we would have
+\[ \sum_i \alpha_i \left( \sum_j c_{ij} \beta_j \right) =0, \]
+and the inner terms lie in $E$ as the $\beta_j$ do. Now $E$-linear independence of
+the $\left\{\alpha_j\right\}$ shows that the inner sums are all zero. Then
+$k$-linear independence of the $\left\{\beta_j\right\}$ shows that the
+$c_{ij}$ all vanish.
 \end{proof} 
 
-\subsection{Algebraic extensions}
+As an example:
+\begin{example} 
+$\mathbb{Q}(\sqrt{2})$ is a finite extension of $\mathbb{Q}$ of degree two.
+Indeed, this is isomorphic to $\mathbb{Q}[x]/(x^2-2)$.
+\end{example} 
+
+More generally:
+\begin{definition} 
+ A field extensions $K$ of $\mathbb{Q}$ is said to be a \textbf{number field}
+if it is a finite extension of $\mathbb{Q}$.
+\end{definition} 
+Number fields are the basic objects in algebraic number theory. We shall see
+later that,
+for the analog of the integers $\mathbb{Z}$ in a number field, something kind
+of like unique factorization still holds (though strict unique factorization
+generally does not!).
+
+\section{Algebraic extensions}
+\subsection{Definitions}
 
 Consider a field extension $F/E$.
 
@@ -323,19 +385,6 @@ dependent over $E$, or we would necessarily have $[E:k]$
 \begin{proposition} 
 Let $E/k$ and $F/E$ be algebraic. Then $F/k$ is algebraic.
 \end{proposition} 
-
-
-Algebraic number theory is in fact the study of algebraic extensions, in
-particular, a field extensions $K$ of $\mathbb{Q}$ is said to be a number field
-if it is a finite extension of $\mathbb{Q}$.
-
-Since field extensions $F/E$ are always vector spaces, there is a basis $B$ for
-$F$ such that any element of $F$ is the linear combination of elements of $B$
-with coefficients in $E$. Returning to the previous example, if $K$ is the
-smallest field that contains $\mathbb{Q}$ and an algebraic number $\alpha$,
-then$[K:\mathbb{Q}]$ is the degree of the minimal polynomial $f(x)$ of $\alpha$.
-
-
 
 \subsection{Algebraic closure}
 
@@ -394,6 +443,30 @@ for $ b \in \bar{K}$ and, a priori, $ a_i \in L$. But each $ a_i$ is a root of $
 
 \end{proof}
 
+
+\subsection{Separable extensions}
+Throughout, $F \subset K$ is a finite field extension.  We fix once and for
+all an algebraic closure $M$ for both and an embedding of $F$ in $M$.  When
+necessary, we write $K = F(\alpha_1, \dots, \alpha_n)$, and $K_0 = F, K_i =
+F(\alpha_1, \dots, \alpha_i)$, $q_i$ the minimal polynomial of $\alpha_i$ over
+$F_{i - 1}$, $Q_i$ that over $F$.
+
+\begin{definition} For an element $\alpha \in K$ with minimal polynomial $q$, we say
+$q$ and $\alpha$ are separable if $q$ has distinct roots, and we say $K$ is
+separable if this holds for all $\alpha$; conversely, we say they are purely
+inseparable if $q$ has only one root.  We say $K$ is splitting if each $q$
+splits in $K$.
+\label{def:sepsplit}
+\end{definition}
+
+
+\begin{definition} If $K = F(\alpha)$ for some $\alpha$ with minimal polynomial
+$q(x) \in F[x]$, then by \rref{sep_poly}, $q(x) = r(x^{p^d})$, where $p =
+\Char{F}$ (or $1$ if $\Char{F} = 0$) and $r$ is separable; in this case we
+also denote $\deg_s(K/F) = \deg(r), \deg_i(K/F) = p^d$.  \label{def:prim_sep}
+\end{definition}
+
+
 \section{Galois theory}
 \subsection{Definitions}
 
@@ -409,27 +482,12 @@ respecting the chosen embedding of $F$.
 \label{def:gal}
 \end{definition}
 
-\begin{definition} For an element $\alpha \in K$ with minimal polynomial $q$, we say
-$q$ and $\alpha$ are separable if $q$ has distinct roots, and we say $K$ is
-separable if this holds for all $\alpha$; conversely, we say they are purely
-inseparable if $q$ has only one root.  We say $K$ is splitting if each $q$
-splits in $K$.
-\label{def:sepsplit}
-\end{definition}
-
 \begin{definition} By $\deg(K/F)$ we mean the dimension of $K$ as an $F$-vector
 space.  We denote $K_s/F$ the set of elements of $K$ whose minimal polynomials
 over $F$ have distinct roots; by \rref{sep_subfield} this is a subfield, and
 $\deg(K_s/F) = \deg_s(K/F)$ and $\deg(K/K_s) = \deg_i(K/F)$ by definition.
 \label{def:sep}
 \end{definition}
-
-\begin{definition} If $K = F(\alpha)$ for some $\alpha$ with minimal polynomial
-$q(x) \in F[x]$, then by \rref{sep_poly}, $q(x) = r(x^{p^d})$, where $p =
-\Char{F}$ (or $1$ if $\Char{F} = 0$) and $r$ is separable; in this case we
-also denote $\deg_s(K/F) = \deg(r), \deg_i(K/F) = p^d$.  \label{def:prim_sep}
-\end{definition}
-
 \subsection{Theorems}
 
 \begin{lemma} $q(x) \in F[x]$ is separable if and only if $\gcd(q, q') = 1$,
