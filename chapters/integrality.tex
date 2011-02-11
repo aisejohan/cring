@@ -12,6 +12,7 @@ important role for us. Such ``normal domains'' are, for example, regular in
 codimension one, which means that the theory of Weil divisors (\rref{}) applies
 to them. It is particularly nice because Weil divisors are sufficient to
 determine whether a function is regular on a normal variety.
+
 A canonical example of an integrally closed ring is a valuation ring; we shall
 see in this chapter that any integrally closed ring is an intersection of such.
 
@@ -542,12 +543,20 @@ rest of the variety $X$.
 
 \section{Lying over and going up}
 We now interpret integrality in terms of the geometry of $\spec$.
+In general, for $R \to S$ a ring-homomorphism, the induced map $\spec S \to
+\spec R$ need not be topologically nice; for instance, even if $S$ is a
+finitely generated $R$-algebra, the image of $\spec S$ in $\spec R$ need not
+be either open or closed.\footnote{It is, however, true that if $R$ is
+\emph{noetherian} (see \rref{noetherian}) and $S$ finitely generated over
+$R$, then the image of $\spec S$ is \emph{constructible,} that is, a finite
+union of locally closed subsets. \add{this result should be added sometime}.}
 
+We shall see that under conditions of integrality, more can be said.
 
 \subsection{Lying over}
 
 \begin{proposition}[Lying over]
-If $\phi: R \to R'$ is an injective integral extension, then the induced map
+If $\phi: R \to R'$ is an injective integral morphism, then the induced map
 \[ \spec R' \to \spec R  \]
 is surjective.
 If $\phi$ is only assumed integral, then the morphism $\spec R'\to \spec R$ is
@@ -558,64 +567,80 @@ Another way to state this, without mentioning $\spec R'$, is that if
 $\mathfrak{p} \subset R$ is prime, then there exists $\mathfrak{q} \subset R'$
 such that $\mathfrak{p}$ is the inverse image $\phi^{-1}(\mathfrak{q})$.
 
-\begin{proof}
-First, let us reduce to the case of a local ring.
-We replace $R$ with $R_{\mathfrak{p}}$.  We get a map
+\begin{proof} First suppose $\phi$ injective, in which case we must prove the
+map $\spec R' \to \spec R$ surjective.
+Let us reduce to the case of a local ring.
+For a prime $\mathfrak{p} \in \spec R$, we must show that $\mathfrak{p}$
+arises as the inverse image of an element of $\spec R'$.
+So we replace $R$ with $R_{\mathfrak{p}}$.  We get a map
 \[ \phi_{\mathfrak{p}}: R_{\mathfrak{p}} \to (R- \mathfrak{p})^{-1} R'  \]
 which is injective if $\phi$ is, since localization is an exact functor. Here
 we
 have localized both $R, R'$ at the multiplicative subset $(R - \mathfrak{p})$.
 
-Note that $\phi_{\mathfrak{p}}$ is an integral extension too, i.e. every $x/s$
-with $x \in R', s \in R - \mathfrak{p}$ satisfies a monic polynomial with
-coefficients in $R_{\mathfrak{p}}$. To see this, note that $x$ is integral over
-$R$, so there is a monic polynomial
-\[ x^n + a_1 x^{n-1} + \dots + a_0 = 0, \quad \forall a_i \in R \ (=\phi(R)).
-\]
-We can divide this by $s^n$:
-\[ (\frac{x}{s})^n  + \frac{a_1}{s} (\frac{x}{s})^{n-1} + \dots +
-\frac{a_0}{s^n} = 0,  \]
-where each fraction in the coefficient is in the image of
-$\phi_{\mathfrak{p}}$.
-That proves that $\phi_{\mathfrak{p}}$ is also integral.
-
-We will prove the result for $\phi_{\mathfrak{p}}$.  In particular, we
+Note that $\phi_{\mathfrak{p}}$ is an integral extension too. This follows
+because integrality is preserved by base-change.
+We will now prove the result for $\phi_{\mathfrak{p}}$; in particular, we
 will show
 that there is a prime ideal of $(R- \mathfrak{p})^{-1} R'$ that pulls back to
 $\mathfrak{p}R_{\mathfrak{p}}$. These will imply that if we pull this prime
-ideal back to $R'$, it will pull back to $\mathfrak{p}$ in $R$.
+ideal back to $R'$, it will pull back to $\mathfrak{p}$ in $R$. In detail, we
+can consider the diagram
+\[ \xymatrix{
+\spec (R-\mathfrak{p})^{-1} R'\ar[d]  \ar[r] & \spec R_{\mathfrak{p}} \ar[d] \\
+\spec R' \ar[r] &  \spec R
+}\]
+which shows that if $\mathfrak{p}$ appears in the image of the top map, then
+$\mathfrak{p}$
+arises as the image of something in $\spec R'$.
 So it is sufficient for the proposition to handle the case of $R$ local.
 
-Upshot: we can assume $R$ is local with maximal ideal $\mathfrak{p}$. We assume
-this now.
-So, we want to find a prime ideal $\mathfrak{q} \subset R'$ such that
+
+
+Assume $R$ is local with maximal ideal $\mathfrak{p}$. We want to find a prime ideal $\mathfrak{q} \subset R'$ such that
 $\mathfrak{p}  = \phi^{-1}(\mathfrak{q})$. Since $\mathfrak{p}$ is already
 maximal, it will suffice to show that $\mathfrak{p} \subset
 \phi^{-1}(\mathfrak{q})$. In particular, we need to show that there is a prime
 ideal $\mathfrak{q}$ such that
-\[ \mathfrak{p} R' \subset \mathfrak{q}.  \]
+\( \mathfrak{p} R' \subset \mathfrak{q}.  \)
 The pull-back of this will be $\mathfrak{p}$.
 
 If $\mathfrak{p}R' \neq R'$, then
 $\mathfrak{q}$ exists, since every proper ideal of a ring is contained in a
-maximal ideal. In particular, we need to show that
+maximal ideal.  We will in fact show
 \[ \mathfrak{p} R' \neq R', \]
-or that $\mathfrak{p}$ doesn't generate the unit ideal in $R'$. Suppose the
+or that $\mathfrak{p}$ does not generate the unit ideal in $R'$. Suppose the
 contrary. Then $1 \in \mathfrak{p}R'$ and we can write
 \[ 1 = \sum x_i \phi(y_i)  \]
 where $x_i \in R', y_i \in \mathfrak{p}$.
 
 Let $R''$ be the subalgebra of $R'$ generated by $\phi(R)$ and the $x_i$. Then
-$R'' \subset R'$ and is finitely generated over $R$, because it is generated by
-the $x_i$. However, $R''$ is actually finitely generated as an $R$-module too,
-because each $x_i$ satisfies a monic polynomial with coefficients in $R$. This
+$R'' \subset R'$ and is finitely generated as an $R$-algebra, because it is generated by
+the $x_i$. However, $R''$ is integral and thus finitely generated as an
+$R$-module. This
 is where integrality comes in.
 
-So we have that $R''$ is a finitely generated $R$-module. Also, the expression
+So $R''$ is a finitely generated $R$-module. Also, the expression
 $1 = \sum x_i \phi(y_i)$ shows that $\mathfrak{p}R'' = R''$. However, this
 contradicts Nakayama's lemma. That brings the contradiction, showing that
-$\mathfrak{p}$ cannot generate $(1)$ in $R'$, proving the lying over theorem.
+$\mathfrak{p}$ cannot generate $(1)$ in $R'$, and proving the surjectivity
+part of  lying over theorem.
 
+Finally, we need to show that if $\phi: R \to R'$ is \emph{any} integral
+morphism, then $\spec R' \to \spec R$ is a closed map. Let $X = V(I) $ be a
+closed subset of $\spec R'$. Then the image of $X$ in $\spec R$ is the image
+of the map
+\[ \spec R'/I \to \spec R   \]
+obtained from the morphism $R \to R' \to  R'/I$, which is integral; thus we are
+reduced to showing that any integral morphism $\phi$ has closed image on the
+$\spec$. 
+
+
+In other words, we must prove the following statment. Let $\phi: R \to R'$ be
+an integral morphism; then the image of $\spec R'$ in $\spec R$ is closed.
+But, quotienting by $\ker \phi$ and taking the map $R/\ker \phi \to R'$, we
+may reduce to the case of $\phi$ injective; however, then this follows from
+the surjectivity result already proved.
 \end{proof}
 
 \subsection{Going up}
