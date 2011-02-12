@@ -32,28 +32,42 @@ rings and leads to proofs of several difficult results about them.
 The chain complex is the most fundamental construction in
 homological algebra.
 
-\begin{definition} A chain complex is a collection of modules
-over a ring $C_i$
-for integer values of $i$. Usually we will find that $C_i=0$ for
-negative values of $i$. Equipped with the $C_i$ are boundary
+\begin{definition} Let $R$ be a ring. A \textbf{chain complex} is a collection
+of $R$-modules
+$\{C_i\}$ (for $i \in \mathbb{Z}$)
+together with boundary
 operators
-$\partial_i:C_i\rightarrow C_{i-1}$ with the property that
-$\partial_{i-1}\partial_i=0$. Sometimes the boundary map is also
+$\partial_i:C_i\rightarrow C_{i-1}$ such that
+$\partial_{i-1}\partial_i=0$. The boundary map is also
 called the
-``differential.'' Often, notation is abused and the indices for
-the boundary map are dropped.\end{definition}
+\textbf{differential.} Often, notation is abused and the indices for
+the boundary map are dropped.
+
+A chain complex is often simply denoted $C_*$.
+\end{definition}
+
+In practice, one often has that $C_i = 0$ for $i<0$.
 
 
 \begin{example} All exact sequences are chain complexes.
 \end{example}
 
-\begin{example} Any sequence of abelian groups for which the
-boundary operators
-are all $0$ is a chain complex. \end{example}
+\begin{example} Any sequence of abelian groups $\left\{C_i\right\}_{i \in
+\mathbb{Z}}$ with the boundary operators
+identically zero forms a chain complex. 
+\end{example}
 
 We will see plenty of more examples in due time.
 
-\begin{definition} The submodule of cycles $Z_i\subseteq C_i$ is
+At each stage, elements in the image of the boundary $C_{i+1} \to C_i$ lie in
+the kernel of $\partial_i: C_i \to C_{i-1}$. 	Let us recall that a chain
+complex is \emph{exact} if the kernel and the image coincide. In general, a
+chain complex need not be exact, and this failure of exactness is measured by
+its homology.
+
+\begin{definition} 
+Let $C_*$
+The submodule of cycles $Z_i\subseteq C_i$ is
 the kernel $\ker(\partial_i)$. The submodule of boundaries
 $B_i\subseteq C_i$ is the image $Im(\partial_{i+1})$. Thus
 homology is said to be ``cycles mod boundaries,'' i.e.
@@ -68,7 +82,7 @@ boundary operators dropped.
 
 
 \begin{definition} Let $C_*$ be a chain complex with boundary
-map $\partial_*$.
+map $\partial_i$.
 We define the \textbf{homology} of the complex $C_*$ via
 $H_i(C_*)=\ker(\partial_i)/Im(\partial_{i+1})$.
 \end{definition}
@@ -87,18 +101,54 @@ often bundle together all the homology modules to give a graded
 homology module
 $H_*(C_*)=\bigoplus_i H_i(C_*)$.
 
+\begin{definition} 
+A \textbf{differential module} is a module $M$ together with a morphism $d:
+M\to M$ such that $d^2 =0$.
+\end{definition} 
+
+Thus, given a chain complex $C_*$, the module $\bigoplus C_i$ is a
+differential module with the direct sum of all the differentials $\partial_i$.
+A chain complex is just a special kind of differential module, one where the
+objects are graded and the differential drops the grading by one.
+
 \subsection{Functoriality}
-It turns out that chain complexes form a category when morphisms
+We have defined chain complexes now, but we have no notion of a morphism
+between chain complexes.
+We do this next; it turns out that chain complexes form a category when morphisms
 are appropriately defined.
-\begin{definition} A map of chain complexes $f:C_*\rightarrow
-D_*$, or a chain map, is a sequence of maps $f_i:C_i\rightarrow
+
+\begin{definition} A \textbf{morphism} of chain complexes $f:C_*\rightarrow
+D_*$, or a \textbf{chain map}, is a sequence of maps $f_i:C_i\rightarrow
 D_i$ such that $f\partial = \partial' f$ where $\partial$ is the
 boundary map of $C_*$ and $\partial'$ of $D_*$ (again we are
-abusing notation and dropping indices). \end{definition}
-\begin{theorem} Chain maps induce maps in homology in the same
-direction; in other words, homology is a covariant functor from
+abusing notation and dropping indices). 
+\end{definition}
+
+There is thus a \emph{category} of chain complexes where the morphisms are
+chain maps.
+
+One can make a similar definition for differential modules. If $(M, d)$ and
+$(N,d')$ are differential modules, then a \emph{morphism of differential
+modules} $(M,d) \to (N,d')$ is a morphism of modules $M \to N$ such that the diagram 
+\[ 
+\xymatrix{
+M \ar[d] \ar[r]^d &  M \ar[d] \\
+N \ar[r]^{d'} &  N
+}
+\]
+commutes. 
+There is therefore a category of differential modules, and the map $C_* \to
+\bigoplus C_i$ gives a functor from the category of chain complexes to that of
+differential modules.
+
+
+\begin{proposition} A chain map $C_* \to D_*$ induces a map in homology $H_i(C)
+\to H_i(D)$ for each $i$; thus homology is a covariant functor from
 the category of chain complexes to the category of graded
-modules.\end{theorem}
+modules.
+\end{proposition}
+
+More precisely, each $H_i$ is a functor from chain complexes to modules.
 \begin{proof}
 Let $f:C_*\rightarrow D_*$ be a chain map. Let $\partial$ and
 $\partial'$ be the differentials for $C_*$ and $D_*$
@@ -126,6 +176,13 @@ Thus we have that $f$ induces for each $i$ a homomorphism
 $f_i:H_i(C_*)\rightarrow H_i(D_*)$ and hence it induces a
 homomorphism on homology as a graded module. \end{proof}
 
+\begin{exercise} 
+Define the \emph{homology} $H(M)$ of a differential module $(M, d)$ via $\ker d / \im
+d$. Show that $M \mapsto H(M)$ is  a functor from differential modules to
+modules.
+\end{exercise} 
+
+
 \subsection{Long exact sequences}
 \add{OMG! We have all this and not the most basic theorem of them all.}
 
@@ -152,23 +209,35 @@ so by exactness, we see that $H^i(M)\simeq H^i(N)$ if and only if $H^{i-1}(\math
 Cochain complexes are much like chain complexes except the
 arrows point in the
 opposite direction.
-\begin{definition} A cochain complex is a series of modules
-$C^i$ for integer
-values of $i$ (again, it is common that $C^i=0$ for negative
-values of $i$). The
-cochain complex is also equipped with coboundary operators, also
+
+\begin{definition} A \textbf{cochain complex} is a sequence of modules
+$C^i$ for $i \in \mathbb{Z}$ with \textbf{coboundary operators}, also
 called
-differentials, $\partial^i:C^i\rightarrow C^{i+1}$ such that
-$\partial^{i+1}\partial^i=0$. Given a cochain complex $C^*$, we
+\textbf{differentials}, $\partial^i:C^i\rightarrow C^{i+1}$ such that
+$\partial^{i+1}\partial^i=0$. \end{definition}
+
+The theory of cochain complexes is entirely dual to that of chain complexes,
+and we shall not spell it out in detail.
+For instance, we can form a category of cochain complexes and
+\textbf{chain maps} (families of morphisms commuting with the
+differential). Moreover, given a cochain complex $C^*$, we
 define the
-cohomology objects to be
-$h^i(C^*)=\ker(\partial^i)/Im(\partial^{i-1})$.
-\end{definition}
+\textbf{cohomology objects} to be
+$h^i(C^*)=\ker(\partial^i)/Im(\partial^{i-1})$; one obtains cohomology
+functors.
+
+It should be noted that the long exact sequence in cohomology runs in the
+opposite direction. 
+If $0 \to C_*' \to C_* \to C_*'' \to 0$ is a short exact sequence of cochain
+complexes, we get a long exact sequence
+\[ \dots \to H^i(C' ) \to H^i(C) \to H^{i}(C'') \to H^{i+1}(C' ) \to H^{i+1}(C) \to
+\dots.  \]
+
 Similarly, we can also turn cochain complexes and cohomology
 modules into a
 graded module.
 
-
+Let us now give a standard example of a cochain complex.
 \begin{example}[The de Rham complex] Readers unfamiliar with differential
 forms may omit this example. Let $M$ be a smooth manifold. For each $p$, let
 $C^p(M)$ be the $\mathbb{R}$-vector space of smooth $p$-forms on $M$.
@@ -179,6 +248,9 @@ via $\omega \to d \omega$, for $d$ the exterior derivative.
 $M$, and its cohomology is called the \textbf{de Rham cohomology.} It is known
 that the de Rham cohomology is isomorphic to singular cohomology with real
 coefficients. 
+
+It is a theorem, which we do not prove, that the de Rham cohomology is
+isomorphic to the singular cohomology of $M$ with coefficients in $\mathbb{R}$.
 \end{example} 
 
 \subsection{Long exact sequence}
