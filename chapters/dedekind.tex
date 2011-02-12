@@ -376,6 +376,19 @@ One of the reasons Dedekind domains are so important is
 
 This can be generalized to the Krull-Azizuki theorem, cf. \cite{Bo68}.
 
+First let us give an alternate definition to our definition of ``separable''.
+For a finite field extension $k'$ of $k$, we may consider the bilinear pairing
+$k' \otimes_k k' \to k$ given by $x,y \mapsto \Tr_{k'/k}(xy)$. Which is to say $xy \in k'$ can be seen as a $k$-linear map of finite dimensional vector spaces $k' \to k'$, and we are considering the trace of this map. Then we claim that $k'$ is separable if and only if the bilinear pairing $k' \times k' \to k$ is non-degenerate.
+
+To show the above claim, first note that the pairing is non-degenerate if and
+only if it is non-degenerate after tensoring with the algebraic closure. This
+is because if $\Tr(xy)=0$ for all $y \in k'$, then $\Tr((x\otimes
+1_{\overline{k}})y)=0$ for all $y \in k' \otimes_k \overline{k}$, which we may see to be true by decomposing into pure tensors. The other direction is obtained by selecting a basis of $\overline{k}$ over $k$, and then noting that for $y_i$ basis elements, if $\Tr(\sum x y_i)=0$ then $\Tr(xy_i)=0$ for each $i$. 
+
+So now we just need to show that $X=k'  \otimes_k \overline{k}$ is reduced if
+and only if the map $X \otimes_{\overline{k}} X \to \overline{k}$ given by $a \otimes b \mapsto \Tr(ab)$ is non-degenerate. To do this, we show that elements of the kernel of the bilinear map are exactly the nilpotents. But note that $X$ is a finite dimensional algebra over $\overline{k}$, and we may elements as matrices. Then if $\Tr(AB)=0$ for all $B$ if and only if $\Tr(PAP^{-1}PBP^{-1})=0$ for all $B$, so we may assume $A$ is in Upper Triangular Form. From this, the claim becomes clear.
+
+
 \begin{proof}  We need to check that $B$ is Noetherian, integrally, closed, and of dimension 1.
 
 \begin{itemize}
@@ -392,6 +405,8 @@ domains, then $\dim A = \dim B$. This follows essentially from the theorems of
 
 So, consequently the ring of algebraic integers (integral over $\mathbb{Z}$) in a number field (finite extension of $\mathbb{Q}$) is Dedekind.
 \end{proof}
+
+
 
 Note that the above proof actually implied (by the argument about traces) the following useful fact:
 \begin{proposition} Let $A$ be a noetherian integrally domain with quotient field $K$.  Let $L$ be a finite separable extension and $B$ the ring of integers. Then $B$ is a finitely generated $A$-module.

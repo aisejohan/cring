@@ -27,24 +27,24 @@
 
 
 \theoremstyle{definition}
-\newtheorem{thm}{Theorem}[section]
-\newtheorem{cor}[thm]{Corollary}
-\newtheorem{lemma}[thm]{Lemma}
-\newtheorem{propn}[thm]{Proposition}
-\newtheorem{falsepropn}[thm]{False Proposition}
-\newtheorem{propconstr}[thm]{Proposition-Construction}
-\newtheorem{ax}[thm]{Axiom}
-\newtheorem{conj}[thm]{Conjecture}
-\newtheorem{defn}[thm]{Definition}
-\newtheorem{rmk}[thm]{Remark}
-\newtheorem{obs}[thm]{Observation}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{propositionn}[theorem]{Proposition}
+\newtheorem{falsepropn}[theorem]{False Proposition}
+\newtheorem{propconstr}[theorem]{Proposition-Construction}
+\newtheorem{ax}[theorem]{Axiom}
+\newtheorem{conj}[theorem]{Conjecture}
+\newtheorem{defn}[theorem]{Definition}
+\newtheorem{rmk}[theorem]{Remark}
+\newtheorem{obs}[theorem]{Observation}
 
 
 
 \newcommand{\bra}[1]{\left\langle #1 \right|}
 \newcommand{\ket}[1]{\left|#1\right\rangle}
-\renewcommand{\(}{\left(}
-\renewcommand{\)}{\right)}
+\renewcommand{\left(}{\left(}
+\renewcommand{\right)}{\right)}
 
 \newcommand\cc{\mathbb{C}}
 \newcommand\ff{\mathbb{F}}
@@ -101,7 +101,7 @@
 \nc\hearts{\heartsuit}
 \nc\spades{\spadesuit}
 
-\nc\oline{\overline}
+\nc\overline{\overline}
 \nc\height{\text{height}}
 \nc\uline{\underline}
 \nc\supp{\text{supp}}
@@ -163,35 +163,35 @@ This is Math 221: Commutative Algebra as taught by Prof. Gaitsgory at Harvard du
 \subsection{Discrete Valuation Rings (DVRs), Krull Dimension 1}
 
 
-Let $A$ be a Noetherian local domain with maximal ideal $\fm$.
+Let $A$ be a Noetherian local domain with maximal ideal $\mathfrak{m}$.
 
-\begin{defn} We say that $A$ is a discrete valuation ring, or DVR, if $\fm=(\pi)$, that is, if the maximal ideal is principal.
-\end{defn}
+\begin{definition} We say that $A$ is a discrete valuation ring, or DVR, if $\mathfrak{m}=(\pi)$, that is, if the maximal ideal is principal.
+\end{definition}
 
-\begin{lemma} If $A$ is a DVR, then $\dim_{A/\fm}(\fm/\fm^2)=1$.
+\begin{lemma} If $A$ is a DVR, then $\dim_{A/\mathfrak{m}}(\mathfrak{m}/\mathfrak{m}^2)=1$.
 \end{lemma}
-\begin{proof} Note that the image of $\pi$ generates $\fm/\fm^2$ over $A/\fm$, so the dimension is at most 1. However, by Nakayama's Lemma, $\fm/\fm^2$ is not the zero module, so the dimension is 1.
+\begin{proof} Note that the image of $\pi$ generates $\mathfrak{m}/\mathfrak{m}^2$ over $A/\mathfrak{m}$, so the dimension is at most 1. However, by Nakayama's Lemma, $\mathfrak{m}/\mathfrak{m}^2$ is not the zero module, so the dimension is 1.
 \end{proof}
 
 \begin{lemma} For $A$ a DVR, for any $a \in A$, there is a unique $n \in \zz^{\geq 0}$ such that $a=\pi^na_0$ for $a_0$ invertible. We call this $n$ the \uline{order} of $a$.
 \end{lemma}
-\begin{proof} Uniqueness is clear by cancellation, so we seek to establish existence. Let $n$ be the maximal power of $\pi$ that divides $a$. This is finite because $\cap \fm^k=\{0\}$. Then if $a=\pi^na_0$, then $a_0 \not \in \fm$, so $a_0$ is invertible.
+\begin{proof} Uniqueness is clear by cancellation, so we seek to establish existence. Let $n$ be the maximal power of $\pi$ that divides $a$. This is finite because $\cap \mathfrak{m}^k=\{0\}$. Then if $a=\pi^na_0$, then $a_0 \not \in \mathfrak{m}$, so $a_0$ is invertible.
 \end{proof}
 
-\begin{cor} Any DVR is a PID (principal ideal domain).
+\begin{corollary} Any DVR is a PID (principal ideal domain).
 \label{DVR is PID}
-\end{cor}
+\end{corollary}
 \begin{proof} For any ideal $I$, choose an element $a \in I$ of minimal order. Then if $a=\pi^n a_0$ for $a_0$ invertible, then $\pi^n$ divides all elements of $I$, but $\pi^n \in I$, so $I=(\pi^n)$, as desired.
 \end{proof}
 
 The above corollary leads directly to the following one:
 
-\begin{cor} If $A$ is a DVR with maximal ideal $\fm$, then the only prime ideals in $A$ are $\fm$ and $(0)$.
-\end{cor}
+\begin{corollary} If $A$ is a DVR with maximal ideal $\mathfrak{m}$, then the only prime ideals in $A$ are $\mathfrak{m}$ and $(0)$.
+\end{corollary}
 
 
 Now why are they called DVRs? Here is the apparent reason:
-\begin{propn}
+\begin{proposition}
 DVRs are in bijection with fields $K$, equipped with a map $\nu:K \to \zz \cup \{\infty\}$ satisfying the following properties:
 \begin{enumerate}
 \item $\nu(a+b) \geq \min(\nu(a), \nu(b))$ for any $a,b \in K$
@@ -201,12 +201,12 @@ DVRs are in bijection with fields $K$, equipped with a map $\nu:K \to \zz \cup \
 \item $\nu(x)=\infty$ if and only if $x=0$
 \end{enumerate}
 This map is called a valuation.
-\end{propn}
-\begin{proof} Given a discrete valuation ring $A$, take $K=\Frac(A)$ and take $\nu(\pi^na_0)=n$ where $a_0$ is invertible. Conversely, for $K$ take $A$ to be its ring of integers, i.e, $A=\{a \in K| \nu(a) \geq 0\}$. One may check that this is a DVR with $\fm=\{a \in K| \nu(a)>0\}$, because it is clear that any element with valuation 0 is invertible in $A$ and therefore any element of valuation 1 generates $\fm$.
+\end{proposition}
+\begin{proof} Given a discrete valuation ring $A$, take $K=\Frac(A)$ and take $\nu(\pi^na_0)=n$ where $a_0$ is invertible. Conversely, for $K$ take $A$ to be its ring of integers, i.e, $A=\{a \in K| \nu(a) \geq 0\}$. One may check that this is a DVR with $\mathfrak{m}=\{a \in K| \nu(a)>0\}$, because it is clear that any element with valuation 0 is invertible in $A$ and therefore any element of valuation 1 generates $\mathfrak{m}$.
 \end{proof}
 
-\begin{defn} Let $M$ be a module over a domain $A$. We say that $M$ is \underline{torsion-free}, if for any nonzero $a \in A$, $a:M \to M$ is injective. We say that $M$ is \underline{torsion} if for any $m \in M$, there is nonzero $a \in A$ such that $am=0$.
-\end{defn}
+\begin{definition} Let $M$ be a module over a domain $A$. We say that $M$ is \underline{torsion-free}, if for any nonzero $a \in A$, $a:M \to M$ is injective. We say that $M$ is \underline{torsion} if for any $m \in M$, there is nonzero $a \in A$ such that $am=0$.
+\end{definition}
 
 \begin{lemma} For any module finitely generated module $M$ over a Noetherian domain $A$, there is a short exact sequence
 \[0 \rTo M_{tors} \rTo M \rTo M_{tors-free} \rTo 0\]
@@ -224,9 +224,9 @@ where $M_{tors}$ is killed by an element of $A$ and $M_{tors-free}$ is torsion-f
 
 Using this, we will classify modules over DVRs.
 
-\begin{propn} let $M$ be a finitely generated module over a DVR $R$. Then
+\begin{proposition} let $M$ be a finitely generated module over a DVR $R$. Then
 \[M=M_{tors}\oplus R^{\oplus n},\] i.e, where $M_{tors}$ can be annihilated by $\pi^n$ for some $n$.
-\end{propn}
+\end{proposition}
 \begin{proof}
 Set $M_{tors} \subset M$ be as in Lemma \ref{tors tors-free ses} so that $M/M_{tors}$ is torsion-free. Therefore, by Corollary \ref{DVR is PID} and Lemma \ref{PID means flat=tors free} we see that it is flat. But it is over a local ring, so that means that it is free. So we have $M/M_{tors}=R^{\oplus n}$ for some $n$. Furthermore, since $R^{\oplus n}$ is free, it is additionally projective, so the above sequence splits, so
 \[M=M_{tors} \oplus R^{\oplus n}\]
@@ -273,8 +273,8 @@ As mentioned earlier, this lemma concludes our proof of Lemma \ref{dvr fin gen t
 \end{proof}
 
 
-\begin{defn} We say that a Noetherian domain $A$ is of \underline{Krull dimension 1}, if any nonzero prime ideal is maximal.
-\end{defn}
+\begin{definition} We say that a Noetherian domain $A$ is of \underline{Krull dimension 1}, if any nonzero prime ideal is maximal.
+\end{definition}
 
 \begin{lemma} For $A$ a Noetherian domain of Krull dimension 1, for any $I \subset A$ an  non-zero ideal, $A/I$ is Artinian.
 \label{quot of Krull-dim-1 is Artinian}
@@ -306,10 +306,10 @@ The above lemma would not work out without the condition of Krull dimension 1. F
 
 The following proposition will be very useful later in the development of the theory of divisors.
 
-\begin{propn} For a Noetherian domain of Krull dimension 1, nonzero ideals $0 \neq I \subset A$ are in bijection with a collection of nonzero ideals in $A_{\fp}$ for each $\fp$, almost all of which are equal to $A_{\fp}$, i.e.,
+\begin{proposition} For a Noetherian domain of Krull dimension 1, nonzero ideals $0 \neq I \subset A$ are in bijection with a collection of nonzero ideals in $A_{\fp}$ for each $\fp$, almost all of which are equal to $A_{\fp}$, i.e.,
 \[I \subset A \longleftrightarrow \{I_{\fp} \subset A_{\fp} | I_{\fp} =A_{\fp} \text{ for all but finitely many $\fp$}\}.\]
 \label{I correspond to I_p}
-\end{propn}
+\end{proposition}
 \begin{proof} To get from an ideal to a set of $I_{\fp}$ for each $\fp$, we just localize. We need to check that this actually gives us a collection satisfying the desired properties, namely that they are nonzero and $I_{\fp}=A_{\fp}$ for all but finitely many $\fp$. But note that by the flatness of $A_{\fp}$, we have $A_{\fp}/I_{\fp}=(A/I)_{\fp}$, and $(A/I)_{\fp} \neq 0$ only when $\fp$ is in the support of $(A/I)$, but by Lemma \ref{quot of Krull-dim-1 is Artinian}, we see that this only happens for finitely many $\fp$. So $(A/I)_{\fp} =0 $ for all but finitely many $\fp$. We now just need that they are nonzero. But this is true, because since $I$ is an ideal, the annihilator of $I$ is 0, so the $\supp(I)=\Spec(A)$, so none of the localizations are 0.
 
 Now let us construct a map in the other direction. For a collection  of nonzero ideals $I_{\fp} \subset A_{\fp}$, almost all $A_{\fp}$, and we claim that the natural map
@@ -329,13 +329,13 @@ It is easy to see that the maps we have constructed in the two directions are in
 
 \subsection{Dedekind Domains}
 
-\begin{defn} We say that a ring $A$ is a \uline{Dedekind Domain} if
+\begin{definition} We say that a ring $A$ is a \uline{Dedekind Domain} if
 \begin{enumerate}
 \item $A$ is Noetherian of Krull dimension 1
 
 \item For any non-zero prime $\fp \in \Spec(A)$, $A_\fp$ is a DVR.
 \end{enumerate}
-\end{defn}
+\end{definition}
 
 For example, note that $\zz$ and $k[t]$ are Dedekind. In fact, any PID is Dedekind: it is easy to check that a PID is Noetherian; it has Krull dimension 1 because every prime ideal is $(a)$ for some $a$ irreducible, so if $(a) \subset(b)$ for some other ideal $b$, then $b|a$, so if $b$ is not a unit then it is off from $a$ by a unit; lastly, a localization of a principal ideal domain $A$ at prime ideal $(a)$ is such that the maximal ideal $(a)_{(a)}$ is generated by the image of $a$, so the unique maximal ideal is principal, so $A_{(a)}$ is a DVR, as desired.
 
@@ -344,10 +344,10 @@ So we have that all PIDs are Dedekind domains. However, not all Dedekind domains
 
 Let us now consider some properties of Dedekind domains.
 
-\begin{propn} Let $A$ be a Dedekind domain, and let $M$ be a finitely generated $A$ module. Then
+\begin{proposition} Let $A$ be a Dedekind domain, and let $M$ be a finitely generated $A$ module. Then
 $M$ is projective (or equivalently flat, or locally free) if and only if it is torsion-free.
 \label{Dedekind means projective=tors free}
-\end{propn}
+\end{proposition}
 \begin{proof}
 If $M$ is projective, then it is a direct summand of a free module, so it is torsion-free. So we need to show that if $M$ is torsion-free, then it is projective. Recall that to show $M$ is projective, it suffices to show that $M_\fp$ is projective for any prime $\fp \subset M$. But note that $A_\fp$ is a PID so a module over it is torsion free if and only if it is flat, by Lemma \ref{PID means flat=tors free}. However, it is also a local Noetherian ring, so a module is flat if and only if it is projective. So $M_\fp$ is projective if and only if it is torsion-free, so it now suffices to show that it is torsion-free.
 
@@ -357,9 +357,9 @@ then there is $t$ such that $tam=0$,
 as desired.
 \end{proof}
 
-\begin{propn}
+\begin{proposition}
 Let $A$ be a Dedekind domain. Then any finitely generated module $M$ over it has (not canonically) a decomposition $M=M^{tors} \oplus M^{tors-free}$.
-\end{propn}
+\end{proposition}
 \begin{proof}
 Note that by Lemma \ref{tors tors-free ses}, we have a short exact sequence
 \[ 0 \rTo M^{tors} \rTo M \rTo M^{tors-free} \rTo 0\]
@@ -401,25 +401,25 @@ but this is one-dimensional as a free $K$ module, so the rank is 1, as desired.
 
 \subsection{Divisors and Fractional Ideals}
 
-\begin{defn} For a ring $A$, a \uline{divisor} is a formal linear combination of the prime ideals of $A$.
+\begin{definition} For a ring $A$, a \uline{divisor} is a formal linear combination of the prime ideals of $A$.
 \[D=\sum_{\fp} n_{\fp} \cdot \fp\]
 where $n_{\fp} \in \zz$, and almost all $n_{\fp}$ are zero. They clearly form an abelian group. This \uline{group of divisors} is called $\Div(A)$.
 
 An \uline{effective divisor} is a divisor $\sum n_{\fp} \fp$ such that for all $\fp \in \Spec(A)$, $n_\fp \geq 0$. The set of effective divisors is denoted $\Div^+(A)$.
-\end{defn}
+\end{definition}
 
 
 
 \begin{lemma} To specify a non-zero ideal in a Dedekind domain is the same as to specify an effective divisor.
 \label{Dedekind means nonzero ideals are effective divisors}
 \end{lemma}
-\begin{proof} To specify a non-zero ideal, by Proposition \ref{I correspond to I_p}, is the same as to specify some collection of non-zero ideals $I_{\fp} \subset A_{\fp}$, where all but finitely many of them are $A_{\fp}$. But note that $A_{\fp}$ is a DVR, so $I_{\fp}=\fm_{\fp}^{n_\fp}$ for some $n_{\fp}$, where the $n_{\fp}$ are clearly non-negative, and almost all the $n_{\fp}$ are zero, since almost all the $I_{\fp}$ are $A_{\fp}$. Therefore we may consider mapping the ideal to $\sum n_{\fp} \fp$ and it is easy to see that this is a bijection between ideals of $A$ and effective divisors.
+\begin{proof} To specify a non-zero ideal, by Proposition \ref{I correspond to I_p}, is the same as to specify some collection of non-zero ideals $I_{\fp} \subset A_{\fp}$, where all but finitely many of them are $A_{\fp}$. But note that $A_{\fp}$ is a DVR, so $I_{\fp}=\mathfrak{m}_{\fp}^{n_\fp}$ for some $n_{\fp}$, where the $n_{\fp}$ are clearly non-negative, and almost all the $n_{\fp}$ are zero, since almost all the $I_{\fp}$ are $A_{\fp}$. Therefore we may consider mapping the ideal to $\sum n_{\fp} \fp$ and it is easy to see that this is a bijection between ideals of $A$ and effective divisors.
 \end{proof}
-\begin{rmk} Note that if $A$ is a Dedekind domain, then $A_{\fp}$ is a DVR, so we may consider the corresponding valuation,
+\begin{remark} Note that if $A$ is a Dedekind domain, then $A_{\fp}$ is a DVR, so we may consider the corresponding valuation,
 \[\nu_{\fp}:\Frac(A_{\fp}) \to \zz\]
 but note that $\Frac(A_{\fp})=\Frac(A)$, so we can see it as $\nu_{\fp}:K \to \zz$. where $K=\Frac(A)$.
 \label{valuations remark}
-\end{rmk}
+\end{remark}
 
 \begin{lemma} With $\nu_{\fp}:K^* \to \zz$ defined as in the above remark, $A=\{a \in K| \nu_{\fp}(a) \geq 0\}$. Also, the ideal in $A$ corresponding to the effective divisor $D= \sum n_{\fp} \fp$ in Lemma \ref{Dedekind means nonzero ideals are effective divisors} is actually the ideal
 \[I_D=\{a \in A| \nu_{\fp}(a) \geq n_{\fp}\}.\]
@@ -432,8 +432,8 @@ but note that $\Frac(A_{\fp})=\Frac(A)$, so we can see it as $\nu_{\fp}:K \to \z
 So we have shown (Lemma \ref{Dedekind means ideals=eff div, valuations version}) that effective divisors are in bijection with ideals in $A$, with the ideal corresponding to $\sum n_{\fp} \fp$ being $\{a \in K|\nu_{\fp}(a) \geq n_{\fp}\}$, where the effectiveness of the divisor ensures that this submodule of $K$ is actually an ideal of $A$. This suggests that we may want to consider relating divisors directly with submodules of $K$, so let us prepare to do this.
 
 
-\begin{defn} Given a Dedekind domain $A$, \uline{fractional ideal} is a nonzero $A$-submodule $\cL \subset K$, which is finitely generated as an $A$ module.
-\end{defn}
+\begin{definition} Given a Dedekind domain $A$, \uline{fractional ideal} is a nonzero $A$-submodule $\cL \subset K$, which is finitely generated as an $A$ module.
+\end{definition}
 
 
 
@@ -471,10 +471,10 @@ which gives us a way of seeing $\cL$ as a submodule of $K$, and it is easy to ch
 
 Now, as promised before we will show the correspondence between divisors and fractional ideals
 
-\begin{thm} There is a canonical bijection of sets between
+\begin{theorem} There is a canonical bijection of sets between
 \[\text{fractional ideals} \leftrightarrows \text{divisors}\]
 \label{frac ideals = divs}
-\end{thm}
+\end{theorem}
 \begin{proof}
 $\\$
 \noindent{($\longleftarrow$)} To get from a divisor to a fractional ideal: For a divisor $D=\sum n_{\fp}\fp$, consider the set
@@ -503,18 +503,18 @@ DG: Another question you may ask is ``why the hell are we talking about this?''
 This section will show why it is interesting to consider Dedekind domains-- we will show that many rings that people might be interested in are Dedekind.
 
 
-\begin{defn} For $A$ a domain and $K$ its field of fractions, the \uline{integral closure} of $A$ in $K$, denoted $A_{int}$ is defined to be the subalgebra of $K$ formed by elements which are integral over $A$. More generally for $A \subset K \subset K'$ for any other field $K'$, the \uline{integral closure} of $A$ in $K'$ is defined to be the set of elements of $K'$ which are integral over $A$. (Recall that for $A \to B$, an element of $b \in B$ is \uline{integral} over $A$ if $b$ satisfies a monic polynomial in $A$, or equivalently, if the image of $A[x] \to B$ given by mapping $x$ to $b$ is finite as an $A$ module).
-\end{defn}
+\begin{definition} For $A$ a domain and $K$ its field of fractions, the \uline{integral closure} of $A$ in $K$, denoted $A_{int}$ is defined to be the subalgebra of $K$ formed by elements which are integral over $A$. More generally for $A \subset K \subset K'$ for any other field $K'$, the \uline{integral closure} of $A$ in $K'$ is defined to be the set of elements of $K'$ which are integral over $A$. (Recall that for $A \to B$, an element of $b \in B$ is \uline{integral} over $A$ if $b$ satisfies a monic polynomial in $A$, or equivalently, if the image of $A[x] \to B$ given by mapping $x$ to $b$ is finite as an $A$ module).
+\end{definition}
 
 
 
-\begin{defn} We say that $A$ is integrally closed if $A$ is its own integral closure in $K$.
-\end{defn}
+\begin{definition} We say that $A$ is integrally closed if $A$ is its own integral closure in $K$.
+\end{definition}
 
 
-\begin{thm} Let $A$ be a local Noetherian domain of Krull dimension 1. Then $A$ is a DVR if and only if it is integrally closed.
+\begin{theorem} Let $A$ be a local Noetherian domain of Krull dimension 1. Then $A$ is a DVR if and only if it is integrally closed.
 \label{loc Noeth dom, Krull d1, means DVR iff int closed}
-\end{thm}
+\end{theorem}
 \begin{proof}
 
 $\\$
@@ -529,13 +529,13 @@ but
 \[\nu(a_{n-1}x^{n-1}+ \cdots +a_0) \geq -(n-1)(a)\]
 a contradiction. So $\nu(x) \geq 0$, so $x \in A$.
 
-\noindent{\uline{Integrally closed $\implies$ DVR}} We want to show that the maximal ideal $\fm$ is principal. Take $a \in \fm$. Then by Lemma \ref{quot of Krull-dim-1 is Artinian} $A/(a)A$ is Artinian, so there is some $k$ such that $\fm^k \subset (a)$. Let $k$ be the minimum such integer. Consider $b \in \fm^{k-1}$ such that $b \not \in (a)$. Then consider $y=\frac{b}{a} \not \in A$.
+\noindent{\uline{Integrally closed $\implies$ DVR}} We want to show that the maximal ideal $\mathfrak{m}$ is principal. Take $a \in \mathfrak{m}$. Then by Lemma \ref{quot of Krull-dim-1 is Artinian} $A/(a)A$ is Artinian, so there is some $k$ such that $\mathfrak{m}^k \subset (a)$. Let $k$ be the minimum such integer. Consider $b \in \mathfrak{m}^{k-1}$ such that $b \not \in (a)$. Then consider $y=\frac{b}{a} \not \in A$.
 
-We shall show that $y^{-1} \in \fm$ generates $\fm$. This would prove that $\fm$ is principal.
+We shall show that $y^{-1} \in \mathfrak{m}$ generates $\mathfrak{m}$. This would prove that $\mathfrak{m}$ is principal.
 
-Consider $y\fm \subset K$, and note that $y \fm \subset A$. This is because $b \fm \subset (a)$, so $\frac{b}{a} \fm \subset (1)=A$. $y \fm$ is clearly an $A$ submodule of $K$, so since it is in $A$, it is an ideal of $A$. Note that if we could show $y \fm \not\subset \fm$, then $y\fm$ is an ideal that is not contained in the maximal ideal, so it must be $A$, so $y \fm=A$, so $\fm=y^{-1}A$, and we would be done.
+Consider $y\mathfrak{m} \subset K$, and note that $y \mathfrak{m} \subset A$. This is because $b \mathfrak{m} \subset (a)$, so $\frac{b}{a} \mathfrak{m} \subset (1)=A$. $y \mathfrak{m}$ is clearly an $A$ submodule of $K$, so since it is in $A$, it is an ideal of $A$. Note that if we could show $y \mathfrak{m} \not\subset \mathfrak{m}$, then $y\mathfrak{m}$ is an ideal that is not contained in the maximal ideal, so it must be $A$, so $y \mathfrak{m}=A$, so $\mathfrak{m}=y^{-1}A$, and we would be done.
 
-Thus, to prove this theorem, it now suffices to show $y \fm \not \subset \fm$. We proceed by contradiction: if $y\fm \subset \fm$, then apply the next lemma, Lemma \ref{lem for thm DVR iff int clos}, where $B=A$, $M=\fm$ and $T=y$, and we see that there are $a_0, \ldots a_{n-1} \in A$ such that
+Thus, to prove this theorem, it now suffices to show $y \mathfrak{m} \not \subset \mathfrak{m}$. We proceed by contradiction: if $y\mathfrak{m} \subset \mathfrak{m}$, then apply the next lemma, Lemma \ref{lem for thm DVR iff int clos}, where $B=A$, $M=\mathfrak{m}$ and $T=y$, and we see that there are $a_0, \ldots a_{n-1} \in A$ such that
 \[y^n+a_{n-1}y^{n-1}+\cdots+a_0=0.\]
 But then since $A$ is integrally closed, $y \in A$, a contradiction.
 \end{proof}
@@ -575,7 +575,7 @@ To do this we will show inclusions in both directions:
 and $s \in S$, and we want to show $\frac{b}{s} \in (A_S)_{int}$.
 
 But note that
-\[\(\frac{b}{s}\)^n+\frac{a_{n-1}}{s}\(\frac{b}{s}\)^{n-1}+ \cdots+ \frac{a_0}{s^n}=0\]
+\[\left(\frac{b}{s}\right)^n+\frac{a_{n-1}}{s}\left(\frac{b}{s}\right)^{n-1}+ \cdots+ \frac{a_0}{s^n}=0\]
 so $\frac{b}{s}$ satisfies a monic polynomial with coefficients in $A_S$, as desired.
 
 
@@ -587,9 +587,9 @@ then let $a_i'=\frac{a_i}{s_i}$ for $a_i \in A$. Then take $b=b' \prod s_i$, and
 
 Now let us proceed to the global version of Theorem \ref{loc Noeth dom, Krull d1, means DVR iff int closed}.
 
-\begin{thm} Let $A$ be a Noetherian domain of Krull dimension 1. Then $A$ is Dedekind if and only if it is integrally closed.
+\begin{theorem} Let $A$ be a Noetherian domain of Krull dimension 1. Then $A$ is Dedekind if and only if it is integrally closed.
 \label{Noeth dom, Krull D1, then Dedekind iff int clos}
-\end{thm}
+\end{theorem}
 \begin{proof} Suppose that $A$ is Dedekind. We want to show it is integrally closed. Consider $A \subset A_{int} \subset K$, and we want to show that $A \subset A_{int}$ is an isomorphism. It suffices to show that it is an isomorphism after all localizations at prime ideals. So it suffices to show that $A_\fp =(A_{int})_\fp$. By Lemma \ref{localize int. closure}, $(A_{int})_\fp=(A_\fp)_{int}$. But note that since $A$ is Dedekind, $A_\fp$ is a DVR, so applying Theorem \ref{loc Noeth dom, Krull d1, means DVR iff int closed}, it is integrally closed, so $A_\fp=(A_\fp)_{int}$, as desired.
 
 Now suppose $A$ is integrally closed. We want to show it is Dedekind, which means we need to show that its localizations are DVRs. By Theorem \ref{loc Noeth dom, Krull d1, means DVR iff int closed} it suffices to show that the localizations are integrally closed. But this also follows from the above lemma.
@@ -599,11 +599,11 @@ Now suppose $A$ is integrally closed. We want to show it is Dedekind, which mean
 
 Here we get to the crux of this section: showing that many rings one may be interested in are Dedekind. 
 
-First let us recall that a field extension $k'$ of $k$ is called separable if $\oline{k} \uset{k}\otimes k'$ is a reduced algebra over $\oline{k}$, where $\oline{k}$ is the algebraic closure of $k$. In the ramblings around Theorem \ref{dmn over alg clos k, exists open of smooths}, we see that all field extensions of a field of characteristic 0 are separable.
+First let us recall that a field extension $k'$ of $k$ is called separable if $\overline{k} \uset{k}\otimes k'$ is a reduced algebra over $\overline{k}$, where $\overline{k}$ is the algebraic closure of $k$. In the ramblings around Theorem \ref{dmn over alg clos k, exists open of smooths}, we see that all field extensions of a field of characteristic 0 are separable.
 
-\begin{thm} Let $A$ be a Dedekind domain, and let $K$ be its field of fractions. Let $K'$ be a finite separable field extension . Let $A'$ be the integral closure of $A$ in $K'$. Then $A'$ is Dedekind.
+\begin{theorem} Let $A$ be a Dedekind domain, and let $K$ be its field of fractions. Let $K'$ be a finite separable field extension . Let $A'$ be the integral closure of $A$ in $K'$. Then $A'$ is Dedekind.
 \label{ring of ints in field ext of Dedek is Dedek}
-\end{thm}
+\end{theorem}
 
 Before we prove the theorem, we provide some applications
 
@@ -657,9 +657,9 @@ Now we have shown how the theorem results from the lemma, so let us prove the le
 
 First let us give an alternate definition to our definition of ``separable''. For a finite field extension $k'$ of $k$, we may consider the bilinear pairing $k' \uset{k}\otimes k' \to k$ given by $x,y \mapsto \Tr_{k'/k}(xy)$. Which is to say $xy \in k'$ can be seen as a $k$-linear map of finite dimensional vector spaces $k' \to k'$, and we are considering the trace of this map. Then we claim that $k'$ is separable if and only if the bilinear pairing $k' \times k' \to k$ is non-degenerate.
 
-To show the above claim, first note that the pairing is non-degenerate if and only if it is non-degenerate after tensoring with the algebraic closure. This is because if $\Tr(xy)=0$ for all $y \in k'$, then $\Tr((x\otimes 1_{\oline{k}})y)=0$ for all $y \in k' \uset{k}\otimes \oline{k}$, which we may see to be true by decomposing into pure tensors. The other direction is obtained by selecting a basis of $\oline{k}$ over $k$, and then noting that for $y_i$ basis elements, if $\Tr(\sum x y_i)=0$ then $\Tr(xy_i)=0$ for each $i$. 
+To show the above claim, first note that the pairing is non-degenerate if and only if it is non-degenerate after tensoring with the algebraic closure. This is because if $\Tr(xy)=0$ for all $y \in k'$, then $\Tr((x\otimes 1_{\overline{k}})y)=0$ for all $y \in k' \uset{k}\otimes \overline{k}$, which we may see to be true by decomposing into pure tensors. The other direction is obtained by selecting a basis of $\overline{k}$ over $k$, and then noting that for $y_i$ basis elements, if $\Tr(\sum x y_i)=0$ then $\Tr(xy_i)=0$ for each $i$. 
 
-So now we just need to show that $X=k' \uset{k} \otimes \oline{k}$ is reduced if and only if the map $X \uset{\oline{k}}\otimes X \to \oline{k}$ given by $a \otimes b \mapsto \Tr(ab)$ is non-degenerate. To do this, we show that elements of the kernel of the bilinear map are exactly the nilpotents. But note that $X$ is a finite dimensional algebra over $\oline{k}$, and we may elements as matrices. Then if $\Tr(AB)=0$ for all $B$ if and only if $\Tr(PAP^{-1}PBP^{-1})=0$ for all $B$, so we may assume $A$ is in Upper Triangular Form. From this, the claim becomes clear.
+So now we just need to show that $X=k' \uset{k} \otimes \overline{k}$ is reduced if and only if the map $X \uset{\overline{k}}\otimes X \to \overline{k}$ given by $a \otimes b \mapsto \Tr(ab)$ is non-degenerate. To do this, we show that elements of the kernel of the bilinear map are exactly the nilpotents. But note that $X$ is a finite dimensional algebra over $\overline{k}$, and we may elements as matrices. Then if $\Tr(AB)=0$ for all $B$ if and only if $\Tr(PAP^{-1}PBP^{-1})=0$ for all $B$, so we may assume $A$ is in Upper Triangular Form. From this, the claim becomes clear.
 
 
 Now, pick a basis $\{e_i\}$ of $K'$ over $K$. Let us scale each $e_i$ to make it in  $A'$. (We may do this because $K'=A' \uset{A}\otimes K$. Then the non-degenerate bilinear map $\la - , - \ra$ given by considering the trace gives a dual basis $\{d_i\}$, where $\la d_i, e_j \ra=\delta_{ij}$. Then note that
@@ -672,9 +672,9 @@ and $be_i \in A'$, \textbf{so it suffices to show that for any element in $A'$, 
 
 Well consider $\alpha \in A'$, and we want to show that the trace of $\alpha:K' \to K'$ is in $A$. By definition of $A'$ there are $a_{n-1}, \ldots a_0 \in A$, such that
 \[P(\alpha)=\alpha^n+a_{n-1}\alpha^{n-1}+ \cdots +a_0=0.\]
-Now consider $\alpha$ as a matrix. Then let us consider $\alpha:K' \otimes \oline{K} \to K' \otimes \oline{K}$ of $\oline{K}$ vector spaces. Then it still satisfies $P(\beta)=0$.
+Now consider $\alpha$ as a matrix. Then let us consider $\alpha:K' \otimes \overline{K} \to K' \otimes \overline{K}$ of $\overline{K}$ vector spaces. Then it still satisfies $P(\beta)=0$.
 
-Let $\beta$ be an upper triangular matrix which is conjugate to $\alpha$ as a map of $\oline{K}$ vector spaces. Then note that $\beta$ satisfies the same polynomial as $\alpha$, and the trace of $\beta$ is equal to that of $\alpha$, so we now just need to show that the trace of $\beta$ is in $A$. But since $\beta$ is upper triangular, every diagonal entry of $\beta$ also satisfies $P$, so they are all in the integral closure of $A$ in $\oline{K}$. Thus, their sum is also in this integral closure. But their sum is the trace of $\alpha$, which we know is in $K$, so it is in the intersection of $K$ with the integral closure of $A$ in $\oline{K}$, but since $A$ is Dedekind, this means that it is in $A$, as desired.
+Let $\beta$ be an upper triangular matrix which is conjugate to $\alpha$ as a map of $\overline{K}$ vector spaces. Then note that $\beta$ satisfies the same polynomial as $\alpha$, and the trace of $\beta$ is equal to that of $\alpha$, so we now just need to show that the trace of $\beta$ is in $A$. But since $\beta$ is upper triangular, every diagonal entry of $\beta$ also satisfies $P$, so they are all in the integral closure of $A$ in $\overline{K}$. Thus, their sum is also in this integral closure. But their sum is the trace of $\alpha$, which we know is in $K$, so it is in the intersection of $K$ with the integral closure of $A$ in $\overline{K}$, but since $A$ is Dedekind, this means that it is in $A$, as desired.
 
 
 
@@ -691,9 +691,9 @@ Let $\beta$ be an upper triangular matrix which is conjugate to $\alpha$ as a ma
 
 \subsection{The Picard Group}
 
-\begin{defn}
+\begin{definition}
 For $A$ a Dedekind domain, define $\Pic(A)$ to be the set of isomorphism classes of finitely generated locally free $A$ modules of rank 1.
-\end{defn}
+\end{definition}
 
 Note that $\Pic(A)$ forms a semigroup with the multiplication given by
 \[(\cL_1, \cL_2) \mapsto \cL_1 \uset{A}\otimes \cL_2.\]
@@ -703,7 +703,7 @@ This semi-group is in fact a group. To show this, it suffices to show that $\Hom
 \[\cL \uset{A}\otimes \Hom_A(\cL,A) \simeq A\]
 which was problem set 10, problem 1a.
 
-\begin{defn} For $A$ a Dedekind domain, denote $\wtl{\Pic}(A)$ to be the set of isomorphism classes of $(\cL,\alpha)$ where $\cL$ is a finitely generated locally free $A$ module of rank 1 and $\alpha$ is an isomorphism $\alpha:\cL \uset{A}\otimes K \simeq K$, and where two such are considered isomorphic if there is an isomorphism $\phi:\cL_1 \to \cL_2$ between them, such that
+\begin{definition} For $A$ a Dedekind domain, denote $\wtl{\Pic}(A)$ to be the set of isomorphism classes of $(\cL,\alpha)$ where $\cL$ is a finitely generated locally free $A$ module of rank 1 and $\alpha$ is an isomorphism $\alpha:\cL \uset{A}\otimes K \simeq K$, and where two such are considered isomorphic if there is an isomorphism $\phi:\cL_1 \to \cL_2$ between them, such that
 \begin{diagram}
 \cL_1 \uset{A}\otimes K & \rTo^{\phi} & \cL_2 \uset{A}\otimes K\\
 \dTo^{\alpha_1} & \ldTo^{\alpha_2} & \\
@@ -717,9 +717,9 @@ Alternately, similarly to in Lemma \ref{frac ideals 2nd def} we may define $\wtl
 K & & \\
 \end{diagram}
 commutes.
-\end{defn}
+\end{definition}
 
-\begin{rmk}
+\begin{remark}
 Note that we may define a multiplication structure on $\wtl{\Pic}(A)$ also, given by
 \[(\cL_1,\alpha_1) \cdot (\cL_2, \alpha_2)=(\cL_1 \uset{A}\otimes \cL_2, \alpha)\]
 where $\alpha:K \uset{A}\otimes \cL_1 \uset{A}\otimes \cL_2 \to K$ is $\alpha_2 \circ (\alpha_1 \otimes Id_{\cL_2})$.
@@ -730,7 +730,7 @@ where $\psi$ is the composed map
 \[K \otimes Hom_A(\cL,A) \rTo Hom_K(\cL \otimes K,K) \oset{- \circ \alpha^{-1}} \rTo Hom_K(K,K) \rTo K\]
 \label{pictilde mult struct}
 where the first map is given by Problem Set 5, Problem 2, since tensoring $K$ is the same as localizing at $(0)$, and it is an isomorphism by Problem Set 5, Problem 2c. The last map is just the canonical map. We check that this is the inverse of $(\cL,\phi)$ in Problem Set 10, Problem 1b.
-\end{rmk}
+\end{remark}
 
 \begin{lemma} There is an isomorphism of groups
 \[\Div(A) \rTo^\sim \wtl{\Pic}(A).\]
@@ -777,10 +777,10 @@ but note that $\phi_1^{-1}\phi_2$ is an isomorphism of $A$ modules from $A$ to $
 
 
 
-\begin{propn} There is a short exact sequence
+\begin{proposition} There is a short exact sequence
 \[0 \rTo K^*/A^* \rTo \wtl{\Pic}(A) \rTo \Pic(A) \rTo 0\]
 where $A^*$ denotes the subset of $A$ consisting of invertible elements.
-\end{propn}
+\end{proposition}
 \begin{proof}
 The proof of this lies in the pre-amble.
 \end{proof}
@@ -800,8 +800,8 @@ which was shown to be finitely generated in Theorem \ref{frac ideals = divs}, an
 \begin{proof} That the right square commutes is clear by chasing through our map $\Div(A) \to \wtl{\Pic}(A)$ from Lemma \ref{div is pictilde}. That the right square commutes is the content of problem Set 10, Problem 3.
 \end{proof}
 
-\begin{defn} Divisors in the image of $\alpha$ in the above lemma are called \uline{principal divisors}.
-\end{defn}
+\begin{definition} Divisors in the image of $\alpha$ in the above lemma are called \uline{principal divisors}.
+\end{definition}
 
 It is shown in Problem Set 10, Problem 2 that the Dedekind domain $A$ is a Principal Ideal Domain if and only if $\alpha$ is surjective, i.e, if all divisors are principal.
 
@@ -837,36 +837,36 @@ It is shown in Problem Set 10, Problem 2 that the Dedekind domain $A$ is a Princ
 
 \subsubsection{Filtered and Graded Abelian Groups}
 Let $M$ be an abelian group.
-\begin{defn} A \underline{filtration} $\Fil(M)$ on $M$ is a sequences of submodules
+\begin{definition} A \underline{filtration} $\Fil(M)$ on $M$ is a sequences of submodules
 \[\cdots \subseteq M_{i-1} \subseteq M_i \subseteq M_{i+1} \subseteq \cdots\]
 of $M$ which satisfy:
 \begin{enumerate}
 \item $\cup M_i=M$
 \item There exists $i_0$ such that if $i<i_0$ then $M_i=0$. (We shall henceforth denote ``There exists $i_0$ such that if $i<i_0$ then $P$ holds" by ``For $i \ll 0$, $P$ holds).
 \end{enumerate}
-\end{defn}
+\end{definition}
 
-\begin{defn} Given filtrations on $\cdots \subseteq M_{i-1} \subseteq M_i \subseteq M_{i+1} \subseteq \cdots $ of $M$ and $\cdots \subseteq N_{i-1} \subseteq N_i \subseteq N_{i+1} \subseteq \cdots$ of $N$ a map $\phi:M \to N$ is called \underline{compatible with filtrations} if for any $m \in M_i$, $\phi(m) \in N_i$. We may alternately call $\phi$ a map of filtered abelian groups.
-\end{defn}
+\begin{definition} Given filtrations on $\cdots \subseteq M_{i-1} \subseteq M_i \subseteq M_{i+1} \subseteq \cdots $ of $M$ and $\cdots \subseteq N_{i-1} \subseteq N_i \subseteq N_{i+1} \subseteq \cdots$ of $N$ a map $\phi:M \to N$ is called \underline{compatible with filtrations} if for any $m \in M_i$, $\phi(m) \in N_i$. We may alternately call $\phi$ a map of filtered abelian groups.
+\end{definition}
 
-\begin{defn} \underline{Induced Filtrations}:
+\begin{definition} \underline{Induced Filtrations}:
 
 Given a filtration $\cdots \subseteq M_{i-1} \subseteq M_i \subseteq M_{i+1} \subseteq \cdots$ on $M$ and an abelian group $N \subset M$, the induced filtration on $N$ is defined by $N_i=M_i \cap N$.
 
 Given a filtration $\cdots \subseteq M_{i-1} \subseteq M_i \subseteq M_{i+1} \subseteq \cdots$ on $M$, an abelian group $N$ and a surjection $\phi:M \to N$, the induced filtration on $N$ is defined to be $N_i=\phi(M_i)$.
 
 It is easy to check that these are filtrations.
-\end{defn}
+\end{definition}
 
 
 
-\begin{defn} A \underline{graded abelian group} is $M=\uset{i \in \zz}\oplus M^i$ where $M^i=0$ for $i\ll0$.
+\begin{definition} A \underline{graded abelian group} is $M=\uset{i \in \zz}\oplus M^i$ where $M^i=0$ for $i\ll0$.
 
 To a graded abelian group we may associate a filtered abelian group by $M_i=\uset{j \leq i}M^j$.
 
 To a filtered abelian group we may consider the \underline{associated graded} abelian group given by
 \[\gr^i(M)=M_i/M_{i-1}.\]
-\end{defn}
+\end{definition}
 
 Note that for a map of filtered abelian groups $\phi:M \to N$, since $\phi(M_i)\subset N_i$ and $\phi(M_{i-1})\subset N_{i-1}$, we have $\phi$ induces a map $M_i/M_{i-1} \to N_i/N_{i-1}$. Thus we may consider $\gr(\phi):\gr(M) \to \gr(N)$.
 
@@ -896,20 +896,20 @@ We may similarly show that if we have a filtered abelian group $M$ and $\phi: M 
 
 \subsubsection{Filtered and Graded Rings and Modules}
 
-\begin{defn} A \underline{graded ring} is a ring $A$ that may be written as $A=\uset{i \in \zz \atop i \geq 0}\oplus A^i$ such that the multiplication map sends $A^i \times A^j \to A^{i+j}$.
-\end{defn}
+\begin{definition} A \underline{graded ring} is a ring $A$ that may be written as $A=\uset{i \in \zz \atop i \geq 0}\oplus A^i$ such that the multiplication map sends $A^i \times A^j \to A^{i+j}$.
+\end{definition}
 
-\begin{defn} A \ul{filtered ring} is a ring $A$ with a filtration of abelian groups $A_0 \subseteq A_1 \subseteq \cdots$ such that multiplication sends $A_i \times A_j \to A_{i+j}$
-\end{defn}
+\begin{definition} A \ul{filtered ring} is a ring $A$ with a filtration of abelian groups $A_0 \subseteq A_1 \subseteq \cdots$ such that multiplication sends $A_i \times A_j \to A_{i+j}$
+\end{definition}
 
 Note that for a filtered ring we may consider the associated graded as abelian groups. This is naturally a graded ring because we may consider the map $A_i/A_{i-1} \otimes A_j/A_{j-1} \to A_{i+j}/A_{i+j-1}$, induced by the map $A_i \otimes A_j \to A_{i+j}$.
 
 
-\begin{defn} A \underline{graded module} over a graded ring is a module $M$ that may be written as $M=\uset{i \in \zz}\oplus M^i$ with $M^i=0$ for $i\ll 0$ such that $A^iM^j \subset M^{j+i}$. We may alternatively write this is $A^i \otimes M^j \to M^{j+i}$
-\end{defn}
+\begin{definition} A \underline{graded module} over a graded ring is a module $M$ that may be written as $M=\uset{i \in \zz}\oplus M^i$ with $M^i=0$ for $i\ll 0$ such that $A^iM^j \subset M^{j+i}$. We may alternatively write this is $A^i \otimes M^j \to M^{j+i}$
+\end{definition}
 
-\begin{defn} A \ul{filtered module} over a filtered ring $A$ is a module $M$ with a filtration of abelian groups $\cdots M{i-1} \subseteq M_i \subseteq \cdots$ such that the action acts as $A_i \otimes M_j \to M_{i+j}$
-\end{defn}
+\begin{definition} A \ul{filtered module} over a filtered ring $A$ is a module $M$ with a filtration of abelian groups $\cdots M{i-1} \subseteq M_i \subseteq \cdots$ such that the action acts as $A_i \otimes M_j \to M_{i+j}$
+\end{definition}
 
 Note that for $M$ a filtered module over a filtered ring $A$, $\gr(M)$ is naturally a graded module over $\gr(A)$. Consider the following lemma relating finite generation of the associated graded of a module to finite generation of the original module.
 
@@ -927,8 +927,8 @@ is surjective, so the original map is surjective, which means that the $m_j$ gen
 
 This lemma gives us a corollary which, along with considering finitely generated algebras over Noetherian rings, is one of the best ways to create Noetherian rings. Thus, Prof. Gaitsgory says that it is ``pretty damn useful".
 
-\begin{cor} Let $A$ be a filtered ring such that $\gr(A)$ is Noetherian. Then $A$ is Noetherian.
-\end{cor}
+\begin{corollary} Let $A$ be a filtered ring such that $\gr(A)$ is Noetherian. Then $A$ is Noetherian.
+\end{corollary}
 \begin{proof} Consider some ideal $I \subset A$ with the induced filtration. Then $\gr(I) \subset \gr(A)$ is an ideal so $\gr(I)$ is finitely generated over $\gr(A)$, so applying the above lemma $I$ is finitely generated over $A$, as desired.
 \end{proof}
 
@@ -937,8 +937,8 @@ This lemma gives us a corollary which, along with considering finitely generated
 
 Let $A$ be a filtered ring, and $M$ be a finitely generated $A$ module.
 
-\begin{defn} A filtration on $M$ is good if $\gr(M)$ is finitely generated over $\gr(A)$.
-\end{defn}
+\begin{definition} A filtration on $M$ is good if $\gr(M)$ is finitely generated over $\gr(A)$.
+\end{definition}
 
 \begin{lemma} A good filtration exists.
 \end{lemma}
@@ -946,25 +946,25 @@ Let $A$ be a filtered ring, and $M$ be a finitely generated $A$ module.
 \begin{proof} Since $M$ is finitely generated as and $A$ module, there exists a surjective map of $A$ modules $A^{\oplus n} \surject M$. Then if we take the induced filtration on $M$ from this surjection, as noted before we have $\gr(A)^{\oplus n} \surject \gr(M)$, as so the filtration is good, as desired.
 \end{proof}
 
-\begin{rmk} One might think that we could take a more simple filtration like $M_i=M$ for $i \geq 0$ and $M_i=0$ for $i<0$> Then we have $\gr^i(M)=0$ for $i \neq 0$ and $\gr^i(M)=M$ for $i=0$. But this does not work because of all the $A_i$ only $A_0$ sends $\gr^i(M)$ to itself, so we are essentially only acting on $M$ with $A_0$, so this should not be expected to be finitely generated.
-\end{rmk}
+\begin{remark} One might think that we could take a more simple filtration like $M_i=M$ for $i \geq 0$ and $M_i=0$ for $i<0$> Then we have $\gr^i(M)=0$ for $i \neq 0$ and $\gr^i(M)=M$ for $i=0$. But this does not work because of all the $A_i$ only $A_0$ sends $\gr^i(M)$ to itself, so we are essentially only acting on $M$ with $A_0$, so this should not be expected to be finitely generated.
+\end{remark}
 
 
 
 
-\begin{cor} (Artin Rees) Let $\gr(A)$ be Noetherian. Let $M$ be a module and $M_i$ a good filtration. Let $N \subset M$ be a submodule. Then the induced filtration on $N$ is good.
+\begin{corollary} (Artin Rees) Let $\gr(A)$ be Noetherian. Let $M$ be a module and $M_i$ a good filtration. Let $N \subset M$ be a submodule. Then the induced filtration on $N$ is good.
 \label{artinrees1}
-\end{cor}
+\end{corollary}
 \begin{proof} Note that we have an injection $\gr(N) \inject \gr(M)$ because the filtration on $N \subset M$ is the induced one. Thus, since $\gr(M)$ is finitely generated and $\gr(A)$ is Noetherian, $\gr(N)$ is also finitely generated, as desired.
 \end{proof}
 
 
 Note that good filtrations are not unique, since when we proved the existence we could have chosen generators any way we wanted. We can, however, control the non-uniqueness of of the filtrations, as the per the following lemma:
 
-\begin{thm} Let $\Fil(M)$ and $\Fil'(M)$ be two good filtrations on $M$. Then there is $k$ such that for any $i$
+\begin{theorem} Let $\Fil(M)$ and $\Fil'(M)$ be two good filtrations on $M$. Then there is $k$ such that for any $i$
 \[\Fil_{i-k}'(M) \subseteq \Fil_i(M) \subseteq \Fil_{i+k}'(M)\]
 \label{essnunique1}
-\end{thm}
+\end{theorem}
 
 \begin{proof}
 First note that we only need to prove one side of the inequality, as the two sides are symmetric, and once we have one $k$ for each, the maximum of the two $k$s works.
@@ -1000,13 +1000,13 @@ as desired.
 
 Consider the polynomial algebra $A=k[x_1, x_2, \ldots x_n]$. Let $M$ be a finitely generate $A$ module, and choose a good filtration on $M$. Then set $\Phi(i)=\dim_k(M_i)$ i.e., we are taking the dimension of $M_i$ as a $k$ vector space. Loosely speaking, we want our notion of dimension to model the rate at which $\Phi$ grows with $i$.
 
-\begin{thm} For $\Phi$ as defined above,
+\begin{theorem} For $\Phi$ as defined above,
 \begin{enumerate}
 \item There is a polynomial $P$ with $\deg(P) \leq n$ such that $\Phi(i)=P(i)$ for $i \gg 0$.
 \item The degree of the polynomial and the leading coefficient are independent of choice of good filtration.
 \end{enumerate}
 \label{hilbertdim}
-\end{thm}
+\end{theorem}
 
 Before we proceed let us note this small lemma:
 \begin{lemma} Let $\phi$ be a function on the integers such that $\Phi(i+1)-\Phi(i)$ is eventually a polynomial of degree less than or equal to $m-1$. Then $\Phi$ is eventually a polynomial of degree less than or equal to $m$.
@@ -1045,8 +1045,8 @@ The base case is clear: if $A=k$, then $M$ is a finite dimensional vector space 
 
 \uline{So this gives us point 1 of the theorem.}
 
-\begin{rmk} Note that it may seem like the same proof holds if instead of saying ``is eventually a polynomial", we said ``is a polynomial". This is false, because though the induction step still works, the base case does not.
-\end{rmk}
+\begin{remark} Note that it may seem like the same proof holds if instead of saying ``is eventually a polynomial", we said ``is a polynomial". This is false, because though the induction step still works, the base case does not.
+\end{remark}
 
 \uline{Now to show point 2 of the theorem}. Applying theorem \ref{essnunique1}, we see that for two filtrations $\Fil$ and $\Fil'$, \[\Fil'_{i-k} \subseteq \Fil_i \subseteq \Fil_{i+k}'\]
 so we have
@@ -1059,8 +1059,8 @@ which means that $P$ and $P'$ must have the same degree.
 
 Now, we can define the dimension of $M$, $\dim_A(M)$ to be the degree of this polynomial.
 
-\begin{defn} Define the dimension of a finitely generated module $M$ over a polynomial ring $A$ to be the the degree of the polynomial $P$ described in theorem \ref{hilbertdim}.
-\end{defn}
+\begin{definition} Define the dimension of a finitely generated module $M$ over a polynomial ring $A$ to be the the degree of the polynomial $P$ described in theorem \ref{hilbertdim}.
+\end{definition}
 
 Due to point 2 of theorem \ref{hilbertdim}, we see that this notion of dimension is well defined.
 
@@ -1126,12 +1126,12 @@ Then since $A$ is finitely generated we may consider some $k[x_1, \ldots x_n] \s
 \[\dim_A(M)=\dim_{k[x_1, \ldots x_n]}(M).\]
 In order for this to make sense, we need to show that it is independent of generators, a fact that would result from the following theorem
 
-\begin{thm} Consider $k[x_1, \ldots x_n, y_1, \ldots y_m]$ and $M$ a module over this algebra which is finitely generated as a $k[x_1, \ldots x_n]$ module. Then
+\begin{theorem} Consider $k[x_1, \ldots x_n, y_1, \ldots y_m]$ and $M$ a module over this algebra which is finitely generated as a $k[x_1, \ldots x_n]$ module. Then
 \[\dim_{k[x_1, \ldots x_n]}(M)=\dim_{k[x_1, \ldots x_n, y_1, \ldots y_m]}(M)\]
 
 \label{hilbdimwelldef}
 
-\end{thm}
+\end{theorem}
 \begin{proof}
 It suffices to show that if $M$ is a $k[x_1, \ldots x_n,y]$ module, and $M$ is finitely generated over $k[x_1, \ldots x_n]$ then its dimension over $k[x_1, \ldots x_n]$ is the same as that over $k[x_1, \ldots x_n,y]$.
 
@@ -1161,11 +1161,11 @@ k[x_1, \ldots x_n, y_1, \ldots y_m] & \rOnto & k[y_1, \ldots y_m]\\
 \end{diagram}
 
 Now that we have established independence of choice of generators, the suggested definition makes sense:
-\begin{defn} Let $A$ be a finitely generated $k$ algebra and $M$ a finitely generated $A$ module. Then consider some polynomial algebra $k[x_1, \ldots x_n]$ with $k[x_1, \ldots x_n] \surject A$, and define
+\begin{definition} Let $A$ be a finitely generated $k$ algebra and $M$ a finitely generated $A$ module. Then consider some polynomial algebra $k[x_1, \ldots x_n]$ with $k[x_1, \ldots x_n] \surject A$, and define
 \[\dim_A(M)=\dim_{k[x_1, \ldots x_n]}(M).\]
 Also define
 \[\dim(A)=\dim_A(A).\]
-\end{defn}
+\end{definition}
 
 \subsubsection{Some Properties of Dimension}
 
@@ -1214,9 +1214,9 @@ and then we may apply lemma \ref{dimmodf} to see that the dimension must strictl
 
 For the interested there is actually a stronger statement associated with the proof of the above lemma, namely:
 
-\begin{thm} For a domain $A$, if $V(fA) \neq 0$ then $\dim(A/fA)=\dim(A)-1$
+\begin{theorem} For a domain $A$, if $V(fA) \neq 0$ then $\dim(A/fA)=\dim(A)-1$
 \label{dim drop by 1 v0}
-\end{thm}
+\end{theorem}
 
 The proof of this requires some more machinery that is developed in a later section of these notes. It is Theorem \ref{dim drop by 1}. Also, there is another proof that uses more high-tech homological algebra not covered in this course. This proof is in the Appendix.
 
@@ -1245,17 +1245,17 @@ Here we will introduce another notion of dimension, via the transcendency degree
 
 Let us start with some definitions.
 
-\begin{defn} For $K \supset k$ a field extension, we say that an element in $K$ is \underline{integral} over $k$ if it satisfies a polynomial equation with coefficients from $k$. We say that $K$ is \underline{algebraic} over $k$ if every element if $K$ is integral. We say that $K$ is \underline{transcendental} if it is not algebraic.
-\end{defn}
+\begin{definition} For $K \supset k$ a field extension, we say that an element in $K$ is \underline{integral} over $k$ if it satisfies a polynomial equation with coefficients from $k$. We say that $K$ is \underline{algebraic} over $k$ if every element if $K$ is integral. We say that $K$ is \underline{transcendental} if it is not algebraic.
+\end{definition}
 
 
-\begin{defn} We say that a field extension $K \supset k$ is finitely generated if there are finitely many elements $y_1, \ldots y_n \in K$ such that $K$ does not contain a proper subfield containing $y_1, \ldots y_n$.
+\begin{definition} We say that a field extension $K \supset k$ is finitely generated if there are finitely many elements $y_1, \ldots y_n \in K$ such that $K$ does not contain a proper subfield containing $y_1, \ldots y_n$.
 
 (Note that this is not the same as being finitely generated as an algebra. For example, $k(y_1, \ldots y_n)$ is a finitely generated field extension of $k$, but not a finitely generated algebra.)
-\end{defn}
+\end{definition}
 
-\begin{defn} We say that a field extension $K \supset k$ is \underline{finite} if it $K$ is a finite dimensional vector space over $k$.
-\end{defn}
+\begin{definition} We say that a field extension $K \supset k$ is \underline{finite} if it $K$ is a finite dimensional vector space over $k$.
+\end{definition}
 
 \begin{lemma} If $K \supset k$ is both algebraic and finitely generated then it is finite.
 \end{lemma}
@@ -1265,18 +1265,18 @@ Let us start with some definitions.
 \begin{obs} \textbf{Transitivity} If $k \subset K \subset L$ are field extensions such that $K$ is algebraic over $k$ and $L$ is algebraic over $K$, then $L$ is algebraic over $k$.
 \end{obs}
 
-\begin{defn} For $K$ a field extension of $k$, a subset $\{x_\alpha\}$, indexed by a set $A$, are called \underline{algebraically independent} over $k$ if there does not exist a polynomial $p \in k[t_1, \ldots t_n]$ such that $p(x_1, \ldots x_n)=0$. Equivalently, one might say that the map $k[\{t_\alpha\}] \to K$ given by $t_\alpha \to x_\alpha$ extends to an injection $k(\{t_\alpha\}) \to K$.
-\end{defn}
+\begin{definition} For $K$ a field extension of $k$, a subset $\{x_\alpha\}$, indexed by a set $A$, are called \underline{algebraically independent} over $k$ if there does not exist a polynomial $p \in k[t_1, \ldots t_n]$ such that $p(x_1, \ldots x_n)=0$. Equivalently, one might say that the map $k[\{t_\alpha\}] \to K$ given by $t_\alpha \to x_\alpha$ extends to an injection $k(\{t_\alpha\}) \to K$.
+\end{definition}
 
 \phantom{\textcolor[rgb]{0.98,0.00,0.00}{Question: does the above $A$ need to be finite?}}
 
-\begin{defn} A subset $\{x_\alpha| \alpha \in A\}$ is \underline{maximal} if for any $y \in K$ the collection $\{x_\alpha|\alpha \in A\} \cup \{y\}$ is not algebraically independent.
-\end{defn}
+\begin{definition} A subset $\{x_\alpha| \alpha \in A\}$ is \underline{maximal} if for any $y \in K$ the collection $\{x_\alpha|\alpha \in A\} \cup \{y\}$ is not algebraically independent.
+\end{definition}
 
 Because the above definition is somewhat ad-hoc, we also give this other equivalent definition:
 
-\begin{defn} A subset $\{x_\alpha| \alpha \in A\}$ is \underline{maximal} if $K$ is algebraic over the subfield of $K$ generated by $\{x_\alpha| \alpha \in A\}$.
-\end{defn}
+\begin{definition} A subset $\{x_\alpha| \alpha \in A\}$ is \underline{maximal} if $K$ is algebraic over the subfield of $K$ generated by $\{x_\alpha| \alpha \in A\}$.
+\end{definition}
 
 It is easy to see that the above definitions are equivalent. Here is a note on the existence of finite maximal collections.
 
@@ -1287,8 +1287,8 @@ It is easy to see that the above definitions are equivalent. Here is a note on t
 \end{proof}
 
 
-\begin{propn} Let $K$ be a field extension of $k$ and let $\{x_1, \ldots x_n\}$ be algebraically independent elements. Let $\{y_1, \ldots y_m\}$ be a maximal set of elements. Then $m \geq n$.
-\end{propn}
+\begin{proposition} Let $K$ be a field extension of $k$ and let $\{x_1, \ldots x_n\}$ be algebraically independent elements. Let $\{y_1, \ldots y_m\}$ be a maximal set of elements. Then $m \geq n$.
+\end{proposition}
 \begin{proof}
 
 
@@ -1301,18 +1301,18 @@ Now let us induct the above: if we have obtained that $(x_1, \ldots x_j, y_{j+1}
 
 The above corollary inspires us to define the notion of transcendency degree, echoing the definition of dimension of a vector space, as follows:
 
-\begin{defn} Let $k \subset K$ be an extension that admits a finite maximal collection. Let $n$ be the maximal number of algebraically independent elements. Then $n$ is called the transcendency degree of $K$ over $k$, which may be denoted $\trdg(K/k)$.
-\end{defn}
+\begin{definition} Let $k \subset K$ be an extension that admits a finite maximal collection. Let $n$ be the maximal number of algebraically independent elements. Then $n$ is called the transcendency degree of $K$ over $k$, which may be denoted $\trdg(K/k)$.
+\end{definition}
 
 The above proposition shows that the definition makes sense because it gives us the following corollary:
 
-\begin{cor} For $K$ an extension of $k$ that admits a finite maximal collection and $n=\trdg(K/k)$ then
+\begin{corollary} For $K$ an extension of $k$ that admits a finite maximal collection and $n=\trdg(K/k)$ then
 \begin{enumerate}
 \item For any maximal collection $y_1, \ldots y_m$, $m \geq n$
 
 \item For any algebraically independent $y_1, \ldots y_m$, $m \leq n$.
 \end{enumerate}
-\end{cor}
+\end{corollary}
 
 \subsection{Agreement with Hilbert dimension}
 
@@ -1352,14 +1352,14 @@ We will need to show that this is well defined, i.e., does not depend on the cho
 
 As a step in proving this, we will show the following theorem:
 
-\begin{thm} [\textbf{Noether Normalization Lemma}] Let $A \surject B$ be a surjection of finitely generated algebras. Then there are polynomials rings $k[x_1, \ldots x_n]$ with an injection to $A$, and $k[x_1, \ldots x_m]$ with an injection to $B$ such that
+\begin{theorem} [\textbf{Noether Normalization Lemma}] Let $A \surject B$ be a surjection of finitely generated algebras. Then there are polynomials rings $k[x_1, \ldots x_n]$ with an injection to $A$, and $k[x_1, \ldots x_m]$ with an injection to $B$ such that
 \begin{diagram}
 A & \rOnto & B\\
 \uInto & & \uInto\\
 k[x_1, \ldots x_n] & \lInto & k[x_1, \ldots x_m]\\
 \end{diagram}
 commutes and $A$ and $B$ are finitely generated as modules over $k[x_1, \ldots x_n]$ and $k[x_1, \ldots x_m]$ respectively.
-\end{thm}
+\end{theorem}
 \begin{proof}
 
 
@@ -1393,8 +1393,8 @@ Now if the map $k[\beta_1, \ldots , \beta_s] \to B$ is not injective, applying t
 
 We may extract Hilbert's Nullstellensatz as a corollary to the Noether Normalization Theorem:
 
-\begin{cor} [Nullstellensatz] A field extension of a field $k$ which is finitely generated as an algebra is a finite field extension.
-\end{cor}
+\begin{corollary} [Nullstellensatz] A field extension of a field $k$ which is finitely generated as an algebra is a finite field extension.
+\end{corollary}
 \begin{proof} Now note that $k[x_1, \ldots x_n] \to A$ is injective, so $\Spec(A) \to \Spec(k[x_1, \ldots x_n])$ has dense image, but by the going up theorem it is closed, so it is surjective. But $A$ was a field so $\Spec(A)$ is a point, so $n=0$. Then we have that $A$ is a finitely generated module over $k$, so it is finite, as desired.
 \end{proof}
 
@@ -1414,15 +1414,15 @@ We may extract Hilbert's Nullstellensatz as a corollary to the Noether Normaliza
 
 Here are two theorems that we only give an outline of a proof of.
 
-\begin{thm}
+\begin{theorem}
 Let $A$ be a finitely generated domain over a field $k$. Let
 \[p_0 \subset p_1 \subset \cdots  \subset p_n \subset A\]
 be a maximal chain of prime ideals. Then $n=\dim(A)$.
-\end{thm}
+\end{theorem}
 
 
-\begin{thm} Let $A$ be a domain and let $p \subset A$ be a sub-minimal prime ideal (i.e. $p \neq 0$ but there are no primes between 0 and p). Then $\dim(A/p)=\dim(A)-1$.
-\end{thm}
+\begin{theorem} Let $A$ be a domain and let $p \subset A$ be a sub-minimal prime ideal (i.e. $p \neq 0$ but there are no primes between 0 and p). Then $\dim(A/p)=\dim(A)-1$.
+\end{theorem}
 
 These two theorems are mostly proved in problem set 11, a problem set which could be fixed by:
 \begin{enumerate}
@@ -1430,9 +1430,9 @@ These two theorems are mostly proved in problem set 11, a problem set which coul
 \item For problem 5, note that you actually only need 3 for the integrally closed case. Also remove the phrase ``whenever Noether Normalization holds", because it always does.
 \item To do part 3, consider the following theorem:
 
-\begin{thm} \textbf{Going Down Theorem}
+\begin{theorem} \textbf{Going Down Theorem}
 Suppose that we have an injection of Noetherian domains, $A \inject B$ with $A$ is integrally closed and $B$ is finitely generated as an $A$ module. Then if $p \in \Spec(B)$ is a subminimal prime, then its image in $\Spec(A)$ is also subminimal.
-\end{thm}
+\end{theorem}
 \end{enumerate}
 
 
@@ -1463,11 +1463,11 @@ Suppose that we have an injection of Noetherian domains, $A \inject B$ with $A$ 
 \section{Kahler Differentials}
 
 Let $A$ be a $k$ algebra and $M$ be an $A$ module. Then
-\begin{defn} A \underline{derivation} $\psi:A \to M$ is a $k$-linear map such that
+\begin{definition} A \underline{derivation} $\psi:A \to M$ is a $k$-linear map such that
 \[\psi(ab)=a\psi(b)+b\psi(a).\]
 
 Let $\Der_k(A,M)$ denote the set of derivations from $A$ to $M$.
-\end{defn}
+\end{definition}
 
 You can think of this as similar to a derivative, and the condition on derivations is essentially a product rule. To illustrate this, one may consider the following observation
 
@@ -1512,9 +1512,9 @@ let us consider the explicit for $\Omega_k(A)$, namely $\Omega_k(A)=\Span_A\{da,
 Then let our map be
 \[\phi(\sum a_i \otimes b_i)=\sum b_ida_i.\]
 To show that this is well defined, we need that it vanishes on $I_A^2$. An element of $I_A^2$ is of the form
-\[\(\sum_ia_i \otimes b_i\) \cdot \(\sum_jc_j \otimes e_j\)\]
+\[\left(\sum_ia_i \otimes b_i\right) \cdot \left(\sum_jc_j \otimes e_j\right)\]
 for $\sum_ia_i \otimes b_i$ and $\sum_jc_j \otimes e_j$ in $I_A$. Then
-\[\phi\(\(\sum_ia_i \otimes b_i\) \cdot \(\sum_jc_j \otimes e_j\)\)=\sum_{i,j} b_ie_jd(a_ic_j)=\sum_{i,j} b_ie_ja_id(c_j)+\sum_{i,j} b_ie_jc_jd(a_i)=0\]
+\[\phi\left(\left(\sum_ia_i \otimes b_i\right) \cdot \left(\sum_jc_j \otimes e_j\right)\right)=\sum_{i,j} b_ie_jd(a_ic_j)=\sum_{i,j} b_ie_ja_id(c_j)+\sum_{i,j} b_ie_jc_jd(a_i)=0\]
 where the last equality is because $\sum_ia_ib_i=0$ and $\sum_jc_je_j=0$ because $\sum_ia_i \otimes b_i$ and $\sum_jc_j \otimes e_j$ are in $I_A$.
 
 It is easy to check that these maps are mutually inverse.
@@ -1565,15 +1565,15 @@ This is a natural transformation, so by Yoneda's it uniquely defines a map
 \begin{proof} This is a special case of problem set 12 problem 1.
 \end{proof}
 
-\begin{defn}
+\begin{definition}
 Let $A$ be a finitely generated algebra over $k$, with $k$ algebraically closed. Then let $fm \in \Specm(A)$, and we have a short exact sequence
-\[0 \rTo \fm \rTo A \rTo^\xi k \rTo 0.\] We define the \underline{cotangent space} to $A$ at $\fm$ to be
-\[T_{\fm}^*(\Spec(A))=\fm/\fm^2 \simeq \fm \uset{A} \otimes k\]
+\[0 \rTo \mathfrak{m} \rTo A \rTo^\xi k \rTo 0.\] We define the \underline{cotangent space} to $A$ at $\mathfrak{m}$ to be
+\[T_{\mathfrak{m}}^*(\Spec(A))=\mathfrak{m}/\mathfrak{m}^2 \simeq \mathfrak{m} \uset{A} \otimes k\]
 where $A$ acts on $k$ via $\xi$.
 
-We define the tangent space to be $T_\fm(\Spec(A))=(T_\fm^*(\Spec(A)))^*$.
+We define the tangent space to be $T_\mathfrak{m}(\Spec(A))=(T_\mathfrak{m}^*(\Spec(A)))^*$.
 
-\end{defn}
+\end{definition}
 
 \begin{lemma} $T_m^*\Spec(A)=\Omega_k(A) \uset{A}\otimes k$, where $A$ acts on $k$ via $\xi$.
 \end{lemma}
@@ -1583,23 +1583,23 @@ We define the tangent space to be $T_\fm(\Spec(A))=(T_\fm^*(\Spec(A)))^*$.
 
 
 
-Now let us study the dimension of the contangent space to $\Spec(A)$ at $\fm$ as a $k$ vector space. In particular, note the following theorem.
-\begin{thm} Let $k$ algebraically closed and $A$ a domain over $k$. Then
+Now let us study the dimension of the contangent space to $\Spec(A)$ at $\mathfrak{m}$ as a $k$ vector space. In particular, note the following theorem.
+\begin{theorem} Let $k$ algebraically closed and $A$ a domain over $k$. Then
 \begin{enumerate}
-\item For any $\fm \in \Spec(A)$, $\dim_{k}(\Omega_k(A) \uset{A} \otimes k) \geq \dim(A)$.
+\item For any $\mathfrak{m} \in \Spec(A)$, $\dim_{k}(\Omega_k(A) \uset{A} \otimes k) \geq \dim(A)$.
 
-\item There is an open set $U \subset \Spec(A)$ such that for any $\fm \in U$, $\dim_{k}(\Omega_k(A) \uset{A}\otimes k)=\dim(A)$.
+\item There is an open set $U \subset \Spec(A)$ such that for any $\mathfrak{m} \in U$, $\dim_{k}(\Omega_k(A) \uset{A}\otimes k)=\dim(A)$.
 \end{enumerate}
 \label{dmn over alg clos k, exists open of smooths}
-\end{thm}
+\end{theorem}
 
 Points which are such that the dimensions are equal will informally be called ``smooth points''. I will not write down the proof of the theorem as it is on the 221 course website. Here, we give some examples, and counterexamples if conditions are dropped.
 
 \begin{enumerate}
-\item Let $A$ be a local Artinian ring, such as $k[x]/x^2$. Then note that $\dim(A)=0$, because the ring is Artinian. However, for $\fm$ the maximal idea, $\fm \uset{A}\otimes k$ is not zero dimensional.
+\item Let $A$ be a local Artinian ring, such as $k[x]/x^2$. Then note that $\dim(A)=0$, because the ring is Artinian. However, for $\mathfrak{m}$ the maximal idea, $\mathfrak{m} \uset{A}\otimes k$ is not zero dimensional.
 
-\item Consider $A=k[y,z]/y^3-z^2$. Then $\fm=(y,z)$ and $\fm/\fm^2=\Span(y,z)$ which is two dimensional. Note that the dimension of $A$ is 1, by
-    lemma \ref{hilb dim of quot ring drops}. The dimension of $\fm/\fm^2$ is two, so this is an example of a point which is not a smooth point.
+\item Consider $A=k[y,z]/y^3-z^2$. Then $\mathfrak{m}=(y,z)$ and $\mathfrak{m}/\mathfrak{m}^2=\Span(y,z)$ which is two dimensional. Note that the dimension of $A$ is 1, by
+    lemma \ref{hilb dim of quot ring drops}. The dimension of $\mathfrak{m}/\mathfrak{m}^2$ is two, so this is an example of a point which is not a smooth point.
 
 \item Let us consider further in depth the case when the field is not algebraically closed. Recall that a finite field extension $k' \supset k$ is called separable if $k' \uset{k} \otimes \bar{k}$ is reduced as an algebra over $\bar{k}$, where $\bar{k}$ is the algebraic closure of $k$.
 
@@ -1639,12 +1639,12 @@ Points which are such that the dimensions are equal will informally be called ``
 \subsection{Introduction to inverse limits and completions}
 
 First let us define a notion of ``inverse limit''.
-\begin{defn} Given a sequence of modules equipped with maps
+\begin{definition} Given a sequence of modules equipped with maps
 \[M_0 \lTo^{\phi_{01}} M_1 \lTo^{\phi_{12}} M_2 \lTo \cdots\]
 we may define the \underline{inverse limit} as
 \[\varprojlim M_i=\{(m_i) \in \prod M_i \big| \phi_{i,i+1}(m_{i+1})=m_i\}.\]
 Let the map $\varprojlim M_i \to M_i$ be the called the \underline{natural projection}. We call the $M_i$s equipped with maps an \underline{inverse system}.
-\end{defn}
+\end{definition}
 
 The following lemma gives an alternate definition by universal property:
 \begin{lemma} For any $N$ and any inverse system $(M_i, \phi_{i,i+1})$,
@@ -1677,10 +1677,10 @@ but $\alpha_i$ is injective, so $\phi_{i,i+1}(m_{i+1})=m_i$, as desired.
 It is not true that the map $\invlim N_i \rTo^\beta \invlim L_i$ is surjective, but let us try to prove this anyway: Consider some $(l_i) \in \invlim L_i$ and since $\beta_i$ are surjective, let us consider pre-images $n_i \in N_i$ for each $l_i$. Obviously, we can't just try to prove that $(n_i)$ is in the inverse limit, because we made a choice in selecting them.
 
 So, we want to correct our choice. Suppose $\phi(n_1)=n_0'$. Then $n_0'$ and $n_0$ have the same image in $L_0$, so $n_0-n_0'=\alpha(m_0)$ for some $m_0$. We want to correct our choice of $n_1$ to match $n_0$, so we want $m_1$ such that $\phi(n_1+\alpha(m_1))=n_0'+\alpha(m_0)$, but this means we need $\phi(\alpha(m_1))=\alpha(m_0)$. This isn't always possible, but would be possible if we had also that the $\phi$ corresponding to the system $M_i$ are surjective, giving us the Mittag Leffler theorem:
-\begin{thm} \textbf{Mittag-Leffler} Given a diagram as in the previous lemma, if the maps in the inverse system $M_i$ are surjective, then
+\begin{theorem} \textbf{Mittag-Leffler} Given a diagram as in the previous lemma, if the maps in the inverse system $M_i$ are surjective, then
 \[\invlim N_i \rTo^\beta \invlim L_i \rTo 0\]
 is also exact.
-\end{thm}
+\end{theorem}
 The proof follows pretty much the same reasoning as the pre-amble to this, where we corrected for $n_1$; one may continue correcting $n_2$, etc.
 
 
@@ -1692,8 +1692,8 @@ and let $M_i=M/M^i$. Then we have projections $M_{i+1} \to M_{i}$
 
 We will use the $M^i$ to define a topology on $M$.
 
-\begin{defn} Let $U \subset M$ be open if for any $m \in U$ there is $i$ such that $m+M^i \subset U$.
-\end{defn}
+\begin{definition} Let $U \subset M$ be open if for any $m \in U$ there is $i$ such that $m+M^i \subset U$.
+\end{definition}
 
 It is easy to see that this satisfies the conditions of a topology. Furthermore, this topology is by definition countable. Let us consider whether it is Hausdorff.
 
@@ -1706,25 +1706,25 @@ If $\cap M^i =\{0\}$ then for any $m_1$ and $m_2$, choose $M^i$ such that $m_1-m
 
 Now let us talk about completions. Note that the usual topological notion of completions from you analysis class requires more than just a topology; they also require a metric.
 
-\begin{defn} For a sequence $(m_n)$ we say it converges to an element $m$
+\begin{definition} For a sequence $(m_n)$ we say it converges to an element $m$
 \[\lim m_n=m\]
 if for any $i$ there is $N$ such that for any $n \geq N$, $m-m_n \in M^i$.
-\end{defn}
+\end{definition}
 
-\begin{defn} We say that a sequence $(m_n)$ is \underline{Cauchy} if for any $i$ there is some $N$ such that for any $n, n' \geq N$, $m_n-m_{n'} \in M^i$. We define two Cauchy sequences $(m_n)$ and $(m_n')$ to be \underline{equivalent} if $(m_n-m_n')$ converges to 0. Let $\widehat{M}$, the completion of $M$ be the equivalence classes of Cauchy sequences.
-\end{defn}
+\begin{definition} We say that a sequence $(m_n)$ is \underline{Cauchy} if for any $i$ there is some $N$ such that for any $n, n' \geq N$, $m_n-m_{n'} \in M^i$. We define two Cauchy sequences $(m_n)$ and $(m_n')$ to be \underline{equivalent} if $(m_n-m_n')$ converges to 0. Let $\widehat{M}$, the completion of $M$ be the equivalence classes of Cauchy sequences.
+\end{definition}
 
 The following theorem gives us a different way to view the completion:
 
-\begin{thm} $\widehat{M}=\invlim M/M^i$.
-\end{thm}
+\begin{theorem} $\widehat{M}=\invlim M/M^i$.
+\end{theorem}
 \begin{proof} Let us first construct a map $\widehat{M} \to \invlim M/M^i$. For a Cauchy sequence $(m_n)$, for each $i$ consider let $N$ be as in the definition of a Cauchy sequence. Then pick $\alpha>N$ and map $(m_n)$ to $m_\alpha \in M/M^i$, and let this be the term in the completion.
 
 For the other direction, for $(m_i)$ compatible elements of $\prod M/M^i$, just choose any $\wtl{m_i} \in M$ with $\pi_i(\wtl{m_i})=m_i$. Then these form a Cauchy sequence.
 \end{proof}
 
-\begin{rmk} $M^i \subset M$ is a closed set, because it is clear that its complement is open.
-\end{rmk}
+\begin{remark} $M^i \subset M$ is a closed set, because it is clear that its complement is open.
+\end{remark}
 
 Note that this new definition of completions as the inverse limit of $M/M^i$ gives us some interesting properties, such as:
 \begin{lemma} Suppose we have an exact sequence of modules
@@ -1749,8 +1749,8 @@ However, if the topology on $M$ is induced from $N$ then we do have this.
 
 
 Note that the above lemma means that if $M' \subset M$ and the filtration on $M'$ is induced from the filtration on $M$, then the map $\widehat{M'} \to M$ is also injective. Applying this to $M'=M^i \subset M$, we get the following corollary:
-\begin{cor} $\widehat{\widehat M}=\widehat{M}$
-\end{cor}
+\begin{corollary} $\widehat{\widehat M}=\widehat{M}$
+\end{corollary}
 \begin{proof} First apply Lemma \ref{hat exact} to $M'=M^i$ and we get that
 \[\widehat M/\widehat{M}^i =\widehat{M/M^i}\]
 but with the filtration induced, $M/M^i$ has the discrete topology, so $\widehat{M/M^i}=M/M^i$. Now, taking inverse limits on both sides gives us the desired.
@@ -1758,12 +1758,12 @@ but with the filtration induced, $M/M^i$ has the discrete topology, so $\widehat
 
 
 Let $A$ be a commutative ring, $\fa \subset A$ an ideal, and $M$ an $A$ module.
-\begin{defn} Consider the filtration $M^i=\fa^iM$. This is called the $\fa$-adic filtration of $M$.
-\end{defn}
+\begin{definition} Consider the filtration $M^i=\fa^iM$. This is called the $\fa$-adic filtration of $M$.
+\end{definition}
 
 Let us consider some examples
 \begin{enumerate}
-\item $A=k[t]$, $\fm=tk[t]$, and $M=k[t]$. Then
+\item $A=k[t]$, $\mathfrak{m}=tk[t]$, and $M=k[t]$. Then
 \[\hat{A}=k[[x]]=\{p_i \in k[x]/t^ik[x]\}\]
 
 \item Set $A=\zz$, $\fa=p\zz$ and $M=A$. Then
@@ -1800,11 +1800,11 @@ For $\fa \subset A$, and $M$ an $A$-module, we may consider the filtration on $M
 and then for a submodule $M' \subset M$, we may consider two filtrations on it:
 \[M' \supset \fa M' \supset \fa^2 M' \supset \cdots\]
 and the induced filtration on it as a sub-module of $M$. The following theorem relates these two filtrations:
-\begin{thm} \textbf{Artin-Rees} For $M$ finitely generated over Noetherian ring $A$, the above two topologies on $M' \subset M$ coincide.
-\end{thm}
+\begin{theorem} \textbf{Artin-Rees} For $M$ finitely generated over Noetherian ring $A$, the above two topologies on $M' \subset M$ coincide.
+\end{theorem}
 
-\begin{defn} Given an $A$ module $M$ with a filtration $M \supset M^1 \supset M^2 \cdots$, we say that the filtration is \underline{compatible with $\fa$} if $\fa M^i \subset M^{i+1}$. We say a filtration is $\fa$-\underline{good} if for sufficiently large $i$, $\fa M^i=M^{i+1}$.
-\end{defn}
+\begin{definition} Given an $A$ module $M$ with a filtration $M \supset M^1 \supset M^2 \cdots$, we say that the filtration is \underline{compatible with $\fa$} if $\fa M^i \subset M^{i+1}$. We say a filtration is $\fa$-\underline{good} if for sufficiently large $i$, $\fa M^i=M^{i+1}$.
+\end{definition}
 
 \begin{obs} It is easy to see that if $\Fil^i(M)$ and $\wtl{\Fil}^i(M)$ are two good filtrations then for some $k$
 \[\wtl{\Fil}^{i+k}(M) \subset \Fil^i(M) \subset \wtl{\Fil}^{i-k}(M).\]
@@ -1813,22 +1813,22 @@ and the induced filtration on it as a sub-module of $M$. The following theorem r
 
 
 This observation has the following consequence:
-\begin{cor} Any two good filtrations define the same topology.
-\end{cor}
+\begin{corollary} Any two good filtrations define the same topology.
+\end{corollary}
 
 Note that the Artin Rees theorem can be reformulated in these terms:
 
-\begin{thm} [Equivalent to Artin-Rees] The filtration $M' \cap \fa^i M$ is $\fa$-good.
-\end{thm}
+\begin{theorem} [Equivalent to Artin-Rees] The filtration $M' \cap \fa^i M$ is $\fa$-good.
+\end{theorem}
 
 We will prove get back to this theorem.
 
 
-\begin{defn}
+\begin{definition}
 For a ring $A$ with ideal $\fa$, we may consider a graded ring
 \[A^*=A \oplus \fa \oplus \fa^2 \oplus \cdots\]
 a graded ring. This ring is called the \underline{Artin} ring.
-\end{defn}
+\end{definition}
 
 \begin{lemma} For $A$ Noetherian, $A^*$ is also Noetherian.
 \end{lemma}
@@ -1841,12 +1841,12 @@ is a module over $A^*$.
 
 
 
-\begin{thm} Let $A$ be Noetherian. Then the following are equivalent
+\begin{theorem} Let $A$ be Noetherian. Then the following are equivalent
 \begin{enumerate}
 \item $M$ is finitely generated and the filtration is $\fa$-good.
 \item $M^*$ is finitely generated.
 \end{enumerate}
-\end{thm}
+\end{theorem}
 
 \begin{proof}
 
@@ -1855,21 +1855,21 @@ is a module over $A^*$.
 \noindent{\textbf{(1) $\Rightarrow$ (2)}} Let $i_0$ be such that for $i \geq i_0$ $\fa M^i=\fa M^{i+1}$. Then $M \oplus M^1 \oplus \cdots$ generates $M^*$ over $A^*$.
 \end{proof}
 
-\begin{cor} [This will give us Artin-Rees] Let $A$ be Noetherian and $M$ be a finitely generated $A$ module. Let $M' \subset M$ and $M \supset M^1 \supset M^2 \supset \cdots $ be $\fa$ good. Let $M' \subset M$. Then $M'^i=M'\cap M^i$ is an $\fa$ good filtration on $M'$.
-\end{cor}
+\begin{corollary} [This will give us Artin-Rees] Let $A$ be Noetherian and $M$ be a finitely generated $A$ module. Let $M' \subset M$ and $M \supset M^1 \supset M^2 \supset \cdots $ be $\fa$ good. Let $M' \subset M$. Then $M'^i=M'\cap M^i$ is an $\fa$ good filtration on $M'$.
+\end{corollary}
 
-\begin{cor} Let $A$ be Noetherian and $M_2$ finitely generated in the following short exact sequence of $A$ modules:
+\begin{corollary} Let $A$ be Noetherian and $M_2$ finitely generated in the following short exact sequence of $A$ modules:
 \[0 \rTo M_1 \rTo M_2 \rTo M_3 \rTo 0.\]
 Then the sequence of completions with respect to the $\fa$-adic filtrations
 \[0 \rTo \widehat{M_1} \rTo \widehat{M_2} \rTo \widehat{M_3} \rTo 0\]
 is also exact.
 \label{adic copmletion exact}
-\end{cor}
+\end{corollary}
 \begin{proof} Well, we already knew this was true for induced filtrations, and by Artin-Rees these are the same as the $\fa$-adic filtrations.
 \end{proof}
 
-\begin{cor} Let $A$ be local Noetherian and $M$ finitely generated over $A$. Then $M \inject \widehat{M}$.
-\end{cor}
+\begin{corollary} Let $A$ be local Noetherian and $M$ finitely generated over $A$. Then $M \inject \widehat{M}$.
+\end{corollary}
 \begin{proof}
 Let $N$ be the kernel. Then we have commutative diagram
 \begin{diagram}
@@ -1882,9 +1882,9 @@ $N \to M \to \hat{M}$ is 0 by definition So $N \to \hat{N} \to \hat{M}$ is 0. Ho
 for maximal ideal $\fa$.
 \end{proof}
 
-\begin{cor} Let $A$ be Noetherian and $M$ finitely generated. Then
+\begin{corollary} Let $A$ be Noetherian and $M$ finitely generated. Then
 \[\hat{A} \uset{A}\otimes M \simeq \hat{M}\]
-\end{cor}
+\end{corollary}
 \begin{proof} Note that $\hat{M}=\invlim M/\fa^i M$ and $A/\fa^i A$ acts on this $M/\fa^i m$, so $\hat{M}$ is a $\hat{A}$ module. Consider $A^n \surject M$ and $M'$ the kernel. Then we have
 \[0 \rTo M' \rTo A^n \rTo M \rTo 0\]
 and note that we have
@@ -1905,16 +1905,16 @@ and now we get the desired by applying a diagram chase (or the five lemma does i
 
 The following two corollaries are immediate from the above one.
 
-\begin{cor}  $\hat{A}$ is $A$ flat if $A$ is Noetherian. This is because it is enough to check flat-ness on finitely generated modules, and we have shown that completions are exact in Corollary \ref{adic copmletion exact}.
-\end{cor}
+\begin{corollary}  $\hat{A}$ is $A$ flat if $A$ is Noetherian. This is because it is enough to check flat-ness on finitely generated modules, and we have shown that completions are exact in Corollary \ref{adic copmletion exact}.
+\end{corollary}
 
 
-\begin{cor} Let $A$ be Noetherian such that $A \simeq \hat{A}$ let $M$ be a finitely generated $A$ module. Then $M=\hat{M}$.
-\end{cor}
+\begin{corollary} Let $A$ be Noetherian such that $A \simeq \hat{A}$ let $M$ be a finitely generated $A$ module. Then $M=\hat{M}$.
+\end{corollary}
 
 
-\begin{thm} If $A$ is Noetherian, then $\hat{A}$ is also Noetherian.
-\end{thm}
+\begin{theorem} If $A$ is Noetherian, then $\hat{A}$ is also Noetherian.
+\end{theorem}
 
 Consider $M \supset M^1 \supset M^2 \supset \cdots$ and $\gr(M)=\oplus M^i/M^{i+1}$ a graded abelian group. We also consider $\gr(A)=\oplus \fa^i/\fa^{i+1}$.
 
@@ -1924,7 +1924,7 @@ Consider $M \supset M^1 \supset M^2 \supset \cdots$ and $\gr(M)=\oplus M^i/M^{i+
 \begin{proof} We are in the situation of Mittag Leffler, so it is enough to show $M/M^i \to N/N^i$ is injective (resp. surjective), which reduces to the case of increasing filtrations.
 \end{proof}
 
-\begin{thm} Let $A$ be a commutative ring and $\fa \subset A$ such that $A \simeq \hat{A}$. Let $M$ be an $A$ module and
+\begin{theorem} Let $A$ be a commutative ring and $\fa \subset A$ such that $A \simeq \hat{A}$. Let $M$ be an $A$ module and
 \[M \supset M^1 \supset M^2 \supset \cdots\]
 be a $\fa$ compatible filtration such that $M$ is Hausdorff. Assume that $\gr(M)$ is finitely generated over $\gr(A)$.
 \begin{enumerate}
@@ -1932,9 +1932,9 @@ be a $\fa$ compatible filtration such that $M$ is Hausdorff. Assume that $\gr(M)
 
 \item $M$ is complete.
 \end{enumerate}
-\end{thm}
+\end{theorem}
 
-\begin{proof} Let $\oline{m_1}, \oline{m_2}, \ldots \oline{m_n}$ be the homogenous generators of $\gr(M)$ and lift them to elements $m_1, \ldots m_n$. Then the corresponding map
+\begin{proof} Let $\overline{m_1}, \overline{m_2}, \ldots \overline{m_n}$ be the homogenous generators of $\gr(M)$ and lift them to elements $m_1, \ldots m_n$. Then the corresponding map
 \[\oplus \gr(A)[-d_i] \rTo \gr(M)\]
 is surjective. Now apply the surjection case of Lemma \ref{gr to completion surj/inj}.
 \end{proof}
@@ -1944,8 +1944,8 @@ is surjective. Now apply the surjection case of Lemma \ref{gr to completion surj
 so $\gr(A)$ is a quotient of $A^*$, so it is the quotient of a Noetherian ring.
 \end{obs}
 
-\begin{thm} Let $A \simeq \hat{A}$ and $\gr(A)$ Noetherian. Then $A$ is Noetherian.
-\end{thm}
+\begin{theorem} Let $A \simeq \hat{A}$ and $\gr(A)$ Noetherian. Then $A$ is Noetherian.
+\end{theorem}
 \begin{proof} Let $I \subset A$. We want to show that $I$ is finitely generated. Consider $I \cap \fa^i$ as a filtration of $I$. It is $\fa$ compatible. Then $\gr(I)$ is an ideal of $\gr(A)$ so it is finitely generated, but the topology on $I$ is Hausdorff because it is induced by a Hausdorff topology. Thus, applying the above theorem we see that $I$ is finitely generated, as desired.
 \end{proof}
 
@@ -1969,9 +1969,9 @@ We will introduce three notions of dimension and show that they are the same.
 
 First let us define the \textbf{Hilbert Dimension}.
 
-For $A \supseteq \fm$ a local Noetherian ring, and $M$ a finitely generated $A$ module, we may define $\dim_{Hilb}(M)$ analogously to how we did it for finitely generated algebras:
+For $A \supseteq \mathfrak{m}$ a local Noetherian ring, and $M$ a finitely generated $A$ module, we may define $\dim_{Hilb}(M)$ analogously to how we did it for finitely generated algebras:
 
-Choose any $\fm$-good filtration on $M$ and set $\Phi(i)=\len(M/M_i)$. Note that this is finite because this does not depend on choice of filtration and we have $M/\fm^iM \supseteq \fm M/\fm^iM \supseteq \cdots$, and then each successive quotient has finite length because it is a module over $A/\fm$, which is Artinian.
+Choose any $\mathfrak{m}$-good filtration on $M$ and set $\Phi(i)=\len(M/M_i)$. Note that this is finite because this does not depend on choice of filtration and we have $M/\mathfrak{m}^iM \supseteq \mathfrak{m} M/\mathfrak{m}^iM \supseteq \cdots$, and then each successive quotient has finite length because it is a module over $A/\mathfrak{m}$, which is Artinian.
 
 Then by a similar argument to what we did with Hilbert dimension earlier, we can show that $\Phi$ is eventually a polynomial, with leading coefficient and degree independent of the good filtration. So we can set $\dim_{Hilb}(M)=\deg(P)$.
 
@@ -1994,22 +1994,22 @@ we have
 
 
 \begin{obs} Note that if we have
-\[\fm^k \subset \fa \subset \fm\]
-then $\fa$ and $\fm$ determine the same dimension, because
-\[M/\fm^{ik}M \surject M/\fa^i M \surject M/\fm^i M.\]
-Thus, we could have calculated with any ideal $\fa$ such that $\rad(\fa)=\fm$.
+\[\mathfrak{m}^k \subset \fa \subset \mathfrak{m}\]
+then $\fa$ and $\mathfrak{m}$ determine the same dimension, because
+\[M/\mathfrak{m}^{ik}M \surject M/\fa^i M \surject M/\mathfrak{m}^i M.\]
+Thus, we could have calculated with any ideal $\fa$ such that $\rad(\fa)=\mathfrak{m}$.
 \end{obs}
 
 Also, define $\dim_{Hilb}(A)=\dim_{Hilb}(A)$ for $A$ as a module over itself. $\dim_{Hilb}(A/I)$ for $A/I$ over itself is the same as for $A/I$ over $A$? (Note $A/I$ is also a local ring (its Spec is a closed subset), so this question makes sense).
 
 Also we define \textbf{Krull Dimension}, $\dim_{Krull}(A)$ to be the maximum length of a chain of prime ideals
-\[p_0 \subset p_1 \subset \cdots \subset p_n=\fm.\]
+\[p_0 \subset p_1 \subset \cdots \subset p_n=\mathfrak{m}.\]
 
-And we define the \textbf{Generator Dimension} To be the minimal number $d$ such that there are $x_1, \cdots x_d \in \fm$ such that $\rad((x_1, \ldots x_d))=\fm$, where $\rad$ denotes the radical of the ideal.
+And we define the \textbf{Generator Dimension} To be the minimal number $d$ such that there are $x_1, \cdots x_d \in \mathfrak{m}$ such that $\rad((x_1, \ldots x_d))=\mathfrak{m}$, where $\rad$ denotes the radical of the ideal.
 
 
-\begin{thm} $\dim_{hilb}=\dim_{krull}=\dim_{gen}$.
-\end{thm}
+\begin{theorem} $\dim_{hilb}=\dim_{krull}=\dim_{gen}$.
+\end{theorem}
 \begin{proof}
 First note that $\dim_{hilb} \geq \dim_{krull}$ can be done by a similar argument to problems 1 and 2 of pset 11.
 
@@ -2017,13 +2017,13 @@ Also $\dim_{gen} \geq \dim_{hilb}$ because we may set $\fa=(x_1, \ldots x_d)$, a
 
 It remains to show $\dim_{Krull} \geq \dim_{gen}$.
 
-\begin{defn} For $\fp \subset A$ a prime, define the \underline{height} of $\fp$, to be $\height(\fp)=$ the maximal length of a chain of prime ideals $\fp_0 \subset \fp_1 \subset \cdots \subset \fp_n=\fp$. Equivalently, since primes of the localization $\Spec(A_{\fp})$ are primes in $\Spec(A)$ which are contained in $\fp$, one may say
+\begin{definition} For $\fp \subset A$ a prime, define the \underline{height} of $\fp$, to be $\height(\fp)=$ the maximal length of a chain of prime ideals $\fp_0 \subset \fp_1 \subset \cdots \subset \fp_n=\fp$. Equivalently, since primes of the localization $\Spec(A_{\fp})$ are primes in $\Spec(A)$ which are contained in $\fp$, one may say
 \[\height(\fp)=\dim_{krull}(A_\fp)\]
-\end{defn}
+\end{definition}
 
-For every $i=1, \ldots d$, where $d$ is the Krull dimension, we are going to construct some elements $x_1, \ldots x_i \in \fm$ such that for any prime $\fp \supset (x_1, \ldots x_i)$, $\height(\fp) \geq i$. Indeed if we did this, this would mean for any $\fp \supset (x_1, \ldots x_d)$, $\height(\fp) \geq d$. But this would mean that $\fp=\fm$ because $d$ is the Krull dimension. So $\fm$ is the only prime ideal in $A/(x_1, \ldots x_d)$ which means $\rad(x_1, \ldots x_d)=\fm$, so the generator dimension would be at most $d$, as desired.
+For every $i=1, \ldots d$, where $d$ is the Krull dimension, we are going to construct some elements $x_1, \ldots x_i \in \mathfrak{m}$ such that for any prime $\fp \supset (x_1, \ldots x_i)$, $\height(\fp) \geq i$. Indeed if we did this, this would mean for any $\fp \supset (x_1, \ldots x_d)$, $\height(\fp) \geq d$. But this would mean that $\fp=\mathfrak{m}$ because $d$ is the Krull dimension. So $\mathfrak{m}$ is the only prime ideal in $A/(x_1, \ldots x_d)$ which means $\rad(x_1, \ldots x_d)=\mathfrak{m}$, so the generator dimension would be at most $d$, as desired.
 
-So we now want to construct the $x$s. Assume, inductively, that $x_1, \ldots x_{i-1}$ have already been constructed. Then let $\{\fp_\alpha\}$ be the minimal primes containing $x_1, \ldots x_{i-1}$ of height exactly $i-1$. Note $\fp_\alpha \neq \fm$. Note that if a prime ideal is not contained in any of the $\fp_\alpha$, then it is not contained in their union. So $\fm \not \subset \cup \fp_\alpha$, so there is some $x_i \in \fm$ such that $x_i \not \in \fp_\alpha$ for any $\alpha$. Then consider $(x_1, \ldots x_i)$ and consider any prime $\fp \supset (x_1, \ldots x_i)$. Then $\fp$ must contain some minimal prime $\fq$ which contains $x_1, \ldots x_{i-1}$. Then consider two cases:
+So we now want to construct the $x$s. Assume, inductively, that $x_1, \ldots x_{i-1}$ have already been constructed. Then let $\{\fp_\alpha\}$ be the minimal primes containing $x_1, \ldots x_{i-1}$ of height exactly $i-1$. Note $\fp_\alpha \neq \mathfrak{m}$. Note that if a prime ideal is not contained in any of the $\fp_\alpha$, then it is not contained in their union. So $\mathfrak{m} \not \subset \cup \fp_\alpha$, so there is some $x_i \in \mathfrak{m}$ such that $x_i \not \in \fp_\alpha$ for any $\alpha$. Then consider $(x_1, \ldots x_i)$ and consider any prime $\fp \supset (x_1, \ldots x_i)$. Then $\fp$ must contain some minimal prime $\fq$ which contains $x_1, \ldots x_{i-1}$. Then consider two cases:
 \begin{enumerate}
 \item If $\fq=\fp_\alpha$ for some $\alpha$, then $\fp \supsetneq \fp_\alpha$, because $\fq_\alpha$ does not contain $x_i$. So $\dim(\fp)>\dim(\fp_\alpha)=i-1$.
 
@@ -2033,16 +2033,16 @@ So we now want to construct the $x$s. Assume, inductively, that $x_1, \ldots x_{
 \end{proof}
 
 
-\begin{cor} If $A$ is a local Noetherian ring then $\dim(A) \leq \dim_{A/m}(m/m^2)$.
+\begin{corollary} If $A$ is a local Noetherian ring then $\dim(A) \leq \dim_{A/m}(m/m^2)$.
 \label{loc ring dim ineq}
-\end{cor}
-\begin{proof} Consider a basis of $\fm/\fm^2$ and let $x_i \in \fm$ be their lifts to $\fm$. Then by Nakayama's lemma the $x_i$ generate $\fm$, so the radical of the ideal the generate is still $\fm$, so applying the generator definition of dimension, the statement becomes obvious.
+\end{corollary}
+\begin{proof} Consider a basis of $\mathfrak{m}/\mathfrak{m}^2$ and let $x_i \in \mathfrak{m}$ be their lifts to $\mathfrak{m}$. Then by Nakayama's lemma the $x_i$ generate $\mathfrak{m}$, so the radical of the ideal the generate is still $\mathfrak{m}$, so applying the generator definition of dimension, the statement becomes obvious.
 \end{proof}
 
 
 Here is a useful theorem that gives the dimensions of some localizations:
-\begin{thm} \textbf{Krull's Hauptidealsatz} (a.k.a Krull's Principal Ideal Theorem). Let $A$ be a Noetherian ring and $x \in A$ a non-unit, non zero-divisor. Then for any minimal prime $p \supset (x)$, $\height(p) =1$.
-\end{thm}
+\begin{theorem} \textbf{Krull's Hauptidealsatz} (a.k.a Krull's Principal Ideal Theorem). Let $A$ be a Noetherian ring and $x \in A$ a non-unit, non zero-divisor. Then for any minimal prime $p \supset (x)$, $\height(p) =1$.
+\end{theorem}
 \begin{proof} We need to show that $\dim(A_p)=1$. Note that $\dim(A_p) \leq 1$. In fact, if we consider $x \in \fp_\fp \subset A_\fp$, then $\rad(x)=\fp_\fp$, because $\fp_\fp$ is simultaneously maximal and the minimal prime containing $x$.
 
 However, if $\dim(A_\fp)=0$, then $A_\fp$ is local Artinian, which means that $\fp$ is nilpotent in $A_\fp$, but $x \in \fp$, so $x^n=0$, which contradicts $x$ not being a zero-divisor.
@@ -2050,18 +2050,18 @@ However, if $\dim(A_\fp)=0$, then $A_\fp$ is local Artinian, which means that $\
 
 
 Now we consider the dimension of a localization at a maximal ideal:
-\begin{lemma} Let $A$ be a finitely generated $k$ algebra and $\fm$ a maximal ideal. Then $\dim(A_\fm)=\max(\dim(A_i))$, where $\Spec(A_i)$ are the irreducible components of $\Spec(A)$ which contain $\fm$.
+\begin{lemma} Let $A$ be a finitely generated $k$ algebra and $\mathfrak{m}$ a maximal ideal. Then $\dim(A_\mathfrak{m})=\max(\dim(A_i))$, where $\Spec(A_i)$ are the irreducible components of $\Spec(A)$ which contain $\mathfrak{m}$.
 \label{dim of localize at max ideal}
 \end{lemma}
-\begin{proof} Note that the right hand side is the maximal length of prime ideals terminating in $\fm$, and these are in bijection with chains of prime ideals in the localization, by the Krull dimension definition.
+\begin{proof} Note that the right hand side is the maximal length of prime ideals terminating in $\mathfrak{m}$, and these are in bijection with chains of prime ideals in the localization, by the Krull dimension definition.
 \end{proof}
 
 
 Now let us get back to proving the theorem that was mentioned in the section on Hilbert dimensions:
 
-\begin{thm} For a finitely generated domain $A$ over a field $k$, if $V(fA) \neq \emptyset$ then $\dim(A/fA)=\dim(A)-1$.
+\begin{theorem} For a finitely generated domain $A$ over a field $k$, if $V(fA) \neq \emptyset$ then $\dim(A/fA)=\dim(A)-1$.
 \label{dim drop by 1}
-\end{thm}
+\end{theorem}
 \begin{proof} We will in fact prove that every irreducible component $Y_i$ of $\Spec(A/fA)$ satisfies \[\dim(Y_i)=\dim(A)-1.\]
 Note that $Y_i=V(\fp_i)=\Spec(A/\fp_i)$ where $\fp_i$ is a minimal prime which contains $f$, so applying Krull's Hauptidealsatz, we see that $\height(\fp_i)=1$, so $\dim(A/\fp_i)=\dim(A)-1$, using the definition of dimension of a finitely generated domain via chains of primes.
 \end{proof}
@@ -2086,17 +2086,17 @@ As mentioned earlier, another proof of this using higher-tech homological algebr
 
 
 Note that when we were considering the dimension of a local Noetherian ring $A$, we defined the Hilbert dimension via the function
-\[\phi(i)=\len{A/\fm^i}=\sum_{j=0}^{i-1}\len(\fm^j/\fm^{j-1})=\sum_{j=0}^{i-1}\dim_{A/\fm}(\fm^j/\fm^{j+1})\]
-where $\fm^j/\fm^{j+1}$ can naturally be viewed as a vector space over $A/\fm$ because the action of $A$ on $\fm^j/\fm^{j+1}$ can be factored through $A/\fm$. But note that
-\[\bigoplus_{i=0}^\infty \fm^i/\fm^{i+1}=\gr(A)\]
-with respect to the filtration $A \supset \fm \supset \fm^2 \supset \cdots$ so
+\[\phi(i)=\len{A/\mathfrak{m}^i}=\sum_{j=0}^{i-1}\len(\mathfrak{m}^j/\mathfrak{m}^{j-1})=\sum_{j=0}^{i-1}\dim_{A/\mathfrak{m}}(\mathfrak{m}^j/\mathfrak{m}^{j+1})\]
+where $\mathfrak{m}^j/\mathfrak{m}^{j+1}$ can naturally be viewed as a vector space over $A/\mathfrak{m}$ because the action of $A$ on $\mathfrak{m}^j/\mathfrak{m}^{j+1}$ can be factored through $A/\mathfrak{m}$. But note that
+\[\bigoplus_{i=0}^\infty \mathfrak{m}^i/\mathfrak{m}^{i+1}=\gr(A)\]
+with respect to the filtration $A \supset \mathfrak{m} \supset \mathfrak{m}^2 \supset \cdots$ so
 \[\dim(A)=\dim(\gr(A))\]
-where on the right we are considering the dimension of $\gr(A)$ as an $A/\fm$ algebra. It is a finitely generated $A/\fm$ algebra, so we take the Hilbert dimension for finitely generated algebras for it.
+where on the right we are considering the dimension of $\gr(A)$ as an $A/\mathfrak{m}$ algebra. It is a finitely generated $A/\mathfrak{m}$ algebra, so we take the Hilbert dimension for finitely generated algebras for it.
 
-Notice that $\gr(A)$ is generated by $\fm/\fm^2$ i.e, $\Sym_{A/\fm}(\fm/\fm^2) \surject \gr(A)$.
+Notice that $\gr(A)$ is generated by $\mathfrak{m}/\mathfrak{m}^2$ i.e, $\Sym_{A/\mathfrak{m}}(\mathfrak{m}/\mathfrak{m}^2) \surject \gr(A)$.
 
-\begin{defn} A local ring is called \underline{regular} if the above map is an isomorphism.
-\end{defn}
+\begin{definition} A local ring is called \underline{regular} if the above map is an isomorphism.
+\end{definition}
 
 Recall that Corollary \ref{loc ring dim ineq} states that for any ring $\dim(A) \leq \dim_{A/m}(m/m^2)$. The following lemma gives another equivalent definition of regularity of a local ring:
 
@@ -2105,75 +2105,75 @@ Recall that Corollary \ref{loc ring dim ineq} states that for any ring $\dim(A) 
 is an equality.
 \end{lemma}
 \begin{proof}
-If $\Sym_{A/\fm}(\fm/\fm^2) \simeq \gr(A)$, then $\Sym_{A/\fm}(\fm/\fm^2)$ has the same Hilbert polynomial as $\gr(A)$, but the $\Sym_{A/\fm}(\fm/\fm^2)$ is just a polynomial algebra in $\dim_{A/\fm}(\fm/\fm^2)$ variables so the degree of its Hilbert polynomial is $\dim_{A/\fm}(\fm/\fm^2)$, so $\dim(\gr(A))=\dim_{A/\fm}(\fm/\fm^2)$, but recall $\dim(A)=\dim(\gr(A))$, so $\dim(A)=\dim_{A/\fm}(\fm/\fm^2)$.
+If $\Sym_{A/\mathfrak{m}}(\mathfrak{m}/\mathfrak{m}^2) \simeq \gr(A)$, then $\Sym_{A/\mathfrak{m}}(\mathfrak{m}/\mathfrak{m}^2)$ has the same Hilbert polynomial as $\gr(A)$, but the $\Sym_{A/\mathfrak{m}}(\mathfrak{m}/\mathfrak{m}^2)$ is just a polynomial algebra in $\dim_{A/\mathfrak{m}}(\mathfrak{m}/\mathfrak{m}^2)$ variables so the degree of its Hilbert polynomial is $\dim_{A/\mathfrak{m}}(\mathfrak{m}/\mathfrak{m}^2)$, so $\dim(\gr(A))=\dim_{A/\mathfrak{m}}(\mathfrak{m}/\mathfrak{m}^2)$, but recall $\dim(A)=\dim(\gr(A))$, so $\dim(A)=\dim_{A/\mathfrak{m}}(\mathfrak{m}/\mathfrak{m}^2)$.
 
-For the other direction, if $\dim_{A/\fm}(\fm/\fm^2)=\dim(A)$, then $\dim(A)=\dim(\gr(A))$, and again applying the face that $ \Sym_{A/\fm}(\fm/\fm^2)$ is a polynomial algebra in $\dim_{A/\fm}(\fm/\fm^2)$ variables, so it has dimension $\dim_{A/\fm}(\fm/\fm^2)$, we see that
-\[\dim(\Sym_{A/\fm}(\fm/\fm^2))=\dim(\gr(A)).\]
+For the other direction, if $\dim_{A/\mathfrak{m}}(\mathfrak{m}/\mathfrak{m}^2)=\dim(A)$, then $\dim(A)=\dim(\gr(A))$, and again applying the face that $ \Sym_{A/\mathfrak{m}}(\mathfrak{m}/\mathfrak{m}^2)$ is a polynomial algebra in $\dim_{A/\mathfrak{m}}(\mathfrak{m}/\mathfrak{m}^2)$ variables, so it has dimension $\dim_{A/\mathfrak{m}}(\mathfrak{m}/\mathfrak{m}^2)$, we see that
+\[\dim(\Sym_{A/\mathfrak{m}}(\mathfrak{m}/\mathfrak{m}^2))=\dim(\gr(A)).\]
 
-But note that $\Sym_{A/\fm}(\fm/\fm^2)$ is a domain, so if the surjection is not an isomorphism, then the dimension must strictly drop by Lemma \ref{hilb dim of quot ring drops} so the map must be an isomorphism, as desired.
+But note that $\Sym_{A/\mathfrak{m}}(\mathfrak{m}/\mathfrak{m}^2)$ is a domain, so if the surjection is not an isomorphism, then the dimension must strictly drop by Lemma \ref{hilb dim of quot ring drops} so the map must be an isomorphism, as desired.
 \end{proof}
 
-\begin{rmk} Let $A$ be a local ring and $\hat{A}$ its completion. Then $\dim(A)=\dim(\hat{A})$, because $A/\fm^n=\hat{A}/\hat{\fm}^n$, so the Hilbert functions are the same. Similarly, $\gr(A)=\gr(\hat{A})$. However, by \ref{completion local} $\hat{A}$ is also a local ring. So applying the above lemma, we see  $A$ is regular if and only if $\hat{A}$ is regular.
-\end{rmk}
+\begin{remark} Let $A$ be a local ring and $\hat{A}$ its completion. Then $\dim(A)=\dim(\hat{A})$, because $A/\mathfrak{m}^n=\hat{A}/\hat{\mathfrak{m}}^n$, so the Hilbert functions are the same. Similarly, $\gr(A)=\gr(\hat{A})$. However, by \ref{completion local} $\hat{A}$ is also a local ring. So applying the above lemma, we see  $A$ is regular if and only if $\hat{A}$ is regular.
+\end{remark}
 
 
 \begin{lemma} A regular local ring is a domain.
 \label{reg loc means domain}
 \end{lemma}
-\begin{proof} Let $a,b \neq 0$. Note that $\cap \fm^n=0$, so there are $k_1$ and $k_2$ such that $\bar{a} \neq 0 \in \fm^{k_1}/\fm^{k_1+1}$, and $\bar(b) \neq 0 \in \fm^{k_2}/\fm^{k_2+1}$, which is to say that $a \in \fm^{k_1}, a \not \in \fm^{k_1+1}$. But then $\bar{a}\bar{b} \neq 0 \in \gr(A)$, because $\gr(A)=\Sym(\fm/\fm^2)$ is a domain. So $ab \neq 0$, as desired.
+\begin{proof} Let $a,b \neq 0$. Note that $\cap \mathfrak{m}^n=0$, so there are $k_1$ and $k_2$ such that $\bar{a} \neq 0 \in \mathfrak{m}^{k_1}/\mathfrak{m}^{k_1+1}$, and $\bar(b) \neq 0 \in \mathfrak{m}^{k_2}/\mathfrak{m}^{k_2+1}$, which is to say that $a \in \mathfrak{m}^{k_1}, a \not \in \mathfrak{m}^{k_1+1}$. But then $\bar{a}\bar{b} \neq 0 \in \gr(A)$, because $\gr(A)=\Sym(\mathfrak{m}/\mathfrak{m}^2)$ is a domain. So $ab \neq 0$, as desired.
 \end{proof}
 
 
 \begin{lemma}
-If $A$ is a regular local ring, and $f \in \fm$ is such that $f \neq 0 \in \fm/\fm^2$. Then $A'=A/fA$ is also regular of dimension $\dim(A)-1$.
+If $A$ is a regular local ring, and $f \in \mathfrak{m}$ is such that $f \neq 0 \in \mathfrak{m}/\mathfrak{m}^2$. Then $A'=A/fA$ is also regular of dimension $\dim(A)-1$.
 \label{reg loc mod f still reg loc}
 \end{lemma}
-\begin{proof} First let us show the dimension part of the statement. We know from \ref{local dim drop} that the dimension has to drop. On the other hand if the images of $\rad(f_1, \ldots f_n)=\fm/(f)$ in $A/fA$, then $\rad(f,f_1, \ldots f_n)=\fm$ in $A$, giving us the other direction.
+\begin{proof} First let us show the dimension part of the statement. We know from \ref{local dim drop} that the dimension has to drop. On the other hand if the images of $\rad(f_1, \ldots f_n)=\mathfrak{m}/(f)$ in $A/fA$, then $\rad(f,f_1, \ldots f_n)=\mathfrak{m}$ in $A$, giving us the other direction.
 
-Now we want to show that it is regular. This amounts to showing that $\dim_{A'/\fm_{A'}}(\fm_{A'}/\fm_{A'}^2)=\dim(A')$, or in other words that \[\dim_{A'/\fm_{A'}}(\fm_{A'}/\fm_{A'}^2) \leq \dim_{A/\fm_A}(\fm_{A}/\fm_A^2)-1.\]
+Now we want to show that it is regular. This amounts to showing that $\dim_{A'/\mathfrak{m}_{A'}}(\mathfrak{m}_{A'}/\mathfrak{m}_{A'}^2)=\dim(A')$, or in other words that \[\dim_{A'/\mathfrak{m}_{A'}}(\mathfrak{m}_{A'}/\mathfrak{m}_{A'}^2) \leq \dim_{A/\mathfrak{m}_A}(\mathfrak{m}_{A}/\mathfrak{m}_A^2)-1.\]
 But note that we have a surjection
 \[A \surject A'=A/fA\]
-and $\fm_{A'}=\fm_A/f$, so we also have a surjection
-\[\fm_A \surject \fm_{A'}\]
+and $\mathfrak{m}_{A'}=\mathfrak{m}_A/f$, so we also have a surjection
+\[\mathfrak{m}_A \surject \mathfrak{m}_{A'}\]
 and since we have
-\[\fm_A^2 \to \fm_{A'}^2\]
+\[\mathfrak{m}_A^2 \to \mathfrak{m}_{A'}^2\]
 the map factors as
-\[\alpha: \fm_A/\fm_A^2 \surject \fm_{A'}/\fm_{A'}^2.\]
-However, all of these maps are maps of $A$ modules, so this last map is a map of $A/\fm_A$ vector spaces (note that $A/\fm_A=A'/\fm_{A'}$ because $f$ is in $\fm_A$).
+\[\alpha: \mathfrak{m}_A/\mathfrak{m}_A^2 \surject \mathfrak{m}_{A'}/\mathfrak{m}_{A'}^2.\]
+However, all of these maps are maps of $A$ modules, so this last map is a map of $A/\mathfrak{m}_A$ vector spaces (note that $A/\mathfrak{m}_A=A'/\mathfrak{m}_{A'}$ because $f$ is in $\mathfrak{m}_A$).
 
-Also note that $f \neq 0 \in \fm_A/\fm_A^2$, but $\alpha$ maps the image of $f$ to 0, so $\alpha$ is not injective as a map of vector spaces. It is however, surjective, so the dimension must drop, as desired.
+Also note that $f \neq 0 \in \mathfrak{m}_A/\mathfrak{m}_A^2$, but $\alpha$ maps the image of $f$ to 0, so $\alpha$ is not injective as a map of vector spaces. It is however, surjective, so the dimension must drop, as desired.
 \end{proof}
 
 
 
-\begin{cor}  Consider elements $f_1, \ldots f_m$ in $\fm$ such that $\bar{f_1}, \ldots \bar{f_m} \in \fm/\fm^2$ are independent. Then $A/(f_1, \ldots f_m)$ is regular with $\dim(A/(f_1, \ldots f_m))=\dim(A)-m$
+\begin{corollary}  Consider elements $f_1, \ldots f_m$ in $\mathfrak{m}$ such that $\bar{f_1}, \ldots \bar{f_m} \in \mathfrak{m}/\mathfrak{m}^2$ are independent. Then $A/(f_1, \ldots f_m)$ is regular with $\dim(A/(f_1, \ldots f_m))=\dim(A)-m$
 \label{reg local mod fs still reg loc}
-\end{cor}
-\begin{proof} This follows from Lemma \ref{reg loc mod f still reg loc} by induction. One just needs to check that in $A_1=A/(f_1)$, $\fm_1=\fm/(f_1)$, we have that $f_2, \ldots f_m$ are still linearly independent in $\fm_1/\fm_1^2$. This is easy to check.
+\end{corollary}
+\begin{proof} This follows from Lemma \ref{reg loc mod f still reg loc} by induction. One just needs to check that in $A_1=A/(f_1)$, $\mathfrak{m}_1=\mathfrak{m}/(f_1)$, we have that $f_2, \ldots f_m$ are still linearly independent in $\mathfrak{m}_1/\mathfrak{m}_1^2$. This is easy to check.
 \end{proof}
 
 
 
-\begin{thm} Let $A_0$ be a regular local ring of dimension $n$, and consider a short exact sequence
+\begin{theorem} Let $A_0$ be a regular local ring of dimension $n$, and consider a short exact sequence
 \[0 \rTo I \rTo A_0 \rTo A \rTo 0\]
 where $A$ is a ring. Note that $\Spec(A)$ is a closed subset of $\Spec(A_0)$ so $A$ is also local. Then the following are equivalent
 \begin{enumerate}
 \item $A$ is regular
-\item There are elements $f_1, \ldots f_m \in I$ such that $\bar{f_1}, \ldots \bar{f_m}$ are linearly independent in $\fm_{A_0}/\fm_{A_0}^2$ where $m=n-\dim(A)$ such that $(f_1, \ldots f_m)=I$.
+\item There are elements $f_1, \ldots f_m \in I$ such that $\bar{f_1}, \ldots \bar{f_m}$ are linearly independent in $\mathfrak{m}_{A_0}/\mathfrak{m}_{A_0}^2$ where $m=n-\dim(A)$ such that $(f_1, \ldots f_m)=I$.
 \end{enumerate}
 \label{reg loc main thm}
-\end{thm}
+\end{theorem}
 \begin{proof} \textbf{(2) $\Rightarrow$ (1)} This is exactly the statement of Corollary \ref{reg local mod fs still reg loc}
 
 \noindent \textbf{(1) $\Rightarrow$ (2)} Just as in the proof of Lemma \ref{reg loc mod f still reg loc}, i.e, using Problems 2a and 5a in Problem Set 12, we see that there is exact sequence
-\[I \uset{A_0}\otimes A_0/\fm_{A_0} \rTo \fm_{A_0}/\fm_{A_0}^2 \rTo \fm_{A}/\fm_{A}^2  \rTo 0.\]
-When we proved this in Lemma \ref{reg loc mod f still reg loc}, we used $f \in \fm_A$, but that still works because $I \subset \fm_{A_0}$ because $A_0$ is local with maximal ideal $\fm_{A_0}$ so all ideals are in $\fm_{A_0}$.
+\[I \uset{A_0}\otimes A_0/\mathfrak{m}_{A_0} \rTo \mathfrak{m}_{A_0}/\mathfrak{m}_{A_0}^2 \rTo \mathfrak{m}_{A}/\mathfrak{m}_{A}^2  \rTo 0.\]
+When we proved this in Lemma \ref{reg loc mod f still reg loc}, we used $f \in \mathfrak{m}_A$, but that still works because $I \subset \mathfrak{m}_{A_0}$ because $A_0$ is local with maximal ideal $\mathfrak{m}_{A_0}$ so all ideals are in $\mathfrak{m}_{A_0}$.
 
-By assumption $A_0$ and $A$ are regular local, and we know $A_0/\fm_{A_0}=A/\fm_A$, because $A=A_0/I$, $\fm_A=\fm_{A_0}/I$ so
-\[\dim_{A_0/\fm_{A_0}}(\fm_{A_0}/\fm_{A_0}^2)=\dim(A_0)=n\]
+By assumption $A_0$ and $A$ are regular local, and we know $A_0/\mathfrak{m}_{A_0}=A/\mathfrak{m}_A$, because $A=A_0/I$, $\mathfrak{m}_A=\mathfrak{m}_{A_0}/I$ so
+\[\dim_{A_0/\mathfrak{m}_{A_0}}(\mathfrak{m}_{A_0}/\mathfrak{m}_{A_0}^2)=\dim(A_0)=n\]
 and
-\[\dim_{A_0/\fm_{A_0}}(\fm_{A}/\fm_{A}^2)=\dim(A)\]
-so the image of $I \uset{A_0}\otimes A_0/\fm_{A_0}$ in $\fm_{A_0}/\fm_{A_0}^2$ has dimension $m=n-\dim(A)$. Let $\bar{f}_1, \ldots \bar{f}_m$ be a set of linearly independent generators of $\fm_{A_0}/\fm_{A_0}^2$, and let $f_1, \ldots f_m$ be liftings to $I$.
+\[\dim_{A_0/\mathfrak{m}_{A_0}}(\mathfrak{m}_{A}/\mathfrak{m}_{A}^2)=\dim(A)\]
+so the image of $I \uset{A_0}\otimes A_0/\mathfrak{m}_{A_0}$ in $\mathfrak{m}_{A_0}/\mathfrak{m}_{A_0}^2$ has dimension $m=n-\dim(A)$. Let $\bar{f}_1, \ldots \bar{f}_m$ be a set of linearly independent generators of $\mathfrak{m}_{A_0}/\mathfrak{m}_{A_0}^2$, and let $f_1, \ldots f_m$ be liftings to $I$.
 
 Let $I'$ be the ideal generated by $f_1, \ldots f_m$ and consider $A'=A_0/I'$. Then by Corollary \ref{reg local mod fs still reg loc}, we know that $A'$ is a regular local ring with dimension $n-m=\dim(A)$. Also $I' \subset I$ so we have
 \[0 \rTo J \rTo A' \rTo A \rTo 0\]
@@ -2183,31 +2183,31 @@ But Lemma \ref{reg loc means domain}, this means that it is a domain with the sa
 
 \subsection{Smoothness/Regularity for algebraically closed fields}
 
-\textbf{For all of this section $k$ be an algebraically closed field and $A$ a finitely generated algebra over $k$}. Let $\fm \in \Specm(A)$.
+\textbf{For all of this section $k$ be an algebraically closed field and $A$ a finitely generated algebra over $k$}. Let $\mathfrak{m} \in \Specm(A)$.
 
-\begin{defn} We say that $A$ is smooth/regular at $\fm$ if $A_\fm$ is a regular local ring.
-\end{defn}
+\begin{definition} We say that $A$ is smooth/regular at $\mathfrak{m}$ if $A_\mathfrak{m}$ is a regular local ring.
+\end{definition}
 
-Note that this is consistent with the definition given in Theorem \ref{dmn over alg clos k, exists open of smooths}, because $\Omega_k(A) \uset{A}\otimes k=\fm/\fm^2$, by Problem Set 12, Problem 5a, and $\dim(A)=\dim(A_\fm)$ by Lemma \ref{dim of localize at max ideal}.
+Note that this is consistent with the definition given in Theorem \ref{dmn over alg clos k, exists open of smooths}, because $\Omega_k(A) \uset{A}\otimes k=\mathfrak{m}/\mathfrak{m}^2$, by Problem Set 12, Problem 5a, and $\dim(A)=\dim(A_\mathfrak{m})$ by Lemma \ref{dim of localize at max ideal}.
 
 Let us denote $\uline{x}=\{x_1, \ldots x_n\}$. Then since $A$ any finitely generated algebra over $k$, we may consider a short exact sequence
 \[0 \rTo I \rTo k[\uline{x}] \rTo A \rTo 0.\]
 Note that for $\uline{c} \in k^n=\Specm(k[\uline{x}])$, $\uline{c} \in \Specm(A)$ if and only if $\uline{c} \in V(I)$.
 
-\begin{thm} For $\uline{c} \in \Specm(A)$, $A$ is smooth at $\uline{c}$ if and only if there are $f_1, \ldots f_{m'} \in I$, where $m'=n-\dim{A_\fm}$ such that $\bar{f_1}, \ldots , \bar{f_{m'}} \in \fm_{k[\uline{x}]}/\fm_{k[\uline{x}]}^2$ are linearly independent, and $(f_1, \ldots f_{m'})_\fm \rTo^\sim I_\fm$.
+\begin{theorem} For $\uline{c} \in \Specm(A)$, $A$ is smooth at $\uline{c}$ if and only if there are $f_1, \ldots f_{m'} \in I$, where $m'=n-\dim{A_\mathfrak{m}}$ such that $\bar{f_1}, \ldots , \bar{f_{m'}} \in \mathfrak{m}_{k[\uline{x}]}/\mathfrak{m}_{k[\uline{x}]}^2$ are linearly independent, and $(f_1, \ldots f_{m'})_\mathfrak{m} \rTo^\sim I_\mathfrak{m}$.
 \label{smoothness local coordinates}
-\end{thm}
-\begin{proof} Let $\fm_{k[\uline{x}]}$ and $\fm_A$ denote the maximal ideals corresponding to $\uline{c}$ in $k[\uline{x}]$ and $A$ respectively. We apply Lemma \ref{dim of localize at max ideal} to show that $k[\uline{x}]_{\uline{c}}$ is a regular local ring of dimension $n$: the dimension of the ring results from the lemma, and to calculate the dimension of $\fm_{k[\uline{x}]}/\fm_{k[\uline{x}]}^2$ it is clear that all points look the same, so we may as well take $\fm_{k[\uline{x}]}=(x_1, \ldots x_n)$, and for this we know the dimension is $n$.
+\end{theorem}
+\begin{proof} Let $\mathfrak{m}_{k[\uline{x}]}$ and $\mathfrak{m}_A$ denote the maximal ideals corresponding to $\uline{c}$ in $k[\uline{x}]$ and $A$ respectively. We apply Lemma \ref{dim of localize at max ideal} to show that $k[\uline{x}]_{\uline{c}}$ is a regular local ring of dimension $n$: the dimension of the ring results from the lemma, and to calculate the dimension of $\mathfrak{m}_{k[\uline{x}]}/\mathfrak{m}_{k[\uline{x}]}^2$ it is clear that all points look the same, so we may as well take $\mathfrak{m}_{k[\uline{x}]}=(x_1, \ldots x_n)$, and for this we know the dimension is $n$.
 
 Now we have
-\[0 \rTo I_{\fm_{k[\uline{x}]}} \rTo k[\uline{x}]_{\fm_{k[\uline{x}]}} \rTo A_{\fm_{k[\uline{x}]}} \rTo 0\]
-where $k[\uline{x}]_{\fm_{k[\uline{x}]}}$ is regular local of dimension $n$, so the theorem follows from \ref{reg loc main thm}.
+\[0 \rTo I_{\mathfrak{m}_{k[\uline{x}]}} \rTo k[\uline{x}]_{\mathfrak{m}_{k[\uline{x}]}} \rTo A_{\mathfrak{m}_{k[\uline{x}]}} \rTo 0\]
+where $k[\uline{x}]_{\mathfrak{m}_{k[\uline{x}]}}$ is regular local of dimension $n$, so the theorem follows from \ref{reg loc main thm}.
 \end{proof}
 
 
-\begin{rmk}
-The above theorem is analogous to the Implicit Function Theorem. We may think of $\bar{f_i}$s as elements of $\fm_{A_0}/\fm_{A_0}^2 \simeq \Omega_k(A_0) \uset{A_0}\otimes k$. Now, we may think of $\Omega_k(A_0)=A_0dx_1 \oplus \cdots \oplus A_0dx_n$, since it is the free module on $n$ generators. In this language,
-\[df_i \in \fm_{A_0}/\fm_{A_0}^2= \Omega_k(A_0) \uset{A_0} \otimes k=\(\frac{\partial f_i}{\partial x_1}(\uline{c}), \cdots \frac{\partial f_i}{\partial x_n}(\uline{c})\)\]
+\begin{remark}
+The above theorem is analogous to the Implicit Function Theorem. We may think of $\bar{f_i}$s as elements of $\mathfrak{m}_{A_0}/\mathfrak{m}_{A_0}^2 \simeq \Omega_k(A_0) \uset{A_0}\otimes k$. Now, we may think of $\Omega_k(A_0)=A_0dx_1 \oplus \cdots \oplus A_0dx_n$, since it is the free module on $n$ generators. In this language,
+\[df_i \in \mathfrak{m}_{A_0}/\mathfrak{m}_{A_0}^2= \Omega_k(A_0) \uset{A_0} \otimes k=\left(\frac{\partial f_i}{\partial x_1}(\uline{c}), \cdots \frac{\partial f_i}{\partial x_n}(\uline{c})\right)\]
 and we are saying that if the $df_i$ are linearly independent and locally generate $I$ then the algebra $A_0/I$ is smooth at $m$.
 
 In more geometric terms, this is saying that if we consider the following diagram
@@ -2230,43 +2230,43 @@ V & \subset & \rr^{n'}\\
 \end{diagram}
 the pre-image of a point is a manifold if $df$ is surjective on the pre-image, which in this case means if the partials are linearly independent.
 
-\end{rmk}
+\end{remark}
 
-\begin{propn} $\Specm(A)$ is smooth at $\fm \in \Specm(A)$ if and only if  $\Omega_k(A)$ is free on a neighbourhood of $\fm$ of rank $\dim(A_\fm)$, or equivalently if $\Omega_k(A_\fm)$ is a free $A_\fm$ module of rank $\dim(A_\fm)$. (Note that when we showed that flatness is equivalent to local free-ness, we showed that if $M_\fp$ is a free $A_{\fp}$ module, then there is a neighbourhood $U_f$ around $\fp$ on which $M$ is free of the same rank).
-\end{propn}
+\begin{proposition} $\Specm(A)$ is smooth at $\mathfrak{m} \in \Specm(A)$ if and only if  $\Omega_k(A)$ is free on a neighbourhood of $\mathfrak{m}$ of rank $\dim(A_\mathfrak{m})$, or equivalently if $\Omega_k(A_\mathfrak{m})$ is a free $A_\mathfrak{m}$ module of rank $\dim(A_\mathfrak{m})$. (Note that when we showed that flatness is equivalent to local free-ness, we showed that if $M_\fp$ is a free $A_{\fp}$ module, then there is a neighbourhood $U_f$ around $\fp$ on which $M$ is free of the same rank).
+\end{proposition}
 \begin{proof}
 
 
-If $\Omega_k(A_\fm)$ is a locally free $A_\fm$ module of rank $\dim(A_\fm)$ then
-\[\fm/\fm^2 =\Omega_k(A) \uset{A} \otimes k= \Omega_k(A) \uset{A} \otimes A_{\fm} \uset{A_{\fm}}\otimes A_{\fm}/\fm_{\fm}\]
-is a vector space of dimension $\dim(A_\fm)$, which means that $A_\fm$ is regular, as desired.
+If $\Omega_k(A_\mathfrak{m})$ is a locally free $A_\mathfrak{m}$ module of rank $\dim(A_\mathfrak{m})$ then
+\[\mathfrak{m}/\mathfrak{m}^2 =\Omega_k(A) \uset{A} \otimes k= \Omega_k(A) \uset{A} \otimes A_{\mathfrak{m}} \uset{A_{\mathfrak{m}}}\otimes A_{\mathfrak{m}}/\mathfrak{m}_{\mathfrak{m}}\]
+is a vector space of dimension $\dim(A_\mathfrak{m})$, which means that $A_\mathfrak{m}$ is regular, as desired.
 
-For the other direction, if $A_\fm$ is regular, we will show that $\Omega_k(A)$ is free on a neighbourhood of $\fm$ of rank $\dim(A_\fm)$. By Theorem \ref{smoothness local coordinates}, for
+For the other direction, if $A_\mathfrak{m}$ is regular, we will show that $\Omega_k(A)$ is free on a neighbourhood of $\mathfrak{m}$ of rank $\dim(A_\mathfrak{m})$. By Theorem \ref{smoothness local coordinates}, for
 \begin{diagram}
 0 & \rTo & I  & \rTo  & (A_0=k[x]) & \rTo & A &  \rTo & 0\\
 \end{diagram}
-and there are $f_1, \ldots f_{n'}$ such that $I_\fm=(f_1, \ldots, f_{n'})_\fm$ and such that $(df_1(\uline{c}), \ldots df_{n'}(\uline{c}))$ are linearly independent, where we are saying $df_i=\sum \frac{\partial f_i}{\partial x_j} dx_j$.
+and there are $f_1, \ldots f_{n'}$ such that $I_\mathfrak{m}=(f_1, \ldots, f_{n'})_\mathfrak{m}$ and such that $(df_1(\uline{c}), \ldots df_{n'}(\uline{c}))$ are linearly independent, where we are saying $df_i=\sum \frac{\partial f_i}{\partial x_j} dx_j$.
 
-Note, by the way, that by Lemma \ref{diff forms lin indep is Zariski open cond} (which is shown using nothing from this section), we have that $df_1, \ldots df_{n'}$ are linearly independent in a Zariski neighbourhood of $\fm$. Although, this is not actually used in the proof.
+Note, by the way, that by Lemma \ref{diff forms lin indep is Zariski open cond} (which is shown using nothing from this section), we have that $df_1, \ldots df_{n'}$ are linearly independent in a Zariski neighbourhood of $\mathfrak{m}$. Although, this is not actually used in the proof.
 
 Recall from Problem Set 12, problem 2a, that we have an exact sequence
 \[I/I^2 \rTo A \uset{A_0}\otimes \Omega_k(A_0) \rTo \Omega_k(A) \rTo 0,\]
-so localized at $\fm$, we have
-\[I_\fm/I_\fm^2 \rTo A_\fm \uset{A_0}\otimes \Omega_k(A_0) \rTo \Omega_k(A_\fm) \rTo 0,\]
-where the latter is an exact sequence of $A_\fm$ modules.
-However, because $I_\fm=(f_1, \ldots f_{n'})_\fm$, the above exact sequence may be written as
-\[A_{\fm}^{n'} \rTo A_\fm \uset{A_0}\otimes \Omega_k(A_0) \rTo \Omega_k(A_\fm) \rTo 0,\]
-where the generators of $A_{\fm}^{n'}$ map to $f_1, \ldots f_{n'}$.
-Note that  $f_1, \ldots f_{n'}$ still satisfy that their images in $k \uset{A_{\fm}}\otimes A_\fm \uset{A_0}\otimes \Omega_k(A_0)$ are linearly independent.
+so localized at $\mathfrak{m}$, we have
+\[I_\mathfrak{m}/I_\mathfrak{m}^2 \rTo A_\mathfrak{m} \uset{A_0}\otimes \Omega_k(A_0) \rTo \Omega_k(A_\mathfrak{m}) \rTo 0,\]
+where the latter is an exact sequence of $A_\mathfrak{m}$ modules.
+However, because $I_\mathfrak{m}=(f_1, \ldots f_{n'})_\mathfrak{m}$, the above exact sequence may be written as
+\[A_{\mathfrak{m}}^{n'} \rTo A_\mathfrak{m} \uset{A_0}\otimes \Omega_k(A_0) \rTo \Omega_k(A_\mathfrak{m}) \rTo 0,\]
+where the generators of $A_{\mathfrak{m}}^{n'}$ map to $f_1, \ldots f_{n'}$.
+Note that  $f_1, \ldots f_{n'}$ still satisfy that their images in $k \uset{A_{\mathfrak{m}}}\otimes A_\mathfrak{m} \uset{A_0}\otimes \Omega_k(A_0)$ are linearly independent.
 
-Thus for the map $A_{\fm}^{n'} \rTo A_\fm \uset{A_0}\otimes \Omega_k(A_0)$, we have that
-\[A_{\fm}^{n'} \uset{A_{\fm}}\otimes k \rTo (A_\fm \uset{A_0}\otimes \Omega_k(A_0)) \uset{A_{\fm}}\otimes k\]
+Thus for the map $A_{\mathfrak{m}}^{n'} \rTo A_\mathfrak{m} \uset{A_0}\otimes \Omega_k(A_0)$, we have that
+\[A_{\mathfrak{m}}^{n'} \uset{A_{\mathfrak{m}}}\otimes k \rTo (A_\mathfrak{m} \uset{A_0}\otimes \Omega_k(A_0)) \uset{A_{\mathfrak{m}}}\otimes k\]
 is injective.
 
-The proposition now follows from the second point of Lemma \ref{phi inj mod m means phi inj}, (shown below using nothing from this section), which gives us that $\Omega_k(A_\fm)$ is locally free of the correct rank, as $A_\fm^{n'}$ is free of rank $n'$ and $\Omega_k(A_0)$ is free over $A_0$ of rank $n$, so $A_\fm \uset{A_0}\otimes \Omega_k(A_0)$ is free over $A_\fm$ of rank $n$, and $n-n'=\dim(A_\fm)$ by definition.
+The proposition now follows from the second point of Lemma \ref{phi inj mod m means phi inj}, (shown below using nothing from this section), which gives us that $\Omega_k(A_\mathfrak{m})$ is locally free of the correct rank, as $A_\mathfrak{m}^{n'}$ is free of rank $n'$ and $\Omega_k(A_0)$ is free over $A_0$ of rank $n$, so $A_\mathfrak{m} \uset{A_0}\otimes \Omega_k(A_0)$ is free over $A_\mathfrak{m}$ of rank $n$, and $n-n'=\dim(A_\mathfrak{m})$ by definition.
 \end{proof}
 
-\begin{lemma} Let $A$ be a local Noetherian ring and let $\Phi:P_1 \to P_0$ be a map of locally free finitely generated modules, such that for $k=A/\fm$, we have $\Phi: P_1 \uset{A}\otimes k \to P_0 \uset{A}\otimes k$ is injective. Then
+\begin{lemma} Let $A$ be a local Noetherian ring and let $\Phi:P_1 \to P_0$ be a map of locally free finitely generated modules, such that for $k=A/\mathfrak{m}$, we have $\Phi: P_1 \uset{A}\otimes k \to P_0 \uset{A}\otimes k$ is injective. Then
 \begin{enumerate}
 \item $\Phi$ is injective
 \item $\coker(\Phi)$ is locally free of rank $\rank(P_1)-\rank(P_0)$.
@@ -2279,23 +2279,23 @@ The proposition now follows from the second point of Lemma \ref{phi inj mod m me
 \[0 \rTo T \rTo P_1 \rTo Q \rTo 0\]
 and
 \[0 \rTo Q \rTo P_0 \rTo R \rTo 0\]
-For a module $M$ over $A$, denote $\oline{M}=M \uset{A}\otimes k$.
+For a module $M$ over $A$, denote $\overline{M}=M \uset{A}\otimes k$.
 
-Because tensoring is right exact, we have $\oline{P_1} \surject \oline{Q}$. However, we are given $\oline{P_1} \inject \oline{P_0}$, and the map factors as $\oline{P_1} \to \oline{Q} \to \oline{P_0}$, so we must have
-\[\oline{Q} \inject \oline{P_0}.\]
+Because tensoring is right exact, we have $\overline{P_1} \surject \overline{Q}$. However, we are given $\overline{P_1} \inject \overline{P_0}$, and the map factors as $\overline{P_1} \to \overline{Q} \to \overline{P_0}$, so we must have
+\[\overline{Q} \inject \overline{P_0}.\]
 But note that short exact sequence
 \[0 \rTo Q \rTo P_0 \rTo R \rTo 0\]
 induces a long exact sequence of $\Tor$s
-\[\Tor_1^A(P_0, k) \rTo \Tor_1^A(R, k) \rTo \oline{Q} \rTo \oline{P_0} \rTo \oline{R} \rTo 0\]
-but $P_0$ is locally free and therefore flat, so $\Tor_1^A(P_0,k)=0$. This along with $\oline{Q} \rTo \oline{P_0}$ being injective means that
+\[\Tor_1^A(P_0, k) \rTo \Tor_1^A(R, k) \rTo \overline{Q} \rTo \overline{P_0} \rTo \overline{R} \rTo 0\]
+but $P_0$ is locally free and therefore flat, so $\Tor_1^A(P_0,k)=0$. This along with $\overline{Q} \rTo \overline{P_0}$ being injective means that
 \[\Tor_1^A(R, k)=0.\]
-From here, we will show that $R$ is free. Take a basis of $\oline{R}$ and lift the elements to $R$. Then by Nakayama's lemma, we have that these elements generate $R$. Then consider $R'$ the kernel of the map $A^n \to R$ given by these generators and we have a short exact sequence
+From here, we will show that $R$ is free. Take a basis of $\overline{R}$ and lift the elements to $R$. Then by Nakayama's lemma, we have that these elements generate $R$. Then consider $R'$ the kernel of the map $A^n \to R$ given by these generators and we have a short exact sequence
 \[0 \rTo R' \rTo A^n \rTo R \rTo 0.\]
 Now, considering the long exact sequence or Tors, and since $\Tor_1^A(R,k)=0$, this gives
-\[0 \rTo \oline{R'} \rTo \oline{A}^n \rTo \oline{R} \rTo 0\]
-but then $\oline{A}^n \rTo \oline{R}$ is an isomorphism, so $\oline{R'}=0$, which, by Nakayama's, means that $R'=0$, so $R$ is free.
+\[0 \rTo \overline{R'} \rTo \overline{A}^n \rTo \overline{R} \rTo 0\]
+but then $\overline{A}^n \rTo \overline{R}$ is an isomorphism, so $\overline{R'}=0$, which, by Nakayama's, means that $R'=0$, so $R$ is free.
 
-Also, our proof also gives that its rank is the same as the dimension of $\oline{R}$, which is the dimension of the cokernel of $\oline{P_1} \to \oline{P_0}$, but the latter map is injective, so the dimension of the cokernel is the difference of the dimensions. However, the dimensions of $\oline{P_1}$ and $\oline{P_0}$ are by a similar reasoning also equal to the ranks of $P_1$ and $P_0$ respectively, which gives us the second point of the proposition.
+Also, our proof also gives that its rank is the same as the dimension of $\overline{R}$, which is the dimension of the cokernel of $\overline{P_1} \to \overline{P_0}$, but the latter map is injective, so the dimension of the cokernel is the difference of the dimensions. However, the dimensions of $\overline{P_1}$ and $\overline{P_0}$ are by a similar reasoning also equal to the ranks of $P_1$ and $P_0$ respectively, which gives us the second point of the proposition.
 
 The first point of the proposition is equivalent to $T=0$. Note that since $R$ is projective, the short exact sequence
 \[0 \rTo Q \rTo P_0 \rTo R \rTo 0\]
@@ -2309,9 +2309,9 @@ so now our map $P_1 \to P_0$ becomes
 \[Q \oplus T \simeq P_1 \to P_0 \simeq Q \oplus R\]
 and it factors as
 \[Q \oplus T \surject Q \inject Q \oplus R\]
-But now, applying our assumption $\oline{P_1} \inject \oline{P_0}$, we have that the composed map
-\[\oline{Q} \oplus \oline{T} \surject \oline{Q} \inject \oline{Q} \oplus \oline{R}\]
-is injective, which means $\oline{T}=0$, so by Nakayama's $T=0$, as desired.
+But now, applying our assumption $\overline{P_1} \inject \overline{P_0}$, we have that the composed map
+\[\overline{Q} \oplus \overline{T} \surject \overline{Q} \inject \overline{Q} \oplus \overline{R}\]
+is injective, which means $\overline{T}=0$, so by Nakayama's $T=0$, as desired.
 \end{proof}
 
 
@@ -2319,12 +2319,12 @@ is injective, which means $\oline{T}=0$, so by Nakayama's $T=0$, as desired.
 \label{diff forms lin indep is Zariski open cond}
 \end{lemma}
 \begin{proof} Let us write out what is going on. So we have $df_1, df_2, \ldots df_n'$ which are
-\[df_1=\(\frac{\partial f_1}{\partial x_1}, \ldots \frac{\partial f_1}{\partial x_n}\)\]
+\[df_1=\left(\frac{\partial f_1}{\partial x_1}, \ldots \frac{\partial f_1}{\partial x_n}\right)\]
 \[\vdots\]
-\[df_{n'}=\(\frac{\partial f_{n'}}{\partial x_1}, \ldots \frac{\partial f_{n'}}{\partial x_n}\)\]
+\[df_{n'}=\left(\frac{\partial f_{n'}}{\partial x_1}, \ldots \frac{\partial f_{n'}}{\partial x_n}\right)\]
 when we identify $\Omega_k(A_0)$ with $A_0^n$, where we view $\frac{\partial f_i}{\partial x_j}$ as an element of $A_0$.
 
-Then our assumption as that or some $\uline{c}$, (the point in $\Specm(k[x_1, \ldots x_n])$ which corresponds to $\fm$), $df_1, \ldots df_{n'}$ evaluated at $\uline{c}$, (which are now elements of $k^{n}$) are linearly independent.
+Then our assumption as that or some $\uline{c}$, (the point in $\Specm(k[x_1, \ldots x_n])$ which corresponds to $\mathfrak{m}$), $df_1, \ldots df_{n'}$ evaluated at $\uline{c}$, (which are now elements of $k^{n}$) are linearly independent.
 
 Let us choose some $n-n'$ more vectors in $k^n$, and then lift them to $A_0^n$, and call them $x_{n'+1}, \ldots x_n$. Then $df_1, \ldots df_{n'}, x_{n'+1}, \ldots x_n$ are linearly independent when evaluated at $\uline{c}$. But this means the determinant at $\uline{c}$ is nonzero. But the determinant, which is a polynomial $k^{n^2} \to k$ can actually be seen as a map $(A_0)^{n^2} \to A_0$, and it factors through evaluation at $\uline{c}$. So the determinant of $df_1, \ldots df_{n'}, x_{n'+1}, \ldots x_n$, when we see this as a matrix directly in $A_0^{n^2}$ is an element of $A_0$, which is such that evaluated at $\uline{c}$ it is non-zero.
 
@@ -2332,34 +2332,34 @@ So it is non-zero as an element of $A_0$. Call it $s$. Then note that evaluated 
 
 \end{proof}
 
-\begin{rmk} A condition which is such that if it happens as a point $\fm \in \Specm(A)$, then it happens in a neighbourhood of $\fm$ is called a ``Zariski open condition''.
+\begin{remark} A condition which is such that if it happens as a point $\mathfrak{m} \in \Specm(A)$, then it happens in a neighbourhood of $\mathfrak{m}$ is called a ``Zariski open condition''.
 \label{Zariski open cond}
-\end{rmk}
+\end{remark}
 
 
 
-\begin{thm}
-Let $A$ be a finitely generated algebra over an algebraically closed field $k$ with no nilpotent elements. Then there is a nonempty open subset $U \subset \Spec(A)$ such that for any $\fm \in U$, $A$ is smooth at $\fm$.
-\end{thm}
+\begin{theorem}
+Let $A$ be a finitely generated algebra over an algebraically closed field $k$ with no nilpotent elements. Then there is a nonempty open subset $U \subset \Spec(A)$ such that for any $\mathfrak{m} \in U$, $A$ is smooth at $\mathfrak{m}$.
+\end{theorem}
 The proof of this theorem is on the course website, labelled Differentials and Dimension.
 
 \subsection{A taste of smoothness and regularity for non-algebraically closed fields}
 
-\begin{defn} Let $A$ be a finitely generated algebra over a field $k$. We say that $\fm \in \Specm(A)$ is a \uline{regular} point of $A$ if $A_\fm$ is a regular local ring. We say that $\fm$ is a \uline{smooth point} of $A$ if $\Omega_k(A)_\fm$ is locally free. Note that we have shown that these two notions are equivalent if $k$ is algebraically closed.
-\end{defn}
+\begin{definition} Let $A$ be a finitely generated algebra over a field $k$. We say that $\mathfrak{m} \in \Specm(A)$ is a \uline{regular} point of $A$ if $A_\mathfrak{m}$ is a regular local ring. We say that $\mathfrak{m}$ is a \uline{smooth point} of $A$ if $\Omega_k(A)_\mathfrak{m}$ is locally free. Note that we have shown that these two notions are equivalent if $k$ is algebraically closed.
+\end{definition}
 
-Note that in our proof of the equivalence of regularity and smoothness for algebraically closed fields, we did not use the algebraic closed-ness in the direction of smooth implies regular, so we have the following. So we have that if $A$ is smooth at $\fm$, then it is also regular. The converse, however, is not always true.
+Note that in our proof of the equivalence of regularity and smoothness for algebraically closed fields, we did not use the algebraic closed-ness in the direction of smooth implies regular, so we have the following. So we have that if $A$ is smooth at $\mathfrak{m}$, then it is also regular. The converse, however, is not always true.
 
 
 \phantom{\textcolor[rgb]{0.98,0.00,0.00}{\textbf{Also here is a theorem that I don't know how to prove, but presumably you trace the use of algebraic closed-ness in theorem \ref{smoothness local coordinates} steps or something. Also I am not sure if the statements are right.}}}
 
-\begin{thm} Consider a short exact sequence
+\begin{theorem} Consider a short exact sequence
 \[0 \rTo I \rTo k[x_1, \ldots x_n] \rTo A \rTo 0\]
 and let $n'=n-\dim(A)$.
-Then $A$ is regular at $\fm$ if and only if there are $f_1, \ldots f_{n'}$ such that $I_\fm=(f_1, \ldots f_{n'})_\fm$ and the images $\oline{f_1}, \ldots \oline{f_{n'}}$ in $\fm_{A}/\fm_{A}^2$ are linearly independent. $A$ is smooth at $\fm$ if and only if there are $f_1, \ldots f_{n'}$ such that $I_{\fm}=(f_1, \ldots f_{n'})_\fm$ and $df_1, \ldots df_{n'} \in \Omega_k(A_0) \uset{A_0} \otimes k'$ are linearly independent, where $k'=A/\fm_A=A_0/\fm$
-\end{thm}
+Then $A$ is regular at $\mathfrak{m}$ if and only if there are $f_1, \ldots f_{n'}$ such that $I_\mathfrak{m}=(f_1, \ldots f_{n'})_\mathfrak{m}$ and the images $\overline{f_1}, \ldots \overline{f_{n'}}$ in $\mathfrak{m}_{A}/\mathfrak{m}_{A}^2$ are linearly independent. $A$ is smooth at $\mathfrak{m}$ if and only if there are $f_1, \ldots f_{n'}$ such that $I_{\mathfrak{m}}=(f_1, \ldots f_{n'})_\mathfrak{m}$ and $df_1, \ldots df_{n'} \in \Omega_k(A_0) \uset{A_0} \otimes k'$ are linearly independent, where $k'=A/\mathfrak{m}_A=A_0/\mathfrak{m}$
+\end{theorem}
 
-Note that there is always a map $\fm_A/\fm_A^2 \to \Omega_k(A_0) \uset{A_0}\otimes k'$, so smooth-ness implies regularity. However, this map may be neither injective nor surjective, and can in fact be very badly behaved if the field is not separable.
+Note that there is always a map $\mathfrak{m}_A/\mathfrak{m}_A^2 \to \Omega_k(A_0) \uset{A_0}\otimes k'$, so smooth-ness implies regularity. However, this map may be neither injective nor surjective, and can in fact be very badly behaved if the field is not separable.
 
 We will now work only in the case when the field is separable. Recall from the ramblings around Theorem \ref{dmn over alg clos k, exists open of smooths} that a finite field extension $k' \supset k$ is called separable if $k' \uset{k} \otimes \bar{k}$ is reduced as an algebra over $\bar{k}$, where $\bar{k}$ is the algebraic closure of $k$, and that an equivalent definition is that $k'=k[x]/P(x)$ is separable if and only if $P$ has no multiple roots in the algebraic closure.
 
@@ -2390,8 +2390,8 @@ We will now work only in the case when the field is separable. Recall from the r
 This is a collection of awesome pieces of math from office hours which are not incredibly integral to the course, but quite fun.
 
 
-\begin{thm} For a domain $A$, if $V(fA) \neq 0$ then $\dim(A/fA)=\dim(A)-1$. (This was proven earlier as Theorem \textbf{\ref{dim drop by 1}}, which was also Theorem \textbf{\ref{dim drop by 1 v0}}, but here we give a more high-tech proof).
-\end{thm}
+\begin{theorem} For a domain $A$, if $V(fA) \neq 0$ then $\dim(A/fA)=\dim(A)-1$. (This was proven earlier as Theorem \textbf{\ref{dim drop by 1}}, which was also Theorem \textbf{\ref{dim drop by 1 v0}}, but here we give a more high-tech proof).
+\end{theorem}
 \begin{proof}  Let $A_0=k[x_1, \ldots x_n] \to A$. Then note that $n-\dim(A)$ is the smallest $k$ such that $\Ext_{A_0}^k(A,A_0)$, but note that we have a short exact sequence
 \[0 \to A \to A \to A/fA \to 0\]
 which induces a long exact sequence of $\Ext$s
@@ -2400,15 +2400,15 @@ and consider the term with $i=n-\dim(A)$. We know that the dimension must drop, 
 \[\Ext^k_{A_0}(A,A_0) \to \Ext^k_{A_0}(A,A_0)\]
 is the action of $f$, so it suffices to show that if
 \[M \rTo^f M\]
-is an isomorphism then $f$ is invertible. Well, if $f$ is not invertible, then choose some maximal ideal $\fm$ such that $f \in \fm$. Then we would have
-\[M/\fm M \rTo^f M/\fm M\]
-is still a surjection, but $f \in \fm$, a so it is actually 0.
+is an isomorphism then $f$ is invertible. Well, if $f$ is not invertible, then choose some maximal ideal $\mathfrak{m}$ such that $f \in \mathfrak{m}$. Then we would have
+\[M/\mathfrak{m} M \rTo^f M/\mathfrak{m} M\]
+is still a surjection, but $f \in \mathfrak{m}$, a so it is actually 0.
 \end{proof}
 
 
 
-\begin{thm} \textbf{Cayley-Hamilton} For a square matrix $T$ (over some ring), consider the polynomial $P(\lambda)=\det{T-\lambda Id}$. Then $P(T)=0$.
-\end{thm}
+\begin{theorem} \textbf{Cayley-Hamilton} For a square matrix $T$ (over some ring), consider the polynomial $P(\lambda)=\det{T-\lambda Id}$. Then $P(T)=0$.
+\end{theorem}
 \begin{proof}
 First note that the desired statement is clearly true if $T$ is diagonalizable. We will extract the general case from the diagonalizable case. We will use the Grothendieck Spec, that is for an algebra $A$ over a field $k$, consider $\Spec(A)$ to be a functor from $k$-algebras to sets, given by
 \[\Spec(A)(R)=\Hom(A,R)\]
@@ -2443,7 +2443,7 @@ Now consider the discriminant (which was shown to exist in Problem Set 6 Problem
 
 
 
-\begin{thm} \textbf{On Mapping Into Direct Limits.} For a module $M$ over a ring $A$ the following are equivalent
+\begin{theorem} \textbf{On Mapping Into Direct Limits.} For a module $M$ over a ring $A$ the following are equivalent
 \begin{enumerate}
 \item  For any directed $P_i$ the natural map
 \[\varinjlim(\Hom(M,P_i)) \oset{\alpha}\rTo \Hom(M, \varinjlim(P_i))\]
@@ -2452,7 +2452,7 @@ Now consider the discriminant (which was shown to exist in Problem Set 6 Problem
 \item $M$ is finitely presented. This means that $M$ can be written as the cokernel of a map $A^{\oplus n} \to A^{\oplus m}$. (Note that if $A$ is Noetherian, then this is the same as being finitely generated).
 
 \end{enumerate}
-\end{thm}
+\end{theorem}
 \begin{proof}
 
 \underline{2 $\implies$ 1}.

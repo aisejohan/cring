@@ -821,6 +821,77 @@ and this cohomology
 consists of the $\ext$ groups.
 \end{proof}
 
+\subsection{Application: Modules over DVRs}
+
+
+\begin{definition} Let $M$ be a module over a domain $A$. We say that $M$ is \underline{torsion-free}, if for any nonzero $a \in A$, $a:M \to M$ is injective. We say that $M$ is \underline{torsion} if for any $m \in M$, there is nonzero $a \in A$ such that $am=0$.
+\end{definition}
+
+\begin{lemma} For any module finitely generated module $M$ over a Noetherian domain $A$, there is a short exact sequence
+\[0 \to M_{tors} \to M \to M_{tors-free} \to 0\]
+where $M_{tors}$ is killed by an element of $A$ and $M_{tors-free}$ is torsion-free.
+\label{tors tors-free ses}
+\end{lemma}
+\begin{proof} This is because we may take $M_{tors}$ to be all the elements which are killed by a non-zero element of $A$. Then this is clearly a sub-module. Since $A$ is Noetherian, it is finitely generated, which means that it can be killed by one element of $A$ (take the product of the elements that kill the generators). Then it is easy to check that the quotient $M/M_{tors}$ is torsion-free.
+\end{proof}
+
+\begin{lemma} For $R$ a PID, a module $M$ over $R$ is flat if and only if it is torsion-free.
+\label{PID means flat=tors free}
+\end{lemma}
+\begin{proof} This is the content of Problem 2 on the Midterm.
+\end{proof}
+
+Using this, we will classify modules over DVRs.
+
+\begin{proposition} let $M$ be a finitely generated module over a DVR $R$. Then
+\[M=M_{tors}\oplus R^{\oplus n},\] i.e, where $M_{tors}$ can be annihilated by $\pi^n$ for some $n$.
+\end{proposition}
+\begin{proof}
+Set $M_{tors} \subset M$ be as in Lemma \ref{tors tors-free ses} so that $M/M_{tors}$ is torsion-free. Therefore, by Corollary \ref{DVR is PID} and Lemma \ref{PID means flat=tors free} we see that it is flat. But it is over a local ring, so that means that it is free. So we have $M/M_{tors}=R^{\oplus n}$ for some $n$. Furthermore, since $R^{\oplus n}$ is free, it is additionally projective, so the above sequence splits, so
+\[M=M_{tors} \oplus R^{\oplus n}\]
+as desired.
+\end{proof}
+
+There is nothing more to say about the free part, so let us discuss the torsion part in more detail.
+
+\begin{lemma} Any finitely generated torsion module over a DVR is
+\[\bigoplus R/\pi^nR.\]
+\label{dvr fin gen tor module struct}
+\end{lemma}
+Before we prove this, let us give two examples:
+\begin{enumerate}
+\item Take $R=k[[t]]$, which is a DVR with maximal ideal (t). Thus, by the lemma, for a finitely generated torsion module $M$, $t:M \to M$ is a nilpotent operator. However, $k[[t]]/t^n$ is a Jordan block so we are exactly saying that linear transformations can be written in Jordan block form.
+\item Let $R=\mathbb{Z}_p$. Here the lemma implies that finitely generated torsion modules over $\mathbb{Z}_p$ can be written as a direct sum of $p$-groups. 
+\end{enumerate}
+Now let us proceed with the proof of the lemma.
+\begin{proof}[Proof of Lemma \ref{dvr fin gen tor module struct}] Let $n$ be the minimal integer such that $\pi^n$ kills $M$. This means that $M$ is a module over $R_n=R/\pi^nR$, and also there is an element $m \in M$, and an injective map $R_n \hookrightarrow M$, because we may choose $m$ to be an element which is not annihilated by $\pi^{n-1}$, and then take the map to be $1 \mapsto m$.
+
+Proceeding by induction, it suffices to show that the above map $R_n \hookrightarrow M$ splits. But for this it suffices that $R_n$ is an injective module over itself. This property of rings is called the Frobenius property, and it is very rare. We will write this as a lemma.
+\begin{lemma} $R_n$ is injective as a module over itself.
+\label{Rn Frobenius}
+\end{lemma}
+\begin{proof}[Proof of Lemma \ref{Rn Frobenius}] Note that a module $M$ over a ring $R$ is injective if and only if for any ideal $I \subset R$, $\Ext^1(R/I,M)=0$. This was shown on  Problem Set 8, Problem 2a.
+
+Thus we wish to show that for any ideal $I$, $\Ext^1_{R_n}(R_n/I,R_n)=0$. Note that since $R$ is a DVR, we know that it is a PID, and also any element has the form $r=\pi^kr_0$ for some $k \geq 0$ and some $r_0$ invertible. Then all ideals in $R$ are of the form $(\pi^k)$ for some $k$, so all ideals in $R_n$ are also of this form. Therefore, $R_n/I=R_m$ for some $m \leq n$, so it suffices to show that for $m \leq n$, $\Ext^1_{R_n}(R_m,R_n)=0$.
+
+But note that we have short exact sequence
+\[ 0 \to R_{n-m} \to^{\pi^m \cdot} R_n \to R_m \to 0\]
+which gives a corresponding long exact sequence of $\Ext$s
+\[0 \to \Hom_{R_n}(R_m,R_n) \to \Hom_{R_n}(R_n,R_n) \to^\hearts \Hom_{R_n}(R_{n-m},R_n)\]
+\[\to \Ext^1_{R_n}(R_m,R_n) \to \Ext^1_{R_n}(R_n,R_n) \to \cdots\]
+But note that any map of $R_n$ modules, $R_{n-m} \to R_n$, must map $1 \in R_{n-m}$ to an element which is killed by $\pi^{n-m}$, which means it must be a multiple of $\pi^m$, so say is is $\pi^ma$. Then the map is
+\[r \mapsto \pi^mar,\]
+which is the image of the map
+\[[r \mapsto ar] \in \Hom_{R_n}(R_n,R_n).\]
+Thus, $\hearts$ is surjective.
+Also note that $R_n$ is projective over itself, so $\Ext^1_{R_n}(R_n,R_n)=0$. This, along with the surjectivity of $\hearts$ shows that
+\[\Ext^1_{R_n}(R_m,R_n)=0\]
+as desired.
+\end{proof}
+As mentioned earlier, this lemma concludes our proof of Lemma \ref{dvr fin gen tor module struct} as well.
+\end{proof}
+
+
 \section{Homological theory of local rings}
 \subsection{Depth} Let $(R, \mathfrak{m})$ be  a noetherian
 local ring. Let $k = R/\mathfrak{m}$.
