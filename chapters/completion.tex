@@ -2,8 +2,8 @@
 \label{completions}
 
 The algebraic version of completion is essentially analogous to the familiar
-process of completing a metric space from analysis, i.e. the process whereby $\mathbb{R}$ is constructed from
-$\mathbb{Q}$. Here the emphasis is on how the algebraic properties and
+process of completing a metric space as in analysis, i.e. the process whereby $\mathbb{R}$ is constructed from
+$\mathbb{Q}$. Here, however, the emphasis will be on how the algebraic properties and
 structure pass to the completion. For instance, we will see that the
 dimension is invariant under completion for noetherian local rings.
 
@@ -13,67 +13,118 @@ Completions are used in geometry and number theory in order to give a finer pict
 \section{Introduction}
 
 \subsection{Motivation}
-Let $R$ be a commutative ring. We can draw $\spec R$, a picture whose
-points are the primes of $R$. Consider a maximal ideal $\mathfrak{m} \in \spec
-R$. If you think of $\spec R$ as a space, and $R$ as a collection of functions
-on that space, then $R_{\mathfrak{m}}$ is the collection of ``germs'' of
-functions defined near the point $\mathfrak{m}$. 
 
-However, the Zariski topology is kind of lousy as far as topologies go, and you can't
-really find small neighborhoods of $\mathfrak{m}$.
+Let $R$ be a commutative ring. Consider a maximal ideal $\mathfrak{m} \in \spec
+R$. If one thinks of $\spec R$ as a space, and $R$ as a collection of functions
+on that space, then $R_{\mathfrak{m}}$ is to be interpreted as the collection of ``germs'' of
+functions defined near the point $\mathfrak{m}$. (In the language of schemes,
+$R_{\mathfrak{m}}$ is the \emph{stalk} of the structure sheaf.)
+
+However, the Zariski topology is coarse, making it difficult small neighborhoods of $\mathfrak{m}$.
+Thus the word ``near'' is to be taken with a grain of salt. 
 
 \begin{example} 
 Let $X$ be a compact Riemann surface, and let $x \in X$. Let $R$ be the ring of
 holomorphic functions on $X - \left\{x\right\}$ which are meromorphic at $x$.
-In this case, $\spec R$ has the ideal $(0)$ and maximal ideals corresponding to
-the zero locus at some point in $X - \left\{x\right\}$. So $\spec R$ is $X -
+In this case, $\spec R$ has the ideal $(0)$ and maximal ideals corresponding
+to functions vanishing at some point in $X - \left\{x\right\}$. So $\spec R$ is $X -
 \left\{x\right\}$ together with a ``generic'' point.
 
-Let's just look at the closed points.  If we pick $y \in X - \left\{x\right\}$,
+Let us just look at the closed points.  If we pick $y \in X - \left\{x\right\}$,
 then we can consider the local ring $R_y = \left\{s^{-1}r, s(y) \neq
-0\right\}$. This ring is a direct limit of the rings of holomorphic functions
-on sets $U$ that extend meromorphically to $X$, where $U$ ranges over open
-subsets of $X$ containing $y$ which are the nonzero loci of things in $R$. However, $U$ really ranges over complements of
+0\right\}$. This ring is a direct limit of the rings $\mathcal{O}(U)$ of holomorphic functions
+on open sets $U$ that extend meromorphically to $X$. Here, however, $U$ ranges
+only over open
+subsets of $X$ containing $y$ that  are the nonzero loci of elements $R$. Thus $U$ really ranges over complements of
 finite subsets. It does not range over open sets in the \emph{complex} topology.
 
-Near $y$, $X$ looks like the complex numbers in the complex plane. In the Zariski topology, this
-isn't the case. Each $R_y$ actually remembers the whole Riemann surface. The
-reason is that the quotient field of $R_y$ is the rational function field of
-$X$, which recovers $X$. Thus $R_y$ remembers too much. 
+Near $y$, $X$ looks like $\mathbb{C}$ in the \emph{complex} topology. In the Zariski topology, this
+is not the case. Each localization $R_y$ actually remembers the whole Riemann
+surface. Indeed, the  quotient field of $R_y$ is the rational function field of
+$X$, which determines  $X$. Thus $R_y$ remembers too much, and it fails to
+give a truly local picture near $y$. 
 \end{example} 
 
 We would like a variant of localization that would remember much less about the
 global topology.
 
+\subsection{Definition}
 
-\begin{definition} 
+\begin{definition} \label{defcompletion}
 Let $R$ be a commutative ring and $I \subset R$ an ideal. Then we define the
-\textbf{completion of $R$ at $I$}
+\textbf{completion of $R$ at $I$} as
 \[ \hat{R}_I = \varprojlim R/I^n.  \]
-So this is the inverse limit of the quotients $R/I^n$. There is a tower of
+By definition, this is the inverse limit of the quotients $R/I^n$, via the tower of
 commutative rings
 \[ \dots \to  R/I^3 \to R/I^2 \to R/I   \]
-whose inverse limit is $R^{\vee}_I$. 
+where each map is the natural reduction map. Note that $\hat{R}_I$ is
+naturally an $R$-algebra. If the map $R \to \hat{R}_I$ is an isomorphism, then
+$R$ is said to be \textbf{$I$-adically complete.}
 \end{definition} 
 
+In general, though, we can be more general. Suppose $R$ is a commutative ring
+with a linear topology. Consider a neighborhood basis at the origin consisting
+of ideals
+$\left\{I_\alpha\right\}$. 
 
+\begin{definition} 
+The \textbf{completion} $\hat{R}$ of the topological ring $R$ is the inverse limit
+$R$-algebra
+\[ \varprojlim R/I_\alpha,  \]
+where the maps $R/I_\alpha \to R/I_\beta$ for $I_\alpha \subset I_\beta$ are
+the obvious ones. $\hat{R}$ is given a structure of a topological ring via the
+inverse limit topology.
 
-Let us give some examples.
+If the map $R \to \hat{R}$ is an isomorphism, then $R$ is said to be
+\textbf{complete.}
+\end{definition} 
+
+The collection of ideals $\left\{I_\alpha\right\}$ is a directed set, so we
+can talk about inverse limits over it. 
+When we endow $R$ with the $I$-adic topology, we see that the above definition
+is a generalization of \rref{defcompletion}.
+
+\begin{exercise} 
+Let $R$ be a linearly topologized ring. Then the map $R \to \hat{R}$ is injective if
+and only if $\bigcap I_\alpha = 0$ for the $I_\alpha$ open ideals; that is, if
+and only if $R$ is \emph{Hausdorff.}
+\end{exercise} 
+
+\begin{exercise} 
+If $R/I_\alpha$ is finite for each open ideal $I_\alpha \subset R$, then
+$\hat{R}$ is compact as a topological ring. (Hint: Tychonoff's theorem.)
+\end{exercise} 
+
 \add{Notation needs to be worked out for the completion}
-\begin{example} 
-Although it is nothing new, the case of a local ring is particularly
-important. Let $R$ be a local ring and $\mathfrak{m}$ its maximal ideal. Then the completion of $R$ with respect to $\mathfrak{m}$ denoted $\hat{R}$ is the inverse limit 
-\begin{equation}
-\hat{R}=\lim_{\leftarrow}(R/\mathfrak{m}^nR)\end{equation} We then topologize $\hat{R}$ by setting powers of $\mathfrak{m}$ to be basic open sets around $0$. The topology formed by these basic open sets is called the ``Krull'' or ``$\mathfrak{m}$-adic topology.''
+
+The case of a local ring is particularly
+important. Let $R$ be a local ring and $\mathfrak{m}$ its maximal ideal. Then
+the completion of $R$ with respect to $\mathfrak{m}$, denoted $\hat{R}$, is the inverse limit 
+$
+\hat{R}=\lim_{\leftarrow}(R/\mathfrak{m}^nR)$.  We then topologize $\hat{R}$ by setting powers of $\mathfrak{m}$ to be basic open sets around $0$. The topology formed by these basic open sets is called the ``Krull'' or ``$\mathfrak{m}$-adic topology.''
 
 In fact, the case of local rings is the most important one.
 Usually, we will complete $R$ at \emph{maximal} ideals.
 If we wanted to study $R$ near a prime $\mathfrak{p} \in \spec R$, we might
-first approximate $R$ by $R_{\mathfrak{p}}$, which is a local ring; we might
-make another approximation by completing $R_{\mathfrak{p}}$. Then we get a
-\emph{really} local structure. 
-\end{example}
+first replace $R$ by $R_{\mathfrak{p}}$, which is a local ring; we might
+make another approximation to $R$ by completing $R_{\mathfrak{p}}$. Then we
+get a \emph{complete} local ring.
 
+\begin{definition} 
+Let $R$ be a ring, $M$ an $R$-module, $I \subset R$ an ideal. We define the
+\textbf{completion of $M$ at $I$} as 
+\[ \hat{M}_I =  \varprojlim M/I^n M.  \]
+
+This is an inverse limit of $R$-modules, so it is an $R$-module. Furthermore,
+it is even an $\hat{R}_I$-module, as one easily checks. It is also functorial.
+\end{definition} 
+
+In fact, we get a functor 
+\[ R-\mathrm{modules} \to \hat{R}_I - \mathrm{modules}.  \]
+
+
+\subsection{Classical examples}
+Let us give some examples.
 \begin{example}
 Recall that in algebraic number theory, a number field is a 
 finite dimensional algebraic extension of $\mathbb{Q}$. 
@@ -100,10 +151,11 @@ isomorphic, for instance.
 There is always a map $R \to \hat{R}_I$ by taking the limit of the maps $R/I^i$.
 \end{remark} 
 
-A priori, you might think this operation of completion gives  a big mess. The amazing thing is that for
-noetherian rings, you get well-behaved stuff.
-
 \subsection{Properties of completions}
+
+A priori, one might think this operation of completion gives  a big mess. The amazing thing is that for
+noetherian rings, completion is surprisingly well-behaved.
+
 
 \begin{proposition} 
 Let $R$ be noetherian, $I \subset R$ an ideal. Then $\hat{R}_I$ is noetherian.
@@ -147,24 +199,6 @@ variant of the Hilbert basis theorem proved in class. So $\hat{R}_I$ is
 noetherian.
 \end{proof} 
 
-
-\subsection{Completions of modules}
-We want to think of completion as analogous to localization. We would like to
-think of it as an inoffensive operation. One way to say this for localization
-was that localization is an exact functor. This is true for completions too.
-But first, we need a variant: completions of modules.
-
-\begin{definition} 
-Let $R$ be a ring, $M$ an $R$-module, $I \subset R$ an ideal. We define the
-\textbf{completion of $M$ at $I$} as 
-\[ \hat{M}_I =  \varprojlim M/I^n M.  \]
-
-This is an inverse limit of $R$-modules, so it is an $R$-module. Furthermore,
-it is even an $\hat{R}_I$-module, as one easily checks. It is also functorial.
-\end{definition} 
-
-In fact, we get a functor 
-\[ R-\mathrm{modules} \to \hat{R}_I - \mathrm{modules}.  \]
 
 \section{Exactness properties}
 
