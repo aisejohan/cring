@@ -1396,6 +1396,45 @@ field---contradiction.
 \end{enumerate}
 \end{exercise} 
 
+\subsection{A little affine algebraic geometry}
+
+In what follows, let $k$ be algebraically closed, and let $A$ be a finitely generated $k$-algebra.  Recall that $\Specm A$ denotes the set of maximal ideals in $A$.  Consider the natural $k$-algebra structure on $\mathrm{Funct}(\Specm A, k)$.  We have a map
+$$A \rightarrow \mathrm{Funct}(\Specm A, k)$$
+which comes from the Weak Nullstellensatz as follows.  Maximal ideals $\mathfrak{m}\subset A$ are in bijection with maps $\varphi_\mathfrak{m}:A\rightarrow k$ where $\ker(\varphi_\mathfrak{m})=\mathfrak{m}$, so we define $a\longmapsto [\mathfrak{m}\longmapsto \varphi_\mathfrak{m}(a)]$.  If $A$ is reduced, then this map is injective because if $a\in A$ maps to the zero function, then $a\in \cap\, \mathfrak{m}$ $\rightarrow$ $a$ is nilpotent $\rightarrow$ $a=0$.\\
+
+\begin{definition} A function $f\in \mathrm{Funct}(\Specm A,k)$ is called {\bf algebraic} if it is in the image of $A$ under the above map.  (Alternate words for this are {\bf polynomial} and {\bf regular}.) \end{definition}
+
+Let $A$ and $B$ be finitely generated $k$-algebras and $\phi:A\rightarrow B$ a homomorphism.  This yields a map $\Phi:\Specm B\rightarrow \Specm A$ given by taking pre-images.
+
+\begin{definition} A map $\Phi:\Specm B\rightarrow \Specm A$ is called {\bf algebraic} if it comes from a homomorphism $\phi$ as above.\end{definition}
+
+To demonstrate how these definitions relate to one another we have the following proposition.
+
+\begin{proposition} A map $\Phi:\Specm B\rightarrow \Specm A$ is algebraic if and only if for any algebraic function $f\in \mathrm{Funct}(\Specm A,k)$, the pullback $f\circ \Phi\in \mathrm{Funct}(\Specm B,k)$ is algebraic.\end{proposition}
+
+\begin{proof}
+Suppose that $\Phi$ is algebraic.  It suffices to check that the following diagram is commutative:
+\[ 
+\xymatrix{
+\mathrm{Funct}(\Specm A,k) \ar[r]^{-\circ\Phi} & \mathrm{Funct}(\Specm B,k) \\
+A \ar[u] \ar[r]_{\phi} & B \ar[u]\\
+}
+\]
+where $\phi:A\rightarrow B$ is the map that gives rise to $\Phi$.
+
+[$\Leftarrow$] Suppose that for all algebraic functions $f\in \mathrm{Funct}(\Specm A,k)$, the pull-back $f\circ\Phi$ is algebraic.  Then we have an induced map, obtained by chasing the diagram counter-clockwise:
+$$
+\xymatrix{
+\mathrm{Funct}(\Specm A,k) \ar[r]^{-\circ\Phi} & \mathrm{Funct}(\Specm B,k) \\
+A \ar[u] \ar@{-->}[r]_{\phi} & B \ar[u]\\
+}
+$$
+From $\phi$, we can construct the map $\Phi':\Specm B \rightarrow \Specm A$ given by $\Phi'(\mathfrak{m})=\phi^{-1}(\mathfrak{m})$.  I claim that $\Phi=\Phi'$.  If not, then for some $\mathfrak{m}\in \Specm B$ we have $\Phi(\mathfrak{m})\neq \Phi'(\mathfrak{m})$.  By definition, for all algebraic functions $f\in \mathrm{Funct}(\Specm A,k)$, $f\circ\Phi=f\circ\Phi'$ so to arrive at a contradiction we show the following lemma:\\
+Given any two distinct points in $\Specm A=V(I)\subset k^n$, there exists some
+algebraic $f$ that separates them.  This is trivial when we realize that any
+polynomial function is algebraic, and such polynomials separate points.
+\end{proof}
+
 \section{Serre's criterion and its variants}
 \subsection{Reducedness}
 

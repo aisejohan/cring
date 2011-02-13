@@ -409,17 +409,19 @@ So, consequently the ring of algebraic integers (integral over $\mathbb{Z}$) in 
 
 
 Note that the above proof actually implied (by the argument about traces) the following useful fact:
-\begin{proposition} Let $A$ be a noetherian integrally domain with quotient field $K$.  Let $L$ be a finite separable extension and $B$ the ring of integers. Then $B$ is a finitely generated $A$-module.
+\begin{proposition}\label{intclosurefgen} Let $A$ be a noetherian integrally closed domain with quotient field $K$.  Let $L$ be a finite separable extension and $B$ the ring of integers. Then $B$ is a finitely generated $A$-module.
 \end{proposition}
 
-We shall give another, more explicit proof whose technique will be useful in the sequel.
+We shall give another, more explicit proof of \rref{intclosurefgen} whose technique will be useful in the sequel.
 Let $\alpha  \in B$ be a generator of $L/K$.  Let $n=[L:K]$ and $\sigma_1, \dots, \sigma_n$ the distinct embeddings of $L$ into the algebraic closure of $K$.
 Define the \textbf{discriminant} of $\alpha$ to be
 \[ D(\alpha) = \left(\det \begin{bmatrix} 
 1 & \sigma_1\alpha & (\sigma_1 \alpha)^2 & \dots \\
 1 & \sigma_2\alpha & (\sigma_2 \alpha)^2 & \dots \\
 \vdots & \vdots & \vdots & \ddots \end{bmatrix}\right)^2 .\]
-This maps to the same element under each $\sigma_i$, so is in $K^*$ (and even $A^*$ by integrality);it is nonzero by basic facts about vanderMonde determinants.  The  next lemma clearly implies that $B$ is contained in a finitely generated $A$-module, hence is finitely generated (since $A$ is noetherian).
+This maps to the same element under each $\sigma_i$, so is in $K^*$ (and even
+$A^*$ by integrality); it is nonzero by basic facts about vanderMonde
+determinants since each $\sigma_i$ maps $\alpha$ to a different element.  The  next lemma clearly implies that $B$ is contained in a finitely generated $A$-module, hence is finitely generated (since $A$ is noetherian).
 \begin{lemma} We have $B \subset D(\alpha)^{-1} A[\alpha]$. 
 \end{lemma}
 \begin{proof}
