@@ -111,6 +111,11 @@ Then $R$ is noetherian. See \rref{primenoetherian}, or prove it as
 an exercise. \end{remark}
 
 \subsection{Stability properties}
+
+The class of noetherian rings is fairly robust. If one starts with a
+noetherian ring, most of the elementary operations one can do to it lead to
+noetherian rings.
+
 \begin{proposition} \label{exactnoetherian}
 If 
 \[ 0 \to M' \to  M \to M'' \to 0  \]
@@ -168,8 +173,7 @@ $A$-submodules of $B$ are just the $B$-modules in $B$, so $B$ is noetherian as a
 $B$-module too. So $B$ is noetherian.  
 \end{proof} 
 
-Another easy stability property:
-
+We know show that noetherianness of a ring is preserved by localization:
 \begin{proposition} 
 Let $R$ be a commutative ring, $S \subset R$ a multiplicatively closed subset.   If
 $R$ is noetherian, then $S^{-1}R$ is noetherian.
@@ -191,8 +195,26 @@ then $x \in \phi^{-1}(I)$, so
 implies that $I$ is finitely generated.
 \end{proof} 
 
+Let $R$ be a noetherian ring.  We now characterize the noetherian $R$-modules.
+\begin{proposition} \label{noetherianiffg} 
+An $R$-module $M$ is noetherian if and only if $M$ is finitely generated.
+\end{proposition} 
+\begin{proof} 
+The only if direction is obvious. A module is noetherian if and only if every
+submodule is finitely generated. 
+
+For the if direction, if $M$ is finitely generated, then there is  a surjection
+of $R$-modules
+\[ R^n \to M  \]
+where $R$ is noetherian. But $R^n$ is noetherian by
+\rref{exactnoetherian} because it is a direct sum 
+of copies of $R$. So $M$ is a quotient of a noetherian module and is noetherian.
+
+\end{proof} 
 \subsection{The basis theorem}
-Let us now prove something a little less formal.
+Let us now prove something a little less formal. This is, in fact, the biggest
+of the ``stability'' properties of a noetherian ring: we are going to see that  finitely generated
+algebras over noetherian rings are still noetherian.
 
 \begin{theorem}[Hilbert basis theorem]
 If $R$ is a noetherian ring, then the polynomial ring $R[X]$ is noetherian.
@@ -282,31 +304,17 @@ finitely generated. This implies that $V$ can be described by \emph{finitely}
 many polynomial equations. 
 \end{example} 
 
-\subsection{More on noetherian rings}
-Let $R$ be a noetherian ring.  
-\begin{proposition} \label{noetherianiffg} 
-An $R$-module $M$ is noetherian if and only if $M$ is finitely generated.
-\end{proposition} 
-\begin{proof} 
-The only if direction is obvious. A module is noetherian if and only if every
-submodule is finitely generated. 
-
-For the if direction, if $M$ is finitely generated, then there is  a surjection
-of $R$-modules
-\[ R^n \to M  \]
-where $R$ is noetherian. So $R^n$ is noetherian because it is a successive
-extension of copies of $R$ and an extension of two noetherian modules is also
-noetherian. So $M$ is a quotient of a noetherian module and is noetherian.
-
-\end{proof} 
 
 \subsection{Noetherian induction}
-\begin{theorem}[Noetherian Induction Principle]
+
+The finiteness condition on a noetherian ring allows for ``induction''
+arguments to be made; we shall see examples of this in the future.
+\begin{proposition}[Noetherian Induction Principle]
    Let $R$ be a noetherian ring, let $\mathcal{P}$ be a property, and let $\mathcal{F}$ be a family of
    ideals $R$. Suppose the inductive step: if all ideals in $\mathcal{F}$ strictly larger than
    $I\in \mathcal{F}$ satisfy $\mathcal{P}$, then $I$ satisfies $\mathcal{P}$. Then all ideals in
    $\mathcal{F}$ satisfy $\mathcal{P}$.
- \end{theorem}
+ \end{proposition}
  \begin{proof}
    Assume $\mathcal{F}_\text{crim} = \{J\in \mathcal{F}|J\text{ does not satisfy }\mathcal{P}\}\neq \varnothing$.
    Since $R$ is noetherian, $\mathcal{F}_\text{crim}$ has a maximal member $I$. By maximality, all
@@ -319,12 +327,14 @@ noetherian. So $M$ is a quotient of a noetherian module and is noetherian.
 
 We shall now begin the structure theory for noetherian modules. The first step
 will be to associate to each module a collection of primes, called the
-\emph{associated primes}, which lie in a bigger collection of primes where the
+\emph{associated primes}, which lie in a bigger collection of primes (the
+\emph{support}) where the
 localizations are nonzero.
 
 \subsection{The support}
- Let $R$ be a  noetherian ring.  An $R$-module $M$ is supposed to be thought of as somehow
-spread out over the topological space $\spec R$, whatever this might mean. If $\mathfrak{p} \in \spec R$, then  let
+ Let $R$ be a  noetherian ring.  An $R$-module $M$ is supposed to be thought
+ of as something like a vector bundle, somehow
+spread out over the topological space $\spec R$. If $\mathfrak{p} \in \spec R$, then  let
 \( \k(\mathfrak{p}) = \mathrm{fr.  \ field \ } R/\mathfrak{p}  ,\)
 which is the residue field of $R_{\mathfrak{p}}$. If $M$ is any $R$-module, we
 can consider $M \otimes_R \k(\mathfrak{p})$ for each $\mathfrak{p}$; it is a
