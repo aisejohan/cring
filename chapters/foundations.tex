@@ -1281,6 +1281,21 @@ So $I = (n)$.
 \end{proof} 
 \end{example} 
 
+A module $M$ is said to be \emph{finitely generated} if there exist elements
+$x_1, \dots, x_n \in M$ such that any element of $M$ is a linear combination
+(with coefficients in $R$) of the $x_i$. (We shall define this more formally
+below.)
+One reason that PIDs are so convenient is:
+
+\begin{theorem}[Structure theorem] \label{structurePID} 
+If $M$ is a finitely generated module over a principal ideal domain $R$, then
+$M$ is isomorphic to a direct sum
+\[ M \simeq \bigoplus_{i=1}^n R/a_i,  \]
+for various $a_i \in R$ (possibly zero).
+\end{theorem} 
+
+\add{at some point, the proof should be added. This is important!}
+
 \subsection{Unique factorization domains}
 
 The integers $\mathbb{Z}$ are especially nice because of the fundamental
