@@ -365,6 +365,64 @@ of height one is principal, by \rref{heightonefactoriality}.
 First, $\mathfrak{p}$ contains an element $x \neq 0$, which we factor into irreducibles $\pi_1 \dots \pi_k$.  One of these, say $\pi_j$, belongs to $\mathfrak{p}$, so $\mathfrak{p} \supset (\pi_j)$. Since $\mathfrak{p}$ is minimal among nonzero prime ideals, we have $\mathfrak{p} = (\pi_j)$.  (Note that $(\pi_j)$ is prime by unique factorization.)
 \end{proof}
 
+\subsection{Modules over Dedekind domains}
+
+Let us now consider some properties of Dedekind domains.
+
+\begin{proposition} Let $A$ be a Dedekind domain, and let $M$ be a finitely generated $A$ module. Then
+$M$ is projective (or equivalently flat, or locally free) if and only if it is torsion-free.
+\label{Dedekind means projective=tors free}
+\end{proposition}
+\begin{proof}
+If $M$ is projective, then it is a direct summand of a free module, so it is torsion-free. So we need to show that if $M$ is torsion-free, then it is projective. Recall that to show $M$ is projective, it suffices to show that $M_\mathfrak{p}$ is projective for any prime $\mathfrak{p} \subset M$. But note that $A_\mathfrak{p}$ is a PID so a module over it is torsion free if and only if it is flat, by Lemma \ref{PID means flat=tors free}. However, it is also a local Noetherian ring, so a module is flat if and only if it is projective. So $M_\mathfrak{p}$ is projective if and only if it is torsion-free, so it now suffices to show that it is torsion-free.
+
+However for any multiplicative set $S \subset A$, if $M$ is torsion-free then $M_S$ is also torsion-free. This is because if
+\[\frac{a}{s'} \cdot \frac{m}{s}=0\]
+then there is $t$ such that $tam=0$,
+as desired.
+\end{proof}
+
+\begin{proposition}
+Let $A$ be a Dedekind domain. Then any finitely generated module $M$ over it has (not canonically) a decomposition $M=M^{tors} \oplus M^{tors-free}$.
+\end{proposition}
+\begin{proof}
+Note that by Lemma \ref{tors tors-free ses}, we have a short exact sequence
+\[ 0 \to M^{tors} \to M \to M^{tors-free} \to 0\]
+but by proposition \ref{Dedekind means projective=tors free} the torsion free part is projective, so $M$ can be split, not necessarily canonically as  $M^{tors} \oplus M^{tors-free}$, as desired.
+\end{proof}
+
+Note that we may give further information about the torsion free part of the module:
+\[M^{tors}=\bigoplus_{\mathfrak{p}} M_{\mathfrak{p}}^{tors}\]
+First note that there is a map
+\[M^{tors} \to \bigoplus_{\mathfrak{p}} M_{\mathfrak{p}}^{tors}\]
+because $M$ is torsion, every element is supported at finitely many points, so the image of $f$ in $M^{tors}_\mathfrak{p}$ is only nonzero for finitely many $\mathfrak{p}$.
+It is an isomorphism, because it is an isomorphism after every localization.
+
+So we have pretty much specified what the torsion part is. We can in fact also classify the torsion free part;  in particular, we have
+\[M^{tors-free} \simeq \oplus \mathcal{L}\]
+where $\mathcal{L}$ are locally free modules of rank 1.
+This is because we know from above that the torsion free module is projective, we may apply Problem Set 10, Problem 12, and then since $L$ is a line bundle, and $I_{-D}$ is also, $L \otimes I_{-D}$ is a line bundle, and then $M/L \otimes I_{-D}$ is flat, so it is projective, so we may split it off.
+
+
+
+\begin{lemma} For $A$ a Dedekind Domain, and $I \subset A$ an ideal, then $I$ is a locally free module of rank 1.
+\end{lemma}
+\begin{proof}
+First note that $I$ is torsion-free and therefore projective by \ref{Dedekind means projective=tors free}, and it is also finitely generated, because $A$ is Noetherian. But for a finitely generated module over a Noetherian ring, we know that it is projective if and only if it is locally free, so we have shown that it is locally free.
+
+Also recall that for a module which is locally free, the rank is well defined,
+i.e, any localization which makes it free makes it free of the same rank. So
+to test the rank, it suffices to show that if we tensor with the field of
+fractions $K$, it is free of rank 1. But note that since $K$, being a localization of $A$ is flat over $A$ so we have short exact sequence
+\[0 \to I \otimes_A K \to A \otimes_A K \to (A/I) \otimes_A K \to 0\]
+
+However, note that $\supp(A/I)=V(\Ann(A/I))=V(I)$, and the prime $(0)$ is not
+in $V(I)$, so $A/I \otimes_{A} K$, which is the localization of $A/I$ at $(0)$ vanishes, so we have
+\[I\otimes_A K \simeq A\otimes_A K\]
+but this is one-dimensional as a free $K$ module, so the rank is 1, as desired.
+\end{proof}
+
+
 \section{Extensions}
 
 We will show that one can always   valuations to bigger fields.  
