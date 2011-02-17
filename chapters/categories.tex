@@ -181,8 +181,7 @@ maps and composition.
 \end{definition}
 
 In detail, the last two conditions state the following. First, if $X \in
-\mathcal{C}$, then $F(1_X)$ is the identity morphism $1_{F(X)}: F(X) \to F(X)$. 
-The second is that if $A \stackrel{f}{\to} B \stackrel{g}{\to} C$ are
+\mathcal{C}$, then $F(1_X)$ is the identity morphism $1_{F(X)}: F(X) \to F(X)$.The second is that if $A \stackrel{f}{\to} B \stackrel{g}{\to} C$ are
 morphisms in $\mathcal{C}$, 
 then $F(g \circ f) = F(g) \circ F(f)$ as morphisms $F(A) \to F(C)$.
 Alternatively, we can say that $F$ \emph{preserves commutative diagrams.}
@@ -231,11 +230,13 @@ X \ar[r]^{i_{g_1}} \ar[rd]_{i_{g_1g_2}} & X \ar[d]^{i_{g_2}} \\ & X
 So a functor $B_G \to \mathbf{Sets}$ is just a left $G$-action on a set $X$.
 \end{example}
 
-Sometimes what we have described above are called \textbf{covariant functors}. Indeed:
+Sometimes what we have described above are called \textbf{covariant functors}.
+Indeed:
 
 \begin{definition}
 A \textbf{contravariant functor}  $\mathcal{C}
-\stackrel{F}{\to}\mathcal{D}$ (between categories $\mathcal{C}, \mathcal{D}$) is similar
+\stackrel{F}{\to}\mathcal{D}$ (between categories $\mathcal{C}, \mathcal{D}$) is
+similar
 data except that now a map $X \stackrel{f}{\to} Y$ now goes to a map $FY
 \stackrel{F(f)}{\to} FX$. Composites
 are required to be preserved, albeit in the other direction.
@@ -276,7 +277,8 @@ given by the transpose.
 \end{example}
 
 \begin{example}
-If we map $B_G \to B_G$ sending $\ast \mapsto \ast$ and $g \mapsto g^{-1}$, we get a
+If we map $B_G \to B_G$ sending $\ast \mapsto \ast$ and $g \mapsto g^{-1}$, we
+get a
 contravariant functor.
 \end{example}
 
@@ -335,7 +337,8 @@ Categories have a way of making things so general that are trivial. Hence,
 this material is called general abstract nonsense. 
 Moreover, there is another philosophical point about category theory to
 be made here: often, it is the definitions, and not the proofs, that matter.
-For instance, what matters here is not the theorem, but the \emph{definition of an
+For instance, what matters here is not the theorem, but the \emph{definition of
+an
 isomorphism.} It is a categorical one, and much more general than the usual
 notion via injectivity and surjectivity.
 
@@ -437,6 +440,7 @@ to unique isomorphism.
 
 \add{pull-backs}
 
+
 Now we are going to talk about a bunch of other examples, which can all be
 phrased via initial or terminal objects in some category. This,
 therefore, is the proof for \emph{everything} we will do in this section.
@@ -482,6 +486,23 @@ $\mathrm{SL}_2(\mathbb{Z})$---this is a cool theorem. The point is that being a
 push-out is actually dependent on the category.
 \end{example}
 
+\begin{example}
+Let $R$ be a commutative ring and let $S$ and $Q$ be two commutative
+$R$-algebras. In otherwords, suppose
+we have two maps of rings $s:R\rightarrow S$ and $q:R\rightarrow Q$. Then we can
+fit this information together
+into a pushout square:
+
+\[ \xymatrix{
+R \ar[r] \ar[d]  &  S   \\
+Q 
+}\]
+It turns out that the pushout in this case is the tensor product of algebras
+$S\otimes_R Q$. This is particularly important
+in algebraic geometry as the dual construction will give the correct notion of
+``products'' in the category of schemes over
+a field.\end{example}
+
 \begin{proposition}
 If the push-out of
 \[ \xymatrix{
@@ -507,6 +528,7 @@ mapping into something else; then the initial
 object in this category is the push-out.
 \end{proof}
 
+
 Now we abstract on this idea further.
 
 \subsection{Colimits}
@@ -515,7 +537,8 @@ Now we abstract on this idea further.
 We now want to generalize the push-out.
 Instead of a shape with $A,B,C$, we do something more general.
 
-Start with a small category $I$: recall that this means that the objects of $I$ form a set. One is supposed to picture
+Start with a small category $I$: recall that this means that the objects of $I$
+form a set. One is supposed to picture
 is that $I$ is something like the category
 \[
 \xymatrix{
@@ -538,7 +561,8 @@ diagrams
 \[ \xymatrix{A \ar[d]  \ar[r] &  B \\ C}.  \]
 
 We will call a \textbf{cone} on $F$ (this is an ambiguous term) an object $X
-\in \mathcal{C}$ equipped with maps $F_i \to X, \forall i \in I$ such that for all maps $i \to
+\in \mathcal{C}$ equipped with maps $F_i \to X, \forall i \in I$ such that for
+all maps $i \to
 i' \in I$, the diagram below commutes:
 \[ \xymatrix{
 F_i \ar[d] \ar[r] &  X \\
@@ -655,7 +679,8 @@ To give such a diagram, however, is equivalent to giving a collection of maps
 \[ Fi \to X  \]
 that satisfy some conditions. So $X$ should be thought of as a quotient of the
 coproduct $\sqcup_i Fi$.
-Let us consider the coproduct $\sqcup_{i \in I, f} Fi$, where $f$ ranges over all
+Let us consider the coproduct $\sqcup_{i \in I, f} Fi$, where $f$ ranges over
+all
 morphisms in the category $I$ that start from $i$.
 We construct two maps 
 \[ \sqcup_f Fi \rightrightarrows \sqcup_f Fi,  \]
@@ -774,7 +799,8 @@ for each $X \in \mathcal{C}$, then $X$ is called \textbf{weakly initial.}
 
 We now want to get an initial object from a weakly initial object. 
 To do this, note first that if $A$ is weakly initial and $B$ is any object
-with a morphism $B \to A$, then $B$ is weakly initial too. So we are going to take
+with a morphism $B \to A$, then $B$ is weakly initial too. So we are going to
+take
 our initial object to be a very small subobject of $A$.
 It is going to be so small as to guarantee the uniqueness condition of an
 initial object. To make it small, we equalize all endomorphisms.
@@ -784,7 +810,8 @@ If  $A$ is a weakly initial object in $\mathcal{C}$,
 then the equalizer of all endomorphisms $A \to A$ is initial for $\mathcal{C}$.
 \end{proposition} 
 \begin{proof} 
-Let $A'$ be this equalizer; it is endowed with a morphism $A'\to A$. Then let us recall what this means. For any two
+Let $A'$ be this equalizer; it is endowed with a morphism $A'\to A$. Then let us
+recall what this means. For any two
 endomorphisms $A \rightrightarrows A$, the two pull-backs $A'
 \rightrightarrows A$ are equal. Moreover, if $B \to A$ is a morphism that has
 this property, then $B$ factors uniquely through $A'$.
@@ -964,7 +991,8 @@ contravariant functors in the next subsection. For now, we note\footnote{The
 reader unfamiliar with algebraic topology may omit these remarks.} that in
 algebraic topology, one often works with the \emph{homotopy category} of
 pointed CW complexes (where morphisms are pointed continuous maps modulo
-homotopy), any contravariant functor that satisfies two relatively mild conditions (a
+homotopy), any contravariant functor that satisfies two relatively mild
+conditions (a
 Mayer-Vietoris condition and a condition on coproducts), is automatically
 representable by a theorem of Brown. In particular, this implies that the
 singular cohomology functors $H^n(-, G)$ (with coefficients in some group $G$)
