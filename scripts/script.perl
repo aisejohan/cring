@@ -1,5 +1,5 @@
 ## This does a bunch of useful things like fixing the makefile (to reflect the latest chapter list)
-## it also generates mini-chapter files in the aux/ diretory
+## it also generates mini-chapter files in the standalone/ diretory
 
 ## THIS SHOULD BE RUN FROM THE MAIN DIRECTORY
 
@@ -22,7 +22,7 @@ for $name (@files)
 {
     chop($name);
 
-    $tmpname = "aux/ch" .  $name . ".tex";
+    $tmpname = "standalone/ch" .  $name . ".tex";
 
     open (FILE, ">", $tmpname) or die "error opening";
 
@@ -96,12 +96,12 @@ print MK2 "\n\n";
 for $fl (@files)
 {
     
-    $str = "ch". $fl . ".pdf: " . "aux/ch" . $fl . ".tex" . " CRing.aux chapters/" . $fl . ".tex\n\tpdflatex -src aux/ch" . $fl . ".tex\n". "\tbibtex ch" . $fl ."\n".  "\tpdflatex -src aux/ch" . $fl . ".tex";
+    $str = "ch". $fl . ".pdf: " . "standalone/ch" . $fl . ".tex" . " CRing.aux chapters/" . $fl . ".tex\n\tpdflatex -src standalone/ch" . $fl . ".tex\n". "\tbibtex ch" . $fl ."\n".  "\tpdflatex -src standalone/ch" . $fl . ".tex";
 
     print MK2  $str . "\n\n";
 
     
-    $str2 = "sch". $fl . ".pdf: " . "aux/ch" . $fl . ".tex" . " chapters/" . $fl . ".tex\n\tpdflatex -src aux/ch" . $fl . ".tex\n";
+    $str2 = "sch". $fl . ".pdf: " . "standalone/ch" . $fl . ".tex" . " chapters/" . $fl . ".tex\n\tpdflatex -src standalone/ch" . $fl . ".tex\n";
     print MK2 $str2 . "\n\n";
 
 }

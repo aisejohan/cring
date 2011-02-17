@@ -770,6 +770,42 @@ transfinite induction.)
 In particular, any projective modules is free.
 \end{exercise}
 
+\subsection{Example: the Serre-Swan theorem}
+
+We now briefly digress to describe an important correspondence between
+projective modules and vector bundles. The material in this section will not
+be used in the sequel.
+
+Let $X$ be a compact space. We shall not recall the topological notion of a
+\emph{vector bundle} here. 
+
+We note, however, that if $E$ is a (complex) vector bundle,
+then the set $\Gamma(X, E)$ of global sections is naturally a module over the
+ring $C(X)$ of complex-valued continuous functions on $X$.
+
+\begin{proposition} 
+If $E$ is a vector bundle on a compact Hausdorff space $X$, then there is a
+surjection $\mathcal{O}^N \twoheadrightarrow E$ for some $N$.
+\end{proposition} 
+Here $\mathcal{O}^N$ denotes the trivial bundle.
+
+It is known that in the category of vector bundles, every epimorphism splits. 
+In particular, it follows that $E$ can be viewed as a \emph{direct summand} of
+the bundle $\mathcal{O}^N$. Since $\Gamma(X, E)$ is then a direct summand of
+$\Gamma(X, \mathcal{O}^N) = C(X)^N$, we find that $\Gamma(X, E)$ is a direct
+summand of a projective $C(X)$-module. Thus:
+
+\begin{proposition} 
+$\Gamma(X, E)$ is a finitely generated projective $C(X)$-module.
+\end{proposition} 
+
+\begin{theorem}[Serre-Swan]
+The functor $E \mapsto \Gamma(X, E)$ induces an equivalence of categories
+between vector bundles on $X$ and finitely generated projective modules over
+$C(X)$.
+\end{theorem} 
+
+In the algebraic category, there is a correspondence between 
 \subsection{Injective modules}
 \label{ssecinj}
 

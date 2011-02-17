@@ -41,166 +41,166 @@ CRing.aux: chapters/*.tex CRing.tex other/*.tex
 #chapters start  (please do not delete this comment!)
 
 
-chcategories.pdf: aux/chcategories.tex CRing.aux chapters/categories.tex
-	pdflatex -src aux/chcategories.tex
+chcategories.pdf: standalone/chcategories.tex CRing.aux chapters/categories.tex
+	pdflatex -src standalone/chcategories.tex
 	bibtex chcategories
-	pdflatex -src aux/chcategories.tex
+	pdflatex -src standalone/chcategories.tex
 
-schcategories.pdf: aux/chcategories.tex chapters/categories.tex
-	pdflatex -src aux/chcategories.tex
+schcategories.pdf: standalone/chcategories.tex chapters/categories.tex
+	pdflatex -src standalone/chcategories.tex
 
 
-chfoundations.pdf: aux/chfoundations.tex CRing.aux chapters/foundations.tex
-	pdflatex -src aux/chfoundations.tex
+chfoundations.pdf: standalone/chfoundations.tex CRing.aux chapters/foundations.tex
+	pdflatex -src standalone/chfoundations.tex
 	bibtex chfoundations
-	pdflatex -src aux/chfoundations.tex
+	pdflatex -src standalone/chfoundations.tex
 
-schfoundations.pdf: aux/chfoundations.tex chapters/foundations.tex
-	pdflatex -src aux/chfoundations.tex
+schfoundations.pdf: standalone/chfoundations.tex chapters/foundations.tex
+	pdflatex -src standalone/chfoundations.tex
 
 
-chfields.pdf: aux/chfields.tex CRing.aux chapters/fields.tex
-	pdflatex -src aux/chfields.tex
+chfields.pdf: standalone/chfields.tex CRing.aux chapters/fields.tex
+	pdflatex -src standalone/chfields.tex
 	bibtex chfields
-	pdflatex -src aux/chfields.tex
+	pdflatex -src standalone/chfields.tex
 
-schfields.pdf: aux/chfields.tex chapters/fields.tex
-	pdflatex -src aux/chfields.tex
+schfields.pdf: standalone/chfields.tex chapters/fields.tex
+	pdflatex -src standalone/chfields.tex
 
 
-chthreeimportantfunctors.pdf: aux/chthreeimportantfunctors.tex CRing.aux chapters/threeimportantfunctors.tex
-	pdflatex -src aux/chthreeimportantfunctors.tex
+chthreeimportantfunctors.pdf: standalone/chthreeimportantfunctors.tex CRing.aux chapters/threeimportantfunctors.tex
+	pdflatex -src standalone/chthreeimportantfunctors.tex
 	bibtex chthreeimportantfunctors
-	pdflatex -src aux/chthreeimportantfunctors.tex
+	pdflatex -src standalone/chthreeimportantfunctors.tex
 
-schthreeimportantfunctors.pdf: aux/chthreeimportantfunctors.tex chapters/threeimportantfunctors.tex
-	pdflatex -src aux/chthreeimportantfunctors.tex
+schthreeimportantfunctors.pdf: standalone/chthreeimportantfunctors.tex chapters/threeimportantfunctors.tex
+	pdflatex -src standalone/chthreeimportantfunctors.tex
 
 
-chspec.pdf: aux/chspec.tex CRing.aux chapters/spec.tex
-	pdflatex -src aux/chspec.tex
+chspec.pdf: standalone/chspec.tex CRing.aux chapters/spec.tex
+	pdflatex -src standalone/chspec.tex
 	bibtex chspec
-	pdflatex -src aux/chspec.tex
+	pdflatex -src standalone/chspec.tex
 
-schspec.pdf: aux/chspec.tex chapters/spec.tex
-	pdflatex -src aux/chspec.tex
+schspec.pdf: standalone/chspec.tex chapters/spec.tex
+	pdflatex -src standalone/chspec.tex
 
 
-chnoetherian.pdf: aux/chnoetherian.tex CRing.aux chapters/noetherian.tex
-	pdflatex -src aux/chnoetherian.tex
+chnoetherian.pdf: standalone/chnoetherian.tex CRing.aux chapters/noetherian.tex
+	pdflatex -src standalone/chnoetherian.tex
 	bibtex chnoetherian
-	pdflatex -src aux/chnoetherian.tex
+	pdflatex -src standalone/chnoetherian.tex
 
-schnoetherian.pdf: aux/chnoetherian.tex chapters/noetherian.tex
-	pdflatex -src aux/chnoetherian.tex
+schnoetherian.pdf: standalone/chnoetherian.tex chapters/noetherian.tex
+	pdflatex -src standalone/chnoetherian.tex
 
 
-chgraded.pdf: aux/chgraded.tex CRing.aux chapters/graded.tex
-	pdflatex -src aux/chgraded.tex
+chgraded.pdf: standalone/chgraded.tex CRing.aux chapters/graded.tex
+	pdflatex -src standalone/chgraded.tex
 	bibtex chgraded
-	pdflatex -src aux/chgraded.tex
+	pdflatex -src standalone/chgraded.tex
 
-schgraded.pdf: aux/chgraded.tex chapters/graded.tex
-	pdflatex -src aux/chgraded.tex
+schgraded.pdf: standalone/chgraded.tex chapters/graded.tex
+	pdflatex -src standalone/chgraded.tex
 
 
-chintegrality.pdf: aux/chintegrality.tex CRing.aux chapters/integrality.tex
-	pdflatex -src aux/chintegrality.tex
+chintegrality.pdf: standalone/chintegrality.tex CRing.aux chapters/integrality.tex
+	pdflatex -src standalone/chintegrality.tex
 	bibtex chintegrality
-	pdflatex -src aux/chintegrality.tex
+	pdflatex -src standalone/chintegrality.tex
 
-schintegrality.pdf: aux/chintegrality.tex chapters/integrality.tex
-	pdflatex -src aux/chintegrality.tex
+schintegrality.pdf: standalone/chintegrality.tex chapters/integrality.tex
+	pdflatex -src standalone/chintegrality.tex
 
 
-chfactorization.pdf: aux/chfactorization.tex CRing.aux chapters/factorization.tex
-	pdflatex -src aux/chfactorization.tex
+chfactorization.pdf: standalone/chfactorization.tex CRing.aux chapters/factorization.tex
+	pdflatex -src standalone/chfactorization.tex
 	bibtex chfactorization
-	pdflatex -src aux/chfactorization.tex
+	pdflatex -src standalone/chfactorization.tex
 
-schfactorization.pdf: aux/chfactorization.tex chapters/factorization.tex
-	pdflatex -src aux/chfactorization.tex
+schfactorization.pdf: standalone/chfactorization.tex chapters/factorization.tex
+	pdflatex -src standalone/chfactorization.tex
 
 
-chdedekind.pdf: aux/chdedekind.tex CRing.aux chapters/dedekind.tex
-	pdflatex -src aux/chdedekind.tex
+chdedekind.pdf: standalone/chdedekind.tex CRing.aux chapters/dedekind.tex
+	pdflatex -src standalone/chdedekind.tex
 	bibtex chdedekind
-	pdflatex -src aux/chdedekind.tex
+	pdflatex -src standalone/chdedekind.tex
 
-schdedekind.pdf: aux/chdedekind.tex chapters/dedekind.tex
-	pdflatex -src aux/chdedekind.tex
+schdedekind.pdf: standalone/chdedekind.tex chapters/dedekind.tex
+	pdflatex -src standalone/chdedekind.tex
 
 
-chdimension.pdf: aux/chdimension.tex CRing.aux chapters/dimension.tex
-	pdflatex -src aux/chdimension.tex
+chdimension.pdf: standalone/chdimension.tex CRing.aux chapters/dimension.tex
+	pdflatex -src standalone/chdimension.tex
 	bibtex chdimension
-	pdflatex -src aux/chdimension.tex
+	pdflatex -src standalone/chdimension.tex
 
-schdimension.pdf: aux/chdimension.tex chapters/dimension.tex
-	pdflatex -src aux/chdimension.tex
+schdimension.pdf: standalone/chdimension.tex chapters/dimension.tex
+	pdflatex -src standalone/chdimension.tex
 
 
-chcompletion.pdf: aux/chcompletion.tex CRing.aux chapters/completion.tex
-	pdflatex -src aux/chcompletion.tex
+chcompletion.pdf: standalone/chcompletion.tex CRing.aux chapters/completion.tex
+	pdflatex -src standalone/chcompletion.tex
 	bibtex chcompletion
-	pdflatex -src aux/chcompletion.tex
+	pdflatex -src standalone/chcompletion.tex
 
-schcompletion.pdf: aux/chcompletion.tex chapters/completion.tex
-	pdflatex -src aux/chcompletion.tex
+schcompletion.pdf: standalone/chcompletion.tex chapters/completion.tex
+	pdflatex -src standalone/chcompletion.tex
 
 
-chsmoothness.pdf: aux/chsmoothness.tex CRing.aux chapters/smoothness.tex
-	pdflatex -src aux/chsmoothness.tex
+chsmoothness.pdf: standalone/chsmoothness.tex CRing.aux chapters/smoothness.tex
+	pdflatex -src standalone/chsmoothness.tex
 	bibtex chsmoothness
-	pdflatex -src aux/chsmoothness.tex
+	pdflatex -src standalone/chsmoothness.tex
 
-schsmoothness.pdf: aux/chsmoothness.tex chapters/smoothness.tex
-	pdflatex -src aux/chsmoothness.tex
+schsmoothness.pdf: standalone/chsmoothness.tex chapters/smoothness.tex
+	pdflatex -src standalone/chsmoothness.tex
 
 
-chlinalg.pdf: aux/chlinalg.tex CRing.aux chapters/linalg.tex
-	pdflatex -src aux/chlinalg.tex
+chlinalg.pdf: standalone/chlinalg.tex CRing.aux chapters/linalg.tex
+	pdflatex -src standalone/chlinalg.tex
 	bibtex chlinalg
-	pdflatex -src aux/chlinalg.tex
+	pdflatex -src standalone/chlinalg.tex
 
-schlinalg.pdf: aux/chlinalg.tex chapters/linalg.tex
-	pdflatex -src aux/chlinalg.tex
+schlinalg.pdf: standalone/chlinalg.tex chapters/linalg.tex
+	pdflatex -src standalone/chlinalg.tex
 
 
-chhomological.pdf: aux/chhomological.tex CRing.aux chapters/homological.tex
-	pdflatex -src aux/chhomological.tex
+chhomological.pdf: standalone/chhomological.tex CRing.aux chapters/homological.tex
+	pdflatex -src standalone/chhomological.tex
 	bibtex chhomological
-	pdflatex -src aux/chhomological.tex
+	pdflatex -src standalone/chhomological.tex
 
-schhomological.pdf: aux/chhomological.tex chapters/homological.tex
-	pdflatex -src aux/chhomological.tex
+schhomological.pdf: standalone/chhomological.tex chapters/homological.tex
+	pdflatex -src standalone/chhomological.tex
 
 
-chflat.pdf: aux/chflat.tex CRing.aux chapters/flat.tex
-	pdflatex -src aux/chflat.tex
+chflat.pdf: standalone/chflat.tex CRing.aux chapters/flat.tex
+	pdflatex -src standalone/chflat.tex
 	bibtex chflat
-	pdflatex -src aux/chflat.tex
+	pdflatex -src standalone/chflat.tex
 
-schflat.pdf: aux/chflat.tex chapters/flat.tex
-	pdflatex -src aux/chflat.tex
+schflat.pdf: standalone/chflat.tex chapters/flat.tex
+	pdflatex -src standalone/chflat.tex
 
 
-chetale.pdf: aux/chetale.tex CRing.aux chapters/etale.tex
-	pdflatex -src aux/chetale.tex
+chetale.pdf: standalone/chetale.tex CRing.aux chapters/etale.tex
+	pdflatex -src standalone/chetale.tex
 	bibtex chetale
-	pdflatex -src aux/chetale.tex
+	pdflatex -src standalone/chetale.tex
 
-schetale.pdf: aux/chetale.tex chapters/etale.tex
-	pdflatex -src aux/chetale.tex
+schetale.pdf: standalone/chetale.tex chapters/etale.tex
+	pdflatex -src standalone/chetale.tex
 
 
-chlicense.pdf: aux/chlicense.tex CRing.aux chapters/license.tex
-	pdflatex -src aux/chlicense.tex
+chlicense.pdf: standalone/chlicense.tex CRing.aux chapters/license.tex
+	pdflatex -src standalone/chlicense.tex
 	bibtex chlicense
-	pdflatex -src aux/chlicense.tex
+	pdflatex -src standalone/chlicense.tex
 
-schlicense.pdf: aux/chlicense.tex chapters/license.tex
-	pdflatex -src aux/chlicense.tex
+schlicense.pdf: standalone/chlicense.tex chapters/license.tex
+	pdflatex -src standalone/chlicense.tex
 
 
 chapters:  chcategories.pdf chfoundations.pdf chfields.pdf chthreeimportantfunctors.pdf chspec.pdf chnoetherian.pdf chgraded.pdf chintegrality.pdf chfactorization.pdf chdedekind.pdf chdimension.pdf chcompletion.pdf chsmoothness.pdf chlinalg.pdf chhomological.pdf chflat.pdf chetale.pdf chlicense.pdf
