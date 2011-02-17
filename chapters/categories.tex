@@ -181,7 +181,8 @@ maps and composition.
 \end{definition}
 
 In detail, the last two conditions state the following. First, if $X \in
-\mathcal{C}$, then $F(1_X)$ is the identity morphism $1_{F(X)}: F(X) \to F(X)$.The second is that if $A \stackrel{f}{\to} B \stackrel{g}{\to} C$ are
+\mathcal{C}$, then $F(1_X)$ is the identity morphism $1_{F(X)}: F(X) \to
+F(X)$.The second is that if $A \stackrel{f}{\to} B \stackrel{g}{\to} C$ are
 morphisms in $\mathcal{C}$, 
 then $F(g \circ f) = F(g) \circ F(f)$ as morphisms $F(A) \to F(C)$.
 Alternatively, we can say that $F$ \emph{preserves commutative diagrams.}
@@ -235,8 +236,7 @@ Indeed:
 
 \begin{definition}
 A \textbf{contravariant functor}  $\mathcal{C}
-\stackrel{F}{\to}\mathcal{D}$ (between categories $\mathcal{C}, \mathcal{D}$) is
-similar
+\stackrel{F}{\to}\mathcal{D}$ (between categories $\mathcal{C}, \mathcal{D}$) issimilar
 data except that now a map $X \stackrel{f}{\to} Y$ now goes to a map $FY
 \stackrel{F(f)}{\to} FX$. Composites
 are required to be preserved, albeit in the other direction.
@@ -436,6 +436,8 @@ isomorphic up to unique isomorphism. They are different,
 but the sets are isomorphic up
 to unique isomorphism.
 
+\add{Products and Coproducts}
+
 \subsection{Push-outs and pull-backs}
 
 \add{pull-backs}
@@ -449,7 +451,7 @@ Suppose we have a diagram
 \[
 \xymatrix{
 A \ar[d] \ar[r] &  B \ar[d] \\
-C \ar[r] &  X}.
+C \ar[r] &  X}
 \]
 We can say what it means for this to be a \textbf{push-out}.
 
@@ -468,11 +470,14 @@ C \ar[rd] & \\
 & Y
 }\]
 there is a unique map $X \to Y$ making the following diagram commute:
-\[ \xymatrix{
-A \ar[r] \ar[d]  &  B \ar[d] \\
-C \ar[rd] \ar[r] & X  \ar[d]  \\
-& Y
-}.\]
+
+\[
+\xymatrix{
+A \ar[d] \ar[r] &  B \ar[d] \ar[rdd] \\
+C \ar[r] \ar[rrd] &  X \ar[rd] \\
+& & Y'}
+\]
+Sometimes push-outs are also called \textbf{fibered coproducts}.
 \end{definition}
 
 \begin{example}
@@ -480,7 +485,7 @@ The following is a pushout square in the category of abelian groups:
 \[ \xymatrix{
 \mathbb{Z}/2 \ar[r] \ar[d]  &  \mathbb{Z}/4 \ar[d]  \\
 \mathbb{Z}/6 \ar[r] &  \mathbb{Z}/12
-}.\]
+}\]
 In the category of groups, the push-out is actually
 $\mathrm{SL}_2(\mathbb{Z})$---this is a cool theorem. The point is that being a
 push-out is actually dependent on the category.
@@ -489,13 +494,12 @@ push-out is actually dependent on the category.
 \begin{example}
 Let $R$ be a commutative ring and let $S$ and $Q$ be two commutative
 $R$-algebras. In otherwords, suppose
-we have two maps of rings $s:R\rightarrow S$ and $q:R\rightarrow Q$. Then we can
-fit this information together
+we have two maps of rings $s:R\rightarrow S$ and $q:R\rightarrow Q$. Then we canfit this information together
 into a pushout square:
 
 \[ \xymatrix{
-R \ar[r] \ar[d]  &  S   \\
-Q 
+R \ar[r] \ar[d]  &  S \ar[d]   \\
+Q \ar[r] &X
 }\]
 It turns out that the pushout in this case is the tensor product of algebras
 $S\otimes_R Q$. This is particularly important
@@ -517,7 +521,7 @@ We can prove this in two ways. One is that suppose I had two pushout squares
 \xymatrix{
 A \ar[d] \ar[r] &  B \ar[d] \ar[rdd] \\
 C \ar[r] \ar[rrd] &  X \\
-& & X'}.
+& & X'}
 \]
 Then there are unique maps $X \to X', X' \to X$ from the universal property,
 which have to be isomorphisms.
@@ -528,6 +532,56 @@ mapping into something else; then the initial
 object in this category is the push-out.
 \end{proof}
 
+Often when studying categorical constructions, one can create a kind of ``dual''
+construction by reversing the direction of the arrows. This is exactly the
+relationship between the push-out construction and the pull-back construction.
+So suppose we have two morphisms $B \to D$ and $C\to D$.
+\begin{definition}
+The \textbf{pull-back} is an object $X$ with two morphisms $X\to B$ and $X\to C$
+such that the following diagram commutes
+
+\[ \xymatrix {
+P \ar[d] \ar[r] & B \ar[d]\\
+A\ar[r] & C }\]
+
+Moreover, the object $P$ is universal in the following sense: given any $P'$ and
+maps $P'\to A$ and $P'\to B$ making the square commute, there is a unique map
+$P'\to P$ making the following diagram commute:
+\[
+\xymatrix{
+ P' \ar[rd] \ar[rrd] \ar[ddr] \\
+& P \ar[d] \ar[r] &  B \ar[d] \\
+& A \ar[r] &  C }\]
+Dual to the notion of a push-out, sometimes the pull-back is also called the
+\textbf{fibered product}.
+\end{definition}
+
+\begin{example} As said above, the fact that the tensor product of algebras is a
+push-out in the category of
+commutative $R$-algebras allows for the correct notion of the ``product'' of
+schemes. We now elaborate on this example: naively one would think that we could
+pick the underlying space of the product scheme to just be the topological
+product of two Zariski topologies. However, it is an easy exercise to check that
+the product of two Zariski topologies in general is not Zariski! This motivates
+the need for a different concept.
+
+Suppose we have a field $k$ and two $k$-algebras $A$ and $B$ and let $X=Spec(A)$
+and $Y=Spec(B)$ be the affine $k$-schemes corresponding to $A$ and $B$. Consider
+the follwing pull-back diagram:
+\[
+\xymatrix{
+X\times_{Spec(k)} Y \ar[d] \ar[r] &X \ar[d]\\
+Y \ar[r] &Spec(k) }\]
+
+Now, since $Spec$ is a contravariant functor, the arrows in this pull-back
+diagram have been flipped; so in fact, $X\times_{Spec(k)} Y$ is actually
+$Spec(A\otimes _k B)$. This construction is motivated by the following example:
+let $A=k[x]$ and $B=k[y]$. Then $Spec(A)$ and $Spec(B)$ are both affine lines
+$\mathbb{A}^1_k$ so we want a suitable notion of product that makes the product
+of $Spec(A)$ and $Spec(B)$ the affine plane. The pull-back construction is the
+correct one since $Spec(A)\times_{Spec(k)} Spec(B)=Spec(A\otimes_k
+B)=Spec(k[x,y])=\mathbb{A}^2_k$.
+\end{example}
 
 Now we abstract on this idea further.
 
@@ -810,8 +864,7 @@ If  $A$ is a weakly initial object in $\mathcal{C}$,
 then the equalizer of all endomorphisms $A \to A$ is initial for $\mathcal{C}$.
 \end{proposition} 
 \begin{proof} 
-Let $A'$ be this equalizer; it is endowed with a morphism $A'\to A$. Then let us
-recall what this means. For any two
+Let $A'$ be this equalizer; it is endowed with a morphism $A'\to A$. Then let usrecall what this means. For any two
 endomorphisms $A \rightrightarrows A$, the two pull-backs $A'
 \rightrightarrows A$ are equal. Moreover, if $B \to A$ is a morphism that has
 this property, then $B$ factors uniquely through $A'$.
