@@ -378,9 +378,18 @@ However, we will use it to state theorems conveniently.
 
 \section{Various universal constructions}
 
-Last time, we introduced the idea of a category, and showed that a functor
-takes isomorphisms to isomorphisms.  This was an amazing result with a trivial
-proof.  Today, we will characterize objects in terms of maps.
+Now that we have introduced the idea of a category and showed that a functor
+takes isomorphisms to isomorphisms, we can characterize objects in terms of maps. This is useful since the modern philosophy of mathematics is that knowing ``all the maps from and to an object'' is the same as knowing the interal structure of the object. This idea led to the creation of various characterizations of objects known as universal properties. 
+As motivation, we first discuss the concept of the ``product'' in terms of a universal property. 
+
+\subsection{Products}
+Recall that if we have two sets $X$ and $Y$, the product $X\times Y$ is the set of all elements of the form $(x,y)$ where $x\in X$ and $y\in Y$. The product is also equipped with natural projections $p_1$ and $p_2$ that take $(x,y)$ to $x$ and $y$ respectively. Thus any element of $X\times Y$ is uniquely determined by where they project to on $X$ and $Y$. In fact, in general, this is the case; if we have an index set $I$ and a product $X=\prod_{i\in I} X_i$, then an element $x\in X$ determined uniquely by where where the projections $p_i(x)$ land in $X_i$. This also means that if we have any other set $S$ with maps $f_i:S\rightarrow X_i$ then there is a unique map $S\rightarrow X=\prod_{i\in I}X_i$ given by sending $s\in S$ to the element $\{ f_i(s)\}_{i\in I}$. This leads to the following characterization of a product using only ``mapping properties.''
+
+\begin{definition} Let $\{X_i\}_{i\in I}$ be a collection of objects in some category $\mathcal{C}$ Then a set $P$ with projections $p_i: P\rightarrow X_i$ is said to be the product $\prod_{i\in I} X_i$ if the following ``universal property'' holds:
+let $S$ be any other object in $\mathcal{C}$ with maps $f_i:S\rightarrow X_i$. Then there is a unique morphism $f:S\rightarrow P$ such that $p_i f = f_i$. \end{definition}
+\begin{example} One of the benefits of this construction is that an actual category is not specified; thus when we take $\mathcal{C}$ to be Sets, we recover the cartesian product notion of sets, but if we take $\mathcal{C}$ to be groups, we achieve the regular notion of the product of groups (the reader is invited to check these statements). \end{example}
+\begin{exercise} If we reverse the arrows in the above construction, show that the universal property obtained (known as the ``coproduct'') characterizes disjoint unions in the category of sets and direct sums in the category of groups. Notice that on the level of sets, these two objects are different (hence showing that the universal object is dependent on one's choice of category; another example of this will be given later). \end{exercise}
+This idea of a universal mapping property leads us to investigate this notion more thoroughly.  
 
 
 \subsection{Initial and terminal objects}
@@ -435,8 +444,6 @@ in mathematics. Two sets are not generally the ``same,'' but they may be
 isomorphic up to unique isomorphism. They are different,
 but the sets are isomorphic up
 to unique isomorphism.
-
-\add{Products and Coproducts}
 
 \subsection{Push-outs and pull-backs}
 
