@@ -1332,7 +1332,7 @@ The tensor product's key property is that it allows one to ``linearize''
 bilinear maps. When taking the tensor product of rings, it provides a
 categorical coproduct as well.
 
-\subsection{Bilinear maps}
+\subsection{Bilinear maps and the tensor product}
 Let $R$ be a commutative ring, as usual.
 We have seen that the $\hom$-sets $\hom_R(M,N)$ of $R$-modules $M,N$ are themselves
 $R$-modules.
@@ -1385,9 +1385,8 @@ Prove that a $\mathbb{Z}$-bilinear map out of $\mathbb{Z}/2 \times
 \mathbb{Z}/3$ is identically zero, whatever the target module.
 \end{exercise}
 
-\subsection{The tensor product}
 
-Let us keep the notation of the previous section: in particular, $M,N, P$ will
+Let us keep the notation of the previous discussion: in particular, $M,N, P$ will
 be modules over a commutative ring $R$.
 
 Given a bilinear map $M \times N \to P$ and a homomorphism $P \to P'$, we can
@@ -1867,6 +1866,110 @@ Since it is an isomorphism for free modules, it is an isomorphism for all
 modules by a standard argument.
 
 
+\subsection{Tensor products of algebras}
+There is one other basic property of tensor products to discuss before moving
+on: namely, what happens when one tensors a ring with another ring. We shall
+see that this gives rise to  \emph{push-outs} in the category of rings, or
+alternatively, coproducts in the category of $R$-algebras.
+Let $R$ be a commutative ring and suppose $R_1, R_2$ are $R$-algebras. That is,  we have ring homomorphisms
+\( \phi_0: R \to R_0, \quad \phi_1: R \to R_1.	\)
+
+\begin{proposition} 
+$R_0 \otimes_R R_1$ has the structure of a commutative ring in a natural way.
+\end{proposition} 
+
+ Indeed, this
+multiplication multiplies two typical elements $x \otimes y, x' \otimes y'$ of
+the tensor product by
+sending them to
+$xx' \otimes yy'$.
+The ring structure is determined by this formula.  One ought to check that this
+approach respects the relations of the tensor product. We will do so in an
+indirect way.
+
+
+\begin{proof}
+Notice that giving a multiplication law on $R_0 \otimes_R R_1$ is equivalent to giving an $R$-bilinear map
+\[ (R_0 \otimes_R R_1) \times (R_0 \otimes R_1) \to R_0 \otimes_R R_1,\]
+i.e. an $R$-linear map
+\[ (R_0 \otimes_R R_1) \otimes_R (R_0 \otimes R_1) \to R_0 \otimes_R R_1\]
+which satisfies certain constraints (associativity, commutativity, etc.).
+But the left side is isomorphic to $(R_0 \otimes_R R_0) \otimes_R (R_1
+\otimes_R R_1)$. Since we have bilinear maps $R_0 \times R_0 \to R_0$ and $R_1
+\times R_1 \to R_1$, we get linear maps
+$R_0 \otimes_R R_0 \to R_0$ and $R_1 \otimes_R R_1 \to R_1$.
+Tensoring these maps gives the multiplication as a bilinear map. It is easy to
+see that these two approaches are the same.
+
+We now need to check that this operation is commutative and associative, with
+$1 \otimes 1$ as a unit; moreover, it distributes over addition. Distributivity
+over addition is built into the construction (i.e. in view of bilinearity). The
+rest (commutativity, associativity, units) can be checked directly on the
+generators, since we have distributivity.
+We shall leave the details to the reader.
+\end{proof}
+
+
+We can in fact describe the tensor product of $R$-algebras by a universal
+property. We will
+describe a commutative diagram:
+\[
+\xymatrix{
+& R \ar[rd] \ar[ld] & \\
+R_0 \ar[rd] & & R_1 \ar[ld] \\
+& R_0 \otimes_R R_1
+}
+\]
+Here $R_0 \to R_0 \otimes_R R_1$ sends $x \mapsto x \otimes 1$; similarly for $R_1
+\mapsto R_0 \otimes_R R_1$. These are ring-homomorphisms, and it is easy to
+see that
+the above
+diagram commutes, since $r \otimes 1 = 1 \otimes r = r(1 \otimes 1)$ for $r \in
+R$.
+In fact,
+\begin{proposition}
+$R_0 \otimes_R R_1$ is universal with respect to this property: in the language
+of category theory, the above diagram is a pushout square.
+\end{proposition}
+
+This means for any commutative ring $B$, and every pair of maps $u_0: R_0 \to
+B$ and $u_1: R_1 \to B$ such that the pull-backs $R \to R_0 \to B$ and $R \to
+R_1 \to B$ are the same, then we get a unique map of rings
+\[ R_0 \otimes_R R_1 \to B  \]
+which restricts on $R_0, R_1$ to the morphisms $u_0, u_1$ that we started with.
+\begin{proof} If $B$ is a ring as in the previous paragraph, we make $B$ into an $R$-module by the map $R \to R_0 \to B$ (or
+$R \to R_1 \to B$, it is the same by assumption).
+This map $R_0 \otimes_R R_1 \to B$ sends
+\[ x \otimes y \to u_0(x) u_1(y).  \]
+It is easy to check that $(x,y) \to u_0(x)u_1(y)$ is $R$-bilinear (because of
+the condition that the two pull-backs of $u_0, u_1$ to $R$ are the same), and
+that it gives a homomorphism of rings $R_0 \otimes_R R_1 \to B$ which
+restricts to $u_0, u_1$ on $R_0,
+R_1$. One can check, for instance, that this is a homomorphism of rings by
+looking at the generators.
+
+It is also clear that $R_0 \otimes_R R_1 \to B$ is unique, because we know
+that the
+map on elements of the form $x \otimes 1$ and $1 \otimes y$ is determined by
+$u_0, u_1$; these generate $R_0 \otimes_R R_1$, though.
+\end{proof}
+
+In fact, we now claim that the category of rings has \emph{all} coproducts. We
+see that the coproduct of any two elements exists (as the tensor product over
+$\mathbb{Z}$). It turns out that arbitrary coproducts exist. More generally,
+if $\left\{R_\alpha\right\}$ is a family of $R$-algebras, then one can define
+an object
+\[ \bigotimes_\alpha R_\alpha,  \]
+which is a coproduct of the $R_\alpha$ in the category of $R$-algebras. To do
+this, we simply take the generators as before, as formal objects
+\[ \bigotimes r_\alpha, \quad r_\alpha \in R_\alpha,  \]
+except that all but finitely many of  the $r_\alpha$ are required to be the
+identity. One quotients by the usual relations.
+
+Alternatively, one may use the fact that filtered colimits exist, and
+construct the infinite coproduct as a colimit of finite coproducts (which are
+just ordinary tensor products).
+
 \section{Exactness properties of the tensor product}
 
 In general, the tensor product is not exact; it is only exact on the right,
@@ -2123,87 +2226,4 @@ follows that all the $a_i = 0$. In particular, we have proved:
 A finitely generated module over a PID is flat if and only if it is free.
 \end{proposition} 
 \end{example} 
-
-\subsection{Tensor products of algebras}
-There is one other basic property of tensor products to discuss before moving
-on: namely, what happens when one tensors a ring with another ring.
-Let $R$ be a commutative ring and suppose we have ring homomorphisms
-\[ \phi_0: R \to R_0, \quad \phi_1: R \to R_1.	\]
-
-\begin{proposition}
-Then $R_0 \otimes_R R_1$ has the structure of a commutative ring.
-\end{proposition}
-\begin{proof}
- Indeed, this
-multiplication multiplies two typical elements $x \otimes y, x' \otimes y'$ by
-sending them to
-$xx' \otimes yy'$.
-The ring structure is determined by this formula.  One ought to check that this
-approach respects the relations of the tensor product. We will do so in an
-indirect way.
-
-One can also think of this as follows. Multiplication is the same thing as
-giving an $R$-bilinear map
-\[ (R_0 \otimes_R R_1) \times (R_0 \otimes R_1) \to R_0 \otimes_R R_1,\]
-i.e. an $R$-linear map
-\[ (R_0 \otimes_R R_1) \otimes_R (R_0 \otimes R_1) \to R_0 \otimes_R R_1.\]
-But the left side is isomorphic to $(R_0 \otimes_R R_0) \otimes_R (R_1
-\otimes_R R_1)$. Since we have bilinear maps $R_0 \times R_0 \to R_0$ and $R_1
-\times R_1 \to R_1$, we get linear maps
-$R_0 \otimes_R R_0 \to R_0$ and $R_1 \otimes_R R_1 \to R_1$.
-Tensoring these maps gives the multiplication as a bilinear map. It is easy to
-see that these two approaches are the same.
-
-We now need to check that this operation is commutative and associative, with
-$1 \otimes 1$ as a unit; moreover, it distributes over addition. Distributivity
-over addition is built into the construction (i.e. in view of bilinearity). The
-rest (commutativity, associativity, units) can be checked directly on the
-generators, since we have distributivity.
-\end{proof}
-
-We can in fact describe the tensor product of $R$-algebras by a universal
-property. We will
-describe a commutative diagram:
-\[
-\xymatrix{
-& R \ar[rd] \ar[ld] & \\
-R_0 \ar[rd] & & R_1 \ar[ld] \\
-& R_0 \otimes_R R_1
-}
-\]
-Here $R_0 \to R_0 \otimes_R R_1$ sends $x \to x \otimes 1$; similarly for $R_1
-\to R_0 \otimes_R R_1$. These are ring-homomorphisms, and it is easy to
-see that
-the above
-diagram commutes, since $r \otimes 1 = 1 \otimes r = r(1 \otimes 1)$ for $r \in
-R$.
-
-In fact,
-\begin{proposition}
-$R_0 \otimes_R R_1$ is universal with respect to this property: in the language
-of category theory, the above diagram is a pushout square.
-\end{proposition}
-
-This means for any commutative ring $B$, and every pair of maps $u_0: R_0 \to
-B$ and $u_1: R_1 \to B$ such that the pull-backs $R \to R_0 \to B$ and $R \to
-R_1 \to B$ are the same, then we get a unique map of rings
-\[ R_0 \otimes_R R_1 \to B  \]
-which restricts on $R_0, R_1$ to the morphisms $u_0, u_1$ that we started with.
-\begin{proof} We make $B$ into an $R$-module by the map $R \to R_0 \to B$ (or
-$R \to R_1 \to B$, it is the same by assumption).
-This map $R_0 \otimes_R R_1 \to B$ sends
-\[ x \otimes y \to u_0(x) u_1(y).  \]
-It is easy to check that $(x,y) \to u_0(x)u_1(y)$ is $R$-bilinear (because of
-the condition that the two pull-backs of $u_0, u_1$ to $R$ are the same), and
-that it gives a homomorphism of rings $R_0 \otimes_R R_1 \to B$ which
-restricts to $u_0, u_1$ on $R_0,
-R_1$. One can check, for instance, that this is a homomorphism of rings by
-looking at the generators.
-
-It is also clear that $R_0 \otimes_R R_1 \to B$ is unique, because we know
-that the
-map on elements of the form $x \otimes 1$ and $1 \otimes y$ is determined by
-$u_0, u_1$; these generate $R_0 \otimes_R R_1$, though.
-\end{proof}
-
 

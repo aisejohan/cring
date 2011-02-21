@@ -910,6 +910,7 @@ Let $\mathfrak{p}_1$, \dots, $\mathfrak{p}_n\subset R$ be primes. The complement
 
 \section{Vista: sheaves on $\spec R$}
 
+\subsection{Presheaves}
 Let $X$ be a topological space. 
 \begin{definition} 
 A \textbf{presheaf of sets} $\mathcal{F}$ on $X$ assigns to
@@ -970,10 +971,13 @@ everywhere on $U$, with the restriction maps being the obvious
 ones.
 \end{example} 
 
+\subsection{Sheaves}
+
 \begin{definition} Let $\mathcal{F}$ be a presheaf of groups
 (resp. rings) on a topological space $X$. We call $\mathbb{F}$ a
-sheaf if $\mathcal{F}$ further satisfies the following two
-``sheaf conditions.''\begin{enumerate}
+\textbf{sheaf} if $\mathcal{F}$ further satisfies the following two
+``sheaf conditions.''
+\begin{enumerate}
 \item{If $U$ is an open set of $X$ covered by $U_i$ and there
 are two elements $a,b\in \mathcal{F}(U)$ such that
 $a|_{U_i}=b|_{U_i}$ for all $U_i$, then $a=b$.}
@@ -1001,6 +1005,10 @@ it. We shall not define a scheme formally, but show how on the
 building blocks
 of schemes---objects of the form $\spec A$---a sheaf of rings
 can be defined.
+
+
+
+\subsection{Sheaves on $\spec A$}
 
 \begin{proposition}
 Let $ A$ be a ring and let $ X = \mathrm{Spec}(A)$. Then the
