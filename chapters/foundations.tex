@@ -654,7 +654,19 @@ module-homomorphisms forms a \textbf{category}.
 
 \begin{exercise} 
 The initial object in this category is the zero module, and this is also the
-final object. 
+final object.
+
+In general, a category where the initial object and final object are the same
+(that is, isomorphic) is called a \emph{pointed category.} The common object
+is called the \emph{zero object.} In a pointed category $\mathcal{C}$, there is a morphism
+$X \to Y$ for any two objects $X, Y \in \mathcal{C}$: if $\ast$ is the zero
+object, then we can take $X \to \ast \to Y$. This is well-defined and is
+called the \emph{zero morphism.}
+One can easily show that the composition (on the left or the right) of a
+zero morphism is a zero morphism (between a possibly different set of objects). 
+
+In the case of the category of modules, the zero object is clearly the zero
+module, and the zero morphism $M \to N$ sends $m \mapsto 0$ for each $m \in M$.
 \end{exercise} 
 \begin{definition} Let $f: M \to N$ be a module homomorphism.
 In this case, the \textbf{kernel} $\ker f$ of $f$ is  the set of elements $m
@@ -683,7 +695,12 @@ if and only if the composite $T \to N$ is zero.
 In particular, if we think of the hom-sets as abelian groups (i.e.
 $\mathbb{Z}$-modules)
 \[ \hom_R( T,K) = \ker\left( \hom_R(T, M) \to \hom_R(T, N) \right). \]
-\end{exercise} 
+\end{exercise}
+
+In other words, one may think of the kernel as follows. If $X
+\stackrel{f}{\to} Y$ is a morphism, then the kernel $\ker(f)$ is the equalizer
+of $f$ and the zero morphism $X \stackrel{0}{\to} Y$.
+
 \begin{exercise} 
 What is the universal property of the cokernel?
 \end{exercise} 
@@ -716,7 +733,7 @@ is a coproduct.
 \end{exercise} 
 
 \add{filtered colimits}
-
+\add{more detail}
 \subsection{Exactness}
 Finally, we introduce the notion of \emph{exactness}. 
 \begin{definition} \label{exactness}
@@ -770,14 +787,37 @@ category of  $S$-modules, where $R, S$ are rings.  Then:
 \item  $F$ is called \textbf{additive} if $F$ preserves direct sums.  
 \item  $F$ is called \textbf{exact} if $F$ is additive and preserves exact sequences.  
 \item  $F$ is called \textbf{left exact} if $F$ is additive and preserves exact sequences of the form
-$0 \to M' \to M \to M''$.  In particular, $F$ preserves kernels.  
+$0 \to M' \to M \to M''$.  Equivalently, $F$ preserves kernels.  
 \item  $F$ is \textbf{right exact} if $F$ is additive and $F$ preserves exact
 sequences of the form $M' \to M \to M'' \to 0$, i.e. $F$ preserves cokernels.  
 \end{enumerate}
 \end{definition} 
 
-A functor is exact if and only if it is both left and right exact.  
+The reader should note that the above definition can be recast using the more
+general notion of an \emph{abelian category,}  which axiomatizes much of the
+standard properties of the category of modules over a ring. Such a
+generalization turns out to be necessary when many natural categories, such as
+the category of chain complexes or the category of sheaves on a topological
+space, are not naturally categories of modules.
+We do not go into this here, cf. \cite{Ma98}. 
 
+A functor  $F$	is exact if and only if it is both left and right exact.  
+This actually requires proof, though it is not hard. Namely, right-exactness implies that $F$
+preserves cokernels. Left-exactness implies that $F$ preserves kernels. $F$
+thus preserves images, as the image of a morphism is the kernel of its cokernel.
+So if
+\[ A \to B \to C  \]
+is a short exact sequence, then the kernel of the second map is equal to the
+image of the first; we have just seen that this is preserved under $F$.
+
+
+\begin{exercise} 
+Suppose whenever $0 \to A' \to A \to A'' \to 0$ is short exact, then $FA' \to
+FA \to FA'' \to 0$ is exact. Prove that $F$ is right-exact. So we get a
+slightly weaker criterion for right-exactness.
+
+Do the same for left-exact functors.
+\end{exercise} 
 
 \subsection{Split exact sequences}
 
@@ -855,6 +895,13 @@ Thus we find that the two conditions are satisfied.
 
 \subsection{The five lemma}
 
+The five lemma will be a useful tool for us in proving that maps are
+isomorphisms. Often this argument is used in inductive proofs. Namely, we will
+see that often ``long exact sequences'' (extending infinitely in one or both
+directions) arise from short exact sequences in a natural way. In such
+events, the five lemma
+will allow us to prove that certain morphisms are isomorphisms by induction on
+the dimension. 
 \begin{theorem} 
 Suppose given a commutative diagram
 \[ \xymatrix{
@@ -1033,7 +1080,7 @@ of $R$ because it does not contain $1$.
 This implies that $P$ has a maximal element by Zorn's lemma.  This maximal element may
 be called $\mathfrak{M}$; it's a proper element containing $I$. I claim that
 $\mathfrak{M}$ is a maximal ideal, because if it were contained in a larger
- ideal, that would  be in $P$ (which can't happen by maximality) unless it were all of $R$.
+ ideal, that would  be in $P$ (which cannot happen by maximality) unless it were all of $R$.
 \end{proof} 
 
 \begin{corollary} 
@@ -1081,7 +1128,7 @@ a nonzero $x \in I$. Then there is an inverse $x^{-1}$. We have $x^{-1} x =1
 In a field, there is thus 	no room for ideals other than $(0)$ and $(1)$.
 
 To prove the converse, assume every ideal of $R$ is $(0)$ or $(1)$. Then for
-each $x \in R$, $(x) = (0)$ or $(1)$. If $x \neq 0$, the first can't happen, so
+each $x \in R$, $(x) = (0)$ or $(1)$. If $x \neq 0$, the first cannot happen, so
 that means that the ideal generated by $x$ is the unit ideal. So $1$ is a
 multiple of $x$, implying that $x$ has a multiplicative inverse.
 \end{proof} 
