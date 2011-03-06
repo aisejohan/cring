@@ -1,7 +1,8 @@
 \chapter{Graded and filtered rings}
 
 In algebraic geometry, working in classical affine space
-$\mathbb{A}^n_{\mathbb{C}}$ of points in $\mathbb{C}^n$ turns out to be insufficient for various reasons.
+$\mathbb{A}^n_{\mathbb{C}}$ of points in $\mathbb{C}^n$ turns out to be
+insufficient for various reasons.
 Instead, it is often more convenient to consider varieties in \emph{projective
 space} $\mathbb{P}^n_{\mathbb{C}}$, which is the set of lines through the
 origin in $\mathbb{C}^{n+1}$. 
@@ -41,7 +42,8 @@ respect to this topology. This construction will be studied in
 
 \subsection{Basic definitions}
 \begin{definition} 
-A \textbf{graded ring} $R$ is a ring together with a decomposition (as abelian groups)
+A \textbf{graded ring} $R$ is a ring together with a decomposition (as abelian
+groups)
 \[  R = R_0 \oplus R_1 \oplus \dots   \]
 such that $R_m R_n \subset R_{m+n}$ for all $m, n \in \mathbb{Z}_{\geq 0}$,
 and where $R_0$ is a subring.
@@ -56,7 +58,8 @@ The basic example to keep in mind is, of course, the polynomial ring $R[x_1,
 homogeneous polynomials of degree $n$.
 
 \begin{definition} Fix a graded ring $R$.
-A \textbf{graded} $R$-module is an ordinary $R$-module $M$ together with  a decomposition
+A \textbf{graded} $R$-module is an ordinary $R$-module $M$ together with a
+decomposition
 \[  M = \bigoplus_{k \in \mathbb{Z}} M_k  \]
 as abelian groups, such that $R_m M_n \subset M_{m+n}$ for all $m \in
 \mathbb{Z}_{\geq 0}, n \in \mathbb{Z}$.
@@ -75,7 +78,8 @@ If $R$ is  a graded ring, then $R$ is a graded module over itself.
 \end{example} 
 
 \begin{definition} Fix a graded ring $R$.
-Let $M$ be a graded $R$-module and $N \subset M$ an $R$-submodule. Then $N$ is called  a
+Let $M$ be a graded $R$-module and $N \subset M$ an $R$-submodule. Then $N$ is
+called a
 \textbf{graded submodule} if the homogeneous components of anything in $N$ are
 in $N$. If $M=R$, then a graded ideal is also called a \textbf{homogeneous
 ideal}.
@@ -86,7 +90,8 @@ right.
 
 \begin{lemma} 
 \begin{enumerate}
-\item  The sum of two graded submodules (in particular, homogeneous ideals) is graded.
+\item The sum of two graded submodules (in particular, homogeneous ideals) is
+graded.
 \item  The intersection of two graded submodules is graded.
 \end{enumerate}
 \end{lemma} 
@@ -143,7 +148,8 @@ Since we shall need to use them to define $\proj R$ in the future, we now
 prove a result about homogeneous prime ideals specifically. Namely, primeness
 can be checked just on homogeneous elements for a homogeneous ideal.
 \begin{lemma} \label{homogeneousprimeideal}
-Let $\mathfrak{p} \subset R$ be a homogeneous ideal. In order that $\mathfrak{p}$ be prime, it is
+Let $\mathfrak{p} \subset R$ be a homogeneous ideal. In order that
+$\mathfrak{p}$ be prime, it is
 necessary and sufficient that whenever $x,y$ are \emph{homogeneous} elements
 such that $xy \in \mathfrak{p}$, then at least one of $x,y \in \mathfrak{p}$.
 \end{lemma} 
@@ -153,16 +159,20 @@ Necessity is immediate. For sufficiency, suppose $a,b  \in R$ and $ab \in
 \[  a = a_0 + a_1  + \dots + a_k,  \ b = b_0 + \dots + b_m  \]
 as a decomposition into homogeneous components, where $a_k, b_m$ are nonzero.
 
-We will prove that one of $a,b \in \mathfrak{p}$ by induction on $m+n$. When this is
+We will prove that one of $a,b \in \mathfrak{p}$ by induction on $m+n$. When
+this is
 zero, then it is just the condition of the lemma.
 Suppose it true for smaller values of $m+n$.
-Then $ab$ has highest homogeneous component $a_k b_m$, which must be in $\mathfrak{p}$
+Then $ab$ has highest homogeneous component $a_k b_m$, which must be in
+$\mathfrak{p}$
 by homogeneity.  Thus one of $a_k, b_m$ belongs to $\mathfrak{p}$. Say for
 definiteness it is $a_k$. Then we have that
 \[  (a-a_k)b \equiv ab \equiv 0 \  \mathrm{mod} \  \mathfrak{p}  \]
-so that $(a-a_k)b \in \mathfrak{p}$. But the resolutions of $a-a_k, b$ have a smaller
+so that $(a-a_k)b \in \mathfrak{p}$. But the resolutions of $a-a_k, b$ have a
+smaller
 $m+n$-value. By the inductive hypothesis, it follows that one of these is in
-$\mathfrak{p}$, and since $a_k \in \mathfrak{p}$, we find that one of $a,b \in \mathfrak{p}$.  
+$\mathfrak{p}$, and since $a_k \in \mathfrak{p}$, we find that one of $a,b \in
+\mathfrak{p}$.
 \end{proof} 
 
 \subsection{Finiteness conditions}
@@ -228,7 +238,8 @@ the terms.
 Let $R$ be a graded ring and a finitely generated $R_0$-algebra. Let $M$ be a
 finitely generated $R$-module.
 \begin{enumerate}
-\item Each $M_i$ is finitely generated over $R_0$, and the $M_i$ become zero when $i \ll
+\item Each $M_i$ is finitely generated over $R_0$, and the $M_i$ become zero
+when $i \ll
 0$.
 \item  $M^{(d,l)}$ is a finitely generated $R^{(d)}$ module for each $d,l$. In
 particular, $M$ itself is a finitely generated $R^{(d)}$-module.
@@ -240,7 +251,8 @@ Choose homogeneous generators $m_1, \dots, m_k \in M$. Then every nonzero
 element of $M$ has degree at least $\min(\deg m_i)$.  This proves the
 last part of (1). Moreover, let $r_1, \dots, r_p$ be generators of $R$ over
 $R_0$.
-We can assume that these are homogeneous with positive degrees $d_1, \dots, d_p>0$.
+We can assume that these are homogeneous with positive degrees $d_1, \dots,
+d_p>0$.
 Then the space $M_i$ is spanned as an $R_0$-module by the elements
 \[  r_1^{a_1} \dots r_p^{a_p} m_s  \]
 where $\sum a_j d_j + \deg m_s = i$.  Since the $d_j>0$ and there are only
@@ -258,7 +270,8 @@ $r_1^{a_1} \dots r_p^{a_p} m_s $
 for $a_1, \dots, a_p \in [0, d-1]$ and $s = 1, \dots,  k$ generate $M$ over
 $R^{(d)}$, as each power $r_i^{d} \in R^{(d)}$.
 
-When we apply (2) to the finitely generated $R$-module $R_+$, it follows that $R^{(d)}_+$ is a finitely generated
+When we apply (2) to the finitely generated $R$-module $R_+$, it follows that
+$R^{(d)}_+$ is a finitely generated
 $R^{(d)}$-module. This implies that $R^{(d)}$ is a finitely generated
 $R_0$-algebra by \rref{}.
 \end{proof}
@@ -269,7 +282,8 @@ directly. The $d$th power of a homogeneous element lies in $R^{(d)}$.
 Part (3), the preservation of the basic finiteness condition, could also be
 proved as follows, at least in the noetherian case (with $S = R^{(d)}$). 
 \begin{lemma} 
-Suppose $R_0 \subset S \subset R$ is an inclusion of rings with $S$ noetherian. Suppose $R$ is a
+Suppose $R_0 \subset S \subset R$ is an inclusion of rings with $S$ noetherian.
+Suppose $R$ is a
 finitely generated $R_0$-algebra and $R/S$ is an integral extension. Then $S$
 is a finitely generated $R_0$-algebra.
 \end{lemma} 
@@ -281,7 +295,8 @@ coefficients of all these polynomials $P_i$.
 Then $R$ is, by definition, integral over $S'$; so is $S$, as a result. But
 $S'$ is a finitely generated $R_0$-algebra and $S$ is a finitely generated
 $S'$-module (because $R$ is a finitely generated $S'$-module and $S'$ is
-noetherian, while $S \subset R$). Therefore, $S$ is a finitely generated $R_0$-algebra.
+noetherian, while $S \subset R$). Therefore, $S$ is a finitely generated
+$R_0$-algebra.
 \end{proof} 
 This result implies, incidentally, that if a finite group acts on a polynomial
 ring $R[X_1, \dots, X_n]$, the ring of invariants is finitely generated.
@@ -301,7 +316,8 @@ Let $d $ be the least common multiple of the $d_j$.  Consider the family of
 elements
 \[  s_i = r_i^{d/d_i} \in R_d. \]
 Then suppose $m \in M_n$ for $n>ld + \sup \deg m_i$.  We have that $m$ is a sum
-of products of powers of $r_i$ and the $m_i$, each term of which we can assume is
+of products of powers of $r_i$ and the $m_i$, each term of which we can assume
+is
 of degree $n$.  In this case, since at least one
 of the $r_i$ must occur to power $\geq \frac{d}{d_i}$, we can write each term
 in the sum as $s_i$ times something in $M_{n-d}$. 
@@ -360,7 +376,8 @@ We shall show that $R_{(f)}$ is a special case of something familiar.
 Suppose $f$ is of degree $d$. Then $R_{(f)} \simeq R^{(d)}/(f-1)$.
 \end{proposition} 
 \begin{proof} 
-The homomorphism $R^{(d)} \to R_{(f)}$ is defined to map $g \in R_{kd}$ to $g/f^d \in
+The homomorphism $R^{(d)} \to R_{(f)}$ is defined to map $g \in R_{kd}$ to
+$g/f^d \in
 R_{(f)}$.  This is then extended by additivity to non-homogeneous elements. It
 is clear that this is multiplicative, and that the ideal $(f-1)$ is annihilated
 by the homomorphism.
@@ -398,7 +415,8 @@ homogeneous prime ideal $\mathfrak{p}$.
 Then clearly $M_{(S)}$ is a $R_{(S)}$-module. This is evidently a functor from
 graded $R$-modules to $R_{(S)}$-modules.
 
-We next observe that there is a generalization of \rref{loc interpret as quotient ring}.
+We next observe that there is a generalization of \rref{loc interpret as
+quotient ring}.
 \begin{proposition} \label{loc
 module as quotient}
 Suppose $M$ is a graded $R$-module, $f \in R$ homogeneous of degree $d$. Then
@@ -425,7 +443,8 @@ Let $R=R_0 \oplus R_1 \oplus \dots$ be a \textbf{graded ring}.
 
 \begin{definition} 
 Let $\proj R$ denote the set of \emph{homogeneous prime ideals} of
-$R$ that do not contain the \textbf{irrelevant ideal} $R_+$.\footnote{Recall that an ideal $\mathfrak{a} \subset R$ for $R$ graded is
+$R$ that do not contain the \textbf{irrelevant ideal} $R_+$.\footnote{Recall
+that an ideal $\mathfrak{a} \subset R$ for $R$ graded is
 \emph{homogeneous} if the homogeneous components of $\mathfrak{a}$ belong to
 $\mathfrak{a}$.}
 
@@ -440,14 +459,16 @@ $\mathfrak{b}$, $$V(\mathfrak{b}) = \{ \mathfrak{p} \in \proj R:
 \item  $V( \rad \mathfrak{a}) = V(\mathfrak{a})$.
 \end{enumerate}
 Note incidentally that we would not get any more closed sets if we allowed all
-ideals $\mathfrak{b}$, since to any $\mathfrak{b}$ we can consider its ``homogenization.''
+ideals $\mathfrak{b}$, since to any $\mathfrak{b}$ we can consider its
+``homogenization.''
 We could even allow all sets.
 
 In particular,  the $V$'s do in fact yield a topology on $\proj R$ (setting
 the open sets to be complements of the $V$'s).
 As with the affine case, we can define basic open sets. For $f$
 homogeneous of positive degree, define $D'(f)$ to be the
-collection of homogeneous ideals (not containing $R_+$) that do not contain $f$; clearly these are
+collection of homogeneous ideals (not containing $R_+$) that do not contain $f$;
+clearly these are
 open sets.
 
 Let $\mathfrak{a}$ be a homogeneous ideal. Then I claim that:
@@ -455,7 +476,8 @@ Let $\mathfrak{a}$ be a homogeneous ideal. Then I claim that:
 \[  V(\mathfrak{a}) = V(\mathfrak{a} \cap R_+).  \]
 \end{lemma} 
 \begin{proof} 
-Indeed, suppose $\mathfrak{p}$ is a homogeneous prime not containing $S_+$ such that all homogeneous
+Indeed, suppose $\mathfrak{p}$ is a homogeneous prime not containing $S_+$ such
+that all homogeneous
 elements of positive degree in $\mathfrak{a}$ (i.e., anything in $\mathfrak{a}
 \cap R_+$) belongs to $\mathfrak{p}$. We will
 show that $\mathfrak{a} \subset \mathfrak{p}$.
@@ -476,10 +498,12 @@ radicals does not affect $V$.
 We have $D'(f) \cap D'(g) = D'(fg)$. Also, the $D'(f)$ form a basis for the
 topology on $\proj R$.
 \end{proposition} 
-\begin{proof} The first part is evident, by the definition of a prime ideal. We prove the second.
+\begin{proof} The first part is evident, by the definition of a prime ideal. We
+prove the second.
 Note that $V(\mathfrak{a})$ is the intersection of the $V((f))$ for the
 homogeneous $f \in
-\mathfrak{a} \cap R_+$. Thus $\proj R - V(\mathfrak{a})$ is the union of these $D'(f)$. 
+\mathfrak{a} \cap R_+$. Thus $\proj R - V(\mathfrak{a})$ is the union of these
+$D'(f)$.
 So every open set is a union of sets of the form $D'(f)$.
 \end{proof} 
 
@@ -502,13 +526,16 @@ cannot contain the identity, because that would imply that a power of $f$ lay
 in $\mathfrak{p}$.)
 
 So we have defined a map $\phi: D'(f) \to \spec R_{(f)}$.  We can define its
-inverse $\psi$ as follows. Given $\mathfrak{q} \subset R_{(f)} $ prime, we define a
-prime ideal $\mathfrak{p} = \psi(\mathfrak{q})$ of $R$ by saying that a \textit{homogeneous} element $x \in
+inverse $\psi$ as follows. Given $\mathfrak{q} \subset R_{(f)} $ prime, we
+define a
+prime ideal $\mathfrak{p} = \psi(\mathfrak{q})$ of $R$ by saying that a
+\textit{homogeneous} element $x \in
 R$ belongs to $\mathfrak{p}$ if and only if $x^{\deg f}/f^{\deg x} \in
 \mathfrak{q}$. It is easy to see that this is indeed an ideal, and that it is
 prime by \rref{homogeneousprimeideal}.
 
-Furthermore, it is clear that $\phi \circ \psi $ and $\psi \circ \phi$ are the identity.
+Furthermore, it is clear that $\phi \circ \psi $ and $\psi \circ \phi$ are the
+identity.
 This is because $x \in \mathfrak{p}$ for $\mathfrak{p} \in D'(f)$ if and only
 if $f^n x \in \mathfrak{p}$ for some $n$.
 
@@ -522,21 +549,28 @@ versa.
 \section{Filtered rings}
 
 \subsection{The associated graded}
-
+A filtration on a ring $R$ is a series of ideals $F:\cdots I_n\subseteq
+I_{n-1}\subseteq\cdots I_1\subseteq I_0=R$. For example, given an ideal $I$, we
+can take powers of $I$ to generate a filtration.
+\begin{definition} Given a filtration $F$ on a ring $R$ and a module $M$, the
+graded associated module $gr_F(M)$ is $\bigoplus_{n=0}^\infty I_n M/I{n+1}M$
+\end{definition}
 
 \subsection{The Artin-Rees Lemma}
 
 \begin{theorem}[Artin-Rees lemma]
 \label{artinrees}
 Let $R$ be noetherian, $I \subset R$ an
-ideal. Suppose $M$ is a finitely generated $R$-module and $M' \subset M$ a submodule. Then
+ideal. Suppose $M$ is a finitely generated $R$-module and $M' \subset M$ a
+submodule. Then
 there is a  constant $c$ such that
 \[ I^{n+c} M \cap M' \subset I^n M'.  \]
 So the two filtrations $I^n M \cap M', I^n M'$ on $M$ are equivalent up to a
 shift.
 \end{theorem} 
 \begin{proof} 
-Define a new ring $R' = R \oplus It \oplus I^2 t^2 + \dots$, which is a subring of
+Define a new ring $R' = R \oplus It \oplus I^2 t^2 + \dots$, which is a subring
+of
 $R[t]$. The coefficient of $t^n $ is required to belong to $I^n$. 
 
 \begin{lemma} 
@@ -562,7 +596,8 @@ talk about this more next week.
 \subsection{The Krull intersection theorem}
 
 We now prove a useful consequence of the Artin-Rees lemma and Nakayama's
-lemma. In fancier language, this states that the map from a noetherian local ring into its
+lemma. In fancier language, this states that the map from a noetherian local
+ring into its
 completion is an \emph{embedding}. A priori, this might not be obvious. For
 instance, it might be surprising that the inverse limit of the highly torsion
 groups $\mathbb{Z}/p^n$ turns out to be the torsion-free ring of $p$-adic
@@ -601,7 +636,8 @@ not use the Artin-Rees lemma. One can prove:
 Suppose $R$ is a noetherian ring, $I \subset R$ an ideal. Suppose $b \in
 \bigcap I^n$. Then as ideals $(b) = (b)I$.
 \end{theorem} 
-In particular, it follows easily that $\bigcap I^n = 0$ under  either of the following conditions:
+In particular, it follows easily that $\bigcap I^n = 0$ under either of the
+following conditions:
 \begin{enumerate}
 \item  $I$ is contained in the Jacobson radical of $R$.
 \item $R$ is a domain and $I$ is proper.
@@ -613,7 +649,8 @@ For each $n$, the ideal $I^n$ consists of the values of all homogeneous
 polynomials  in $R[x_1, \dots, x_k]$ of degree $n$ evaluated on the tuple
 $(a_1, \dots, a_k)$, as one may easily see. 
 
-It follows that if $b \in \bigcap I^n$, then for each $n$ there is a polynomial $P_n \in
+It follows that if $b \in \bigcap I^n$, then for each $n$ there is a polynomial
+$P_n \in
 R[x_1, \dots, x_k]$ which is homogeneous of degree $n$ and which satisfies
 \[ P_n(a_1, \dots, a_k) = b.  \]
 The ideal generated by all the $P_n$ in $R[x_1, \dots, x_k]$ is finitely
