@@ -236,7 +236,8 @@ Indeed:
 
 \begin{definition}
 A \textbf{contravariant functor}  $\mathcal{C}
-\stackrel{F}{\to}\mathcal{D}$ (between categories $\mathcal{C}, \mathcal{D}$) issimilar
+\stackrel{F}{\to}\mathcal{D}$ (between categories $\mathcal{C}, \mathcal{D}$)
+issimilar
 data except that now a map $X \stackrel{f}{\to} Y$ now goes to a map $FY
 \stackrel{F(f)}{\to} FX$. Composites
 are required to be preserved, albeit in the other direction.
@@ -379,17 +380,48 @@ However, we will use it to state theorems conveniently.
 \section{Various universal constructions}
 
 Now that we have introduced the idea of a category and showed that a functor
-takes isomorphisms to isomorphisms, we can characterize objects in terms of maps. This is useful since the modern philosophy of mathematics is that knowing ``all the maps from and to an object'' is the same as knowing the interal structure of the object. This idea led to the creation of various characterizations of objects known as universal properties. 
-As motivation, we first discuss the concept of the ``product'' in terms of a universal property. 
+takes isomorphisms to isomorphisms, we can characterize objects in terms of
+maps. This is useful since the modern philosophy of mathematics is that knowing
+``all the maps from and to an object'' is the same as knowing the interal
+structure of the object. This idea led to the creation of various
+characterizations of objects known as universal properties.
+As motivation, we first discuss the concept of the ``product'' in terms of a
+universal property.
 
 \subsection{Products}
-Recall that if we have two sets $X$ and $Y$, the product $X\times Y$ is the set of all elements of the form $(x,y)$ where $x\in X$ and $y\in Y$. The product is also equipped with natural projections $p_1$ and $p_2$ that take $(x,y)$ to $x$ and $y$ respectively. Thus any element of $X\times Y$ is uniquely determined by where they project to on $X$ and $Y$. In fact, in general, this is the case; if we have an index set $I$ and a product $X=\prod_{i\in I} X_i$, then an element $x\in X$ determined uniquely by where where the projections $p_i(x)$ land in $X_i$. This also means that if we have any other set $S$ with maps $f_i:S\rightarrow X_i$ then there is a unique map $S\rightarrow X=\prod_{i\in I}X_i$ given by sending $s\in S$ to the element $\{ f_i(s)\}_{i\in I}$. This leads to the following characterization of a product using only ``mapping properties.''
+Recall that if we have two sets $X$ and $Y$, the product $X\times Y$ is the set
+of all elements of the form $(x,y)$ where $x\in X$ and $y\in Y$. The product is
+also equipped with natural projections $p_1$ and $p_2$ that take $(x,y)$ to $x$
+and $y$ respectively. Thus any element of $X\times Y$ is uniquely determined by
+where they project to on $X$ and $Y$. In fact, in general, this is the case; if
+we have an index set $I$ and a product $X=\prod_{i\in I} X_i$, then an element
+$x\in X$ determined uniquely by where where the projections $p_i(x)$ land in
+$X_i$. This also means that if we have any other set $S$ with maps
+$f_i:S\rightarrow X_i$ then there is a unique map $S\rightarrow X=\prod_{i\in
+I}X_i$ given by sending $s\in S$ to the element $\{ f_i(s)\}_{i\in I}$. This
+leads to the following characterization of a product using only ``mapping
+properties.''
 
-\begin{definition} Let $\{X_i\}_{i\in I}$ be a collection of objects in some category $\mathcal{C}$ Then a set $P$ with projections $p_i: P\rightarrow X_i$ is said to be the product $\prod_{i\in I} X_i$ if the following ``universal property'' holds:
-let $S$ be any other object in $\mathcal{C}$ with maps $f_i:S\rightarrow X_i$. Then there is a unique morphism $f:S\rightarrow P$ such that $p_i f = f_i$. \end{definition}
-\begin{example} One of the benefits of this construction is that an actual category is not specified; thus when we take $\mathcal{C}$ to be Sets, we recover the cartesian product notion of sets, but if we take $\mathcal{C}$ to be groups, we achieve the regular notion of the product of groups (the reader is invited to check these statements). \end{example}
-\begin{exercise} If we reverse the arrows in the above construction, show that the universal property obtained (known as the ``coproduct'') characterizes disjoint unions in the category of sets and direct sums in the category of groups. Notice that on the level of sets, these two objects are different (hence showing that the universal object is dependent on one's choice of category; another example of this will be given later). \end{exercise}
-This idea of a universal mapping property leads us to investigate this notion more thoroughly.  
+\begin{definition} Let $\{X_i\}_{i\in I}$ be a collection of objects in some
+category $\mathcal{C}$ Then a set $P$ with projections $p_i: P\rightarrow X_i$
+is said to be the product $\prod_{i\in I} X_i$ if the following ``universal
+property'' holds:
+let $S$ be any other object in $\mathcal{C}$ with maps $f_i:S\rightarrow X_i$.
+Then there is a unique morphism $f:S\rightarrow P$ such that $p_i f = f_i$.
+\end{definition}
+\begin{example} One of the benefits of this construction is that an actual
+category is not specified; thus when we take $\mathcal{C}$ to be Sets, we
+recover the cartesian product notion of sets, but if we take $\mathcal{C}$ to be
+groups, we achieve the regular notion of the product of groups (the reader is
+invited to check these statements). \end{example}
+\begin{exercise} If we reverse the arrows in the above construction, show that
+the universal property obtained (known as the ``coproduct'') characterizes
+disjoint unions in the category of sets and direct sums in the category of
+groups. Notice that on the level of sets, these two objects are different (hence
+showing that the universal object is dependent on one's choice of category;
+another example of this will be given later). \end{exercise}
+This idea of a universal mapping property leads us to investigate this notion
+more thoroughly.
 
 
 \subsection{Initial and terminal objects}
@@ -498,7 +530,8 @@ push-out is actually dependent on the category.
 \begin{example}
 Let $R$ be a commutative ring and let $S$ and $Q$ be two commutative
 $R$-algebras. In otherwords, suppose
-we have two maps of rings $s:R\rightarrow S$ and $q:R\rightarrow Q$. Then we canfit this information together
+we have two maps of rings $s:R\rightarrow S$ and $q:R\rightarrow Q$. Then we
+canfit this information together
 into a pushout square:
 
 \[ \xymatrix{
@@ -536,20 +569,17 @@ mapping into something else; then the initial
 object in this category is the push-out.
 \end{proof}
 
-Often when studying categorical constructions, one can create a kind of ``dual''
-construction by reversing the direction of the arrows. This is exactly the
+Often when studying categorical constructions, one can create a kind of ``dual''construction by reversing the direction of the arrows. This is exactly the
 relationship between the push-out construction and the pull-back construction.
 So suppose we have two morphisms $B \to D$ and $C\to D$.
 \begin{definition}
-The \textbf{pull-back} is an object $X$ with two morphisms $X\to B$ and $X\to C$
-such that the following diagram commutes
+The \textbf{pull-back} is an object $X$ with two morphisms $X\to B$ and $X\to C$such that the following diagram commutes
 
 \[ \xymatrix {
 P \ar[d] \ar[r] & B \ar[d]\\
 A\ar[r] & C }\]
 
-Moreover, the object $P$ is universal in the following sense: given any $P'$ and
-maps $P'\to A$ and $P'\to B$ making the square commute, there is a unique map
+Moreover, the object $P$ is universal in the following sense: given any $P'$ andmaps $P'\to A$ and $P'\to B$ making the square commute, there is a unique map
 $P'\to P$ making the following diagram commute:
 \[
 \xymatrix{
@@ -560,18 +590,13 @@ Dual to the notion of a push-out, sometimes the pull-back is also called the
 \textbf{fibered product}.
 \end{definition}
 
-\begin{example} As said above, the fact that the tensor product of algebras is a
-push-out in the category of
+\begin{example} As said above, the fact that the tensor product of algebras is apush-out in the category of
 commutative $R$-algebras allows for the correct notion of the ``product'' of
-schemes. We now elaborate on this example: naively one would think that we could
-pick the underlying space of the product scheme to just be the topological
-product of two Zariski topologies. However, it is an easy exercise to check that
-the product of two Zariski topologies in general is not Zariski! This motivates
+schemes. We now elaborate on this example: naively one would think that we couldpick the underlying space of the product scheme to just be the topological
+product of two Zariski topologies. However, it is an easy exercise to check thatthe product of two Zariski topologies in general is not Zariski! This motivates
 the need for a different concept.
 
-Suppose we have a field $k$ and two $k$-algebras $A$ and $B$ and let $X=Spec(A)$
-and $Y=Spec(B)$ be the affine $k$-schemes corresponding to $A$ and $B$. Consider
-the follwing pull-back diagram:
+Suppose we have a field $k$ and two $k$-algebras $A$ and $B$ and let $X=Spec(A)$and $Y=Spec(B)$ be the affine $k$-schemes corresponding to $A$ and $B$. Considerthe follwing pull-back diagram:
 \[
 \xymatrix{
 X\times_{Spec(k)} Y \ar[d] \ar[r] &X \ar[d]\\
@@ -747,8 +772,14 @@ second map sends a factor
 \end{proof}
 
 \subsection{Limits}
-As in the example with pull-backs and push-outs and products and coproducts, one can define a colimit by using the exact same universal property above just with all the arrows reversed. 
-\begin{example} The product is an example of a limit where the indexing category is a small category $I$ with no morphisms other than the identity. This example shows the power of universal constructions; by looking at colimits and limits, a whole variety of seemingly unrelated mathematical constructions are shown to be in the same spirit.\end{example}
+As in the example with pull-backs and push-outs and products and coproducts, one
+can define a colimit by using the exact same universal property above just with
+all the arrows reversed.
+\begin{example} The product is an example of a limit where the indexing category
+is a small category $I$ with no morphisms other than the identity. This example
+shows the power of universal constructions; by looking at colimits and limits, a
+whole variety of seemingly unrelated mathematical constructions are shown to be
+in the same spirit.\end{example}
 
 \subsection{Filtered colimits}
 
@@ -872,7 +903,8 @@ If  $A$ is a weakly initial object in $\mathcal{C}$,
 then the equalizer of all endomorphisms $A \to A$ is initial for $\mathcal{C}$.
 \end{proposition} 
 \begin{proof} 
-Let $A'$ be this equalizer; it is endowed with a morphism $A'\to A$. Then let usrecall what this means. For any two
+Let $A'$ be this equalizer; it is endowed with a morphism $A'\to A$. Then let
+usrecall what this means. For any two
 endomorphisms $A \rightrightarrows A$, the two pull-backs $A'
 \rightrightarrows A$ are equal. Moreover, if $B \to A$ is a morphism that has
 this property, then $B$ factors uniquely through $A'$.
@@ -915,6 +947,30 @@ i$ as maps $A' \to A$. But $i$ being a monomorphism, it follows that $si  =
 \end{proof} 
 
 \add{define complete and cocomplete}
+\subsection{Completeness and Cocompleteness}
+\begin{definition} A category $\mathcal{C}$ is said to be complete if for every
+functor $F:I\rightarrow \mathcal{C}$ where $I$ is a small category, the limit
+$\lim F$ exists. If all colimits exist, then $\mathcal{C}$ is said to be
+cocomplete. \end{definition}
+If a category is complete, various nice properties hold.
+\begin{theorem} If $\mathcal{C}$ is a complete category, the following
+conditions are true:
+\begin{enumerate} 
+\item{all (finite) products exist}
+\item{all pull-backs exist}
+\item{there is a terminal object}
+\end{enumerate}
+\end{theorem}
+\begin{proof} The proof of the first two properties is trivial since they can
+all be expressed as limits; for the proof of the existence of a terminal object,
+consider the empty diagram $F:\emptyset \rightarrow \mathcal{C}$. Then the
+ternimal object is just $\lim F$. \end{proof}
+Of course, if one dualizes everything we get a theorem about cocomplete
+categories which is proved in essentially the same manner. More is true however;
+it turns out that finite (co)completeness are equivalent to the properties above
+if one requires the finiteness condition for the existence of (co)products.
+
+
 \add{monics and epics}
 \begin{theorem}[Freyd]
 Let $\mathcal{C}$ be a complete category. Then $\mathcal{C}$ has an initial
