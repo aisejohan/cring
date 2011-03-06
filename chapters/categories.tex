@@ -411,14 +411,12 @@ Then there is a unique morphism $f:S\rightarrow P$ such that $p_i f = f_i$.
 \end{definition}
 \begin{example} One of the benefits of this construction is that an actual
 category is not specified; thus when we take $\mathcal{C}$ to be Sets, we
-recover the cartesian product notion of sets, but if we take $\mathcal{C}$ to be
-groups, we achieve the regular notion of the product of groups (the reader is
+recover the cartesian product notion of sets, but if we take $\mathcal{C}$ to begroups, we achieve the regular notion of the product of groups (the reader is
 invited to check these statements). \end{example}
 \begin{exercise} If we reverse the arrows in the above construction, show that
 the universal property obtained (known as the ``coproduct'') characterizes
 disjoint unions in the category of sets and direct sums in the category of
-groups. Notice that on the level of sets, these two objects are different (hence
-showing that the universal object is dependent on one's choice of category;
+groups. Notice that on the level of sets, these two objects are different (henceshowing that the universal object is dependent on one's choice of category;
 another example of this will be given later). \end{exercise}
 This idea of a universal mapping property leads us to investigate this notion
 more thoroughly.
@@ -569,17 +567,21 @@ mapping into something else; then the initial
 object in this category is the push-out.
 \end{proof}
 
-Often when studying categorical constructions, one can create a kind of ``dual''construction by reversing the direction of the arrows. This is exactly the
+Often when studying categorical constructions, one can create a kind of
+``dual''construction by reversing the direction of the arrows. This is exactly
+the
 relationship between the push-out construction and the pull-back construction.
 So suppose we have two morphisms $B \to D$ and $C\to D$.
 \begin{definition}
-The \textbf{pull-back} is an object $X$ with two morphisms $X\to B$ and $X\to C$such that the following diagram commutes
+The \textbf{pull-back} is an object $X$ with two morphisms $X\to B$ and $X\to
+C$such that the following diagram commutes
 
 \[ \xymatrix {
 P \ar[d] \ar[r] & B \ar[d]\\
 A\ar[r] & C }\]
 
-Moreover, the object $P$ is universal in the following sense: given any $P'$ andmaps $P'\to A$ and $P'\to B$ making the square commute, there is a unique map
+Moreover, the object $P$ is universal in the following sense: given any $P'$
+andmaps $P'\to A$ and $P'\to B$ making the square commute, there is a unique map
 $P'\to P$ making the following diagram commute:
 \[
 \xymatrix{
@@ -590,13 +592,19 @@ Dual to the notion of a push-out, sometimes the pull-back is also called the
 \textbf{fibered product}.
 \end{definition}
 
-\begin{example} As said above, the fact that the tensor product of algebras is apush-out in the category of
+\begin{example} As said above, the fact that the tensor product of algebras is
+apush-out in the category of
 commutative $R$-algebras allows for the correct notion of the ``product'' of
-schemes. We now elaborate on this example: naively one would think that we couldpick the underlying space of the product scheme to just be the topological
-product of two Zariski topologies. However, it is an easy exercise to check thatthe product of two Zariski topologies in general is not Zariski! This motivates
+schemes. We now elaborate on this example: naively one would think that we
+couldpick the underlying space of the product scheme to just be the topological
+product of two Zariski topologies. However, it is an easy exercise to check
+thatthe product of two Zariski topologies in general is not Zariski! This
+motivates
 the need for a different concept.
 
-Suppose we have a field $k$ and two $k$-algebras $A$ and $B$ and let $X=Spec(A)$and $Y=Spec(B)$ be the affine $k$-schemes corresponding to $A$ and $B$. Considerthe follwing pull-back diagram:
+Suppose we have a field $k$ and two $k$-algebras $A$ and $B$ and let
+$X=Spec(A)$and $Y=Spec(B)$ be the affine $k$-schemes corresponding to $A$ and
+$B$. Considerthe follwing pull-back diagram:
 \[
 \xymatrix{
 X\times_{Spec(k)} Y \ar[d] \ar[r] &X \ar[d]\\
@@ -772,13 +780,10 @@ second map sends a factor
 \end{proof}
 
 \subsection{Limits}
-As in the example with pull-backs and push-outs and products and coproducts, one
-can define a colimit by using the exact same universal property above just with
+As in the example with pull-backs and push-outs and products and coproducts, onecan define a colimit by using the exact same universal property above just with
 all the arrows reversed.
-\begin{example} The product is an example of a limit where the indexing category
-is a small category $I$ with no morphisms other than the identity. This example
-shows the power of universal constructions; by looking at colimits and limits, a
-whole variety of seemingly unrelated mathematical constructions are shown to be
+\begin{example} The product is an example of a limit where the indexing categoryis a small category $I$ with no morphisms other than the identity. This example
+shows the power of universal constructions; by looking at colimits and limits, awhole variety of seemingly unrelated mathematical constructions are shown to be
 in the same spirit.\end{example}
 
 \subsection{Filtered colimits}
@@ -946,7 +951,6 @@ i$ as maps $A' \to A$. But $i$ being a monomorphism, it follows that $si  =
 \end{proof} 
 \end{proof} 
 
-\add{define complete and cocomplete}
 \subsection{Completeness and Cocompleteness}
 \begin{definition} A category $\mathcal{C}$ is said to be complete if for every
 functor $F:I\rightarrow \mathcal{C}$ where $I$ is a small category, the limit
@@ -962,16 +966,12 @@ conditions are true:
 \end{enumerate}
 \end{theorem}
 \begin{proof} The proof of the first two properties is trivial since they can
-all be expressed as limits; for the proof of the existence of a terminal object,
-consider the empty diagram $F:\emptyset \rightarrow \mathcal{C}$. Then the
+all be expressed as limits; for the proof of the existence of a terminal object,consider the empty diagram $F:\emptyset \rightarrow \mathcal{C}$. Then the
 ternimal object is just $\lim F$. \end{proof}
 Of course, if one dualizes everything we get a theorem about cocomplete
-categories which is proved in essentially the same manner. More is true however;
-it turns out that finite (co)completeness are equivalent to the properties above
-if one requires the finiteness condition for the existence of (co)products.
+categories which is proved in essentially the same manner. More is true however;it turns out that finite (co)completeness are equivalent to the properties aboveif one requires the finiteness condition for the existence of (co)products.
 
 
-\add{monics and epics}
 \begin{theorem}[Freyd]
 Let $\mathcal{C}$ be a complete category. Then $\mathcal{C}$ has an initial
 object if and only if the following \textbf{solution set condition holds:}
@@ -992,6 +992,20 @@ choose some $i'$ and a morphism $X_{i'} \to X$ by the hypothesis. Then this map
 composed with the projection from the product gives a map  $\prod X_i \to
 X_{i'} \to X$.
 \end{proof} 
+
+\subsection{Monomorphisms and Epimorphisms}
+We now wish to characterize monomorphisms and epimorphisms in a purely
+categorical setting. In categories where there is an underlying set the notions
+of injectivity and surjectivity makes sense but in category theory, one does not
+in a sense have ``access'' to the internal structure of objects. In this light,
+we make the following definition
+\begin{definition} 
+A morphism $f:X\hookrightarrow Y$ is a monomorphism if for any two morphisms
+$g_1:X'\rightarrow X$ and $g_2:X'\rightarrow X$, we have that $f g_1 = f g_2$
+implies $g_1=g_2$. A morphism $f:X\rightarrow Y$ is surjective if for any two
+maps $g_1:Y\rightarrow Y'$ and $g_2:Y\rightarrow Y'$, we have that $g_1 f = g_2
+f$ implies $g_1 = g_2$.
+\end{definition}
 
 \section{Yoneda's lemma}
 
