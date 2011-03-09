@@ -22,9 +22,9 @@ update_tmp:
 	perl -w scripts/script.perl
 
 
-tarball: CRing.tex chapters/*.tex other/* aux/*.tex scripts/*  tmp/* makefile
-	tar --transform='s,^,cring/,' -cvjf CRing.tar.bz2 CRing.tex chapters/*.tex other/* aux/*.tex scripts/*  tmp/* makefile
-	   cd ..;  zip -r cring/CRing.zip cring/CRing.tex cring/chapters/*.tex cring/other/* cring/aux/*.tex cring/scripts/*  cring/tmp/* cring/makefile; cd cring
+tarball: CRing.tex chapters/*.tex other/* standalone/*.tex scripts/*  tmp/* makefile
+	tar --transform='s,^,cring/,' -cvjf CRing.tar.bz2 CRing.tex chapters/*.tex other/* standalone/*.tex scripts/*  tmp/* makefile
+	   cd ..;  zip -r cring/CRing.zip cring/CRing.tex cring/chapters/*.tex cring/other/* cring/standalone/*.tex cring/scripts/*  cring/tmp/* cring/makefile; cd cring
 
 clean:
 	rm -f *.log *.pdf *.dvi *.out *.log *.toc *.aux *.fdb_latexmk *.blg *.bbl *.thm
