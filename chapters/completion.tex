@@ -663,7 +663,7 @@ rings. In general, though, henselian rings are very far from artinian. For
 instance, we will see that every \emph{complete} local ring is henselian.
 
 We continue with a couple of further easy claims. 
-\begin{proposition} 
+\begin{proposition}  \label{finitehenselian}
 A local ring that is finite over a henselian ring is henselian. 
 \end{proposition} 
 \begin{proof} 
@@ -717,14 +717,21 @@ of $S$). Thus $x =0 $ and $e = e'$.
 With this, we now want a characterization of henselian rings in terms of the
 lifting idempotents property.
 
-\begin{proposition} 
+\begin{proposition} \label{orthogonallifts}
 Suppose $(R, \mathfrak{m})$ satisfies lifting idempotents, and let $S$ be a
 finite $R$-algebra. Then given
 orthogonal idempotents $\overline{e}_1, \dots, \overline{e}_n$ of $S/\mathfrak{m}S$, there are
-mutually orthogonal lifts $\left\{e_i\right\} \in S$.
+mutually orthogonal lifts $\left\{e_i\right\} \in S$. 
 \end{proposition} 
-\begin{proof} 
 
+The point is that we can make the lifts mutually orthogonal. (Recall that
+idempotents are \emph{orthogonal} if their product is zero.)
+\begin{proof} 
+Indeed, by assumption we can get lifts $\left\{e_i\right\}$ which are
+idempotent; we need to show that they are mutually orthogonal. But in any case
+$e_i e_j$ for $i \neq j$ is an idempotent, which lies in 
+$\mathfrak{m}S \subset S$ and thus in the Jacobson radical. It follows that
+$e_i e_j = 0$, proving the orthogonality.
 \end{proof} 
 
 \begin{proposition} 
@@ -734,10 +741,11 @@ A local ring is henselian if and only if it satisfies lifting idempotents.
 Suppose first $(R, \mathfrak{m} )$ satisfies lifting idempotents. 
 Let $S$ be any finite $R$-algebra. Then $S/\mathfrak{m}S$ is artinian,
 so factors as a product of local artinian rings $\prod \overline{S}_i$. This
-factorization corresponds to diempotents $\overline{e}_i \in
+factorization corresponds to idempotents $\overline{e}_i \in
 S/\mathfrak{m}S$.
-We can lift these to orthogonal idempotents $e_i \in S$ by assumption. 
-These idempotents corresponding to a decomposition 
+We can lift these to orthogonal idempotents $e_i \in S$ by
+\cref{orthogonallifts}. 
+These idempotents correspond to a decomposition 
 \[ S = \prod S_i  \]
 which lifts the decomposition $\overline{S} = \prod \overline{S}_i$. Since the
 $\overline{S_i}$ are local, so are the $S_i$.
@@ -752,10 +760,30 @@ $S$, so $\overline{e}$ does too.
 \end{proof}
 
 
+\begin{proposition} 
+Let $R$ be a local ring and $I \subset R$ an ideal consisting of nilpotent
+elements. Then $R$ is henselian if and only if
+$R/I$ is.
+\end{proposition} 
+\begin{proof} One direction is clear by \cref{finitehenselian}. For the other,
+suppose $R/I$ is henselian. Let $\mathfrak{m} \subset R$ be the maximal ideal.
+Let $S$ be any finite $R$-algebra; we have to show surjectivity of 
+\[ \idem(S) \to \idem(S/\mathfrak{m}S).  \]
+However, we are given that, by henselianness of $S/I$,
+\[ \idem(S/IS ) \to \idem(S/\mathfrak{m}S)  \]
+is a surjection. Now we need only observe that $\idem(S) \to \idem(S/IS)$ is a 
+bijection. This follows because idempotents in $S$ (resp. $S/IS$) correspond
+to disconnections of $\spec S$ (resp. $\spec S/IS$) by \cref{}. However, as
+$I$ consists of nilpotents, $\spec S$ and $\spec S/IS$ are homeomorphic
+naturally.
+\end{proof} 
+
 \subsection{Hensel's lemma}
 
 We now want to show that Hensel's lemma is essentially what characterizes
-henselian rings.
+henselian rings, which explains the name.
+Throughout, we use the $\overline{}$ symbol to denote reduction mod an ideal
+(usually $\mathfrak{m}$ or $\mathfrak{m}$ times another ring).
 
 \begin{proposition} 
 Let $(R, \mathfrak{m})$ be a local ring with residue field $k$. Then $R$ is henselian if and only if,
@@ -765,6 +793,7 @@ for some relatively prime polynomials $\overline{Q}, \overline{R} \in k[X]$,
 then the factorization lifts to a factorization 
 \[ P = QR \in R[X].  \]
 \end{proposition} 
+\textbf{This notation should be improved.}
 \begin{proof} 
 Suppose $R$ henselian and suppose $P$ is a polynomial whose reduction admits
 such a factorization.
@@ -775,4 +804,29 @@ $k[X]/(\overline{P})$, it admits a splitting into components
 \[ \overline{S} = k[X]/(\overline{Q}) \times k[X]/(\overline{R}).  \]
 Since $R$ is henselian, this splitting lifts to $S$, and we get a splitting
 \[ S = S_1 \times S_2.  \]
+Here $S_1 \otimes k \simeq k[X]/(\overline{Q})$ and $S_2 \otimes k \simeq
+k[X]/(\overline{R})$. 
+
+\begin{lemma} 
+Suppose $R$ is a local ring, $S$ a finite free $R$-algebra such that $S \otimes k
+\simeq k[X]/(q)$ for some monic $q \in k[X]$. Then there is a polynomial $Q \in
+R[X]$ with $q = \overline{Q}$ such that there is an isomorphism $R[X]/(Q)
+\simeq S$.
+\end{lemma} 
+\begin{proof} 
+Let $\overline{x} \in S \otimes k$ be the generating element that satisfies
+$q(\overline{x})=0$, and let $x \in S$ be a lift of it.  Suppose $q$ has
+rank $n$. Then $1, x, \dots,
+x^{n-1}$ spans $S$ by Nakayama's lemma. Thus there is a monic polynomial $Q$ of
+degree $n$ that annihilates $x$; the reduction must be a multiple of $q$,
+hence $q$. 
+It follows that there is a surjection
+\[ R[X]/(Q) \twoheadrightarrow S,  \]
+which is an isomorphism since both are free (by assumption) of the same rank. 
+\end{proof}
+
+
+Now, returning to the proposition, we see that $S_1, S_2$ (which are direct
+summands of finite free modules, hence free as $R$ is local) are isomorphic to
+$S[X]/(Q), S[X]/(R)$ for some $Q, R$. 
 \end{proof} 
