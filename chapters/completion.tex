@@ -578,6 +578,9 @@ field $A/\mathfrak{m}$, so every prime ideal in it is maximal.
 The next thing to observe is that $\overline{B}$, as an artinian ring,
 decomposes  as a product of local artinian rings.
 In fact, this decomposition is unique.
+However, this does not mean that $B$ itself 
+is a product of local rings ($B$ is not necessarily artinian).
+Nonetheless, if such a splitting exists, it is necessarily unique.
 
 \begin{proposition} 
 Suppose $R = \prod R_i$ is a finite product of local rings $R_i$. Then
@@ -607,10 +610,38 @@ We have seen that this splitting nonetheless works for rings finite
 over a field.
 
 
+To recapitulate, we can give a criterion for when a semi-local ring splits as
+above.
+\begin{proposition} \label{whatissplitting}
+Let $R$ be a semilocal ring with maximal ideals $\mathfrak{m}_1, \dots,
+\mathfrak{m}_k$. Then $R$ splits into local factors if and only if, for each
+$i$, there is an idempotent $e_i \in \bigcap_{j \neq i} \mathfrak{m}_j -
+\mathfrak{m}_i$. Then the rings $Re_i$ are local and $R = \prod Re_i$.
+\end{proposition} 
+\begin{proof} 
+If $R$ splits into local factors, then clearly we can find such idempotents.
+Conversely, suppose given the $e_i$.
+Then for each $i \neq j$, $e_i e_j$ is an idempotent  $e_{ij}$ that belongs to all the
+maximal ideals $\mathfrak{m}_k$. So it is in the Jacobson radical. But then $1 -
+e_{ij}$ is invertible, so $e_{ij}(1-e_{ij})=0$ implies that $e_{ij} = 0$. 
+
+It follows that the $\left\{e_i\right\}$ are \emph{orthogonal} idempotents. To
+see that $R = \prod Re_i$ as rings, we now need only to see that the
+$\left\{e_i\right\}$ form a \emph{complete} set; that is, $\sum e_i = 1$. But
+the sum $\sum e_i$ is an idempotent itself since the $e_i$ are mutually
+orthogonal. Moreover, the sum $\sum e_i$ belongs to no $\mathfrak{m}_i$, so it
+is invertible, thus equal to $1$. The claim is now clear, since each $Re_i$ is
+local by assumption.
+\end{proof} 
+
+Note that if we can decompose a semilocal ring into a product of local rings,
+then we can go no further in a sense---it is easy to check that a local ring has
+no nontrivial idempotents. 
+
 \subsection{Henselian rings}
 
 \begin{definition}
-A local ring $(R, \mathfrak{m})$ is \textbf{Henselian} if every finite
+A local ring $(R, \mathfrak{m})$ is \textbf{henselian} if every finite
 $R$-algebra is a product of local $R$-algebras.
 \end{definition}
 
@@ -620,14 +651,37 @@ decomposition as a product of local algebras is unique.
 Furthermore, we have already seen:
 
 \begin{proposition} 
-A field is Henselian. 
+A field is henselian. 
 \end{proposition}
+\begin{proof} 
+Indeed, then any finite algebra over a field is artinian (as a
+finite-dimensional vector space).
+\end{proof} 
 
 This result was essentially a corollary of basic facts about artinian
-rings. In general, though, henselian rings are very far from artinian.
-Nonetheless, we want to argue that 
+rings. In general, though, henselian rings are very far from artinian. For
+instance, we will see that every \emph{complete} local ring is henselian.
 
-\subsection{Lifting idempotents}
+We continue with a couple of further easy claims. 
+\begin{proposition} 
+A local ring that is finite over a henselian ring is henselian. 
+\end{proposition} 
+\begin{proof} 
+Indeed, if $R$ is a henselian local ring and $S$ a finite $R$-algebra, then
+every finite $S$-algebra is a finite $R$-algebra, and thus splits into a product
+of local rings.
+\end{proof} 
+
+We have seen that henselianness of a local ring $(R, \mathfrak{m})$ with residue
+field $k$ is equivalent to the condition that every finite $R$-algebra $S$ splits
+into a product of local rings. Since $S \otimes_R k$ always splits into a
+product of local rings, and this splitting is unique, we see that if a splitting
+of $S$ exists, it necessarily lifts the splitting of $S \otimes_R k$. 
+
+Since a ``splitting'' is the same thing (by \cref{whatissplitting}) as a
+complete collection of idempotents, one for each maximal ideal, we are going to
+characterize henselian rings by the property that one can lift idempotents from
+the residue ring.
 
 \begin{definition}
 A local ring $(R, \mathfrak{m})$ \textbf{satisfies lifting
@@ -636,19 +690,36 @@ A local ring $(R, \mathfrak{m})$ \textbf{satisfies lifting
 between idempotents of $S$ and those of $S/\mathfrak{m}S$ is surjective.
 \end{definition}
 
+Recall that there is a functor $\idem$ from rings to sets that sends each ring
+to its collection of idempotents. So the claim is that the natural map $\idem(S)
+\to \idem(S/\mathfrak{m}S)$ is a surjection.
+
+In fact, in this case, we shall see that the map $\idem(S) \to
+\idem(S/\mathfrak{m}S)$ is even injective.
 \begin{proposition} 
 The map from idempotents of $S$ to those of $S/\mathfrak{m} S$ is
 always injective.
 \end{proposition}
-
+We shall not even use the fact that $S$ is a finite $R$-algebra here.
 
 \begin{proof} 
- 
+Suppose $e, e' \in S$ are  idempotents whose images in $S/\mathfrak{m}S$ are the
+same. Then 
+\[ (e-e')^3 = e^3 -3e^2 e' + 3e'^2 e- e'^3 = e^3 - e'^3 = e - e. \]
+Thus if we let $x = e - e'$, we have $x^3 - x =0$, and $x $ belongs to
+$\mathfrak{m}S$. Thus
+\[ x(1-x^2) = 0,  \]
+and $1-x^2$ is invertible in $S$ (because $x^2$ belongs to the Jacobson radical
+of $S$). Thus $x =0 $ and $e = e'$.
 \end{proof}
+
+
+With this, we now want a characterization of henselian rings in terms of the
+lifting idempotents property.
 
 \begin{proposition} 
 Suppose $(R, \mathfrak{m})$ satisfies lifting idempotents, and let $S$ be a
-fintie $R$-algebra. Then given
+finite $R$-algebra. Then given
 orthogonal idempotents $\overline{e}_1, \dots, \overline{e}_n$ of $S/\mathfrak{m}S$, there are
 mutually orthogonal lifts $\left\{e_i\right\} \in S$.
 \end{proposition} 
