@@ -2,10 +2,21 @@
 
 In the past, we have already encountered the notion of \emph{flatness}. We
 shall now study it in more detail.
+We shall start by introducing the notion of \emph{faithful} flatness and
+introduce the idea of ``descent.'' Later, we shall consider other criteria for
+(normal) flatness that we have not yet explored.
 
+We recall (\cref{}) that a module $M$ over a commutative ring $R$ is
+\emph{flat} if the functor $N \mapsto N \otimes_R M$ is an exact functor. An
+$R$-algebra is flat if it is flat as a module. For instance, we have seen that
+any localization of $R$ is a flat algebra, because localization is an exact
+functor.
 
+\textbf{All this has not been added yet!}
 
 \section{Faithful flatness}
+
+
 
 \subsection{Faithfully flat modules}
 Let $R$ be a commutative ring.
@@ -52,7 +63,13 @@ $N'
 \otimes_R M = 0$, so $H=0$, and the initial complex is exact.
 \end{proof} 
 
-
+\begin{example} 
+Another illustration of the above technique is the following observation: if
+$M$ is faithfully flat and $N \to N'$ is any morphism, then $N \to N'$ is an
+isomorphism if and only if $M \otimes N' \to M \otimes N$ is an isomorphism.
+This follows because the condition that a map be an isomorphism can be phrased
+as the exactness of a certain (uninteresting) complex.
+\end{example} 
 \begin{exercise} 
 The direct sum of a flat module and a faithfully flat module is faithfully flat.
 \end{exercise} 
@@ -75,7 +92,7 @@ Suppose first $M$ is faithfully flat and $f: N \to N'$ goes to zero $f \otimes
 so that if $f \otimes 1_M = 0$, then $\im(f) \otimes M = 0$. Thus by faithful
 flatness, $\im(f) = 0$ by \rref{easyffcriterion}.
 
-Conversely, let us suppose $M$ flat and the functor $N \to N \otimes_M$
+Conversely, let us suppose $M$ flat and the functor $N \to N \otimes_R M$
 faithful. Let $N \neq 0$; then $1_N \neq 0$ as maps $N \to N$. 
 It follows that $1_N \otimes 1_M$ and $0 \otimes 1_M = 0$ are different as
 endomorphisms of $M \otimes_R N$. Thus $M \otimes_R N \neq 0$. By
@@ -109,11 +126,14 @@ and since $R/I \otimes_R M \neq 0$, we find that $N \otimes_R M \neq 0$. By
 \end{proof} 
 
 \begin{corollary} 
-A finitely generated flat module over a \emph{local} ring is faithfully flat.
+A nonzero finitely generated flat module over a \emph{local} ring is faithfully flat.
 \end{corollary} 
+\begin{proof} 
+This follows from \cref{ffmaximal} and Nakayama's lemma. 
+\end{proof} 
 
-A \emph{finitely presented} flat module is in fact free, but we do not prove
-this.
+A \emph{finitely presented} flat module over a local ring is in fact free, but we do not prove
+this (except when the ring is noetherian, see \cref{}).
 \begin{proof} 
 Indeed, let $R$ be a local ring with maximal ideal $\mathfrak{m}$, and $M$ a
 finitely generated flat $R$-module. Then by Nakayama's lemma, $M/\mathfrak{m}M
@@ -129,6 +149,8 @@ Exercise.
 \end{proof} 
 
 
+
+
 \subsection{Faithfully flat algebras}
 
 Let $\phi: R \to S$ be a morphism of rings, making $S$ into an $R$-algebra.
@@ -138,22 +160,61 @@ $S$ is a \textbf{faithfully flat $R$-algebra} if it is faithfully flat as an
 $R$-module.
 \end{definition} 
 
+\begin{example} 
+The map $R \to R[x]$ from a ring into its polynomial ring is always faithfully
+flat. This is clear.
+\end{example}
+
+Next, we indicate the usual ``sorite'' for faithfully flat morphisms:
 \begin{proposition} 
+Faithfully flat morphisms are closed under composition and base change.
+\end{proposition} 
+That is, if $R \to S$, $S \to T$ are faithfully flat, so is $R \to T$.
+Similarly, if $R \to S$ is faithfully flat and $R'$ any $R$-algebra, then $R'
+\to S \otimes_R R'$ is faithfully flat.
+
+The reader may wish to try this proof as an exercise.
+\begin{proof} 
+The first result follows because the composite of the two faithful and exact
+functors (tensoring  $ \otimes_R S$ and tensoring  $ \otimes_S T$ gives the
+composite $\otimes_R T$) yields a faithful and exact functor. 
+
+In the second case, let $M$ be an $R'$-module. Then $M \otimes_{R'} (R'
+\otimes_R S)$ is canonically isomorphic to $M \otimes_R S$. From this it is
+clear if the functor $M \mapsto M \otimes_R S$ is faithful and
+exact, so is 
+$M \mapsto M \otimes_{R'} (R'
+\otimes_R S)$.
+\end{proof} 
+
+Flat maps are usually injective, but they need not be. For instance, if $R$ is a
+product $R_1 \times R_2$, then the projection map $R \to R_1$ is flat.
+This never happens for faithfully flat maps.
+In particular, a quotient can never be faithfully flat.
+
+\begin{proposition}  \label{ffinjective}
 If $S$ is a f.f. $R$-algebra, then the structure map $R \to S$ is injective.
 \end{proposition} 
 \begin{proof} 
 Indeed, let us tensor the map $R \to S $ with $S$, over $R$. We get a morphism
 of $S$-modules
 \[ S \to S \otimes_R S ,  \]
-sending $s \to  1 \otimes s$.
+sending $s \mapsto  1 \otimes s$.
 This morphism has an obvious section $S \otimes_R S \to S$ sending $a \otimes b
-\to ab$. Since it has a section, it is injective. But faithful flatness says
-that the original map must be injective itself.
+\mapsto ab$. Since it has a section, it is injective. But faithful flatness says
+that the original map $R \to S$ must be injective itself.
 \end{proof} 
 
+\begin{example} 
+The converse of \cref{ffinjective} definitely fails. Consider the localization $\mathbb{Z}_{(2)}$;
+it is a flat $\mathbb{Z}$-algebra, but not faithfully flat (for instance,
+tensoring with $\mathbb{Z}/3$ yields zero).
+\end{example} 
 
-\begin{proposition} 
-A flat local homomorphism of local rings is faithfully flat.
+Flat morphisms need not be injective, but they are locally injective. We shall see this using:
+\begin{proposition}  \label{flatlocal}
+A flat local homomorphism of local rings is faithfully flat. In particular, it
+is injective.
 \end{proposition} 
 \begin{proof} 
 Let $\phi: R \to S$ be a local homomorphism of local rings with maximal ideals
@@ -161,16 +222,30 @@ $\mathfrak{m}, \mathfrak{n}$. Then by definition $\phi(\mathfrak{m}) \subset
 \mathfrak{n}$. It follows that $S \neq \phi(\mathfrak{m})S$, so by
 \rref{ffmaximal} we win.
 \end{proof} 
+The point of the above proof was, of course, the fact that the
+ring-homomorphism was \emph{local}. If we just had that $\phi( \mathfrak{m})S
+\subsetneq S$ for every maximal ideal $\mathfrak{m} \subset R$, that would be
+sufficient for the argument.
 
+\begin{corollary} 
+Let $\phi: R \to S$ be a flat morphism. Let $\mathfrak{q} \in \spec S$,
+$\mathfrak{p} = \phi^{-1}(\mathfrak{q})$ the image in $\spec R$. Then 
+$R_{\mathfrak{p}} \to S_{\mathfrak{q}}$ is faithfully flat, hence injective.
+\end{corollary} 
+\begin{proof} 
+We only need to show that the map is flat by \cref{flatlocal}. 
 
-\begin{example} 
-The map $R \to R[x]$ from a ring into its polynomial ring is always faithfully
-flat. This is clear.
-\end{example} 
+\end{proof} 
 
-There are many topological consequences of faithful flatness on the $\spec$'s. These are
+\subsection{Topological consequences}
+
+There are many topological consequences of faithful flatness on the $\spec$'s.
+These are
 explored in detail in volume 4-2 of \cite{EGA}. We shall only scratch the
 surface.
+The reader 
+should bear in mind the usual intuition that flatness means that the fibers
+``look similar'' to one other. 
 
 \begin{proposition} 
 Let $R \to S$ be a faithfully flat morphism of rings. Then the map $\spec S
@@ -194,7 +269,7 @@ In particular, it is injective. Thus $IS \cap R = I$.
 
 Now to see surjectivity, we use a general criterion:
 
-\begin{lemma} 
+\begin{lemma} \label{imagespec}
 Let $\phi: R \to S$ be a morphism of rings and suppose $\mathfrak{p} \in \spec
 R$. Then $\mathfrak{p}$ is in the image of $\spec S \to \spec R$ if and only if 
 $\phi^{-1}( \phi(\mathfrak{p}) S) = \mathfrak{p}$.
@@ -204,9 +279,10 @@ This lemma will prove the proposition.
 \begin{proof} 
 Suppose first that $\mathfrak{p}$ is in the image of $\spec S \to \spec R$. In
 this case, there is $\mathfrak{q} \in \spec S$ such that
-\[ \mathfrak{p} = \phi^{-1}(\mathfrak{q}).  \]
-In particular, $\mathfrak{q} \supset \phi(\mathfrak{p})S$, so that
-\[ \mathfrak{p} \subset \phi^{-1}(\phi(\mathfrak{p}) S),  \]
+$ \mathfrak{p}$ is the preimage of $\mathfrak{q}$.
+In particular, $\mathfrak{q} \supset \phi(\mathfrak{p})S$, so that, if we take
+pre-images,
+\[ \mathfrak{p} \supset \phi^{-1}(\phi(\mathfrak{p}) S),  \]
 while the other inclusion is obviously true.
 
 Conversely, suppose that $\mathfrak{p} \subset \phi^{-1}(\phi(\mathfrak{p})
@@ -225,10 +301,32 @@ $\mathfrak{p}$ is the preimage of something in $\spec S$.
 \end{proof} 
 \end{proof} 
 
+\begin{remark} 
+The converse also holds. If $\phi: R \to S$ is a flat morphism of rings such
+that $\spec S \to \spec R$ is surjective, then $\phi$ is faithfully flat.
+Indeed, \cref{imagespec} shows then that for any prime ideal $\mathfrak{p}
+\subset R$, $\phi(\mathfrak{p})$ fails to generate $S$. 
+This is sufficient to imply that $S$ is faithfully flat by \cref{ffmaximal}.
+\end{remark} 
+
 In fact, one can show that the morphism $\spec S \to \spec R$ is actually an
 \emph{identification,} that is, a quotient map. This is true more generally
 for faithfully flat and quasi-compact morphisms of schemes; see \cite{EGA},
 volume 4-2.
+
+\begin{theorem} 
+Let $\phi: R \to S$ be a faithfully flat morphism of rings. Then $\spec S \to
+\spec R$ is a quotient map of topological spaces.
+\end{theorem} 
+
+In other words, a subset of $\spec R$ is closed if and only if its pre-image
+in $\spec S$ is closed.
+
+\begin{proof} 
+We need to show that if $F \subset \spec R$ is such that its pre-image in
+$\spec S$ is closed, then $F$ itself is closed.  \textbf{ADD THIS PROOF}
+\end{proof} 
+
 
 \begin{exercise} 
 Let $R \to S$ be a faithfully flat morphism of rings. If $S$ is noetherian, so
@@ -236,13 +334,73 @@ is $R$. The converse is false!
 \end{exercise} 
 
 
+\begin{exercise} Many properties of morphisms of rings are such that if they hold after
+one makes a faithfully flat base change, then they hold for the original
+morphism.
+Here is a simple example.
+Suppose $S$ is a faithfully flat $R$-algebra. Let $R'$ be any $R$-algebra.
+Suppose $S'  =S \otimes_R R'$ is finitely generated over $R'$. Then $S$ is
+finitely generated over $R$. 
 
-\section{Tor}
+To see that, note that $R'$ is the colimit of its finitely generated
+$R$-subalgebras $R_\alpha$. Thus $S'$ is the colimit of the $R_\alpha
+\otimes_R S$, which inject into $S'$; finite generation implies that one of
+the $R_\alpha \otimes_R S \to S'$ is an isomorphism. Now use the fact that
+isomorphisms ``descend'' under faithfully flat morphisms.
+
+In algebraic geometry, one can show that many properties of morphisms of
+\emph{schemes} allow for descent under faithfully flat base-change. See
+\cite{EGA}, volume IV-2.
+\end{exercise} 
+
+\section{The $\tor$ functor}
+ 
+
+\subsection{Introduction}
+Fix $M$. The functor $N \mapsto N \otimes_R M$ is a right-exact functor on the
+category of $R$-modules. We can thus consider its \emph{left-derived functors}
+as in \cref{homological}. 
+Recall:
+
+\begin{definition} 
+The derived functors of the tensor product functor $N \mapsto N \otimes_R M$ are denoted by
+$\mathrm{Tor} _R^i( N, M), i \geq 0$.  We shall sometimes denote omit the
+subscript $R$.
+\end{definition} 
+
+So in particular, $\mathrm{Tor} _R^0(M,N) = M \otimes N$.  
+A priori, $\tor$ is only a functor of the first variable, but in fact, it is
+not hard to see that $\tor$ is a covariant functor of two variables $M, N$. 
+In fact, $\tor_R^i(M, N) \simeq \tor_R^i(N, M)$ for any two $R$-modules $M, N$.
+For proofs, we refer to \cref{homological}. \textbf{ADD: THEY ARE NOT IN THAT
+CHAPTER YET.}
+
+Let us recall the basic properties of $\tor$ that follow from general facts
+about derived functors. Given an exact sequence
+\[ 0 \to N' \to N \to N'' \to 0 \]
+we have a long exact sequence
+\[ \mathrm{Tor} ^i(N',M) \to \mathrm{Tor} ^i(N,M) \to \mathrm{Tor} ^i(N'',M ) \to \mathrm{Tor} ^{i-1}(N',M) \to \dots \]
+Since $\tor$ is symmetric, we can similarly get a long exact sequence if we
+are given a short exact sequence of $M$'s.
+
+Recall, moreover, that $\tor$ can be  computed explicitly (in theory). 
+If we have modules $M, N$, and a projective resolution $P_* \to N$, then
+$\tor_R^i(M,N)$ is the $i$th homology of the complex $M \otimes P_*$. 
+We can use this to compute $\tor$ in the case of abelian groups.
+
+\begin{example} We compute $\tor_{\mathbb{Z}}^*(A, B)$ whenever $A, B $ are abelian groups
+and $B$ is finitely generated. This immediately reduces to the case of $B$
+either $\mathbb{Z}$ or $\mathbb{Z}/d\mathbb{Z}$ for some $d$ by the
+structure theorem. When $B= \mathbb{Z}$, there is nothing to
+compute (derived functors are not very interesting on projective objects!).
+Let us compute $\tor_{\mathbb{Z}}^*(A, \mathbb{Z}/d\mathbb{Z})$ for an abelian group $A$.
 
 
-\add{this section needs to be considerably expanded: define Tor, prove basic
-properties, etc.?}
-
+Actually, let us be more general and consider the case where the ring is
+replaced by $\mathbb{Z}/m$ for some $m$ such that $d \mid m$. Then we will
+compute $\tor_{\mathbb{Z}/m}^*(A, \mathbb{Z}/d)$ for any
+$\mathbb{Z}/m$-module $A$.  The case $m = 0$
+will handle the ring $\mathbb{Z}$.
 Consider the projective resolution
 \[ 
 \xymatrix{
@@ -251,9 +409,8 @@ Consider the projective resolution
 	& \mathbb{Z}/m\mathbb{Z} \ar[r]^{d} & \mathbb{Z}/m\mathbb{Z} \ar[r] & \mathbb{Z}/d\mathbb{Z} \ar[r] & 0.
 }
 \]
-We apply $A \otimes_{\mathbb{Z}/m\mathbb{Z}} \cdot$ and truncate. Since 
-$S \otimes_R R \cong S$, we see that $A \otimes_{\mathbb{Z}/m\mathbb{Z}} \mathbb{Z} /m\mathbb{Z} \cong A$ and
-hence we obtain the complex
+We apply $A \otimes_{\mathbb{Z}/m\mathbb{Z}} \cdot$. Since tensoring (over
+$\mathbb{Z}/m$!) with $\mathbb{Z}/m\mathbb{Z}$ does nothing, we  obtain the complex
 \[ 
 \xymatrix{
 \cdots \ar[r]^{m/d} & A \ar[r]^d & A \ar[r]^{m/d} 
@@ -272,56 +429,81 @@ the complex, which are simply
 \end{align*} 
 where ${}_kA = \{ a \in A \mid ka = 0 \}$ denotes the set of elements of $A$
 killed by $k$.
+\end{example} 
 
 
-\section{Interpretation via Tor}
+The symmetry of the tensor product also provides with a simple proof that
+$\tor$ commutes with filtered colimits. 
+\begin{proposition} \label{torfilteredcolim}
+Let $M$ be an $R$-module, $\left\{N_i\right\}$ a filtered system of
+$R$-modules. Then the natural morphism
+\[  \varinjlim_i \tor_R^i(M, N_i) \to \tor^i_R(M, \varinjlim_i N_i)   \]
+is an isomorphism.
+\end{proposition} 
+\begin{proof} 
+We can see this explicitly. Let us compute the $\tor$ functors by choosing a
+projective resolution $P_* \to M$ of $M$ (note that which factor we use is irrelevant, by
+symmetry!). Then the left side is the colimit
+\( \varinjlim H(P_* \otimes N_i)  \), while the right side is $H(P_* \otimes
+\varinjlim N_i)$. But tensor products commute with filtered (or arbitrary)
+colimits, since the tensor product admits a right adjoint. Moreover, we know
+that homology commutes with filtered colimits. Thus the natural map is an
+isomorphism.
+\end{proof} 
 
-Recall that the derived functors of the tensor product functor are denoted by $\mathrm{Tor} _R^i, i \geq 0$.  So $\mathrm{Tor} _R^0(M,N) = M \otimes N$.  These functors are symmetric in both variables, and  given an exact sequence
-\[ 0 \to N' \to N \to N'' \to 0 \]
-we have a long exact sequence
-\[ \mathrm{Tor} ^i(N',M) \to \mathrm{Tor} ^i(N,M) \to \mathrm{Tor} ^i(N'',M ) \to \mathrm{Tor} ^{i-1}(N',M) \to \dots \]
-For this, cf. books on homological algebra.
 
-One of the basic applications of this is that for a flat module $M$, the tor-functors vanish for $i \geq 1$ (whatever be $N$).
+\subsection{$\tor$ and flatness}
+
+$\tor$ provides a simple way of detecting flatness. Indeed, one of the basic applications of this is that for a flat module $M$, the tor-functors vanish for $i \geq 1$ (whatever be $N$).
 Indeed, recall that $\mathrm{Tor} (M,N)$ is computed by taking a projective resolution of $N$,
 \[ \dots \to P_2 \to P_1 \to P_0 \to M \to 0 \]
 tensoring with $M$, and taking the homology.  But tensoring with $M$ is exact if we have flatness, so the higher $\mathrm{Tor} $ modules vanish.
 
-Conversely, suppose $\mathrm{Tor} ^i(M,N) = 0$ for all $N$ and $i>0$.  Then given an exact sequence,
-\[ 0 \to N'   \to N \to N'' \to 0 \]
-we get exactness of
-\[  \mathrm{Tor} _1(N'',M)  \to N' \otimes M \to N \otimes M \to N'' \otimes M \to 0 \]
-so the $\mathrm{Tor} $-vanishing (as we saw, we only needed it for $i=1$) gives flatness.
-By taking direct (filtered) limits, which preserve exactness, we can reduce to the case of checking that $\mathrm{Tor} ^1(M,N) = 0$ for $N$ finitely generated.  By using a filtration on $N$ whose quotients are of the form $R/I$ for $I \subset R$ an ideal, we find that:
-
+The converse is also true. In fact, something even stronger holds:
 \begin{proposition} $M$ is flat iff $\mathrm{Tor} ^1(M,R/I)=0$ for all finitely generated ideals $I \subset R$.
 \end{proposition}
+\begin{proof}
+We have just seen one direction. 
+Conversely, suppose $\mathrm{Tor} ^i(M,R/I) = 0$ for all finitely generated
+ideals $I$ and $i>0$. 
+Then the result holds, first of all, for all ideals $I$, because of
+\cref{torfilteredcolim} and the fact that $R/I$ is always the colimit of $R/J$
+as $J$ ranges over finitely generated ideals $J \subset I$.
+
+We now show that $\tor^i(M, N) = 0$ whenever $N$ is finitely generated. To do
+this, we induct on the number of generators of $N$. When $N$ has one
+generator, it is cyclic and we are done. Suppose we have proved the result
+whenever for modules that have $n-1$ generators or less, and suppose $N$ has
+$n$ generators.
+Then we can consider an exact sequence of the form
+\[ 0 \to N' \hookrightarrow N \twoheadrightarrow N'' \to 0  \]
+where $N'$ has $n-1$ generators and $N''$ is cyclic. Then the long exact
+sequence shows that $\tor^i(M, N) = 0$ for all $i \geq 1$.
+
+Thus we see that $\tor^i(M, N)  = 0$ whenever $N$ is finitely generated. Since
+any module is a filtered colimit of finitely generated ones, we are done by
+\cref{torfilteredcolim}.
+\end{proof}
+
 
 Note that there is an exact sequence $0 \to I \to R \to R/I \to 0$ and
 so
 \[ \mathrm{Tor} _1(M,R)=0 \to \mathrm{Tor} _1(M,R/I) \to I \otimes M \to M \]
-is exact, and it suffices to show that
+is exact, and by this:
+
+\begin{corollary} 
+If the map
 \[ I \otimes M \to M \]
-is injective for all $I$.
+is injective for all ideals $I$, then $M$ is flat.
+\end{corollary} 
 
-\begin{theorem} If $R$ is noetherian local and $M$ finitely generated and flat, then $M$ is free.
-\end{theorem}
-Indeed, let $\mathfrak{m} \subset R$ be the maximal ideal and $k$ the residue field.  Now $M/\mathfrak{m} M$ is a finitely generated $k$-vector space; choose a basis.  This induces an isomorphism
-\[ k^n \to M/\mathfrak{m} M \]
-which we can lift to a map
-\[ R^n \to M ,\]
-which is surjective by Nakayama's lemma, and which becomes an isomorphism upon being tensored with $k$.  Let $Q$ be the kernel:
-\[ 0 \to Q \to R^n \to M \to 0;\]
-then we have an exact sequence
-\[ \mathrm{Tor} ^1(k,M)=0 \to Q \otimes k \to k^n \to M/\mathfrak{m} M \to 0.\]
-As a result $Q \otimes k = Q/\mathfrak{m} Q = 0$, which implies $Q=0$ by Nakayama, so $R^n \to M$ is an isomorphism, q.e.d.
-
-\section{Flatness over a local ring}
+\subsection{Flatness over a noetherian local ring}
 
 Let $R$ be a noetherian local ring with maximal ideal $\mathfrak{m}$ and residue field $k$, $S$ be a local finitely generated $R$-algebra with $\mathfrak{m}S \subset \mathfrak{n}$ for $\mathfrak{n}$ the maximal ideal of $S$, and $M$ a finitely generated $S$-module.
 
 \begin{theorem} $M$ is flat over $R$ iff
 \[ \mathrm{Tor} ^1_R( k, M) = 0.\]
+In this case, $M$ is even free.
 \end{theorem}
 
 \begin{proof} 
