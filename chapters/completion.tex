@@ -544,7 +544,7 @@ of $\Delta$.
 
 There is a substitute for completeness that captures the essential
 properties: Henselianness. A ring is Henselian if it satisfies
-Hensel's lemma, more or less.
+Hensel's lemma, more or less. We mostly follow \cite{Ra70} in the treatment.
 
 \subsection{Semilocal rings}
 
@@ -785,7 +785,7 @@ henselian rings, which explains the name.
 Throughout, we use the $\overline{}$ symbol to denote reduction mod an ideal
 (usually $\mathfrak{m}$ or $\mathfrak{m}$ times another ring).
 
-\begin{proposition} 
+\begin{proposition}  \label{factorcriterion}
 Let $(R, \mathfrak{m})$ be a local ring with residue field $k$. Then $R$ is henselian if and only if,
 whenever a monic polynomial $P \in R[X]$ satisfies
 \[ \overline{P} = \overline{Q}\overline{R} \in k[X], \]
@@ -798,7 +798,7 @@ then the factorization lifts to a factorization
 Suppose $R$ henselian and suppose $P$ is a polynomial whose reduction admits
 such a factorization.
 Consider the finite $R$-algebra
-\[ S = R[X]/(P);  \]
+\( S = R[X]/(P);  \)
 since $\overline{S } = S/\mathfrak{m}S $ can be represented as
 $k[X]/(\overline{P})$, it admits a splitting into components
 \[ \overline{S} = k[X]/(\overline{Q}) \times k[X]/(\overline{R}).  \]
@@ -806,27 +806,114 @@ Since $R$ is henselian, this splitting lifts to $S$, and we get a splitting
 \[ S = S_1 \times S_2.  \]
 Here $S_1 \otimes k \simeq k[X]/(\overline{Q})$ and $S_2 \otimes k \simeq
 k[X]/(\overline{R})$. 
+The image of $X$ in $S_1 \otimes k$ is annihilated by $\overline{Q}$, and the
+image of $X$ in $S_2 \otimes k$ is annihilated by $\overline{R}$.
 
 \begin{lemma} 
-Suppose $R$ is a local ring, $S$ a finite free $R$-algebra such that $S \otimes k
-\simeq k[X]/(q)$ for some monic $q \in k[X]$. Then there is a polynomial $Q \in
-R[X]$ with $q = \overline{Q}$ such that there is an isomorphism $R[X]/(Q)
-\simeq S$.
-\end{lemma} 
+Suppose $R$ is a local ring, $S$ a finite $R$-algebra generated
+by an element $x \in S$. Suppose the image $\overline{x} \in \overline{S}=S
+\otimes_R
+k$ satisfies a monic polynomial equation $u(\overline{x}) = 0$. Then
+there is a monic polynomial $U$ lifting $u$ such that $U(x) = 0$ (in $S$). \end{lemma} 
 \begin{proof} 
-Let $\overline{x} \in S \otimes k$ be the generating element that satisfies
-$q(\overline{x})=0$, and let $x \in S$ be a lift of it.  Suppose $q$ has
+Let $\overline{x} \in \overline{S}$ be the generating element that satisfies
+$u(\overline{x})=0$, and let $x \in S$ be a lift of it.  Suppose $u$ has
 rank $n$. Then $1, x, \dots,
-x^{n-1}$ spans $S$ by Nakayama's lemma. Thus there is a monic polynomial $Q$ of
-degree $n$ that annihilates $x$; the reduction must be a multiple of $q$,
-hence $q$. 
-It follows that there is a surjection
-\[ R[X]/(Q) \twoheadrightarrow S,  \]
-which is an isomorphism since both are free (by assumption) of the same rank. 
-\end{proof}
+x^{n-1}$ spans $S$ by Nakayama's lemma. Thus there is a monic polynomial $U$ of
+degree $n$ that annihilates $x$; the reduction must be a multiple of $u$,
+hence $u$.\end{proof}
 
 
-Now, returning to the proposition, we see that $S_1, S_2$ (which are direct
-summands of finite free modules, hence free as $R$ is local) are isomorphic to
-$S[X]/(Q), S[X]/(R)$ for some $Q, R$. 
+Returning to the proposition, we see that the image of the generator $X$ in $S_1, S_2$ 
+must satisfy polynomial equations $Q, R$ that lift $\overline{Q},
+\overline{R}$. Thus $X$ satisfies $QR$ in $S[X]/(P)$; in other words, $QR$ is a
+multiple of $P$, hence equal to $P$. Thus we have lifted the factorization
+$\overline{P} = \overline{Q} \overline{R}$.
+This proves that factorizations can be lifted.
+
+Now, let us suppose that factorizations can always be lifted for finite
+$R$-algebras. We are now going
+to show that $R$ satisfies lifting idempotents. 
+Suppose $S$ is a finite $R$-algebra, $\overline{e}$ a primitive idempotent in
+$\overline{S}$. 
+We can lift $\overline{e}$ to some element $e' \in S$. Since $e'$ is contained
+in a finite $R$-algebra that contains $R$, we know that $e'$ is \emph{integral} over $R$, 
+so that we can find a map $R[X]/(P) \to S$ sending the generator $X \mapsto
+e'$, for some polynomial $P$.
+We are going to use the fact that $R[X]/(P)$ splits to lift the idempotent
+$\overline{e}$.
+
+Let $\mathfrak{m}_1, \dots, \mathfrak{m}_k$ be the maximal ideals of $S$.
+These equivalently correspond to the points of $\spec \overline{S}$. We know
+that $e'$ belongs precisely to one of the $\mathfrak{m_i}$ (because a
+primitive idempotent in $\overline{S}$ is one on one maximal ideal and zero
+elsewhere). Call this $\mathfrak{m}_1$, say.
+
+We have a map $\spec S \to \spec R[X]/(P)$ coming from the map $\phi:
+R[X]/(P) \to S$. We claim that the image of
+$\mathfrak{m}_1$ is different from the images of the $\mathfrak{m}_j, j > 1$.
+Indeed, $b \in \mathfrak{m}_j$ precisely for $j > 1$, so the image of
+$\mathfrak{m}_1$ does not contain $X$. However, the image of $\mathfrak{m}_j,
+j> 1$ does contain $X$.
+
+Consider a primitive idempotent for $R[X]/(P)$ corresponding to
+$\phi^{-1}(\mathfrak{m}_1)$, say $f$.  Then $f$ belongs to every other maximal
+ideal of $R[X]/(P)$ but not to $\phi^{-1}(\mathfrak{m}_1)$. Thus $\phi(f)$,
+which is idempotent,
+belongs to $\mathfrak{m}_1$ but not to any other maximal ideal of $S$. 
+It follows that  $\phi(f)$ must lift $\overline{e} $, and we have completed
+the proof.
 \end{proof} 
+
+
+\begin{corollary} 
+If every monogenic,\footnote{That is, generated by one element.} finitely
+presented and finite $R$-algebra is a product of local rings, then $R$ is
+henselian.
+\end{corollary} 
+\begin{proof} 
+Indeed, the proof of the above result shows that if $R[X]/(P)$ splits for
+every monic $P$, then $R$ is henselian.
+\end{proof} 
+
+
+From the above result, we can get a quick example of a non-complete henselian
+ring:
+
+\begin{example} 
+The integral closure of the localization $\mathbb{Z}_{(p)}$ in the
+ring $\mathbb{Z}_p$ of $p$-adic integers is a henselian ring. Indeed, it is
+first of all a discrete valuation ring (as we can restrict the valuation on
+$\mathbb{Z}_p$; note that an element of $\mathbb{Q}_p$ which is algebraic over
+$\mathbb{Q}$ and has norm at most one is \emph{integral} over
+$\mathbb{Z}_{(p)}$). This follows from the criterion of
+\cref{factorcriterion}. If a monic polynomial $P$ factors in the residue field, then
+it factors in $\mathbb{Z}_p$, and if $P$ has coefficients integral over
+$\mathbb{Z}_{(p)}$, so does any factor.
+\end{example} 
+
+
+\begin{example} 
+If $k$ is a complete field with a nontrivial absolute value and $X$ is any
+topological space, we can consider for each open subset $U \subset X$ the
+ring $\mathcal{A}(U)$ of continuous maps $U \to k$. As $U$ ranges over the open subsets
+containing an element $x$, the colimit $\varinjlim \mathcal{A}(U)$ (the
+``local ring'' at $x$) is a local henselian ring. See \cite{Ra70}.
+\end{example} 
+
+
+\begin{proposition} 
+Let $(R_i, \mathfrak{m}_i)$ be an inductive system of local rings and local
+homomorphisms. If each $R_i$ is henselian, then the colimit $\varinjlim R_i$
+is henselian too.
+\end{proposition} 
+\begin{proof} 
+We already know (\cref{}) that the colimit is a local ring, and that
+the maximal ideal of $\varinjlim R_i$ is the colimit $\varinjlim
+\mathfrak{m}_i$. 
+Finally, given any monic polynomial in $\varinjlim R_i$ with a factoring in the residue
+field, the polynomial and the factoring come from some finite $R_i$; the
+henselianness of $R_i$ allows us to lift the factoring. 
+\end{proof} 
+
+

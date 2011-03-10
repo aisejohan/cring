@@ -84,9 +84,9 @@ be too large for
 that.
 For instance, the collection of objects in $\mathbf{Sets}$ does not form a set.
 
-\begin{definition} 
+\begin{definition}
 A category is \textbf{small} if the collection of objects is a set.
-\end{definition} 
+\end{definition}
 
 The standard examples of categories are the ones above: structured sets
 together with structure-preserving maps. Nonetheless, one can easily give
@@ -183,7 +183,7 @@ maps and composition.
 In detail, the last two conditions state the following. First, if $X \in
 \mathcal{C}$, then $F(1_X)$ is the identity morphism $1_{F(X)}: F(X) \to
 F(X)$.The second is that if $A \stackrel{f}{\to} B \stackrel{g}{\to} C$ are
-morphisms in $\mathcal{C}$, 
+morphisms in $\mathcal{C}$,
 then $F(g \circ f) = F(g) \circ F(f)$ as morphisms $F(A) \to F(C)$.
 Alternatively, we can say that $F$ \emph{preserves commutative diagrams.}
 
@@ -199,7 +199,7 @@ space $X$ to its homology groups $H_*(X)$. We know that given a map of spaces,
 we get a map of graded abelian groups.
 \end{example}
 
-\begin{definition} 
+\begin{definition}
 If $\mathcal{C}, \mathcal{D}, \mathcal{E}$ are categories, $F: \mathcal{C} \to
 \mathcal{D}, G: \mathcal{D} \to \mathcal{E}$ are covariant functors, then one
 can define a \textbf{composite functor}
@@ -253,7 +253,7 @@ B \ar[ru]
 is commutative in $\mathcal{C}$, then the diagram
 \[ \xymatrix{
 F(A)   & \ar[l] \ar[ld] F(C)\\
-F(B) \ar[u] 
+F(B) \ar[u]
 }\]
 commutes in $\mathcal{D}$.
 
@@ -335,7 +335,7 @@ implies that $F(f)$ is an isomorphism.
 \end{proof}
 
 Categories have a way of making things so general that are trivial. Hence,
-this material is called general abstract nonsense. 
+this material is called general abstract nonsense.
 Moreover, there is another philosophical point about category theory to
 be made here: often, it is the definitions, and not the proofs, that matter.
 For instance, what matters here is not the theorem, but the \emph{definition of
@@ -382,7 +382,7 @@ However, we will use it to state theorems conveniently.
 Now that we have introduced the idea of a category and showed that a functor
 takes isomorphisms to isomorphisms, we can characterize objects in terms of
 maps. This is useful since the modern philosophy of mathematics is that knowing
-``all the maps from and to an object'' is the same as knowing the interal
+``all the maps from and to an object'' is the same as knowing the internal
 structure of the object. This idea led to the creation of various
 characterizations of objects known as universal properties.
 As motivation, we first discuss the concept of the ``product'' in terms of a
@@ -411,12 +411,15 @@ Then there is a unique morphism $f:S\rightarrow P$ such that $p_i f = f_i$.
 \end{definition}
 \begin{example} One of the benefits of this construction is that an actual
 category is not specified; thus when we take $\mathcal{C}$ to be Sets, we
-recover the cartesian product notion of sets, but if we take $\mathcal{C}$ to begroups, we achieve the regular notion of the product of groups (the reader is
+recover the cartesian product notion of sets, but if we take $\mathcal{C}$ to
+begroups, we achieve the regular notion of the product of groups (the reader is
 invited to check these statements). \end{example}
 \begin{exercise} If we reverse the arrows in the above construction, show that
 the universal property obtained (known as the ``coproduct'') characterizes
 disjoint unions in the category of sets and direct sums in the category of
-groups. Notice that on the level of sets, these two objects are different (henceshowing that the universal object is dependent on one's choice of category;
+groups. Notice that on the level of sets, these two objects are different
+(henceshowing that the universal object is dependent on one's choice of
+category;
 another example of this will be given later). \end{exercise}
 This idea of a universal mapping property leads us to investigate this notion
 more thoroughly.
@@ -581,7 +584,8 @@ P \ar[d] \ar[r] & B \ar[d]\\
 A\ar[r] & C }\]
 
 Moreover, the object $P$ is universal in the following sense: given any $P'$
-andmaps $P'\to A$ and $P'\to B$ making the square commute, there is a unique map
+andmaps $P'\to A$ and $P'\to B$ making the square commute, there is a
+unique map
 $P'\to P$ making the following diagram commute:
 \[
 \xymatrix{
@@ -758,7 +762,7 @@ Let $F: I \to \mathcal{C}$ be a functor, where $I$ is a small category. We
 need to obtain an object $X$ with morphisms
 \[ Fi \to X, \quad i \in I  \]
 such that for each $f: i \to i'$, the diagram below commutes:
-\[ 
+\[
 \xymatrix{
 Fi \ar[d] \ar[r] &  Fi' \ar[ld] \\
 X
@@ -773,17 +777,23 @@ coproduct $\sqcup_i Fi$.
 Let us consider the coproduct $\sqcup_{i \in I, f} Fi$, where $f$ ranges over
 all
 morphisms in the category $I$ that start from $i$.
-We construct two maps 
+We construct two maps
 \[ \sqcup_f Fi \rightrightarrows \sqcup_f Fi,  \]
 whose coequalizer will be that of $F$. The first map is the identity. The
-second map sends a factor 
+second map sends a factor
 \end{proof}
 
 \subsection{Limits}
-As in the example with pull-backs and push-outs and products and coproducts, onecan define a colimit by using the exact same universal property above just with
+As in the example with pull-backs and push-outs and products and coproducts,
+onecan define a colimit by using the exact same universal property above
+just with
 all the arrows reversed.
-\begin{example} The product is an example of a limit where the indexing categoryis a small category $I$ with no morphisms other than the identity. This example
-shows the power of universal constructions; by looking at colimits and limits, awhole variety of seemingly unrelated mathematical constructions are shown to be
+\begin{example} The product is an example of a limit where the indexing
+categoryis a small category $I$ with no morphisms other than the identity. This
+example
+shows the power of universal constructions; by looking at colimits and limits,
+awhole variety of seemingly unrelated mathematical constructions are shown
+to be
 in the same spirit.\end{example}
 
 \subsection{Filtered colimits}
@@ -893,9 +903,9 @@ exists \emph{a} map $A \to X$.
 \begin{definition} Suppose $\mathcal{C}$ has equalizers.
 If $A \in \mathcal{C}$ is such that $\hom_{\mathcal{C}}(A, X) \neq \emptyset$
 for each $X \in \mathcal{C}$, then $X$ is called \textbf{weakly initial.}
-\end{definition} 
+\end{definition}
 
-We now want to get an initial object from a weakly initial object. 
+We now want to get an initial object from a weakly initial object.
 To do this, note first that if $A$ is weakly initial and $B$ is any object
 with a morphism $B \to A$, then $B$ is weakly initial too. So we are going to
 take
@@ -903,11 +913,11 @@ our initial object to be a very small subobject of $A$.
 It is going to be so small as to guarantee the uniqueness condition of an
 initial object. To make it small, we equalize all endomorphisms.
 
-\begin{proposition} 
+\begin{proposition}
 If  $A$ is a weakly initial object in $\mathcal{C}$,
 then the equalizer of all endomorphisms $A \to A$ is initial for $\mathcal{C}$.
-\end{proposition} 
-\begin{proof} 
+\end{proposition}
+\begin{proof}
 Let $A'$ be this equalizer; it is endowed with a morphism $A'\to A$. Then let
 usrecall what this means. For any two
 endomorphisms $A \rightrightarrows A$, the two pull-backs $A'
@@ -932,24 +942,24 @@ are equal. Thus, composing each of these with the inclusion $A' \to A$ shows
 that $f,g$ were equal in the first place.
 
 Thus we are reduced to proving:
-\begin{lemma} 
+\begin{lemma}
 Let $A$ be an object of a category $\mathcal{C}$. Let $A'$ be the equalizer of
 all endomorphisms of $A$. Then any morphism $A \to A'$ is a section of the
 inclusion $A' \to A$.
-\end{lemma} 
-\begin{proof} 
+\end{lemma}
+\begin{proof}
 Consider the canonical inclusion $i: A' \to A$. We are given some map $s: A
 \to A'$; we must show that $si = 1_{A'}$.
 Indeed, consider the composition
 \[ A' \stackrel{i}{\to} A \stackrel{s}{\to} A' \stackrel{i}{\to} A .\]
 Now $i$ equalizes endomorphisms of $A$; in particular, this composition is the
-same as 
+same as
 \[ A' \stackrel{i}{\to} A \stackrel{\mathrm{id}}{\to} A; \]
 that is, it equals $i$. So the map $si: A' \to A$ has the property that $isi =
 i$ as maps $A' \to A$. But $i$ being a monomorphism, it follows that $si  =
 1_{A'}$.
-\end{proof} 
-\end{proof} 
+\end{proof}
+\end{proof}
 
 \subsection{Completeness and Cocompleteness}
 \begin{definition} A category $\mathcal{C}$ is said to be complete if for every
@@ -959,17 +969,24 @@ cocomplete. \end{definition}
 If a category is complete, various nice properties hold.
 \begin{theorem} If $\mathcal{C}$ is a complete category, the following
 conditions are true:
-\begin{enumerate} 
+\begin{enumerate}
 \item{all (finite) products exist}
 \item{all pull-backs exist}
 \item{there is a terminal object}
 \end{enumerate}
 \end{theorem}
 \begin{proof} The proof of the first two properties is trivial since they can
-all be expressed as limits; for the proof of the existence of a terminal object,consider the empty diagram $F:\emptyset \rightarrow \mathcal{C}$. Then the
-ternimal object is just $\lim F$. \end{proof}
+all be expressed as limits; for the proof of the existence of a terminal
+object, consider the empty diagram $F:\emptyset \rightarrow \mathcal{C}$. Then
+the
+terminal object is just $\lim F$.
+\end{proof}
+
 Of course, if one dualizes everything we get a theorem about cocomplete
-categories which is proved in essentially the same manner. More is true however;it turns out that finite (co)completeness are equivalent to the properties aboveif one requires the finiteness condition for the existence of (co)products.
+categories which is proved in essentially the same manner. More is true
+however; it turns out that finite (co)completeness are equivalent to the
+properties above if one requires the finiteness condition for the existence of
+(co)products.
 
 
 \begin{theorem}[Freyd]
@@ -977,11 +994,11 @@ Let $\mathcal{C}$ be a complete category. Then $\mathcal{C}$ has an initial
 object if and only if the following \textbf{solution set condition holds:}
 there is a set $\left\{X_i, i \in I\right\}$ of objects in $\mathcal{C}$ such
 that any $X \in \mathcal{C}$ can be mapped into by one of these.
-\end{theorem} 
+\end{theorem}
 
 The idea is that the family $\left\{X_i\right\}$ is somehow weakly universal
 \emph{together.}
-\begin{proof} 
+\begin{proof}
 If $\mathcal{C}$ has an initial object, we may just consider that as the
 family $\left\{X_i\right\}$: we can hom out (uniquely!) from a universal
 object into anything, or in other words a universal object is weakly universal.
@@ -991,15 +1008,16 @@ product $\prod X_i$ is weakly universal. Indeed, if $X \in \mathcal{C}$,
 choose some $i'$ and a morphism $X_{i'} \to X$ by the hypothesis. Then this map
 composed with the projection from the product gives a map  $\prod X_i \to
 X_{i'} \to X$.
-\end{proof} 
+\end{proof}
 
 \subsection{Monomorphisms and Epimorphisms}
 We now wish to characterize monomorphisms and epimorphisms in a purely
 categorical setting. In categories where there is an underlying set the notions
-of injectivity and surjectivity makes sense but in category theory, one does not
+of injectivity and surjectivity makes sense but in category theory, one
+does not
 in a sense have ``access'' to the internal structure of objects. In this light,
 we make the following definition
-\begin{definition} 
+\begin{definition}
 A morphism $f:X\hookrightarrow Y$ is a monomorphism if for any two morphisms
 $g_1:X'\rightarrow X$ and $g_2:X'\rightarrow X$, we have that $f g_1 = f g_2$
 implies $g_1=g_2$. A morphism $f:X\rightarrow Y$ is surjective if for any two
@@ -1017,15 +1035,15 @@ category other than by considering maps into and out of it.
 We will see that essentially everything about $X \in \mathcal{C}$ can be
 recovered from these hom-sets.
 We will thus get an embedding of $\mathcal{C}$ into a category of functors.
-
+j
 \subsection{The functors $h_X$}
 
 We now use the structure of a category to construct hom functors.
-\begin{definition} 
+\begin{definition}
 Let $X \in \mathcal{C}$. We define the contravariant functor $h_X: \mathcal{C}
 \to \mathbf{Sets}$ via
 \[ h_X(Y) = \hom_{\mathcal{C}}(Y, X).  \]
-\end{definition} 
+\end{definition}
 
 This is, indeed, a functor. If $g: Y \to Y'$, then precomposition gives a map
 of sets
@@ -1050,45 +1068,44 @@ where $h_X, h_{X'}$ lie in the category of contravariant functors $\mathcal{C}
 In other words, we have defined a \emph{covariant functor}
 \[ \mathcal{C} \to \mathbf{Fun}(\mathcal{C}^{op}, \mathbf{Sets}).  \]
 
-\begin{theorem}[Yoneda's lemma] If $X, X' \in \mathcal{C}$, then the map 
+\begin{theorem}[Yoneda's lemma] If $X, X' \in \mathcal{C}$, then the map
 $\hom_{\mathcal{C}}(X, X') \to \hom(h_X, h_{X'})$ is a bijection. That is,
 every natural transformation $h_X \to h_{X'}$ arises in one and only one way
 from a morphism $X \to X'$.
-\end{theorem} 
+\end{theorem}
 
 
 \begin{theorem}[Strong Yoneda lemma]
-\end{theorem} 
+\end{theorem}
 
 \subsection{Representable functors}
 
-\begin{definition} 
+\begin{definition}
 A contravariant functor $F: \mathcal{C} \to \mathbf{Sets}$ is
 \textbf{representable} if it is naturally isomorphic to some $h_X$.
-\end{definition} 
+\end{definition}
 
 The point of a representable functor is that it can be realized as maps into a
-specific object. 
-In fact, let us look at a specific feature of the functor $h_X$. 
+specific object.
+In fact, let us look at a specific feature of the functor $h_X$.
 Consider the object $\alpha \in h_X(X)$ that corresponds to the identity.
 Then any morphism
 \[ Y \to X  \]
 factors \emph{uniquely}
 as \[ Y \to X \stackrel{\alpha}{\to } X  \]
-(this is completely trivial!) so that 
+(this is completely trivial!) so that
 any element of $h_X(Y)$ is a $f^*(\alpha)$ for precisely one $f:  Y \to X$.
 
-\begin{definition} 
+\begin{definition}
 Let $F: \mathcal{C} \to \mathbf{Sets}$ be a contravariant functor. A
 \textbf{universal object} for $\mathcal{C}$ is a pair $(X, \alpha)$ where $X
 \in \mathcal{C}, \alpha \in F(X)$ such that the following condition holds:
 if $Y$ is any object and $\beta \in F(Y)$, then there is a unique $f: Y \to X$
-such that $\alpha$ pulls back to $\beta$ under $f$. 
+such that $\alpha$ pulls back to $\beta$ under $f$.
 
 In other words, $\beta = f^*(\alpha)$.
-\end{definition} 
+\end{definition}
 
-The condition of a universal object
 
 
 
@@ -1096,7 +1113,7 @@ The article \cite{Vi08} by Vistoli contains a good introduction to and several
 examples of this theory.
 Here is one of them:
 
-\begin{example} 
+\begin{example}
 Consider the contravariant functor $F: \mathbf{Sets} \to \mathbf{Sets}$ that
 sends any set $S$ to its power set $2^S$ (i.e. the collection of subsets).
 This is a contravariant functor: if $f: S \to T$, there is a morphism
@@ -1115,7 +1132,7 @@ that
 Moreover, the set of subsets is in natural bijection with the set of
 characteristic functions, which in turn are precisely \emph{all} the maps $S
 \to \left\{0,1\right\}$. From this the assertion is clear.
-\end{example} 
+\end{example}
 
 We shall meet some elementary criteria for the representability of
 contravariant functors in the next subsection. For now, we note\footnote{The
@@ -1137,7 +1154,6 @@ Eilenberg-MacLane spaces  $K(G,n)$.  See \cite{Ha02}.
 
 \subsection{Criteria for representability}
 
-It is clear from the previous section 
 
 
 
