@@ -990,8 +990,12 @@ $a_i$. Notice that by the first axiom, this element is unique.}
 \end{definition}
 
 There is a process that allows one to take any presheaf and
-associate a sheaf to it.
-\add{define sheafification}
+associate a sheaf to it. In some sense, this associated sheaf should also be the best ``approximation'' of our presheaf with a sheaf. This motivates the following universal property:
+
+\begin{definition} Let $\mathcal{F}$ be a presheaf. Then $\mathcal{F'}$ is said to be the sheafification of $\mathcal{F}$ if for any sheaf $\mathcal{G}$ and a morphism $\mathcal{F}\rightarrow \mathcal{G}$, there is a unique factorization of this morphism as $\mathcal{F}\rightarrow\mathcal{F'}\rightarrow\mathcal{G}$. \end{definition}
+
+\begin{theorem} We can construct the sheafification of a presheaf $\mathcal{F}$ as follows: $\mathcal{F}'(U)=\{s:U\rightarrow\coprod_{x\in U}\mathcal{F}_x | \text{for all }x\in U, s(x)\in\mathcal{F}_x \text{ and there is a neighborhood }V\subseteq U \text{ and }t\in \mathcal{F}(V) \text{ such that for all }y\in V, s(y) \text{ is the image of } t \text{ in the local ring }\mathcal{F}_y\}$. \end{theorem}
+\add{proof}
 
 In the theory of schemes, when one wishes to replace polynomial
 rings over
