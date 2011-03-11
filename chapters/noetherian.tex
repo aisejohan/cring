@@ -579,6 +579,34 @@ This proves the proposition; it also shows that the number of
 associated primes is at most the length of the filtration. 
 \end{proof} 
 
+
+Finally, we characterize the zerodivisors on $M$ in terms of the associated
+primes. The last characterization of the result will be useful in the future.
+It implies, for instance, that if $R$ is local and $\mathfrak{m}$ the maximal
+ideal, then if every element of $\mathfrak{m}$ is a zerodivisor on a finitely
+generated module
+$M$, then $\mathfrak{m} \in \ass(M)$.
+
+\begin{proposition} \label{assmdichotomy}
+If $M$ is a finitely generated module over a noetherian ring $R$, then the
+zerodivisors on $M$ are the union $\bigcup_{\mathfrak{p} \in \ass(M)}
+\mathfrak{p}$.
+
+More strongly, if $I \subset R$ is any ideal consisting of zerodivisors on
+$M$, then $I$ is contained in an associated prime.
+\end{proposition} 
+\begin{proof} 
+Any associated prime is an annihilator of some element of $M$, so it consists
+of zerodivisors. Conversely, if $a \in R$ annihilates $x \in M$, then $a$
+belongs to every associated prime of the nonzero module $Ra \subset M$. (There
+is at least one by \cref{finiteassm}.)
+
+For the last statement, we use prime avoidance (\cref{primeavoidance}): if $I$ consists of
+zerodivisors, then $I$ is contained in the union $\bigcup_{\mathfrak{p} \in \ass(M)}
+\mathfrak{p}$ by the first part of the proof. This is a finite union by
+\cref{assmfinite}, so prime avoidance implies $I$ is contained one of these
+primes.
+\end{proof} 
 \subsection{Localization and $\ass(M)$}
 
 It turns out to be extremely convenient that the construction $M  \to \ass(M)$

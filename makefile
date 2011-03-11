@@ -185,6 +185,15 @@ schflat.pdf: standalone/chflat.tex chapters/flat.tex
 	pdflatex -src standalone/chflat.tex
 
 
+chhomologicallocal.pdf: standalone/chhomologicallocal.tex CRing.aux chapters/homologicallocal.tex
+	pdflatex -src standalone/chhomologicallocal.tex
+	bibtex chhomologicallocal
+	pdflatex -src standalone/chhomologicallocal.tex
+
+schhomologicallocal.pdf: standalone/chhomologicallocal.tex chapters/homologicallocal.tex
+	pdflatex -src standalone/chhomologicallocal.tex
+
+
 chetale.pdf: standalone/chetale.tex CRing.aux chapters/etale.tex
 	pdflatex -src standalone/chetale.tex
 	bibtex chetale
@@ -203,5 +212,5 @@ schlicense.pdf: standalone/chlicense.tex chapters/license.tex
 	pdflatex -src standalone/chlicense.tex
 
 
-chapters:  chcategories.pdf chfoundations.pdf chfields.pdf chthreeimportantfunctors.pdf chspec.pdf chnoetherian.pdf chgraded.pdf chintegrality.pdf chfactorization.pdf chdedekind.pdf chdimension.pdf chcompletion.pdf chsmoothness.pdf chlinalg.pdf chhomological.pdf chflat.pdf chetale.pdf chlicense.pdf
+chapters:  chcategories.pdf chfoundations.pdf chfields.pdf chthreeimportantfunctors.pdf chspec.pdf chnoetherian.pdf chgraded.pdf chintegrality.pdf chfactorization.pdf chdedekind.pdf chdimension.pdf chcompletion.pdf chsmoothness.pdf chlinalg.pdf chhomological.pdf chflat.pdf chhomologicallocal.pdf chetale.pdf chlicense.pdf
 

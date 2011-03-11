@@ -14,5 +14,6 @@ smoothness
 linalg
 homological
 flat
+homologicallocal
 etale
 license

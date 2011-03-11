@@ -1,0 +1,1428 @@
+\chapter{Homological theory of local rings}
+
+We will then apply the general theory to commutative algebra proper. The use
+of homological machinery provides a new and elegant characterization of regular local
+rings (among noetherian local rings, they are the ones with finite global
+dimension) and leads to proofs of several difficult results about them.
+For instance, we will be able to prove the rather important result (which one
+repeatedly uses in algebraic geometry) that a
+regular local ring is a UFD.
+As another example, the aforementioned criterion leads to a direct proof of
+the otherwise non-obvious that a localization of a regular local ring at a
+prime ideal is still a regular local ring.
+
+\textbf{Note: right now, the material on regular local rings is still missing!
+It should be added.}
+
+\section{Depth}
+Throughout, let $(R, \mathfrak{m})$ be  a noetherian
+local ring. Let $k = R/\mathfrak{m}$ be the residue field. 
+
+
+\subsection{Depth over local rings}
+Let $M \neq 0$ be a finitely generated $R$-module. We are going to define an
+arithmetic invariant of $M$, called the \emph{depth}, that will measure in
+some sense the torsion of $M$.
+
+\newcommand{\depth}{\operatorname{depth}}
+\begin{definition}
+The \textbf{depth} of $M$ is equal to the smallest integer $i$
+such that
+$\ext^i(k,M) \neq 0$.
+\end{definition}
+
+We shall give another characterization of this shortly that makes no reference
+to $\ext$ functors, and is purely elementary.
+Note that
+contained in this definition is an assertion: that there is such
+an $i$ (at least if $M \neq 0$).
+
+\begin{example} Let us characterize when a module $M$ has depth zero. 
+Depth zero is equivalent to saying that $\ext^0(k,M) = \hom_R(k, M) \neq 0$,
+i.e. that there is a
+nontrivial morphism
+\[ k \to M.  \]
+As $k = R/\mathfrak{m}$, the existence of such a map is
+equivalent to the existence of a nonzero $x$
+such that $\ann(x) = \mathfrak{m}$, i.e. $\mathfrak{m} \in
+\ass(M)$. So depth
+zero is equivalent to having $\mathfrak{m} \in \ass(M)$.
+\end{example}
+
+Suppose now that $\depth(M) \neq 0$. In particular,
+$\mathfrak{m} \notin
+\ass(M)$. Since $\ass(M)$ is finite, prime avoidance implies that
+$\mathfrak{m}
+\not\subset \bigcup_{\mathfrak{p} \in \ass(M)} \mathfrak{p}$.
+Thus
+$\mathfrak{m}$ contains an element which is a nonzerodivisor on
+$M$ (see \cref{assmdichotomy}). So we find:
+
+\begin{proposition} \label{depthzero}
+$M$ has depth zero iff every element in $\mathfrak{m}$ is a
+zerodivisor on $M$.
+\end{proposition}
+
+Now suppose $\depth M \neq 0$. There is $a \in \mathfrak{m}$
+which is a
+nonzerodivisor on $M$, i.e.  such that there is
+an exact sequence
+\[ 0 \to M \stackrel{a}{\to} M \to M/aM \to 0.  \]
+For each $i$, there is an  exact sequence in $\ext$ groups:
+\begin{equation} \label{extlongextdepth}\ext^{i-1}(k,M) \to \ext^i(k,M) \stackrel{a}{\to} \ext^i(k,M)
+\to \ext^i(k,
+M/aM) \to \ext^{i+1}(k,M)  .\end{equation}
+However, the map $a: \ext^i(k,M) \to \ext^i(k,M)$ is zero as
+multiplication by $a$
+kills $k$. (As we said last time, if $a$ kills a module $N$,
+then it kills
+$\ext^*(N,M)$ for all $M$.) We see from this that
+\[ \ext^i(k,M) \hookrightarrow \ext^i(k,M/aM)  \]
+is injective, and
+\[ \ext^{i-1}(k, M/aM) \twoheadrightarrow \ext^i(k,M)  \]
+is surjective.
+
+\begin{corollary} \label{depthdropsbyone}
+If $a \in \mathfrak{m}$ is a nonzerodivisor on $M$, then
+\[ \depth(M/aM) = \depth M -1.  \]
+\end{corollary}
+\begin{proof}
+When $\depth M = \infty$, this is easy (left to the reader) from
+the exact
+sequence. Suppose $\depth(M) = n$. We would like to see that
+$\depth M/aM =
+n-1$. That is, we want to see that $\ext^{n-1}(k,M/aM) \neq 0$,
+but
+$\ext^i(k,M/aM) =
+0$ for $i < n-1$. This is direct from the sequence \eqref{extlongextdepth} above.
+In fact, surjectivity of $\ext^{n-1}(k,M/aM) \to \ext^n(k,M)$
+shows that
+$\ext^{n-1}(k,M/aM) \neq 0$. Now let $i < n-1$. 
+Then in \eqref{extlongextdepth}, $\ext^i(k, M/aM)$ is sandwiched between two
+zeros, so it is zero.
+\end{proof}
+
+The moral of the above discussion is that one quotients out by a nonzerodivisor, the depth drops by one.
+In fact, we have described a recursive algorithm for computing
+$\depth(M)$.
+\begin{enumerate}
+\item If $\mathfrak{m}  \in \ass(M)$, output zero.
+\item If $\mathfrak{m} \notin \ass(M)$, choose an element $a
+\in\mathfrak{m}$
+which is a nonzerodivisor on $M$. Output $\depth(M/aM) +1$.
+\end{enumerate}
+
+
+If one wished to apply this in practice, one would probably start by
+looking for a
+nonzerodivisor $a_1 \in \mathfrak{m}$ on $M$, and then looking for
+one on $M/a_1
+M$, etc.
+From this we make:
+
+\begin{definition}
+Let $(R, \mathfrak{m})$ be a local noetherian ring, $M$ a finite
+$R$-module. A
+sequence $a_1, \dots, a_n \in \mathfrak{m}$ is said to be
+\textbf{$M$-regular} iff:
+\begin{enumerate}
+\item $a_1$ is a nonzerodivisor on $M$
+\item $a_2$ is a nonzerodivisor on $M/a_1 M$
+\item  $\dots$
+\item $a_i$ is a nonzerodivisor on $M/(a_1, \dots, a_{i-1})M$
+for all $i$.
+\end{enumerate}
+A regular sequence $a_1, \dots, a_n$ is \textbf{maximal } if it
+can be extended
+no further, i.e. there is no $a_{n+1}$ such that $a_1, \dots,
+a_{n+1}$ is
+$M$-regular.
+\end{definition}
+
+\begin{corollary} \label{depthregular}
+$\depth(M)$ is the length of every maximal $M$-regular
+sequence. In particular,
+all $M$-regular sequences have the same length.
+\end{corollary}
+
+\begin{proof}
+If $a_1, \dots, a_n$ is $M$-regular, then
+\[ \depth M/(a_1, \dots, a_i)M = \depth M -i  \]
+for each $i$, by an easy induction on $i$ and the \cref{depthdropsbyone}.
+From this the result is clear, because depth zero occurs precisely when
+$\mathfrak{m}$ is an associated prime (\cref{depthzero}). But it is also clear 
+that a regular sequence $a_1, \dots, a_n$ is maximal precisely when every
+element of $\mathfrak{m}$ acts as a zerodivisor on $M/(a_1, \dots, a_n) M$,
+that is, $\mathfrak{m} \in \ass(M/(a_1, \dots, a_n)M)$.
+\end{proof}
+
+\begin{remark}
+We could \emph{define} the depth via the length of a maximal
+$M$-regular sequence.
+\end{remark}
+
+Finally, we conclude by bounding the depth in terms of the dimension. 
+
+\begin{corollary} Let $M \neq 0$. Then the depth of $M$ is finite. In fact,
+\begin{equation} \label{depthbound} \depth M \leq \dim \supp M.  \end{equation}
+\end{corollary}
+\begin{proof}
+If $\depth M = 0$, then we are done.
+
+In general, we induct on $\dim \supp M$, which we know is
+finite. Otherwise,
+there is $ a \in \mathfrak{m}$ which is a nonzerodivisor on $M$.
+We know that
+\[ \depth M/aM = \depth M -1  \]
+and (by \cref{dimdropsbyone})
+\[ \dim \supp M/aM = \dim \supp M -1.  \]
+By induction, we have that $\depth M/aM \leq \dim \supp M/aM$.
+From this the
+induction step is clear, because $\depth$ and $\dim$ both drop by one after
+quotienting.
+\end{proof}
+
+Generally, the depth is not the dimension.
+\begin{example}
+Given any $M$, if you add $k$ to it, then you make the depth
+zero: $M \oplus k$
+has $\mathfrak{m}$ as an associated prime. But the dimension
+ does not
+jump to zero just by adding a copy of $k$. If $M$ is a direct sum of pieces of
+differing dimensions, then the bound \eqref{depthbound} does not exhibit
+equality.
+\end{example}
+
+\subsection{Depth in the non-local case}
+
+In the previous subsection, we defined the notion of \emph{depth} of a
+finitely generated module over a noetherian local ring using the $\ext$
+functors. We then showed that the depth was the length of a maximal regular
+sequence. 
+
+Now, although it will not be necessary for the main results in this chapter, we want to generalize this to the case of a non-local ring. Most of the
+same arguments go through, though there are some subtle differences. For
+instance, regular sequences remain regular under permutation in the local
+case, but not in general. Since there will be some repetition, we shall try to
+be brief.
+
+We start by generalizing the idea of a regular sequence which is not required
+to be contained in the maximal ideal of a local ring.
+\begin{definition} 
+A sequence $x_1, \dots, x_n \in M$ is \textbf{$M$-regular} (or is an
+\textbf{$M$-sequence} if for each $k \leq n$, $x_k$ is a nonzerodivisor on the
+$R$-module $M/(x_1, \dots, x_{k-1}) M$ and also $(x_1, \dots, x_n) M \neq M$. 	\end{definition} 
+
+So $x_1$ is a nonzerodivisor on $M$, by the first part. That is, the homothety
+$M \stackrel{x_1}{\to} M$ is injective. 
+The last condition is also going to turn out to be necessary for us. In the
+previous subsection, it was automatic as $\mathfrak{m}M \neq M$ (unless $M =
+0$) by Nakayama's lemma as $M$ was assumed finitely generated.	
+
+
+The property of being a regular sequence is inherently an inductive one. Note
+that $x_1, \dots, x_n$ is a regular sequence on $M$ if and only if $x_1$ is a
+zerodivisor on $M$ and $x_2, \dots, x_n$ is an $M/x_1 M$-sequence.
+
+
+\begin{definition} 
+If $M$ is an $R$-module and $I \subset R$ an ideal, then we write $\depth_I M$
+for the length of the length-maximizing $M$-sequence contained in $I$.
+When $R$ is local and $I \subset R$ the maximal ideal, then we just write
+$\depth M$ as before.
+\end{definition} 
+
+While we will in fact have a similar characterization of $\depth$ in terms of
+$\ext$, in this section we \emph{define} it via regular sequences.
+
+\begin{example} 
+The basic example one is supposed to keep in mind is the polynomial ring $R =
+R_0[x_1, \dots, x_n]$ and $M = R$. Then the sequence $x_1, \dots, x_n$ is
+regular in $R$.
+\end{example} 
+
+As before, we have a simple characterization of depth zero:
+\begin{proposition} Let $R$ be noetherian, $M$ finitely generated.
+If $M$ is an $R$-module with $IM \neq M$, then $M$ has depth zero if and only
+if $I $ is contained in an element of $\ass(M)$.
+\end{proposition} 
+\begin{proof} 
+This is analogous to \cref{depthzero}. Note than an ideal consists of
+zerodivisors on $M$ if and only if it is contained in an associated prime
+(\cref{assmdichotomy}).
+\end{proof} 
+
+The above proof used \cref{assmdichotomy}, a key fact which will be used
+repeatedly in the sequel.
+This is one reason the theory of depth works best for finitely generated
+modules over noetherian rings.
+
+The first observation to make is that regular sequences are \textbf{not}
+preserved by permutation. This is one nice characteristic that we would like
+but is not satisfied.
+
+\begin{example} Let $k $ be a field.
+Consider $R=k[x,y]/((x-1)y, yz)$. Then $x,z$ is a regular sequence on $R$. Indeed,
+$x$ is a nonzerodivisor and $R/(x) = k[z]$.  However, $z,
+x$ is not a regular sequence because $z$ is a zerodivisor in $R$.
+\end{example} 
+
+Nonetheless, they \emph{are} preserved by permutation for local rings under
+suitable noetherian hypotheses: 
+\begin{proposition} 
+Let $R$ be a noetherian local ring and $M$ a finite $R$-module. Then if $x_1,
+\dots, x_n$ is a $M$-sequence contained in the maximal ideal, so is any permutation $x_{\sigma(1)}, \dots,
+x_{\sigma(n)}$.
+\end{proposition} 
+\begin{proof} 
+It is clearly enough to check this for a transposition. Namely, if we have an
+$M$-sequence
+\[ x_1, \dots, x_i, x_{i+1}, \dots x_n  \]
+we would like to check that so is
+\[ x_1, \dots, x_{i+1}, x_i, \dots, x_n.  \]
+It is here that we use the inductive nature. Namely, all we need to do is check
+that
+\[ x_{i+1}, x_i, \dots,x_n  \]
+is regular on $M/(x_1, \dots,x_{i-1}) M$, since the first part of the sequence
+will automatically be regular. Now $x_{i+2}, \dots, x_n$ will automatically be
+regular on $M/(x_1, \dots, x_{i+1})M$. So all we need to show is that
+$x_{i+1}, x_i$ is regular on $M/(x_1, \dots, x_{i-1})M$.
+
+The moral of the story is that we have reduced to the following lemma.
+
+\begin{lemma} 
+Let $R$ be a noetherian local ring. Let $N$
+be a finite $R$-module and 
+$a,b \in R$ an $N$-sequence contained in the maximal ideal. Then so is $b,a$.
+\end{lemma} 
+We can prove this as follows. First, $a$ will be a nonzerodivisor on $N/bN$.
+Indeed, if not then we can write
+\[ an = bn'  \]
+for some $n,n' \in N$ with $n \notin bN$. But $b$ is a nonzerodivisor on
+$N/aN$, which means that $bn' \in aN$ implies $n' \in aN$. Say $n' = an''$. So
+$an = ba n''$. As $a$ is a nonzerodivisor on $N$, we see that $n = bn''$. Thus
+$n \in bN$, contradiction.
+This part has not used the fact that $R$ is local.
+
+Now I claim that $b$ is a nonzerodivisor on $N$. Suppose $n \in N$ and $bn =
+0$. Since $b$ is a nonzerodivisor on $N/aN$, we have that $n \in aN$, say $n =
+an'$. Thus 
+\[ b(an') = a(bn') = 0.  \]
+The fact that $N \stackrel{a}{\to} N$ is injective implies that $bn' = 0$. So
+we can do the same and get $n' = an''$, $n'' = a n^{(3)}, n^{(3)} =a n^{(4)}$, and
+so on. It follows that $n$ is a multiple of $a, a^2,a^3, \dots$, and hence in
+$\mathfrak{m}^j N$ for each $j$ where $\mathfrak{m} \subset R$ is the maximal
+ideal. The Krull intersection theorem now implies that $n = 0$. 
+
+Together, these arguments imply that $b,a$ is an $N$-sequence, proving the
+lemma.
+\end{proof} 
+
+
+One might wonder what goes wrong, and why permutations do not preserve
+regular sequences in general; after all, oftentimes we can reduce results
+to their analogs for local rings. Yet the fact that regularity is preserved by
+permutations for local rings does not extend to arbitrary rings.
+The problem is that regular sequences do \emph{not} localize. Well, they almost
+do, but the final condition that $(x_1, \dots, x_n) M \neq M$ doesn't get
+preserved.
+We can state:
+
+\begin{proposition} 
+Suppose $x_1, \dots, x_n$ is an $M$-sequence. Let $N$ be a flat $R$-module.
+Then if $(x_1, \dots, x_n)M \otimes N \neq M \otimes N$, then $x_1, \dots, x_n$
+is an $M \otimes N$-sequence.
+\end{proposition} 
+\begin{proof} 
+This is actually very easy now. The fact that $x_i: M/(x_1, \dots, x_{i-1})M
+\to M/(x_1, \dots, x_{i-1})M$ is injective is preserved when $M$ is replaced by
+$M \otimes N$ because the functor $- \otimes N$ is exact. 
+\end{proof} 
+
+In particular, it follows that if we have a good reason for supposing that
+$(x_1,\dots, x_n) M \otimes N \neq M \otimes N$, then we'll already be
+done. For instance, if $N$ is the localization of $R$ at a prime ideal
+containing the $x_i$. Then we see that automatically $x_1, \dots, x_n$ is an
+$M_{\mathfrak{p}} = M \otimes_R R_{\mathfrak{p}}$-sequence. 
+
+Finally, we have an analog of the previous correspondence between depth and
+the vanishing of $\ext$. Since the argument is analogous to
+\cref{depthregular}, we omit it.
+\begin{theorem} Let $R$ be a ring. Suppose $M$ is an $R$-module and $IM \neq M$.
+All maximal $M$-sequences in $I$ have the same length. This length is the
+smallest value of $r$ such that $\mathrm{Ext}^r(R/I, M) \neq 0$.
+\end{theorem} 
+
+\begin{exercise} 
+Suppose $I$ is an ideal in $R$. Let $M$ be an $R$-module such that $IM \neq
+M$. Show that $\depth_I M \geq 2$ if and only if the natural map
+\[ M \simeq \hom(R, M) \to \hom(I, M)  \]
+is an isomorphism.
+\end{exercise} 
+
+
+\subsection{Powers of regular sequences}
+
+Regular sequences don't necessarily behave well with respect to permutation or
+localization without additional hypotheses. However, in all cases they behave
+well with respect to taking powers. The upshot of this is that the invariant
+called \textbf{depth} that we will soon introduce is invariant under passing to
+the radical.
+
+We shall deduce this from the following easy fact.
+\begin{lemma} 
+Suppose we have an exact sequence of $R$-modules
+\[  0 \to M' \to M \to M'' \to 0.  \]
+Suppose the sequence $x_1, \dots, x_n \in R$ is $M'$-regular and $M''$-regular.
+Then it is $M$-regular.
+\end{lemma} 
+The converse is not true, of course.
+\begin{proof} 
+Morally, this is the snake lemma. For instance, the fact that multiplication by
+$x_1$ is injective on $M', M''$ implies by the snake diagram that $M
+\stackrel{x_1}{\to} M$ is injective. However, we don't a priori know that a
+simple inductive argument on $n$ will work to prove this. The reason is that it needs
+to be seen that quotienting each term by $(x_1, \dots, x_{n-1})$ will preserve
+exactness. However, a general fact will tell us that this is indeed the case.
+See below.
+
+Anyway, this general fact now lets us induct on $n$. If we assume
+that $x_1, \dots, x_{n-1}$ is $M$-regular, we need only prove that $x_{n}:
+M/(x_1, \dots, x_{n-1})M
+\to M/(x_1, \dots, x_{n-1})$ is injective. (It is not surjective or the
+sequence would not be $M''$-regular.) But we have the exact sequence by the
+next lemma,
+\[ 0 \to M'/(x_1 \dots x_{n-1})M' \to M/(x_1 \dots x_{n-1})M \to  M''/(x_1
+\dots x_{n-1})M'' \to 0 \]
+and the injectivity of $x_n$ on the two ends implies it at the middle by the
+snake lemma.
+\end{proof} 
+
+So we need to prove:
+\begin{lemma} 
+Suppose $0 \to M' \to M \to M' \to 0$ is a short exact sequence. Let $x_1,
+\dots, x_m$ be an $M''$-sequence. Then the sequence
+\[ 0 \to M'/(x_1 \dots x_m)M' \to M/(x_1 \dots x_m)M \to   M''/(x_1 \dots
+x_m)M'' \to 0\]
+is exact as well.
+\end{lemma} 
+One argument here uses the fact that the Tor functors vanish when you have a
+regular sequence like this. We can give a direct argument. It is really just
+pure diagram-chasing though...
+\begin{proof} 
+By induction, this needs only be proved when $m=1$, since we have the recursive
+description of regular sequences: in general, $x_2 \dots x_m$ will be regular
+on $M''/x_1 M''$. 
+In any case, we have exactness except possibly at the left as the tensor
+product is right-exact. So let $m' \in M'$; suppose $m'$ maps to a multiple of
+$x_1$ in $M$. We need to show that $m'$ is a multiple of $x_1$ in $M'$. 
+
+Suppose $m'$ maps to $x_1 m$. Then $x_1m$ maps to zero in $M''$, so by regularity $m$
+maps to zero in $M''$. Thus $m$ comes from something, $\overline{m}'$, in $M'$. In particular
+$m' - x_1 \overline{m}'$ maps to zero in $M$, so it is zero in $M'$. Thus
+indeed $m'$ is a multiple of $x_1$ in $M'$.
+\end{proof} 
+So here is the result:
+
+\begin{proposition} 
+Let $M$ be an $R$-module and $x_1, \dots, x_n$ an $M$-sequence. Then $x_1^{a_1}
+,\dots, x_n^{a_n}$ is an $M$-sequence for any $a_1, \dots, a_n \in
+\mathbb{Z}_{>0}$.
+\end{proposition} 
+
+\begin{proof}
+
+The clearest way I know to see this is to use the following lemma, which tells
+you that regular sequences are stable under certain reasonable actions.
+
+\begin{lemma} 
+Suppose $x_1, \dots, x_i, \dots, x_n$ and $x_1, \dots, x_i', \dots, x_n$ are
+$M$-sequences for some $M$. Then so is $x_1, \dots, x_i x_i', \dots, x_n$.
+\end{lemma} 
+
+\begin{proof} 
+As usual, we can mod out by $(x_1 \dots x_{i-1})$ and thus assume that $i=1$.
+We have to show that if $x_1, \dots, x_n$ and $x_1', \dots, x_n$ are
+$M$-sequences, then so is $x_1 x_1', \dots, x_n$.
+
+We have an exact sequence
+\[ 0 \to x_1 M/x_1 x_1' M \to M/x_1 x_1' M \to  M/x_1  M \to 0.  \]
+Now $x_2, \dots, x_n$ is regular  on the last term by assumption, and also on
+the first term, which is isomorphic to $M/x_1' M$ as $x_1$ acts as a
+nonzerodivisor on $M$. So $x_2, \dots, x_n$ is regular on both ends, and thus
+in the middle. This means that 
+\[ x_1 x_1', \dots, x_n  \]
+is $M$-regular. That proves the lemma. 
+\end{proof} 
+
+So we now can prove the proposition. It is trivial if $\sum a_i = n$ (i.e. if
+all are $1$) it is clear. In general, we can use complete induction on $\sum
+a_i$. Suppose we know the result for smaller values of $\sum a_i$. We can
+assume that some $a_j >1$. 
+Then  the sequence
+\[ x_1^{a_1}, \dots x_j^{a_j} , \dots x_n^{a_n} \]
+is obtained from the sequences
+\[  x_1^{a_1}, \dots,x_j^{a_j - 1}, \dots, x_n^{a_n} \]
+and
+\[  x_1^{a_1}, \dots,x_j^{1}, \dots, x_n^{a_n} \]
+by multiplying the middle terms. But the complete induction hypothesis implies
+that both those two sequences are $M$-regular, so we can apply the lemma. 
+\end{proof} 
+
+In general, the product of two regular sequences is not a regular sequence. For
+instance, consider a regular sequence $x,y$ in some f.g. module $M$ over a
+noetherian local ring. Then $y,x$ is regular, but the product sequence $xy, xy$
+is \emph{never} regular.
+
+
+\subsection{Depth}
+
+Constructing regular sequences sequences is a useful task. We often want to ask
+how long we can make them subject to some constraint. For instance, 
+
+\begin{definition} 
+Suppose $I$ is an ideal such that $IM \neq M$. Then we define the
+\textbf{$I$-depth of $M$} to be the maximum length of a maximal $M$-sequence contained
+in $I$. When $R$ is a local ring and $I$ the maximal ideal, then that number is
+simply called the \textbf{depth} of $M$.
+
+The \textbf{depth} of a proper ideal $I \subset R$ is its depth on $R$.
+\end{definition} 
+
+
+The definition is slightly awkward, but it turns out that all maximal
+$M$-sequences in $I$ have the same length. So we can use any of them to compute
+the depth. 
+
+The first thing we can prove using the above machinery is that depth is really
+a ``geometric'' invariant, in that it depends only on the radical of $I$.
+
+\begin{proposition} 
+Let $R$ be a ring, $I \subset R$ an ideal, and $M$ an $R$-module
+with $IM \neq M$. Then $\mathrm{depth}_I M = \mathrm{depth}_{\mathrm{Rad}(I)} M$.
+\end{proposition} 
+\begin{proof} 
+The inequality $\mathrm{depth}_I M \leq \mathrm{depth}_{\mathrm{Rad} I} M$ is trivial, so we need only
+show that if $x_1, \dots, x_n$ is an $M$-sequence in $\mathrm{Rad}(I)$, then there is
+an $M$-sequence of length $n$ in $I$. For this we just take a high power
+\[ x_1^N, \dots, x_n^{N}  \]
+where $N$ is large enough such that everything is in $I$. We can do this as
+powers of $M$-sequences are $M$-sequences.
+\end{proof} 
+
+This was a fairly easy consequence of the above result on powers of regular
+sequences. On the other hand, we want to give another proof, because it will
+let us do more. Namely, we will show that depth is really a function of prime
+ideals.
+
+For convenience, we set the following condition: if $IM = M$, we define
+\[ \mathrm{depth}_I (M) = \infty.  \]
+
+\begin{proposition} 
+Let $R$ be a noetherian ring, $I \subset R$ an ideal, and $M$ a f.g. $R$-module. 
+Then
+\[ \mathrm{depth}_I M = \min_{\mathfrak{p} \in V(I)} \mathrm{depth}_{\mathfrak{p}} M .  \]
+\end{proposition} 
+
+So the depth of $I$ on $M$ can be calculated  if you know the depths at each
+prime containing $I$. In this sense, it is clear that $\mathrm{depth}_I (M)$ depends
+only on $V(I)$ (and the depths on those primes), so clearly it depends only on
+$I$ \emph{up to radical}.
+
+\begin{proof} 
+In this proof, we shall \textbf{use the fact that the length of every maximal
+$M$-sequence is the same}, something which we will prove below.
+
+It is obvious that we have an inequality
+\[ \mathrm{depth}_I \leq  \min_{\mathfrak{p} \in V(I)} \mathrm{depth}_{\mathfrak{p}} M \]
+as each of those primes contains $I$. 
+We are to prove that there is 
+a prime $\mathfrak{p}$ containing $I$ with
+\[ \mathrm{depth}_I M = \mathrm{depth}_{\mathfrak{p}} M . \]
+But we shall actually prove the stronger statement that there is $\mathfrak{p}
+\supset I$ with $\mathrm{depth}_{\mathfrak{p}} M_{\mathfrak{p}} = \mathrm{depth}_I M$. Note
+that localization at a prime can only increase depth because an $M$-sequence in
+$\mathfrak{p}$ leads to an $M$-sequence in $M_{\mathfrak{p}}$ thanks to
+Nakayama's lemma and the flatness of localization.
+
+So let $x_1, \dots, x_n \in I$ be a $M$-sequence of maximum length. Then $I$
+acts by zerodivisors on 
+$M/(x_1 , \dots, x_n) M$ or we could extend the sequence further. 
+In particular, $I$ is contained in an associated prime of $M/(x_1, \dots, x_n)
+M$ by elementary commutative algebra (basically, prime avoidance).
+
+Call this associated prime $\mathfrak{p} \in V(I)$. Then $\mathfrak{p}$ is an
+associated prime of $M_{\mathfrak{p}}/(x_1, \dots, x_n) M_{\mathfrak{p}}$,
+and in particular acts only by zerodivisors on this module. 
+Thus the $M_{\mathfrak{p}}$-sequence $x_1, \dots, x_n$ can be extended no
+further in $\mathfrak{p}$. In particular, since as we will see soon, the depth
+can be computed as the length of any maximal $M_{\mathfrak{p}}$-sequence,
+\[ \mathrm{depth}_{\mathfrak{p}} M_{\mathfrak{p}} = \mathrm{depth}_I M. \]
+\end{proof} 
+
+Perhaps we should note a corollary of the argument above:
+\begin{corollary} 
+Hypotheses as above, we have $\mathrm{depth}_I M  \leq \mathrm{depth}_\mathfrak{p} M_{\mathfrak{p}}$ for
+any prime $\mathfrak{p} \supset I$. However, there is at least one $\mathfrak{p}
+\supset I$ where equality holds. \end{corollary}
+
+\subsection{Depth and dimension}
+
+Consider an $R$-module $M$, which is always assumed to be finitely generated.
+Let $I \subset R$ be an ideal with $IM \neq M$. We know
+that if $x \in I$ is a nonzerodivisor on $M$, then $x$ is part of a maximal
+$M$-sequence in $I$, which has length $\mathrm{depth}_I M$ necessarily.
+It follows that $M/xM$ has a $M$-sequence of length $\mathrm{depth}_I M - 1$ (because
+the initial $x$ is thrown out) which can be extended no further.
+
+In particular, we find
+\begin{proposition} 
+Hypotheses as above, let $x \in I$ be a nonzerodivisor on $M$. Then 
+\[ \mathrm{depth}_I (M/xM) = \mathrm{depth} M - 1.  \]
+\end{proposition} 
+
+This is strikingly analogous to the dimension of the module $M$. 
+Recall that $\dim M$ is defined to be the Krull dimension of the topological
+space  $\supp M = V( \mathrm{Ann} M)$ for $\mathrm{Ann} M$ the annihilator of $M$.
+But the ``generic points'' of the topological space $V(\mathrm{Ann} M)$, or the
+smallest primes in $\supp M$, are precisely the associated primes of $M$. 
+So if $x$ is a nonzerodivisor on $M$, we have that $x$ is not contained
+in any associated primes of $M$, so that $\supp(M/xM)$ must have smaller
+dimension than $\supp M$. That is,
+\[ \dim M/xM \leq \dim M - 1.  \]
+But I claim that we have in fact equality. 
+
+\begin{lemma} 
+For any f.g. $R$-module $M$, we have $\dim M /xM \geq \dim M - 1$.
+\end{lemma} 
+\begin{proof} We have $\supp(M/xM) = \supp M \cap V(x)$. Indeed, this is easily
+seen by localization: if $\mathfrak{p}$ is such that $M_{\mathfrak{p}}/x
+M_{\mathfrak{p}} \neq 0$, then $M_{\mathfrak{p}} \neq 0$ and $\mathfrak{p} \in
+\supp M$. Similarly, $x$ is a non-unit in $R_\mathfrak{p}$ and thus $x \in
+\mathfrak{p}$, so $\mathfrak{p} \in V(x)$. The converse is proved the same way
+using Nakayama's lemma.
+
+But we know that Krull's principal ideal theorem says that the dimension of a
+closed set intersected with a ``hypersurface'' like $V(x)$ is at least the
+initial dimension minus one. So this gives the other inequality. 
+\end{proof} 
+
+In particular, we deduce:
+\begin{proposition} 
+Let $M$ be a f.g. module over the noetherian ring $R$. Then
+\[ \mathrm{depth}_I M \leq \dim M  \]
+for any ideal $I \subset R$ with $IM \neq M$.
+\end{proposition} 
+\begin{proof} 
+Indeed, if $x_1, \dots, x_r$ is a maximal $M$-sequence in $I$, then 
+\[ \dim M/(x_1 , \dots, x_r) M = \dim M - r  \]
+by the above remarks. 
+This implies that $r \leq \dim M$. That proves the result. 
+\end{proof} 
+
+This does not tell us much about how $\mathrm{depth}_I M$ depends on $I$, though; it
+just says something about how it depends on $M$. In particular, it is not very
+helpful when trying to estimate $\mathrm{depth} I = \mathrm{depth}_I R$.
+Nonetheless, there is a somewhat stronger result, which we will need in the
+future.
+
+\begin{proposition} 
+Hypotheses as above, $\mathrm{depth}_I M$ is at most the length of every  chain
+of primes in $\mathrm{Spec} R$ that starts at an associated prime of $M$ and
+ends at a prime containing $I$.
+\end{proposition} 
+
+\begin{proof} Consider a chain of primes $\mathfrak{p}_0 \subset \dots \subset
+\mathfrak{p}_k$ where $\mathfrak{p}_0$ is an associated prime and
+$\mathfrak{p}_k$ contains $I$. 
+The goal is to show that 
+\[ k \leq \mathrm{depth}_I M.  \]
+By localization, we can assume that $\mathfrak{p}_k$ is the maximal ideal of
+$R$; recall that localization can only increase the depth.
+
+In this case, the argument has become:
+\begin{lemma} 
+Let $(R,\mathfrak{m})$ be a noetherian local ring. Let $M$ be a finite
+$R$-module. Then the depth of $\mathfrak{m}$ on $M$ is at most the dimension of
+$R/\mathfrak{p}$ for $\mathfrak{p}$ an associated prime of $M$.
+\end{lemma} 
+
+To prove this, first assume that the depth is zero. In that case, the result is
+immediate. We shall now argue inductively.
+Assume that that this is true for modules of smaller depth. 
+We will quotient out appropriately to shrink the
+support and change the associated 
+primes. Namely, choose a $M$-regular (nonzerodivisor on $M$) $x \in R$. 
+Then $\mathrm{depth}_I M/xM = \mathrm{depth}_I M -1$. 
+
+Let $\mathfrak{p}_0$ be an associated prime of $R$.
+I claim that $\mathfrak{p}_0$ is properly contained in an associated prime of
+$M/xM$. Indeed, $x \notin \mathfrak{p}_0$, so $\mathfrak{p}_0$ cannot itself be
+an associated prime. 
+However, $\mathfrak{p}_0$ annihilates a nonzero element of $M/xM$. To see this,
+consider maximal principal submodule of $M$ annihilated by $\mathfrak{p}_0$.
+Let this submodule be $Rz$ for some $z \in M$. Then if $z$ is a multiple of
+$x$, say $z = xz'$, then $Rz'$ would be a larger
+submodule of $M$ annihilated by $\mathfrak{p}_0$---here we are using the fact
+that $x$ is a nonzerodivisor on $M$. So the image of this $z$ in $M/xM$ is
+nonzero and is clearly annihilated by $\mathfrak{p}_0$. 
+Thus $\mathfrak{p}_0$ is contained in an associated prime of $M/xM$. Call this
+prime $\mathfrak{q}_0$. 
+
+Now we know that $\mathrm{depth}_I M/xM = \mathrm{depth}_I M -1$. Also, by the inductive
+hypothesis, we know that $\dim R/\mathfrak{q}_0 \geq \mathrm{depth}_I M/xM = \mathrm{depth}_I M
+-1$. But the dimension of $R/\mathfrak{q}_0$ is strictly greater than that of
+$R/\mathfrak{p}_0$, so at least $\dim R/\mathfrak{q}_0 +1 = \mathrm{depth}_I M$. This
+proves the lemma.
+\end{proof} 
+
+
+
+
+\section{Cohen-Macaulayness}
+
+\begin{definition}
+Let $(R, \mathfrak{m})$ be a noetherian local ring. Then
+we set $\depth R$ to be the its depth as an $R$-module.
+\end{definition}
+
+
+
+
+\begin{example}
+If $R$ is regular, then $\depth R = \dim R$.
+\end{example}
+\begin{proof}
+Induction on $\dim R$. If $\dim R=0$, then this is obvious by
+the inequality
+$\leq $ which is always true.
+
+Suppose $\dim R = 0$. Then $\mathfrak{m} \neq 0$ and in
+particular
+$\mathfrak{m}/\mathfrak{m}^2 \neq 0$. Choose $x \in
+\mathfrak{m}-
+\mathfrak{m}^2$. Let $R'=R/(x)$. We know that $\dim R' = \dim
+R-1$ as $x$ is a
+nonzerodivisor (by regularity). On the other hand, the embedding
+dimension of $R'$ also drops
+by one, as we have divided out by something in $\mathfrak{m} -
+\mathfrak{m}^2$.
+In particular, $R'$ is regular local too. So the inductive
+hypothesis states
+that
+\[\depth R-1 =  \depth R' = \dim R' = \dim R -1.   \]
+
+Differently phrased, we could choose $x_1, \dots, x_n \in
+\mathfrak{m}$ which forms a basis for
+$\mathfrak{m}/\mathfrak{m}^2$; this is a
+\emph{regular sequence} (that is, an $R$-regular sequence) by
+this argument. It
+is maximal as $x_1, \dots, x_n$ generate $\mathfrak{m}$ and
+$R/(x_1, \dots,
+x_n)$ clearly has depth zero.
+\end{proof}
+
+More generally:
+\begin{definition}
+A noetherian local ring $(R, \mathfrak{m})$ is called
+\textbf{Cohen-Macaulay}
+if $\dim R = \depth R$. A general noetherian ring $R$ is
+\textbf{Cohen-Macaulay} if
+$R_{\mathfrak{p}}$ is Cohen-Macaulay for all $\mathfrak{p} \in
+\spec R$.
+\end{definition}
+For instance, any regular local ring is Cohen-Macaulay, as is
+any local
+artinian ring (because the dimension is zero for an artinian
+ring).
+
+We shall eventually prove:
+
+\begin{proposition}
+Let $R = \mathbb{C}[X_1, \dots, X_n]/\mathfrak{p}$ for
+$\mathfrak{p}$ prime.
+Choose an injective map $\mathbb{C}[y_1, \dots, y_n]
+\hookrightarrow R$ making $R$ a
+finite module. Then $R$ is Cohen-Macaulay iff $R$ is projective
+as a module
+over $\mathbb{C}[y_1, \dots, y_n]$.\footnote{In fact, this is
+equivalent to
+freeness, although we will not prove it. Any projective finite
+module over a
+polynomial ring over a field is free, though this is a hard
+theorem.}
+\end{proposition}
+
+The picture is that the inclusion $\mathbb{C}[y_1, \dots, y_m ]
+\hookrightarrow
+\mathbb{C}[x_1, \dots, x_n]/\mathfrak{p}$ corresponds to a map
+\[ X \to \mathbb{C}^m  \]
+for $X = V(\mathfrak{p}) \subset \mathbb{C}^n$. This statement
+of freeness is a
+statement about how the fibers of this finite map stay similar
+in some sense.
+
+\begin{example}
+Consider $\mathbb{C}[x,y]/(xy)$, the coordinate ring of the
+union of two axes
+intersecting at the origin. This is Cohen-Macaulay (but not
+regular, as it
+is not a domain). Indeed, we can project the associated variety
+$X = V(xy)$
+onto the affine line by adding the coordinates. This corresponds
+to the map
+\[ \mathbb{C}[z] \to \mathbb{C}[x,y]/(xy)  \]
+sending $z \to x+y$. This makes $\mathbb{C}[x,y]/(xy)$ into a
+free
+$\mathbb{C}[z]$-module of rank two (with generators $1, x$), as
+one can check.
+So by the previous result (strictly speaking, its extension to
+non-domains),
+the ring in question is Cohen-Macaulay.
+\end{example}
+
+\begin{example}
+$R=\mathbb{C}[x,y,z]/(xy, xz)$ is not Cohen-Macaulay (at the
+origin). The associated variety looks
+geometrically like the union of the plane $x=0$ and the line
+$y=z=0$ in affine
+3-space. Here there are two components of different dimensions
+intersecting.
+Let's choose a regular sequence (that is, regular after
+localization at the
+origin). The dimension at the origin is clearly two because of
+the plane.
+First, we need a nonzerodivisor in this ring, which vanishes at
+the origin, say
+$ x+y+z$. (\textbf{Exercise:} Check this.) When we quotient by
+this, we get
+\[ S=\mathbb{C}[x,y,z]/(xy,xz, x+y+z) = \mathbb{C}[y,z]/(
+(y+z)y, (y+z)z). \]
+
+The claim is that $S$ localized at the ideal corresponding to
+$(0,0)$ has depth
+zero. We have $y+z \neq 0$, which is killed by both $y,z$, and
+hence by the
+maximal ideal at zero. In particular the maximal ideal at zero
+is an associated
+prime, which implies the claim about the depth.
+\end{example}
+
+As it happens, a Cohen-Macaulay variety is always
+equidimensional. The rough
+reason is that each irreducible piece puts an upper bound on the
+depth given by
+the dimension of the piece. If any piece is too small, the total
+depth will be
+too small.
+
+Anyway, we shall not say much more about Cohen-Macaulayness, but
+instead focus
+on understanding regular local rings. We want, for next time,
+to understand the relationship
+between depth and lengths of projective resolutions.
+We will prove:
+
+\begin{theorem}[Auslander-Buchsbaum formula] Let $(R,
+\mathfrak{m})$ be a
+noetherian local ring and $M$ a finite $R$-module. Suppose $M$
+has a finite
+projective resolution of length $d$, where $d$ is minimal.
+
+Then
+\[ d = \depth(R) - \depth(M).  \]
+\end{theorem}
+So in a sense, depth measures how far $M$ is from being a free
+module. If the
+depth is large, then you need a lot of projective modules to
+resolve $M$.
+\lecture{11/22}
+
+Last time we were talking about depth. Let's use this to
+reformulate a few
+definitions made earlier.
+
+\subsection{Reduced rings}
+Recall that a noetherian ring is \textbf{reduced} iff:
+\begin{enumerate}
+\item For any minimal prime $\mathfrak{p} \subset R$,
+$R_{\mathfrak{p}}$ is a
+field.
+\item Every associated prime of $R$ is minimal.
+\end{enumerate}
+
+Condition 1 can be reduced as follows. To say that
+$\mathfrak{p}\subset R$ is
+minimal is to say that it is zero-dimensional, and that is
+regular iff it is a
+field. So the first condition is that \emph{for every height
+zero prime,
+$R_{\mathfrak{p}}$ is regular.} For the second condition,
+$\mathfrak{p} \in
+\ass(R)$ iff $\mathfrak{p} \in \ass(R_{\mathfrak{p}})$, which is
+equivalent to
+$\depth R_{\mathfrak{p}} = 0$.
+
+Namely, the two conditions are:
+\begin{enumerate}
+\item For every height zero prime $\mathfrak{p} $,
+$R_{\mathfrak{p}}$ is
+regular.
+\item For every prime $\mathfrak{p}$ of height $>0$, $\depth
+R_{\mathfrak{p}} >
+0$.
+\end{enumerate}
+
+Condition two is always satisfied in a Cohen-Macaulay ring.
+
+\subsection{Serre's criterion again}
+
+Recall that
+\begin{definition}
+A noetherian ring is \textbf{normal} iff it is a finite direct
+product of
+integrally closed domains.
+\end{definition}
+
+In the homework, we showed:
+\begin{proposition}
+A reduced ring $R$ is normal iff
+\begin{enumerate}
+\item For every height one prime $\mathfrak{p}  \in \spec R$,
+$R_{\mathfrak{p}}$ is a DVR (i.e. regular).
+\item For every nonzerodivisor $x \in R$, every associated prime
+of $R/x$ is
+minimal.
+\end{enumerate}
+\end{proposition}
+(We had proved this for \emph{domains} earlier.)
+These conditions are equivalent to:
+\begin{enumerate}
+\item For every prime $\mathfrak{p}$ of height $\leq 1$,
+$R_{\mathfrak{p}} $ is regular.
+\item For every prime $\mathfrak{p}$ of height $\geq 1$,
+$\depth R_{\mathfrak{p}} \geq 1$ (necessary for reducedness)
+\item $\depth R_{\mathfrak{p}} \geq 2$ for $\mathfrak{p}$ not
+minimal over any
+principal ideal $(x)$ for $x$ a nonzerodivisor. Condition three
+is the last
+condition of the proposition as quotienting out by $x$ drops the
+depth by one.
+\end{enumerate}
+
+The first and third conditions imply the second. In particular,
+we find:
+
+\begin{theorem}[Serre's criterion] A noetherian ring is normal
+iff:
+\begin{enumerate}
+\item For every prime $\mathfrak{p}$ of height $\leq 1$,
+$R_{\mathfrak{p}} $ is regular.
+\item $\depth R_{\mathfrak{p}} \geq 2$ for $\mathfrak{p}$ not
+minimal over any
+principal ideal $(x)$ for $x$ a nonzerodivisor. \end{enumerate}
+\end{theorem}
+For a Cohen-Macaulay ring, the last condition is automatic, as
+the depth is the
+codimension.
+
+\subsection{Projective dimension}
+
+\newcommand{\pr}{\mathrm{pd}}
+Let $R$ be a commutative ring, $M$ an $R$-module.
+
+\begin{definition}
+The \textbf{projective dimension} of $M$ is the largest integer
+$n$ such that
+there exists  a module $N$ with
+\[ \ext^n(M,N) \neq 0.  \]
+(If no such $n,N$ exist, then we say that the projective
+dimension is $\infty$.)
+We write $\pr(M)$ for the projective dimension.
+\end{definition}
+
+\begin{remark}
+$\pr(M) = 0$ iff $M$ is projective. Indeed, we have seen that
+the $\ext$ groups
+$\ext^i(M,N), i >0$
+vanish always.
+\end{remark}
+
+If you wanted to compute the projective dimension, you could go
+as follows.
+Take any $M$. Choose a surjection $P \twoheadrightarrow M$ with
+$P$ projective;
+call the kernel $K$ and draw a short exact sequence
+\[ 0 \to K \to P \to M \to 0.  \]
+For any $R$-module $N$, we have a long exact sequence
+\[ \ext^{i-1}(P,N) \to \ext^{i-1}(K,N) \to \ext^i(M,N) \to
+\ext^i(P, N). \]
+If $i >0$, the right end vanishes; if $i >1$, the left end
+vanishes. So if $i
+>1$, this map $\ext^{i-1}(K,N) \to \ext^i(M,N)$ is an
+\emph{isomorphism}.
+
+Suppose that $\pr(K) = d \geq 0$. We find that
+$\ext^{i-1}(K,N)=0$ for $i-1
+> d$.
+This implies that $\ext^i(M,N) = 0$ for such $i > d+1$. In
+particular, $\pr(M)
+\leq d+1$.
+This argument is completely reversible if $d >0$.
+Then we see from these isomorphisms that
+\[ \boxed{\pr(M) = \pr(K)+1}, \quad \mathrm{unless} \ \pr(M)=0
+\]
+If $M$ is projective, the sequence $0 \to K \to P \to M \to 0$
+splits, and
+$\pr(K)=0$ too.
+
+The upshot is that \textbf{we can compute projective dimension
+by choosing a
+projective resolution.}
+\begin{proposition}
+Let $M$ be an $R$-module. Then $\pr(M) \leq n$ iff there exists
+a finite
+projective resolution of $M$ having $n+1$ terms,
+\[ 0 \to P_n \to \dots \to P_1 \to P_0 \to M \to 0.  \]
+\end{proposition}
+\begin{proof}
+Induction on $n$. When $n = 0$, $M$ is projective, and we can
+use the
+resolution $0 \to M \to M \to 0$.
+
+Suppose $\pr(M) \leq n$, where $n >0$. We can get a short exact
+sequence
+\[ 0 \to K \to P_0 \to M \to 0  \]
+with $P_0$ projective, so $\pr(K) \leq n-1$. The inductive
+hypothesis implies
+that there is a projective resolution of $K$ of length $\leq
+n-1$. We can
+splice this in with the short exact sequence to get a projective
+resolution of
+$M$ of length $n$.
+
+The argument is reversible. Choose any projective resolution
+\[  0 \to P_n \to \dots \to P_1 \to P_0 \to M \to 0 \]
+and split into short exact sequences, and argue inductively.
+\end{proof}
+
+
+Let $\pr(M) = n$. Choose any projective resolution $\dots \to
+P_2 \to P_1 \to
+P_0 \to M$. Choose $K_i = \ker(P_i \to P_{i-1})$ for each $i$.
+Then there is a short exact sequence $0 \to K_0 \to P_0 \to M
+\to 0$. Moreover,
+there are exact sequences
+\[ 0 \to K_i \to P_i \to K_{i-1} \to 0  \]
+for each $i$. From these, we see that the projective dimensions
+of the $K_i$
+drop by one as $i$ increments. So $K_{n-1}$ is projective if
+$\pr(M) = n$ as
+$\pr(K_{n-1})=0$. In particular, we can get a projective
+resolution
+\[ 0 \to K_{n-1} \to P_{n-1} \to \dots \to P_0 \to M \to 0  \]
+which is of length $n$.
+In particular, if you ever start trying to write a projective
+resolution of
+$M$, you can stop after going out $n$ terms, because the kernels
+will become
+projective.
+
+
+\subsection{Minimal projective resolutions}
+Usually projective resolutions are non-unique. But sometimes
+they kind of are.
+Let $(R, \mathfrak{m})$ be a local noetherian ring, $M$ a
+finitely generated $R$-module.
+
+\begin{definition}
+A projective resolution $P_* \to M$ of finitely generated
+modules is \textbf{minimal} if for each $i$, the
+induced map $P_i \otimes R/\mathfrak{m} \to P_{i-1} \otimes
+R/\mathfrak{m}$ is
+zero, and same for $P_0 \otimes R/\mathfrak{m} \to
+M/\mathfrak{m}M$.
+\end{definition}
+
+This is equivalent to saying that for each $i$, the map $P_i
+\to\ker(P_{i-1}
+\to P_{i-2})$ is an isomorphism modulo $\mathfrak{m}$.
+
+\begin{proposition}
+Every $M$ (over a local noetherian ring) has a minimal
+projective resolution.
+\end{proposition}
+\begin{proof}
+Start with a module $M$. Then $M/\mathfrak{m}M$ is a
+finite-dimensional vector
+space over $R/\mathfrak{m}$, of dimension say $d_0$. We can
+choose a basis for that vector space, which
+we can lift to $M$. That determines a map of free modules
+\[ R^{d_0} \to M,  \]
+which is a surjection by Nakayama's lemma. It is by construction
+an
+isomorphism modulo $\mathfrak{m}$. Then define $K =
+\ker(R^{d_0}\to M)$; this
+is finitely generated by noetherianness, and we
+can do the same thing for $K$, and repeat to get a map $R^{d_1}
+\twoheadrightarrow K$ which is an isomorphism modulo
+$\mathfrak{m}$. Then
+\[ R^{d_1} \to R^{d_0} \to M \to 0  \]
+is exact, and minimal; we can continue this by the same
+procedure.
+\end{proof}
+
+
+\begin{proposition}
+Minimal projective resolutions are unique up to isomorphism.
+\end{proposition}
+\begin{proof}
+Suppose we have one minimal projective resolution:
+\[ \dots \to P_2 \to P_1 \to P_0 \to M \to 0  \]
+and another:
+\[ \dots \to Q_2 \to Q _1 \to Q_0 \to M \to 0  .\]
+There is always a map of projective resolutions $P_* \to Q_*$ by
+general
+homological algebra. There is, equivalently, a commutative
+diagram
+\[\xymatrix{ \dots \ar[d] \ar[r] & P_2\ar[d] \ar[r] & P_1
+\ar[d]\ar[r]
+& P_0 \ar[d] \ar[r] & M \ar[d]^{\mathrm{id}} \ar[r] & 0 \\
+ \dots  \ar[r] &   Q_2  \ar[r] &  Q_1   \ar[r]
+&  Q_0   \ar[r] &   M  \ar[r] &   0 } \]
+If both resolutions are minimal, the claim is that this map is
+an isomorphism.
+That is, $\phi_i: P_i \to Q_i$ is an isomorphism, for each $i$.
+
+To see this, note that $P_i, Q_i$ are finite free
+$R$-modules.\footnote{We are
+using the fact that a finite projective module over a local ring
+is
+\emph{free}.} So $\phi_i$ is an isomorphism iff $\phi_i$ is an
+isomorphism
+modulo the maximal ideal, i.e. if
+\[ P_i/\mathfrak{m}P_i \to Q_i/\mathfrak{m}Q_i  \]
+is an isomorphism. Indeed, if $\phi_i$ is an isomorphism, then
+its tensor
+product with $R/\mathfrak{m}$ obviously is an isomorphism.
+Conversely suppose
+that the reductions mod $\mathfrak{m}$ make an isomorphism. Then
+the ranks of
+$P_i, Q_i$ are the same, and $\phi_i$ is an $n$-by-$n$ matrix
+whose determinant
+is not in the maximal ideal, so is invertible. This means that
+$\phi_i$ is invertible by the
+usual formula for the inverse matrix.
+
+So we are to check that $P_i / \mathfrak{m}P_i \to Q_i /
+\mathfrak{m}Q_i$ is an
+isomorphism for each $i$. This is equivalent to the assertion
+that
+\[ (Q_i/\mathfrak{m}Q_i)^{\vee} \to
+(P_i/\mathfrak{m}P_i)^{\vee}\]
+is an isomorphism. But this is the map
+\[ \hom_R(Q_i, R/\mathfrak{m}) \to \hom_R(P_i, R/\mathfrak{m}).
+\]
+If we look at the chain complexes $\hom(P_*, R/\mathfrak{m}),
+\hom(Q_*,
+R/\mathfrak{m})$, the cohomologies
+compute the $\ext$ groups of $(M, R/\mathfrak{m})$. But all the
+maps in this
+chain complex are zero because the resolution is minimal, and we
+have that the
+image of $P_i$ is contained in $\mathfrak{m}P_{i-1}$ (ditto for
+$Q_i$). So the
+cohomologies are just the individual terms, and the maps
+$ \hom_R(Q_i, R/\mathfrak{m}) \to \hom_R(P_i, R/\mathfrak{m})$
+correspond to
+the identities on $\ext^i(M, R/\mathfrak{m})$. So these are
+isomorphisms.\footnote{We are sweeping under the rug the
+statement that $\ext$
+can be computed via \emph{any} projective resolution. More
+precisely, if you
+take any two projective resolutions, and take the induced maps
+between the
+projective resolutions, hom them into $R/\mathfrak{m}$, then the
+maps on
+cohomology are isomorphisms.}
+\end{proof}
+
+
+\begin{corollary}
+If $\dots \to P_2 \to P_1 \to P_0 \to M$ is a minimal projective
+resolution of
+$M$, then the ranks $\mathrm{rank}(P_i)$ are well-defined (i.e.
+don't depend
+on the choice of the minimal resolution).
+\end{corollary}
+\begin{proof}
+Immediate from the proposition. In fact, the ranks are the
+dimensions (as
+$R/\mathfrak{m}$-vector spaces) of $\ext^i(M, R/\mathfrak{m})$.
+\end{proof}
+
+Let us advertise the goal for next time. We would like to prove
+Serre's
+criterion for regularity.
+
+\begin{theorem}
+Let $(R, \mathfrak{m})$ be a local noetherian ring. Then $R$ is
+regular iff
+$R/\mathfrak{m}$ has finite projective dimension. In this case,
+$\pr(R/\mathfrak{m}) = \dim R$.
+\end{theorem}
+\lecture{11/24}
+
+\subsection{The Auslander-Buchsbaum formula}
+
+Today, we shall start by proving:
+
+\begin{theorem}[Auslander-Buschsbaum formula]
+Let $R$ be a local noetherian ring, $M$ a f.g. $R$-module of
+finite
+projective dimension. If $\pr(R) <
+\infty$, then $\pr(M) = \depth(R) - \depth(M)$.
+\end{theorem}
+
+\begin{proof}
+Induction on $\pr(M)$. When $\pr(M)=0$, then $M$ is projective,
+so isomorphic
+to $R^n$ for some $n$. Thus $\depth(M) = \depth(R)$.
+
+Assume $\pr(M) > 0$.
+Choose a surjection $P \twoheadrightarrow M$ and write an exact
+sequence
+\[ 0 \to K \to P \to M \to 0,  \]
+where $\pr(K) = \pr(M)-1$. We also know by induction that
+\[ \pr(K) = \depth R - \depth(K).  \]
+What we want to prove is that
+\[ \depth R - \depth M = \pr(M) = \pr(K)+1.  \]
+This is equivalent to wanting know that $\depth(K) = \depth (M)
++1$.
+In general, this may not be true, though, but we will prove it
+under
+minimality hypotheses.
+
+Without loss of generality, we can choose that $P$ is
+\emph{minimal}, i.e.
+becomes an isomorphism modulo the maximal ideal $\mathfrak{m}$.
+This means
+that the rank of $P$ is $\dim M/\mathfrak{m}M$.
+So $K = 0$ iff $P \to M$ is an isomorphism; we've assumed that
+$M$ is not
+free, so $K \neq 0$.
+
+Recall that the depth of $M$ is the smallest value $i$ such
+that$\ext^i(R/\mathfrak{m}, M) \neq 0$. So we should look at the long exact
+sequence from the above short exact sequence:
+\[ \ext^i(R/\mathfrak{m}, P) \to  \ext^i(R/\mathfrak{m},M)  \to
+\ext^{i+1}(R/\mathfrak{m}, K) \to \ext^{i+1}(R/\mathfrak{m},
+P).\]
+Now $P$ is just a direct sum of copies of $R$, so
+$\ext^i(R/\mathfrak{m}, P)$
+and $\ext^{i+1}(R/\mathfrak{m}, P)$ are zero if $i+1< \depth R$.
+In
+particular, if $i+1< \depth R$, then the map $
+\ext^i(R/\mathfrak{m},M) \to
+\ext^{i+1}(R/\mathfrak{m}, K) $ is an isomorphism.
+So we find that $\depth M + 1 = \depth K$ in this case.
+
+We have seen that \emph{if $\depth K < \depth R$, then } by
+taking $i$ over
+all integers $< \depth K$, we find that
+\[ \ext^{i}(R/\mathfrak{m}, M) = \begin{cases}
+0 & \mathrm{if \ } i+1 < \depth K \\
+\ext^{i+1}(R/\mathfrak{m},K) & \mathrm{if \ } i+1 = \depth K
+\end{cases}. \]
+In particular, we are \textbf{done} unless $\depth K \geq \depth
+R$.
+By the inductive hypothesis, this is equivalent to saying that
+$K$ is
+projective.
+
+So let us consider the case where $K$ is projective, i.e.
+$\pr(M)=1$.
+We want to show that $\depth M = d-1$ if $d = \depth R$.
+We need a
+slightly different argument in this case. Let $d = \depth(R) =
+\depth (P) =
+\depth(K)$ since $P,K$ are free. We have a short exact sequence
+\[ 0 \to K \to P \to M \to 0  \]
+and a long exact sequence of $\ext$ groups:
+\[ 0 \to \ext^{d-1}(R/\mathfrak{m}, M) \to
+\ext^d(R/\mathfrak{m}, K) \to \ext^d(R/\mathfrak{m}, P) .\]
+We know that $\ext^d(R/\mathfrak{m}, K)$ is nonzero as $K$ is
+free and $R$ has
+depth $d$. However, $\ext^i(R/\mathfrak{m}, K) =
+\ext^i(R/\mathfrak{m}, P)=0$
+for $i<d$. This implies that $\ext^{i-1}(R/\mathfrak{m}, M)=0$
+for $i<d$.
+
+We will show:
+\begin{quote}
+The map $\ext^d(R/\mathfrak{m}, K) \to \ext^{d}(R/\mathfrak{m},
+P)$ is zero.
+\end{quote}
+This will imply that the depth of $M$ is \emph{precisely} $d-1$.
+This is because the matrix $K \to P$ is given by multiplication
+by a matrix
+with coefficients in $\mathfrak{m}$ as $K/\mathfrak{m}K \to
+P/\mathfrak{m}P$
+is zero. In particular, the map on the $\ext$ groups is zero,
+because it is
+annihilated by $\mathfrak{m}$.
+\end{proof}
+
+\begin{example}
+Let $R = \mathbb{C}[x_1, \dots, x_n]/\mathfrak{p}$ for
+$\mathfrak{p}$ prime.
+Choose an injection $R' \to R$ where $R' = \mathbb{C}[y_1,
+\dots, y_m]$ and
+$R$ is a f.g. $R'$-module. This exists by the Noether
+normalization lemma.
+
+We wanted to show:
+
+\begin{theorem}
+$R$ is Cohen-Macaulay\footnote{That is, its localizations at any
+prime---or,
+though we haven't proved yet, at any maximal ideal---are.} iff
+$R$ is a
+projective $R'$-module.
+\end{theorem}
+
+We shall use the fact that projectiveness can be tested locally
+at every
+maximal ideal.
+
+\begin{proof}
+Choose a maximal ideal $\mathfrak{m} \subset R'$. We will show
+that
+$R_{\mathfrak{m}}$ is a free $R'_{\mathfrak{m}}$-module via the
+injection of
+rings $R'_{\mathfrak{m}} \hookrightarrow R_{\mathfrak{m}}$
+(where
+$R_{\mathfrak{m}}$ is defined as $R$ localized at the
+multiplicative subset
+of elements of $R' - \mathfrak{m}$) at each $\mathfrak{m}$ iff
+Cohen-Macaulayness holds.
+
+Now $R'_{\mathfrak{m}}$ is a regular local ring, so its depth is
+$m$. By the
+Auslander-Buchsbaum formula, $R_{\mathfrak{m}}$ is projective as
+an
+$R'_{\mathfrak{m}}$-module iff
+\[ \depth_{R'_{\mathfrak{m}}} R_{\mathfrak{m}} = m.  \]
+Now $R$ is a projective module iff the above condition holds for
+all maximal
+ideals $\mathfrak{m} \subset R'$. The claim is that this is
+equivalent to
+saying that $\depth R_{\mathfrak{n}} = m = \dim
+R_{\mathfrak{n}}$
+for every maximal ideal $\mathfrak{n} \subset R$ (depth over
+$R$!).
+
+These two statements are almost the same, but one is about the
+depth of $R$ as
+an $R$-module, and another as an $R'$-module.
+
+\begin{quote}
+Issue: There may be several maximal ideals of $R$ lying over the
+maximal ideal
+$\mathfrak{m} \subset R'$.
+\end{quote}
+
+The problem is that $R_{\mathfrak{m}}$ is not generally local,
+and not
+generally equal to $R_{\mathfrak{n}}$ if $\mathfrak{n}$ lies
+over
+$\mathfrak{m}$. Fortunately, depth makes sense even over
+semi-local rings
+(rings with finitely many maximal ideals).
+
+Let us just assume that this does not occur, though. Let us
+assume that
+$R_{\mathfrak{m}}$ is a local ring for every maximal ideal
+$\mathfrak{m}
+\subset R$. Then we are reduced to showing that if $S =
+R_{\mathfrak{m}}$,
+then the depth of $S$ as an $R'_{\mathfrak{m}}$-module is the
+same as the
+depth as an $R_{\mathfrak{m}}$-module. That is, the depth
+doesn't depend too
+much on the ring, since $R'_{\mathfrak{m}}, R_{\mathfrak{m}}$
+are ``pretty
+close.'' If you believe this, then you believe the theorem, by
+the first
+paragraph.
+
+
+Let's prove this claim in a more general form:
+
+\begin{proposition}
+Let $\phi: S' \to S$ be a local\footnote{I.e. $\phi$ sends
+non-units into
+non-units.} map of local noetherian rings such that $S$ is a
+f.g.
+$S'$-module. Then, for any finitely generated $S$-module $M$,
+\[ \depth_S M = \depth_{S'} M.  \]
+\end{proposition}
+With this, the theorem will be proved.
+
+\begin{remark}
+This result generalizes to the semi-local case, which is how
+one side-steps
+the issue above.
+\end{remark}
+
+\begin{proof}
+By induction on $\depth_{S'} M$. There are two cases.
+
+Let $\mathfrak{m}', \mathfrak{m}$ be the maximal ideals of $S',
+S$.
+If $\depth_{S'}(M) >0$, then there is an element $a$ in
+$\mathfrak{m}'$ such
+that
+\[ M \stackrel{\phi(a)}{\to} M \]
+is injective. Now $\phi(a) \in \mathfrak{m}$. So $\phi(a)$ is a
+nonzerodivisor, and we have an exact sequence
+\[ 0 \to M \stackrel{\phi(a)}{\to} M \to M/\phi(a) M \to 0.  \]
+Thus we find
+\[ \depth_{S} M > 0 . \]
+Moreover, we find that $\depth_S M = \depth_S (M/\phi(a) M) +1$
+and
+$\depth_{S'} M = \depth_{S'}(M/\phi(a) M))+1$. The inductive
+hypothesis now
+tells us that
+\[ \depth_S M = \depth_{S'}M.  \]
+
+The hard case is where $\depth_{S'} M = 0$. We need to show that
+this is
+equivalent to $\depth_{S} M = 0$. So we know at first that
+$\mathfrak{m}' \in
+\ass(M)$. That is, there is an element $x \in M$ such that
+$\ann_{S'}(x) =
+\mathfrak{m}'$.
+Now $\ann_S(x) \subsetneq S$ and contains $\mathfrak{m}' S$.
+
+$Sx \subset M$ is a submodule, surjected onto by $S$ by the map
+$a \to ax$.
+This map actually, as we have seen, factors through
+$S/\mathfrak{m}' S$. Here
+$S$ is a finite $S'$-module, so $S/\mathfrak{m}'S$ is a finite
+$S'/\mathfrak{m}'$-module. In particular, it is a
+finite-dimensional vector space
+over a field. It is thus a local artinian ring. But $Sx$ is a
+module over this
+local artinian ring. It must have an associated prime, which is
+a maximal
+ideal in $S/\mathfrak{m}'S$. The only maximal ideal can be
+$\mathfrak{m}/\mathfrak{m}'S$. It follows that $\mathfrak{m}
+\in\ass(Sx)
+\subset \ass(M)$.
+
+In particular, $\depth_S M = 0$ too, and we are done.
+\end{proof}
+
+\end{proof}
+\end{example}

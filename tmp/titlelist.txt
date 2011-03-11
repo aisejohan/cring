@@ -14,5 +14,6 @@ Differentials and smoothness
 Linear algebra over rings
 Homological Algebra
 Flatness revisited
+Homological theory of local rings
 \'Etale, unramified, and smooth morphisms
 GNU Free Documentation License
