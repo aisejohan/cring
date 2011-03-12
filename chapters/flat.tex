@@ -74,6 +74,26 @@ as the exactness of a certain (uninteresting) complex.
 The direct sum of a flat module and a faithfully flat module is faithfully flat.
 \end{exercise} 
 
+
+From the above result, we can get an important example of a faithfully flat
+algebra over a ring.
+\begin{example} 
+Let $R$ be a commutative ring, and $\left\{f_i\right\}$ a finite set of
+elements that generate the unit ideal in $R$ (or equivalently, the basic open
+sets $D(f_i) = \spec R_{f_i}$ form a covering of $\spec R$). 
+Then the algebra $\prod R_{f_i}$ is faithfully flat over $R$. Indeed, as a
+product of localizations, it is certainly flat.
+
+So by \cref{easyffcriterion}, we are left with showing that if $M$ is any
+$R$-module and $M_{f_i} =0 $ for all $i$, then $M = 0$. 
+Fix $m \in M$, and consider the ideal $\ann(m)$ of elements annihilating $m$.
+Since $m$ maps to zero in each localization $M_{f_i}$, there is a power of
+$f_i$ in $\ann(m)$ for each $i$. 
+This easily implies that $\ann(m) = R$, so $m=0$. (We used the fact that if the
+$\left\{f_i\right\}$ generate the unit ideal, so do $\left\{f_i^N\right\}$ for
+any $N \in \mathbb{Z}_{\geq 0}$.)
+\end{example} 
+
 A functor $F$ between two categories is said to be \textbf{faithful} if the
 induced map on the hom-sets $\hom(x,y) \to \hom(Fx, Fy)$ is always injective.
 The following result explains the use of the term ``faithful.''
