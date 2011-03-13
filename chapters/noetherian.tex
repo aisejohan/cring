@@ -607,6 +607,23 @@ zerodivisors, then $I$ is contained in the union $\bigcup_{\mathfrak{p} \in \ass
 \cref{assmfinite}, so prime avoidance implies $I$ is contained one of these
 primes.
 \end{proof} 
+
+
+\begin{exercise} 
+For every module $M$ over any (not necessarily noetherian) ring $R$,
+the set of $M$-zerodivisors$\mathcal{Z}(M)$ is a union of prime ideals. In general, there is an easy
+ characterization of sets $Z$ which are a union of primes: it is exactly when
+ $R\smallsetminus Z$ is a \emph{saturated multiplicative set}. This is Kaplansky's
+ Theorem 2.
+ \begin{definition}
+   A multiplicative set $S\neq \varnothing$ is a \emph{saturated multiplicative set} if
+   for all $a,b\in R$, $a,b\in S$ if and only if $ab\in S$. (``multiplicative set'' just
+   means the ``if'' part)
+ \end{definition}
+ To see that $\mathcal{Z}(M)$ is a union of primes, just verify that its complement is a saturated
+ multiplicative set.
+\end{exercise}
+
 \subsection{Localization and $\ass(M)$}
 
 It turns out to be extremely convenient that the construction $M  \to \ass(M)$
@@ -1404,3 +1421,61 @@ $R$-module), then $S$ is artinian.
 Let $M$ be an artinian module over a commutative ring $R$, $f: M \to M$ an \emph{injective} homomorphism.
 Show that $f$ is surjective, hence an isomorphism. 
 \end{exercise} 
+
+
+\subsection{Vista: zero-dimensional non-noetherian rings}
+ \begin{definition}[von Neumann]
+   An element $a\in R$ is called \emph{von Neumann regular} if there is some $x\in R$
+   such that $a=axa$.
+ \end{definition}
+ \begin{definition}[McCoy]
+   A element $a\in R$ is \emph{$\pi$-regular} if some power of $a$ is von Neumann
+   regular.
+ \end{definition}
+ \begin{definition}
+   A element $a\in R$ is \emph{strongly $\pi$-regular} (in the commutative case)
+   if the chain $aR\supseteq a^2R\supseteq a^3R\supseteq \cdots$ stabilizes.
+ \end{definition}
+ A ring $R$ is von Neumann regular (resp.\ (strongly) $\pi$-regular) if every element of
+ $R$ is.
+
+ \begin{theorem}[5.2]
+   For a commutative ring $R$, the following are equivalent.
+   \begin{enumerate}
+     \item $\dim R=0$.
+     \item $R$ is rad-nil (i.e. the Jacobson radical $J(R)$ is the nilradical ) and $R/\rad R$ is von Neumann regular.
+     \item $R$ is strongly $\pi$-regular.
+     \item $R$ is $\pi$-regular.
+
+     \item[] \hspace{-7ex} And any one of these implies
+     \item Any non-zero-divisor is a unit.
+   \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+   $1\Rightarrow 2\Rightarrow 3\Rightarrow 4 \Rightarrow 1$ and $4\Rightarrow 5$. We will
+   not do $1\Rightarrow 2\Rightarrow 3$ here.
+
+   ($3\Rightarrow 4$) Given $a\in R$, there is some $n$ such that $a^n R = a^{n+1}
+   R=a^{2n}R$, which implies that $a^n = a^n x a^n$ for some $x$.
+
+   ($4\Rightarrow 1$) Is $\mathfrak{p}$ maximal? Let $a\not\in \mathfrak{p}$.
+	Since $a$ is $\pi$-regular, we
+   have $a^n=a^{2n}x$, so $a^n(1-a^nx)=0$, so $1-a^nx\in \mathfrak{p}$. It follows that $a$ has an
+   inverse mod $\mathfrak{p}$.
+
+   ($4\Rightarrow 5$) Using $1-a^nx=0$, we get an inverse for $a$.
+ \end{proof}
+ \begin{example}
+   Any local rad-nil ring is zero dimensional, since $2$ holds.
+   In particular, for a ring $S$ and maximal ideal $\mathfrak{m}$,
+	$R=S/\mathfrak{m}^n$ is zero dimensional
+   because it is a rad-nil local ring.
+ \end{example}
+ \begin{example}[Split-Null Extension]
+   For a ring $A$ and $A$-module $M$, let $R=A\oplus M$
+   with the multiplication $(a,m)(a',m')=(aa',am'+a'm)$ (i.e.\ take the multiplication on
+   $M$ to be zero). In $R$, $M$ is an ideal of square zero. ($A$ is called a
+   \emph{retract} of $R$ because it sits in $R$ and can be recovered by quotienting by
+   some complement.) If $A$ is a field, then $R$ is a rad-nil local ring, with maximal ideal $M$.
+ \end{example}
+
