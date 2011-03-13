@@ -809,13 +809,15 @@ sequences of the form $M' \to M \to M'' \to 0$, i.e. $F$ preserves cokernels.
 \end{enumerate}
 \end{definition} 
 
-The reader should note that the above definition can be recast using the more
-general notion of an \emph{abelian category,}  which axiomatizes much of the
+The reader should note that much of homological algebra can be developed using the more
+general setting of an \emph{abelian category,}  which axiomatizes much of the
 standard properties of the category of modules over a ring. Such a
 generalization turns out to be necessary when many natural categories, such as
 the category of chain complexes or the category of sheaves on a topological
 space, are not naturally categories of modules.
 We do not go into this here, cf. \cite{Ma98}. 
+
+
 
 A functor  $F$	is exact if and only if it is both left and right exact.  
 This actually requires proof, though it is not hard. Namely, right-exactness implies that $F$
@@ -827,6 +829,17 @@ is a short exact sequence, then the kernel of the second map is equal to the
 image of the first; we have just seen that this is preserved under $F$.
 
 
+From this, one can check that left-exactness is equivalent to requiring that $F$ preserve
+finite limits (as an additive functor, $F$ automatically preserves products,
+and we have just seen that $F$ is left-exact iff it preserves kernels).
+Similarly, right-exactness is equivalent to requiring that $F$ preserve 
+finite colimits.
+So, in \emph{any}  category with finite limits and colimits, we can talk about
+right or left exactness of a functor, but the notion is used most often for
+categories with an additive structure (e.g. categories of modules over a ring).
+
+
+
 \begin{exercise} 
 Suppose whenever $0 \to A' \to A \to A'' \to 0$ is short exact, then $FA' \to
 FA \to FA'' \to 0$ is exact. Prove that $F$ is right-exact. So we get a
@@ -834,6 +847,9 @@ slightly weaker criterion for right-exactness.
 
 Do the same for left-exact functors.
 \end{exercise} 
+
+
+
 
 \subsection{Split exact sequences}
 

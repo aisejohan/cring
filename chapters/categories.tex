@@ -79,7 +79,7 @@ Since composition respects homotopy classes, this is well-defined.
 
 
 
-In general, the objects of a category don not have to form a set; they can
+In general, the objects of a category do not have to form a set; they can
 be too large for
 that.
 For instance, the collection of objects in $\mathbf{Sets}$ does not form a set.
@@ -310,8 +310,8 @@ topological spaces is not necessarily a homeomorphism.
 
 
 \begin{exercise}
-Work this out for yourselves. Suppose you have two functors $B_G \to
-\mathbf{Sets}$, i.e. $G$-sets. What's a natural transformation between them?
+ Suppose there are  two functors $B_G \to
+\mathbf{Sets}$, i.e. $G$-sets. What is a natural transformation between them?
 \end{exercise}
 
 Now we want to prove a theorem.
@@ -412,13 +412,14 @@ Then there is a unique morphism $f:S\rightarrow P$ such that $p_i f = f_i$.
 \begin{example} One of the benefits of this construction is that an actual
 category is not specified; thus when we take $\mathcal{C}$ to be Sets, we
 recover the cartesian product notion of sets, but if we take $\mathcal{C}$ to
-begroups, we achieve the regular notion of the product of groups (the reader is
+be groups, we achieve the regular notion of the product of groups (the reader is
 invited to check these statements). \end{example}
+
 \begin{exercise} If we reverse the arrows in the above construction, show that
 the universal property obtained (known as the ``coproduct'') characterizes
 disjoint unions in the category of sets and direct sums in the category of
 groups. Notice that on the level of sets, these two objects are different
-(henceshowing that the universal object is dependent on one's choice of
+(hence showing that the universal object is dependent on one's choice of
 category;
 another example of this will be given later). \end{exercise}
 This idea of a universal mapping property leads us to investigate this notion
@@ -1029,7 +1030,7 @@ however; it turns out that finite (co)completeness are equivalent to the
 properties above if one requires the finiteness condition for the existence of
 (co)products.
 
-
+\subsection{Continuous and cocontinuous functors}
 \subsection{Monomorphisms and epimorphisms}
 We now wish to characterize monomorphisms and epimorphisms in a purely
 categorical setting. In categories where there is an underlying set the notions
@@ -1056,6 +1057,21 @@ two epimorphisms.
 
 \begin{exercise} 
 Prove \cref{compositeofmono}. 
+\end{exercise} 
+
+
+\begin{exercise} 
+The notion of ``monomorphism'' can be detected using only the notions of
+fibered product and isomorphism. To see this, suppose $i: X \to Y$ is a
+monomorphism. Show that the diagonal
+\[ X \to X \times_Y X  \]
+is an isomorphism. (The diagonal map is such that the two
+projections to $X$ both give the identity.) Conversely, show that if $i: X \to Y$ is any morphism such
+that the above diagonal map is an isomorphism, then $i$ is a monomorphism.
+
+Deduce the following consequence: if $F: \mathcal{C} \to \mathcal{D}$ is a
+functor that commutes with fibered products, then $F $ takes monomorphisms to
+monomorphisms.
 \end{exercise} 
 
 
@@ -1140,7 +1156,11 @@ such that $\alpha$ pulls back to $\beta$ under $f$.
 In other words, $\beta = f^*(\alpha)$.
 \end{definition}
 
-
+So a functor has a universal object if and only if it is representable.
+Indeed, we just say that the identity $X \to X$ is universal for $h_X$, and
+conversely if $F$ has a universal object $(X, \alpha)$, then $F$ is naturally
+isomorphic to $h_X$ (the isomorphism $h_X \simeq F$ being given by pulling
+back $\alpha$ appropriately).
 
 
 The article \cite{Vi08} by Vistoli contains a good introduction to and several
@@ -1155,7 +1175,7 @@ This is a contravariant functor: if $f: S \to T$, there is a morphism
 
 This is a representable functor. Indeed, the universal object can be taken as
 the pair
-\[ * \left\{0,1\right\}, \left\{1\right\}).  \]
+\[ ( \left\{0,1\right\}, \left\{1\right\}).  \]
 
 To understand this, note that a subset $S;$ of $S$ determines its
 \emph{characteristic function} $\chi_{S'}: S \to \left\{0,1\right\}$ that
@@ -1188,9 +1208,77 @@ Eilenberg-MacLane spaces  $K(G,n)$.  See \cite{Ha02}.
 
 \subsection{Criteria for representability}
 
+\section{Adjoint functors}
+
+According to MacLane, ``Adjoint functors arise everywhere.'' We shall see
+several examples of adjoint functors in this book (such as $\hom$ and the
+tensor product). The fact that a functor has an adjoint often immediately
+implies useful properties about it (for instance, that it commutes with either
+limits or colimits); this will lead, for instance, to conceptual arguments
+behind the right-exactness of the tensor product later on.
 
 
+\subsection{Definition}
+
+Suppose $\mathcal{C}, \mathcal{D}$ are categories, and let $F: \mathcal{C} \to
+\mathcal{D}, G: \mathcal{D} \to \mathcal{C}$ be functors.
+
+\begin{definition} 
+$F, G$ are \textbf{adjoint functors} if there is a natural isomorphism
+\[ \hom_{\mathcal{D}}(Fc, d) \simeq \hom_{\mathcal{C}}(c, Gd)  \]
+whenever $c \in \mathcal{C}, d \in \mathcal{D}$. $F$ is said to be the
+\textbf{right adjoint,} and $G$ is the \textbf{left adjoint.}
+\end{definition} 
+
+Here ``natural'' means that the two quantities are supposed to be considered
+as functors $\mathcal{C}^{op} \times \mathcal{D} \to \mathbf{Set}$.
+
+\begin{example} 
+There is a pair of functors between $\mathbf{Set}$ and $\mathbf{AbGrp}$. Here
+$F$ sends  a set $A$ to the free abelian group $\mathbb{Z}[A]$, while $G$ is
+the ``forgetful'' functor that sends an abelian group to its underlying set. 
+Then $F$ and $G$ are adjoints. That is, to give a group-homomorphism
+\[ \mathbb{Z}[A] \to G  \]
+for some abelian group $G$ 
+is the same as giving a map of \emph{sets}
+\[ A \to G.  \]
+This is precisely the defining property of the free abelian group.
+\end{example} 
 
 
-\add{Yoneda's lemma}
-\add{limits}
+\subsection{Adjunctions}
+
+The fact that two functors are adjoint is encoded by a simple set of algebraic
+data between them. 
+To see this, suppose $F: \mathcal{C} \to \mathcal{D}, G: \mathcal{D} \to \mathcal{C}$ are
+adjoint functors. 
+For any object $c \in \mathcal{C}$, we know that
+\[ \hom_{\mathcal{D}}(Fc, Fc) \simeq \hom_{\mathcal{C}}(c, GF c),  \]
+so that the identity morphism $Fc \to Fc$ corresponds to a map $c \to GFc$
+that is natural in $c$, or equivalently a natural
+transformation
+\[ \eta: 1_{\mathcal{C}} \to GF. \]
+Similarly, we get a natural transformation
+\[ \epsilon:  FG \to 1_{\mathcal{D}}  \]
+where the map $FGd \to d$ corresponds to the identity $Gd \to Gd$ under the
+adjoint correspondence.
+
+These natural transformations $\eta, \epsilon$ are not simply arbitrary. For
+instance, the natural transformation $F \circ \eta$ gives a natural
+transformation $F \circ \eta: F \to FGF$, while the natural transformation
+$\epsilon \circ F$ gives a natural transformation $FGF \to F$.
+
+\begin{lemma}  The composite natural transformation $F \to F$ given by
+$(\epsilon \circ F) \circ (F \circ \eta)$ is the identity. 
+\end{lemma} 
+\begin{proof}
+This is going to follow from naturality. \add{Proof}
+\begin{comment}
+First, given an object $c$, $(F \circ \eta)(c)$ is  the map $Fc \to FGF c$
+obtained by applying $F$ to the morphism $c \to GF c$. 
+
+Given an object $c$, $(\epsilon \circ F)(c)$ is the morphism $FGF c \to Fc$
+corresponding to the morphism $GF c \to GF c$ under the adjoint property.
+\end{comment}
+\end{proof} 
+
