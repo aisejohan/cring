@@ -429,7 +429,9 @@ the solutions in $\mathbb{Z}$.
 The moral is that solving an equation over $\mathbb{Z}_2$ is intermediate in
 difficulty between $\mathbb{Z}/2$ and $\mathbb{Z}$. Nonetheless, it turns out
 that solving an equation mod $\mathbb{Z}/2$ is very close to solving it over
-$\mathbb{Z}_2$, thanks to
+$\mathbb{Z}_2$, thanks to Hensel's lemma.
+
+\subsection{The result}
 
 \begin{theorem}[Hensel's Lemma]
 Let $R$ be a noetherian ring, $I \subset R$ an ideal. Let $f(X) \in R[X]$ be a
@@ -537,6 +539,45 @@ is a unique solution of $\left\{f_i(x) =0\right\}$ in $\hat{R}_I^n$ which lifts 
 \end{theorem} 
 The proof is the same idea: successive approximation, using the invertibility
 of $\Delta$. 
+
+\subsection{The classification of complete DVRs (characteristic zero)}
+Let $R$ be a complete DVR with maximal ideal $\mathfrak{m}$ and quotient field
+$F$.  We let $k:=R/\mathfrak{m}$; this is the \textbf{residue field} and is,
+e.g., the integers mod $p$ for the $p$-adic integers.
+
+The main result that we shall prove is the following:
+\begin{theorem} Suppose $k$ is of characteristic zero.  Then $R \simeq k[[X]]$, the power series ring in one variable, with respect to the usual discrete valuation on $k[[X]]$.
+\end{theorem}
+
+The ``usual discrete valuation'' on the power series ring is the order at zero.  Incidentally, this applies to the (non-complete) subring of $\mathbb{C}[[X]]$ consisting of power series that converge in some neighborhood of zero, which is the ring of germs of holomorphic functions at zero; the valuation again measures the zero at $z=0$. 
+
+
+To prove it (following \cite{Se79}), we need to introduce another concept.  A \textbf{system of representatives} is a set $S  \subset R$ such that the reduction map $S \to k$ is bijective.  A \textbf{uniformizer} is a generator of the maximal ideal $\mathfrak{m}$.  Then:
+
+\begin{proposition} If $S$ is a system of representatives and $\pi$ a uniformizer, we can write each $x \in R$ uniquely as
+\[ x=  \sum_{i=0}^\infty s_i \pi^i, \quad \mathrm{where} \ s_i \in S.\]
+\end{proposition}
+\begin{proof} 
+Given $x$, we can find by the definitions $s_0 \in S$ with $x-s_0 \in \pi R$.  Repeating, we can write ${x-s_0}\ {\pi} \in R$ as ${x-s_0}\ {\pi} - s_1 \in \pi R$, or $x - s_0 - s_1 \pi \in \pi^2 R$.  Repeat the process inductively and note that the differences $x - \sum_{i=0}^{n} s_i \pi^i \in \pi^{n+1}R$ tend to zero.
+
+In the $p$-adic numbers, we can take $\{0, \dots, p-1\}$ as a system of representatives, so we find each $p$-adic integer has a unique $p$-adic expansion $x = \sum_{i=0}^\infty x_i p^i$ for $x_i \in \{0, \dots, p-1\}$.
+\end{proof} 
+
+We now prove the first theorem.
+
+\begin{proof} 
+Note that $\mathbb{Z}-0 \subset R$ gets sent to nonzero elements in the residue field $k$, which is of characteristic zero.  This means that $\mathbb{Z}-0 \subset R$ consists of units, so $\mathbb{Q} \subset R$.
+
+Let $L \subset R$ be a subfield.  Then $L \simeq \overline{L} \subset k$; if $t \in k - \overline{ L}$, I claim that there is $L' \supset R$ containing $L$ with $t \in \overline{L'}$.
+
+If $t$ is transcendental, lift it to $T \in R$; then $T$ is transcendental over $L$ and is invertible in $R$, so we can take $L' := L(T)$.
+
+If the minimal polynomial of $t$ over $\overline{L}$ is $\overline{f}(X) \in k[X]$, we have $\overline{f}(t) = 0$.  Moreover, $\overline{f}'(t) \neq 0$ because these fields are of characteristic zero and all extensions are separable.
+So lift $\overline{f}(X)$ to $f(X) \in R[X]$; by Hensel lift $t$ to $u \in R$ with $f(u) = 0$.  Then $f$ is irreducible in $L[X]$ (otherwise we could reduce a factoring to get one of $\overline{f} \in \overline{L}[X]$), so $L[u] = L[X]/(f(X))$, which is a field $L'$.
+
+So if $K \subset R$ is the maximal subfield (use Zorn's lemma), this is our system of representatives by the above argument.
+\end{proof} 
+
 
 \section{Henselian rings}
 
