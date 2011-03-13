@@ -81,7 +81,8 @@ algebra over a ring.
 Let $R$ be a commutative ring, and $\left\{f_i\right\}$ a finite set of
 elements that generate the unit ideal in $R$ (or equivalently, the basic open
 sets $D(f_i) = \spec R_{f_i}$ form a covering of $\spec R$). 
-Then the algebra $\prod R_{f_i}$ is faithfully flat over $R$. Indeed, as a
+Then the algebra $\prod R_{f_i}$ is faithfully flat over $R$ (i.e., is so as a
+module). Indeed, as a
 product of localizations, it is certainly flat.
 
 So by \cref{easyffcriterion}, we are left with showing that if $M$ is any
@@ -372,6 +373,16 @@ In algebraic geometry, one can show that many properties of morphisms of
 \emph{schemes} allow for descent under faithfully flat base-change. See
 \cite{EGA}, volume IV-2.
 \end{exercise} 
+
+\section{Faithfully flat descent}
+
+Fix a ring $R$, and let $S$ be an $R$-algebra. Then there is a natural functor
+from $R$-modules to $S$-modules sending $N \mapsto S \otimes_R N$.
+In this section, we shall be interested in going in the opposite direction,
+or in characterizing the image of this functor.
+Namely, given an $S$-module, we want to ``descend'' to an $R$-module when
+possible; given a morphism of $S$-modules, we want to know when it comes from a
+morphism of $R$-modules by base change.
 
 \section{The $\tor$ functor}
  

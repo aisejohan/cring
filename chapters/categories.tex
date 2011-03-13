@@ -753,7 +753,7 @@ When $I$ is $\ast \rightrightarrows \ast$, the colimit is called the
 \textbf{coequalizer}.
 \end{definition}
 
-\begin{theorem}
+\begin{theorem} \label{coprodcoequalsufficeforcocomplete}
 If $\mathcal{C}$ has all coproducts and coequalizers, then it has all colimits.
 \end{theorem}
 
@@ -785,16 +785,18 @@ second map sends a factor
 
 \subsection{Limits}
 As in the example with pull-backs and push-outs and products and coproducts,
-onecan define a colimit by using the exact same universal property above
+one can define a limit by using the exact same universal property above
 just with
 all the arrows reversed.
+
 \begin{example} The product is an example of a limit where the indexing
-categoryis a small category $I$ with no morphisms other than the identity. This
+category is a small category $I$ with no morphisms other than the identity. This
 example
 shows the power of universal constructions; by looking at colimits and limits,
-awhole variety of seemingly unrelated mathematical constructions are shown
+a whole variety of seemingly unrelated mathematical constructions are shown
 to be
-in the same spirit.\end{example}
+in the same spirit.
+\end{example}
 
 \subsection{Filtered colimits}
 
@@ -890,6 +892,20 @@ only if there is a later $i''$ with maps $i \to i'', i' \to i''$ such that
 $a,b$ both map to the same thing in $F_{i''}$.
 
 
+One of the key properties of filtered colimits is that, in ``nice'' categories they commute with
+finite limits.
+
+\begin{proposition} 
+In the category of sets, filtered colimits and finite limits commute with each
+other.
+\end{proposition} 
+
+The reason this result is so important is that, as we shall see, it will imply
+that in categories such as the category of $R$-modules, filtered colimits
+preserve \emph{exactness}. 
+
+\add{proofs of these}
+
 \subsection{The initial object theorem}
 
 We now prove a fairly nontrivial result, due to Freyd. This gives a sufficient
@@ -913,7 +929,7 @@ our initial object to be a very small subobject of $A$.
 It is going to be so small as to guarantee the uniqueness condition of an
 initial object. To make it small, we equalize all endomorphisms.
 
-\begin{proposition}
+\begin{proposition} \label{weakinitial}
 If  $A$ is a weakly initial object in $\mathcal{C}$,
 then the equalizer of all endomorphisms $A \to A$ is initial for $\mathcal{C}$.
 \end{proposition}
@@ -961,36 +977,9 @@ i$ as maps $A' \to A$. But $i$ being a monomorphism, it follows that $si  =
 \end{proof}
 \end{proof}
 
-\subsection{Completeness and Cocompleteness}
-\begin{definition} A category $\mathcal{C}$ is said to be complete if for every
-functor $F:I\rightarrow \mathcal{C}$ where $I$ is a small category, the limit
-$\lim F$ exists. If all colimits exist, then $\mathcal{C}$ is said to be
-cocomplete. \end{definition}
-If a category is complete, various nice properties hold.
-\begin{theorem} If $\mathcal{C}$ is a complete category, the following
-conditions are true:
-\begin{enumerate}
-\item{all (finite) products exist}
-\item{all pull-backs exist}
-\item{there is a terminal object}
-\end{enumerate}
-\end{theorem}
-\begin{proof} The proof of the first two properties is trivial since they can
-all be expressed as limits; for the proof of the existence of a terminal
-object, consider the empty diagram $F:\emptyset \rightarrow \mathcal{C}$. Then
-the
-terminal object is just $\lim F$.
-\end{proof}
-
-Of course, if one dualizes everything we get a theorem about cocomplete
-categories which is proved in essentially the same manner. More is true
-however; it turns out that finite (co)completeness are equivalent to the
-properties above if one requires the finiteness condition for the existence of
-(co)products.
-
-
 \begin{theorem}[Freyd]
-Let $\mathcal{C}$ be a complete category. Then $\mathcal{C}$ has an initial
+Let $\mathcal{C}$ be a category admitting all small limits.\footnote{We shall
+later call such a category \textbf{complete}.} Then $\mathcal{C}$ has an initial
 object if and only if the following \textbf{solution set condition holds:}
 there is a set $\left\{X_i, i \in I\right\}$ of objects in $\mathcal{C}$ such
 that any $X \in \mathcal{C}$ can be mapped into by one of these.
@@ -1008,22 +997,67 @@ product $\prod X_i$ is weakly universal. Indeed, if $X \in \mathcal{C}$,
 choose some $i'$ and a morphism $X_{i'} \to X$ by the hypothesis. Then this map
 composed with the projection from the product gives a map  $\prod X_i \to
 X_{i'} \to X$.
+\cref{weakinitial} now implies that $\mathcal{C}$ has an initial object.
 \end{proof}
 
-\subsection{Monomorphisms and Epimorphisms}
+\subsection{Completeness and cocompleteness}
+\begin{definition}\label{completecat} A category $\mathcal{C}$ is said to be \textbf{complete} if for every
+functor $F:I\rightarrow \mathcal{C}$ where $I$ is a small category, the limit
+$\lim F$ exists (i.e. $\mathcal{C}$ has all small limits). If all colimits exist, then $\mathcal{C}$ is said to be
+\textbf{cocomplete}.
+\end{definition}
+
+If a category is complete, various nice properties hold.
+\begin{proposition} If $\mathcal{C}$ is a complete category, the following
+conditions are true:
+\begin{enumerate}
+\item{all (finite) products exist}
+\item{all pull-backs exist}
+\item{there is a terminal object}
+\end{enumerate}
+\end{proposition}
+\begin{proof} The proof of the first two properties is trivial since they can
+all be expressed as limits; for the proof of the existence of a terminal
+object, consider the empty diagram $F:\emptyset \rightarrow \mathcal{C}$. Then
+the
+terminal object is just $\lim F$.
+\end{proof}
+
+Of course, if one dualizes everything we get a theorem about cocomplete
+categories which is proved in essentially the same manner. More is true
+however; it turns out that finite (co)completeness are equivalent to the
+properties above if one requires the finiteness condition for the existence of
+(co)products.
+
+
+\subsection{Monomorphisms and epimorphisms}
 We now wish to characterize monomorphisms and epimorphisms in a purely
 categorical setting. In categories where there is an underlying set the notions
 of injectivity and surjectivity makes sense but in category theory, one
 does not
 in a sense have ``access'' to the internal structure of objects. In this light,
-we make the following definition
+we make the following definition.
+
 \begin{definition}
-A morphism $f:X\hookrightarrow Y$ is a monomorphism if for any two morphisms
+A morphism $f:X\hookrightarrow Y$ is a \textbf{monomorphism} if for any two morphisms
 $g_1:X'\rightarrow X$ and $g_2:X'\rightarrow X$, we have that $f g_1 = f g_2$
-implies $g_1=g_2$. A morphism $f:X\rightarrow Y$ is surjective if for any two
+implies $g_1=g_2$. A morphism $f:X\rightarrow Y$ is an \textbf{epimorphism} if for any two
 maps $g_1:Y\rightarrow Y'$ and $g_2:Y\rightarrow Y'$, we have that $g_1 f = g_2
 f$ implies $g_1 = g_2$.
 \end{definition}
+
+
+The reader can easily check:
+
+\begin{proposition}  \label{compositeofmono}
+The composite of two monomorphisms is a monomorphism, as is the composite of
+two epimorphisms.
+\end{proposition} 
+
+\begin{exercise} 
+Prove \cref{compositeofmono}. 
+\end{exercise} 
+
 
 \section{Yoneda's lemma}
 
@@ -1035,7 +1069,7 @@ category other than by considering maps into and out of it.
 We will see that essentially everything about $X \in \mathcal{C}$ can be
 recovered from these hom-sets.
 We will thus get an embedding of $\mathcal{C}$ into a category of functors.
-j
+
 \subsection{The functors $h_X$}
 
 We now use the structure of a category to construct hom functors.

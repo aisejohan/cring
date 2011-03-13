@@ -296,6 +296,64 @@ zerodivisors is a zerodivisor. It is, however, not necessarily true that the
 \emph{sum} of two zerodivisors is a zerodivisor.
 \end{exercise} 
 
+\subsection{Quotient rings}
+
+We next describe a procedure for producing new rings from old ones. 
+If $R$ is a ring and $I \subset R$ an ideal, then the quotient group $R/I$
+is a ring in its own right. If $a+I, b+I$ are two cosets, then the
+multiplication is $(a+I)(b+I) = ab + I$.  It is easy to check that this does
+not depend on the coset representatives $a,b$.
+
+As one easily checks, this becomes to a multiplication 
+\[ R/I \times R/I \to R/I  \] 
+which is commutative and associative, and 
+whose identity element is $1+I$.
+In particular, $R/I$ is a ring, under multiplication $(a+I)(b+I) = ab+I$. 
+\begin{definition} 
+$R/I$ is called the \textbf{quotient ring} by the ideal $I$.
+\end{definition} 
+
+The
+reduction map $\phi \colon R \to R/I$ is a ring-homomorphism with a
+\emph{universal
+property}.
+Namely, for any ring $B$, there is a map
+ \[ \hom(R/I, B) \to \hom(R, B)  \]
+ on the hom-sets
+ by composing with the ring-homomorphism $\phi$; this map is injective and the
+ image consists of all homomorphisms $R \to B$ which vanish on $I$.  
+Stated alternatively, to map out of $R/I$ (into some ring $B$) is the same thing as mapping out of
+$R$ while killing the ideal $I \subset R$.
+
+This is best thought out for oneself, but here is the detailed justification.
+The reason is that any map $R/I \to B$ pulls back to a map $R \to R/I \to B$
+which annihilates $I$ since $R \to R/I$ annihilates $I$. Conversely, if we have
+a map 
+\[ f: R \to B  \]
+killing $I$, then we can define $R/I \to B$ by sending $a+I$ to $f(a)$; this is
+uniquely defined since $f$ annihilates $I$.
+
+\begin{exercise} 
+ If $R$ is a commutative
+ring, an element $e \in R$ is said to be \textbf{idempotent} if $e^2 =
+e$. Define a covariant functor $\mathbf{Rings} \to \mathbf{Sets}$ sending a
+ring to its idempotents. Prove that it is corepresentable. (Answer: the
+corepresenting object is $\mathbb{Z}[X]/(X - X^2)$.)
+\end{exercise} 
+
+\begin{exercise} 
+Show that the functor assigning to each ring the set of elements annihilated
+by 2 is corepresentable. 
+\end{exercise} 
+
+\begin{exercise}
+If $I \subset J \subset R$, then $J/I$ is an ideal of $R/I$, and there is a
+canonical isomorphism
+\[ (R/I)/(J/I) \simeq R/J.  \]
+\end{exercise} 
+
+
+
 \section{Further examples}
 
 We now illustrate a few important examples of 
@@ -381,7 +439,6 @@ ideal $I$ of functions that have zeros (not necessarily simple) at $y_1, \dots,
 y_n$.  This ideal has unique factorization into the ideals of functions
 vanishing at $y_1$, functions vanishing at $y_2$, so on.  
 \end{example} 
-
 
 \subsection{Ideals and varieties}
 
@@ -561,65 +618,6 @@ get the coset $ax
 \end{definition} 
 
 
-\subsection{Quotient rings}
-We shall next see that when one quotients by an \emph{ideal}, one gets not
-merely a module but actually another \emph{ring.}
-
-
-If $R$ is a ring and $I \subset R$ an ideal, then $R/I$ is an $R$-module. The
-multiplication is $a(b+I) = ab + I$. 
-
-As one easily checks, this descends further to a multiplication 
-\[ R/I \times R/I \to R/I  \] such that there is a commutative diagram
-\[ \xymatrix{
-R \times R/I \ar[rd] \ar[rr] & &  R/I \\
-& R/I \times R/I \ar[ru] 
-}.\]
-In particular, $R/I$ is a ring, under multiplication $(a+I)(b+I) = ab+I$. 
-\begin{definition} 
-$R/I$ is called the \textbf{quotient ring} by the ideal $I$.
-\end{definition} 
-
-The
-reduction map $\phi \colon R \to R/I$ is a ring-homomorphism with a
-\emph{universal
-property}.
-Namely, for any ring $B$, there is a map
- \[ \hom(R/I, B) \to \hom(R, B)  \]
- on the hom-sets
- by composing with the ring-homomorphism $\phi$; this map is injective and the
- image consists of all homomorphisms $R \to B$ which vanish on $I$.  
-Stated alternatively, to map out of $R/I$ (into some ring $B$) is the same thing as mapping out of
-$R$ while killing the ideal $I \subset R$.
-
-This is best thought out for oneself, but here is the detailed justification.
-The reason is that any map $R/I \to B$ pulls back to a map $R \to R/I \to B$
-which annihilates $I$ since $R \to R/I$ annihilates $I$. Conversely, if we have
-a map 
-\[ f: R \to B  \]
-killing $I$, then we can define $R/I \to B$ by sending $a+I$ to $f(a)$; this is
-uniquely defined since $f$ annihilates $I$.
-
-\begin{exercise} 
- If $R$ is a commutative
-ring, an element $e \in R$ is said to be \textbf{idempotent} if $e^2 =
-e$. Define a covariant functor $\mathbf{Rings} \to \mathbf{Sets}$ sending a
-ring to its idempotents. Prove that it is corepresentable. (Answer: the
-corepresenting object is $\mathbb{Z}[X]/(X - X^2)$.)
-\end{exercise} 
-
-\begin{exercise} 
-Show that the functor assigning to each ring the set of elements annihilated
-by 2 is corepresentable. 
-\end{exercise} 
-
-\begin{exercise}
-If $I \subset J \subset R$, then $J/I$ is an ideal of $R/I$, and there is a
-canonical isomorphism
-\[ (R/I)/(J/I) \simeq R/J.  \]
-\end{exercise} 
-
-
 \subsection{The categorical structure on modules}
 So far, we have talked about modules, but we have not discussed morphisms
 between modules, and have yet to make the class of modules over a given ring
@@ -727,13 +725,31 @@ submodule of the direct product.
 \end{definition} 
 
 
-\begin{exercise} 
+\begin{exercise} \label{productcoproduct}
 The direct product is a product in the category of modules, and the direct sum
 is a coproduct.
 \end{exercise} 
 
-\add{filtered colimits}
-\add{more detail}
+\cref{productcoproduct} shows that the category of modules over a fixed
+commutative ring has products and coproducts. In fact, the category of modules
+is both complete and cocomplete (\cref{completecat}).
+To see this, it suffices to show that (by
+\cref{coprodcoequalsufficeforcocomplete} and its dual) that this category
+admits equalizers and coequalizers.
+
+The equalizer of two maps
+\[ M \stackrel{f,g}{\rightrightarrows} N  \]
+is easily checked to be the submodule of $M$ consisting of $m \in M$ such that
+$f(m) = g(m)$, or, in other words, the kernel of $f-g$. The coequalizer of these two maps is the quotient module of $N$
+by the submodule $\left\{f(m) - g(m), m \in M\right\}$, or, in other words,
+the cokernel of $f-g$.
+
+Thus:
+
+\begin{proposition} 
+If $R$ is a ring, the category of $R$-modules is complete and cocomplete.
+\end{proposition} 
+
 \subsection{Exactness}
 Finally, we introduce the notion of \emph{exactness}. 
 \begin{definition} \label{exactness}
