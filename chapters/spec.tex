@@ -921,6 +921,278 @@ Let $R$ be semi-local with maximal ideals $\mathfrak{m}_1,\dots,
 \add{proof}
 \end{proof} 
 
+\section{Nilpotent elements}
+
+\subsection{The radical of a ring}
+There is a useful corollary of the above analysis. This is not strictly about
+the $\spec$ of a ring, but it is of general interest in commutative algebra. 
+
+\begin{definition} 
+ $x \in R$ is called \textbf{nilpotent} if a power of $x$ is zero. The set of
+ nilpotent elements in $R$ is called the \textbf{radical} of $R$ and is denoted
+ $\rad(R)$ (which is an abuse of notation).
+\end{definition}
+
+The set of nilpotents is just the radical $\rad((0))$ of the zero ideal, so it
+is an ideal. It can vary greatly. 
+A domain clearly has no nonzero nilpotents. On the other hand, many rings do:
+
+\begin{example} 
+For any $n \geq 2$, the ring $\mathbb{Z}[X]/(X^n)$ has a nilpotent, namely $X$.
+The ideal of nilpotent elements is $(X)$.
+\end{example} 
+
+It is easy to see that a nilpotent must lie in any prime ideal. The converse
+isalso true by the previous analysis.
+As a corollary of it, we find in fact:
+
+\begin{corollary} \label{nilradicalisprimes}
+Let $R$ be a commutative ring. Then the set of nilpotent elements of $R$ is
+precisely $\bigcap_{\mathfrak{p} \in \spec R} \mathfrak{p}$.
+\end{corollary} 
+\begin{proof} 
+Apply \rref{radprimescontaining} to the zero ideal.
+\end{proof} 
+
+We now consider a few examples of nilpotent elements.
+\begin{example}[Nilpotents in polynomial rings]
+Let us now compute the nilpotent elements in the polynomial $R[x]$.
+The claim is that a polynomial $\sum_{m=0}^n a_m x^m \in R[x]$ is nilpotent if
+and only
+if all the coefficients $a_m \in R$ are nilpotent. That is, $\rad(R[x]) =
+(\rad(R))R[x]$.
+
+If $a_0,\ldots,a_n$ are nilpotent, then because the nilpotent
+elements form an ideal, $f=a_0+\cdots+a_nx^n$ is nilpotent. Conversely,
+if $f$ is nilpotent, then $f^m=0$ and thus $(a_nx^n)^m=0$. Thus $a_nx^n$
+is nilpotent, and because the nilpotent elements form an ideal, $f-a_nx^n$
+is nilpotent. By induction, $a_ix^i$ is nilpotent for all $i$, so that all
+$a_i$ are nilpotent.
+\end{example} 
+
+Before the next example, we need to define a new notion.
+We now define a power series ring intuitively in the same way they are used in
+calculus. In fact, we will use power series rings much the same way we used them
+in calculus; they will serve as keeping track of fine local data that the
+Zariski topology might ``miss'' due to its coarseness.
+\begin{definition} Let $R$ be a ring. The \textbf{power series ring} $R[[x]]$ is just the set of all
+expressions of the form $\sum_{i=0}^\infty c_i x^i$. The arithmetic for the
+power series ring will be done term by term formally (since we have no topology,
+we can't consider questions of convergence, though a natural topology can be
+defined making $R[[x]]$ the \emph{completion} of another ring, as we shall
+see later). \end{definition}
+
+
+
+
+\begin{example}[Nilpotence in power series rings]
+Let $R$ be  a ring such that $\rad(R)$ is a finitely generated ideal. (This is
+satisfied, e.g., if $R$ is \emph{noetherian}, cf. \rref{noetherian}.)
+Let us consider the question of how $\rad(R)$ and $\rad(R[[x]])$ are related.
+The claim is that
+\[ \rad(R[[x]]) = (\rad(R))R[[x]].  \]
+
+If $f\in R[[x]]$ is nilpotent, say with $f^n=0$, then
+certainly $a_0^n=0$, so that $a_0$ is nilpotent. Because the nilpotent elements
+form an ideal, we have that $f-a_0$ is also nilpotent, and hence by induction
+every coefficient of $f$ must be nilpotent in $R$. 
+For the converse, let $I =
+\rad(R)$. There
+exists an $N>0$ such that the ideal power $I^N  = 0$ by finite generation. 
+Thus if $f \in IR[[x]]$, then $f^N \in I^N R[[x]] = 0$.
+\end{example} 
+\begin{exercise} \label{nilpcriterion} 
+Prove that $x \in R$ is nilpotent if and only if the localization $R_x$ is the
+zero ring.
+\end{exercise} 
+
+\begin{exercise} 
+Construct an example where $\rad(R) R[[x]] \neq \rad(R[[x]])$. (Hint: consider
+$R = \mathbb{C}[X_1, X_2, X_3, \dots]/(X_1, X_2^2, X_3^3, \dots)$.)
+\end{exercise} 
+
+\subsection{Lifting idempotents}
+
+If $R$ is a ring, and $I \subset R$ a nilpotent ideal, then we want to think
+of $R/I$ as somehow close to $R$. For instance, the inclusion $\spec R/I
+\hookrightarrow \spec R$ is a homeomorphism, and one pictures that $\spec R$
+has some ``fuzz'' added (with the extra nilpotents in $I$) that is killed in
+$\spec R/I$.
+
+One manifestation of the ``closeness'' of $R$ and $R/I$ is the following
+result, which states that the idempotent elements\footnote{Recall that an
+element $e \in R$ is idempotent if $e^2 = e$.} of the two are in natural
+bijection.
+For convenience, we state it in additional generality (that is, for
+noncommutative rings).
+
+\begin{lemma}[Lifting idempotents]
+Suppose $I \subset R$ is a nilpotent two-sided ideal, for $R$ any\footnote{Not
+necessarily commutative.} ring. Let
+$\overline{e} \in R/I$ be an idempotent. Then there is an idempotent $e
+\in R$ which reduces to $\overline{e}$.
+\end{lemma} 
+
+Note that if $J$ is a two-sided ideal in a noncommutative ring, then so are the
+powers of $J$.
+
+\begin{proof} Let us first assume that $I^2 = 0$. 
+We can find $e_1 \in R$ which reduces to $e$, but $e_1$ is not necessarily
+idempotent.
+By replacing $R$ with $\mathbb{Z}[e_1]$ and $I$ with $\mathbb{Z}[e_1] \cap I$,
+we may assume that $R$ is in fact commutative. 	
+However, 
+\[ e_1^2 \in e_1 + I.  \]
+Suppose we want to modify $e_1$ by $i$ such that $e = e_1 + i$ is
+idempotent and $i \in I$; then $e$ will do as in the lemma. We would then
+necessarily have
+\[ e_1 + i = (e_1 + i)^2 = e_1^2 + 2e_1 i\quad \mathrm{as} \ I^2 =0 .  \]
+In particular, we must satisfy
+\[ i(1-2e_1) = e_1^2 - e_1  \in I. \]
+
+I claim that $1 - 2e_1 \in R$ is invertible, so that we can solve for $i \in I$. 
+However, $R$ is commutative. It thus suffices to check that $1 - 2e_1$ lies in
+no maximal ideal of $R$. But the image of $e_1$ in $R/\mathfrak{m}$ for any
+maximal ideal $\mathfrak{m} \subset R$ is either zero or one. So $1 - 2e_1$ has
+image either $1$ or $-1$ in $R/\mathfrak{m}$. Thus it is invertible. 
+
+This establishes the result when $I$ has zero square. In general, suppose $I^n
+= 0$. We have the sequence of noncommutative rings:
+\[ R \twoheadrightarrow R/I^{n-1} \twoheadrightarrow R/I^{n-2} \dots
+\twoheadrightarrow R/I. \]
+The kernel at each step is an ideal whose square is zero. Thus, we can use the
+lifting idempotents partial result proved above each step of the way and left
+$\overline{e}  \in R/I$ to some $e \in R$. 
+\end{proof} 
+
+
+While the above proof has the virtue of applying to noncommutative rings,
+there is a more conceptual argument for commutative rings. The idea is that
+idempotents in $A$ measure disconnections of $\spec A$.\footnote{More
+generally, in any \emph{ringed space} (a space with a sheaf of rings), the
+idempotents in the ring of global sections correspond to the disconnections of
+the topological space.} Since the topological space underlying $\spec A$ is
+unchanged when one quotients by nilpotents, idempotents are unaffected.
+We prove:
+
+\begin{proposition} If $X = \mathrm{Spec} \   A$, then there is a one-to-one
+correspondence between $\idem(A)$ and the open and closed subsets of $X$.
+\end{proposition}
+\begin{proof} Suppose $I$ is the radical of $(e)$ for an 
+an idempotent $e \in R$. We show that $V(I)$ is open and closed. Since $V$ is
+unaffected by passing to the radical, we will assume wlog that
+\[ I = (e).  \]
+
+I claim that $\spec R - V(I)$ is just $V(1-e) = V((1-e))$. This is a closed
+set, so proving this claim will imply that $V(I)$ is open.  Indeed,
+$V(e)=V((e))$ cannot intersect $V(1-e)$ because if
+\[ \mathfrak{p} \in V(e) \cap V(1-e),  \]
+then $e, 1-e \in \mathfrak{p}$, so $1 \in \mathfrak{p}$. This is a
+contradiction since $\mathfrak{p}$ is necessarily prime.
+
+Conversely, suppose that $\mathfrak{p} \in \spec R$ belongs to neither $V(e)$
+nor $V(1-e)$. Then $e \notin \mathfrak{p}$ and $1-e \notin \mathfrak{p}$. So
+the product
+\[ e(1-e)  = e-e^2 = 0  \]
+cannot lie in $\mathfrak{p}$. But necessarily $0 \in \mathfrak{p}$,
+contradiction. So $V(e) \cup V(1-e) = \spec R$. This implies the claim.
+
+Next, we show that if $V(I)$ is open, then $I$ is the radical of $(e)$ for an
+idempotent $e$. For this it is sufficient to  prove:
+
+\begin{lemma} 
+Let $I \subset R$ be such that $V(I) \subset \spec R$ is open. Then $I$
+is principal, generated by $(e)$ for some idempotent $e \in R$.
+\end{lemma} 
+\begin{proof} 
+Suppose that $\spec R - V(I) = V(J)$ for some ideal $J \subset R$. Then the
+intersection $V(I) \cap V(J) = V(I+J)$ is all of $R$, so $I+J$ cannot be a
+proper ideal (or it would be contained in a prime ideal). In particular, $I+J =
+R$. So we can write
+\[ 1 = x + y, \quad x \in I, y \in J.  \]
+
+Now $V(I) \cup V(J) = V(IJ) = \spec R$. This implies that every element of
+$IJ$  is nilpotent by the next lemma.
+\end{proof}
+\begin{lemma} 
+Suppose $V(X)=\spec R$ for $X \subset R$ an ideal. Then every element of $X$ is
+nilpotent.
+\end{lemma}
+\begin{proof} 
+Indeed, suppose $x \in X$ were non-nilpotent.  Then the ring $R_x$ is not the
+zero ring, so it has a prime ideal. The map $\spec R_x \to \spec R$ is, as
+discussed in class, a homeomorphism of $\spec R_x$ onto $D(x)$.  So $D(x)
+\subset \spec R$ (the collection of primes not containing $x$) is nonempty. In
+particular, there is $\mathfrak{p} \in \spec R$ with $x \notin \mathfrak{p}$,
+so $\mathfrak{p} \notin V(X)$. So $V(X) \neq \spec R$, contradiction.
+\end{proof} 
+
+Return to the proof of the main result.  We have shown that $IJ$ is nilpotent.  
+In particular, in the expression $x+y=1$ we had earlier, we have that $xy$ is
+nilpotent.  Say $(xy)^k = 0$. Then expand
+\[ 1 = (x+y)^{2k} = \sum_{i=0}^{2k} \binom{2k}{i}x^i y^{2k-i} = \sum' + \sum''  \]
+where $\sum'$ is the sum from $i=0$ to $i=k$ and $\sum''$ is the sum from
+$k+1$ to $2k$. Then $\sum' \sum'' = 0$ because in every term occurring in the
+expansion, a multiple of $x^k y^k$ occurs. Also, $\sum' \in I$ and $\sum'' \in
+J$ because $x \in I, y \in J$.
+
+All in all, we find that it is possible to write
+\[ 1 = x' + y', \quad x' \in I, y' \in J, \ x'y' = 0.  \]
+(We take $x' = \sum', y' = \sum''$.)
+Then $x'(1-x') = 0$ so $x' \in I$ is idempotent. Similarly $y' = 1-x'$ is. 
+We have that 
+\[ V(I) \subset V(x'), \quad V(J) \subset V(y')  \]
+and $V(x'), V(y')$ are complementary by the earlier arguments, so necessarily
+\[ V(I) = V(x'), \quad V(J) = V(y').  \]
+Since an ideal generated by an idempotent is automatically radical, it follows
+that:
+\[ I = (x'), \quad, J = (y').  \]
+\end{proof} 
+
+
+There are some useful applications of this in representation theory, because
+one can look for idempotents in endomorphism rings; these indicate whether a module can be decomposed as a direct sum into smaller parts.  Except, of course, that endomorphism rings aren't necessarily commutative and this proof breaks down.
+
+Thus we get:
+\begin{proposition} Let $A$ be a ring and $I$ a nilpotent ideal.  Then
+$Idem(A) \to Idem(A/I)$ is bijective.
+\end{proposition}
+\begin{proof} 
+Indeed, the topological spaces of $\mathrm{Spec} \   A$ and $\mathrm{Spec} \
+A/I$ are the same.   The result then follows from \cref{}.
+\end{proof} 
+
+
+\subsection{Units}
+Finally, we make a few remarks on \emph{units} modulo nilideals.
+It is a useful and frequently used trick that adding a nilpotent does not
+affectthe collection of units. This trick is essentially an algebraic version of
+the
+familiar ``geometric series;'' convergence questions do not appear thanks to
+nilpotence. 
+
+\begin{example} 
+Suppose $u$ is a unit and $v \in R$ is nilpotent; we show that $a+v$ is a unit.
+
+Suppose $ua=1$ and $v^m=0$ for some
+$m>1$. Then  $(u+v)\cdot a(1-av+(av)^2-\cdots\pm(av)^{m-1})=$
+$(1-(-av))(1+(-av)+(-av)^2+\cdots+(-av)^{m-1})=1-(-av)^m=1-0=1$, so $u+v$
+is a unit.
+\end{example} 
+
+
+
+
+So let $R$ be a ring, $I \subset R$ a nilpotent ideal \emph{of square zero}. 
+Let $R^*$ denote the group of units in $R$, as usual, and let $(R/I)^*$ denote
+the
+group of units in $R/I$.
+We have an exact sequence of abelian groups:
+\[ 0 \to I \to R^* \to (R/I)^* \to 0  \]
+where the second map is reduction and the first map sends $i \to 1+i$.
+The hypothesis that $I^2 = 0$ shows that the first map is a homomorphism.
+We should check that the last map is surjective. But if any $a \in R$ maps to a
+unit in $R/I$, it clearly can lie in no prime ideal of $R$, so is a unit itself.
 \section{Vista: sheaves on $\spec R$}
 
 \subsection{Presheaves}
@@ -945,7 +1217,12 @@ the restriction
 maps are morphisms of groups (resp. rings), then we say that
 $\mathcal{F}$ is a
 sheaf of groups (resp. rings). Often the restriction of an
-element $a\in U$ to a subset $W$ is denoted $a|_W$
+element $a\in U$ to a subset $W$ is denoted $a|_W$.
+
+A \textbf{morphism} of presheaves $\mathcal{F} \to \mathcal{G}$ is a
+collection of maps $\mathcal{F}(U) \to \mathcal{G}(U)$ for each open set $U$,
+that commute with the restriction maps in the obvious way. Thus the collection
+of presheaves on a topological space forms a category.
 \end{definition} 
 
 
@@ -954,6 +1231,7 @@ restricting the
 domain of a function.
 The standard example of presheaves is given in this way, in
 fact.
+
 \begin{example} 
 Let $X$ be a topological space, and $\mathcal{F}$ the presheaf
 assigning to
@@ -984,26 +1262,97 @@ everywhere on $U$, with the restriction maps being the obvious
 ones.
 \end{example} 
 
+
+
+
+\begin{remark} 
+The notion of presheaf thus defined relied very little on the topology of $X$. 
+In fact, we could phrase it in purely categorical terms. Let $\mathcal{C}$ be
+the category consisting of open subsets $U \subset X$ and inclusions of open
+subsets $U
+\subset U'$. This is a rather simple category (the hom-sets are either empty
+or consist of one element). Then a \emph{presheaf} is just a contravariant
+functor from $\mathcal{C}$ to $\mathbf{Sets}$ (or $\mathbf{Grp}$, etc.). A
+morphism of presheaves is a natural transformation of functors.
+
+In fact, given any category $\mathcal{C}$, we can define the \emph{category of
+presheaves} on it to be the category of functors $\mathbf{Fun}(\mathcal{C}^{op}, \mathbf{Set})$.
+This category is complete and cocomplete (we can calculate limits and colimits
+``pointwise''), and the Yoneda embedding realizes $\mathcal{C}$ as a full
+subcategory of it. So if $X \in \mathcal{C}$, we get a presheaf $Y \mapsto
+\hom_{\mathcal{C}}(Y, X)$. In general, however, such representable presheaves
+are rather special; for instance, what do they look like for the category of
+open sets in a topological space?
+\end{remark} 
+
 \subsection{Sheaves}
 
-\begin{definition} Let $\mathcal{F}$ be a presheaf of groups
-(resp. rings) on a topological space $X$. We call $\mathbb{F}$ a
+\begin{definition} Let $\mathcal{F}$ be a presheaf of sets
+ on a topological space $X$. We call $\mathbb{F}$ a
 \textbf{sheaf} if $\mathcal{F}$ further satisfies the following two
 ``sheaf conditions.''
 \begin{enumerate}
-\item{If $U$ is an open set of $X$ covered by $U_i$ and there
+\item(Separatedness) {If $U$ is an open set of $X$ covered by a family of open subsets $\{U_i\}$ and there
 are two elements $a,b\in \mathcal{F}(U)$ such that
 $a|_{U_i}=b|_{U_i}$ for all $U_i$, then $a=b$.}
-\item{If $U$ is an open set of $X$ covered by $U_i$ and there
+\item(Gluability) {If $U$ is an open set of $X$ covered by $U_i$ and there
 are elements $a_i\in \mathcal{F}(U_i)$ such that $a_i|_{U_i\cap
 U_j} = a_j|_{U_i\cap U_j}$ for all $i$ and $j$, then there
 exists an element $a\in\mathcal{F}(U)$ that restricts to the
 $a_i$. Notice that by the first axiom, this element is unique.}
 \end{enumerate}
+A \emph{morphism} of sheaves is just a morphism of presheaves, so the sheaves
+on a topological space $X$ form a
+full subcategory of presheaves on $X$.
 \end{definition}
 
+The above two conditions can be phrased more compactly as follows. Whenever
+$\left\{U_i\right\}_{i \in I}$ is an open cover of $U \subset X$, we require that the
+following sequence be an equalizer of sets:
+\[  \mathcal{F}(U) \to \prod_{i \in I} \mathcal{F}(U_i) \rightrightarrows \prod_{i,j \in I}
+\mathcal{F}(U_i \cap U_j) \]
+where the two arrows correspond to the two allowable restriction maps.
+Similarly, we say that a presheaf of abelian groups (resp. rings) is a
+\textbf{sheaf} if it is a sheaf of sets.
+
+\begin{example} 
+The example of functions gives an example of a sheaf, because functions are
+determined by their restrictions to an open cover! Namely, if $X$ is a
+topological space, and we consider the presheaf
+\[ U \mapsto \left\{\text{continuous functions } U \to \mathbb{R}\right\} , \]
+then this is clearly a presheaf, because we can piece together continuous
+functions in a unique manner.
+\end{example} 
+
+\begin{example} 
+Here is a refinement of the above example. Let $X$ be a smooth manifold.
+For each $U$, let $\mathcal{F} (U)$ denote the group of smooth functions $U
+\to \mathbb{R}$. This is easily checked to be a sheaf.
+
+We could, of course, replace ``smooth'' by ``$C^r$'' or by ``holomorphic'' in
+the case of a complex manifold.
+\end{example} 
+
+
+\begin{remark} 
+As remarked above, the notion of presheaf can be defined on any category, and
+does not really require a topological space. The definition of a sheaf
+requires a bit more topologically, because the idea that a family
+$\left\{U_i\right\}$ \emph{covers} an open set $U$ was used inescapably in the
+definition. The idea of covering required the internal structure of the open
+sets and was not a purely categorical idea. However, Grothendieck developed a
+way to axiomatize this, and introduced the idea of a \emph{Grothendieck
+topology} on a category (which is basically a notion of when a family of maps
+\emph{covers} something). On a category with a Grothendieck topology (also
+known as a \emph{site}), one can define the notion of a sheaf in a similar
+manner as above. See \cite{Vi08}.
+\end{remark} 
+
+
+
+
 There is a process that allows one to take any presheaf and
-associate a sheaf to it. In some sense, this associated sheaf should also be thebest ``approximation'' of our presheaf with a sheaf. This motivates the
+associate a sheaf to it. In some sense, this associated sheaf should also be the best ``approximation'' of our presheaf with a sheaf. This motivates the
 following universal property:
 
 \begin{definition} Let $\mathcal{F}$ be a presheaf. Then $\mathcal{F'}$ is said
@@ -1036,6 +1385,9 @@ can be defined.
 
 
 \subsection{Sheaves on $\spec A$}
+
+\add{we need to describe how giving sections over basic open sets gives  a
+presheaf in general}.
 
 \begin{proposition}
 Let $ A$ be a ring and let $ X = \mathrm{Spec}(A)$. Then the
@@ -1257,121 +1609,3 @@ U_j\}$, so this means $ s = s'$. Hence the restriction of $ s$
 to $ U_j$ is also $ s_j$.
 \end{proof}
 
-\section{Nilpotent elements}
-
-\subsection{The radical of a ring}
-There is a useful corollary of the above analysis. This is not strictly about
-the $\spec$ of a ring, but it is of general interest in commutative algebra. 
-
-\begin{definition} 
- $x \in R$ is called \textbf{nilpotent} if a power of $x$ is zero. The set of
- nilpotent elements in $R$ is called the \textbf{radical} of $R$ and is denoted
- $\rad(R)$ (which is an abuse of notation).
-\end{definition}
-
-The set of nilpotents is just the radical $\rad((0))$ of the zero ideal, so it
-is an ideal. It can vary greatly. 
-A domain clearly has no nonzero nilpotents. On the other hand, many rings do:
-
-\begin{example} 
-For any $n \geq 2$, the ring $\mathbb{Z}[X]/(X^n)$ has a nilpotent, namely $X$.
-The ideal of nilpotent elements is $(X)$.
-\end{example} 
-
-It is easy to see that a nilpotent must lie in any prime ideal. The converse
-isalso true by the previous analysis.
-As a corollary of it, we find in fact:
-
-\begin{corollary} \label{nilradicalisprimes}
-Let $R$ be a commutative ring. Then the set of nilpotent elements of $R$ is
-precisely $\bigcap_{\mathfrak{p} \in \spec R} \mathfrak{p}$.
-\end{corollary} 
-\begin{proof} 
-Apply \rref{radprimescontaining} to the zero ideal.
-\end{proof} 
-
-We now consider a few examples of nilpotent elements.
-\begin{example}[Nilpotents in polynomial rings]
-Let us now compute the nilpotent elements in the polynomial $R[x]$.
-The claim is that a polynomial $\sum_{m=0}^n a_m x^m \in R[x]$ is nilpotent if
-and only
-if all the coefficients $a_m \in R$ are nilpotent. That is, $\rad(R[x]) =
-(\rad(R))R[x]$.
-
-If $a_0,\ldots,a_n$ are nilpotent, then because the nilpotent
-elements form an ideal, $f=a_0+\cdots+a_nx^n$ is nilpotent. Conversely,
-if $f$ is nilpotent, then $f^m=0$ and thus $(a_nx^n)^m=0$. Thus $a_nx^n$
-is nilpotent, and because the nilpotent elements form an ideal, $f-a_nx^n$
-is nilpotent. By induction, $a_ix^i$ is nilpotent for all $i$, so that all
-$a_i$ are nilpotent.
-\end{example} 
-
-\add{defn of power series ring}
-We now define a power series ring intuitively in the same way they are used in
-calculus. In fact, we will use power series rings much the same way we used them
-in calculus; they will serve as keeping track of fine local data that the
-Zariski topology might ``miss'' due to its coarseness.
-\begin{definition} The power series ring $R[[x]]$ is just the set of all
-expressions of the form $\sum_{i=0}^\infty c_i x^i$. The arithmetic for the
-power series ring will be done term by term formally (since we have no topology,
-we can't consider questions of convergence, though a natural topology can be
-defined making $R[[x]]$ the completion of another ring). \end{definition}
-
-\begin{example}[Nilpotence in power series rings]
-Let $R$ be  a ring such that $\rad(R)$ is a finitely generated ideal. (This is
-satisfied, e.g., if $R$ is \emph{noetherian}, cf. \rref{noetherian}.)
-Let us consider the question of how $\rad(R)$ and $\rad(R[[x]])$ are related.
-The claim is that
-\[ \rad(R[[x]]) = (\rad(R))R[[x]].  \]
-
-If $f\in R[[x]]$ is nilpotent, say with $f^n=0$, then
-certainly $a_0^n=0$, so that $a_0$ is nilpotent. Because the nilpotent elements
-form an ideal, we have that $f-a_0$ is also nilpotent, and hence by induction
-every coefficient of $f$ must be nilpotent in $R$. 
-For the converse, let $I =
-\rad(R)$. There
-exists an $N>0$ such that the ideal power $I^N  = 0$ by finite generation. 
-Thus if $f \in IR[[x]]$, then $f^N \in I^N R[[x]] = 0$.
-\end{example} 
-\begin{exercise} \label{nilpcriterion} 
-Prove that $x \in R$ is nilpotent if and only if the localization $R_x$ is the
-zero ring.
-\end{exercise} 
-
-\begin{exercise} 
-Construct an example where $\rad(R) R[[x]] \neq \rad(R[[x]])$. (Hint: consider
-$R = \mathbb{C}[X_1, X_2, X_3, \dots]/(X_1, X_2^2, X_3^3, \dots)$.)
-\end{exercise} 
-
-\subsection{Lifting idempotents}
-
-\subsection{Units}
-Finally, we make a few remarks on \emph{units} modulo nilideals.
-It is a useful and frequently used trick that adding a nilpotent does not
-affectthe collection of units. This trick is essentially an algebraic version of
-the
-familiar ``geometric series;'' convergence questions do not appear thanks to
-nilpotence. 
-
-\begin{example} 
-Suppose $u$ is a unit and $v \in R$ is nilpotent; we show that $a+v$ is a unit.
-
-Suppose $ua=1$ and $v^m=0$ for some
-$m>1$. Then  $(u+v)\cdot a(1-av+(av)^2-\cdots\pm(av)^{m-1})=$
-$(1-(-av))(1+(-av)+(-av)^2+\cdots+(-av)^{m-1})=1-(-av)^m=1-0=1$, so $u+v$
-is a unit.
-\end{example} 
-
-
-
-
-So let $R$ be a ring, $I \subset R$ a nilpotent ideal \emph{of square zero}. 
-Let $R^*$ denote the group of units in $R$, as usual, and let $(R/I)^*$ denote
-the
-group of units in $R/I$.
-We have an exact sequence of abelian groups:
-\[ 0 \to I \to R^* \to (R/I)^* \to 0  \]
-where the second map is reduction and the first map sends $i \to 1+i$.
-The hypothesis that $I^2 = 0$ shows that the first map is a homomorphism.
-We should check that the last map is surjective. But if any $a \in R$ maps to a
-unit in $R/I$, it clearly can lie in no prime ideal of $R$, so is a unit itself.
