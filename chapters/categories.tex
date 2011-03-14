@@ -1271,8 +1271,42 @@ $\epsilon \circ F$ gives a natural transformation $FGF \to F$.
 \begin{lemma}  The composite natural transformation $F \to F$ given by
 $(\epsilon \circ F) \circ (F \circ \eta)$ is the identity. 
 \end{lemma} 
-\begin{proof}
-This is going to follow from naturality. \add{Proof}
+\begin{proof} We first claim that the transformations $\eta, \epsilon$ actually
+determine the isomorphism $\hom_{\mathcal{D}}(Fc, d) \simeq
+\hom_{\mathcal{C}}(c, Gd)$. This will be a little bit of diagram-chasing.
+
+We know that the isomorphism $\hom_{\mathcal{D}}(Fc, d) \simeq
+\hom_{\mathcal{C}}(c, Gd)$ is \emph{natural}. 
+Let $\phi: Fc \to d$ be any map.
+Then there is a morphism $(c, Fc) \to (c, d) $ in the product category
+$\mathcal{C}^{op} \times \mathcal{D}$; by naturality of the adjoint
+isomorphism, we get a commutative square of sets
+\[ \xymatrix{
+\hom_{\mathcal{D}}(Fc, Fc) \ar[r]^{\mathrm{adj}}  \ar[d]^{\phi_*} & \hom_{\mathcal{C}}(c, GF c)
+\ar[d]^{G(\phi)_*} \\
+\hom_{\mathcal{D}}(Fc, d) \ar[r]^{\mathrm{adj}} &  \hom_{\mathcal{C}}(c, Gd) 
+}\]
+Here the mark $\mathrm{adj}$ indicates that the adjoint isomorphism is used. 
+If we start with the identity $1_{Fc}$ and go down and right, we get the map 
+\[ c \to Gd  \]
+that corresponds under the adjoint correspondence to $Fc \to d$. However, if we
+go right and down, we get the natural map $c \to GF c$ followed by $G(\phi)$.
+
+Thus, we have a recipe for constructing a map $c \to Gd$ given $\phi: Fc \to
+d$. Namely, we start with the counit $\eta(c): c \to GF c$ and consider
+\[ G(\phi) \circ \eta(c): c \to Gd.  \]
+In the same way, if we are given $\psi: c \to Gd$ and want to construct a map
+$Fc \to d$, we construct
+\[ \epsilon(d) \circ  F(\psi): Fc \to d.  \]
+In particular, we have seen that the \emph{unit and counit morphisms determine
+the adjoint isomorphisms.}
+
+Since the adjoint isomorphisms are inverse to each other, we can determine
+conditions on the units and counits.
+Given $\phi: Fc \to d$, we know that we must get back to $\phi$ applying the
+two constructions above. In other words,
+\add{still not finished}
+
 \begin{comment}
 First, given an object $c$, $(F \circ \eta)(c)$ is  the map $Fc \to FGF c$
 obtained by applying $F$ to the morphism $c \to GF c$. 
