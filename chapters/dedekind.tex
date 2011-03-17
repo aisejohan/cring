@@ -463,18 +463,25 @@ We close by listing a collection of useful facts about Dedekind domains.
     \end{enumerate}
 
 \add{eventually, proofs of these should be added}
+
 \section{Extensions}
 
-We will show that one can always   valuations to bigger fields.  
+
+In this section, we will essentially consider the following question: if $A$
+is a Dedekind domain, and $L$ a finite extension of the quotient field of $A$,
+is the integral closure of $A$ in $L$ a Dedekind domain? The general answer
+turns out to be yes, but the result is somewhat simpler for the case of a
+separable extension, with which we begin.
+
 \subsection{Integral closure in a finite separable extension}
 
 One of the reasons Dedekind domains are so important is
 \begin{theorem} \label{intclosdedekind} Let $A$ be a Dedekind domain with quotient field $K$, $L$ a finite separable extension of $K$, and $B$ the integral closure of $A$ in $L$.  Then $B$ is Dedekind.
 \end{theorem}
 
-This can be generalized to the Krull-Azizuki theorem, cf. \cite{Bo68}.
+This can be generalized to the Krull-Akizuki theorem below (\cref{}).
 
-First let us give an alternate definition to our definition of ``separable''.
+First let us give an alternate definition of ``separable''.
 For a finite field extension $k'$ of $k$, we may consider the bilinear pairing
 $k' \otimes_k k' \to k$ given by $x,y \mapsto \Tr_{k'/k}(xy)$. Which is to say $xy \in k'$ can be seen as a $k$-linear map of finite dimensional vector spaces $k' \to k'$, and we are considering the trace of this map. Then we claim that $k'$ is separable if and only if the bilinear pairing $k' \times k' \to k$ is non-degenerate.
 
@@ -527,12 +534,13 @@ Indeed, suppose $x \in B$.  We can write $x = c_0 (1) + c_1 (\alpha) + \dots c_{
 Now by Cramer's lemma, each $c_i$ can be written as a quotient of determinants of matrices involving $\sigma_jx $ and the $\alpha^{j}$.  The denominator determinant is in fact $D(\alpha)$.  The numerator is in $K$ and must be integral, hence is in $A$.  This proves the claim and the lemma.
 \end{proof}
 
+The above technique may be illustrated with an example.
 \begin{example} Let $p^i$ be a power of a prime $p$ and consider the extension
 $\mathbb{Q}(\zeta_{p^i})/\mathbb{Q}$ for $\zeta_{p^i}$ a primitive $p^i$-th
 root of unity.  This is a special case of a cyclotomic extension, an important
-example in the subject.  I claim that the ring of integers (integral over
-$\mathbb{Z}$!)
-in $\mathbb{Q}(\zeta_{p^i})$ is precisely $\mathbb{Q}[\zeta_{p^i}]$.  This is true in fact for all cyclotomic extensions, but we will not be able to prove it here.
+example in the subject.  We claim that the ring of integers (that is, the
+integral closure of $\mathbb{Z}$)
+in $\mathbb{Q}(\zeta_{p^i})$ is precisely $\mathbb{Z}[\zeta_{p^i}]$.  This is true in fact for all cyclotomic extensions, but we will not be able to prove it here.
 
 First of all, $\zeta_{p^i}$ satisfies the equation $X^{p^{i-1}(p-1)} +
 X^{p^{i-1}(p-2)} + \dots + 1 = 0$.  This is because if $\zeta_p$ is a $p$-th
@@ -549,9 +557,135 @@ product of terms of the form $\prod (1 - \zeta_{p^i}^{j})$ up to roots of
 unity.  The norm to $\mathbb{Q}$ of each factor is thus a power of $p$, and the discriminant itself plus or minus a power of $p$.
 
 By the lemma, it follows that the ring of integers is contained in
-$\mathbb{Z}[p^{-1}, \zeta_{p^i}]$. 
+$\mathbb{Z}[p^{-1}, \zeta_{p^i}]$. To get down further to
+$\mathbb{Z}[\zeta_{p^i}]$ requires a bit more work. \add{this proof}
 \end{example}
 
+
+\subsection{The Krull-Akizuki theorem}
+
+We are now going to prove a general theorem that will allow us to remove the
+separability hypothesis in \cref{}. Let us say that a noetherian domain has
+\textbf{dimension at most one} if every nonzero prime ideal is maximal; we shall later
+generalize this notion of ``dimension.''
+
+\begin{theorem}[Krull-Akizuki] Suppose $A$ is a noetherian domain of dimension
+at most one. Let $L$ be a finite extension of the quotient field $K(A)$, and suppose
+$B \subset L$ is a domain containing $A$. Then $B$ is noetherian of  dimension
+at most one.
+\end{theorem} 
+
+
+From this, it is clear:
+
+\begin{theorem} 
+The integral closure of a Dedekind domain in any finite extension of the
+quotient field is a Dedekind domain.
+\end{theorem} 
+\begin{proof} 
+Indeed, by Krull-Akizuki, this integral closure is noetherian and of dimension
+$\leq 1$; it is obviously integrally closed as well, hence a Dedekind domain.
+\end{proof} 
+
+Now let us prove Krull-Akizuki.
+\add{we need to introduce material about length}
+\begin{proof} 
+We are going to show that for any $a \in A - \left\{0\right\}$, the $A$-module
+$B/a B$ has finite length. (This is quite nontrivial, since $B$ need not even
+be finitely \emph{generated} as an $A$-module.) 
+From this it will be relatively easy to deduce the result.
+
+Indeed, if $I \subset B$ is any nonzero ideal, then $I$ contains a nonzero  element of $A$; to
+see this, we need only choose an element $b \in I$ and consider an irreducible polynomial
+\[ a_0 X^n + \dots + a_n  \in K[X]  \]
+that it satisfies. We can assume that all the $a_i \in A$ by clearing
+denominators. It then follows that $a_n \in A \cap I$. 
+So choose some $a \in (A \cap I) - \left\{0\right\}$. 
+We then know by the previous paragraph (though we have not proved it yet) that
+$B/aB$ has finite length as an $A$-module (and a fortiori as a $B$-module); in
+particular, the submodule $I/aB$ is finitely generated as a
+$B$-module. The
+exact sequence
+\[ 0 \to a B \to I \to I/aB \to 0  \]
+shows that $I$ must be finitely generated as a $B$-module, since the two outer
+terms are.
+Thus any ideal of $B$ is finitely generated, so $B$ is noetherian.
+
+\add{$B$ has dimension at most one}
+
+To prove the Krull-Azizuki theorem, we are going to prove:
+\begin{lemma}[Finite length lemma]
+If $A$ is a noetherian domain of dimension at most one, then for any
+torsion-free
+$A$-module $M$ such that $K(A) \otimes_A M$ is finite-dimensional
+(alternatively: $M$ has finite rank) and $a \neq 0$, $M/aM$ has finite length.
+\end{lemma} 
+\begin{proof} 
+We are going to prove something stronger. If $M$ has rank $n$ and is
+torsion-free, then will show
+\begin{equation} \label{boundka} \ell(M/aM) \leq n \ell(A/aA).   \end{equation}
+Note that $A/aA$ has finite length. This follows because there is a filtration of
+$A/aA$ whose quotients are of the form $A/\mathfrak{p}$ for $\mathfrak{p}$
+prime; but these $\mathfrak{p}$ cannot be zero as $A/aA$ is torsion. So these
+primes are maximal, and $A/aA$ has a filtration whose quotients are
+\emph{simple}. Thus $\ell(A/aA) < \infty$. In fact, we see thus that \emph{any
+torsion, finitely-generated module has finite length}; this will be used in
+the sequel.
+
+
+There are two cases:
+\begin{enumerate}
+\item $M$ is finitely generated.
+We can choose generators $m_1, \dots, m_n$ in $M$ of $K(A) \otimes_A M$; we
+then from these generators get a map
+\[ A^n \to M  \]
+which becomes an isomorphism after localizing at $A - \left\{0\right\} $. In
+particular, the kernel and cokernel are torsion modules. The kernel must be trivial
+($A$ being a domain), and $A^n \to M$ is thus injective. 
+Thus we have found a finite free submodule $F \subset M$ such that $M/F$ is a
+torsion module $T$, which is also finitely generated.
+
+
+
+We have an exact sequence
+\[ 0 \to F/(aM \cap F) \to M/aM \to T/aT \to 0.  \]
+Here the former has length at most $\ell(F/aF) = n \ell(A/aA)$, and we get
+the bound $\ell(M/aM) \leq n \ell(A/aA) + \ell(T/aT)$. However, we
+have the annoying last term to contend with, which makes things somewhat
+inconvenient. Thus, we use a trick: for each $t > 0$, we consider the exact
+sequence
+\[ 0 \to F/(a^tM \cap F) \to M/a^tM \to T/a^tT \to 0.  \]
+This gives 
+\[ \ell(M/a^t M) \leq t n \ell(A/aA) + \ell(T/a^t T) \leq  t n \ell(A/aA) +
+\ell(T). \]
+However, $\ell(T) < \infty$ as $T$ is torsion (cf. the first paragraph).
+If we divide by $t$, we get the inequality
+\begin{equation} \label{almostboundka} \frac{1}{t} \ell(M/a^t M) \leq n
+\ell(A/aA) + \frac{\ell(T)}{t}.  \end{equation}
+However, the filtration $a^t M \subset a^{t-1}M \subset \dots \subset a M
+\subset M$ whose quotients are all isomorphic to $M/aM$ ($M$ being
+torsion-free) shows that $\ell(M/a^t M ) = t \ell(M/aM)$
+In particular, letting $t \to \infty$ in \eqref{almostboundka} gives
+\eqref{boundka} in the case where $M$ is finitely generated.
+\item  $M$ is not finitely generated. Now we can use a rather cheeky argument. 
+$M$ is the inductive limit of its finitely generated submodules $M_F \subset
+M$, each of which
+is itself torsion free and of rank at most $n$. Thus $M/aM $ is the inductive limit
+of its submodules $M_F/(aM \cap M_F)$ as $M_F$ ranges over 
+We know that $\ell(M_F/(aM \cap M_F)) \leq n \ell(A/aA)$ for each finitely
+generated $M_F \subset M$ by the first case above (and the fact that
+$M_F/(aM \cap M_F)$ is a quotient of $M_F/aM_F$).
+
+But if $M/aM$ is the inductive limit of \emph{submodules} of length at most $n
+\ell(A/aA)$, then it itself can have length at most $n \ell(A/aA)$. For $M/aM$
+must be in fact equal to the submodule $M_F/(aM \cap M_F)$ that has the
+largest length (no other submodule $M_{F'}/(aM \cap M_{F'})$ can properly
+contain this).
+\end{enumerate}
+
+
+\end{proof} 
+\end{proof} 
 
 \subsection{Extensions of discrete valuations}
 
