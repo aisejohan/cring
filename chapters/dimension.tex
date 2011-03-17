@@ -1542,6 +1542,104 @@ We need only see that the ring $R'$ has infinite dimension. But for each $n$, th
 is a chain of primes $(x_{1,n}) \subset (x_{1,n}, x_{2,n}) \subset
 \dots \subset (x_{1,n}, \dots, x_{n,n})$ of length $n-1$. The supremum of the
 lengths is thus infinite.
+
+\subsection{Catenary rings}
+ \begin{definition}
+   A ring $R$ is \emph{catenary} if given any two primes $\mathfrak{p}\subsetneq \mathfrak{p}'$, any two
+   maximal prime chains from $\mathfrak{p}$ to $\mathfrak{p}'$ have the same length.
+ \end{definition}
+ Nagata showed that there are noetherian domains which are not catenary. We
+ shall see that \emph{affine rings}, or rings finitely generated over a field,
+ are always catenary.
+
+ \begin{definition}
+   If $\mathfrak{p}\in \spec R$, then $\dim \mathfrak{p}:= \dim R/\mathfrak{p}$.
+ \end{definition}
+
+
+\begin{lemma}
+   Let $S$ be a $k$-affine domain with $tr.d._k S=n$, and let $\mathfrak{p}\in
+	\spec S$ be height one. Then
+   $tr.d._k (S/\mathfrak{p})=n-1$.
+ \end{lemma}
+ \begin{proof}
+   \underline{Case 1}: assume $S=k[x_1,\dots, x_n]$ is a polynomial algebra. In this
+   case, height 1 primes are principal, so $\mathfrak{p}=(f)$ for some $f$. Say $f$ has positive
+   degree with respect to $x_1$, so $f = g_r(x_2,\dots, x_n)x_1^r + \cdots$. We have
+   that $k[x_2,\dots, x_n]\cap (f)=(0)$ (just look at degree with respect to $x_1$). It
+   follows that $k[x_2,\dots, x_n]\hookrightarrow S/(f)$, so $\bar x_2,\dots, \bar x_n$
+   are algebraically independent in $S/\mathfrak{p}$. By $\bar x_1$ is algebraic over $Q(k[\bar
+   x_2,\dots, \bar x_n])$ as witnessed by $f$. This, $tr.d._k S/\mathfrak{p}=n-1$.
+
+   \underline{Case 2}: reduction to case 1. Let $R=k[x_1,\dots, x_n]$ be a Noether
+   normalization for $S$, and let $\mathfrak{p}_0=\mathfrak{p}\cap R$. Observe that Going Down applies
+   (because $S$ is a domain and $R$ is normal). It follows that $ht_R(\mathfrak{p}_0)=ht_S(\mathfrak{p})=1$.
+   By case 1, we get that $tr.d. (R/\mathfrak{p}_0)=n-1$. By $(\ast)$, we get that $tr.d.
+   R/\mathfrak{p}_0=tr.d. (S/\mathfrak{p})$.
+ \end{proof}
+
+
+ \begin{theorem}
+   Any $k$-affine algebra $S$ is catenary (even if $S$ is not a domain). In fact, any
+   saturated prime chain from $\mathfrak{p}$ to $\mathfrak{p}'$ has length $\dim \mathfrak{p} - \dim \mathfrak{p}'$. If $S$ is a
+   domain, then all maximal ideals have the same height.
+ \end{theorem}
+ \begin{proof}
+   Consider any chain $\mathfrak{p}\subsetneq \mathfrak{p}_1\subsetneq \cdots \subsetneq \mathfrak{p}_r = \mathfrak{p}'$. Then we
+   get the chain
+   \[
+    S/\mathfrak{p} \twoheadrightarrow S/\mathfrak{p}_1 \twoheadrightarrow \cdots \twoheadrightarrow S/\mathfrak{p}_r
+    = S/\mathfrak{p}'
+   \]
+   Here $\mathfrak{p}_i/\mathfrak{p}_{i-1}$ is height 1 in $S/\mathfrak{p}_{i-1}$, so each arrow decreases the
+   transcendence degree by exactly 1. Therefore, $tr.d._k S/\mathfrak{p}' = tr.d._k S/\mathfrak{p} -r$.
+   \[
+    r = tr.d._k S/\mathfrak{p} - tr.d._k S/\mathfrak{p}' = \dim S/\mathfrak{p} - \dim S/\mathfrak{p}' = \dim \mathfrak{p}-\dim \mathfrak{p}'.
+   \]
+   To get the last statement, take $\mathfrak{p}=0$ and $\mathfrak{p}'=\mathfrak{m}$. Then we get that $ht(\mathfrak{m})=\dim S$.
+ \end{proof}
+ Note that the last statement fails in general.
+ \begin{example}
+   Take $S=k\times k[x_1,\dots, x_n]$. Then $ht(0\times k[x_1,\dots, x_n])=0$, but
+   $ht\bigl(k\times (x_1,\dots, x_n)\bigr) = n$.
+ \end{example}
+ But that example is not connected.
+ \begin{example}
+   $S = k[x,y,z]/(xy,xz)$.
+ \end{example}
+ But this example is not a domain. In general, for any prime $\mathfrak{p}$ in any ring $S$, we
+ have
+ \[
+    ht(\mathfrak{p}) + \dim \mathfrak{p} \le \dim S.
+ \]
+ \begin{theorem}
+   Let $S$ be an affine algebra, with  minimal primes $ \{\mathfrak{p}_1,\dots, \mathfrak{p}_r\}$. Then the following
+   are equivalent.
+   \begin{enumerate}
+     \item $\dim \mathfrak{p}_i$ are all equal.
+     \item $ht(\mathfrak{p})+\dim \mathfrak{p} =\dim S$ for all primes $\mathfrak{p}\in \spec S$. In particular, if $S$
+     is a domain, we get this condition.
+   \end{enumerate}
+ \end{theorem}
+ \begin{proof}
+   $(1\Rightarrow 2)$ $ht(\mathfrak{p})$ is the length of some saturated prime chain from $\mathfrak{p}$ to
+   some minimal prime $\mathfrak{p}_i$. This length is $\dim \mathfrak{p}_i - \dim \mathfrak{p} = \dim S - \dim \mathfrak{p}$ (by
+   condition 1). Thus, we get $(2)$.
+
+   $(2\Rightarrow 1)$ Apply (2) to the minimal prime $\mathfrak{p}_i$ to get $\dim \mathfrak{p}_i=\dim S$ for
+   all $i$.
+ \end{proof}
+ We finish with a (non-affine) noetherian domain $S$ with maximal ideals of different
+ heights. We need the following fact.\\
+ \underline{Fact}: If $R$ is a ring with $a\in R$, then there is a canonical $R$-algebra
+ isomorphism $R[x]/(ax-1) \cong R[a^{-1}]$, $x\leftrightarrow a^{-1}$.
+ \begin{example}
+   Let $\bigl(R,(\mathfrak{p}i)\bigr)$ be a DVR with quotient field $K$. Let $S=R[x]$, and assume
+   for now that we know that $\dim S=2$. Look at $\mathfrak{m}_2=(\mathfrak{p}i,x)$ and $\mathfrak{m}_1=(\mathfrak{p}i x-1)$.
+   Note that $\mathfrak{m}_1$ is maximal because $S/\mathfrak{m}_1 = K$. It is easy to show that
+   $ht(\mathfrak{m}_1)=1$. However, $\mathfrak{m}_2\supsetneq (x)\supsetneq (0)$, so $ht(\mathfrak{m}_2)=2$.
+ \end{example}
+
 \subsection{Dimension theory for topological spaces}
 \label{subsectiondimension}
 The present subsection (which consists mostly of exercises) is a digression   that may illuminate the notion of
