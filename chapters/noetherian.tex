@@ -1407,11 +1407,24 @@ Each of the quotients are finite-dimensional vector spaces, so artinian; this
 implies that $R$ itself is artinian. 
 \end{proof} 
 
-
-
-The theory of artinian rings is thus a special case of the theory of noetherian
-rings.
-
+ \begin{remark}
+ Note that artinian implies noetherian! This statement is true for rings (even
+ non-commutative rings), but not for modules. Take the same example $M = \varinjlim
+   \mathbb{Z}/p^n\mathbb{Z}$ over $\mathbb{Z}$. However, there is a module-theoretic statement which is
+   related.
+ \end{remark}
+ \begin{corollary}
+   For a finitely generated module $M$ over any commutative ring $R$, the following are
+   equivalent.
+   \begin{enumerate}
+     \item $M$ is an artinian module.
+     \item $M$ has finite length (i.e.\ is noetherian and artinian).
+     \item $R/\ann M$ is an artinian ring.
+   \end{enumerate}
+ \end{corollary}
+\begin{proof} 
+\tobeadded{proof}
+\end{proof} 
 \begin{exercise} 
 If $R$ is an artinian ring, and $S$ is a finite $R$-algebra (finite as an
 $R$-module), then $S$ is artinian.
