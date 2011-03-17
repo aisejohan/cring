@@ -158,13 +158,13 @@ schsmoothness.pdf: standalone/chsmoothness.tex chapters/smoothness.tex
 	pdflatex -src standalone/chsmoothness.tex
 
 
-chlinalg.pdf: standalone/chlinalg.tex CRing.aux chapters/linalg.tex
-	pdflatex -src standalone/chlinalg.tex
-	bibtex chlinalg
-	pdflatex -src standalone/chlinalg.tex
+chvarious.pdf: standalone/chvarious.tex CRing.aux chapters/various.tex
+	pdflatex -src standalone/chvarious.tex
+	bibtex chvarious
+	pdflatex -src standalone/chvarious.tex
 
-schlinalg.pdf: standalone/chlinalg.tex chapters/linalg.tex
-	pdflatex -src standalone/chlinalg.tex
+schvarious.pdf: standalone/chvarious.tex chapters/various.tex
+	pdflatex -src standalone/chvarious.tex
 
 
 chhomological.pdf: standalone/chhomological.tex CRing.aux chapters/homological.tex
@@ -212,5 +212,5 @@ schlicense.pdf: standalone/chlicense.tex chapters/license.tex
 	pdflatex -src standalone/chlicense.tex
 
 
-chapters:  chcategories.pdf chfoundations.pdf chfields.pdf chthreeimportantfunctors.pdf chspec.pdf chnoetherian.pdf chgraded.pdf chintegrality.pdf chfactorization.pdf chdedekind.pdf chdimension.pdf chcompletion.pdf chsmoothness.pdf chlinalg.pdf chhomological.pdf chflat.pdf chhomologicallocal.pdf chetale.pdf chlicense.pdf
+chapters:  chcategories.pdf chfoundations.pdf chfields.pdf chthreeimportantfunctors.pdf chspec.pdf chnoetherian.pdf chgraded.pdf chintegrality.pdf chfactorization.pdf chdedekind.pdf chdimension.pdf chcompletion.pdf chsmoothness.pdf chvarious.pdf chhomological.pdf chflat.pdf chhomologicallocal.pdf chetale.pdf chlicense.pdf
 

@@ -11,7 +11,7 @@ Dedekind domains
 Dimension theory
 Completions
 Differentials and smoothness
-Linear algebra over rings
+Various topics
 Homological Algebra
 Flatness revisited
 Homological theory of local rings

@@ -11,7 +11,7 @@ dedekind
 dimension
 completion
 smoothness
-linalg
+various
 homological
 flat
 homologicallocal
