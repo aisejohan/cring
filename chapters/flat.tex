@@ -384,6 +384,106 @@ Namely, given an $S$-module, we want to ``descend'' to an $R$-module when
 possible; given a morphism of $S$-modules, we want to know when it comes from a
 morphism of $R$-modules by base change.
 
+\add{this entire section!}
+
+
+\subsection{The Amitsur complex}
+\add{citation needed}
+
+Suppose $B$ is an $A$-algebra. 
+Then we can construct a complex of $A$-modules
+\[ 0 \to A \to B \to B \otimes_A B \to B \otimes_A B \otimes_A B \to \dots  \]
+as follows. 
+For each $n$, we denote by $B^{\otimes n}$ the tensor product of $B$ with
+itself $n$ times (over $A$).
+There are morphisms of $A$-algebras
+\[ d_i: B^{\otimes n} \to B^{\otimes n+1} , \quad 0 \leq i \leq n+1 \]
+where the map sends
+\[ b_1 \otimes \dots \otimes b_n \mapsto b_1 \otimes \dots \otimes b_{i-1}
+\otimes  1 \otimes  b_i \otimes \dots \otimes b_n,  \]
+so that the $1$ is placed in the $i$th spot.
+Then the coboundary 
+$\partial: B^{\otimes n} \to B^{\otimes n+1}$ is defined as $\sum (-1)^i d_i$.
+It is easy to check that this forms a complex of $A$-modules.
+
+\begin{definition} 
+The above complex of $B$-modules is called the \textbf{Amitsur complex} of $B$
+over $A$, and we denote it $\mathcal{A}_{B/A}$. It is clearly functorial in
+$B$; a map of $A$-algebras $B \to C$ induces a morphism of complexes
+$\mathcal{A}_{B/A} \to \mathcal{A}_{C/A}$.
+\end{definition} 
+
+Note that the Amitsur complex behaves very nicely with respect to base-change.
+If $A'$ is an $A$-algebra and $B' = B \otimes_A A'$ is the base extension, then 
+$\mathcal{A}_{B'/A'}  = \mathcal{A}_{B/A} \otimes_A A'$, which follows easily
+from the fact that base-change commutes with tensor products.
+
+In general, the Amitsur complex is not even exact. 
+For instance, if it is exact in degree one, then the map $A \to B$ is necessarily injective.
+If, however, the morphism is \emph{faithfully flat}, then we do get exactness:
+
+\begin{theorem} 
+If $B$ is a faithfully flat $A$-algebra, then the Amitsur complex of $B/A$ is
+exact.  In fact, if $M$ is any $A$-module, then $\mathcal{A}_{B/A} \otimes_A
+M$ is exact.
+\end{theorem} 
+\begin{proof} 
+We prove this first under the assumption that $A \to B$ has a section. 
+In this case, we will even have:
+
+\begin{lemma} 
+Suppose $A \to B$ is a morphism of rings with a section $B \to A$. Then the
+Amitsur complex $\mathcal{A}_{B/A}$ is homotopically trivial. (In particular,
+$\mathcal{A}_{B/A} \otimes_A M$ is acyclic for all $M$.)
+\end{lemma} 
+\begin{proof} 
+Let $s: B \to A$ be the section; by assumption, this is a morphism of
+$A$-algebras. We shall define a chain contraction of $\mathcal{A}_{B/A}$. 
+To do this, we must define a collection of morphisms of $A$-modules
+\( h_{n+1} : B^{\otimes n+1} \to B^{\otimes n},  \)
+and this we do by sending 
+\[ b_1 \otimes \dots \otimes b_{n+1} \mapsto s(b_{n+1}) \left( b_1 \otimes
+\dots \otimes b_n \right).  \]
+It is still necessary to check that the $\left\{h_{n+1}\right\}$ form a chain
+contraction; in other words, that $\partial h_{n} + h_{n+1} \partial =
+1_{B^{\otimes n}}$. 
+By linearity, we need only check this on elements of the form $b_1 \otimes
+\dots \otimes b_n$. Then we find
+\[ \partial h_n (b_1 \otimes b_n) = s(b_1) \sum (-1)^i b_2 \otimes \dots \otimes 1
+\otimes \dots \otimes b_n  \]
+where the $1$ is in the $i$th place,
+while
+\[ h_{n+1} \partial ( b_1 \otimes \dots \otimes  b_n) = b_1 \otimes \dots \otimes b_n +
+\sum_{i>0} s(b_1) (-1)^{i-1}b_2 \otimes \dots \otimes 1 \otimes \dots \otimes b_n  \]
+where again the $1$ is in the $i$th place. The assertion is from this clear.
+Note that if $\mathcal{A}_{B/A}$ is contractible, we can tensor the chain
+homotopy with $M$ to see that $\mathcal{A}_{B/A} \otimes_A M$ is chain contractible
+for any $M$.
+\end{proof} 
+
+With this lemma proved, we see that the Amitsur complex $\mathcal{A}_{B/A}$
+(or even $\mathcal{A}_{B/A} \otimes_A M$) is acyclic whenever $B/A$ admits a
+section. Now if we make the base-change by the morphism $A \to B$, we get the
+morphism $B \to B \otimes_A B$. That is,
+\[  B \otimes_A \left( \mathcal{A}_{B/A} \otimes_A M \right)= \mathcal{A}_{B
+\otimes_A B/B} \otimes_B (M \otimes_A B). \]
+The latter is acyclic because $B \to B \otimes_A B$ admits a section (namely,
+$b_1 \otimes b_2 \mapsto b_1 b_2$). So the complex $\mathcal{A}_{B/A}
+\otimes_A M$ becomes acyclic after base-changing to $B$; this, however, is a
+faithfully flat base-extension, so the original complex was itself exact.
+\end{proof} 
+
+\begin{remark} 
+A powerful use of the Amitsur complex in algebraic geometry is to show that
+the cohomology of a quasi-coherent sheaf on an affine scheme is trivial. In
+this case, the Cech complex (of a suitable covering) turns out to be precisely
+the Amitsur complex (with the faithfully flat morphism $A \to \prod A_{f_i}$
+for the $\left\{f_i\right\}$ a family generating the unit ideal). This
+argument generalizes to showing that the \emph{{\'e}tale}
+cohomology of a quasi-coherent sheaf on an affine is trivial; cf. \cite{Ta94}.
+\end{remark} 
+
+
 \section{The $\tor$ functor}
  
 
