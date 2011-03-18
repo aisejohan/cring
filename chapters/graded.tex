@@ -8,8 +8,8 @@ space} $\mathbb{P}^n_{\mathbb{C}}$, which is the set of lines through the
 origin in $\mathbb{C}^{n+1}$. 
 In other words, it is the set of all $n+1$-tuples $[z_0, \dots, z_n] \in
 \mathbb{C}^{n+1} - \left\{0\right\}$ modulo the relation that
-\[ [z_0, \dots, z_n] = [\lambda z_0, \dots, \lambda z_n], \quad \lambda \in
-\mathbb{C}^*.  \]
+\begin{equation} \label{rescaling} [z_0, \dots, z_n] = [\lambda z_0, \dots, \lambda z_n], \quad \lambda \in
+\mathbb{C}^*.  \end{equation}
 Varieties in projective space  have many
 convenient properties that affine varieties do not: for instance,
 intersections work out much more nicely when intersections at the extra
@@ -20,7 +20,8 @@ encounters gradedness. Now a variety in $\mathbb{P}^n$ must be cut out by
 polynomials $F_1, \dots, F_k \in \mathbb{C}[x_0, \dots, x_n]$; that is, a
 point represented by $[z_0, \dots, z_n]$ lies in the associated variety if and
 only if $F_i(z_0, \dots, z_n) = 0$ for each $i$. For this to make sense, or to
-be independent of the choice of $z_0, \dots, z_n$, it is necessary to assume
+be independent of the choice of $z_0, \dots, z_n$ up to rescaling as in
+\eqref{rescaling}, it is necessary to assume
 that each $F_i$ is \emph{homogeneous.}
 
 Algebraically, $\mathbb{A}^n_{\mathbb{C}}$ is the set of maximal ideals in the
@@ -40,13 +41,17 @@ respect to this topology. This construction will be studied in
 
 \section{Graded rings and modules}
 
+Much of the material in the present section is motivated by algebraic
+geometry; see \cite{EGA}, volume II for the construction of $\proj R$ as a
+scheme.
+
 \subsection{Basic definitions}
 \begin{definition} 
 A \textbf{graded ring} $R$ is a ring together with a decomposition (as abelian
 groups)
 \[  R = R_0 \oplus R_1 \oplus \dots   \]
 such that $R_m R_n \subset R_{m+n}$ for all $m, n \in \mathbb{Z}_{\geq 0}$,
-and where $R_0$ is a subring.
+and where $R_0$ is a subring (i.e. $1 \in R_0$).
 A \textbf{$\mathbb{Z}$-graded ring} is one where the decomposition is into
 $\bigoplus_{n \in \mathbb{Z}} R_n$.
 In either case, the elements of the subgroup $R_n$ are called
@@ -57,21 +62,39 @@ The basic example to keep in mind is, of course, the polynomial ring $R[x_1,
 \dots, x_n]$ for $R$ any ring. The graded piece of degree $n$ consists of the
 homogeneous polynomials of degree $n$.
 
-\begin{definition} Fix a graded ring $R$.
+Consider a graded ring $R$.
+\begin{definition} 
 A \textbf{graded} $R$-module is an ordinary $R$-module $M$ together with a
 decomposition
 \[  M = \bigoplus_{k \in \mathbb{Z}} M_k  \]
 as abelian groups, such that $R_m M_n \subset M_{m+n}$ for all $m \in
-\mathbb{Z}_{\geq 0}, n \in \mathbb{Z}$.
+\mathbb{Z}_{\geq 0}, n \in \mathbb{Z}$. Elements in one of these pieces are
+called \textbf{homogeneous.}
+Any $m \in M$ is thus uniquely a finite sum $\sum m_{n_i}$ where each $m_{n_i}
+\in M_{n_i}$ is homogeneous of degree $n_i$.
 \end{definition} 
+
+Clearly there is a \emph{category} of graded $R$-modules, where the morphisms
+are the morphisms of $R$-modules that preserve the grading (i.e. take
+homogeneous elements to homogeneous elements of the same degree).
 
 Since we shall focus on positively graded rings, we shall simply call them
 graded rings; when we do have to consider rings with possibly negative
 gradings, we shall highlight this explicitly. Note, however, that we allow
 modules with negative gradings freely.
-In fact, given a graded module $M$, we define the \textbf{twists} $M(n)$ as the
+
+In fact, we shall note an important construction that will generally shift
+the graded pieces such that some of them might be negative:
+
+\begin{definition} 
+Given a graded module $M$, we define the \textbf{twists} $M(n)$ as the
 same $R$-module but with the grading
 \[  M(n)_k = M_{n+k} . \]  
+This is a functor on the category of graded $R$-modules.
+\end{definition} 
+
+In algebraic geometry, the process of twisting allows one to construct
+canonical line bundles on projective space. See \cite{Ha77}.
 
 \begin{example} 
 If $R$ is  a graded ring, then $R$ is a graded module over itself. 
@@ -107,13 +130,6 @@ In particular, if $\mathfrak{a} \subset R$ is a homogeneous ideal, then
 $R/\mathfrak{a}$ is a graded ring in a natural way.
 
 
-
-Also, if $\mathfrak{a}, \mathfrak{b}$ are homogeneous ideals, then so is
-$\mathfrak{ab}$.  Justification: if we have resolutions into homogeneous
-components $\mathfrak{a} = \bigoplus \mathfrak{a}_i$, $\mathfrak{b} = \bigoplus
-\mathfrak{b}_i$, then 
-\[  \mathfrak{ab} = \sum_{i+j=k} \mathfrak{a}_i \mathfrak{b}_j . \]
-
 \subsection{Homogeneous ideals}
 
 Recall that a homogeneous ideal in a graded ring $R$ is simply a graded
@@ -121,12 +137,13 @@ submodule of $R$. We now prove a useful result that enables us tell when an
 ideal is homogeneous.
 
 \begin{proposition} 
-Let $R$ be a graded ring, $I \subset R$ an ideal. Then $I$ is a graded ideal
+Let $R$ be a graded ring, $I \subset R$ an ideal. Then $I$ is a homogeneous
+ideal 
 if and only if it can be generated by homogeneous elements.
 \end{proposition} 
 \begin{proof} 
 If $I$ is a homogeneous ideal, then by definition
-\[ I = \bigoplus I \cap R_i,  \]
+\[ I = \bigoplus_i I \cap R_i,  \]
 so $I$ is generated by the sets $\left\{I \cap R_i\right\}_{i \in
 \mathbb{Z}_{\geq 0}}$ of homogeneous elements. 
 
@@ -143,6 +160,11 @@ concentrated in the degree $i - \deg h_\alpha$.
 From this it is easy to see that each $x_i$ is a linear combination of the
 $h_\alpha$ and consequently lies in $I$.
 \end{proof} 
+
+\begin{example} 
+If $\mathfrak{a}, \mathfrak{b} \subset R$ are homogeneous ideals, then so is
+$\mathfrak{a}\mathfrak{b}$.
+\end{example} 
 
 Since we shall need to use them to define $\proj R$ in the future, we now
 prove a result about homogeneous prime ideals specifically. Namely, primeness
@@ -176,7 +198,7 @@ $\mathfrak{p}$, and since $a_k \in \mathfrak{p}$, we find that one of $a,b \in
 \end{proof} 
 
 \subsection{Finiteness conditions}
-There are various finiteness conditions that one often wants to impose in
+There are various finiteness conditions (e.g. noetherianness) that one often wants to impose in
 algebraic geometry.
 Since projective varieties (and schemes) are obtained from graded rings,
 we briefly discuss these finiteness conditions for them.
@@ -471,7 +493,7 @@ collection of homogeneous ideals (not containing $R_+$) that do not contain $f$;
 clearly these are
 open sets.
 
-Let $\mathfrak{a}$ be a homogeneous ideal. Then I claim that:
+Let $\mathfrak{a}$ be a homogeneous ideal. Then we claim that:
 \begin{lemma} 
 \[  V(\mathfrak{a}) = V(\mathfrak{a} \cap R_+).  \]
 \end{lemma} 
@@ -548,14 +570,86 @@ versa.
 
 \section{Filtered rings}
 
+In practice, one often has something weaker than a grading. Instead of a way
+of saying that an element is of degree $d$, one simply has a way of saying
+that an element is ``of degree at most $d$.'' This leads to the definition of a
+\emph{filtered} ring (and a filtered module). We shall use this definition in
+placing topologies on rings and modules and, later, completing them.
+
+\subsection{Definition}
+
+\begin{definition} 
+A \textbf{filtration} on a ring $R$ is a sequence of ideals $R = I_0
+\supseteq I_1 \supseteq \dots$. A ring with a filtration is called a
+\textbf{filtered ring}.
+\end{definition} 
+
+A filtered ring is supposed to be a generalization of a graded ring. If $R =
+\bigoplus R_k$ is graded, then we can make $R$ into a filtered ring in a
+canonical way by taking the ideal $I_m = \bigoplus_{k \geq m} R_k$ (notice
+that we are using the fact that $R$ has only pieces in nonnegative gradings!).
+
+\begin{example}[The $I$-adic filtration]
+For example, given an ideal $I \subset R$, we
+can take powers of $I$ to generate a filtration. This filtration $R \supset I
+\supset I^2 \supset \dots$ is called the \textbf{$I$-adic filtration,} and is
+especially important when $R$ is local and $I$ the maximal ideal.
+\end{example} 
+
+
+
+
+When we defined graded rings, the first thing we did thereafter was to define
+the notion of a graded module over a graded ring. We do the analogous thing
+for filtered modules.
+\begin{definition} 
+Let $R$ be a filtered ring with a filtration $I_0 \supset I_1 \supset \dots$.
+A \textbf{filtration} on an $R$-module $M$ is a decreasing sequence of submodules
+\[ M = M_0 \supset M_1 \supset M_2 \supset \dots  \]
+such that $I_m M_n \supset M_{n+m}$ for each $m, n$. A module together with a
+filtration is called a \textbf{filtered module.}
+\end{definition} 
+
+
+\begin{example}[The $I$-adic filtration for modules]
+Let $R$ be any ring and $I \subset R$ any ideal. Then if we make $R$ into a
+filtered ring with the $I$-adic filtration, we can make any $R$-module $M$
+into a filtered $R$-module by giving $M$ the filtration
+\[ M \supset IM \supset I^2M \supset \dots,  \]
+which is also called the \textbf{$I$-adic filtration.}
+\end{example} 
+
 \subsection{The associated graded}
-A filtration on a ring $R$ is a series of ideals $F:\cdots I_n\subseteq
-I_{n-1}\subseteq\cdots I_1\subseteq I_0=R$. For example, given an ideal $I$, we
-can take powers of $I$ to generate a filtration.
-\begin{definition} Given a filtration $F$ on a ring $R$ and a module $M$, the
-graded associated module $gr_F(M)$ is $\bigoplus_{n=0}^\infty I_n M/I{n+1}M$
+
+We shall now describe a construction that produces graded things from filtered
+ones.
+
+\begin{definition} Given a filtered ring $R$ (with filtration
+$\left\{I_n\right\}$), the
+\textbf{associated graded ring} $\gr(R)$ is the graded ring $\bigoplus_{n=0}^\infty I_n /I_{n+1}$.
+
+This is made into a ring by the following procedure. Given $a \in I_n$
+representing a class $\overline{a} \in I_n/I_{n+1}$ and $b \in I_m$
+representing a class $\overline{b} \in I_m/I_{n+1}$, we define
+$\overline{a}\overline{b} $ to be the class in $I_{n+m}/I_{n+m+1}$ represented
+by $ab$. 
 \end{definition}
 
+It is easy to check that if different choices of representing elements $a,b$ were made in the above
+description, the value of $\overline{a}\overline{b}$ thus defined would still
+be the same, so that the definition is reasonable.
+
+
+\begin{definition} 
+Let $R$ be a filtered ring, and $M$ a filtered $R$-module (with filtration
+$\left\{M_n\right\}$). We define the \textbf{associated graded module}
+$\gr(M)$ as the graded $\gr(R)$-module
+\[ \gr(M) = \bigoplus_{n} M_n/M_{n+1}  \]
+where multiplication is defined in a similar manner as above.
+\end{definition} 
+
+In other words, we have defined a \emph{functor} $\gr$ from the category of filtered
+$R$-modules to the category of \emph{graded} $\gr(R)$ modules.
 \subsection{The Artin-Rees Lemma}
 
 \begin{theorem}[Artin-Rees lemma]
