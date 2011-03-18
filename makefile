@@ -3,6 +3,7 @@ all: CRing.tex chapters/*.tex other/macros.tex other/titlepage.tex other/intro.t
 	bibtex CRing
 	pdflatex CRing.tex
 	pdflatex CRing.tex
+	pdflatex CRing.tex
 
 dvi:
 	latex -src CRing.tex	

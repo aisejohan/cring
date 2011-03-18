@@ -614,6 +614,23 @@ We start by showing that any module over $A$ ``descends'' to one of the
 $A_\alpha$.
 \begin{proposition} 
 Suppose $M$ is a finitely presented module over $A$. Then there is $\alpha \in
-I$ and a finitely presented $A_\alpha$-module $M_\alpha$ such that $M =
+I$ and a finitely presented $A_\alpha$-module $M_\alpha$ such that $M \simeq
 M_\alpha \otimes_{A_\alpha} A$. 
 \end{proposition} 
+\begin{proof} 
+Indeed, $M$ is the cokernel of a morphism
+\[ f: A^m \to A^n   \]
+by definition. This morphism is described by a $m$-by-$n$ (or $n$-by-$m$,
+depending on conventions) matrix with coefficients in $A$. Each of these
+finitely many coefficients must come from various $A_\alpha$ in the image (by
+definition of the inductive limit), and choosing $\alpha$ ``large'' we can
+assume that every coefficient in the matrix is in the image of $A_\alpha \to A$.
+Then we have a morphism
+\[ f_\alpha:  A_\alpha^m \to A_\alpha^n  \]
+that induces $f$ by base-change to $A$. Then we may let $M_\alpha$ be the
+cokernel of $f_\alpha$ since the tensor product is right-exact.
+\end{proof} 
+
+
+
+

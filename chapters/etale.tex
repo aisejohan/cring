@@ -1,12 +1,14 @@
 \chapter{\'Etale, unramified, and smooth morphisms}
 
-\textbf{The following code was contributed by the Stacks Project authors. So
-far, nothing in the present chapter has been edited yet, so that it is right
-now directly copied from them, but it will be soon!}
+
+In this chapter, we shall introduce three classes of morphisms of rings
+defined by lifting properties and study their properties.
+
 \section{Formally unramified maps}
 \label{section-formally-unramified}
 
-\noindent
+
+\subsection{Definition}
 It turns out to be logically more efficient to define
 the notion of a formally unramified map before introducing
 the notion of a formally \'etale one.
@@ -14,53 +16,64 @@ the notion of a formally \'etale one.
 \begin{definition}
 \label{definition-formally-unramified}
 Let $R \to S$ be a ring map.
-We say $S$ is {\it formally unramified over $R$} if for every
+We say $S$ is {\bf formally unramified over $R$} if for every
 commutative solid diagram
-$$
+\begin{equation} \label{inflift}
 \xymatrix{
 S \ar[r] \ar@{-->}[rd] & A/I \\
 R \ar[r] \ar[u] & A \ar[u]
 }
-$$
+\end{equation}
 where $I \subset A$ is an ideal of square zero, there exists
 at most one dotted arrow making the diagram commute.
 \end{definition}
 
-\begin{lemma}
-\label{lemma-characterize-formally-unramified}
-Let $R \to S$ be a ring map.
-The following are equivalent:
+In other words, an $R$-algebra $S$ is formally unramified if and only if
+whenever $A$ is an $R$-algebra and $I \subset A$ an ideal of square zero, the
+map of sets
+\[ \hom_R(S, A) \to \hom_R(S, A/I)  \]
+is injective.
+
+
+\begin{proposition} 
+The following are equivalent for a $R$-algebra $S$:
 \begin{enumerate}
-\item $R \to S$ is formally unramified,
-\item the module of differentials $\Omega_{S/R}$ is zero.
+\item  $\Omega_{S/R}=0$.
+\item $S$ is formally unramified over $R$.
 \end{enumerate}
-\end{lemma}
+\end{proposition} 
+\begin{proof} 
+Suppose first $\Omega_{S/R}=0$. This is equivalent to the statement that
+\emph{any} $R$-derivation of $S$ into an $S$-module is trivial.
+If given an $R$-algebra $T$ with an ideal $I \subset T$ of square zero and a
+morphism 
+\[ S \to T/I,  \]
+and two liftings $f,g: S \to T$, then we find that $f-g$ maps $S$ into $I$.
+Since $T/I$ is naturally an $S$-algebra, it is easy to see (since $I$ has
+square zero) that $I$ is naturally an $S$-module and $f-g$ is an
+$R$-derivation $S \to I$. 
+Thus $f-g \equiv 0$ and $f=g$.
 
-\begin{proof}
-Let $J = \text{Ker}(S \otimes_R S \to S)$ be the kernel of
-the multiplication map. Let $A_{univ} = S \otimes_R S/J^2$. Recall
-that $I_{univ} = J/J^2$ is isomorphic to $\Omega_{S/R}$, see
-\rref{lemma-differentials-diagonal}. Moreover, the two $R$-algebra maps
-$\sigma_1, \sigma_2 : S \to A_{univ}$, $\sigma_1(s) = s \otimes 1 \bmod J^2$,
-and $\sigma_2(s) = 1 \otimes s \bmod J^2$ differ by the
-universal derivation $\text{d} : S \to \Omega_{S/R} = I_{univ}$.
+Conversely, suppose $S$ has the property that liftings in \eqref{inflift} are
+unique.
+Consider the $S$-module $T=S \oplus \Omega_{S/R}$ with the multiplicative
+structure $(a,a')(b,b') = (ab, ab' + a'b)$ that makes it into an algebra.
+(This is a general construction one can do with an $S$-module $M$: $S \oplus
+M$ is an algebra where $M$ becomes an ideal of square zero.)
 
-\medskip\noindent
-Assume $R \to S$ formally unramified.
-Then we see that $\sigma_1 = \sigma_2$.
-Hence $\text{d}(s) = 0$ for all $s \in S$.
-Hence $\Omega_{S/R} = 0$.
+Consider the ideal $\Omega_{S/R} \subset T$, which has
+square zero; the quotient is $S$. We will find two liftings of the identity $S
+\to S$. For the first, define $S \to T$ sending $s \to (s,0)$. For the second,
+define $S \to T$ sending $s \to (s, ds)$; the derivation property of $b$ shows
+that this is a morphism of algebras.
 
-\medskip\noindent
-Assume that $\Omega_{S/R} = 0$. Let $A, I, R \to A, S \to A/I$
-be a solid diagram as in \rref{definition-formally-unramified}.
-Let $\tau_1, \tau_2 : S \to A$ be two dotted arrows making the
-diagram commute. Consider the $R$-algebra map $A_{univ} \to A$
-defined by the rule $s_1 \otimes s_2 \mapsto \tau_1(s_1)\tau_2(s_2)$.
-We omit the verification that this is well defined. Since $A_{univ} \cong S$
-as $I_{univ} = \Omega_{S/R} = 0$ we conclude that $\tau_1 = \tau_2$.
-\end{proof}
+By the lifting property, the two morphisms $S \to T$ are equal. In particular,
+the map $S \to \Omega_{S/R}$ sending $s \to ds$ is trivial. This implies that
+$\Omega_{S/R}=0$.
 
+\end{proof} 
+
+%most of the code below was contributed by the Stacks project authors
 \begin{lemma}
 \label{lemma-formally-unramified-local}
 Let $R \to S$ be a ring map.
@@ -86,6 +99,93 @@ $\mathfrak q$. Hence the equivalence follows from
 \rref{lemma-characterize-zero-local}.
 \end{proof}
 
+We shall now give the typical list of properties (``le sorite'') of unramified morphisms.
+
+\begin{proposition} \label{locunramified}
+Any map $R \to R_f$ for $f \in  R$ is unramified.
+\end{proposition} 
+More generally, a map from a ring to any localization is \emph{formally}
+unramified, but not necessarily unramified. 
+\begin{proof} 
+Indeed, we know that $\Omega_{R/R}  = 0$ and $\Omega_{R_f/R } =
+(\Omega_{R/R})_f=0$, and the amp is clearly of finite type.
+\end{proof} 
+
+\begin{proposition} 
+A surjection of rings is unramified.
+\end{proposition} 
+\begin{proof} 
+Obvious.
+\end{proof} 
+
+In the language of schemes, one can define the notion of an \emph{unramified
+morphism,} and it then follows that any immersion is unramified.
+
+\begin{proposition} 
+If $R \to S$ and $S \to T$ are unramified, so is $R \to T$.
+\end{proposition} 
+\begin{proof} 
+It is clear that $R \to T$ is of finite type. We need to check that
+$\Omega_{T/R}  = 0$. However, we have a standard exact sequence (cf.
+\cite{Ei95})
+\[ \Omega_{S/R}\otimes_S T \to \Omega_{T/R} \to \Omega_{T/S} \to 0,  \]
+and since $\Omega_{S/R} = 0, \Omega_{T/S} = 0$, we find that $\Omega_{T/R}  =
+0$.
+\end{proof} 
+
+
+\begin{proposition}  \label{unrbasechange}
+If $R \to S$ is unramified, so is $R' \to S' = S \otimes_R R'$ for any $R$-algebra
+$R'$.
+\end{proposition} 
+\begin{proof} 
+This follows from the fact that $\Omega_{S'/R'} = \Omega_{S/R} \otimes_S S'$.
+Alternatively, it can be checked easily using the lifting criterion.
+\end{proof} 
+
+
+In fact, the question of what unramified morphisms look like can be reduced to
+the case where the ground ring is a \emph{field} in view of the previous and
+the following result.
+
+Given $\mathfrak{p} \in \spec R$, we let $k(\mathfrak{p})$ to be the residue
+field of $R_{\mathfrak{p}}$.
+
+
+\begin{corollary} \label{reduceunrtofield} 
+Let $\phi: R \to S$ be a morphism of finite type. Then $\phi$ is unramified if
+and only if for every $\mathfrak{p} \in \spec R$, we have
+\[ k(\mathfrak{p}) \to S \otimes_R k(\mathfrak{p})  \]
+unramified.
+\end{corollary} 
+\begin{proof} 
+One direction is clear by \cref{unrbasechange}. For the other, suppose
+$k(\mathfrak{p}) \to S \otimes_R k(\mathfrak{p})$ unramified for all $\mathfrak{p} \subset R$.
+We then know that 
+\[ \Omega_{S/R} \otimes_R k(\mathfrak{p}) = \Omega_{S \otimes_R
+k(\mathfrak{p})/k(\mathfrak{p})} = 0  \]
+for all such $\mathfrak{p}$. By localization, it follows that
+\begin{equation} \label{auxdiff} \mathfrak{p}
+\Omega_{S_{\mathfrak{q}}/R_{\mathfrak{p}}} =
+\Omega_{S_{\mathfrak{q}}/R_{\mathfrak{p}}} = \Omega_{S_{\mathfrak{q}}/R}  \end{equation}
+for any $\mathfrak{q} \in \spec S$ lying over $\mathfrak{p}$.
+
+Let $\mathfrak{q} \in \spec S$. We will now show that
+$(\Omega_{S/R})_{\mathfrak{q}} = 0$. 
+Given this, we will find that $\Omega_{S/R} =0$, which will prove the
+assertion of the corollary. 
+
+
+Indeed, let $\mathfrak{p} \in \spec R$ be
+the image of $\mathfrak{q}$, so that there is a \emph{local} homomorphism 
+$R_{\mathfrak{p}} \to S_{\mathfrak{q}}$. By \cref{auxdiff}, we find that
+\[ \mathfrak{q} \Omega_{S_{\mathfrak{q}}/R} = \Omega_{S_{\mathfrak{q}}/R}.  \]
+and since $\Omega_{S_{\mathfrak{q}}/R}$ is a finite $S_{\mathfrak{q}}$-module,
+Nakayama's lemma now implies that $\Omega_{S_{\mathfrak{q}}/R}=0$, proving
+what we wanted. 
+\end{proof} 
+
+
 \begin{lemma}
 \label{lemma-formally-unramified-localize}
 Let $A \to B$ be a formally unramified ring map.
@@ -105,7 +205,6 @@ Follows from
 combined with
 \rref{lemma-differentials-localize}.)
 \end{proof}
-
 
 
 \section{Conormal modules and universal thickenings}
@@ -989,4 +1088,3 @@ is surjective. Since $A_1$ is finite over $R$ we see that there
 exists a $f \in R$, $f \not \in \mathfrak p$ such that
 $R_f \to (A_1)_f$ is surjective. After replacing $R$ by $R_f$ we win.
 \end{proof}
-
