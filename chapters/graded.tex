@@ -726,6 +726,16 @@ submodule $N \subset M$ becomes a linearly topologized module with a basis of
 submodules $\{N \cap M_\alpha\}$ at the origin with the relative topology.
 
 
+\begin{proposition} 
+Suppose $M$ is filtered with the $\left\{M_n\right\}$. If $N \subset M$ is any
+submodule, then the closure $\overline{N}$ is the intersection $\bigcap N + M_n$.
+\end{proposition} 
+\begin{proof} 
+Recall that $x \in \overline{N}$ is the same as stipulating that every
+neighborhood of $x$ intersect $N$. In other words, any basic neighborhood of
+$x$ has to intersect $N$. This means that for each $n$, $x+M_n \cap N \neq
+\emptyset$, or in other words $x \in M_n + N$.
+\end{proof} 
 \section{The Artin-Rees Lemma}
 
 We shall now show that for \emph{noetherian} rings and modules, the $I$-adic
