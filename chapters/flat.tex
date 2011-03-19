@@ -958,3 +958,90 @@ $\mathfrak{m}_\alpha$-adic topology now shows $x=0$.
 
 
 \end{proof} 
+
+\subsection{Generic flatness}
+
+Suppose given a module $M$ over a noetherian \emph{domain} $R$. Then $M
+\otimes_R K(R)$ is a finitely generated free module over the field $K(R)$.
+Since $K(R)$ is the inductive limit $\varinjlim R_f$ as $f$ ranges over $(R -
+\left\{0\right\})/R^*$ and $K(R) \otimes_R M \simeq \varinjlim_{f \in (R -
+\left\{0\right\})/R^*} M_f$, it follows by the general theory of \cref{} that
+there exists $f \in R - \left\{0\right\}$ such that $M_f$ is free over $R_f$.
+
+Here $\spec R_f = D(f) \subset \spec R$ should be thought of as a ``big''
+subset of $\spec R$ (in fact, as one can check, it is \emph{dense} and open).
+So the moral of this argument is that $M$ is ``generically free.'' If we had
+the language of schemes, we could make this more precise.
+But the idea is that localizing at $M$ corresponds to restricting the
+\emph{sheaf} associated to $M$ to $D(f) \subset \spec R$; on this dense open subset, we
+get a free sheaf.
+(The reader not comfortable with such ``finitely presented'' arguments will
+find another one below, that also works more generally.)
+
+Now we want to generalize this to the case where $M$ is finitely generated not
+over $R$, but over a finitely generated $R$-algebra. In particular, $M$ could
+itself be a finitely generated $R$-algebra! 
+
+\begin{theorem}[Generic freeness]
+Let $S$ be a finitely generated algebra over the noetherian domain $R$, and
+let $M$ be a finitely generated $S$-module. Then there is $f \in R -
+\left\{0\right\}$ such that $M_f$ is a free (in particular, flat) $R$-module.
+\end{theorem} 
+\begin{proof} We shall first reduce the result to one about rings instead of
+modules. By Hilbert's basis theorem, we know that $S$ is noetherian. 
+By d\'evissage (\cref{devissage}), there is a finite filtration of $M$ by
+$S$-submodules, 
+\[ 0 = M_0 \subset M_1 \subset \dots \subset M_k = M  \]
+such that the quotients $M_{i+1}/M_i$ are isomorphic to quotients
+$S/\mathfrak{p}_i$ for the $\mathfrak{p}_i \in \spec S$.
+
+Since localization is an exact functor, it will suffice to show that there
+exists an $f$ such that $(S/\mathfrak{p}_i)_f$ is a free $R$-module for each
+$f$. Indeed, it is clear that if a module admits a finite filtration all of
+whose successive quotients are free, then the module itself is free.
+We may thus even reduce to the case where $M = S/\mathfrak{p}$.
+
+So we are reduced to showing that if we have a finitely generated
+\emph{domain} $T$ over $R$, then there exists $f \in R - \left\{0\right\}$
+such that $T_f$ is a free $R$-module. 
+If $R \to T$ is not injective, then the result is obvious (localize at
+something nonzero in the kernel), so we need only handle the case where $R \to
+T$ is a monomorphism.
+
+
+By the Noether normalization theorem, there are $d$  elements of $T \otimes_R K(R)$, which we
+denote by $t_1, \dots, t_d$, which are algebraically independent over $K(R)$
+and such that $T \otimes_R K(R)$ is integral over $K(R)[t_1, \dots, t_d]$.
+(Here $d$ is the transcendence degree of $K(T)/
+K(R)$.)
+If we localize at some highly divisible element, we can assume that $t_1,
+\dots, t_d$ all lie in $T$ itself. \emph{Let us assume that the result for
+domains is true whenever the transcendence degree is $< d$, so that we can
+induct.}
+
+Then we know that $R[t_1, \dots, t_d] \subset T$ is  a polynomial ring.
+Moreover, each of the finitely many generators of $T/R$ satisfies a monic polynomial
+equation over $K(R)[t_1, \dots, t_d]$ (by the integrality part of Noether
+normalization). If we localize $R$ at a highly divisible element, we may
+assume that the coefficients of these polynomials belong to $R[t_1, \dots,
+t_d]$. 
+We have thus reduced to the following case. $T$ is a finitely generated domain
+over $R$, \emph{integral} over the polynomial ring $R[t_1, \dots, t_d]$. In
+particular, it is a finitely generated module over the polynomial ring $R[t_1,
+\dots, t_d]$.
+Thus we have some $r$ and an exact sequence
+\[ 0 \to R[t_1, \dots, t_d]^r \to T \to Q \to 0,  \]
+where $Q$ is a torsion $R[t_1, \dots, t_d]^r$-module. Since the polynomial
+ring is free, we are reduced to showing that by localizing at a suitable
+element of $R$, we can make  $Q$ free. 
+
+But now we can do an inductive argument. $Q$ has a  finite filtration by
+$T$-modules whose
+quotients are isomorphic to $T/\mathfrak{p}$ for nonzero primes
+$\mathfrak{p}$ with $\mathfrak{p} \neq 0$ as $T$ is torsion; these are still domains finitely generated over $R$, but such
+that the associated transcendence degree is \emph{less} than $d$. We have
+already assumed the statement proven for domains where the transcendence
+degree is $< d$. Thus we can
+find a suitable localization that makes all these  free, and thus $Q$ free; it
+follows that with this localization, $T$ becomes free too.
+\end{proof} 
