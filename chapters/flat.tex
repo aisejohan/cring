@@ -233,6 +233,11 @@ it is a flat $\mathbb{Z}$-algebra, but not faithfully flat (for instance,
 tensoring with $\mathbb{Z}/3$ yields zero).
 \end{example} 
 
+\begin{exercise} 
+Suppose $\phi: R \to S$ is a flat, injective morphism of rings such that $S/\phi(R)$ is a
+flat $R$-module. Then show that $\phi$ is faithfully flat. 
+\end{exercise} 
+
 Flat morphisms need not be injective, but they are locally injective. We shall see this using:
 \begin{proposition}  \label{flatlocal}
 A flat local homomorphism of local rings is faithfully flat. In particular, it
@@ -256,7 +261,7 @@ $R_{\mathfrak{p}} \to S_{\mathfrak{q}}$ is faithfully flat, hence injective.
 \end{corollary} 
 \begin{proof} 
 We only need to show that the map is flat by \cref{flatlocal}. 
-
+\add{proof}
 \end{proof} 
 
 \subsection{Topological consequences}
@@ -629,31 +634,80 @@ If the map
 is injective for all ideals $I$, then $M$ is flat.
 \end{corollary} 
 
+
+\section{Flatness over noetherian local rings}
+
+We shall be able to obtain simpler criterion for flatness when the ring in
+question is noetherian local. For instance, we have already seen:
+
+\begin{theorem} 
+If $M$ is a finitely generated module over a noetherian local ring $R$ (with
+residue field $k$), then $M$ is free if and only if
+$\tor_1(k, M) = 0$.
+\end{theorem} 
+
+In particular, flatness is the same thing as the vanishing of \emph{one}
+$\tor$ module, and it equates to freeness. Now, we want to generalize this
+result to the case where $M$ is not necessarily finitely generated over $R$,
+but finitely generated over an $R$-algebra that is also noetherian local. In
+particular, we shall get useful criteria for when an extension of
+noetherian local \emph{rings}
+(which in general is not finite, or even finitely generated)
+is flat.
+
+We shall prove two main criteria. The \emph{local criterion} is a direct
+generalization of the above result (the vanishing of one $\tor$ group). The
+\emph{infinitesimal criterion} reduces checking flatness of $M$ to checking
+flatness of $M \otimes_R R/\mathfrak{m}^t$ over $R/\mathfrak{m}^t$; in
+particular, it reduces to the case where the base ring is \emph{artinian.}
+Armed with these, we will be able to prove a rather difficult theorem that
+states that we can always find lots of flat extensions of noetherian local
+rings.
+
 \subsection{Flatness over a noetherian local ring}
 
-Let $R$ be a noetherian local ring with maximal ideal $\mathfrak{m}$ and residue field $k$, $S$ be a local finitely generated $R$-algebra with $\mathfrak{m}S \subset \mathfrak{n}$ for $\mathfrak{n}$ the maximal ideal of $S$, and $M$ a finitely generated $S$-module.
+We shall place ourselves in the following situation. $R, S$ are noetherian
+local rings with maximal ideals $\mathfrak{m} \subset R, \mathfrak{n} \subset
+S$, and $S$ is an $R$-algebra (and the morphism $R \to S$ is \emph{local}, so
+$\mathfrak{m}S \subset \mathfrak{n}$).
+We will want to know when a $S$-module is flat over $R$. In particular, we
+want a criterion for when $S$ is flat over $R$.
 
-The first basic result is:
-\begin{theorem} $M$ is flat over $R$ iff
+\begin{theorem} The finitely generated $S$-module $M$ is flat over $R$ iff
 \[ \mathrm{Tor} ^1_R( k, M) = 0.\]
 In this case, $M$ is even free.
 \end{theorem}
 
+It is actually striking how little the condition that $M$ is a finitely
+generated $S$-module enters, or how irrelevant it seems in the statement. The
+argument will, however, use the fact that $M$ is \emph{separated} with respect
+to the $\mathfrak{m}$-adic topology, which relies on Krull's intersection
+theorem (note that since $\mathfrak{m} S \subset \mathfrak{n}$, the
+$\mathfrak{m}$-adic topology on $M$ is separated).
+
 \begin{proof} 
 Necessity is immediate.  What we have to prove is sufficiency.
 
-First, I make the following claim. If $N$ is an $R$-module of finite length, then
-\[ \mathrm{Tor} ^1_R( N, M)=0.\]
-This is because $N$ has by devissage a filtration $N_i$ whose quotients are of the form $R/\mathfrak{p}$ for $\mathfrak{p}$ prime and (by finite length hypothesis) $\mathfrak{p}= \mathfrak{m}$.  
-Then the result is true $N_0=0 \subset N$ trivially.  We climb up the filtration piece by piece inductively; if $\mathrm{Tor} ^1_R(N_i, M)=0$, then the exact sequence
+First, we claim that if $N$ is an $R$-module of finite length, then
+\begin{equation} \label{vanishingtorlocal} \mathrm{Tor} ^1_R( N,
+M)=0.\end{equation}
+This is because $N$ has by d{\'e}vissage (\cref{filtrationlemma}) afinite  filtration
+$N_i$ whose quotients are of the form $R/\mathfrak{p}$ for $\mathfrak{p}$
+prime and (by finite length hypothesis) $\mathfrak{p}= \mathfrak{m}$. So we
+have a filtration on $M$ whose successive quotients are isomorphic to $k$. 
+We can then climb up the filtration to argue that $\tor^1(N_i, M) = 0$ for
+each $i$.
+
+Indeed, the claim \eqref{vanishingtorlocal} is true $N_0=0 \subset N$ trivially.  We climb up the filtration piece by piece inductively; if $\mathrm{Tor} ^1_R(N_i, M)=0$, then the exact sequence
 \[ 0 \to N_i \to N_{i+1} \to k \to 0 \]
-yields
+yields an exact sequence
 \[ \mathrm{Tor} ^1_R(N_i, M) \to \mathrm{Tor} ^1_R(N_{i+1}, M) \to 0 \]
 from the long exact sequence of $\mathrm{Tor} $ and the hypothesis on $M$.
 The claim is proved.
 
 
-The idea behind this proof is to show that $I \otimes_RM \to M$ is injective for any $I \subset R$.  We will use some diagram chasing and the Krull intersection theorem on the kernel $K$ of this map, to interpolate between it and various quotients by powers of $\mathfrak{m}$.
+Now we want to prove that $M$ is flat. The idea is to show that $I \otimes_RM
+\to M$ is injective for any ideal $I \subset R$.  We will use some diagram chasing and the Krull intersection theorem on the kernel $K$ of this map, to interpolate between it and various quotients by powers of $\mathfrak{m}$.
 First we write some exact sequences.
 
 We have an exact sequence
@@ -665,18 +719,21 @@ The sequence
 \[ 0 \to  I/I  \cap \mathfrak{m}^t \to R/\mathfrak{m}^t \to R/(I+\mathfrak{m}^t) \to 0\]
 is also exact, and tensoring with $M$ yields an exact sequence:
 \[ 0 \to  I/I  \cap \mathfrak{m}^t \otimes M  \to M/\mathfrak{m}^tM  \to M/(\mathfrak{m}^t  + I) M \to 0\]
-because $\mathrm{Tor} ^1_R(M,   R/(I+\mathfrak{m}^t))=0$ (finite length hypothesis.
+because $\mathrm{Tor} ^1_R(M,   R/(I+\mathfrak{m}^t))=0$ by
+\eqref{vanishingtorlocal}, as $R/(I + \mathfrak{m}^t)$ is of finite length.
 
-
-Let us draw the following commutative diagram:\\
+Let us draw the following commutative diagram:
+\begin{equation} \label{keyflatnessdiag}
 \xymatrix{
 & & 0 \ar[d] \\
 \mathfrak{m}^t \cap I \otimes M \ar[r] & I \otimes M \ar[r] & I/I \cap \mathfrak{m}^t \otimes M \ar[d] \\
 & & M/\mathfrak{m}^t M 
-}
+} \end{equation}
 
-where the column and the row are exact.
-As a result, if an element in $I \otimes M$ goes to zero in $M$ (a fortiori in  $M/\mathfrak{m}^tM$) it must come from $\mathfrak{m}^t \cap I \otimes M$ for all $t$.  Thus it belongs to $\mathfrak{m}^t(I \otimes M)$ for all $t$, and the Krull intersection theorem (applied to $S$, since $\mathfrak{m}S \subset \mathfrak{n}$) implies it is zero.
+Here the column and the row are exact.
+As a result, if an element in $I \otimes M$ goes to zero in $M$ (a fortiori
+in  $M/\mathfrak{m}^tM$) it must come from $\mathfrak{m}^t \cap I \otimes M$
+for all $t$.  Thus, by the Artin-Rees lemma, it belongs to $\mathfrak{m}^t(I \otimes M)$ for all $t$, and the Krull intersection theorem (applied to $S$, since $\mathfrak{m}S \subset \mathfrak{n}$) implies it is zero.
 
 \end{proof} 
 
@@ -687,20 +744,31 @@ $R$-algebra. Let $M$ be a finitely generated module over $S$.  Then $M$ is
 flat over $R$ iff $M/\mathfrak{m}^tM$ is flat over $R/\mathfrak{m}^t$ for all $t>0$.
 \end{theorem}
 \begin{proof} 
-One direction is easy, because if $M$ is a flat $R$-module and $S$ an $R$-algebra, then $M \otimes_R S$ is flat over $S$. 
-For the other direction, take the same commutative diagram as before:\\
-\xymatrix{
+One direction is easy, because flatness is preserved under base-change $R \to
+R/\mathfrak{m}^t$. 
+For the other direction, suppose $M/\mathfrak{m}^t M$ is flat over
+$R/\mathfrak{m}^t$ for all $t$. Then, we need to show that if $I \subset R$ is any ideal,
+then the map $I \otimes_R M \to M$ is injective. We shall argue that the
+kernel is zero using the Krull intersection theorem.
+
+Fix $t \in \mathbb{N}$. As before, the short exact sequence $0 \to
+\mathfrak{m}^t \cap I \to I \to I/\mathfrak{m}^t \cap I \to 0$ gives an exact
+sequence
+\[ 0 \to  I/I  \cap \mathfrak{m}^t \otimes M  \to M/\mathfrak{m}^tM  \to M/(\mathfrak{m}^t  + I) M \to 0\]
+which we can fit into a diagram, as in \eqref{keyflatnessdiag}
+$$\xymatrix{
 & & 0 \ar[d] \\
 \mathfrak{m}^t \cap I \otimes M \ar[r] & I \otimes M \ar[r] & I/I \cap \mathfrak{m}^t \otimes M \ar[d] \\
 & & M/\mathfrak{m}^t M 
-}
+}.$$
 
-The horizontal sequence was always exact.  The vertical sequence can be argued to be exact by tensoring the exact sequence 
+The horizontal sequence was always exact, as before.  The vertical sequence can be argued to be exact by tensoring the exact sequence 
 \[ 0 \to  I/I  \cap \mathfrak{m}^t \to R/\mathfrak{m}^t \to R/(I+\mathfrak{m}^t) \to 0\]
-of $R/\mathfrak{m}^t$-modules with $M/\mathfrak{m}^tM$, and using flatness.
+of $R/\mathfrak{m}^t$-modules with $M/\mathfrak{m}^tM$, and using flatness of
+$M/\mathfrak{m}^t M$ over $R/\mathfrak{m}^t$ (and \cref{}).
 Thus we get flatness of $M$ as before.
-
 \end{proof} 
+
 Incidentally, if we combine the local and infinitesimal criteria for flatness, we get a little more.
 
 \subsection{Example: construction of flat extensions}
@@ -722,11 +790,102 @@ $R$-algebra $(S,
 \mathfrak{m}S$.
 \end{theorem} 
 
-\add{not added yet}
+\begin{proof} 
+Let us start by motivating the theorem when $K$ is generated over $k$ by
+\emph{one} element. 
+This case can be handled directly, but the general case will require a
+somewhat tricky passage to the limit.
+There are two cases.
+
+\begin{enumerate}
+\item  
+First, suppose $K = k(t)$ for $t \in K$ \emph{transcendental} over $k$. In
+this case, we will take $S$ to be a suitable localization of $R[t]$. Namely,
+we consider the prime\footnote{It is prime because the quotient is the domain
+$k[t]$.} ideal $\mathfrak{m} R[t] \subset R[t]$, and let
+$S = (R[t])_{\mathfrak{m} R[t]}$. 
+Then $S$ is clearly noetherian and local, and moreover $\mathfrak{m}S$ is the
+maximal ideal of $S$. The residue field of $S$ is $S/\mathfrak{m}S $, which is
+easily seen to be the quotient field of $R[t]/\mathfrak{m}R[t] = k[t]$, and is
+thus isomorphic to $K$. Moreover, as a localization of a polynomial ring, $S$
+is flat over $R$.
+Thus we have handled the case of a purely transcendental extension generated
+by one element.
+
+\item 
+Let us now suppose $K = k(a)$ for $a \in K$ \emph{algebraic} over $k$. Then
+$a$ satisfies a monic irreducible polynomial $\overline{p}(T)$ with coefficients in $k$.
+We lift $\overline{p}$ to a monic polynomial $p(T) \in R[T]$. The claim is
+that then, $S = R[T]/(p(T))$ will suffice.
+
+Indeed, $S$ is clearly flat over $R$ (in fact, it is free of rank $\deg p$).
+As it is finite over $R$, $S$ is noetherian. Moreover, $S/\mathfrak{m}S = k[T]/
+(p(T)) \simeq K$. It follows that $\mathfrak{m}S \subset S$ is a maximal ideal
+and that the residue field is $K$. Since any maximal ideal of $S$ contains
+$\mathfrak{m}S$ by Nakayama,\footnote{\add{citation needed}} we see that $S$
+is local as well. Thus we have showed that $S$ satisfies all the conditions we
+want.
+\end{enumerate}
+
+So we have proved the theorem when $K$ is generated by one element over $k$.
+In general, we can iterate this procedure finitely many times, so that the
+assertion is clear when $K$ is a finitely generated extension of $k$.
+Extending to infinitely generated extensions is trickier.
+
+Let us first argue that we can write $K/k$ as a ``transfinite limit'' of
+monogenic extensions. Consider the set of   well-ordered collections
+$\mathcal{C}'$ of subfields between $k$ and $K$ (containing $k$) such that if $L \in
+\mathcal{C}'$ has an immediate predecessor $L'$, then $L/L'$ is generated by
+one element. First, such collections $\mathcal{C}'$ clearly exist; we can take
+the one consisting only of $k$. The set of such collections is clearly a
+partially ordered set such that every chain has an upper bound. 
+By Zorn's lemma, there is a \emph{maximal} such collection of subfields, which
+we now call $\mathcal{C}$.
+
+The claim is that $\mathcal{C}$ has a maximal field, which is $K$. Indeed, if
+it had no maximal element, we could adjoin the union $\bigcup_{F \in
+\mathcal{C}} F$ to $\mathcal{C}$ and make $\mathcal{C}$ bigger, contradicting
+maximality. If this maximal field of $\mathcal{C}$ were not $K$, then we could add another
+element to this maximal subfield and get a bigger collection than
+$\mathcal{C}$, contradiction.
+
+So thus we have a  set of fields $K_\alpha$ (with $\alpha$, the
+index, ranging over a well-ordered set) between $k$ and $K$,
+such that if $\alpha$ has a successor $\alpha'$, then 
+$K_\alpha'$ is generated by one element over $K_\alpha$. Moreover $K$ is the
+largest of the $K_\alpha$, and $k$ is the smallest. 
+
+We are now going to define a collection of rings $R_\alpha$ by transfinite
+induction on $\alpha$. We start the induction with $R_0 = R$ (where $0$ is the
+smallest allowed $\alpha$). The inductive hypothesis that we will want to
+maintain is that $R_\alpha$ is a noetherian local ring with maximal ideal
+$\mathfrak{m}_\alpha$, flat over $R$ and
+satisfying $\mathfrak{m} R_\alpha = \mathfrak{m}_\alpha$; we require,
+moreover, that the residue field of $R_\alpha$ be $K_\alpha$. Thus if we can
+do this at each step, we will be able to work up to $K$ and get the ring $S$
+that we want. 
+We are, moreover, going to construct the $R_\alpha$ such that whenever $\beta <
+\alpha$, $R_\alpha$ is a $R_\beta$-algebra.
+
+Let us assume that $R_\beta$ has been defined for all $\beta < \alpha$ and
+satisfies the conditions. Then
+we want to define $R_\alpha$ in an appropriate way. If we can do this, then we
+will have proved the result. 
+There are two cases:
+\begin{enumerate}
+\item $\alpha$ has an immediate predecessor $\alpha_{pre} $. In this case, we
+can define $R_\alpha$ from $R_{\alpha_{pre}}$ as above (because
+$K_\alpha/K_{\alpha_{pre}}$ is monogenic).
+\item $\alpha$ has no immediate predecessor. Then we define $R_\alpha =
+\varinjlim_{\beta < \alpha} R_\beta$. The following lemma will show that
+$R_\alpha$ satisfies the appropriate hypotheses.
+\end{enumerate}
+This completes the proof, modulo \cref{indlimnoetherianlocal}.
+\end{proof} 
 
 We shall need the following lemma to see that we preserve noetherianness when
 we pass to the limit.
-\begin{lemma} 
+\begin{lemma}\label{indlimnoetherianlocal} 
 Suppose given an inductive system $\left\{(A_\alpha,
 \mathfrak{m}_{\alpha})\right\}$ of noetherian
 rings and flat local homomorphisms, starting with $A_0$.
@@ -735,12 +894,13 @@ whenever $\alpha < \beta$.
 
 Then $A = \varinjlim A_\alpha$ is a
 noetherian local ring, flat over each $A_\alpha$. Moreover, if $\mathfrak{m} \subset A$
-is the maximal ideal, then $\mathfrak{m}_\alpha A = \mathfrak{m}$.
+is the maximal ideal, then $\mathfrak{m}_\alpha A = \mathfrak{m}$. The residue
+field of $A$ is $\varinjlim A_\alpha/\mathfrak{m}_\alpha$.
 \end{lemma}
 \begin{proof} 
 First, it is clear that $A$ is a local ring (\cref{} \add{reference!}) with
 maximal ideal equal to $\mathfrak{m}_\alpha A$ for any $\alpha $ in the
-indexing set. Since filtered colimits preserve flatness, flatness of $A$ is
+indexing set, and that $A$ has the appropriate residue field. Since filtered colimits preserve flatness, flatness of $A$ is
 also clear. 
 We need to show that $A$ is noetherian; this is the crux of the lemma. 
 
