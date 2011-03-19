@@ -12,6 +12,7 @@ $R$-algebra is flat if it is flat as a module. For instance, we have seen that
 any localization of $R$ is a flat algebra, because localization is an exact
 functor.
 
+
 \textbf{All this has not been added yet!}
 
 \section{Faithful flatness}
@@ -276,7 +277,7 @@ Let $R \to S$ be a faithfully flat morphism of rings. Then the map $\spec S
 \begin{proof} Since $R \to S$ is injective, we may regard $R$ as a subring of $S$.
 We shall first show that:
 
-\begin{lemma} 
+\begin{lemma} \label{intideal}
 If $I \subset R$ is any ideal, then $R \cap IS = I$.
 \end{lemma}
 \begin{proof} 
@@ -681,7 +682,9 @@ As a result, if an element in $I \otimes M$ goes to zero in $M$ (a fortiori in  
 
 \subsection{The infinitesimal criterion}
 
-\begin{theorem} Let $M$ be a module over a noetherian local ring $R$.  Then $M$ is flat iff $M/\mathfrak{m}^tM$ is flat over $R/\mathfrak{m}^t$ for all $t>0$.
+\begin{theorem} Let $R$ be a noetherian local ring, $S$ a noetherian local
+$R$-algebra. Let $M$ be a finitely generated module over $S$.  Then $M$ is
+flat over $R$ iff $M/\mathfrak{m}^tM$ is flat over $R/\mathfrak{m}^t$ for all $t>0$.
 \end{theorem}
 \begin{proof} 
 One direction is easy, because if $M$ is a flat $R$-module and $S$ an $R$-algebra, then $M \otimes_R S$ is flat over $S$. 
@@ -698,5 +701,100 @@ of $R/\mathfrak{m}^t$-modules with $M/\mathfrak{m}^tM$, and using flatness.
 Thus we get flatness of $M$ as before.
 
 \end{proof} 
-Incidentally, if we combine the local and infinitesimal criteria fo flatness, we get a little more.
+Incidentally, if we combine the local and infinitesimal criteria for flatness, we get a little more.
 
+\subsection{Example: construction of flat extensions}
+
+As an illustration of several of the techniques in this chapter and previous
+ones, we shall show, following \cite{EGA} (volume III, chapter 0) that, given a
+local ring and an extension of its residue field, one may find a flat
+extension of this local ring with the bigger field as \emph{its} residue
+field. One application of this is in showing (in the context of Zariski's
+Main Theorem) that the fibers of a birational
+projective morphism of noetherian schemes (where the target is normal) are
+\emph{geometrically} connected.
+
+\begin{theorem} 
+Let $(R, \mathfrak{m})$ be a noetherian local ring with residue field $k$.
+Suppose $K$ is an extension of $k$. Then there is a noetherian local
+$R$-algebra $(S,
+\mathfrak{n})$ with residue field $K$ such that $S$ is flat over $R$ and $\mathfrak{n} =
+\mathfrak{m}S$.
+\end{theorem} 
+
+\add{not added yet}
+
+We shall need the following lemma to see that we preserve noetherianness when
+we pass to the limit.
+\begin{lemma} 
+Suppose given an inductive system $\left\{(A_\alpha,
+\mathfrak{m}_{\alpha})\right\}$ of noetherian
+rings and flat local homomorphisms, starting with $A_0$.
+Suppose moreover that $\mathfrak{m}_{\alpha} A_{\beta} = \mathfrak{m}_{\beta}$
+whenever $\alpha < \beta$.
+
+Then $A = \varinjlim A_\alpha$ is a
+noetherian local ring, flat over each $A_\alpha$. Moreover, if $\mathfrak{m} \subset A$
+is the maximal ideal, then $\mathfrak{m}_\alpha A = \mathfrak{m}$.
+\end{lemma}
+\begin{proof} 
+First, it is clear that $A$ is a local ring (\cref{} \add{reference!}) with
+maximal ideal equal to $\mathfrak{m}_\alpha A$ for any $\alpha $ in the
+indexing set. Since filtered colimits preserve flatness, flatness of $A$ is
+also clear. 
+We need to show that $A$ is noetherian; this is the crux of the lemma. 
+
+To prove that $A$ is noetherian, we are going to show that its
+$\mathfrak{m}$-adic completion $\hat{A}$ is noetherian. Fortunately, we have a
+convenient criterion for this. If $\hat{\mathfrak{m}}=
+\mathfrak{m}\hat{A}$, then $\hat{A}$ is complete with respect to the
+$\hat{\mathfrak{m}}$-adic topology. So if we show that
+$\hat{A}/\hat{\mathfrak{m}}$ is noetherian and
+$\hat{\mathfrak{m}}/\hat{\mathfrak{m}^2}$ is a finitely generated
+$\hat{A}$-module, we will have shown that $\hat{A}$ is noetherian by
+\cref{completenoetherian}.
+
+But $\hat{A}/\hat{\mathfrak{m}}$ is a field, so obviously noetherian. 
+Also, $\hat{\mathfrak{m}}/\hat{\mathfrak{m}}^2 = \mathfrak{m}/\mathfrak{m}^2$,
+and by flatness of $A$, this is 
+\[ A \otimes_{A_\alpha} \mathfrak{m}_\alpha/\mathfrak{m}_\alpha^2  \]
+for any $\alpha$. Since $A_\alpha$ is noetherian, we see that this is finitely
+generated. The criterion \cref{completenoetherian} now shows that the completion $\hat{A}$ is
+noetherian.
+
+Finally, we need to deduce that $A$ is itself noetherian. 
+To do this,
+we shall show that $\hat{A}$ is faithfully flat over $A$. Since noetherianness
+``descends'' under faithfully flat extensions (\add{citation needed}), this
+will be enough. It suffices to show that $\hat{A}$ is \emph{flat} over each
+$A_\alpha$. For this, we use the infinitesimal criterion; we have that
+\[ \hat{A} \otimes_{A_\alpha} A_\alpha/\mathfrak{m}_\alpha^t =
+\hat{A}/\hat{\mathfrak{m}^t} = A/\mathfrak{m}^t = A/A\mathfrak{m}_\alpha^t,  \]
+which is flat over $A_\alpha/\mathfrak{m}_\alpha^t$ since $A$ is flat over
+$A_\alpha$.
+
+It follows that $\hat{A}$ is flat over each $A_\alpha$. 
+If we want to see that $A \to \hat{A}$ is flat, we let $I \subset A$ be a
+finitely generated
+ideal; we shall prove that $I \otimes_A \hat{A} \to \hat{A}$ is injective
+(which will establish flatness). We know that there is an ideal $I_\alpha \subset A_\alpha$ for some
+$A_\alpha$ such that
+\[ I = I_\alpha A = I_\alpha \otimes_{A_\alpha} A.  \]
+Then
+\[ I \otimes_A \hat{A} = I_\alpha \otimes_{A_\alpha} \hat{A}  \]
+which injects into $\hat{A}$ as $A_\alpha \to \hat{A}$ is flat. 
+
+\begin{comment}
+Let us first show that $A$ is \emph{separated} with respect to the
+$\mathfrak{m}$-adic topology. Fix $x \in A$. Then $x$ lies in the subring
+$A_\alpha$ for some fixed $\alpha$ depending on $\alpha$ (note that $A_\alpha
+\to A$ is injective since a flat morphism of local rings is \emph{faithfully
+flat}). If $x \in \mathfrak{m}^n = A \mathfrak{m}_\alpha^n$, then $x \in
+\mathfrak{m}_\alpha^n$ by faithful flatness and \cref{intideal}.
+So if $x \in \mathfrak{m}^n$ for all $n$, then $x \in \mathfrak{m}_\alpha^n$
+for all $n$; the separatedness of $A_\alpha$ with respect to the
+$\mathfrak{m}_\alpha$-adic topology now shows $x=0$.
+\end{comment}
+
+
+\end{proof} 
