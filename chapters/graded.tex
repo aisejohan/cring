@@ -650,6 +650,98 @@ where multiplication is defined in a similar manner as above.
 
 In other words, we have defined a \emph{functor} $\gr$ from the category of filtered
 $R$-modules to the category of \emph{graded} $\gr(R)$ modules.
+\subsection{Topologies}
+
+We shall now see that filtered rings and modules come naturally with
+\emph{topologies} on them. 
+
+\begin{definition} 
+A \textbf{topological ring} is a ring $R$ together with a topology such that
+the natural maps
+\begin{gather*} R \times R \to R, \quad  (x,y) \mapsto x+y \\
+R \times R \to R, \quad (x,y) \mapsto xy \\
+R \to R, \quad x \mapsto -x
+\end{gather*}
+are continuous (where $R \times R$ has the product topology).
+\end{definition} 
+
+
+\add{discussion of algebraic objects in categories}
+
+
+In practice, the topological rings that we will be interested will exclusively
+be \emph{linearly} topologized rings.
+
+\begin{definition} 
+A topological ring is \textbf{linearly topologized} if there is a neighborhood
+basis at $0$ consisting of open ideals.
+\end{definition} 
+
+Given a filtered ring $R$ with a filtration of ideals $\left\{I_n\right\}$, we
+can naturally linearly topologize $R$. Namely, we take as a basis the cosets
+$x+I_n$ for $x \in R, n \in \mathbb{Z}_{\geq 0}$. 
+It is then clear that the $\left\{I_n\right\}$ form a neighborhood basis at
+the origin (because any neighborhood $x+I_n$ containing $0$ must just be
+$I_n$!). 
+
+\begin{example} 
+For instance, given any ring $R$ and any ideal $I \subset R$, we can consider
+the \textbf{$I$-adic topology} on $R$. Here an element is ``small'' (i.e.,
+close to zero) if it lies in a high power of $I$.
+\end{example} 
+
+
+\begin{proposition} 
+A topology on $R$ defined by the filtration $\left\{I_n\right\}$ is Hausdorff
+if and only if $\bigcap I_n = 0$.
+\end{proposition} 
+\begin{proof} 
+Indeed, to say that $R$ is Hausdorff is to say that any two distinct elements
+$x,y \in R$ can be separated by disjoint neighborhoods. If $\bigcap I_n = 0$,
+we can find $N$ large such that $x -y \notin I_N$. Then $x+I_N, y + I_N$ are
+disjoint neighborhoods of $x,y$. 
+The converse is similar: if $\bigcap I_n \neq 0$, then no neighborhoods can
+separate a nonzero element in $\bigcap I_n$ from $0$.
+\end{proof} 
+
+Similarly, if $M$ is a filtered $R$-module with a filtration
+$\left\{M_n\right\}$, we can topologize $M$ by choosing the
+$\left\{M_n\right\}$ to be a neighborhood basis at the origin.  Then $M$
+becomes a \emph{topological group,} that is a group with a topology such that
+the group operations are continuous.
+In the same way, we find:
+
+\begin{proposition} 
+The topology on $M$ is Hausdorff if and only if $\bigcap M_n = 0$.
+\end{proposition} 
+
+Moreover, because of the requirement that $R_m M_{n}  \subset M_{n+m}$, it is
+easy to see that the map
+\[ R \times M \to M  \]
+is itself continuous. Thus, $M$ is a \emph{topological} module.
+
+Here is another example. Suppose $M$ is a linearly topologized module with a
+basis of submodules $\left\{M_\alpha\right\}$ at the origin. Then any
+submodule $N \subset M$ becomes a linearly topologized module with a basis of
+submodules $\{N \cap M_\alpha\}$ at the origin with the relative topology.
+
+
+\section{The Artin-Rees Lemma}
+
+We shall now show that for \emph{noetherian} rings and modules, the $I$-adic
+topology is stable under passing to submodules; this useful result, the
+Artin-Rees lemma, will become indispensable in our analysis of dimension
+theory in the future.
+
+More precisely, consider the following problem. Let $R$ be a ring and $I
+\subset R$ an ideal. Then for any $R$-module $M$, we can endow $M$ with the
+$I$-adic filtration $\left\{I^n M\right\}$, which defines a topology on $M$.
+If $N \subset M$ is a submodule, then 
+$N$ inherits the subspace topology from $M$ (i.e. that defined by the filtration
+$\left\{I^n M \cap N\right\}$). But $N$ can also be topologized by simply
+taking the $I$-adic topology on it. The Artin-Rees lemma states that these two
+approaches give the same result.
+
 \subsection{The Artin-Rees Lemma}
 
 \begin{theorem}[Artin-Rees lemma]
@@ -686,6 +778,7 @@ $c$ be the largest degree (exponent of $t$) that occurs.
 I claim that $c$ works.  This is easy to check, but we're out of time. We'll
 talk about this more next week. 
 \end{proof} 
+
 
 \subsection{The Krull intersection theorem}
 
