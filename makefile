@@ -22,6 +22,10 @@ update_tmp:
 	perl -w scripts/makenamelist.perl
 	perl -w scripts/script.perl
 
+expand_abbrevs:
+	sed -i 's/f\.g\./finitely generated/' chapters/*.tex
+	sed -i 's/f\.p\./finitely presented/' chapters/*.tex
+	sed -i 's/f\.f\./faithfully flat/' chapters/*.tex
 
 tarball: CRing.tex chapters/*.tex other/* standalone/*.tex scripts/*  tmp/* makefile
 	tar --transform='s,^,cring/,' -cvjf CRing.tar.bz2 CRing.tex chapters/*.tex other/* standalone/*.tex scripts/*  tmp/* makefile

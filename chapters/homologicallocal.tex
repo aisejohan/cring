@@ -470,7 +470,7 @@ that both those two sequences are $M$-regular, so we can apply the lemma.
 \end{proof} 
 
 In general, the product of two regular sequences is not a regular sequence. For
-instance, consider a regular sequence $x,y$ in some f.g. module $M$ over a
+instance, consider a regular sequence $x,y$ in some finitely generated module $M$ over a
 noetherian local ring. Then $y,x$ is regular, but the product sequence $xy, xy$
 is \emph{never} regular.
 
@@ -519,7 +519,7 @@ For convenience, we set the following condition: if $IM = M$, we define
 \[ \mathrm{depth}_I (M) = \infty.  \]
 
 \begin{proposition} 
-Let $R$ be a noetherian ring, $I \subset R$ an ideal, and $M$ a f.g. $R$-module. 
+Let $R$ be a noetherian ring, $I \subset R$ an ideal, and $M$ a finitely generated $R$-module. 
 Then
 \[ \mathrm{depth}_I M = \min_{\mathfrak{p} \in V(I)} \mathrm{depth}_{\mathfrak{p}} M .  \]
 \end{proposition} 
@@ -593,7 +593,7 @@ dimension than $\supp M$. That is,
 But I claim that we have in fact equality. 
 
 \begin{lemma} 
-For any f.g. $R$-module $M$, we have $\dim M /xM \geq \dim M - 1$.
+For any finitely generated $R$-module $M$, we have $\dim M /xM \geq \dim M - 1$.
 \end{lemma} 
 \begin{proof} We have $\supp(M/xM) = \supp M \cap V(x)$. Indeed, this is easily
 seen by localization: if $\mathfrak{p}$ is such that $M_{\mathfrak{p}}/x
@@ -609,7 +609,7 @@ initial dimension minus one. So this gives the other inequality.
 
 In particular, we deduce:
 \begin{proposition} 
-Let $M$ be a f.g. module over the noetherian ring $R$. Then
+Let $M$ be a finitely generated module over the noetherian ring $R$. Then
 \[ \mathrm{depth}_I M \leq \dim M  \]
 for any ideal $I \subset R$ with $IM \neq M$.
 \end{proposition} 
@@ -1178,7 +1178,7 @@ $\pr(R/\mathfrak{m}) = \dim R$.
 Today, we shall start by proving:
 
 \begin{theorem}[Auslander-Buschsbaum formula]
-Let $R$ be a local noetherian ring, $M$ a f.g. $R$-module of
+Let $R$ be a local noetherian ring, $M$ a finitely generated $R$-module of
 finite
 projective dimension. If $\pr(R) <
 \infty$, then $\pr(M) = \depth(R) - \depth(M)$.
@@ -1278,7 +1278,7 @@ Let $R = \mathbb{C}[x_1, \dots, x_n]/\mathfrak{p}$ for
 $\mathfrak{p}$ prime.
 Choose an injection $R' \to R$ where $R' = \mathbb{C}[y_1,
 \dots, y_m]$ and
-$R$ is a f.g. $R'$-module. This exists by the Noether
+$R$ is a finitely generated $R'$-module. This exists by the Noether
 normalization lemma.
 
 We wanted to show:
@@ -1363,7 +1363,7 @@ Let's prove this claim in a more general form:
 Let $\phi: S' \to S$ be a local\footnote{I.e. $\phi$ sends
 non-units into
 non-units.} map of local noetherian rings such that $S$ is a
-f.g.
+finitely generated
 $S'$-module. Then, for any finitely generated $S$-module $M$,
 \[ \depth_S M = \depth_{S'} M.  \]
 \end{proposition}

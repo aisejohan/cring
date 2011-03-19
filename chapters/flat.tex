@@ -45,7 +45,7 @@ We shall now prove several useful criteria about faithfully flat modules.
 An $R$-module $M$ is faithfully flat if and only if it is flat and if $M
 \otimes_R N = 0$ implies $N=0$ for any $N$.
 \end{proposition} 
-\begin{proof} Suppose $M$ f.f.
+\begin{proof} Suppose $M$ faithfully flat
 Then $M$ is flat, clearly. In addition, if $N$ is any $R$-module, consider the
 sequence
 \[ 0 \to N \to 0;  \]
@@ -101,11 +101,11 @@ induced map on the hom-sets $\hom(x,y) \to \hom(Fx, Fy)$ is always injective.
 The following result explains the use of the term ``faithful.''
 
 \begin{proposition} 
-A module $M$ is f.f. if and only if it is flat and the functor $N \to N
+A module $M$ is faithfully flat if and only if it is flat and the functor $N \to N
 \otimes_R M$ is faithful.
 \end{proposition} 
 \begin{proof} Let $M$ be flat.
-We need to check that $M$ is f.f. if and only if the natural map
+We need to check that $M$ is faithfully flat if and only if the natural map
 \[ \hom_R(N, N') \to \hom_R(N \otimes_R M, N' \otimes_R M)  \]
 is injective.
 Suppose first $M$ is faithfully flat and $f: N \to N'$ goes to zero $f \otimes
@@ -125,18 +125,18 @@ endomorphisms of $M \otimes_R N$. Thus $M \otimes_R N \neq 0$. By
 Finally, we prove one last criterion:
 
 \begin{proposition} \label{ffmaximal} 
-$M$ is f.f. if and only if $M$ is flat and $\mathfrak{m}M \neq M$ for all
+$M$ is faithfully flat if and only if $M$ is flat and $\mathfrak{m}M \neq M$ for all
 maximal ideals $\mathfrak{m} \subset R$.
 \end{proposition} 
 \begin{proof} 
-If $M$ is f.f., then $M$ is flat, and $M \otimes_R R/\mathfrak{m} =
+If $M$ is faithfully flat, then $M$ is flat, and $M \otimes_R R/\mathfrak{m} =
 M/\mathfrak{m}M \neq 0$ for all $\mathfrak{m}$ as $R/\mathfrak{m} \neq 0$, by
 \rref{easyffcriterion}. So we get one direction.
 
 Alternatively, suppose $M$ is flat and $M \otimes_R R/\mathfrak{m} \neq 0$ for
 all maximal $\mathfrak{m}$. Since every proper ideal is contained in a maximal
 ideal, it follows that $M \otimes_R R/I \neq 0$ for all proper ideals $I$. We
-shall use this and \rref{easyffcriterion} to prove that $M$ is f.f.
+shall use this and \rref{easyffcriterion} to prove that $M$ is faithfully flat
 
 Let $N$ now be any nonzero module. Then $N$ contains a \emph{cyclic} submodule, i.e.
 one isomorphic to $R/I$ for some proper $I$. The injection
@@ -144,7 +144,7 @@ one isomorphic to $R/I$ for some proper $I$. The injection
 becomes an injection
 \[ R/I \otimes_R M \hookrightarrow N \otimes_R M,  \]
 and since $R/I \otimes_R M \neq 0$, we find that $N \otimes_R M \neq 0$. By
-\rref{easyffcriterion}, it follows that $M$ is f.f.
+\rref{easyffcriterion}, it follows that $M$ is faithfully flat
 \end{proof} 
 
 \begin{corollary} 
@@ -215,7 +215,7 @@ This never happens for faithfully flat maps.
 In particular, a quotient can never be faithfully flat.
 
 \begin{proposition}  \label{ffinjective}
-If $S$ is a f.f. $R$-algebra, then the structure map $R \to S$ is injective.
+If $S$ is a faithfully flat $R$-algebra, then the structure map $R \to S$ is injective.
 \end{proposition} 
 \begin{proof} 
 Indeed, let us tensor the map $R \to S $ with $S$, over $R$. We get a morphism
