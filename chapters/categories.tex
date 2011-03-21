@@ -17,7 +17,6 @@ seriously; skipping it for the moment to chapter 1 and returning here as a
 reference could be quite reasonable.
 
 \section{Introduction}
-\newcommand{\ob}{\operatorname{ob}}
 
 \subsection{Definitions}
 
@@ -237,7 +236,7 @@ Indeed:
 \begin{definition}
 A \textbf{contravariant functor}  $\mathcal{C}
 \stackrel{F}{\to}\mathcal{D}$ (between categories $\mathcal{C}, \mathcal{D}$)
-issimilar
+is similar
 data except that now a map $X \stackrel{f}{\to} Y$ now goes to a map $FY
 \stackrel{F(f)}{\to} FX$. Composites
 are required to be preserved, albeit in the other direction.
@@ -286,7 +285,7 @@ contravariant functor.
 \begin{exercise}
 Let $\mathcal{C}$ be a category. Define the \textbf{opposite category}
 $\mathcal{C}^{op}$ of $\mathcal{C}$ to have the same objects as
-$\mathcal{C}$  but such that the morphsims between $X,Y$ in
+$\mathcal{C}$  but such that the morphisms between $X,Y$ in
 $\mathcal{C}^{op}$
 are those between $Y$ and $X$ in $\mathcal{C}$.
 Show that there is a contravariant functor $\mathcal{C} \to
@@ -295,7 +294,7 @@ Show that there is a contravariant functor $\mathcal{C} \to
 
 \subsection{Isomorphisms}
 
-Clasically, one can define an isomorphism of groups as a bijection that
+Classically, one can define an isomorphism of groups as a bijection that
 preserves the group structure. This does not generalize well to categories, as
 we do not have a notion of ``bijection.'' Thus we make:
 
@@ -531,9 +530,9 @@ push-out is actually dependent on the category.
 
 \begin{example}
 Let $R$ be a commutative ring and let $S$ and $Q$ be two commutative
-$R$-algebras. In otherwords, suppose
+$R$-algebras. In other words, suppose
 we have two maps of rings $s:R\rightarrow S$ and $q:R\rightarrow Q$. Then we
-canfit this information together
+can fit this information together
 into a pushout square:
 
 \[ \xymatrix{
@@ -585,7 +584,7 @@ P \ar[d] \ar[r] & B \ar[d]\\
 A\ar[r] & C }\]
 
 Moreover, the object $P$ is universal in the following sense: given any $P'$
-andmaps $P'\to A$ and $P'\to B$ making the square commute, there is a
+and maps $P'\to A$ and $P'\to B$ making the square commute, there is a
 unique map
 $P'\to P$ making the following diagram commute:
 \[
@@ -598,18 +597,18 @@ Dual to the notion of a push-out, sometimes the pull-back is also called the
 \end{definition}
 
 \begin{example} As said above, the fact that the tensor product of algebras is
-apush-out in the category of
+a push-out in the category of
 commutative $R$-algebras allows for the correct notion of the ``product'' of
 schemes. We now elaborate on this example: naively one would think that we
-couldpick the underlying space of the product scheme to just be the topological
+could pick the underlying space of the product scheme to just be the topological
 product of two Zariski topologies. However, it is an easy exercise to check
-thatthe product of two Zariski topologies in general is not Zariski! This
+that the product of two Zariski topologies in general is not Zariski! This
 motivates
 the need for a different concept.
 
 Suppose we have a field $k$ and two $k$-algebras $A$ and $B$ and let
 $X=Spec(A)$and $Y=Spec(B)$ be the affine $k$-schemes corresponding to $A$ and
-$B$. Considerthe follwing pull-back diagram:
+$B$. Consider the following pull-back diagram:
 \[
 \xymatrix{
 X\times_{Spec(k)} Y \ar[d] \ar[r] &X \ar[d]\\
@@ -742,7 +741,7 @@ tricky.
 
 \begin{definition}
 When $I$ is just a bunch of points  $\ast, \ast, \ast, \dots$ with no
-nonidentity morphisms, then the
+non-identity morphisms, then the
 colimit over $I$ is called the \textbf{coproduct}.
 \end{definition}
 
@@ -936,7 +935,7 @@ then the equalizer of all endomorphisms $A \to A$ is initial for $\mathcal{C}$.
 \end{proposition}
 \begin{proof}
 Let $A'$ be this equalizer; it is endowed with a morphism $A'\to A$. Then let
-usrecall what this means. For any two
+us recall what this means. For any two
 endomorphisms $A \rightrightarrows A$, the two pull-backs $A'
 \rightrightarrows A$ are equal. Moreover, if $B \to A$ is a morphism that has
 this property, then $B$ factors uniquely through $A'$.
@@ -947,7 +946,7 @@ However, we need to show that it is unique.
 
 So suppose given two maps $f,g: A' \rightrightarrows X$. We are going to show
 that they are equal. If not, consider their equalizer $O$.
-Then we have a morphism $O \to A'$ such that the postcompositions with $f,g$
+Then we have a morphism $O \to A'$ such that the post-compositions with $f,g$
 are equal. But by weak initialness, there is a map $A \to O$; thus we get a
 composite
 \[ A \to O \to A'.  \]
