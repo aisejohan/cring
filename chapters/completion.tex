@@ -141,7 +141,7 @@ is always isomorphic to a power series ring
 \[ \mathbb{C}[[t]]  \]
 where $t$ is a holomorphic coordinate at $y$. 
 
-The reason is that if you consider $R/\mathfrak{m}_y^n$, you always get
+The reason is that if one considers $R/\mathfrak{m}_y^n$, one always gets
 $\mathbb{C}[t]/(t^n)$, where $t$ corresponds to a local coordinate at $y$. Thus
 \emph{these} rings don't remember much about the Riemann surface. They're all
 isomorphic, for instance. 
@@ -170,8 +170,8 @@ about a polynomial ring, but a power series ring.
 
 To build this map, we  want a compatible family of maps
 \[ R[[t_1, \dots, t_n]] \to R[t_1, \dots, t_n]/(t_1, \dots, t_n)^k  \to R/I^k.  \]
-where the second ring is the polynomial ring where you have killed homogeneous
-polynomials of degree $\geq k$. There is a map from $R[[t_1, \dots, t_n]]$ to
+where the second ring is the polynomial ring where homogeneous
+polynomials of degree $\geq k$ are killed. There is a map from $R[[t_1, \dots, t_n]]$ to
 the second ring that kills monomials of degree $ \geq k$. The second map
 $R[t_1, \dots, t_n]/(t_1, \dots, t_n)^k \to R/I^k$ sends $t_i \to x_i$ and is
 obviously well-defined.
@@ -191,7 +191,7 @@ $I^k$.
 I claim now that 
 \[ a = \phi\left( \sum f_k(t_1, \dots, t_n)  \right).  \]
 The proof is just to check modulo $I^k$ for each $k$. This we  do by induction.
-When you reduce  modulo $I^k$, one checks easily that you get $a_k$.
+When one reduces modulo $I^k$, one gets $a_k$ (as one easily checks).
 
 As we have seen, $\hat{R}_I$ is the quotient of a power series ring. In the
 homework, it was seen that $R[[t_1, \dots, t_n]]$ is noetherian; this is a
@@ -1034,3 +1034,46 @@ henselianness of $R_i$ allows us to lift the factoring.
 \end{proof} 
 
 
+\subsection{Example: Puiseux's theorem}
+
+Using the machinery developed here, we are going to prove:
+
+\begin{theorem} 
+Let $K$ be an algebraically closed field of characteristic zero. Then any
+finite extension of the field of meromorphic power
+series\footnote{That is, the quotient field of $K[[T]]$.} $K((T))$ is of the
+form $K((T^{1/n}))$ for some $n$.
+\end{theorem} 
+In particular, we see that any finite extension of $K((T))$ is abelian, even
+cyclic. The idea is going to be to look at the integral closure of $K[[T]]$ in
+the finite extension, argue that it itself is a DVR, and then refine an
+``approximate'' root in this DVR of the equation $\alpha^n = T$ to an exact one.
+
+\begin{proof} 
+Let $R = K[[T]]$ be the power series ring; it is a complete, and thus
+henselian, DVR. Let $L$ be a finite extension of $K((T))$ of degree $n$ and $S$ the integral
+closure of $R$ in $S$, which we know to be a DVR. This is a finite $R$-algebra (cf. \cref{}), so $S$ is a
+product of local domains. Since $S$ is a domain, it is itself local. It is
+easy to see that if $\mathfrak{n} \subset S$ is the maximal ideal, then $S$ is
+$\mathfrak{n}$-adically complete (for instance because the maximal ideal of
+$R$ is a power of $\mathfrak{n}$, and $S$ is a free $R$-module).
+
+Let $\mathfrak{m} \subset R$ be the maximal ideal.
+We have the formula $ef = n$, because there is only one prime of $S$ lying
+above $\mathfrak{m}$. But $f = 1$ as the residue field of $R$ is algebraically
+closed. Hence $e = n$, and the extension is \emph{totally} ramified.
+
+Let $\alpha \in S$ be a uniformizer; we know that $\alpha$ is congruent,
+modulo $\mathfrak{n}^2$, to something in $R$ as the residue extension is trivial. Then $\alpha^n $ is congruent to something in $R$, which must be a
+uniformizer by looking at the valuation. By rescaling, we may assume
+\[ \alpha^n \equiv T \mod \mathfrak{n}^2.  \]
+Since the polynomial $X^n - T$ is separable in the residue field, we can
+(using Hensel's lemma) refine $\alpha$ to a new $\alpha' \equiv \alpha \mod
+\mathfrak{n}^2$ with 
+\[ \alpha'^n = T.  \]
+Then $\alpha'$ is also a uniformizer at $\mathfrak{n}$ (as $\alpha' \equiv
+\alpha \mod \mathfrak{n}^2$).
+It follows that $R[\alpha']$ must in fact be equal to $S$,\footnote{\cref{};
+a citation here is needed.}  and thus $L$ is
+equal to $K((T))(\alpha') = K((T^{1/n}))$.
+\end{proof} 
