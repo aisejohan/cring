@@ -407,7 +407,7 @@ relations that generate the ideal $I$.
 
 Like most nice types of morphisms, finitely presented morphisms have a
 ``sorite.''
-\begin{proposition}[Le sorite for finitely presented morphisms]
+\begin{proposition}[Le sorite for finitely presented morphisms] \label{soritefp}
 Finitely presented morphisms are preserved under composite and base-change.
 That is, if $\phi: A \to B$ is a finitely presented morphism, then:
 \begin{enumerate}
@@ -644,7 +644,7 @@ the categories of finitely presented modules over the $A_\alpha$.
 
 We start by showing that any module over $A$ ``descends'' to one of the
 $A_\alpha$.
-\begin{proposition} 
+\begin{proposition} \label{descentfpmodule} 
 Suppose $M$ is a finitely presented module over $A$. Then there is $\alpha \in
 I$ and a finitely presented $A_\alpha$-module $M_\alpha$ such that $M \simeq
 M_\alpha \otimes_{A_\alpha} A$. 
@@ -670,7 +670,7 @@ We shall actually prove a more general result.
 Namely, we shall see that 
 a morphism at the colimit ``descends'' to one of the steps.
 
-\begin{proposition} We keep the same notation as above.
+\begin{proposition} \label{colimfpmodules} We keep the same notation as above.
 Suppose $M_\alpha, N_\alpha$ are finitely presented modules over $A_\alpha$.
 Write $M_\beta = M_\alpha \otimes_{A_\alpha} A_\beta, N_\beta = N_\alpha
 \otimes_{A_\alpha} A_\beta$ for each $\beta > \alpha$ and $M, N$ for the
@@ -682,7 +682,8 @@ If $f_\beta, f_\gamma$ are any two morphisms that do this, then there is
 $\delta \geq \beta, \gamma$ such that $f_\beta, f_\gamma$ become equal when
 base-changed to $A_\delta$.
 \end{proposition} 
-
+The conclusion of this result is then
+\[ \hom_A(M, N) = \varinjlim_{\beta} \hom_{A_\beta}(M_\beta, N_\beta).  \]
 The last part is essentially the ``uniqueness'' that we were discussing previously.
 \begin{proof} Suppose the transition maps $A_\alpha \to A_\beta$ are denoted
 $\phi_{\alpha \beta}$, and the natural maps $A_\alpha \to A$ are denoted
@@ -738,9 +739,110 @@ analogous to the argument that finitely presented modules over a \emph{fixed}
 ring are compact objects in that category. 
 \end{remark} 
 
+
+\begin{remark} 
+In fact, we can give an alternative (and slightly simpler) argument for \cref{colimfpmodules}. 
+We know that
+\[ \hom_{A_\beta}(M_\beta, N_\beta) = \hom_{A_\alpha}(M_\alpha, N_\beta)  \]
+by the adjoint property of the tensor product, and similarly
+\[ \hom_{A}(M,N) = \hom_{A_\alpha}(M_\alpha, N).  \]
+So the assertion we are trying to prove is 
+\[ \hom_{A_\alpha}(M_\alpha, N) = \varinjlim_{\beta} \hom_{A_\alpha}(M_\alpha,
+N_\beta) , \]
+which follows from \cref{fpcompact}.
+\end{remark} 
+
+\begin{exercise} 
+Give a proof of the following claim. If $M$ is a finitely generated module
+over a noetherian ring $R$, $\mathfrak{p} \in \spec R$ is such that
+$M_{\mathfrak{p}}$ is free over $R_{\mathfrak{p}}$, then there is $f \in R - \mathfrak{p}$ such that
+$M_f$ is free over $R_f$.
+\end{exercise} 
+
 \subsection{The category of finitely presented algebras}
 
 We can treat the category of finitely presented algebras over such an
 inductive limit in a similar manner. 
+As before, let $\left\{A_\alpha\right\}_{\alpha \in I}$ be an inductive system
+of rings with $A = \varinjlim A_\alpha$. 
+For each $\alpha$, there is a  functor from the category of finitely presented $A_\alpha$-algebras
+to the category of finitely presented $A$-algebras sending $C \mapsto C
+\otimes_{A_\alpha} A$. 
+(Note that morphisms of finite presentation are preserved under base-change by
+\cref{soritefp}.)
 
+\begin{proposition} 
+Suppose $B$ is a finitely presented $A$-algebra. Then there is $\alpha \in I$
+and a finitely presented $A_\alpha$-algebra $B_\alpha$ such that $B \simeq
+B_\alpha \otimes_{A_\alpha} A$.
+\end{proposition} 
+\begin{proof} 
+This is analogous to the proof of \cref{descentfpmodule}.
+\end{proof} 
 
+\add{analog of the next result}
+
+\subsection{$\spec$ and inductive limits}
+
+Suppose $\left\{A_\alpha\right\}_{\alpha\in I}$ is an inductive system of
+commutative rings, as before; we let $A = \varinjlim A_\alpha$. 
+Since $\spec$ is a contravariant functor, we thus find that $\spec A_\alpha$
+is a \emph{projective} system of topological spaces.\footnote{Or schemes.}
+We are now interested in relating $\spec A$ to the individual $\spec A_\alpha$.
+
+\begin{proposition} 
+$\spec A$ is the projective limit $\varprojlim \spec A_\alpha$ in the category
+of topological spaces.
+\end{proposition} 
+
+Recall that if $\left\{X_\alpha\right\}$ is a projective system of topological
+spaces with transition maps $\phi_{\beta \alpha}: X_\beta \to X_\alpha$ whenever $\alpha \leq
+\beta$, then the projective limit $\varprojlim X_\alpha$ can be constructed as
+follows. One considers the subset of $\prod X_\alpha$ consisting of sequences
+$(x_\alpha)$ such that $\phi_{\beta \alpha}(x_\alpha) = x_\beta$ for every
+$\alpha \leq \beta$. One can easily check that this has the universal property
+of the projective limit.
+
+\begin{proof} 
+Let us first verify that the assertion is true as \emph{sets.} There are maps
+\[ \spec A \to \spec A_\alpha  \]
+for each $\alpha \in I$, which are obviously compatible (since the
+$\left\{A_\alpha\right\}$ form an inductive system) so that they lead to a
+(continuous) map of topological spaces
+\[ \spec A \to \varprojlim \spec A_\alpha.  \]
+We first verify injectivity. Suppose two primes $\mathfrak{p}, \mathfrak{p}'$ were sent to the same element
+of $\varprojlim \spec A_\alpha$. This means that if $\phi_\alpha: A_\alpha \to
+A$ is the natural morphism for each $\alpha$, we have
+$\phi_\alpha^{-1}(\mathfrak{p}) = \phi_\alpha^{-1}(\mathfrak{p}')$ for all
+$\alpha$. It follows that the intersections of $\mathfrak{p}, \mathfrak{p}'$
+with the image of $A_\alpha$ are identical; since $A$ is the union of
+$\phi_\alpha(A_\alpha)$ over all $\alpha$, this implies $\mathfrak{p} =
+\mathfrak{p}'$.
+
+Now let us verify surjectivity. Suppose given a sequence $\mathfrak{p}_\alpha$
+of primes in $A_\alpha$, for each $\alpha$, such that $\mathfrak{p}_\alpha$ is
+the pre-image of $\mathfrak{p}_\beta$ under $A_\alpha \to A_\beta$ whenever
+$\alpha \leq \beta$. We want to form a prime ideal $\mathfrak{p} \in \spec A$
+pulling back to all these. To do this, we decide that $x \in \mathfrak{p}$ if
+and only if there exists $\alpha \in I$ such that $x \in
+\phi_\alpha(\mathfrak{p}_\alpha)$ (recall that $\phi_\alpha: A_\alpha \to A$
+is the natural map). This does not depend on the choice of $\alpha$, and one
+verifies easily that this is a prime ideal with the appropriate properties.
+
+We now have to show that the map $\spec A \to \varprojlim \spec A_\alpha$ is
+in fact a homeomorphism. We have seen that it is continuous and bijective, so
+we must prove that it is open. If $a \in A$, we will be done if we can show
+that the image of the basic open set $D(a) \subset \spec A$ is open in
+$\varprojlim \spec A_\alpha$.
+
+Suppose $a = \phi_\beta(a_\beta)$ for some $a_\beta \in A_\beta$. Then the
+claim is that the image of $D(a)$ is precisely the subset of $\varprojlim
+\spec A_\beta$ such that the $\beta$th coordinate (which is in $\spec A_\beta$!)
+lies in $D(a_\beta)$. This is clearly an open set, so if we prove this, then
+we are done. Indeed, if $\mathfrak{p} \in D(\alpha) \subset \spec A$,
+then clearly the preimage in $A_\beta$ cannot contain $a_\beta$ (since
+$a_\beta$ maps to $a$). Conversely, if we have a compatible sequence
+$\left\{\mathfrak{p}_\alpha\right\}$ of primes  such that $\mathfrak{p}_\beta
+\in D(a_\beta)$, then the above construction of a prime $\mathfrak{p} \in
+\spec A$ from this shows that $a \notin \mathfrak{p}$. 
+\end{proof} 
