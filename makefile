@@ -208,6 +208,15 @@ schetale.pdf: standalone/chetale.tex chapters/etale.tex
 	pdflatex -src standalone/chetale.tex
 
 
+chhomotopical.pdf: standalone/chhomotopical.tex CRing.aux chapters/homotopical.tex
+	pdflatex -src standalone/chhomotopical.tex
+	bibtex chhomotopical
+	pdflatex -src standalone/chhomotopical.tex
+
+schhomotopical.pdf: standalone/chhomotopical.tex chapters/homotopical.tex
+	pdflatex -src standalone/chhomotopical.tex
+
+
 chlicense.pdf: standalone/chlicense.tex CRing.aux chapters/license.tex
 	pdflatex -src standalone/chlicense.tex
 	bibtex chlicense
@@ -217,5 +226,5 @@ schlicense.pdf: standalone/chlicense.tex chapters/license.tex
 	pdflatex -src standalone/chlicense.tex
 
 
-chapters:  chcategories.pdf chfoundations.pdf chfields.pdf chthreeimportantfunctors.pdf chspec.pdf chnoetherian.pdf chgraded.pdf chintegrality.pdf chfactorization.pdf chdedekind.pdf chdimension.pdf chcompletion.pdf chsmoothness.pdf chvarious.pdf chhomological.pdf chflat.pdf chhomologicallocal.pdf chetale.pdf chlicense.pdf
+chapters:  chcategories.pdf chfoundations.pdf chfields.pdf chthreeimportantfunctors.pdf chspec.pdf chnoetherian.pdf chgraded.pdf chintegrality.pdf chfactorization.pdf chdedekind.pdf chdimension.pdf chcompletion.pdf chsmoothness.pdf chvarious.pdf chhomological.pdf chflat.pdf chhomologicallocal.pdf chetale.pdf chhomotopical.pdf chlicense.pdf
 

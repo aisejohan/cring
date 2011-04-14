@@ -45,4 +45,24 @@
 \newcommand{\ext}{\operatorname{Ext}}
 \newcommand{\End}{\operatorname{End}}
 \newcommand{\ob}{\operatorname{ob}}
+
+\newenvironment{xyxy}[1]{\vspace{10pt}\\ \centerline{\xymatrix{#1}}\vspace{12pt} }{}
+\newenvironment{qu}[2]
+{\begin{list}{}
+	  {\setlength\leftmargin{#1}
+	  \setlength\rightmargin{#2}}
+	  \item[]\footnotesize}
+		  {\end{list}}
+\newenvironment{random}[1]{\hspace{0pt}\vspace{10pt}\\\textbf{#1}}{}
+\newenvironment{liszt}[1]{ \begin{list}{\labelitemi}{\leftmargin=#1em} \itemsep=0.1in} {\end{list}}
+
+\newcommand{\ad}{\text{ad}\ss}
+\renewcommand{\log}{\text{log}\ss}
+\renewcommand{\dim}{\text{dim}\ss}
+\newcommand{\dd}[2]{\frac{\partial #1}{\partial #2}}
+\renewcommand{\qedsymbol}{\textbf{\large $\mathscr{Q.E.D.}$}}
+\newcommand{\sqxx}[4]{\begin{xyxy}{ #1 \ar[r] \ar[d] & #2 \ar[d] \\ #3 \ar[r] & #4  }\end{xyxy}}
+
 \newcommand{\gr}{\operatorname{gr}}
+\newcommand{\st}{\ss : \ss}
+

@@ -1,0 +1,301 @@
+\chapter{Homotopical algebra}
+
+In this chapter, we shall introduce the formalism of \emph{model categories}.
+Model categories provide an abstract setting for homotopy theory: in
+particular, we shall see that topological spaces form a model category. In a
+model category, it is possible to talk about notions such as ``homotopy,'' and
+thus to pass to the homotopy category.
+
+But many algebraic categories form model categories as well. The category of
+chain complexes over a ring forms one. It turns out that this observation
+essentially encodes classical homological algebra. We shall see, in
+particular, how the notion of \emph{derived functor} can be interpreted in a
+model category, via this model structure on chain complexes.
+
+Our ultimate goal in developing this theory, however, is to study the
+\emph{non-abelian} case. We are interested in developing the theory of the
+\emph{cotangent complex}, which is loosely speaking the derived functor of the
+K\"ahler differentials $\Omega_{S/R}$ on the category of $R$-algebras. This is
+not a functor on an additive category; however, we shall see that the
+non-abelian version of derived functors (in the category of \emph{simplicial}
+$R$-algebras) allows one to construct the cotangent complex in an elegant way.
+
+\section{Model categories}
+
+
+
+\subsection{Definition}
+
+We need to begin with the notion of a \emph{retract} of a map.
+
+\begin{definition} 
+Let $\mathcal{C}$ be a category. Then we can form a new category
+$\mathrm{Map}\mathcal{C}$ of
+\emph{maps} of $\mathcal{C}$. The objects of this category are the morphisms
+$A \to B$ of $\mathcal{C}$, and a morphism between $A \to B$ and $C \to D$ is
+given by a commutative square
+\[ \xymatrix{
+A \ar[d] \ar[r] &  C \ar[d] \\
+B \ar[r] &  D
+}.\]
+
+A map in $\mathcal{C}$ is a \textbf{retract} of another map in $\mathcal{C}$
+if it is a retract as an object of $\mathrm{Map}\mathcal{C}$.
+This means that there is a diagram:
+\begin{xyxy}{
+A \ar[r]\ar@/^1pc/[rr]^{Id}\ar[d]^{f} & B\ar[d]^{g} \ar[r] & A\ar[d]^{f}
+\\ X \ar[r]\ar@/_2pc/[rr]^{Id}  & Y \ar[r] & X
+}\end{xyxy}
+\end{definition} 
+
+For instance, one can prove:
+\begin{proposition} 
+In any category, isomorphisms are closed under retracts.
+\end{proposition} 
+We leave the proof as an exercise.
+
+\begin{definition} 
+A \textbf{model category} is a category $\mathcal{C}$ equipped with three classes of maps called \emph{cofibrations}, \emph{fibrations}, and \emph{weak equivalences}. They have to satisfy five axioms $M1 - M5$.
+
+Denote cofibrations as $\hookrightarrow$, fibrations as $\twoheadrightarrow$, and weak equivalences as $\to{\sim}$.
+\begin{itemize} 
+\item [(M1)] $\mathcal{C}$ is closed under all  limits and colimits.\footnote{Many of our arguments
+will involve infinite colimits. The original formulation in
+\cite{Qui67} required only finite
+such, but most people assume infinite.}
+\item [(M2)] Each of the three classes of cofibrations, fibrations, and weak
+equivalences is \emph{closed under retracts}.\footnote{Quillen initially
+called model categories satisfying this axiom \emph{closed} model categories.
+All the model categories we consider will be closed, and we have, following
+\cite{Ho07}, omitted this axiom.}
+\item [(M3)] If \emph{two of three} in a composition are weak equivalences, so is the third. 
+\begin{xyxy}{
+\ar[r]^{f}\ar[d]_h & \ar[dl]^g
+\\&
+}\end{xyxy}
+\item [(M4)] (\emph{Lifts}) Suppose we have  a diagram
+\begin{xyxy}{
+A\ar[r]\ar@{^(->}[d]^{i}&  X\ar@{->>}[d]^{p}
+\\B\ar[r]\ar@{-->}[ru] &  Y
+}\end{xyxy}
+Here $i: A \to B$ is a cofibration and $p: X \to Y$ is a fibration.
+Then a lift exists if $i$ or $p$ is a weak equivalence.
+\item [(M5)] (\emph{Factorization}) Every map can be factored in two ways:
+\begin{xyxy}{
+&.\ar@{->>}[dr]^{\sim} &
+\\.\ar@{^(->}[ru]\ar@{_(->}[dr]_{\sim}\ar[rr]^{f} & &.
+\\&.\ar@{->>}[ru]&
+}\end{xyxy}
+In words, it can be factored as a composite of a cofibration followed by a
+fibration which is a weak equivalence, or as a cofibration which is a weak
+equivalence followed by a fibration.
+\end{itemize}
+\end{definition}
+
+A map which is a weak equivalence and a fibration will be called an
+\textbf{acyclic fibration}. Denote this by $\twoheadrightarrow{\sim}$. A map
+which is both a weak equivalence and a cofibration will be called an
+\textbf{acyclic cofibration}, denoted $\hookrightarrow{\sim}$.
+(The word ``acyclic'' means for a chain complex that the homology is trivial;
+we shall see that this etymology is accurate when we construct a model
+structure on the category of chain complexes.)
+
+\begin{remark} 
+If $C$ is a model category, then $\mathcal{C}^{op}$ is a model category, with the notions of fibrations and cofibrations reversed. So if we prove something about fibrations, we automatically know something about cofibrations.
+\end{remark}
+
+We begin by listing a few elementary examples of model categories:
+
+\begin{example} 
+\begin{enumerate}
+\item Given a complete and cocomplete category $\mathcal{C} $, then we can
+give a model structure to $\mathcal{C}$ by taking the weak equivalences to be
+the isomorphisms and the cofibrations and fibrations to be all maps.
+\item If $R$ is a \emph{Frobenius ring}, or the classes of projective and
+injective $R$-modules coincide, then the category of modules over $R$ is a
+model category. The cofibrations are the injections, the fibrations are the
+surjections, and the weak equivalences are the \emph{stable equivalences} (a
+term which we do not define). See \cite{Ho07}.
+\item The category of topological spaces admits a model structure where the
+fibrations are the \emph{Serre fibrations} and the weak equivalences are the
+\emph{weak homotopy equivalences.} The cofibrations are, as we shall see,
+determined from this, though they can be described explicitly.
+\end{enumerate}
+\end{example} 
+
+
+\begin{exercise} 
+Show that there exists a model structure on the category of sets where the injections are
+the cofibrations, the surjections are fibrations, and all maps are weak
+equivalences.
+\end{exercise} 
+
+
+\subsection{The retract argument}
+
+The axioms for a model category are somewhat complicated. 
+We are now going to see that they are actually redundant. That is, any two of
+the classes of cofibrations, fibrations, and weak equivalences determine the
+third. We shall thus introduce a useful trick that we shall have occasion to
+use many times further when developing the foundations.
+
+
+\begin{definition} 
+Let $\mathcal{C}$ be any category.
+Suppose that $P$ is a class of maps of $\mathcal{C}$. A map $f: A \to B$ has
+the \textbf{left lifting property} with respect to $P$ iff: for all $p: C \to D$ in $ P$ and all diagrams
+\begin{xyxy}{
+A\ar[r]\ar[d]_{f} &  C\ar[d]^{p}
+\\B\ar@{-->}[ru]^{\exists }\ar[r] & D
+}\end{xyxy}
+a lift represented by the dotted arrow exists, making the diagram commute. We
+abbreviate this property to \textbf{LLP}. There is also a notion of a
+\textbf{right lifting property}, abbreviated \textbf{RLP}, where $f$ is on the right. 
+\end{definition} 
+
+\begin{proposition} 
+Let $P$ be a class of maps of $\mathcal{C}$. Then the set of maps $f: A \to B $
+that have the LLP (resp. RLP) with respect to $P$ is closed under retracts and
+composition.
+\end{proposition} 
+\begin{proof} 
+This will be a diagram chase. Suppose $f: A \to B$ and $g: B \to C$ have the
+LLP with respect to maps in $P$. Suppose given a diagram
+\[ \xymatrix{
+A \ar[d]^{ g \circ f}  \ar[r] &  X \ar[d]  \\
+C \ar[r] &  Y
+}\]
+with $X \to Y$ in $P$. We have to show that there exists a lift $C \to X$. We can split this into a commutative diagram:
+\[ \xymatrix{
+A \ar[d]^{ f }  \ar[r] &  X \ar[dd]  \\
+B  \ar@{-->}[ru] \ar[rd] \ar[d]^g &  \\
+C \ar[r] &  Y
+}\]
+The lifting property provides a map $\phi: B \to X$ as in the dotted line in the
+diagram. This gives a diagram
+\[   \xymatrix{
+B \ar[d]^{ g }  \ar[r]^{\phi} &  X \ar[d]  \\
+C \ar[r] \ar@{-->}[ru] &  Y
+}\]
+and in here we can find a lift because $g$ has the LLP with respect to $p$. It
+is easy to check that this lift is what we wanted.
+ 
+\end{proof} 
+
+The axioms of a model category imply that cofibrations have the LLP with
+respect to trivial fibrations, and acyclic cofibrations have the LLP with
+respect to fibrations. There are dual statements for fibrations. It turns out
+that these properties \emph{characterize} cofibrations and fibrations (and
+acyclic ones).
+
+
+\begin{theorem} 
+Suppose $C$ is a model category. Then:
+\begin{itemize} 
+\item [(1)] A map $f$ is a cofibration iff it has the left lifting property with respect to the class of acyclic fibrations.
+\item [(2)] A map is a fibration iff it has the right lifting property w.r.t. the class of acyclic cofibrations.
+\end{itemize}
+\end{theorem}
+\begin{proof} 
+Suppose you have a map $f$, that has LLP w.r.t. all acyclic fibrations and you want it to be a cofibration. (The other direction is an axiom.) Somehow we're going to have to get it to be a retract of a cofibration. Somehow you have to use factorization. Factor $f$:
+\begin{xyxy}{
+A\ar[d]^{f}\ar@{^(->}[rd] &
+\\ X  & X'\ar@{->>}[l]^{\sim}
+}\end{xyxy}
+We had assumed that $f$ has LLP. There is a lift:
+\begin{xyxy}{
+A \ar@{^(->}[r]^i\ar[d]^{f} & X'\ar@{->>}[d]^{\sim}
+\\X \ar[r]^{Id}\ar@{-->}[ru] & X
+}\end{xyxy}
+This implies that $f$ is a retract of $i$. 
+\begin{xyxy}{
+A\ar[r]\ar[d]^f & A\ar@{^(->}[d]^{i}\ar[r] & A\ar[d]^{f}
+\\X \ar@{..>}[r]^{\exists} & X' \ar[r] & X
+}\end{xyxy}
+\end{proof}
+\begin{theorem} 
+\begin{itemize} 
+\item [(1)] A map $p$ is an acyclic fibration iff it has RLP w.r.t. cofibrations
+\item [(2)] A map is an acyclic cofibration iff it has LLP w.r.t. all fibrations.
+\end{itemize}
+\end{theorem}
+Suppose we know the cofibrations. Then we don't know the weak equivalences, or the fibrations, but we know the maps that are both. If we know the fibrations, we know the maps that are both weak equivalences and cofibrations. This is basically the same argument. One direction is easy: if a map is an acyclic fibration, it has the lifting property by the definitions. Conversely, suppose $f$ has RLP w.r.t. cofibrations. Factor this as a cofibration followed by an acyclic fibration.
+\begin{xyxy}{
+X\ar[r]^{Id}\ar@{^(->}[d] & X\ar[d]^f
+\\Y'\ar@{->>}[r]^p_\sim \ar@{-->}[ru]& Y
+}\end{xyxy}
+$f$ is a retract of $p$; it is a weak equivalence because $p$ is a weak equivalence. It is a fibration by the previous theorem.
+\begin{corollary} 
+A map is a weak equivalence iff it can be written as the product of an acyclic fibration and an acyclic cofibration. 
+\end{corollary}
+We can always write
+\begin{xyxy}{
+&.\ar@{->>}[dr]^p &
+\\.\ar[rr]^f\ar@{^(->}[ur]^\sim && .
+}\end{xyxy}
+By two out of three $f$ is a weak equivalence iff $p$ is. The class of weak equivalences is determined by the fibrations and cofibrations.
+\begin{example} [Topological spaces]
+The construction here is called the Serre model structure (although it was defined by Quillen). We have to define some maps.
+\begin{itemize} 
+\item [(1)] The fibrations will be Serre fibrations.
+\item [(2)] The weak equivalences will be weak homotopy equivalences
+\item [(3)] The cofibrations are determined by the above classes of maps.
+\end{itemize}
+\end{example}
+\begin{theorem} 
+A space equipped with these classes of maps is a model category.
+\end{theorem}
+\begin{proof} 
+More work than you realize. M1 is not a problem. The retract axiom is also obvious. (Any class that has the lifting property also has retracts.) The third property is also obvious: \emph{something is a weak equivalence iff when you apply some functor (homotopy), it becomes an isomorphism}. (This is important.) So we need lifting and factorization. One of the lifting axioms is also automatic, by the definition of a cofibration.
+%\begin{xyxy}{
+%	\ar[d]^{\sim} \ar[r] & .\ar@{->>}[d]^{\sim}
+%	\\ .\ar[r]\ar@{-->}[ru] & .
+%}\end{xyxy}
+Let's start with the factorizations. Introduce two classes of maps:
+$$ A = \{D^n \times \{0\} \to D^n \times [0,1] \st n \geq 0\} $$
+$$ B = A \cup \{S^{n-1} \to D^n \st n \geq 0, S^{-1} = \emptyset\} $$
+These are compact, in a category-theory sense. By definition of Serre fibrations, a map is a fibration iff it has the right lifting property with respect to $A$. A map is an acyclic fibration iff it has the RLP w.r.t. B. (This was on the homework.) I need another general fact:
+\begin{proposition} 
+The class of maps having the left lifting property w.r.t. a class $P$ is closed under arbitrary coproducts, co-base change, and countable (or even transfinite) composition. By countable composition
+$$ A_0 \hookrightarrow A_1 \to A_2 \to \cdots $$
+we mean the map $A \to colim_n \ss A_n$.
+\end{proposition}
+Suppose I have a map $f_0: X_0 \to Y_0$. We want to produce a diagram:
+\begin{xyxy}{
+X_0\ar[r]\ar[dr]_{f_0}  &  X_1\ar[d]^{f_1}
+\\&Y
+}\end{xyxy}
+We have $ \sqcup V \to \sqcup D$
+where the disjoint union is taken over commutative diagrams
+\begin{xyxy}{
+V\ar[d]\ar[r]  &  X\ar[d]
+\\ D \ar[r]  &  Y
+}\end{xyxy}
+where $V \to D$ is in $A$. Sometimes we call these lifting problems. For every lifting problem, we formally create a solution.
+This gives a diagram:
+\begin{xyxy}{
+\sqcup V \ar[r]\ar[d] &  \sqcup D\ar[d]\ar[ddr] &
+\\ X\ar[rrd]\ar[r]& X_1\ar[dr]^<<<<*--{f_1} &
+\\ && Y
+}\end{xyxy}
+where we have subsequently made the pushout to $Y$. By construction, every lifting problem in $X_0$ can be solved in $X_1$.
+\begin{xyxy}{
+V \ar[r]\ar[d] &  X_0\ar[d]\ar@{^(->}[r]^k & X_1\ar[d]
+\\D\ar[r]\ar@{-->}[ru]\ar@{..>}[rru]  & Y\ar[r] & Y
+}\end{xyxy}
+We know that every map in $A$ is a cofibration. Also, $\sqcup V \to \sqcup D$ is a homotopy equivalence. $k$ is an acylic cofibration because it is a weak equivalence (recall that it is a homotopy equivalence) and a cofibration.
+
+Now we make a cone of $X_0 \to X_1 \to \cdots X_\infty$ into $Y$. The claim is that $f$ is a fibration:
+\begin{xyxy}{
+X\ar@{^(->}[r]^\sim \ar[dr]  &  X_\infty\ar[d]^f
+\\ &Y
+}\end{xyxy}
+by which we mean
+\begin{xyxy}{
+V\ar[r]\ar[d]_{\ell}  &  X_n\ar[d]\ar[r]  &  X_{n+1}\ar[d]\ar[r] & X_\infty\ar[d]
+\\D \ar@{-->}[ru]\ar[r] & Y \ar[r] & Y \ar[r] & Y
+}\end{xyxy}
+where $\ell \in A$. $V$ is compact Hausdorff. $X_\infty$ was a colimit along closed inclusions. 
+
+\end{proof}
+So I owe you one lifting property, and the other factorization.
