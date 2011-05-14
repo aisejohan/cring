@@ -207,6 +207,446 @@ combined with
 \end{proof}
 
 
+\section{Formal smoothness}
+
+\subsection{Introduction}
+The idea of a \emph{smooth} morphism in algebraic geometry is one that is
+surjective on the tangent space, at least if one is working with smooth
+varieties over an algebraically closed field. So this means that one should be
+able to lift tangent vectors, which are given by maps from the ring into
+$k[\epsilon]/\epsilon^2$.
+
+This makes the following definition seem more plausible:
+
+\begin{definition} 
+Let $B$ be an $A$-algebra. Then $B$ is \textbf{formally smooth} if given any
+$A$-algebra $D$ and ideal $I \subset D $ of square zero, the map
+\[ \hom_A(B, D) \to \hom_A(B, D/I)\]
+is a surjection.
+\end{definition} 
+
+So this means that in any diagram
+\[ \xymatrix{
+B \ar@{-->}[r] \ar[rd] & D \ar[d]  \\
+& D/J
+}\]
+there exists a dotted arrow making the diagram commute.
+
+\begin{definition} 
+If the above lifting problem has a \textbf{unique solution} for every pair $(D,
+J)$, then $B$ is called \textbf{formally etale} as an $A$-algebra. If there is
+at most one solution, then $B$ is called \textbf{formally unramified.}
+\end{definition} 
+
+
+It's not too hard to check that formally unramified is equivalent to
+$\Omega_{B/A} = 0$. See for instance my notes on the subject. (Ultimately, we
+are going to show that formal smoothness is equivalent to the cotangent complex
+being homotopy equivalent to the homology in dimension zero (which is
+$\Omega_{B/A}$) and the module $\Omega_{B/A}$ being projective.)
+
+
+The basic example of a formally smooth $A$-algebra is the polynomial ring
+$A[x_1, \dots, x_n]$. For to give a map $A[x_1, \dots, x_n] \to D/J$ is to give
+$n$ elements of $D/J$; each of these elements can clearly be lifted to $D$.
+This is analogous to the statement that a free module is projective.
+
+Now, ultimately, we want to show that this somewhat abstract definition of
+formal smoothness will give us something nice and geometric when $B$ is in
+addition of finite presentation. In particular, in this case we want to show
+that $B$ is \emph{flat.} 
+To do this, we will need to do a bit of work, but we can argue in a fairly
+elementary manner. On the one hand, we will need to give a criterion for when a
+quotient of a formally smooth ring is formally smooth.
+
+\subsection{Quotients of formally smooth rings}
+
+
+\begin{theorem}[EGA 0-IV, 22.6.1]
+Let $A$ be a ring, $B$ an $A$-algebra. Suppose $B$ is formally smooth over $A$,
+and let $I \subset B$ be an ideal. 
+
+Then $C = B/I$ is a formally smooth $A$-algebra if and only if the canonical map
+\[ I/I^2 \to \Omega_{B/A} \otimes_B C  \]
+has a section.
+In other words, $C$ is formally smooth precisely when the conormal sequence
+\[  I/I^2 \to \Omega_{B/A} \otimes_B C \to \Omega_{C/A} \to 0 \]
+is split exact.
+\end{theorem} 
+
+EGA states this in more generality for \emph{topological} rings, and uses
+some functors on ring extensions. 
+
+\begin{proof} 
+Suppose first $C$ is formally smooth over $A$.
+Then we have a map
+\[ B/I^2 \to C  \]
+given by the quotient. 
+There is a diagram of $A$-algebras
+\[ \xymatrix{
+B/I & \ar[l] B/I^2 \\
+C \ar[u] \ar@{-->}[ru]
+}\]
+and the lifting $C \to B/I^2$ exists by formal smoothness. 
+This is a section of the natural projection $B/I^2 \to C = B/I$, which is a
+morphism of $A$-algebras.
+In particular, we get a splitting 
+\[ B/I^2 = B/I \oplus I/I^2  \]
+from the exact sequence
+\[ 0 \to I/I^2 \to B/I^2 \to C \to 0.  \]
+Since the section of $B/I^2 \to C$ was a section of \emph{rings}, we see that
+the splitting is a splitting of $A$-algebras, where $I/I^2$ squares to zero.
+
+We are interested in showing that $I/I^2 \to \Omega_{B/A} \otimes_B C$ is a
+split injection of $C$-modules. To see this, we will show that any map out of the former
+extends to a map out of the latter.
+Now suppose given a map
+of $C$-modules
+\[ \phi:  I/I^2 \to M \]
+into a $C$-module $M$.
+Then we get a derivation
+\[ \delta:  B/I^2 \to M  \]
+by using the splitting $B/I^2 = C \oplus I/I^2$.
+(Namely, we just extend the map by zero on $C$.)
+Since $I/I^2$ is imbedded in $B/I^2$ by the canonical injection, this
+derivation restricts on $I/I^2$ to $\phi$. In other words there is a
+commutative diagram
+\[ \xymatrix{
+I/I^2 \ar[d]^{\phi}  \ar[r] &  B/I^2 \ar[ld]^{\delta} \\
+M
+}.\]
+It follows thus that we may define, by pulling back, an $A$-derivation $B \to
+M$ that restricts on $I$ to the map $I \to I/I^2 \stackrel{\phi}{\to} M$. 
+By the universal property of the differentials, this is the same thing as a
+homomorphism $\Omega_{B/A} \to M$, or equivalently $\Omega_{B/A} \otimes_B C
+\to M$ since $M$ is a $C$-module.
+
+It follows that the map
+\[ \hom_C(\Omega_{B/A} \otimes_B C, M) \to \hom_C(I/I^2, M)  \]
+is a surjection. This proves one half of the result.
+
+Now for the other.
+Suppose that there is a section.
+This translates, as above, to saying that
+any map $I/I^2 \to M$  (of $C$-modules) for a $C$-module $M$
+ can be extended to an $A$-derivation $B \to M$.
+
+Now let $E$ be any $A$-algebra, and $J \subset E$
+an ideal of square zero.
+We suppose given an $A$-homomorphism $C \to E/J$
+and would like to lift it to $C \to E$; in other words, we must 
+find a lift in the diagram
+\[ \xymatrix{
+& C \ar@{-->}[ld] \ar[d]  \\
+E \ar[r] & E/J
+}.\]
+Let us pull this map back by the surjection 
+$B \twoheadrightarrow C$; we get a diagram
+\[ \xymatrix{
+& B \ar@{-->}[ldd] \ar[d] \\
+& C \ar@{-->}[ld] \ar[d]  \\
+E \ar[r] & E/J
+}.\]
+In this diagram, we know that a lifting $\phi: B \to E$ does exist because $B$ is
+formally smooth over $A$.
+So we can find a dotted arrow from $B \to E$ in the diagram.
+The problem is that it might not send
+$I = \ker(C \to B) $ into zero.
+If it does, then we're golden.
+
+In any event, we have a morphism of $A$-modules
+$  I \to E$  given by restricting $\phi: B \to E$.
+This lands in $J$, so we get a map $I \to J$. Note that $J$ is an $E/J$-module,
+hence a $C$-module, because $J$ has square zero. Moreover $I^2$ gets sent to
+zero because $J^2 = 0$, and we have a morphism of
+$C$-modules $I/I^2 \to J$.
+Now by hypothesis, there is an $A$-derivation
+$\delta: B \to J$ such that $\delta|_I = \phi$.
+Since $J$ has square zero, it follows that
+\[ \phi - \delta: B \to E  \]
+is an $A$-homomorphism of algebras, and it kills $I$.
+Consequently this factors through $C$ and gives the desired lifting $C \to E$.
+
+
+
+\end{proof} 
+
+\begin{corollary} 
+If $A \to B$ is formally smooth, then 
+$\Omega_{B/A}$ is a projective $B$-module.
+\end{corollary} 
+\begin{proof} 
+Indeed, we can write $B$ as a quotient of a polynomial ring $D$ over $A$; this
+is formally smooth. Suppose $B = D/I$.
+Then we know that there is a split exact sequence
+\[ 0 \to I/I^2 \to \Omega_{D/A} \otimes_D B \to \Omega_{B/A} \to 0.  \]
+But the middle term is free as $D/A$ is a polynomial ring; hence the last term
+is projective.
+\end{proof} 
+\subsection{The Jacobian criterion}
+
+
+So now we want  a characterization of when a morphism is smooth. Let us
+motivate this with an analogy from standard differential topology. 
+Consider real-valued functions $f_1, \dots, f_p \in C^{\infty}(\mathbb{R}^n)$.
+Now, if $f_1, f_2, \dots, f_p$ are such that their gradients $\nabla f_i$ form a
+matrix of rank $p$, then we can define a manifold near zero
+which is the common zero set of all the $f_i$.
+We are going to give a relative version of this in the algebraic setting.
+
+
+
+Recall that a map of rings $A \to B$ is \emph{essentially of finite
+presentation} if $B$ is the localization of a finitely presented $A$-algebra.
+
+
+\begin{proposition} 
+Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be a local homomorphism of local
+rings such that $B$ is essentially of finite presentation.
+Suppose $B = (A[X_1, \dots, X_n])_{\mathfrak{q}}/I$ for some finitely generated
+ideal $I \subset A[X_1, \dots, X_n]_{\mathfrak{q}}$, where $\mathfrak{q}$ is a
+prime ideal in the polynomial ring.
+
+Then $I/I^2$ is generated as a $B$-module by polynomials
+$f_1, \dots, f_k \in A[X_1, \dots, X_n]$ whose Jacobian matrix has maximal rank
+in $B/\mathfrak{n}$ if and only if $B$ is formally smooth over $A$.
+In this case, $I/I^2$ is even freely generated by the $f_i$.
+\end{proposition} 
+\begin{proof} 
+Indeed, we know that polynomial rings are formally smooth. 
+In particular $D = A[X_1, \dots, X_n]_{\mathfrak{q}}$ is formally smooth over
+$A$, because localization preserves formal smoothness. (This is
+straightforward.) Note also that $\Omega_{D/A}$ is a free $D$-module, because
+this is true for a polynomial ring and K\"ahler differentials commute with
+localization.
+
+So the previous result implies that
+\[ I/I^2 \to \Omega_{D/A} \otimes_D B  \]
+is a split injection precisely when $B$ is formally smooth over $A$. Suppose
+that this holds.
+Now $I/I^2$ is then a summand of the free module $\Omega_{D/A} \otimes_D B$, so it
+is projective, hence free as $B$ is local.
+Let $K = B/\mathfrak{n}$. It follows that the map
+\[ I/I^2 \otimes K \to \Omega_{D/A} \otimes_D  K = K^n \]
+is an injection. This map sends $f \mapsto df$. Hence the assertion is clear.
+
+Conversely, suppose that $I/I^2$ has such generators. 
+Then the map 
+\[ I/I^2 \otimes K \to K^n, \quad f\mapsto df  \]
+is a split injection. 
+However, if a map of finitely generated modules over a local ring, with the
+target free, is such that tensoring with
+the residue field makes it an injection, then it is a split injection. (We
+shall prove this below.) Thus $I/I^2 \to \Omega_{D/A} \otimes_D B$ is a split
+injection. In view
+of the criterion for formal smoothness, we find that $B$ is formally smooth.
+\end{proof} 
+
+\subsection{A minor lemma on modules over local rings}
+
+\begin{lemma} 
+If $(A, \mathfrak{m})$ is a local ring with residue field $k$, $M$ a finitely
+generated $A$-module, $N$ a finitely
+generated projective $A$-module, then a map
+\[ \phi: M \to N  \]
+is a split injection if and only if
+\[ M \otimes k \to N \otimes k  \]
+is an injection.
+\end{lemma} 
+\begin{proof} 
+One direction is clear, so it suffices to show that $M \to N$ is a split
+injection if the map on fibers is an injection.
+
+
+Let $L$ be a ``free approximation'' to $M$, that is, a free module $L$ together
+with a map $L \to M$ which is an isomorphism modulo $k$. By Nakayama's lemma,
+$L \to M$ is surjective.
+Then the map
+$L \to M \to N$ is such that the $L \otimes k \to N \otimes k$ is injective, so
+$L \to N$ is a split injection (by an elementary criterion).
+It follows that we can find a splitting $N \to L$, which when composed with $L
+\to M$ is a splitting of $M \to N$.
+\end{proof}
+\section{Flatness}
+
+\begin{lemma} 
+Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be a local homomorphism of local
+rings.
+Let $M$ be a finitely generated $B$-module, which is flat over $A$. 
+
+Let $f \in B$. Then the following are equivalent:
+\begin{enumerate}
+\item $M/fM$ is flat over $A$ and $f: M \to M$ is injective.
+\item $f: M \otimes k \to M \otimes k$ is injective where $k = A/\mathfrak{m}$.
+\end{enumerate}
+\end{lemma} 
+
+This is  a useful criterion of checking when an element is $M$-regular by
+checking on the fiber.
+\begin{proof} All $\tor$ functors here will be over $A$. 
+If $M/fM$ is $A$-flat and $f: M \to M$ is injective, then the sequence
+\[ 0 \to M \stackrel{f}{\to} M \to M/fM \to 0 \]
+leads to a long exact sequence
+\[ \tor_1(k, M/fM) \to M \otimes k \stackrel{f}{\to} M \otimes k \to (M/fM)
+\otimes k \to 0. \]
+But since $M/fM$ is flat, it follows that $M \otimes k \stackrel{f}{\to} M
+\otimes k$ is injective.
+
+The other direction is more subtle. Suppose multiplication by $f$ is a
+monomorphism on $M \otimes k$. Now write the exact sequence
+\[ 0 \to P \to M \stackrel{f}{\to} M \to Q \to 0 \]
+where $P, Q$ are the kernel and cokernel. 
+We can also consider the image $I = fM \subset M$, to split this into two
+exact sequences
+\[ 0 \to P \to M \to I \to 0  \]
+and 
+\[ 0 \to I \to M \to Q \to 0.  \]
+Here the map $M \otimes k \to I \otimes k \to M \otimes k$ is given by
+multiplication by $f$, so it is injective by hypothesis. This implies that $M \otimes k \to I
+\otimes k$ is injective. So $M \otimes k \to I \otimes k$ is actually an isomorphism because it
+is obviously surjective, and we have just seen it is injective.
+Next, since $M \to I$ is surjective, $I \otimes k \to M
+\otimes k$ is also injective.
+
+(Given a sequence $X \to Y \to Z$ such that $A
+\to Y$ is surjective, $X \to Z$ is injective, it follows that $B \to C$ is
+itself injective: for if a nonzero $b \in Y$ mapped to zero in $Z$, then $b$ is hit by
+something in $X$, nonzero. Then that would go to zero in $Z$, contradiction.)
+
+Let us tensor these two exact sequences with $k$. We get
+\[ 0 \to  \tor_1(k, I) \to P \otimes k \to M  \otimes k \to I \otimes k \to 0   \]
+because $M$ is flat. We also get
+\[ 0 \to  \tor_1(k, Q) \to I \otimes k \to M  \otimes k \to Q \otimes k \to 0
+.\]
+We'll start by using the second sequence. Now $I \otimes k \to M \otimes k$
+was just said to be injective, so that $\tor_1(k, Q) = 0$. By the local
+criterion for flatness, it follows that $Q$ is a flat 
+$A$-module as well. 
+But $Q = M/fM$, so this gives one part of what we wanted.
+
+Now, we want to show finally that $P = 0$. 
+Now, $I$ is flat; indeed, it is the kernel of a surjection of flat maps $M \to
+Q$, so the long exact sequence shows that it is flat. So we have a short exact
+sequence
+\[ 0 \to P \otimes k \to M \otimes k \to I \otimes k \to 0,  \]
+which shows now that $P \otimes k  = 0$ (as $M \otimes k \to I \otimes k$ was
+just shown to be injective earlier). By Nakayama $P = 0$.
+This implies that $f$ is $M$-regular.
+\end{proof}
+
+\begin{corollary} Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be a morphism
+of noetherian local rings.
+Suppose $M$ is a finitely generated $B$-module, which is flat over $A$.
+
+Let $f_1, \dots, f_k \in \mathfrak{n}$. Suppose that $f_1, \dots, f_k$ is a
+regular sequence on $M \otimes k$. Then it is a regular sequence on $M$ and,
+in fact, $M/(f_1, \dots, f_k ) M$ is flat over $A$.
+\end{corollary} 
+\begin{proof} 
+This is now clear by induction. 
+\end{proof} 
+\section{Formal smoothness implies flatness}
+
+\begin{theorem}[EGA IV 17.5.1] Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be
+a morphism of local noetherian rings such that $B$ is the localization of a f.p. $A$-algebra at a prime
+ideal, $B = (A[X_1, \dots, X_n])_{\mathfrak{q}}/I$. Then if $A \to B$ is formally smooth, $B$ is a flat $A$-algebra.
+\end{theorem} 
+\begin{proof} 
+Let $C = (A[X_1, \dots, X_n])_{\mathfrak{q}}$. Then $C$ is a local ring,
+essentially of finite type over $A$, and we have morphisms of local rings
+\[ (A, \mathfrak{m}) \to (C, \mathfrak{q}) \twoheadrightarrow (B,
+\mathfrak{n}).  \]
+Moroever, $C$ is a \emph{flat} $A$-module, and we are going to apply the
+fiberwise criterion for regularity to $C$.
+
+Now we know that $I/I^2$ is a $B$-module generated by polynomials $f_1, \dots, f_n
+\in A[X_1, \dots, X_n]$
+whose Jacobian matrix has maximal rank in $B/\mathfrak{n}$.
+The claim is that the $f_i$ are linearly independent in
+$\mathfrak{q}/\mathfrak{q}^2$. This will be the first key step in the proof.
+In other words, if $\left\{u_i\right\}$ is a family of elements of $C$, not all
+non-units, we do not have
+\[ \sum u_i f_i \in \mathfrak{q}^2.  \]
+For if we did, then we could take derivatives
+and find
+\[ \sum u_i \partial_j f_i \in \mathfrak{q}  \]
+for each $j$. This contradicts the gradients of the $f_i$ being linearly
+independent in $B/\mathfrak{n} = C/\mathfrak{q}$. 
+
+Now we want to show that the $\left\{f_i\right\}$ form a regular sequence in
+$C$. To do this, we shall reduce to the case where $A$ is a field. Indeed, let
+us make the base-change $A \to k, B \to \overline{B} = B \otimes k, C \to \overline{C}=C \otimes k$ where $k  =
+A/\mathfrak{m}$ is the residue field.
+Then $\overline{B},\overline{C}$ are  formally smooth local rings over a
+field $k$. We also know that $\overline{C}$ is a \emph{regular} local ring,
+since it is a localization of a polynomial ring over a field. 
+
+
+Let us denote the maximal ideal of
+$\overline{C}$ by
+$\overline{\mathfrak{q}}$; this is just the image of $\mathfrak{q}$.
+
+
+Now the $\left\{f_i\right\}$ have images in $\overline{C}$ that are linearly
+independent
+in $\overline{\mathfrak{q}}/\overline{\mathfrak{q}}^2 =
+\mathfrak{q}/\mathfrak{q}^2$. It follows that the $\left\{f_i\right\}$ form a
+regular sequence in $\overline{C}$, by general facts about regular local
+rings; indeed, each of the successive quotients $\overline{C}/(f_1, \dots,
+f_k)$ will then be regular.
+It follows from the fiberwise criterion ($C$ being flat) that the
+$\left\{f_i\right\}$ form a regular sequence in $C$ itself, and that the
+quotient $C/(f_i) = B$ is $A$-flat.
+\end{proof} 
+
+In fact, we can get a general criterion now:
+
+\begin{theorem} 
+Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be a morphism of local
+noetherian rings such that $B$ is the localization of a f.p. $A$-algebra at a prime
+ideal, $B = (A[X_1, \dots, X_n])_{\mathfrak{q}}/I$. Then $B$ is formally
+smooth over $A$ if $B$ is $A$-flat and $B/\mathfrak{m}B$ is formally smooth
+over $A/\mathfrak{m}$.
+\end{theorem} 
+
+\begin{proof} 
+One direction is immediate from what we have already shown. Now we need to
+show that if $B$ is $A$-flat, and $B/\mathfrak{m}B$ is formally smooth over
+$A/\mathfrak{m}$, then $B$ is itself formally smooth over $A$.
+
+As before, write the sequence
+\[ (A, \mathfrak{m}) \to (C, \mathfrak{q}) \twoheadrightarrow (B,\mathfrak{n})
+\]
+where $C$ is a localization of a polynomial ring at a prime ideal, and in
+particular is formally smooth over $A$. 
+We know that $B = C/I$, where $I \subset \mathfrak{q}$.
+
+To check that $B$ is formally smooth over $A$, we need to show ($C$ being
+formally smooth) that the conormal sequence
+\[ I/I^2 \to  \Omega_{C/A} / I \Omega_{C/A} \to \Omega_{C/B} \to 0. \]
+is split exact. 
+
+Let $\overline{A}, \overline{C}, \overline{B}$ be the base changes of $A, B,
+C$ to $k = A/\mathfrak{m}$; let $\overline{I}$ be the kernel of $\overline{C}
+\twoheadrightarrow \overline{B}$.
+Note that $\overline{I} = I/\mathfrak{m}I$ by flatness of $B$.
+Then we know that the sequence
+\[ \overline{I}/\overline{I}^2 \to  \Omega_{\overline{C}/k} / \overline{I}
+\Omega_{\overline{C}/k} \to \Omega_{\overline{C}/\overline{B}} \to 0\]
+is split exact, because $\overline{C}$ is a formally smooth $k$-algebra.
+
+In particular, there are polynomials $\overline{P}_1, \dots, \overline{P}_r
+\in \overline{C}$ (which is the localization of a polynomial ring over $k$)
+which generate $\overline{I}/\overline{I}^2$ and
+whose gradients are linearly independent in
+$\overline{C}/\mathfrak{\overline{q}}$. These lift to polynomials in $I$
+which generate (by Nakayama) $I/I^2$ and whose gradients are linearly
+independent in the residue field $C/\mathfrak{q} =
+\overline{C}/\overline{\mathfrak{q}}$.
+Now by the Jacobian criterion, we are done.
+\end{proof} 
+
+
 \section{Conormal modules and universal thickenings}
 \label{section-conormal}
 
