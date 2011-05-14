@@ -492,7 +492,7 @@ $\mathfrak{m}$, then $\overline{\phi}$ is zero but $\phi$ may yet be injective.
 Nonetheless, we give a criterion for a map of \emph{free} modules over a local ring to
 be a \emph{split}  injection.
 
-\begin{proposition} 
+\begin{proposition} \label{splitcriterion1}
 Let $R$ be a local ring with maximal ideal $\mathfrak{m}$. Let $F, F'$ be two
 finitely generated free $R$-modules, and let $\phi: F \to F'$ be a homomorphism. 
 Then $\phi$ is a split injection if and only if the reduction $\overline{\phi}$
@@ -532,8 +532,36 @@ by the above. We define $\psi(\sum a_i f_i + \sum b_j g_j) = \sum a_i e_i \in
 F$. It is clear that this is a left inverse
 \end{proof} 
 
+We next note  a slight strenghtening of the above result, which is sometimes
+useful. Namely, the first module does not have to be free.
+\begin{proposition} 
+Let $R$ be a local ring with maximal ideal $\mathfrak{m}$. Let $M, F$ be two
+finitely generated $R$-modules with $F$ free, and let $\phi: M \to F'$ be a homomorphism. 
+Then $\phi$ is a split injection if and only if the reduction $\overline{\phi}$
+\[ M/\mathfrak{m}M \stackrel{\overline{\phi}}{\to} F/\mathfrak{m}F  \]
+is an injection. 
+\end{proposition}
+It will in fact follow that $M$ is itself free, because $M$ is projective (see
+\cref{} below) as it is a direct summand of a free module.
+\begin{proof} 
+Let $L$ be a ``free approximation'' to $M$.
+That is, choose a basis $\overline{x_1}, \dots, \overline{x_n}$ for $M/\mathfrak{m}M$ (as an $R/\mathfrak{m}$-vector
+space) and lift this to elements $x_1, \dots, x_n \in M$. Define a map
+\[ L = R^n \to M  \]
+by sending the $i$th basis vector to $x_i$.
+Then $L/\mathfrak{m} L \to M/\mathfrak{m}M$ is an isomorphism.
+By Nakayama's lemma,
+$L \to M$ is surjective.
+
+Then the composite map
+$L \to M \to F$ is such that the $L/\mathfrak{m}L \to F/\mathfrak{m}F$ is injective, so
+$L \to F$ is a split injection (by \cref{splitcriterion1}).
+It follows that we can find a splitting $F \to L$, which when composed with $L
+\to M$ is a splitting of $M \to F$.
+\end{proof} 
+
 \begin{exercise} 
-Let $A$ be a local ring, and $B$ a ring which is finitely generated and freeas an
+Let $A$ be a local ring, and $B$ a ring which is finitely generated and free as an
 $A$-module. Suppose $A \to B$ is an injection. Then $A \to B$ is a \emph{split
 injection.} (Note that any nonzero morphism mapping out of a field is
 injective.) 
