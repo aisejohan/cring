@@ -178,9 +178,20 @@ there exists $J$ such that
 Invertibility  is with respect to the tensor product.
 \end{definition} 
 
-\begin{remark} 
-You're supposed to think of a module as giving something like a vector bundle
-on $\spec R$. An invertible module looks like a line bundle on $\spec R$.
+\begin{remark} \label{linebundremark}
+In topology, one is often interested in classifying \emph{vector bundles} on
+spaces. In algebraic geometry, a module $M$ over a ring $R$ gives (as in
+\cref{}) a sheaf of abelian groups over the topological space $\spec R$; this
+is supposed to be an analogy with the theory of vector bundles. (It is not so
+implausible since the Serre-Swan theorem (\cref{}) gives an equivalence of
+categories between the vector bundles over a compact space $X$ and the
+projective modules over the ring $C(X)$ of continuous functions.) 
+In this analogy, the invertible modules are the \emph{line bundles}.
+The definition has a counterpart in the topological setting: for instance, a
+vector bundle $\mathcal{E} \to X$ over a space $X$ is a line bundle (that is,
+of rank one) if and only if there is a vector bundle $\mathcal{E}' \to X$ such
+that $\mathcal{E} \otimes \mathcal{E}'$ is the trivial bundle $X \times
+\mathbb{R}$.
 \end{remark} 
 
 There are many equivalent characterizations.
@@ -304,16 +315,18 @@ $I[1/a_i] \otimes J[1/a_i]$ is an isomorphism.
 
 \begin{definition} 
 Let $R$ be a commutative ring. We define the \textbf{Picard group} $\pic(R)$ to
-be the set of isomorphism classes of invertible $R$-modules. This is an abelian group
-under the tensor product; the identity element is given by $R$. 
+be the set of isomorphism classes of invertible $R$-modules. This is an abelian
+group; the addition law is defined so that the sum of the classes represented
+by $M, N$ is $M \otimes_R N$.
+The identity element is given by $R$. 
 \end{definition} 
 
-
+The Picard group is thus analogous (cf. \cref{linebundleremark}) to the set of
+isomorphism classes of line bundles on a topological space (which is also an
+abelian group). While the latter can often be easily computed (for a nice space
+$X$, the line bundles are classified by elements of $H^2(X, \mathbb{Z})$), the
+interpretation in the algebraic setting is more difficult. 
 \subsection{Cartier divisors}
-Last time, for a commutative ring $R$, we defined the \textbf{Picard group}
-$\pic(R)$ as the set of isomorphism classes of invertible $R$-modules. The
-group structure is given by the tensor product.
-
 
 Assume furthermore that $R$ is a domain. We now introduce:
 
