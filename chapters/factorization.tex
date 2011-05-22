@@ -137,9 +137,50 @@ A factorial domain is integrally closed.
 \begin{proof} 
 \add{proof -- may be in the queue already}
 \end{proof} 
-\subsection{Nagata's lemma}
 
-Another criterion for proving factoriality --- \add{later}.
+\section{Weil divisors}
+
+\subsection{Definition}
+We start by discussing Weil divisors.
+\begin{definition} 
+A \textbf{Weil divisor} for $R$ is a formal linear combination $\sum n_{i}
+[\mathfrak{p}_i]$ where the $\mathfrak{p}_i$ range over height one primes of
+$R$. So the group of Weil divisors is the free abelian group on the height one
+primes of $R$. We denote this group by $\weil(R)$.
+\end{definition} 
+
+
+
+
+\subsection{Nagata's lemma} We finish with a fun application of the exact
+sequence of Weil divisors to a purely algebraic statement about factoriality.
+
+\begin{lemma} 
+Let $A$ be a normal noetherian domain. 
+\end{lemma} 
+
+\begin{theorem} 
+Let $A$ be a noetherian domain, $x \in A-\left\{0\right\}$. Suppose $(x)$ is
+prime and $A_x$ is factorial. Then $A$ is factorial. 
+\end{theorem} 
+\begin{proof} 
+We first show that $A$ is normal (hence regular in codimension one).
+Indeed, $A_x$ is normal. So if $t \in K(A)$ is integral over $A$, it lies in
+$A_x$. 
+So we need to check that if $a/x^n \in A_x$ is integral over $A$ and $x \nmid
+x$, then $n=0$.
+Suppose we had an equation
+\[ (a/x^n)^N + b_1 (a/x^n)^{N-1} + \dots + b_N = 0.  \]
+Multiplying both sides by $x^{nN}$ gives that
+\[ a^N \in xR,  \]
+so $x \mid a$ by primality.
+
+Now we use the exact sequence
+\[ (x) \to \mathrm{Cl}(A) \to \mathrm{Cl}(A_x) \to 0.  \]
+The end is zero, and the image of the first map is zero. So
+$\mathrm{Cl}(A)=0$. Thus $A$ is a UFD.
+\end{proof} 
+
 
 
 
@@ -389,15 +430,6 @@ instance, if $R$ is the coordinate ring of a smooth algebraic variety.
 If $R$ is locally factorial and noetherian, then the group $\cart(R)$ is a free abelian group.
 The generators are in bijection with the height one primes of $R$.
 \end{proposition} 
-
-We start by discussing Weil divisors.
-\begin{definition} 
-A \textbf{Weil divisor} for $R$ is a formal linear combination $\sum n_{i}
-[\mathfrak{p}_i]$ where the $\mathfrak{p}_i$ range over height one primes of
-$R$. So the group of Weil divisors is the free abelian group on the height one
-primes of $R$. We denote this group by $\weil(R)$.
-\end{definition} 
-
 Now assume that $R$ is a locally factorial, noetherian domain. 
 We shall produce an isomorphism
 \[ \weil(R) \simeq \cart(R)  \]
