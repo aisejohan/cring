@@ -662,7 +662,7 @@ flatness of $M \otimes_R R/\mathfrak{m}^t$ over $R/\mathfrak{m}^t$; in
 particular, it reduces to the case where the base ring is \emph{artinian.}
 Armed with these, we will be able to prove a rather difficult theorem that
 states that we can always find lots of flat extensions of noetherian local
-rings.
+rings. 
 
 \subsection{Flatness over a noetherian local ring}
 
@@ -673,7 +673,7 @@ $\mathfrak{m}S \subset \mathfrak{n}$).
 We will want to know when a $S$-module is flat over $R$. In particular, we
 want a criterion for when $S$ is flat over $R$.
 
-\begin{theorem} The finitely generated $S$-module $M$ is flat over $R$ iff
+\begin{theorem} \label{localcrit} The finitely generated $S$-module $M$ is flat over $R$ iff
 \[ \mathrm{Tor} ^1_R( k, M) = 0.\]
 In this case, $M$ is even free.
 \end{theorem}
@@ -792,6 +792,137 @@ that induce map
 
 If $M$ is flat over 
 \end{comment}
+
+\subsection{Another criterion}
+In the previous subsections, we obtained results that gave criteria for when,
+given a local homomorphism of noetherian local rings $(R, \mathfrak{m}) \to
+(S, \mathfrak{n})$, a finitely generated $S$-module was $R$-flat. 
+These criteria generally were related to the $\tor$ groups of the module with
+respect to $R/\mathfrak{m}$.
+We are now interested in generalizing the above results to the setting where
+$\mathfrak{m}$ is replaced by an ideal that \emph{maps into the Jacobson radical of $S$.}
+In other words, 
+\[ \phi: R \to S  \]
+will be a homomorphism of noetherian rings, and $J \subset R$ will be an ideal
+such that $\phi(J)$ is contained in every maximal ideal of $S$. 
+
+Ideally, we are aiming for results of the following type:
+\begin{theorem}[Generalized local criterion for flatness] \label{localcritg}
+Let $\phi: R \to S$ be a morphism of noetherian rings, $J \subset R$ an ideal
+with $\phi(J) $ contained in the Jacobson radical of $S$.
+Let $M$ be a finitely generated $S$-module. Then $M$ is $R$-flat if and only if
+$M /JM$ is $R/J$-flat and $\tor_1^R(R/J, M) = 0$.
+\end{theorem} 
+
+Note that this is a generalization of \cref{localcrit}. In that case, $R/J$ was
+a field and the $R/J$-flatness of $M/JM$ was automatic.
+One key step in the proof of \cref{localcrit} was to go from the hypothesis
+that $\tor_1(M, k) = 0$ to $\tor_1(M, N) =0 $ whenever $N$ was an $R$-module of
+\emph{finite length.}
+We now want to do the same in this generalized case; the analogy would be
+that, under the hypotheses of \cref{localcritg}, we would like to conclude
+that $\tor_1^R(M, N) = 0$ whenever $N$ is a finitely generated $R$-module
+\emph{annihilated by $I$}. 
+This is not quite as obvious because we cannot generally find a filtration on
+$N$ whose successive quotients are $R/J$ (unlike in the case where $J$ was
+maximal).
+Therefore we shall need two lemmas.
+
+\begin{remark} 
+One situation where the strong form of the local criterion, \cref{localcritg},
+is used is in Grothendieck's proof (cf. EGA IV-11, \cite{EGA}) that the locus of points where a coherent
+sheaf is flat is open (in commutative algebra language, if $A$ is noetherian
+and $M$ finitely generated over a finitely generated $A$-algebra $B$, then the
+set of primes $\mathfrak{q} \in \spec B$ such that $M_{\mathfrak{q}}$ is
+$A$-flat is open in $\spec  B$).
+\end{remark} 
+
+\begin{lemma}[Serre] \label{serrelemma}
+Suppose $R$ is a ring, $S$ an $R$-algebra, and $M$ an $S$-module. 
+Then the following are equivalent:
+\begin{enumerate}
+\item $M \otimes_R S$ is $S$-flat and $\tor_1^R(M, S) = 0$. 
+\item $\tor_1^R(M, N) = 0$ whenever $N$ is any  $S$-module.
+\end{enumerate}
+\end{lemma} 
+We follow \cite{SGA1}.
+\begin{proof} 
+Let $P$ be an $S$-module (considered as fixed), and $Q$ any (variable) $R$-module.
+Recall that there is a homology spectral sequence
+\[ \tor_p^S(\tor_q^R(Q, S), P) \implies \tor_{p+q}^R(Q,P).  \]
+Recall that this is the Grothendieck spectral sequence of the composite functors
+\[ Q \mapsto Q \otimes_R S, \quad Q' \mapsto Q' \otimes_S P  \]
+because
+\[ (Q \otimes_R S) \otimes_S P \simeq Q \otimes_R P.  \]
+\add{This, and generalities on spectral sequences, need to be added!}
+From this spectral sequence, it will be relatively easy to deduce
+the result.
+\begin{enumerate}
+\item Suppose $M \otimes_R S$ is $S$-flat and $\tor_1^R(M, S) = 0$.
+We want to show that 2 holds, so let $N$ be any $S$-module.
+Consider the $E_2$ page of the above spectral sequence
+ $\tor_p^S(\tor_q^R(M, S), N) \implies \tor_{p+q}^R(M, N)$.
+ In the terms such that $p+q = 1$, we have the two terms 
+$\tor_0^S(\tor_1^R(M, S), N), \tor_1^S(\tor_0^R(M, S),N)$.
+But by hypotheses these are both zero. It follows that $\tor_1^R(M, N) = 0$.
+\item Suppose $\tor_1^R(M, N) = 0$ for each $S$-module $N$.
+Since this is a {homology} spectral sequence, this implies that the 
+$E_2^{10}$ term vanishes (since nothing will be able to hit this term).
+In particular $\tor_1^S(M \otimes_R  S, N) = 0$ for each $S$-module $N$.
+It follows that $M \otimes_R S$ is $S$-flat.
+Hence the higher terms $\tor_p^S(M \otimes_R S, N) = 0$ as well, so the botton row of
+the $E_2$ page (except $(0,0)$) is thus entirely zero. It follows that the
+$E_{01}^2$ term vanishes if $E_{\infty}^{01}$ is trivial.
+This gives that $\tor_1^R(M, S) \otimes_S N = 0$ for every $S$-module $N$,
+which clearly implies $\tor_1^R(M, S) = 0$.
+\end{enumerate}
+\end{proof} 
+
+As a result, we shall be able to deduce the result alluded to in the motivation
+following the statement of \cref{localcritg}.
+
+\begin{lemma} 
+Let $R$ be a noetherian ring, $J \subset R$ an ideal, $M$ an $R$-module. Then TFAE:
+\begin{enumerate}
+\item $\tor_1^R(M, R/J) = 0$ and $M/JM$ is $R/J$-flat. 
+\item $\tor_1^R(M, N) = 0$ for any finitely generated $R$-module $N$
+annihilated by a power of $J$.
+\end{enumerate}
+\end{lemma} 
+\begin{proof} 
+This is immediate from \cref{serrelemma}, once one notes that any $N$ as in the
+statement admits a finite filtration whose successive quotients are annihilated
+by $J$.
+\end{proof} 
+\begin{proof}[Proof of \cref{localcritg}]
+Only one direction is nontrivial, so suppose $M$ is a finitely generated
+$S$-module, with $M/JM$ flat over $R/J$ and $\tor_1^R(M, R/J) = 0$.
+We know by the lemma that $\tor_1^R(M, N) = 0$ whenever $N$ is finitely
+generated and annihilated by a power of $J$.
+
+
+So as to avoid repeating the same argument over and over, we encapsulate it in
+the following lemma.
+\begin{lemma} Let the hypotheses be as in \cref{localcritg}
+Suppose for every ideal $I \subset R$, and every $t \in \mathbb{N}$, the map
+\[ I/I \cap J^t \otimes M \to M/J^t M  \]
+is an injection. Then $M$ is $R$-flat.
+\end{lemma} 
+\begin{proof} 
+Indeed, then as before, the kernel of $I \otimes_R M \to M$ lives inside the image of $(I \cap J^t)
+\otimes M \to I \otimes_R M$ for \emph{every} $t$; by the Artin-Rees lemma, and the Krull
+intersection theorem (since $\bigcap J^t(I \otimes_R M) = \{0\}$), it follows that this kernel is zero.
+\end{proof} 
+
+It is now easy to finish the proof. Indeed, we can verify the hypotheses of the
+lemma by noting that
+\[ I /I \cap J^t \otimes M \to I \otimes M  \]
+is obtained by tensoring with $M$ the sequence
+\[ 0 \to I/I \cap J^t \to R/(I \cap J^t) \to R/(I + J^t) \to 0.  \]
+Since $\tor_1^R(M, R/(I + J^t)) = 0$, we find that the map as in the lemma is
+an injection, and so we are done.
+\end{proof} 
+
 \subsection{Example: construction of flat extensions}
 
 As an illustration of several of the techniques in this chapter and previous
