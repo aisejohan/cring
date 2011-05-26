@@ -459,7 +459,7 @@ the contrary $bx \neq 0$. In this case, $\ann(bx)$ contains $(a) + I$, which
 
 \end{proof} 
 
-\begin{example} 
+\begin{example}[A module with no associated prime]
 Without the noetherian hypothesis, \rref{assmnonempty} is
 \emph{false}. Consider $R = \mathbb{C}[x_1, x_2, \dots]$, the polynomial ring
 over $\mathbb{C}$ in infinitely many variables, and the ideal $I = (x_1,
@@ -685,7 +685,12 @@ of $S^{-1}M$ comes from an associated prime of $M$, which completes the proof.
 
 
 
-
+\begin{exercise} 
+Show that, if $M$ is a finitely generated module over a noetherian ring, that
+the map
+\[ M \to \bigoplus_{\mathfrak{p} \in \ass(M)} M_{\mathfrak{p}}  \]
+is injective. Is this true if $M$ is not finitely generated?
+\end{exercise} 
 
 \subsection{Associated primes determine the support}
 The next claim is that the support and the associated primes are related.
