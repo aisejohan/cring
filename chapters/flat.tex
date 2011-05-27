@@ -121,6 +121,10 @@ endomorphisms of $M \otimes_R N$. Thus $M \otimes_R N \neq 0$. By
 \rref{easyffcriterion}, we are done again.
 \end{proof} 
 
+\begin{example} 
+Note, however, that $\mathbb{Z} \oplus \mathbb{Z}/2$ is a $\mathbb{Z}$-module
+such that tensoring by it is a faithful but not exact functor.
+\end{example} 
 
 Finally, we prove one last criterion:
 
@@ -188,7 +192,7 @@ flat. This is clear.
 \end{example}
 
 Next, we indicate the usual ``sorite'' for faithfully flat morphisms:
-\begin{proposition} 
+\begin{proposition} \label{ffsorite}
 Faithfully flat morphisms are closed under composition and base change.
 \end{proposition} 
 That is, if $R \to S$, $S \to T$ are faithfully flat, so is $R \to T$.
@@ -261,8 +265,53 @@ $R_{\mathfrak{p}} \to S_{\mathfrak{q}}$ is faithfully flat, hence injective.
 \end{corollary} 
 \begin{proof} 
 We only need to show that the map is flat by \cref{flatlocal}. 
-\add{proof}
+Let $M' \hookrightarrow M$ be an injection of $R_{\mathfrak{p}} \to
+S_{\mathfrak{q}}$-modules. Note that $M', M$ are then $R$-modules as well.
+Then 
+$$M' \otimes_{R_{\mathfrak{p}}} S_{\mathfrak{q}} = (M' \otimes_R
+R_{\mathfrak{p}}) \otimes_{R_{\mathfrak{p}}} S_{\mathfrak{q}} = M' \otimes_R
+S_{\mathfrak{q}}.$$
+Similarly for $M$.
+This shows that tensoring over $R_{\mathfrak{p}}$ with $S_{\mathfrak{q}}$ is
+the same as tensoring over $R$ with $S_{\mathfrak{q}}$. But $S_{\mathfrak{q}}$
+is flat over $S$, and $S$ is flat over $R$, so by \cref{ffsorite},
+$S_{\mathfrak{q}}$ is flat over $R$. Thus the result is clear.
 \end{proof} 
+
+\subsection{Descent of properties under faithfully flat base change}
+
+Let $S$ be an $R$-algebra. Often, things that are true about objects over $R$
+(for instance, $R$-modules) will remain true after base-change to $S$. 
+For instance, if $M$ is a finitely generated $R$-module, then $M \otimes_R S$
+is a finitely generated $S$-module.
+In this section, we will show that we can conclude the \emph{reverse}
+implication when $S$ is \emph{faithfully flat} over $R$.
+
+\begin{exercise} 
+Let $R \to S$ be a faithfully flat morphism of rings. If $S$ is noetherian, so
+is $R$. The converse is false!
+\end{exercise} 
+
+
+\begin{exercise} Many properties of morphisms of rings are such that if they hold after
+one makes a faithfully flat base change, then they hold for the original
+morphism.
+Here is a simple example.
+Suppose $S$ is a faithfully flat $R$-algebra. Let $R'$ be any $R$-algebra.
+Suppose $S'  =S \otimes_R R'$ is finitely generated over $R'$. Then $S$ is
+finitely generated over $R$. 
+
+To see that, note that $R'$ is the colimit of its finitely generated
+$R$-subalgebras $R_\alpha$. Thus $S'$ is the colimit of the $R_\alpha
+\otimes_R S$, which inject into $S'$; finite generation implies that one of
+the $R_\alpha \otimes_R S \to S'$ is an isomorphism. Now use the fact that
+isomorphisms ``descend'' under faithfully flat morphisms.
+
+In algebraic geometry, one can show that many properties of morphisms of
+\emph{schemes} allow for descent under faithfully flat base-change. See
+\cite{EGA}, volume IV-2.
+\end{exercise} 
+
 
 \subsection{Topological consequences}
 
@@ -354,31 +403,6 @@ We need to show that if $F \subset \spec R$ is such that its pre-image in
 $\spec S$ is closed, then $F$ itself is closed.  \textbf{ADD THIS PROOF}
 \end{proof} 
 
-
-\begin{exercise} 
-Let $R \to S$ be a faithfully flat morphism of rings. If $S$ is noetherian, so
-is $R$. The converse is false!
-\end{exercise} 
-
-
-\begin{exercise} Many properties of morphisms of rings are such that if they hold after
-one makes a faithfully flat base change, then they hold for the original
-morphism.
-Here is a simple example.
-Suppose $S$ is a faithfully flat $R$-algebra. Let $R'$ be any $R$-algebra.
-Suppose $S'  =S \otimes_R R'$ is finitely generated over $R'$. Then $S$ is
-finitely generated over $R$. 
-
-To see that, note that $R'$ is the colimit of its finitely generated
-$R$-subalgebras $R_\alpha$. Thus $S'$ is the colimit of the $R_\alpha
-\otimes_R S$, which inject into $S'$; finite generation implies that one of
-the $R_\alpha \otimes_R S \to S'$ is an isomorphism. Now use the fact that
-isomorphisms ``descend'' under faithfully flat morphisms.
-
-In algebraic geometry, one can show that many properties of morphisms of
-\emph{schemes} allow for descent under faithfully flat base-change. See
-\cite{EGA}, volume IV-2.
-\end{exercise} 
 
 \section{Faithfully flat descent}
 
@@ -488,6 +512,180 @@ for the $\left\{f_i\right\}$ a family generating the unit ideal). This
 argument generalizes to showing that the \emph{{\'e}tale}
 cohomology of a quasi-coherent sheaf on an affine is trivial; cf. \cite{Ta94}.
 \end{remark} 
+
+\subsection{Descent for modules}
+Let $A \to B$ be a faithfully flat morphism of rings.
+Given an $A$-module $M$, we have a natural way of getting a $B$-module $M_B = M
+\otimes_A B$. We want to describe the image of this functor; alternatively,
+given a $B$-module, we want to describe the image of this functor. 
+
+Given an $A$-module $M$ and the associated $B$-module $M_B = M \otimes_A B$,
+there are two ways of getting $B \otimes_A B$-modules from $M_B$, namely 
+the two tensor products $M_B \otimes_B (B \otimes_A B)$ according as we pick
+the first map $b \mapsto b \otimes 1$ from $B \to B \otimes_A B$ or the
+second $b \mapsto 1 \otimes b$.
+We shall denote these by $M_B \otimes_A B$ and $B \otimes_A M_B$ with the
+action clear.
+But these are naturally isomorphic because both are obtained from $M$ by
+base-extension $A \rightrightarrows B \otimes_A B$, and the two maps are the
+same. Alternatively, these two tensor products are 
+$M \otimes_A B \otimes_A B$ and $B \otimes_A M \otimes_A B$ and these are
+clearly isomorphic by the braiding isomorphism\footnote{It is \emph{not} the
+braiding isomorphism $M_B \otimes_A B \simeq B \otimes_A M_B$, which is not an
+isomorphism of $B \otimes_A B$-modules.
+This is the isomorphism that sends $m \otimes b \otimes b'$ to $b \otimes m
+\otimes b'$.
+} of the first two factors as $B \otimes_A B$-modules (with the $B \otimes_A B$ part
+acting on the $B$'s in the above tensor product!).
+
+\begin{definition} 
+The \textbf{category of descent data} for the faithfully flat extension $A \to
+B$ is defined as follows. An object in this category consists of the following
+data:
+\begin{enumerate}
+\item A $B$-module $N$. 
+\item An isomorphism of $B \otimes_A B$-modules $\phi: N \otimes_A B \simeq B \otimes_A N$.
+This isomorphism is required to make the following diagram\footnote{This is
+the cocycle condition.} of $B \otimes_A B
+\otimes_A B$-modules commutative:
+\begin{equation} \label{dc} \xymatrix{
+B \otimes_A B \otimes_A N \ar[rr]^{\phi_{23}} \ar[rd]^{\phi_{13}} & &  B \otimes_A N \otimes_A B
+\ar[ld]^{\phi_{12}} \\
+&  N \otimes_A B \otimes_A B 
+}\end{equation}
+Here $\phi_{ij}$ means that the permutation of the $i$th and $j$th factors of
+the tensor product is done using the isomorphism $\phi$.
+\end{enumerate}
+A morphism between objects $(N, \phi), (N', \psi)$ is a morphism of
+$B$-modules $f: N \to N'$ that makes the diagram
+\begin{equation} \label{dc2}  \xymatrix{
+N \otimes_A B \ar[d]^{f \otimes 1}  \ar[r]^{\phi} &  B \otimes_A N
+\ar[d]^{1 \otimes f} \\
+N' \otimes_A B \ar[r]^{\psi} &  B \otimes_A N' \\
+}\end{equation}
+\end{definition} 
+
+As we have seen, there is a functor  $F$ from $A$-modules 
+to descent data. 
+Strictly speaking, we should check the commutativity of \eqref{dc}, but this
+is clear: for $N= M\otimes_A B$,  \eqref{dc} looks like
+$$
+\xymatrix{
+B \otimes_A B \otimes_A M \otimes_A B  \ar[rr]^{\phi_{23}} \ar[rd]^{\phi_{13}} &
+&  B \otimes_A M \otimes_A B  \otimes_A B
+\ar[ld]^{\phi_{12}} \\
+&  M \otimes_A B \otimes_A B \otimes_A B 
+}$$
+Here all the maps are just permutations of the factors (that is, the braiding
+isomorphisms in the structure of symmetric tensor category on the category of
+$A$-modules), so it clearly commutes.
+
+The main theorem is:
+
+\begin{theorem}[Descent for modules]
+The above functor from $A$-modules to descent data for $A \to B$ is an
+equivalence of categories.
+\end{theorem} 
+
+We follow \cite{Vi08} in the proof.
+\begin{proof} 
+We start by describing the inverse functor from descent data to $A$-modules.
+Recall that if $M$ is an $A$-module, then $M$ can be characterized as the
+submodule of $M_B$ consisting of $m \in M_B$ such that $1
+\otimes m$ and $m \otimes 1$ corresponded to the same thing in $M_B \otimes_A B
+\simeq B \otimes_A M_B$.
+(The case $M = A$ was particularly transparent: elements of $A$ were elements
+$x \in B$ such that $x \otimes 1 = 1 \otimes x$ in $B \otimes_A B$.)
+In other words, we had the exact sequence
+\[ 0 \to M \to M_B \to M_B \otimes_A B . \]
+
+We want to imitate this for descent data.
+Namely, we want to construct a functor $G$ from descent data to $A$-modules. 
+Given descent data $(N, \phi)$ where $\phi: N \otimes_A B \simeq B \otimes_A
+N$ is an isomorphism of $B \otimes_A B$-modules, we define $GN$ to be 
+\[ GN = \ker ( N \stackrel{n \mapsto 1 \otimes n - \psi(n \otimes 1) }{\to} B
+\otimes_A N).  \]
+It is clear that this is an $A$-module, and that it is functorial in the
+descent data.
+We have also shown that $GF (M)$ is naturally isomorphic to $M$ for any
+$A$-module $M$. 
+
+We need to show the analog for $FG(N, \phi)$; in other words, we need to show
+that any descent data arises via the $F$-construction. Even before that, we
+need to describe a natural transformation from $FG(N, \phi)$ to the identity.
+Fix a  descent data $(N, \phi)$.
+Then $G(N, \phi)$ gives an $A$-submodule $M \subset N$.
+We get a morphism 
+\[ f:  M_B = M \otimes_A B \to N  \]
+by the universal property. This sends $m \otimes b \mapsto bm$.
+The claim is that 
+this is a map of descent data.
+In other words, we have to show that \eqref{dc2} commutes.
+The diagram looks like
+\[ \xymatrix{
+M_B \otimes_A B \ar[d]^{f \otimes 1} \ar[r] &  B \otimes_A M_B \ar[d]^{1
+\otimes f}  \\
+N \otimes_A B \ar[r]^{\phi} &  B \otimes_A N
+}.\]
+In other words, if $m\otimes b \in M_B$ and $b' \in B$, we have to show that
+$\phi(  bm  \otimes b' ) =  (1 \otimes f)( b \otimes m \otimes b') = b \otimes
+b' m$.
+
+However, 
+\[ \phi(bm \otimes b') = (b \otimes b') \phi(m \otimes 1) = (b \otimes b')(1
+\otimes m) = b \otimes b'm  \]
+in view of the definition of $M = GN$ as the set of elements such that $\phi(m
+\otimes 1) = 1 \otimes m$, and the fact that $\phi$ is an isomorphism of $B
+\otimes_A B$-modules. The equality we wanted to prove is thus clear.
+
+So we have the two natural transformations between $FG, GF$ and the respective
+identity functors. We have already shown that one of them is an isomorphism. 
+Now we need to show that if $(N, \phi)$ is descent data as above, and $M =
+G(N, \phi)$, the map $F(M) \to (N, \phi)$ is an \emph{isomorphism}.
+In other words, we have to show that the map
+\[ M \otimes_A B \to N  \]
+is an isomorphism. 
+
+
+Here we shall draw a commutative diagram. Namely, we shall essentially use the Amitsur
+complex for the faithfully flat map $B \to B \otimes_A B$. We shall obtain a
+commutative an exact diagram:
+\[ \xymatrix{
+0 \ar[r] &  M \otimes_A B \ar[d]   \ar[r] &  N  \otimes_A B
+\ar[d]^{\phi}  \ar[r] &  N \otimes_A B \otimes_A B  \ar[d]^{\phi_{13}^{-1}}  \\
+0 \ar[r] &  N   \ar[r] &  B \otimes_A N
+  \ar[r] &  B \otimes_A B \otimes_A N
+}.\]
+Here the map $$N \otimes_A B \to N \otimes_A B \otimes_A B$$ sends $n \otimes b
+\mapsto n \otimes 1 \otimes b - \phi(1 \otimes n) \otimes b$.
+Consequently the first row is exact, $B$ being flat over $A$.
+The bottom map
+$$B \otimes_A N \to B \otimes_A N \otimes_A N$$
+sends $b \otimes n \mapsto b \otimes 1 \otimes n - 1 \otimes b \otimes n$.
+It follows by the Amitsur complex that the bottom row is exact too.
+We need to check that the diagram commutes. Since the two vertical maps on the
+right are isomorphisms, it will follow that $M \otimes_A B \to N$ is an
+isomorphism, and we shall be done.
+
+Fix $n \otimes b \in N \otimes_A B$. We need to figure out where it goes in $B
+\otimes_A B \otimes_A N$ under the two maps.  Going right gives $n \otimes 1 \otimes b - \phi_{12}( 1 \otimes n \otimes
+b)$.
+Going down then gives
+$\phi_{13}^{-1}(n \otimes 1 \otimes b) - \phi_{13}^{-1}\phi_{12}( 1 \otimes n \otimes
+b) = 
+\phi_{13}^{-1}(n \otimes 1 \otimes b) - \phi_{23}^{-1}(1 \otimes n \otimes
+b)$, where we have used the cocycle condition.
+So this is one of the maps $N \otimes_A B \to B \otimes_A B \otimes_A N$.
+
+Now we consider the other way $n \otimes b$ can map to $B \otimes_A B \otimes_A N$.
+
+Going down gives $\phi(n \otimes
+b)$, and then going right gives the difference of two maps $N \otimes_A B \to B
+\otimes_A B \otimes_A N$, which are the same as above.
+\end{proof} 
+
+\subsection{Example: Galois descent}
+\add{this section}
 
 
 \section{The $\tor$ functor}
