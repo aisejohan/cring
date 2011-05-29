@@ -385,6 +385,30 @@ Indeed, \cref{imagespec} shows then that for any prime ideal $\mathfrak{p}
 This is sufficient to imply that $S$ is faithfully flat by \cref{ffmaximal}.
 \end{remark} 
 
+\begin{remark} 
+A ``slicker'' argument that faithful flatness implies surjectiveness on spectra
+can be given as follows. Let $R \to S$ be faithfully flat. Let $\mathfrak{p}
+\in \spec R$; we want to show that $\mathfrak{p}$ is in the image of $\spec S$.
+Now \emph{base change preserves faithful flatness.} So we can replace $R$ by
+$R/\mathfrak{p}$, $S$ by $S/\mathfrak{p}S$, and assume that $R$ is a domain and
+$\mathfrak{p}  = 0$.
+Indeed, the commutative diagram
+\[ \xymatrix{
+\spec S/\mathfrak{p}S \ar[d] \ar[r] &  \spec R/\mathfrak{p} \ar[d]  \\
+\spec S \ar[r] &  \spec R
+}\]
+shows that $\mathfrak{p}$ is in the image of $\spec S \to \spec R$ if and only
+if $\left\{0\right\}$ is in the image of $\spec S/\mathfrak{p}S \to \spec
+R/\mathfrak{p}$.
+
+We can make another reduction: by localizing at $\mathfrak{p}$ (that is,
+$\left\{0\right\}$), we may assume that $R$ is local and thus a field.
+So we have to show that if $R$ is a field and $S$ a faithfully flat
+$R$-algebra, then $\spec S \to \spec R$ is surjective. But since $S$ is not the
+zero ring (by \emph{faithful} flatness!), it is clear that $S$ has a prime
+ideal and $\spec S \to \spec R$ is thus surjective.
+\end{remark} 
+
 In fact, one can show that the morphism $\spec S \to \spec R$ is actually an
 \emph{identification,} that is, a quotient map. This is true more generally
 for faithfully flat and quasi-compact morphisms of schemes; see \cite{EGA},
@@ -833,7 +857,7 @@ is injective for all ideals $I$, then $M$ is flat.
 \end{corollary} 
 
 
-\section{Flatness over noetherian local rings}
+\section{Flatness over noetherian rings}
 
 We shall be able to obtain simpler criterion for flatness when the ring in
 question is noetherian local. For instance, we have already seen:
@@ -935,9 +959,9 @@ for all $t$.  Thus, by the Artin-Rees lemma, it belongs to $\mathfrak{m}^t(I \ot
 
 \end{proof} 
 
-\subsection{The infinitesimal criterion}
+\subsection{The infinitesimal criterion for flatness}
 
-\begin{theorem} Let $R$ be a noetherian local ring, $S$ a noetherian local
+\begin{theorem} \label{infcriterion} Let $R$ be a noetherian local ring, $S$ a noetherian local
 $R$-algebra. Let $M$ be a finitely generated module over $S$.  Then $M$ is
 flat over $R$ iff $M/\mathfrak{m}^tM$ is flat over $R/\mathfrak{m}^t$ for all $t>0$.
 \end{theorem}
@@ -991,7 +1015,7 @@ that induce map
 If $M$ is flat over 
 \end{comment}
 
-\subsection{Another criterion}
+\subsection{Generalizations of the local and infinitesimal criteria}
 In the previous subsections, we obtained results that gave criteria for when,
 given a local homomorphism of noetherian local rings $(R, \mathfrak{m}) \to
 (S, \mathfrak{n})$, a finitely generated $S$-module was $R$-flat. 
@@ -1101,7 +1125,7 @@ generated and annihilated by a power of $J$.
 
 So as to avoid repeating the same argument over and over, we encapsulate it in
 the following lemma.
-\begin{lemma} Let the hypotheses be as in \cref{localcritg}
+\begin{lemma} \label{flatlemma} Let the hypotheses be as in \cref{localcritg}
 Suppose for every ideal $I \subset R$, and every $t \in \mathbb{N}$, the map
 \[ I/I \cap J^t \otimes M \to M/J^t M  \]
 is an injection. Then $M$ is $R$-flat.
@@ -1121,6 +1145,76 @@ Since $\tor_1^R(M, R/(I + J^t)) = 0$, we find that the map as in the lemma is
 an injection, and so we are done.
 \end{proof} 
 
+The reader can similarly formulate a version of the infinitesimal criterion in
+this more general case using \cref{flatlemma} and the argument in
+\cref{infcriterion}. (In fact, the spectral sequence argument of this section
+is not necessary.) We shall not state it here, as it will appear as a
+component of \cref{bigflatcriterion}. We leave the details of the proof to the reader.
+
+\subsection{The final statement of the flatness criterion}
+
+We shall now bundle the various criteria for flatness into one big result,
+following \cite{SGA1}:
+
+\begin{theorem} \label{bigflatcriterion}
+Let $A, B$ be noetherian rings, $\phi: A \to B$ a morphism making $B$ into an
+$A$-algebra. Let $I$ be an ideal of $A$ such that $\phi(I)$ is contained in the
+Jacobson radical of $B$.
+Let $M$ be a finitely generated $B$-module.
+Then the following are equivalent:
+\begin{enumerate}
+\item $M$ is $A$-flat. 
+\item $M/IM$ is $A/I$-flat and $\tor_1^A(M, A/I) = 0$.
+\item  $M/I^n M$ is $A/I^n$-flat for each $n$.
+\item  $M/IM$ is $A/I$-flat and $M/IM \otimes_{A/I} I^n/I^{n+1} \to I^n
+M/I^{n+1}M$ is an isomorphism for each $n$.
+\end{enumerate}
+\end{theorem} 
+
+The last criterion can be phrased as saying that the $I$-adic \emph{associated
+graded} of $M$ is determined by $M/IM$.
+\begin{proof} 
+We have already proved that the first three are equivalent. It is easy to see
+that flatness of $M$ implies that
+\begin{equation} \label{flatwantiso} M/IM \otimes_{A/I} I^n/I^{n+1} \to I^n
+M/I^{n+1}M  \end{equation}
+is an isomorphism for each $n$.
+Indeed, this easily comes out to be the quotient of $M \otimes_A I^n$ by the
+image of $M \otimes_A I^{n+1}$, which is $I^n M/I^{n+1}M$ since the map $M
+\otimes_A I^n \to I^n M$ is an isomorphism.
+Now we need to show that this last condition implies flatness.
+To do this, we may (in view of the infinitesimal criterion) assume that $I$ is
+\emph{nilpotent}, by base-changing to $A/I^n$.
+We are then reduced to showing that $\tor_1^A(M, A/I) = 0$ (by the local
+criterion).
+Then we are, finally, reduced to showing:
+
+\begin{lemma} 
+Let $A$ be a ring, $I \subset A$ be a nilpotent ideal, and $M$ any $A$-module.
+If \eqref{flatwantiso} is an isomorphism for each $n$, then 
+$\tor_1^A(M, A/I) = 0$.
+\end{lemma} 
+\begin{proof} 
+This is equivalent to the assertion, by a diagram chase, that
+\[ I \otimes_A M \to M  \]
+is an injection.
+We shall show more generally that $I^n \otimes_A M \to M$ is an injection for
+each $n$. When $n \gg 0$, this is immediate, $I$ being nilpotent. So we can use
+descending induction on $n$.
+
+Suppose $I^{n+1} \otimes_A M \to I^{n+1}M$ is an isomorphism.
+Consider the diagram
+\[ \xymatrix{
+& I^{n+1} \otimes_A M \ar[r] \ar[d]  &  I^n \otimes_A M \ar[r]  \ar[d]  &
+I^n/I^{n+1}  \otimes_A M \ar[d] \to
+0 \\
+0 \ar[r] &  I^{n+1}M \ar[r] & I^n M \ar[r] & I^nM/I^{n+1}M \ar[r] &  0.
+}\]
+By hypothesis, the outer two vertical arrows are isomorphisms. Thus the middle
+vertical arrow is an isomorphism as well. This completes the induction
+hypothesis.
+\end{proof} 
+\end{proof} 
 \subsection{Example: construction of flat extensions}
 
 As an illustration of several of the techniques in this chapter and previous
