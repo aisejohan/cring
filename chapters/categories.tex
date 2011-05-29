@@ -593,7 +593,10 @@ Dual to the notion of a push-out, sometimes the pull-back is also called the
 \textbf{fibered product}.
 \end{definition}
 
-\begin{example} As said above, the fact that the tensor product of algebras is
+\begin{example}[Requires prerequisites not developed yet] The next example may
+be omitted without loss of continuity.
+
+As said above, the fact that the tensor product of algebras is
 a push-out in the category of
 commutative $R$-algebras allows for the correct notion of the ``product'' of
 schemes. We now elaborate on this example: naively one would think that we
@@ -604,33 +607,32 @@ motivates
 the need for a different concept.
 
 Suppose we have a field $k$ and two $k$-algebras $A$ and $B$ and let
-$X=Spec(A)$and $Y=Spec(B)$ be the affine $k$-schemes corresponding to $A$ and
+$X=\spec(A)$and $Y=\spec(B)$ be the affine $k$-schemes corresponding to $A$ and
 $B$. Consider the following pull-back diagram:
 \[
 \xymatrix{
-X\times_{Spec(k)} Y \ar[d] \ar[r] &X \ar[d]\\
-Y \ar[r] &Spec(k) }\]
+X\times_{\spec(k)} Y \ar[d] \ar[r] &X \ar[d]\\
+Y \ar[r] &\spec(k) }\]
 
-Now, since $Spec$ is a contravariant functor, the arrows in this pull-back
-diagram have been flipped; so in fact, $X\times_{Spec(k)} Y$ is actually
-$Spec(A\otimes _k B)$. This construction is motivated by the following example:
-let $A=k[x]$ and $B=k[y]$. Then $Spec(A)$ and $Spec(B)$ are both affine lines
+Now, since $\spec$ is a contravariant functor, the arrows in this pull-back
+diagram have been flipped; so in fact, $X\times_{\spec(k)} Y$ is actually
+$\spec(A\otimes _k B)$. This construction is motivated by the following example:
+let $A=k[x]$ and $B=k[y]$. Then $\spec(A)$ and $\spec(B)$ are both affine lines
 $\mathbb{A}^1_k$ so we want a suitable notion of product that makes the product
-of $Spec(A)$ and $Spec(B)$ the affine plane. The pull-back construction is the
-correct one since $Spec(A)\times_{Spec(k)} Spec(B)=Spec(A\otimes_k
-B)=Spec(k[x,y])=\mathbb{A}^2_k$.
+of $\spec(A)$ and $\spec(B)$ the affine plane. The pull-back construction is the
+correct one since $\spec(A)\times_{\spec(k)} \spec(B)=\spec(A\otimes_k
+B)=\spec(k[x,y])=\mathbb{A}^2_k$.
 \end{example}
 
-Now we abstract on this idea further.
 
 \subsection{Colimits}
 
 
 We now want to generalize the push-out.
 Instead of a shape with $A,B,C$, we do something more general.
-
-Start with a small category $I$: recall that this means that the objects of $I$
-form a set. One is supposed to picture
+Start with a small category $I$: recall that \emph{smallness} means that the objects of $I$
+form a set. $I$ is to be called  the  \textbf{indexing
+category}. One is supposed to picture
 is that $I$ is something like the category
 \[
 \xymatrix{
@@ -641,8 +643,7 @@ is that $I$ is something like the category
 or the category
 \[ \ast \rightrightarrows \ast.  \]
 We will formulate the notion of a \textbf{colimit} which will specialize to the
-push-out when $I$ is the first case. $I$ is to be called  the  \textbf{indexing
-category}.
+push-out when $I$ is the first case. 
 
 
 So we will look at functors
@@ -683,8 +684,12 @@ commute. (This means that the corresponding diagram with $F_i$ replacing $F$
 commutes for each $i \in I$.)
 \end{definition}
 
-We could think of some weird category where cones are objects and the colimit
-is initial. In any case, we see:
+We could form a category $\mathcal{D}$ where the objects are the cones $F \to
+X$, and the morphisms from $F \to X$ and $F \to Y$ are the maps $X \to Y$ that
+make all the obvious diagrams commute. In this case, it is easy to see that a
+\emph{colimit} of the diagram is just an initial object in $\mathcal{D}$.
+
+ In any case, we see:
 
 \begin{proposition}
 $\colim F$, if it exists, is unique up to unique isomorphism.
@@ -693,24 +698,26 @@ $\colim F$, if it exists, is unique up to unique isomorphism.
 Let us go through some examples. We already looked at push-outs.
 
 \begin{example}
-Consider the category $I$ described by
+Consider the category $I$ visualized as
 \[ \ast, \ast, \ast, \ast.  \]
+So $I$ consists of four objects with no non-identity morphisms.
 A functor $F: I \to \mathbf{Sets}$ is just a list of four sets $A, B, C, D$.
 The colimit is just the disjoint union $A \sqcup B \sqcup C \sqcup D$. This is
-the universal property of the disjoint union. To hom out of the disjoint union
-is the same thing as homming out of each piece.
+the universal property of the disjoint union. To map out of the disjoint union
+is the same thing as mapping out of each piece.
 \end{example}
 
 
 \begin{example}
-Suppose we had the same category $I$ but we went into abelian groups. Then $F$
+Suppose we had the same category $I$ but the functor $F$ took values in the
+category of abelian groups. Then $F$
 corresponds, again, to a list of four abelian groups. The colimit is the direct
 sum. Again, the direct sum is characterized by the same universal property.
 \end{example}
 
 \begin{example}
-Suppose we had the same $I$ ($\ast, \ast, \ast, \ast$) but the category of
-groups was $\mathcal{C}$. Then the colimit is the
+Suppose we had the same $I$ ($\ast, \ast, \ast, \ast$) the functor took its
+value in the category of groups. Then the colimit is the
 free product of the four groups.
 \end{example}
 
@@ -719,7 +726,7 @@ Suppose we had the same $I$ and the category $\mathcal{C}$ was of commutative
 rings with unit. Then the colimit is the tensor product.
 \end{example}
 
-So the idea unifies a whole bunch of constructions.
+So the idea of a colimit unifies a whole bunch of constructions.
 Now let us take a different example.
 
 \begin{example}
@@ -744,6 +751,9 @@ colimit over $I$ is called the \textbf{coproduct}.
 
 We use the coproduct to mean things like direct sums, disjoint unions, and
 tensor products.
+If $\left\{A_i, i \in I\right\}$ is a collection of objects in some category,
+then we find the universal property of the coproduct can be stated succinctly:
+\[ \hom_{\mathcal{C}}(\bigsqcup_I A_i, B) = \prod \hom_{\mathcal{C}}(A_i, B).  \]
 
 \begin{definition}
 When $I$ is $\ast \rightrightarrows \ast$, the colimit is called the
@@ -1036,12 +1046,18 @@ in a sense have ``access'' to the internal structure of objects. In this light,
 we make the following definition.
 
 \begin{definition}
-A morphism $f:X\hookrightarrow Y$ is a \textbf{monomorphism} if for any two morphisms
+A morphism $f:X \to Y$ is a \textbf{monomorphism} if for any two morphisms
 $g_1:X'\rightarrow X$ and $g_2:X'\rightarrow X$, we have that $f g_1 = f g_2$
 implies $g_1=g_2$. A morphism $f:X\rightarrow Y$ is an \textbf{epimorphism} if for any two
 maps $g_1:Y\rightarrow Y'$ and $g_2:Y\rightarrow Y'$, we have that $g_1 f = g_2
 f$ implies $g_1 = g_2$.
 \end{definition}
+
+So $f: X \to Y$ is a monomorphism if whenever $X'$ is another object in
+$\mathcal{C}$, the map
+\[ \hom_{\mathcal{C}}(X', X) \to \hom_{\mathcal{C}}(X', Y)  \]
+is an injection (of sets). Epimorphisms in a category are defined similarly;
+note that neither definition makes any reference to \emph{surjections} of sets.
 
 
 The reader can easily check:
