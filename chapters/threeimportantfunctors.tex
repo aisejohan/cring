@@ -2182,7 +2182,7 @@ $\mathbb{Z}/2\mathbb{Z}$ is not flat as a $\mathbb{Z}$-module by
 
 \end{example}
 
-\begin{example}
+\begin{example} \label{projmoduleisflat}
 If $R$ is a ring, then $R$ is flat as an $R$-module, because tensoring by $R$
 is the identity functor.
 
@@ -2259,3 +2259,69 @@ A finitely generated module over a PID is flat if and only if it is free.
 \end{proposition} 
 \end{example} 
 
+\subsection{Finitely presented flat modules}
+In \cref{projmoduleisflat}, we saw that a projective module over any ring $R$
+was automatically flat. In general, the converse is flat. For instance,
+$\mathbb{Q}$ is a flat $\mathbb{Z}$-module (as tensoring by $\mathbb{Q}$ is a
+form of localization). However, because $\mathbb{Q}$ is divisible (namely,
+multiplication by $n$ is surjective for any $n$), $\mathbb{Q}$ cannot be a free
+abelian group.
+
+Nonetheless:
+
+\begin{theorem} 
+A finitely presented flat module over a ring $R$ is projective.
+\end{theorem} 
+\begin{proof} 
+We follow \cite{We95}.
+
+Let us define the following contravariant functor from $R$-modules to $R$-modules.
+Given $M$, we send it to $M^* = \hom_\mathbb{Z}(M, \mathbb{Q}/\mathbb{Z})$.
+This is made into an $R$-module in the following manner: given $\phi: M \to
+\mathbb{Q}/\mathbb{Z}$ (which is just a homomorphism of abelian groups!) and $r
+\in R$, we send this to $r\phi$ defined by $(r\phi)(m) = \phi(rm)$.
+Since $\mathbb{Q}/\mathbb{Z}$ is an injective abelian group, we see that $M
+\mapsto M^*$ is an \emph{exact} contravariant functor from $R$-modules to
+$R$-modules.
+In fact, we note that $0 \to A \to B \to C \to 0$ is exact  implies $0 \to C^* \to B^* \to A^* \to 0$ is exact.
+
+Let $F$ be any $R$-module. There is a natural homomorphism
+\begin{equation} \label{twoduals} M^* \otimes_R F \to \hom_R(F, M)^*.
+\end{equation}
+This is defined as follows. Given $\phi: M \to \mathbb{Q}/\mathbb{Z}$ and $x \in
+F$, we define a new map $\hom(F, M) \to \mathbb{Q}/\mathbb{Z}$ by sending a
+homomorphism $\psi: F \to M$ to $\phi(\psi(x))$.
+In other words, we have a natural map
+\[ \hom_{\mathbb{Z}}(M, \mathbb{Q}/\mathbb{Z} ) \otimes_R F \to
+\hom_{\mathbb{Z}}( \hom_R(F, M)^*, \mathbb{Q}/\mathbb{Z}). \]
+
+Now fix $M$.
+This map \eqref{twoduals} is an isomorphism if $F$ is \emph{finitely
+generated} and  free. 
+ Both are right-exact (because dualizing is contravariant-exact!).
+The ``finite presentation trick'' now shows that the map is an isomorphism if
+$F$ is finitely presented.
+ \add{this should be elaborated on}
+ 
+Fix now $F$  finitely presented and flat, and consider the above two quantities
+in \eqref{twoduals} as functors in $M$.
+Then the first functor is exact, so the second one is too.
+In particular, $\hom_R(F, M)^*$ is an exact functor in $M$; in particular, if
+$M \twoheadrightarrow M''$ is a surjection, then 
+\[ \hom_R(F, M'')^* \to \hom_R(F, M)^*  \]
+is an injection. But this implies that
+\[ \hom_R(F, M) \to \hom_R(F, M'')  \]
+is a \emph{surjection,} i.e. that $F$ is projective.
+Indeed:
+\begin{lemma} $ A \to B \to C $ is exact if and only if $C^* \to B^* \to A^* $ is exact.
+\end{lemma} 
+\begin{proof} 
+Indeed, one direction was already clear (from $\mathbb{Q}/\mathbb{Z}$ being an
+injective abelian group). 
+Conversely, we note that $M = 0$ if and only if $M^* = 0$ (again by
+injectivity and the fact that $(\mathbb{Z}/a)^* \neq 0$ for any $a$).
+Thus dualizing reflects isomorphisms: if a map becomes an isomorphism after
+dualized, then it was an isomorphism already. From here it is easy to deduce
+the result (by applying the above fact to the kernel and image).
+\end{proof} 
+\end{proof} 
