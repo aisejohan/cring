@@ -1215,6 +1215,45 @@ vertical arrow is an isomorphism as well. This completes the induction
 hypothesis.
 \end{proof} 
 \end{proof} 
+
+Here is an example of the above techniques:
+\begin{proposition} 
+Let $(A, \mathfrak{m}), (B, \mathfrak{n}), (C, \mathfrak{n}')$ be noetherian
+local rings. Suppose given a commutative diagram of local homomorphisms
+\[ \xymatrix{
+B \ar[rr]  & & C \\
+& A \ar[ru] \ar[lu].
+}\]
+Suppose $B, C$ are flat $A$-algebras, and $B/\mathfrak{m}B \to C/\mathfrak{m}C$
+is a flat morphism. Then $B \to C$ is flat.
+\end{proposition} 
+Geometrically, this means that flatness can be checked fiberwise if both
+objects are flat over the base.
+
+\begin{proof} 
+We will use the associated graded criterion for flatness with the ideal
+$I = \mathfrak{m}B \subset B$. (Note that we are \emph{not} using the criterion
+with the maximal ideal here!) Namely, we shall show
+that
+\begin{equation} \label{monkey}  I^n/I^{n+1} \otimes_{B/I} C/IC \to I^n
+C/I^{n+1}C \end{equation}
+is an isomorphism. By \cref{bigflatcriterion}, this will do it. Now we have: 
+\begin{align*}  
+ I^n/I^{n+1} \otimes_{B/I} C/IC & \simeq 
+\mathfrak{m}^nB/\mathfrak{m}^{n+1}B \otimes_{B/\mathfrak{m}B}
+C/\mathfrak{m}C  \\ & \simeq
+(\mathfrak{m}^n/\mathfrak{m}^{n+1})\otimes_{A} B/\mathfrak{m}B \otimes_B
+C/\mathfrak{m}C  \\
+& \simeq (\mathfrak{m}^n/\mathfrak{m}^{n+1})\otimes_{A} B \otimes_B
+C/\mathfrak{m}C \\
+& \simeq (\mathfrak{m}^n/\mathfrak{m}^{n+1})\otimes_{A} C/\mathfrak{m}C \\
+& \simeq \mathfrak{m}^nC/\mathfrak{m}^{n+1} C \simeq I^n C/I^{n+1}C.
+\end{align*}
+In this chain of equalities, we have used the fact that $B, C$ were flat over
+$A$, so their associated gradeds with respect to $\mathfrak{m} \subset A$
+behave nicely. It follows that \eqref{monkey} is an isomorphism, completing the
+proof.
+\end{proof} 
 \subsection{Example: construction of flat extensions}
 
 As an illustration of several of the techniques in this chapter and previous
@@ -1225,6 +1264,7 @@ field. One application of this is in showing (in the context of Zariski's
 Main Theorem) that the fibers of a birational
 projective morphism of noetherian schemes (where the target is normal) are
 \emph{geometrically} connected.
+We shall later give another application in the theory of \'etale morphisms.
 
 \begin{theorem} 
 Let $(R, \mathfrak{m})$ be a noetherian local ring with residue field $k$.
