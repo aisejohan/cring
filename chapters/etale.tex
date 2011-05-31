@@ -646,6 +646,47 @@ independent in the residue field $C/\mathfrak{q} =
 Now by the Jacobian criterion, we are done.
 \end{proof} 
 
+\subsection{Formal smoothness and regularity}
+
+We now want to explore the connection between formal smoothness and regularity.
+In general, the intuition is that a variety over an algebraically closed field
+is \emph{smooth} if and only if the local rings at closed points (and thus at
+all points by \cref{locofregularloc}) are regular local rings. 
+Over a non-algebraically closed field, only one direction is still true: we
+want the local rings to be \emph{geometrically regular.}
+So far we will just prove one direction, though.
+
+\begin{theorem} 
+Let $(A, \mathfrak{m})$ be a noetherian local ring containing a copy of its
+residue field $A/\mathfrak{m}= k$. Then if $A$ is formally smooth over $k$, $A$
+is regular.
+\end{theorem} 
+\begin{proof} 
+We are going to compare the quotients $A/\mathfrak{m}^n$ to the quotients of
+$R= k[x_1, \dots, x_n]$ where  $n$ is the \emph{embedding dimension} of
+$A$.
+Let $\mathfrak{n} \subset k[x_1, \dots, x_n]$ be the ideal $(x_1, \dots, x_n)$. 
+We are going to give surjections
+\[ A/\mathfrak{m}^k \twoheadrightarrow R/\mathfrak{n}^k  \]
+for each $k \geq 2$.
+
+Let $t_1, \dots, t_n \in \mathfrak{m}$ be a $k$-basis for
+$\mathfrak{m}/\mathfrak{m}^2$.
+Consider the map $A \twoheadrightarrow R/\mathfrak{n}^2 $ that goes
+$A  \twoheadrightarrow A/\mathfrak{m}^2 \simeq  k \oplus
+\mathfrak{m}/\mathfrak{m}^2 \simeq R/\mathfrak{n}^2$, where $t_i$ is sent to
+$x_i$. This is well-defined, and gives a surjection $A \twoheadrightarrow
+R/\mathfrak{n}^2$.
+Using the infinitesimal lifting property, we can lift this map to maps
+\[ A \to R/\mathfrak{n}^k  \]
+for each $k$, which necessarily factor through $A/\mathfrak{m}^k$ (as they send
+$\mathfrak{m}$ into $\mathfrak{n}$). They are surjective by Nakayama's lemma.
+It follows that
+\[ \dim_k R/\mathfrak{m}^k \geq \dim_k R/\mathfrak{n}^k,  \]
+and since $R_{\mathfrak{n}}$ is a regular local ring, the last term grows
+asymptotically like $k^n$. It follows that $\dim R \geq n$, and since $\dim R$
+is always at most the embedding dimension, we are done.
+\end{proof} 
 
 \section{Conormal modules and universal thickenings}
 \label{section-conormal}
