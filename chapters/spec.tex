@@ -337,7 +337,7 @@ belongs to
 $\mathfrak{p}$, a factor does. Thus since $x^n = x \cdot x
 \cdots x$, we must
 have $x \in \mathfrak{p}$. So
-\[ \rad(I) \subset \mathfrak{p}  \]
+\[ \rad(I) \subset \mathfrak{p},  \]
 proving the quoted claim, and thus the lemma.
 \end{proof} 
 
@@ -382,9 +382,9 @@ x, x^2 \dots, \right\} = \emptyset$. This set $S = \left\{1, x,
 \dots\right\}$
 is multiplicatively closed, in that it contains 1 and is closed
 under
-finite products. Right now, it does not hit $I$; we want to find
+finite products. Right now, it does not interset $I$; we want to find
 a
-\emph{prime} containing $I$ that does not hit $\left\{x^n, n
+\emph{prime} containing $I$ that still does not intersect $\left\{x^n, n
 \geq 0\right\}$.
 
 
@@ -422,7 +422,7 @@ upper bound).
 We can invoke Zorn's lemma to get a maximal element of $P$. This
 element is an
 ideal $\mathfrak{p} \supset I$ with $\mathfrak{p} \cap S =
-\emptyset$. I claim
+\emptyset$. We claim
 that $\mathfrak{p}$ is prime.
 
 First of all, $1 \notin \mathfrak{p}$ because $1 \in S$. We need
@@ -462,7 +462,7 @@ $I \subset R$.
 
 \subsection{A meta-observation about prime ideals}
 
-We saw in the previous subsection (\rref{sublemmamultclosed})
+We saw in the previous subsection (\cref{sublemmamultclosed})
 that an ideal maximal with respect to the property of not intersecting a
 multiplicatively closed subset is prime.
 It turns out that this is the case for many such properties of ideals.
@@ -714,17 +714,15 @@ $\mathfrak{p}$ if and only if one of $f,g$ does.
 
 Now let us describe what the Zariski topology has to do with
 localization.
-
-\begin{example} 
 Let $R$ be a ring and $f \in R$. Consider $S = \left\{1, f, f^2,
 \dots
 \right\}$; this is a multiplicatively closed subset. Last week,
 we defined
 $S^{-1}R$.
-\end{example}
 
 \begin{definition} 
-For $S$ the powers of $f$, we write $R[f^{-1}]=S^{-1}R$. 
+For $S$ the powers of $f$, we write $R_f$ or  $R[f^{-1}]$ for the
+localization $S^{-1}R$. 
 \end{definition} 
 
 There is  a map $\phi: R \to R[f^{-1}]$ and a corresponding map
@@ -737,13 +735,17 @@ This map induces a homeomorphism of $\spec R[f^{-1}]$ onto $U_f
 \subset \spec
 R$. 
 \end{proposition} 
-\begin{proof}
-So if you take a commutative ring and invert an element, you
-just get an open
-subset of $\spec$. This is why it's called localization: you are
+So if one takes a commutative ring and inverts an element, one
+just gets an open
+subset of $\spec$. This is why it's called localization: one is
 restricting to
-an open subset on the $\spec $ level when you invert something.
+an open subset on the $\spec $ level when one inverts something.
 
+\begin{proof}
+The reader is encouraged to work this proof out for herself.
+
+\begin{enumerate}
+\item 
 First, we show that $\spec R[f^{-1}] \to \spec R$ lands in
 $U_f$. If
 $\mathfrak{p} \subset R[f^{-1}]$, then we must show that the
@@ -817,7 +819,7 @@ If $y/f^n \in R[f^{-1}]$, we have to show that $U_{y/f^n}
 R[f^{-1}]$ has open image under $\psi$. We'll in fact show what
 open set it is.
 
-I claim that
+We claim that
 \[ \psi(U_{y/f^n}) = U_{fy} \subset \spec R.  \]
 To see this, $\mathfrak{p}$ is contained in $U_{f/y^n}$. This
 mean that
@@ -827,6 +829,7 @@ contain the multiple $yf/1$. So $\psi(\mathfrak{p})$ doesn't
 contain $yf$.
 This proves the inclusion $\subset$.  
 
+\item 
 To complete the proof of the claim, and
 the result, we must show that if $\mathfrak{p} \subset \spec
 R[f^{-1}]$ and
@@ -839,6 +842,7 @@ Dividing by $f^{n+1}$
 implies that
 \[ y/f^{n} \notin \mathfrak{p}  \]
 and $\mathfrak{p} \in U_{f/y^n}$. 
+\end{enumerate}
 \end{proof}
 
 If $\spec R$ is a space, and $f$ is thought of as a ``function''
@@ -847,22 +851,19 @@ $\spec R$, the space $U_f$ is to be thought of as the set of
 points where $f$
 ``doesn't vanish'' or ``is invertible.''
 Thinking about rings in terms of their spectra is a very useful
-idea, though we
-don't make too much use of it. 
-
-We will bring it up when appropriate.  
+idea. We will bring it up when appropriate.  
 
 \begin{remark} 
 The construction $R \to R[f^{-1}]$ as discussed above is an
 instance of
-localization. More generally, we can define $S^{-1}R$ for $S
+localization. More generally, we defined $S^{-1}R$ for $S
 \subset R$
-multiplicatively closed. We can define maps
-\[ \spec S^{-1}R \to \spec R . \]
-How can you think about the construction in general? You can
-think of it as
+multiplicatively closed. We can thus define maps
+\( \spec S^{-1}R \to \spec R . \)
+To understand $S^{-1}R$, it may help to note that
 \[ \varinjlim_{f \in S} R[f^{-1}]  \]
-which is a direct limit when you invert more and more elements.
+which is a direct limit of rings where one inverts more and more elements.
+
 As an example, consider $S = R - \mathfrak{p}$ for a prime
 $\mathfrak{p}$, and for
 simplicity that $R$ is countable. We can write $S =
@@ -877,16 +878,17 @@ R[(f_0\dots f_k)^{-1}]. \]
 The functions we invert in this construction are precisely those
 which do not
 contain $\mathfrak{p}$, or where ``the functions don't vanish.''
-The idea is
+
+The geometric idea is
 that to construct $\spec S^{-1}R = \spec R_{\mathfrak{p}}$, we
 keep cutting out
 from $\spec R$ vanishing locuses of various functions that do
 not
 intersect $\mathfrak{p}$. In the end, you don't restrict to an
 open set, but
-to a direct limit of this.
+to an intersection of them.
 \end{remark} 
-\begin{exercise} 
+\begin{exercise} \label{semilocal} 
 Say that    $R$ is \emph{semi-local} if it has finitely many maximal ideals.
 Let $\mathfrak{p}_1$, \dots, $\mathfrak{p}_n\subset R$ be primes. The complement of
 the union, $S=R\smallsetminus \bigcup \mathfrak{p}_i$, is closed under
@@ -923,9 +925,15 @@ Let $R$ be semi-local with maximal ideals $\mathfrak{m}_1,\dots,
 
 \section{Nilpotent elements}
 
+We will now prove a few general results about nilpotent results in a ring.
+Topologically, the nilpotents do very little: quotienting by them will not
+change the $\spec$. Nonetheless, they carry geometric importance, and one
+thinks of these nilpotents as ``infinitesimal thickenings'' (in a sense to be
+elucidated below).
+
 \subsection{The radical of a ring}
-There is a useful corollary of the above analysis. This is not strictly about
-the $\spec$ of a ring, but it is of general interest in commutative algebra. 
+There is a useful corollary of the analysis in the previous section about the
+$\spec$ of a ring.
 
 \begin{definition} 
  $x \in R$ is called \textbf{nilpotent} if a power of $x$ is zero. The set of
@@ -1050,7 +1058,7 @@ necessarily have
 In particular, we must satisfy
 \[ i(1-2e_1) = e_1^2 - e_1  \in I. \]
 
-I claim that $1 - 2e_1 \in R$ is invertible, so that we can solve for $i \in I$. 
+We claim that $1 - 2e_1 \in R$ is invertible, so that we can solve for $i \in I$. 
 However, $R$ is commutative. It thus suffices to check that $1 - 2e_1$ lies in
 no maximal ideal of $R$. But the image of $e_1$ in $R/\mathfrak{m}$ for any
 maximal ideal $\mathfrak{m} \subset R$ is either zero or one. So $1 - 2e_1$ has
@@ -1156,7 +1164,7 @@ one can look for idempotents in endomorphism rings; these indicate whether a mod
 
 Thus we get:
 \begin{proposition} Let $A$ be a ring and $I$ a nilpotent ideal.  Then
-$Idem(A) \to Idem(A/I)$ is bijective.
+$\idem(A) \to \idem(A/I)$ is bijective.
 \end{proposition}
 \begin{proof} 
 Indeed, the topological spaces of $\mathrm{Spec} \   A$ and $\mathrm{Spec} \
@@ -1173,7 +1181,7 @@ familiar ``geometric series;'' convergence questions do not appear thanks to
 nilpotence. 
 
 \begin{example} 
-Suppose $u$ is a unit and $v \in R$ is nilpotent; we show that $a+v$ is a unit.
+Suppose $u$ is a unit in a ring $R$ and $v \in R$ is nilpotent; we show that $a+v$ is a unit.
 
 Suppose $ua=1$ and $v^m=0$ for some
 $m>1$. Then  $(u+v)\cdot a(1-av+(av)^2-\cdots\pm(av)^{m-1})=$
