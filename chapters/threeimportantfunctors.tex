@@ -1626,7 +1626,7 @@ In particular, $F_N$ and $G_N$ are \emph{adjoint functors}. So, in a sense,
 the operations of $\hom$ and $\otimes$ are dual to each other.
 
 \begin{proposition}
-Tensoring commutes with colimits.
+Tensoring commutes with colimits. 
 \end{proposition}
 
 In particular, it follows that if $\left\{N_\alpha\right\}$ is a family of
@@ -1637,7 +1637,8 @@ Give an explicit proof of the above relation.
 \end{exercise}
 
 \begin{proof}
-This is a formal consequence
+This is a formal consequence of the fact that the tensor product is a left
+adjoint and consequently commutes with all colimits.
 \add{proof}
 \end{proof}
 
@@ -2237,14 +2238,63 @@ etc.)
 
 \end{remark}
 
+The following fact shows that the hom-sets behave nicely with respect to flat
+base change.
 \begin{proposition} 
 Let $M$ be a finitely presented $R$-module, $N$ an $R$-module. Let $S$ be a
 flat $R$-algebra.  Then the natural map
 \[ \hom_R(M,N) \otimes_R S \to \hom_S( M \otimes_R S, N \otimes_R S)  \]
 is an isomorphism.
 \end{proposition} 
-\add{proof}
+\begin{proof} 
+Indeed, it is clear that there is a natural map
+\[ \hom_R(M, N) \to \hom_S(M \otimes_R S, N \otimes_R S)  \]
+of $R$-modules. The latter is an $S$-module, so the universal property gives
+the map $\hom_R(M, N) \otimes_R S \to \hom_S(M \otimes_R S, N \otimes_R S)$ as
+claimed. 
+If $N$ is fixed, then we have two contravariant functors 
+in $M$, 
+\[ T_1(M) = \hom_R(M, N) \otimes_R S, \quad T_2(M) =  \hom_S(M \otimes_R S, N
+\otimes_R S). \]
+We also have a natural transformation $T_1(M) \to T_2(M)$.
+It is clear that if $M$ is \emph{finitely generated} and \emph{free}, then the
+natural transformation is an isomorphism (for example, if $M = R$, then we just
+have the map $N \otimes_R S \to N \otimes_R S$).
 
+Note moreover that both functors are left-exact: that is, given an exact
+sequence
+\[ M' \to M \to M'' \to 0,  \]
+there are induced exact sequences
+\[ 0 \to T_1(M'') \to T_1(M) \to T_1(M'), \quad  0 \to T_2(M'') \to T_2(M) \to
+T_2(M') .\]
+Here we are using the fact that $\hom$ is always a left-exact functor and the
+fact that tensoring with $S$ preserves exactness. (Thus it is here that we use
+flatness.)
+
+Now the following lemma will complete the proof:
+\begin{lemma} 
+Let $T_1, T_2$ be contravariant, left-exact additive functors from the category of
+$R$-modules to the category of abelian groups. Suppose a natural transformation 
+$t: T_1(M) \to T_2(M)$ is given, and suppose this is an isomorphism whenever
+$M$ is finitely generated and free. Then it is an isomorphism for any finitely
+presented module $M$.
+\end{lemma} 
+\begin{proof} 
+This lemma is a diagram chase. Fix a finitely presented $M$, and choose a
+presentation
+\[ F' \to F  \to M \to 0, \]
+with $F', F$ finitely generated and free.
+Then we have an exact and commutative diagram
+\[ \xymatrix{
+0 \ar[r] & T_1(M) \ar[d]^{}  \ar[r] &  T_1(F) \ar[d]^{\simeq}  \ar[r] &
+T_1(F') \ar[d]^{\simeq}  \\
+0 \ar[r] & T_2(M)   \ar[r] &  T_2(F)   \ar[r] &  T_2(F')  .
+}\]
+By hypotheses, the two vertical arrows to the right are isomorphisms, as
+indicated. A diagram chase now shows that the remaining arrow is an
+isomorphism, which is what we wanted to prove.
+\end{proof} 
+\end{proof} 
 
 \begin{example} 
 Let us now consider finitely generated flat modules over a principal ideal
