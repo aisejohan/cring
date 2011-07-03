@@ -8,8 +8,8 @@ of  commutative
 algebra. Nonetheless, it is extremely convenient and powerful. It will clarify
 many of the constructions made in the future when we can freely use terms like
 ``universal property'' or ``adjoint functor.'' As a result, we begin this book
-with a brief introduction to their theory. We only scratch the surface; the
-interested reader can pursue further study in \cite{Ma98}.
+with a brief introduction to category theory. We only scratch the surface; the
+interested reader can pursue further study in \cite{Ma98} or \cite{KS05}.
 
 
 Nonetheless, the reader is advised not to take the present chapter too
@@ -30,8 +30,8 @@ book.
 
 The basic idea of a category is that there should be objects, and that one
 should be able to map between objects. These mappings could be functions, and
-they often are, but they don't have to be. One has to be able to compose
-mappings. Nothing else is required.
+they often are, but they don't have to be. Next, one has to be able to compose
+mappings, and associativity and unit conditions are required. Nothing else is required.
 
 \begin{definition}
 A \textbf{category} $\mathcal{C}$ consists of:
@@ -54,11 +54,12 @@ the identity has no effect) and associative.
 \end{enumerate}
 \end{definition}
 
-We shall write $X \to Y$ to denote an element of $\hom_{\mathcal{C}}(X, Y)$.
+We shall write $f: X \to Y$ to denote an element of $\hom_{\mathcal{C}}(X, Y)$.
+In practice, $\mathcal{C}$ will often be the storehouse for mathematical objects: groups, Lie algebras,
+rings, etc., in which case these ``morphisms'' will just be ordinary functions.
 
-$\mathcal{C}$ is the storehouse for mathematical objects: groups, Lie algebras,
-rings, etc.
-\begin{example}
+Here is a simple list of examples.
+\begin{example}[Categories of structured sets]
 \begin{enumerate}
 \item $\mathcal{C}  = \mathbf{Sets}$; the objects are sets, and the morphisms
 are maps of sets.
@@ -69,6 +70,8 @@ morphisms are maps of Lie algebras (i.e. homomorphisms).\footnote{Feel free to
 omit if the notion of Lie algebra is unfamiliar.}
 \item  $\mathcal{C} = \mathbf{Vect}_k$; the objects are vector spaces over a
 field $k$, and the morphisms are linear maps.
+\item $\mathcal{C} = \mathbf{Top}$; the objects are topological spaces, and the
+morphisms are continuous maps.
 \item  This example is slightly more subtle. Here the category $\mathcal{C}$
 has objects consisting of topological spaces, but the morphisms between two
 topological spaces $X,Y$ are the \emph{homotopy classes} of maps $X \to Y$.
@@ -83,6 +86,7 @@ be too large for
 that.
 For instance, the collection of objects in $\mathbf{Sets}$ does not form a set.
 
+
 \begin{definition}
 A category is \textbf{small} if the collection of objects is a set.
 \end{definition}
@@ -91,7 +95,7 @@ The standard examples of categories are the ones above: structured sets
 together with structure-preserving maps. Nonetheless, one can easily give
 other examples that are not of this form.
 
-\begin{example}
+\begin{example}[Groups as categories]
 Let $G$ be a finite group. Then we can make a category $B_G$ where the objects
 just consist of one point $\ast$ and the maps $\ast \to \ast$ are the elements
 of $G$. The identity is the identity of $G$ and composition is multiplication
@@ -99,13 +103,22 @@ in the group.
 
 In this case, the category doesn't represent  a class of objects, but
 instead we think of the composition law as the key thing. So a group is a
-special kind of category.
+special kind of (small) category.
 \end{example}
 
-\begin{example}
+\begin{example}[Monoids as categories]
 A monoid is precisely a category with one object. Recall that a \textbf{monoid}
 has an associative and unital multiplication (not necessarily inverses).
 \end{example}
+
+
+\begin{example}[Posets as categories] \label{posetcategory} Let $(P, \leq)$ be a partially ordered
+ (or even preordered) set (i.e. poset). Then $P$ can be regarded as a (small) category, where the objects are the elements
+$p \in P$, and $$\hom_P(p, q) = \begin{cases} 
+\ast & \text{if } p \leq q \\
+\emptyset & \text{otherwise}
+ \end{cases} $$
+\end{example} 
 
 There is, however, a major difference between category theory and set theory.
 There is \textbf{nothing} in the language of categories that lets one look
@@ -115,12 +128,20 @@ By contrast, categories treat these kinds of things as invisible. There
 is nothing ``inside'' of an object $X \in \mathcal{C}$; the only way to
 understand $X$ is
 to understand the ways one can map into and out of $X$.
+Even if one is working with  a category of ``structured sets,'' the underlying
+set of an object in this category is not part of the categorical data.
+
 
 \begin{example}
-In the category of topological spaces, one can in fact recover the
+In the category $\mathbf{Top}$ of topological spaces, one can in fact recover the
 ``underlying set'' of a topological space via the hom-sets. Namely, for each
 topological space, the points of $X$ are the same thing as the mappings from a
-one-point space into $X$. Later we will say that the functor assigning to each
+one-point space into $X$. 
+That is, we have
+\[ |X| = \hom_{\mathbf{Top}}(\ast, X),  \]
+where $\ast$ is the one-point space.
+
+Later we will say that the functor assigning to each
 space its underlying set is \emph{corepresentable.}
 \end{example}
 
@@ -133,7 +154,7 @@ We shall introduce this notation here.
 
 Let $\mathcal{C}$ be a category, and let $X, Y$ be objects in $\mathcal{C}$.
 If $f \in \hom(X, Y)$, we shall sometimes write $f$ as an arrow
-\[ X \to Y  \]
+\[ f: X \to Y  \]
 or
 \[ X \stackrel{f}{\to} Y \]
 as if $f$ were an actual function.
@@ -153,6 +174,80 @@ Y \ar[r]^{g'} &  Z
 }\]
 is equivalent to the assertion that
 \[ g \circ f' = g' \circ f \in \hom(X, Z).  \]
+
+
+\subsection{Isomorphisms}
+
+Classically, one can define an isomorphism of groups as a bijection that
+preserves the group structure. This does not generalize well to categories, as
+we do not have a notion of ``bijection,'' as there is no way (in general) to
+talk about the ``underlying set'' of an object.
+Moreover, this definition does not generalize well to topological spaces:
+there, an isomorphism should not just be a bijection, but something which
+preserves \emph{strongly} the topology.
+
+
+Thus we make:
+
+\begin{definition}
+An \textbf{isomorphism} between objects $X, Y$ in a category $\mathcal{C}$ is a
+map $f: X \to Y$ such that there exists $g: Y \to X$ with
+\[ g \circ f = 1_X, \quad f \circ g = 1_Y.  \]
+
+Such a $g$ is called an \emph{inverse} to $f$; it is easy to check that $g$ is
+unique.
+\end{definition}
+
+This is more correct than the idea of being one-to-one and onto. A bijection of
+topological spaces is not necessarily a homeomorphism.
+
+
+\begin{example} 
+It is easy to check that an isomorphism in the category $\mathbf{Grp}$ is an
+isomorphism of groups, that an isomorphism in the category $\mathbf{Set}$ is a
+bijection, and so on. 
+\end{example} 
+
+We are supposed to be able to identify isomorphic objects. In the categorical
+sense, this means mapping into $X$ should be the same as mapping into $Y$, if
+$X, Y$ are isomorphic, via an isomorphism $f: X \to Y$.
+Indeed, let 
+$Z$ be another object of $\mathcal{C}$.
+Then we can define a map
+\[ \hom_{\mathcal{C}}(Z, X) \to \hom_{\mathcal{C}}(Z, Y)  \]
+given by post-composition with $f$. This is a \emph{bijection} if $f$ is an
+isomorphism (the inverse is given by postcomposition with the inverse to $f$).
+
+\begin{exercise} 
+The relation ``$X, Y$ are isomorphic'' is an equivalence relation on the class
+of objects of a category $\mathcal{C}$.
+\end{exercise} 
+
+\begin{exercise} 
+Let $P$ be a preordered set, and make $P$ into a category as in
+\cref{posetcategory}. Then $P$ is a poset if and only if two isomorphic objects
+are equal.
+\end{exercise} 
+
+\begin{exercise} 
+A \textbf{groupoid} is a category where every morphism is an isomorphism. The
+sets $\hom_{\mathcal{C}}(A, A)$ are \emph{groups} if $\mathcal{C}$ is a
+groupoid and $A \in \mathcal{C}$.
+\end{exercise}
+
+\begin{exercise}
+
+Show that the following is a groupoid. Let $X$ be a topological space, and let
+$\Pi_1(X)$ be the category defined as follows: the objects are elements of $X$,
+and morphisms $x \to y$ (for $x,y \in X$) are homotopy classes of maps $[0,1]
+\to X$ (i.e. paths) that send $0 \mapsto x, 1 \mapsto y$. Composition of maps
+is given by concatenation of paths.
+(Check that, because one is working with \emph{homotopy classes} of paths,
+composition is associative.)
+
+$\Pi_1(X)$ is called the \textbf{fundamental groupoid} of $X$. Note that
+$\hom_{\Pi_1(X)}(x, x)$ is the \textbf{fundamental group} $\pi_1(X, x)$.
+\end{exercise} 
 
 
 \section{Functors}
@@ -177,25 +272,43 @@ a map
 $F: \hom_{\mathcal{C}}(X, Y) \to \hom_{\mathcal{D}}(FX, FY)$, which preserves
 the identity
 maps and composition.
-\end{definition}
 
-In detail, the last two conditions state the following. First, if $X \in
+In detail, the last two conditions state the following. 
+\begin{enumerate}
+\item  If $X \in
 \mathcal{C}$, then $F(1_X)$ is the identity morphism $1_{F(X)}: F(X) \to
-F(X)$.The second is that if $A \stackrel{f}{\to} B \stackrel{g}{\to} C$ are
+F(X)$.
+\item  If $A \stackrel{f}{\to} B \stackrel{g}{\to} C$ are
 morphisms in $\mathcal{C}$,
 then $F(g \circ f) = F(g) \circ F(f)$ as morphisms $F(A) \to F(C)$.
 Alternatively, we can say that $F$ \emph{preserves commutative diagrams.}
+\end{enumerate}
+\end{definition}
+
+Let us give a few examples of functors.
 
 \begin{example}
 There is a functor from $\mathbf{Sets} \to \mathbf{AbelianGrp}$ sending a set
-$S$ to a free abelian group on the set.
+$S$ to the free abelian group on the set. (For the definition of a free abelian
+group, or more generally a free $R$-module over a ring $R$, see \cref{}.)
 \end{example}
 
+\begin{example} 
+Let $X$ be a topological space. Then to it we can associate the set $\pi_0(X)$
+of \emph{connected components} of $X$. Recall that the continuous image of a
+connected set is connected, so if $f: X \to Y$ is a continuous map and $X'
+\subset X$ connected, $f(X')$ is contained in a connected component of $Y$. It
+follows that $\pi_0$ is a functor $\mathbf{Top} \to \mathbf{Sets}$.
+\end{example} 
+
+
 \begin{example}[For readers that know some algebraic topology]
-There is a functor from $\mathbf{TopSpaces} \to \mathbf{GradedAbGrp}$
-(categories of topological spaces and graded abelian groups) sending a
-space $X$ to its homology groups $H_*(X)$. We know that given a map of spaces,
-we get a map of graded abelian groups.
+Fix $n$.
+There is a functor from $\mathbf{Top} \to \mathbf{AbGrp}$
+(categories of topological spaces and abelian groups) sending a
+space $X$ to its homology groups $H_n(X)$. We know that given a map of spaces
+$f: X \to Y$,
+we get a map of abelian groups $f_*: H_n(X) \to H_n(Y)$.
 \end{example}
 
 \begin{definition}
@@ -291,28 +404,6 @@ are those between $Y$ and $X$ in $\mathcal{C}$.
 Show that there is a contravariant functor $\mathcal{C} \to
 \mathcal{C}^{op}$.
 \end{exercise}
-
-\subsection{Isomorphisms}
-
-Classically, one can define an isomorphism of groups as a bijection that
-preserves the group structure. This does not generalize well to categories, as
-we do not have a notion of ``bijection.'' Thus we make:
-
-\begin{definition}
-An \textbf{isomorphism} between objects $X, Y$ in a category $\mathcal{C}$ is a
-map $f: X \to Y$ such that there exists $g: Y \to X$ with
-\[ g \circ f = 1_X, \quad f \circ g = 1_Y.  \]
-\end{definition}
-
-This is more correct than the idea of being one-to-one and onto. A bijection of
-topological spaces is not necessarily a homeomorphism.
-
-
-\begin{exercise}
- Suppose there are  two functors $B_G \to
-\mathbf{Sets}$, i.e. $G$-sets. What is a natural transformation between them?
-\end{exercise}
-
 Now we want to prove a theorem.
 \begin{proposition}
 If $f: X \to Y$ is a map in $\mathcal{C}$, and $F: \mathcal{C} \to \mathcal{D}$
@@ -371,6 +462,63 @@ When we say that things are ``natural'' in the future, we will mean that the
 transformation between functors is natural in this sense.
 We shall use this language to state theorems conveniently.
 
+\begin{example}[The double dual]
+Here is the canonical example of ``naturality.''
+Let $\mathcal{C}$ be the category of finite-dimensional vector spaces over a
+given field $k$. Let us further restrict the category such that the only
+morphisms are the \emph{isomorphisms} of vector spaces.
+For each $V \in \mathcal{C}$, we know that there is an isomorphism
+\[ V \simeq V^{\vee} = \hom_k(V, k),  \]
+because both have the same dimension. 
+
+Moreover, the maps $V \mapsto V, V \mapsto V^{\vee}$ are both functors on
+$\mathcal{C}$. The first is the identity functor; for the second, if $f: V \to
+W$ is an isomorphism, then there is induced a transpose map $f^t: W^{\vee} \to V^{\vee}$
+(defined by sending a map $W \to k$ to the precomposition $V \stackrel{f}{\to}
+W \to k$), which is an isomorphism; we can take its inverse.
+So we have two functors from $\mathcal{C}$ to itself, the identity and the
+dual, and we know that $V \simeq V^{\vee}$ for each $V$ (though we have not
+chosen any particular set of isomorphisms).
+
+
+However, the isomorphism $V \simeq
+V^{\vee}$ \emph{cannot} be made natural. That is, there is no way of choosing
+isomorphisms
+\[ T_V: V \simeq V^{\vee}  \]
+such that, 
+whenever $f: V \to W$ is an isomorphism of vector spaces, the following diagram
+commutes:
+\[ \xymatrix{
+V \ar[r]^{f} \ar[d]^{T_V}  &  W \ar[d]^{T_W} \\
+V^{\vee} \ar[r]^{(f^t)^{-1}} &  W^{\vee}.
+}\]
+Indeed, fix $d>1$, and choose $V = k^d$. 
+Identify $V^{\vee}$ with $k^d$, and so the map $T_V$ is a $d$-by-$d$ matrix $M$
+with coefficients in $k$. The requirement is that for each \emph{invertible}
+$d$-by-$d$ matrix $N$, we have
+\[ NM = MN,  \]
+by considering the above diagram with $V = W = k^d$.
+This is impossible unless $M = 0$, by elementary linear algebra.
+
+Nonetheless, it \emph{is} possible to choose a natural isomorphism
+\[ V \simeq V^{\vee \vee}.  \]
+To do this, given $V$, recall that $V^{\vee \vee}$ is the collection of maps
+$V^{\vee} \to k$. To give a map $V \to V^{\vee \vee}$ is thus the same as
+giving linear functions $l_v, v \in V$ such that $l_v: V \to k$ is linear in
+$v$. We can do this by letting $l_v$ be ``evaluation at $v$.''
+That is, $l_v$ sends a linear functional $\ell: V \to k$ to $\ell(v) \in k$. We
+leave it to the reader to check (easily) that this defines a homomorphism $V
+\to V^{\vee}$, and that everything is natural.
+\end{example}
+
+
+
+
+
+\begin{exercise}
+ Suppose there are  two functors $B_G \to
+\mathbf{Sets}$, i.e. $G$-sets. What is a natural transformation between them?
+\end{exercise}
 
 
 \section{Various universal constructions}
@@ -392,7 +540,10 @@ and $y$ respectively. Thus any element of $X\times Y$ is uniquely determined by
 where they project to on $X$ and $Y$. In fact, in general, this is the case; if
 we have an index set $I$ and a product $X=\prod_{i\in I} X_i$, then an element
 $x\in X$ determined uniquely by where where the projections $p_i(x)$ land in
-$X_i$. This also means that if we have any other set $S$ with maps
+$X_i$. 
+
+To get into the categorical spirit, we should speak not of elements but of maps
+to $X$. Here is the general observation: if we have any other set $S$ with maps
 $f_i:S\rightarrow X_i$ then there is a unique map $S\rightarrow X=\prod_{i\in
 I}X_i$ given by sending $s\in S$ to the element $\{ f_i(s)\}_{i\in I}$. This
 leads to the following characterization of a product using only ``mapping
@@ -405,8 +556,14 @@ property'' holds:
 let $S$ be any other object in $\mathcal{C}$ with maps $f_i:S\rightarrow X_i$.
 Then there is a unique morphism $f:S\rightarrow P$ such that $p_i f = f_i$.
 \end{definition}
+
+In other words, to map into $X$ is the same as mapping into all the
+$\left\{X_i\right\}$ at once.
+
+
 \begin{example} One of the benefits of this construction is that an actual
-category is not specified; thus when we take $\mathcal{C}$ to be Sets, we
+category is not specified; thus when we take $\mathcal{C}$ to be
+$\mathbf{Sets}$, we
 recover the cartesian product notion of sets, but if we take $\mathcal{C}$ to
 be groups, we achieve the regular notion of the product of groups (the reader is
 invited to check these statements). \end{example}
@@ -418,19 +575,37 @@ groups. Notice that on the level of sets, these two objects are different
 (hence showing that the universal object is dependent on one's choice of
 category;
 another example of this will be given later). \end{exercise}
-This idea of a universal mapping property leads us to investigate this notion
+
+
+\begin{exercise} 
+Let $P$ be a poset, and make $P$ into a category as in \cref{posetcategory}.
+Fix $x, y \in P$. Show that the \emph{product} of $x,y$ is the greatest lower 
+bound of $\left\{x,y\right\}$ (if it exists).
+
+In particular, consider the poset of subsets of a given set $S$. Then the
+``product'' in this category corresponds to the intersection of subsets.
+\end{exercise} 
+
+We shall, in this section, investigate this notion of ``universality''
 more thoroughly.
 
 
 \subsection{Initial and terminal objects}
 
+We now introduce another example of universality, which is simpler but more
+abstract than the products introduced in the previous section.
+
 \begin{definition}
-Let $\mathcal{C}$ be a category. An \textbf{initial object} in a category is an
-object $X \in \mathcal{C}$ with the property that $\mathcal{C}(X, Y)$ has one
+Let $\mathcal{C}$ be a category. An \textbf{initial object} in $\mathcal{C}$ is an
+object $X \in \mathcal{C}$ with the property that $\hom_{\mathcal{C}}(X, Y)$ has one
 element for all $Y \in \mathcal{C}$.
 
 So there is a unique map out of $X$ into each $Y \in \mathcal{C}$.
 \end{definition}
+
+Note that this idea is faithful to the categorical spirit of describing objects
+in terms of their mapping properties. Initial objects are very easy to map
+\emph{out} of: there's just one way to do this.
 
 
 \begin{example}
@@ -440,9 +615,14 @@ one has to make no decisions about where elements are to map when
 constructing a map $\emptyset \to X$.
 \end{example}
 
-It seems too abstract to be useful. But it is.
+\begin{example} 
+In the category $\mathbf{Grp}$ of groups, the group consisting of one element
+is an initial object.
+\end{example} 
 
-There is a dual notion, called a \textbf{terminal object}, where every object
+
+
+There is a dual notion, called a \textit{terminal object}, where every object
 can map into it in precisely one way.
 \begin{definition}
 A \textbf{terminal object} in a category $\mathcal{C}$ is an object $Y \in
