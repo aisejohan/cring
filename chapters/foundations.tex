@@ -5,7 +5,7 @@
 
 The present foundational chapter will introduce the notion of a ring and,
 next, that of  a module over a ring. These notions will be the focus of the
-present book.
+present book. Most of the chapter will be definitions.
 
 We begin with a few historical remarks.  Fermat's last theorem states that the
 equation
@@ -14,10 +14,12 @@ has no nontrivial solutions in the integers, for $n \ge 3$.  We could try to
 prove this by factoring the expression on the left hand side. We can write
   \[ (x+y)(x+ \zeta y) (x+ \zeta^2y) \dots (x+ \zeta^{n-1}y) = z^n, \]
 where $\zeta$ is a primitive $n$th root of unity.  Unfortunately, the factors
-lie in $\mathbb{Z}[\zeta]$, not the ring of integers $\mathbb{Z}$.  Though
-$\mathbb{Z}[\zeta]$ is still a ring where we have notions of primes and
+lie in $\mathbb{Z}[\zeta]$, not the integers $\mathbb{Z}$.  Though
+$\mathbb{Z}[\zeta]$ is still a \emph{ring} where we have notions of primes and
 factorization, just as in $\mathbb{Z}$, we will see that prime factorization
-is not always unique in $\mathbb{Z}[\zeta]$.
+is not always unique in $\mathbb{Z}[\zeta]$. (If it were always unique, then we
+could at least one important case of Fermat's last theorem rather easily; see
+\cref{}.)
 
 For instance, consider the ring
 $\mathbb{Z}[\sqrt{-5}]$ of complex numbers of the form $a + b\sqrt{-5}$, where
@@ -34,6 +36,9 @@ introduce.
 \section{Commutative rings and their ideals}
 
 \subsection{Rings}
+
+We shall mostly just work with commutative rings in this book, and consequently
+will just say ``ring'' for one such.
 \begin{definition} 
 A \textbf{commutative ring} is a set $R$ with an addition map
 $+ : R \times R \to R$ and a multiplication map $\times : R \times R \to R$
@@ -53,6 +58,12 @@ Given a ring, a \textbf{subring} is a subset that contains the identity
 element and is closed under addition and multiplication.
 \end{definition} 
 
+A \emph{noncommutative} (i.e. not necessarily commutative) ring is one
+satisfying the above conditions, except possibly for the commutativity
+requirement $xy = yx$. We shall not work too much with noncommutative rings in
+the sequel, though many of the basic results (e.g. on modules) do generalize.
+
+
 \begin{example} 
 $\mathbb{Z}$ is the simplest example of a ring.
 \end{example} 
@@ -65,7 +76,12 @@ ring $R[x]$. Give a rigorous definition of this.
 \begin{example}
 For any ring $R$, we can consider the polynomial ring $R[x_1, \ldots, x_n]$
 which consists of the polynomials in $n$ variables with coefficients in $R$.
+This can be defined inductively as $(R[x_1, \dots, x_{n-1}])[x_n]$, where the
+procedure of adjoining a single variable comes from the previous
+\cref{polynomial}.
 \end{example}
+
+We shall see a more general form of this procedure in \cref{groupring}.
 
 
 \begin{exercise} 
@@ -133,14 +149,15 @@ $\mathbb{C}$ is an $\mathbb{R}$-algebra.
 
 
 After this series of technical definitions, we shall give several more  examples.
-\begin{exercise} 
+\begin{example} 
+\label{groupring}
 If $R$ is a ring and $G$ a commutative monoid,\footnote{That is, there is a
 commutative multiplication on $G$ with an identity element, but not
 necessarily with inverses.} then the set
 $R[G]$ of formal finite sums $\sum r_i g_i$ with $r_i \in R, g_i \in G$ is a
 commutative ring, called the \textbf{group ring}. The case of $G =
 \mathbb{Z}_{\geq 0}$ is the polynomial ring. 
-\end{exercise} 
+\end{example} 
 
 \begin{exercise}
 \label{integersinitial}
@@ -179,6 +196,10 @@ representable. (Hint: use a suitable polynomial ring.)
 An \emph{ideal} in a ring is  analogous to a normal subgroup of a
 group. As we shall see, one may quotient by ideals just as one quotients by
 normal subgroups. 
+The idea is that one wishes to have a suitable \emph{equivalence relation} on a
+ring $R$ such that the relevant maps (addition and multiplication) factor
+through this equivalence relation. It is easy to check that any such relation
+arises via an ideal.
 
 \begin{definition}
 Let $R$ be a ring.  An \textbf{ideal} in $R$ is a subset $I \subset R$ that
@@ -263,46 +284,15 @@ follows.
 \end{proof}
 \end{proposition}
 
-\subsection{Zerodivisors}
-
-
-Let $R$ be a commutative ring.
-\begin{definition} 
-If $r \in R$, then $r$ is called  a \textbf{zerodivisor} if there is $s \in R, s
-\neq 0$ with $sr = 0$. Otherwise $r$ is called a \textbf{nonzerodivisor.}
-\end{definition} 
-
-As an example, we prove a basic result on the zerodivisors in a polynomial ring.
-
-\begin{proposition}
-Let $A=R[x]$. Let $f=a_nx^n+\cdots +a_0\in A$. If there is a non-zero polynomial $g\in
-A$ such that $fg=0$, then there exists $r\in R\smallsetminus\{0\}$ such that $f\cdot
- r=0$.
-\end{proposition}
-So all the coefficients are zerodivisors.
-\begin{proof}
- Choose $g$ to be of minimal degree, with leading coefficient $bx^d$. We may assume
- that  $d>0$. Then $f\cdot b\neq 0$, lest we contradict minimality of $g$. We must have
-$a_i g\neq 0$ for some $i$. To see this, assume that $a_i\cdot g=0$, then $a_ib=0$ for
-all $i$ and then $fb=0$. Now pick $j$ to be the largest integer such that $a_jg\neq
-   0$. Then $0=fg=(a_0 + a_1x + \cdots a_jx^j)g$, and looking at the leading coefficient,
-   we get $a_jb=0$. So $\deg (a_jg)<d$. But then $f\cdot (a_jg)=0$, contradicting
-   minimality of $g$.
- \end{proof}
-
-\begin{exercise} 
-The product of two nonzerodivisors is a nonzerodivisor, and the product of two
-zerodivisors is a zerodivisor. It is, however, not necessarily true that the
-\emph{sum} of two zerodivisors is a zerodivisor.
-\end{exercise} 
-
 \subsection{Quotient rings}
 
 We next describe a procedure for producing new rings from old ones. 
 If $R$ is a ring and $I \subset R$ an ideal, then the quotient group $R/I$
 is a ring in its own right. If $a+I, b+I$ are two cosets, then the
 multiplication is $(a+I)(b+I) = ab + I$.  It is easy to check that this does
-not depend on the coset representatives $a,b$.
+not depend on the coset representatives $a,b$. In other words, as mentioned
+earlier, the arithmetic operations on $R$ \emph{factor} through the equivalence
+relation defined by $I$.
 
 As one easily checks, this becomes to a multiplication 
 \[ R/I \times R/I \to R/I  \] 
@@ -353,6 +343,42 @@ canonical isomorphism
 \end{exercise} 
 
 
+
+
+
+
+\subsection{Zerodivisors}
+
+
+Let $R$ be a commutative ring.
+\begin{definition} 
+If $r \in R$, then $r$ is called  a \textbf{zerodivisor} if there is $s \in R, s
+\neq 0$ with $sr = 0$. Otherwise $r$ is called a \textbf{nonzerodivisor.}
+\end{definition} 
+
+As an example, we prove a basic result on the zerodivisors in a polynomial ring.
+
+\begin{proposition}
+Let $A=R[x]$. Let $f=a_nx^n+\cdots +a_0\in A$. If there is a non-zero polynomial $g\in
+A$ such that $fg=0$, then there exists $r\in R\smallsetminus\{0\}$ such that $f\cdot
+ r=0$.
+\end{proposition}
+So all the coefficients are zerodivisors.
+\begin{proof}
+ Choose $g$ to be of minimal degree, with leading coefficient $bx^d$. We may assume
+ that  $d>0$. Then $f\cdot b\neq 0$, lest we contradict minimality of $g$. We must have
+$a_i g\neq 0$ for some $i$. To see this, assume that $a_i\cdot g=0$, then $a_ib=0$ for
+all $i$ and then $fb=0$. Now pick $j$ to be the largest integer such that $a_jg\neq
+   0$. Then $0=fg=(a_0 + a_1x + \cdots a_jx^j)g$, and looking at the leading coefficient,
+   we get $a_jb=0$. So $\deg (a_jg)<d$. But then $f\cdot (a_jg)=0$, contradicting
+   minimality of $g$.
+ \end{proof}
+
+\begin{exercise} 
+The product of two nonzerodivisors is a nonzerodivisor, and the product of two
+zerodivisors is a zerodivisor. It is, however, not necessarily true that the
+\emph{sum} of two zerodivisors is a zerodivisor.
+\end{exercise} 
 
 \section{Further examples}
 
