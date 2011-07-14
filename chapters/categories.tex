@@ -1609,7 +1609,7 @@ behind the right-exactness of the tensor product later on.
 \subsection{Definition}
 
 Suppose $\mathcal{C}, \mathcal{D}$ are categories, and let $F: \mathcal{C} \to
-\mathcal{D}, G: \mathcal{D} \to \mathcal{C}$ be functors.
+\mathcal{D}, G: \mathcal{D} \to \mathcal{C}$ be (covariant) functors.
 
 \begin{definition} 
 $F, G$ are \textbf{adjoint functors} if there is a natural isomorphism
@@ -1622,8 +1622,9 @@ Here ``natural'' means that the two quantities are supposed to be considered
 as functors $\mathcal{C}^{op} \times \mathcal{D} \to \mathbf{Set}$.
 
 \begin{example} 
-There is a pair of functors between $\mathbf{Set}$ and $\mathbf{AbGrp}$. Here
-$F$ sends  a set $A$ to the free abelian group $\mathbb{Z}[A]$, while $G$ is
+There is a simple pair of adjoint functors between $\mathbf{Set}$ and $\mathbf{AbGrp}$. Here
+$F$ sends  a set $A$ to the free abelian group (see \cref{} for a discussion
+of free modules over arbitrary rings) $\mathbb{Z}[A]$, while $G$ is
 the ``forgetful'' functor that sends an abelian group to its underlying set. 
 Then $F$ and $G$ are adjoints. That is, to give a group-homomorphism
 \[ \mathbb{Z}[A] \to G  \]
@@ -1632,6 +1633,29 @@ is the same as giving a map of \emph{sets}
 \[ A \to G.  \]
 This is precisely the defining property of the free abelian group.
 \end{example} 
+
+\begin{example}
+In fact, most ``free'' constructions are just left adjoints.
+For instance, recall the universal property of the free group $F(S)$ on a set $S$ (see
+\cite{La02}): to give a group-homomorphism $F(S) \to G$ for $G$ any group is
+the same as choosing an image in $G$ of each $s \in S$.
+That is,
+\[ \hom_{\mathbf{Grp}}(F(S), G) = \hom_{\mathbf{Sets}}(S, G).  \]
+This states that the free functor $S \mapsto F(S)$ is left adjoint to the
+forgetful functor from $\mathbf{Grp}$ to $\mathbf{Sets}$.
+\end{example}
+
+\begin{example} 
+The abelianization functor $G \mapsto G^{ab} = G/[G, G]$ from $\mathbf{Grp}
+\to \mathbf{AbGrp}$ is left adjoint to the
+inclusion $\mathbf{AbGrp} \to \mathbf{Grp}$.
+That is, if $G$ is a group and $A$ an abelian group, there is  a natural
+correspondence between homomorphisms $G \to A$ and $G^{ab} \to A$.
+Note that $\mathbf{AbGrp}$ is a subcategory of $\mathbf{Grp}$ such that the
+inclusion admits a left adjoint; in this situation, the subcategory is called
+\textbf{reflective.}
+\end{example} 
+
 
 
 \subsection{Adjunctions}
@@ -1642,7 +1666,7 @@ To see this, suppose $F: \mathcal{C} \to \mathcal{D}, G: \mathcal{D} \to \mathca
 adjoint functors. 
 For any object $c \in \mathcal{C}$, we know that
 \[ \hom_{\mathcal{D}}(Fc, Fc) \simeq \hom_{\mathcal{C}}(c, GF c),  \]
-so that the identity morphism $Fc \to Fc$ corresponds to a map $c \to GFc$
+so that the identity morphism $Fc \to Fc$ (which is natural in $c$!) corresponds to a map $c \to GFc$
 that is natural in $c$, or equivalently a natural
 transformation
 \[ \eta: 1_{\mathcal{C}} \to GF. \]
@@ -1650,21 +1674,15 @@ Similarly, we get a natural transformation
 \[ \epsilon:  FG \to 1_{\mathcal{D}}  \]
 where the map $FGd \to d$ corresponds to the identity $Gd \to Gd$ under the
 adjoint correspondence.
+Here $\eta$ is called the \textbf{unit}, and $\epsilon$ the \textbf{counit.}
 
-These natural transformations $\eta, \epsilon$ are not simply arbitrary. For
-instance, the natural transformation $F \circ \eta$ gives a natural
-transformation $F \circ \eta: F \to FGF$, while the natural transformation
-$\epsilon \circ F$ gives a natural transformation $FGF \to F$.
-
-\begin{lemma}  The composite natural transformation $F \to F$ given by
-$(\epsilon \circ F) \circ (F \circ \eta)$ is the identity. 
-\end{lemma} 
-\begin{proof} We first claim that the transformations $\eta, \epsilon$ actually
+These natural transformations $\eta, \epsilon$ are not simply arbitrary.
+We are, in fact, going to show that they determine the isomorphism
 determine the isomorphism $\hom_{\mathcal{D}}(Fc, d) \simeq
 \hom_{\mathcal{C}}(c, Gd)$. This will be a little bit of diagram-chasing.
 
 We know that the isomorphism $\hom_{\mathcal{D}}(Fc, d) \simeq
-\hom_{\mathcal{C}}(c, Gd)$ is \emph{natural}. 
+\hom_{\mathcal{C}}(c, Gd)$ is \emph{natural}. In fact, this is the key point.
 Let $\phi: Fc \to d$ be any map.
 Then there is a morphism $(c, Fc) \to (c, d) $ in the product category
 $\mathcal{C}^{op} \times \mathcal{D}$; by naturality of the adjoint
@@ -1676,31 +1694,126 @@ isomorphism, we get a commutative square of sets
 }\]
 Here the mark $\mathrm{adj}$ indicates that the adjoint isomorphism is used. 
 If we start with the identity $1_{Fc}$ and go down and right, we get the map 
-\[ c \to Gd  \]
+\( c \to Gd  \)
 that corresponds under the adjoint correspondence to $Fc \to d$. However, if we
-go right and down, we get the natural map $c \to GF c$ followed by $G(\phi)$.
+go right and down, we get the natural unit map $\eta(c): c \to GF c$ followed by $G(\phi)$.
 
-Thus, we have a recipe for constructing a map $c \to Gd$ given $\phi: Fc \to
-d$. Namely, we start with the counit $\eta(c): c \to GF c$ and consider
-\[ G(\phi) \circ \eta(c): c \to Gd.  \]
+Thus, we have a \emph{recipe} for constructing a map $c \to Gd$ given $\phi: Fc \to
+d$:
+\begin{proposition}[The unit and counit determines everything]
+Let $(F, G)$ be a pair of adjoint functors with unit and counit transformations
+$\eta, \epsilon$.
+
+Then given $\phi: Fc \to d$, the adjoint map $\psi:c \to Gd$ can be constructed simply as
+follows.
+Namely, we start with the unit $\eta(c): c \to GF c$ and take
+\begin{equation} \label{adj1} \psi =  G(\phi) \circ \eta(c): c \to Gd
+\end{equation} (here $G(\phi): GFc \to Fd$).
+\end{proposition}
+
 In the same way, if we are given $\psi: c \to Gd$ and want to construct a map
-$Fc \to d$, we construct
-\[ \epsilon(d) \circ  F(\psi): Fc \to d.  \]
+$\phi: Fc \to d$, we construct
+\begin{equation} \label{adj2} \epsilon(d) \circ  F(\psi): Fc \to FGd \to   d.
+\end{equation}
 In particular, we have seen that the \emph{unit and counit morphisms determine
 the adjoint isomorphisms.}
 
-Since the adjoint isomorphisms are inverse to each other, we can determine
+
+Since the adjoint isomorphisms $\hom_{\mathcal{D}}(Fc, d) \to
+\hom_{\mathcal{C}}(c, Gd)$ and 
+$\hom_{\mathcal{C}}(c, Gd) \to \hom_{\mathcal{D}}(Fc, d) 
+$
+are (by definition) inverse to each other, we can determine
 conditions on the units and counits.
+
+For
+instance, the natural transformation $F \circ \eta$ gives a natural
+transformation $F \circ \eta: F \to FGF$, while the natural transformation
+$\epsilon \circ F$ gives a natural transformation $FGF \to F$.
+(These are slightly different forms of composition!)
+
+\begin{lemma}  The composite natural transformation $F \to F$ given by
+$(\epsilon \circ F) \circ (F \circ \eta)$ is the identity. 
+Similarly, the composite natural transformation
+$G \to GFG \to G$ given by $(G \circ \epsilon) \circ (\eta \circ G)$ is the
+identity.
+\end{lemma} 
+
+
+\begin{proof} We prove the first assertion; the second is similar.
 Given $\phi: Fc \to d$, we know that we must get back to $\phi$ applying the
-two constructions above. In other words,
-\add{still not finished}
-
-\begin{comment}
-First, given an object $c$, $(F \circ \eta)(c)$ is  the map $Fc \to FGF c$
-obtained by applying $F$ to the morphism $c \to GF c$. 
-
-Given an object $c$, $(\epsilon \circ F)(c)$ is the morphism $FGF c \to Fc$
-corresponding to the morphism $GF c \to GF c$ under the adjoint property.
-\end{comment}
+two constructions above. The first step (going to a map $\psi: c \to Gd$) is by 
+\eqref{adj1}
+\( \psi = G(\phi) \circ \eta(c);  \) the second step sends $\psi$ to
+$\epsilon(d) \circ F(\psi)$, by \eqref{adj2}.
+It follows that
+\[ \phi = \epsilon(d) \circ F( G(\phi) \circ \eta(c)) = \epsilon(d) \circ
+F(G(\phi)) \circ F(\eta(c)). \]
+Now suppose we take $d = Fc$ and $\phi: Fc \to Fc $ to be the identity.
+We find that $F(G(\phi))$ is the identity $FGFc \to FGFc$, and consequently we
+find
+\[ \id_{F(c)} = \epsilon(Fc) \circ F(\eta(c)). \]
+This proves the claim.
 \end{proof} 
+
+
+
+\begin{definition} 
+Let $F: \mathcal{C} \to \mathcal{D}, G: \mathcal{D} \to \mathcal{C}$ be
+covariant functors. An \textbf{adjunction} is the data of two natural
+transformations
+\[ \eta: 1 \to GF, \quad \epsilon: FG \to 1,  \]
+called the \textbf{unit} and \textbf{counit}, respectively, such that the
+composites $(\epsilon \circ F) \circ (F \circ \epsilon): F \to F$
+and $(G \circ \epsilon) \circ (\eta \circ G)$ are the identity (that is, the
+identity natural transformations of $F, G$).
+\end{definition} 
+
+We have seen that a pair of adjoint functors gives rise to an adjunction. 
+Conversely, an adjunction between $F, G$ ensures that $F, G$ are adjoint, as
+one may check: one uses the same formulas \eqref{adj1} and \eqref{adj2} to
+define the natural isomorphism.
+
+
+For any set $S$, let $F(S)$ be the free group on $S$.
+So, for instance, the fact that there is a natural map of sets
+$S \to F(S)$, for any set $S$, and a natural map of
+groups $F(G) \to G$ for any group $G$, determines the adjunction between the
+free group functor from $\mathbf{Sets}$ to $\mathbf{Grp}$, and the forgetful
+functor $\mathbf{Grp} \to \mathbf{Sets}$.
+
+
+
+As another example, we give a criterion for a functor in an adjunction to be
+fully faithful.
+
+\begin{proposition} \label{adjfullfaithful}
+Let $F, G$ be a pair of adjoint functors between categories $\mathcal{C}, \mathcal{D}$.
+Then $G$ is fully faithful if and only if the unit maps $\eta: 1 \to GF$ are
+isomorphisms.
+\end{proposition} 
+\begin{proof} 
+We use the recipe \eqref{adj1}.
+Namely, we have a map $\hom_{\mathcal{D}}(Fc, d) \to 
+\hom_{\mathcal{C}}(c, Gd)$ given by 
+$\phi \mapsto G(\phi) \circ \eta(c)$. This is an isomorphism, since we have an
+adjunction.
+As a result, composition with $\eta$ is an isomorphism of hom-sets if and only if $\phi
+\mapsto G(\phi)$ is an isomorphism. From this the result is easy to deduce.
+\end{proof} 
+
+\begin{example}
+For instance, recall that the inclusion functor from $\mathbf{AbGrp}$ to
+$\mathbf{Grp}$ is fully faithful (clear). 
+This is a right adjoint to the abelianization functor $G \mapsto G^{ab}$.
+As a result, we would expect the unit map of the adjunction to be an
+isomorphism, by \cref{adjfullfaithful}.
+
+The unit map sends an abelian group to its abelianization: this is obviously an
+isomorphism, as abelianizing an abelian group does nothing.
+\end{example}
+
+\subsection{Adjoints and (co)limits}
+One very pleasant property of functors that are left (resp. right) adjoints is
+that they preserve all colimits (resp. limits).
 

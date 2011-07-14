@@ -558,6 +558,49 @@ property that \emph{descended} to a finitely generated subextension of $E$---is
 an idea that recurs throughout algebra, and will be put to use more generality
 in \cref{}.
 
+\subsection{Minimal polynomials}
+
+Let $E/k$ be a field extension, and let $\alpha \in E$ be algebraic over $k$.
+Then $\alpha$ satisfies a (nontrivial) polynomial equation in $k[x]$.
+Consider the set of polynomials $P(x) \in k[x]$ such that $P(\alpha) = 0$; by
+hypothesis, this set does not just contain the zero polynomial.
+It is easy to see that this set is an \emph{ideal.} Indeed, it is the kernel
+of the map
+\[ k[x] \to E, \quad x \mapsto \alpha.  \]
+Since $k[x]$ is a PID, 
+there is a \emph{generator} $m(x) \in k[x]$ of this ideal. If we assume $m$
+monic, without loss of generality, then $m$ is uniquely determined.
+
+\begin{definition} 
+$m(x)$ as above is called the \textbf{minimal polynomial} of $\alpha$ over $k$.
+\end{definition} 
+
+The minimal polynomial has the following characterization: it is the monic
+polynomial, of smallest degree, that annihilates $\alpha$. (Any nonconstant
+multiple of $m(x)$ will have larger degree, and only multiples of $m(x)$ can
+annihilate $\alpha$.)
+This explains the name \emph{minimal.}
+
+Clearly the minimal polynomial is \emph{irreducible.} This is equivalent to the
+assertion that the ideal in $k[x]$ consisting of polynomials annihilating
+$\alpha$ is prime. But this follows from the fact that the map $k[x] \to E, x
+\mapsto \alpha$ is
+a map into a domain (even a field), so the kernel is a prime ideal.
+
+\begin{proposition} 
+The degree of the minimal polynomial is $[k(\alpha):k]$.
+\end{proposition} 
+\begin{proof} 
+This is just a restatement of the argument in \cref{monofld}: the observation is that if $m(x)$
+is the minimal polynomial of $\alpha$, then the map
+\[ k[x]/(m(x)) \to k(\alpha), \quad x \mapsto \alpha  \]
+is an isomorphism as in the aforementioned proof, and we have counted the degree
+of such an extension  (see \cref{monodeg2}).
+\end{proof} 
+
+So the observation of the above proof is that if $\alpha \in E$ is algebraic,
+then $k(\alpha) \subset E$ is isomorphic to $k[x]/(m(x))$.
+
 
 \subsection{Algebraic closure}
 
@@ -634,20 +677,88 @@ for $ b \in \bar{K}$ and, a priori, $ a_i \in L$. But each $ a_i$ is a root of $
 
 \end{proof}
 
+\add{two algebraic closures are isomorphic}
+
+Let $K$ be an algebraically closed field. Then the ring $K[x]$ has a very
+simple ideal structure.
+Since every polynomial $P \in K[x]$ has a root, it follows that there is always
+a decomposition (by dividing repeatedly)
+\[ P =c (x-\alpha_1)\dots(x-\alpha_n)  ,\]
+where $c$ is the constant term and the $\left\{\alpha_i\right\} \subset k$ are the roots
+of $P$.
+In particular:
+\begin{proposition} 
+For $K$ algebraically closed, the only irreducible polynomials in $K[x]$ are
+the linear polynomials $c(x-\alpha), \ c, \alpha \in K$ (and $c \neq 0$).
+\end{proposition} 
+
+In particular, two polynomials in $K[x]$ are \textbf{relatively prime}
+(i.e., generate the unit ideal) if and only if they have no common roots. This
+follows because the maximal ideals of $K[x]$ are of the form $(x-\alpha),
+\alpha \in K$.
+So if $F, G \in K[x]$ have no common root, then $(F, G)$ cannot be contained
+in any $(x-\alpha)$ (as then they would have a common root at $\alpha$).
+
+
+If $k$ is \emph{not} algebraically closed, then this still gives
+information about when two polynomials in $k[x]$ generate the unit ideal.
+
+\begin{definition} 
+If $k$ is any field, we say that two polynomials in $k[x]$ are
+\textbf{relatively prime} if they generate the unit ideal in $k[x]$.
+\end{definition} 
+
+\begin{proposition} \label{primepoly}
+Two polynomials in $k[x]$ are relatively prime precisely when they
+have no common roots in an algebraic closure $\overline{k}$ of $k$.
+\end{proposition} 
+\begin{proof} 
+The claim is that any two polynomials $P, Q$ generate $(1)$ in $k[x]$ if and
+only if they generate $(1)$ in $\overline{k}[x]$. This is a piece of
+linear algebra: a system of linear equations with coefficients in $k$ has
+a solution if and only if it has a solution in any extension of $k$.
+Consequently, we can reduce to the case of an algebraically closed field, in
+which case the result is clear from what we have already proved.
+\end{proof} 
+
+
+
+\section{Separability and normality}
+
 
 \subsection{Separable extensions}
+
 Throughout, $F \subset K$ is a finite field extension.  We fix once and for
-all an algebraic closure $M$ for both and an embedding of $F$ in $M$.  When
-necessary, we write $K = F(\alpha_1, \dots, \alpha_n)$, and $K_0 = F, K_i =
-F(\alpha_1, \dots, \alpha_i)$, $q_i$ the minimal polynomial of $\alpha_i$ over
-$F_{i - 1}$, $Q_i$ that over $F$.
+all an algebraic closure $\overline{F}$ for $F$ and an embedding of $F$ in $M$.
+
 
 \begin{definition}
+For an element $\alpha \in K$ with minimal polynomial $q \in F[x]$, we say
+$q$ and $\alpha$ are \textbf{separable} if $q$ has distinct roots (in some
+algebraic closure $\overline{F}$!), and we say $K$ is
+separable if this holds for all $\alpha \in K$.
+\end{definition}
 
-For an element $\alpha \in K$ with minimal polynomial $q$, we say
-$q$ and $\alpha$ are separable if $q$ has distinct roots, and we say $K$ is
-separable if this holds for all $\alpha$; conversely, we say they are purely
-inseparable if $q$ has only one root.  We say $K$ is splitting if each $q$
+
+
+By \cref{primepoly}, separability of a polynomial $P \in F[x]$ is equivalent
+to $(P, P') = 1$ in $F[x]$.
+Indeed, this follows from the fact that $P$ has no multiple roots if and only if $P, P'$ have no
+common roots.
+
+\begin{lemma} $q(x) \in F[x]$ is separable if and only if $\gcd(q, q') = 1$,
+where $q'$ is the formal derivative of $q$. 
+\label{der_poly}
+\end{lemma}
+
+
+
+
+\subsection{Purely inseparable extensions}
+
+\begin{definition}
+For an element $\alpha \in K$ with minimal polynomial $q$, we say $\alpha$ is \textbf{purely
+inseparable} if $q$ has only one root.  We say $K$ is splitting if each $q$
 splits in $K$.
 \label{def:sepsplit}
 \end{definition}
@@ -682,27 +793,6 @@ $\deg(K_s/F) = \deg_s(K/F)$ and $\deg(K/K_s) = \deg_i(K/F)$ by definition.
 \label{def:sep}
 \end{definition}
 \subsection{Theorems}
-
-\begin{lemma} $q(x) \in F[x]$ is separable if and only if $\gcd(q, q') = 1$,
-where $q'$ is the formal derivative of $q$. 
-\label{der_poly}
-\end{lemma}
-
-\begin{proof} Passing to $M$, we may factor $q$:
-\begin{equation*}
-q(x) = \prod_{i = 1}^n (x - r_i)^{m_i}
-\end{equation*}
-and by the product rule,
-\begin{equation*}
-q'(x) = \sum_{j = 1}^n m_j (x - r_j)^{m_j - 1} \prod_{i \neq j} (x -
-	r_i)^{m_i}.
-\end{equation*}
-$\gcd(q, q')$ is independent of the field since $K[x]$ is a PID, hence is the
-product of the common factors of $q$ and $q'$ over $M$.  $q$ and $q'$ have a
-common factor in $M$ if and only if they have a common root, since they both
-split, and therefore if and only if $q'$ vanishes at some $r_j$.  Given the
-above representation, this holds if and only if $m_j > 1$. \end{proof}
-
 \begin{lemma} If $\Char{F} = 0$ then $K_s = K$.  If $\Char{F} = p > 0$, then for
 any irreducible $q(x) \in K[x]$, there is some $d \geq 0$ and polynomial $r(x)
 \in K[x]$ such that $q(x) = r(x^{p^d})$, and $r$ is separable and irreducible.
