@@ -3,7 +3,9 @@
 In this chapter, we shall discuss the theory of fields.
 Recall that a \textbf{field} is an integral domain for which all non-zero elements are
 invertible; equivalently, the only two ideals of a field are $(0)$ and $(1)$
-since any nonzero element is a unit. 
+since any nonzero element is a unit. Consequently fields will be the
+simplest cases of much of the theory developed later. 
+
 The theory of field extensions has a different feel from standard commutative
 algebra since, for instance, any morphism of fields is injective. Nonetheless,
 it turns out that questions involving rings can often be reduced to questions
@@ -13,7 +15,26 @@ maximal ideal; we have not defined this term yet) has associated to it its
 residue field (that is, its quotient by the maximal ideal).
 A knowledge of field extensions will thus be useful.
 
+\section{Introduction}
 
+
+Recall once again that:
+\begin{definition} 
+A \textbf{field} is an integral domain where every non-zero element is
+invertible. Alternatively, it is a set $k$, endowed with binary operations of
+addition and multiplication, which satisfy the usual axioms of commutativity,
+associativity, distributivity, $1$ and $0$ (and $1 \neq 0$!), and additive and
+multiplicative inverses.
+\end{definition} 
+
+A \textbf{subfield} is a subset closed under these operations: equivalently, it
+is a subring that is itself a field.
+
+For a field $k$, we write $k^*$ for the subset $k  \setminus \left\{0\right\}$.
+(This generalizes the usual notation \cref{} $R^*$ that refers to the group of
+invertible elements in a ring $R$.)
+
+\subsection{Examples}
 To get started, let us begin by providing several examples of fields. The reader should
 recall (\cref{maximalfield}) that if $R$ is a ring and $I \subset R$ an
 ideal, then $R/I$ is a field precisely when $I$ is maximal.
@@ -26,11 +47,12 @@ numbers $\mathbb{Q}$.
 \begin{example}
 If $p$ is a prime number, then $\mathbb{Z}/(p)$ is a field, denoted
 $\mathbb{F}_p$. Indeed, $(p)$ is a
-maximal ideal in $\mathbb{Z}$. Thus, fields may be finite.  
+maximal ideal in $\mathbb{Z}$. Thus, fields may be finite: $\mathbb{F}_p$
+contains $p$ elements.  
 \end{example}
 
 
-\begin{example} 
+\begin{example}[Quotients of the polynomial ring]
 In a principal ideal domain, every prime ideal is principal. Now, by
 \rref{polyringED}, if $k$ is a field, then the polynomial ring $k[x]$ is a PID. 
 It follows that if $P \in k[x]$ is an irreducible polynomial (that is, a
@@ -38,41 +60,149 @@ nonconstant polynomial
 that does not admit a factorization into terms of smaller degrees), then
 $k[x]/(P)$ is a field. It contains a copy of $k$ in a natural way.
 
-This is a very general way of constructing fields. For instance, $\mathbb{C}$
+This is a very general way of constructing fields. For instance, the
+complex numbers $\mathbb{C}$
 can be constructed as $\mathbb{R}[x]/(x^2 + 1)$.
 \end{example} 
+
+
 
 \begin{exercise} 
 What is $\mathbb{C}[x]/(x^2 + 1)$?
 \end{exercise} 
 
+\begin{example}[Quotient fields]
+Recall from \cref{quotfld1} that, given an integral domain $A$, there is an
+imbedding $A \hookrightarrow K(A)$ into a field $K(A)$ formally constructed as
+quotients $a/b, a, b \in A$ (and $b \neq 0$) modulo an evident equivalence
+relation.
+This is called the \textbf{quotient field.}
+The quotient field has the following universal property: given an injection
+$\phi: A
+\hookrightarrow K$ for a field $K$, there is a unique map $\psi: K(A) \to K$ making
+the diagram commutative (i.e. a map of $A$-algebras).
+Indeed, it is clear how to define such a map: we set
+\[ \psi(a/b) = \phi(a)/\phi(b),  \]
+where injectivity of $\phi$ assures that $\phi(b) \neq 0$ if $ b \neq 0$.
 
-\begin{example} \label{monofldext} 
-If $k$ is a field, then we can consider the set of \emph{rational functions}
+If the map is not injective, then such a factorization may not exist. Consider
+the imbedding $\mathbb{Z} \to \mathbb{Q}$ into its quotient field, and consider
+the map $\mathbb{Z} \to \mathbb{F}_p$: this last map goes from $\mathbb{Z} $
+into a field, but it does not factor through $\mathbb{Q}$ (as $p$ is invertible
+in $\mathbb{Q}$ and zero in $\mathbb{F}_p$!).
+\end{example} 
+
+
+\begin{example}[Rational function field] \label{monofldext}
+\label{rationalfnfld}
+If $k$ is a field, then we can consider the field $k(x)$ of \textbf{rational functions}
 over $k$. This is the quotient field of the polynomial ring $k[x]$; in other
 words, it is the set of quotients $F/G$ for $F, G \in k[x]$ with the obvious
 equivalence relation.
 \end{example} 
 
-\add{euclidean domains --- principal }
 
 Here is a fancier example of a field.
 \begin{example} 
 \label{meromorphicfn}
-Let $X$ be a Riemann surface. Let $\mathbb{C}(X)$ denote the
+Let $X$ be a Riemann surface.\footnote{Readers not familiar with Riemann
+surfaces may ignore this example.} Let $\mathbb{C}(X)$ denote the
 set of meromorphic functions on $X$; clearly $\mathbb{C}(X)$ is a ring under
 multiplication and addition of functions. It turns out that in fact
 $\mathbb{C}(X)$ is a
-field; this is because if a function $f(z)$ is meromorphic, so is $1/f(z)$. For example,
+field; this is because if a nonzero function $f(z)$ is meromorphic, so is $1/f(z)$. For example,
 let $S^2$ be the Riemann sphere; then we know from complex
 analysis that the ring of meromorphic functions $\mathbb{C}(S^2)$ is the
 field of rational functions $\mathbb{C}(z)$. 
 \end{example}
 
 
+
+One reason fields are so nice from the point of view of most other chapters
+in this book is that the theory of $k$-modules (i.e. vector spaces), for $k$ a field, is very simple.
+Namely:
+
+\begin{proposition}  \label{vectorspacefree}
+If $k$ is a field, then every $k$-module is free.
+\end{proposition} 
+\begin{proof} 
+Indeed, by linear algebra we know that a $k$-module (i.e. vector space) $V$ has a
+\emph{basis} $\mathcal{B} \subset V$, which defines an isomorphism from the
+free vector space on $\mathcal{B}$ to $V$.
+\end{proof} 
+
+\begin{corollary} \label{fieldsemisimple}
+Every exact sequence of modules over a field splits.
+\end{corollary} 
+\begin{proof} 
+This follows from \cref{} and \cref{vectorspacefree}, as every vector space is
+projective.
+\end{proof} 
+
+This is another reason why much of the theory in future chapters will not say
+very much about fields, since modules behave in such a simple manner.
+Note that \cref{fieldsemisimple} is a statement about the \emph{category} of
+$k$-modules (for $k$ a field), because the notion of exactness is inherently
+arrow-theoretic (i.e. makes use of purely categorical notions, and can in fact
+be phrased within a so-called \emph{abelian category}).
+
+Henceforth, since the study of modules over a field is linear algebra, and
+since the ideal theory of fields is not very interesting, we shall study what
+this chapter is really about: \emph{extensions} of fields.
+
+\subsection{The characteristic of a field}
+\label{more-fields}
+
+In the category of rings, there is an \emph{initial object} $\mathbb{Z}$: any
+ring $R$ has a map from $\mathbb{Z}$ into it in precisely one way. For fields,
+there is no such initial object.
+Nonetheless, there is a family of objects such that every field can be mapped
+into in exactly one way by exactly one of them, and in no way by the others.
+
+Let $F$ be a field. As $\mathbb{Z}$ is the initial object of the category of
+rings, there is a ring map $f : \mathbb{Z} \to F$, see
+\rref{integersinitial}.
+The image of this ring map is an integral domain (as a subring of a field)
+hence the kernel of $f$ is a prime ideal in $\mathbb{Z}$, see
+\rref{primeifdomain}.
+Hence the kernel of $f$ is either $(0)$ or $(p)$ for some prime number $p$, see
+\rref{integerprimes}.
+
+In the first case we see that $f$ is injective, and in this case
+we think of $\mathbb{Z}$ as a subring of $F$. Moreover, since every
+nonzero element of $F$ is invertible we see that it makes sense to
+talk about $p/q \in F$ for $p, q \in \mathbb{Z}$ with $q \not = 0$.
+Hence in this case we may and we do think of $\mathbb{Q}$ as a subring of $F$.
+One can easily see that this is the smallest subfield of $F$ in this case.
+
+In the second case, i.e., when $\text{Ker}(f) = (p)$ we see that
+$\mathbb{Z}/(p) = \mathbb{F}_p$ is a subring of $F$.  Clearly it is the smallest subfield of $F$.
+
+Arguing in this way we see that every field contains a smallest subfield
+which is either $\mathbb{Q}$ or finite equal to $\mathbb{F}_p$ for some
+prime number $p$.
+
+\begin{definition}
+The \textbf{characteristic} of a field $F$ is $0$ if
+$\mathbb{Z} \subset F$, or is a prime $p$ if $p = 0$ in $F$.
+The \textbf{prime subfield of $F$} is the smallest subfield of $F$
+which is either $\mathbb{Q} \subset F$ if the characteristic is zero, or
+$\mathbb{F}_p \subset F$ if the characteristic is $p > 0$.
+\end{definition}
+
+
+It is easy to see that if $E$ is a field containing $k$, then the characteristic of
+$E$ is the same as the characteristic of $k$. 
+
+\begin{example} 
+The characteristic of $\mathbb{Z}/p$ is $p$, and that of $\mathbb{Q}$ is $0$.
+This is obvious from the definitions.
+\end{example} 
+
+
 \section{Field extensions}
 
-\subsection{Definitions}
+\subsection{Preliminaries}
 
 In general, though, we are interested not so much in fields by themselves but
 in field \emph{extensions.} This is perhaps analogous to studying not rings
@@ -95,7 +225,7 @@ that  $G$ is an extension of $F$.
 \end{definition}
 
 So if $F, F'$ are fields, and $F \to F'$ is any ring-homomorphism, we see by 
-\cref{fieldinj} that it is injective, and $F'$ can be regarded as an extension
+\cref{fieldinj} that it is injective,\footnote{The zero ring is not a field!} and $F'$ can be regarded as an extension
 of $F$, by a slight abuse of notation. Alternatively, a field extension of $F$
 is just an $F$-algebra that happens to be a field.
 This is completely different than the situation for general rings, since a
@@ -150,11 +280,19 @@ $k$ and $S$.
 \begin{definition} 
 If $F/k$ is an extension and $S \subset F$, we write $k(S)$ for the smallest
 subextension of $F$ containing $S$.
-We will say that $S$ \textbf{generates} the extension $F/k$.
+We will say that $S$ \textbf{generates} the extension $k(S)/k$.
 \end{definition} 
 
+For instance, $\mathbb{C}$ is generated by $i$ over $\mathbb{R}$.
+
+\begin{exercise} 
+Show that $\mathbb{C}$ does not have a countable set of generators over
+$\mathbb{Q}$.
+\end{exercise} 
+
+
 Let us now classify extensions generated by one element.
-\begin{proposition} \label{fldmono} 
+\begin{proposition}[Simple extensions of a field] \label{fldmono} 
 If an extension $F/k$ is generated by one element, then it is $F$ is $k$-isomorphic
 either to the rational function field $k(t)/k$ or to one of the extensions
 $k[t]/(P)$ for $P \in k[t]$ irreducible.
@@ -190,56 +328,6 @@ whose image contains $\alpha$. It is thus surjective, hence an isomorphism.
 
 
 
-
-\subsection{The characteristic of a field}
-\label{more-fields}
-
-In the category of rings, there is an \emph{initial object} $\mathbb{Z}$: any
-ring $R$ has a map from $\mathbb{Z}$ into it in precisely one way. For fields,
-there is no such initial object.
-Nonetheless, there is a family of objects such that every field can be mapped
-into in exactly one way by exactly one of them, and in no way by the others.
-
-Let $F$ be a field. As $\mathbb{Z}$ is the initial object of the category of
-rings, there is a ring map $f : \mathbb{Z} \to F$, see
-\rref{integersinitial}.
-The image of this ring map is an integral domain (as a subring of a field)
-hence the kernel of $f$ is a prime ideal in $\mathbb{Z}$, see
-\rref{primeifdomain}.
-Hence the kernel of $f$ is either $(0)$ or $(p)$ for some prime number $p$, see
-\rref{integerprimes}.
-
-In the first case we see that $f$ is injective, and in this case
-we think of $\mathbb{Z}$ as a subring of $F$. Moreover, since every
-nonzero element of $F$ is invertible we see that it makes sense to
-talk about $p/q \in F$ for $p, q \in \mathbb{Z}$ with $q \not = 0$.
-Hence in this case we may and we do think of $\mathbb{Q}$ as a subring of $F$.
-One can easily see that this is the smallest subfield of $F$ in this case.
-
-In the second case, i.e., when $\text{Ker}(f) = (p)$ we see that
-$\mathbb{Z}/(p) = \mathbb{F}_p$ is a subring of $F$.  Clearly it is the smallest subfield of $F$.
-
-Arguing in this way we see that every field contains a smallest subfield
-which is either $\mathbb{Q}$ or finite equal to $\mathbb{F}_p$ for some
-prime number $p$.
-
-\begin{definition}
-The \textbf{characteristic} of a field $F$ is $0$ if
-$\mathbb{Z} \subset F$, or is a prime $p$ if $p = 0$ in $F$.
-The \textbf{prime subfield of $F$} is the smallest subfield of $F$
-which is either $\mathbb{Q} \subset F$ if the characteristic is zero, or
-$\mathbb{F}_p \subset F$ if the characteristic is $p > 0$.
-\end{definition}
-
-
-It is easy to see that if $E/k$ is an extension, then the characteristic of
-$E$ is the same as the characteristic of $k$. 
-
-\begin{example} 
-The characteristic of $\mathbb{Z}/p$ is $p$, and that of $\mathbb{Q}$ is $0$.
-This is obvious from the definitions.
-\end{example} 
-
 \subsection{Finite extensions}
 If
 $F/E$ is a field extension,  then evidently  $F$ is also a vector space over $E$
@@ -256,33 +344,43 @@ denoted $[F:E]$. If $[F:E]<\infty$ then $F$ is said to be a
 $\mathbb{C}$ is obviously a finite extension of $\mathbb{R}$ (of degree 2).
 \end{example} 
 
-Let us now consider the degree of a monogenic extension.
+Let us now consider the degree in the most important special example, that
+given by \cref{fldmono}, in the next two examples.
 
-\begin{example} 
+\begin{example}[Degree of a simple transcendental extension]
+\label{monodeg1}
 If $k$ is any field, then the rational function field $k(t)$ is \emph{not} a
 finite extension. The elements $\left\{t^n, n \in \mathbb{Z}\right\}$
 are linearly independent over $k$.
 
 In fact, if $k$ is uncountable, then $k(t)$ is \emph{uncountably} dimensional
-as a $k$-vector space. To see this, we note that the family of elements
-$\left\{1/(t- \alpha), \alpha \in k\right\}$ is linearly independent over $k$. A
+as a $k$-vector space. To show this, we claim that the family of elements
+$\left\{1/(t- \alpha), \alpha \in k\right\} \subset k(t)$ is linearly independent over $k$. A
 nontrivial relation between them would lead to a contradiction: for instance,
 if one works over $\mathbb{C}$, then this follows because
 $\frac{1}{t-\alpha}$, when considered as a meromorphic function on
 $\mathbb{C}$, has a pole at $\alpha$ and nowhere else.
+Consequently any sum $\sum c_i \frac{1}{t - \alpha_i}$ for the $c_i \in k^*$,
+and $\alpha_i \in k$ distinct, would have poles at each of the $\alpha_i$.
+In particular, it could not be zero.
+
+(Amusingly, this leads
+to a quick if suboptimal proof of the Hilbert Nullstellensatz; see \cref{}.)
 \end{example} 
 
-\begin{example} 
+\begin{example}[Degree of a simple algebraic extension]
+\label{monodeg2}
 Consider a monogenic  field extension $E/k$ of the form in
 \rref{monofldext}, say $E = k[t]/(P)$ for $P \in k[t]$ an irreducible
 polynomial.
-Then the degree $[E:k]$ is just $\deg P$. 
+Then the degree $[E:k]$ is just the degree $\deg P$. 
 Indeed, without loss of generality, we can assume $P$ monic, say
 \begin{equation} \label{P} P = t^n + a_1 t^{n-1} + \dots + a_0.\end{equation}
 It is then easy to see that the images of $1, t, \dots, t^{n-1}$ in
 $k[t]/(P)$ are linearly
 independent over $k$, because any relation involving them would have
-degree strictly smaller than that of $P$.
+degree strictly smaller than that of $P$, and $P$ is the element of smallest
+degree in the ideal $(P)$.
 
 Conversely, the set $S=\left\{1, t, \dots, t^{n-1}\right\}$ (or more
 properly their images) spans $k[t]/(P)$ as a vector space.
@@ -293,19 +391,26 @@ $S$. Working upward inductively, we find
 that the image of $t^M$ for $M  \geq n$ lies in the span of $S$.
 \end{example} 
 
+This confirms the observation that $[\mathbb{C}: \mathbb{R}] = 2$, for instance.
+More generally, if $k$ is a field, and $\alpha \in k$ is not a square, then the
+irreducible polynomial $x^2 - \alpha \in k[x]$ allows one to construct an
+extension $k[x]/(x^2 - \alpha)$ of degree two.
+We shall write this as $k(\sqrt{\alpha})$. Such extensions will be called
+\textbf{quadratic,} for obvious reasons.
+
 
 The basic fact about the degree is that it is \emph{multiplicative in
 towers.}
 
-\begin{proposition} 
+\begin{proposition}[Multiplicativity]
 Suppose given a tower $F/E/k$. Then
 \[ [F:k] = [F:E][E:k].  \]
 \end{proposition} 
 \begin{proof} 
 Let $\alpha_1, \dots, \alpha_n \in F$ be an $E$-basis for $F$. Let $\beta_1,
-\dots, \beta_m \in E$ be a $k$-basis for $E$. Then 
+\dots, \beta_m \in E$ be a $k$-basis for $E$. Then the claim is that
 the set of products $\{\alpha_i \beta_j, 1 \leq i \leq n, 1 \leq j \leq m\}$ is a $k$-basis for $F$. 
-Indeed, let us check first that they $k$-span $F$.
+Indeed, let us check first that they span $F$ over $k$.
 
 By assumption, the $\left\{\alpha_i\right\}$ span $F$ over $E$. So if $f \in
 F$, there are $a_i \in E$ with 
@@ -320,18 +425,12 @@ Suppose now that there existed a nontrivial relation
 for the $c_{ij} \in k$. In that case, we would have
 \[ \sum_i \alpha_i \left( \sum_j c_{ij} \beta_j \right) =0, \]
 and the inner terms lie in $E$ as the $\beta_j$ do. Now $E$-linear independence of
-the $\left\{\alpha_j\right\}$ shows that the inner sums are all zero. Then
+the $\left\{\alpha_i\right\}$ shows that the inner sums are all zero. Then
 $k$-linear independence of the $\left\{\beta_j\right\}$ shows that the
 $c_{ij}$ all vanish.
 \end{proof} 
 
-As an example:
-\begin{example} 
-$\mathbb{Q}(\sqrt{2})$ is a finite extension of $\mathbb{Q}$ of degree two.
-Indeed, this is isomorphic to $\mathbb{Q}[x]/(x^2-2)$.
-\end{example} 
-
-More generally:
+We sidetrack to a slightly tangential definition:
 \begin{definition} 
  A field extensions $K$ of $\mathbb{Q}$ is said to be a \textbf{number field}
 if it is a finite extension of $\mathbb{Q}$.
@@ -342,8 +441,7 @@ for the analog of the integers $\mathbb{Z}$ in a number field, something kind
 of like unique factorization still holds (though strict unique factorization
 generally does not!).
 
-\section{Algebraic extensions}
-\subsection{Definitions}
+\subsection{Algebraic extensions}
 
 Consider a field extension $F/E$.
 
@@ -370,23 +468,105 @@ $\mathbb{C}(X)$ is algebraic over the subextension $\mathbb{C}(f)$ generated by
 $f$. We shall not prove this.
 \end{example} 
 
-
-\begin{proposition} 
+We now show that there is a deep connection between finiteness and being
+algebraic.
+\begin{proposition} \label{finalgebraic}
 A finite extension is algebraic. 
+In fact, an extension $E/k$ is algebraic if and only if every subextension
+$k(\alpha)/k$ generated by some $\alpha \in E$ is finite.
 \end{proposition} 
+In general, it is very false that an algebraic extension is finite.
 \begin{proof} 
 Let $E/k$ be finite, say of degree $n$. Choose $\alpha \in E$.
 Then the elements 
 $\left\{1, \alpha, \dots, \alpha^n\right\}$ are linearly
-dependent over $E$, or we would necessarily have $[E:k]$
+dependent over $E$, or we would necessarily have $[E:k] > n$. A relation of
+linear dependence now gives the desired polynomial that $\alpha$ must satisfy.
 
+For the last assertion, note that a monogenic extension  $k(\alpha)/k$ is
+finite if and only $\alpha$ is algebraic over $k$, by \cref{monodeg1} and
+\cref{monodeg2}.
+So if $E/k$ is algebraic, then each $k(\alpha)/k, \alpha \in E$, is a finite
+extension, and conversely.
 \end{proof} 
 
-\begin{proposition} 
+
+
+We can extract a corollary of the last proof (really of \cref{monodeg1} and
+\cref{monodeg2}): a monogenic extension is finite
+if and only if it is algebraic.
+We shall use this observation in the next result.
+
+\begin{corollary} \label{fingenalg}
+Let $k$ be a field, and let $\alpha_1, \alpha_2, \dots, \alpha_n$ be elements
+of some extension field such that each $\alpha_i$ is finite over $k$. Then the
+extension $k(\alpha_1, \dots, \alpha_n)/k$ is finite.
+That is, a finitely generated algebraic extension is finite.
+\end{corollary} 
+\begin{proof} 
+Indeed, each $k(\alpha_{1}, \dots, \alpha_{i+1})/k(\alpha_1, \dots,
+\alpha_{i})$ is monogenic and algebraic, hence finite.
+\end{proof} 
+
+The set of complex numbers that are algebraic over $\mathbb{Q}$ are simply
+called the \textbf{algebraic numbers.} For instance, $\sqrt{2}$ is algebraic,
+$i$ is algebraic, but $\pi$ is not.
+It is a basic fact that the algebraic numbers form a field, although it is not
+obvious how to prove this from the definition that a number is algebraic
+precisely when it satisfies a nonzero polynomial equation with rational
+coefficients (e.g. by polynomial equations).
+
+
+
+
+\begin{corollary} 
+Let $E/k$ be a field extension. Then the elements of $E$ algebraic over $k$
+form a field.
+\end{corollary} 
+\begin{proof} 
+Let $\alpha, \beta \in E$ be algebraic over 
+$k$. Then $k(\alpha, \beta)/k$ is a finite extension by \cref{fingenalg}. It follows that $k(\alpha
++ \beta) \subset k(\alpha, \beta)$ is a finite extension, which implies that
+$\alpha + \beta$ is algebraic by \cref{finalgebraic}.
+\end{proof} 
+
+
+Many nice properties of field extensions, like those of rings, will have the property
+that they will be preserved by towers and composita.
+
+
+\begin{proposition}[Towers]
 Let $E/k$ and $F/E$ be algebraic. Then $F/k$ is algebraic.
 \end{proposition} 
+\begin{proof} 
+Choose $\alpha \in F$. Then $\alpha$ is algebraic over $E$. 
+The key observation is that $\alpha$ is algebraic over a \emph{finitely
+generated} subextension of $k$.
+That is, there is a finite set $S \subset E$ such that $\alpha $ is algebraic
+over $k(S)$: this is clear because being algebraic means that a certain
+polynomial in $E[x]$ that $\alpha$ satisfies exists, and as $S$ we can take the
+coefficients of this polynomial.
+
+It follows that $\alpha$ is algebraic over $k(S)$. In particular, $k(S,
+\alpha)/ k(S)$ is finite. Since $S$ is a finite set, and $k(S)/k$ is algebraic,
+\cref{fingenalg} shows that $k(S)/k$ is finite. Together we find that
+$k(S,\alpha)/k$ is finite, so $\alpha$ is algebraic over $k$.
+\end{proof} 
+
+The method of proof in the previous argument---that being algebraic over $E$ was a
+property that \emph{descended} to a finitely generated subextension of $E$---is
+an idea that recurs throughout algebra, and will be put to use more generality
+in \cref{}.
+
 
 \subsection{Algebraic closure}
+
+Now we want to define a ``universal'' algebraic extension of a field. Actually,
+we should be careful: the algebraic closure is \emph{not} a universal object.
+That is, the algebraic closure is not unique up to \emph{unique} isomorphism:
+it is only unique up to isomorphism. But still, it will be very handy, if not
+functorial.
+
 
 \begin{definition} 
 Let $F$ be a field. An \textbf{algebraic closure} of $F$ is a field
@@ -398,10 +578,21 @@ non-constant polynomial in $\overline{F}[X]$ has a root in $\overline{F}$).
 \end{enumerate}
 \end{definition} 
 
+The ``fundamental theorem of algebra'' states that $\mathbb{C}$ is
+algebraically closed. While the easiest proof of this result uses Liouville's
+theorem in complex analysis, we shall give a mostly algebraic proof below
+(\cref{}).
+
+We now prove the basic existence result.
+
+
 \begin{theorem}
 Every field has an algebraic closure.
 \end{theorem}
 
+The proof will mostly be a red herring to the rest of the chapter. However, we
+will want to know that it is \emph{possible} to embed a field inside an
+algebraically closed field, and we will often assume it done.
 \begin{proof}
 Let $ K$ be a field and $ \Sigma$ be the set of all monic irreducibles in $ K[x]$. Let $ A = K[\{x_f : f \in \Sigma\}]$ be the polynomial ring generated by indeterminates $ x_f$, one for each $ f \in \Sigma$. Then let $ \mathfrak{a}$ be the ideal of $ A$ generated by polynomials of the form $ f(x_f)$ for each $ f \in \Sigma$.
 
@@ -451,7 +642,9 @@ necessary, we write $K = F(\alpha_1, \dots, \alpha_n)$, and $K_0 = F, K_i =
 F(\alpha_1, \dots, \alpha_i)$, $q_i$ the minimal polynomial of $\alpha_i$ over
 $F_{i - 1}$, $Q_i$ that over $F$.
 
-\begin{definition} For an element $\alpha \in K$ with minimal polynomial $q$, we say
+\begin{definition}
+
+For an element $\alpha \in K$ with minimal polynomial $q$, we say
 $q$ and $\alpha$ are separable if $q$ has distinct roots, and we say $K$ is
 separable if this holds for all $\alpha$; conversely, we say they are purely
 inseparable if $q$ has only one root.  We say $K$ is splitting if each $q$
