@@ -1373,7 +1373,7 @@ of this morphism as $\mathcal{F}\rightarrow\mathcal{F'}\rightarrow\mathcal{G}$.
 \begin{theorem} We can construct the sheafification of a presheaf $\mathcal{F}$
 as follows: $\mathcal{F}'(U)=\{s:U\rightarrow\coprod_{x\in U}\mathcal{F}_x |
 \text{for all }x\in U, s(x)\in\mathcal{F}_x \text{ and there is a neighborhood
-}V\subseteq U \text{ and }t\in \mathcal{F}(V) \text{ such that for all }y\in V,
+}V\subset U \text{ and }t\in \mathcal{F}(V) \text{ such that for all }y\in V,
 s(y) \text{ is the image of } t \text{ in the local ring }\mathcal{F}_y\}$.
 \end{theorem}
 \add{proof}
@@ -1406,7 +1406,7 @@ a presheaf of rings on $X$.
 
 \begin{proof} \mbox{}
 
-\emph{Part (i)}. If $ X_g \subseteq X_f$ are basic open sets,
+\emph{Part (i)}. If $ X_g \subset X_f$ are basic open sets,
 then there exist $ n \geq 1$ and $ u \in A$ such that $ g^n =
 uf$.
 
@@ -1420,7 +1420,7 @@ see that $ f/1 \in S^{-1}\mathfrak{p}$, so $ f \in
 that $ g \notin \mathfrak{p}$. This is a contradiction, since
 then $ \mathfrak{p} \in X_g \setminus X_f$.
 
-\emph{Part (ii)}. If $ X_g \subseteq X_f$, then there exists a
+\emph{Part (ii)}. If $ X_g \subset X_f$, then there exists a
 unique map $ \rho : A_f \to A_g$, called the restriction map,
 which makes the following diagram commute.
 \[ \xymatrix{ & A \ar[dl] \ar[dr] & \\ A_f \ar[rr] & & A_g } \]
@@ -1448,7 +1448,7 @@ commutes. But since the localization map is epic, this implies
 that $ \rho \rho' = \rho' \rho = \mathbf{1}$.
 
 \emph{Part (iv)}.
-If $ X_h \subseteq X_g \subseteq X_f$, then the diagram
+If $ X_h \subset X_g \subset X_f$, then the diagram
 \[ \xymatrix{
 A_f \ar[rr] \ar[dr] & & A_h \\
 & A_g \ar[ur] &
@@ -1469,7 +1469,7 @@ implies commutativity of the base, which is what we want to
 show.
 
 \emph{Part (v)}.
-If $ X_{\tilde{g}} = X_g \subseteq X_f = X_{\tilde{f}}$, then
+If $ X_{\tilde{g}} = X_g \subset X_f = X_{\tilde{f}}$, then
 the diagram
 \[ \xymatrix{
 A_f \ar[r] \ar[d] & A_g \ar[d] \\
@@ -1490,7 +1490,7 @@ commute. Therefore the square commutes.
 Fix a prime ideal $ \mathfrak{p}$ in $ A$. Consider the direct
 system consisting of rings $ A_f$ for every $ f \notin
 \mathfrak{p}$ and restriction maps $ \rho_{fg} : A_f \to A_g$
-whenever $ X_g \subseteq X_f$. Then $ \varinjlim A_f \cong
+whenever $ X_g \subset X_f$. Then $ \varinjlim A_f \cong
 A_{\mathfrak{p}}$.
 
 \emph{proof of part (vi)}.

@@ -64,9 +64,9 @@ its homology.
 
 \begin{definition} 
 Let $C_*$
-The submodule of cycles $Z_i\subseteq C_i$ is
+The submodule of cycles $Z_i\subset C_i$ is
 the kernel $\ker(\partial_i)$. The submodule of boundaries
-$B_i\subseteq C_i$ is the image $Im(\partial_{i+1})$. Thus
+$B_i\subset C_i$ is the image $Im(\partial_{i+1})$. Thus
 homology is said to be ``cycles mod boundaries,'' i.e.
 $Z_i/B_i$.
 \end{definition}
@@ -160,13 +160,13 @@ D_{i+1} @>\partial'_{i+1}>> D_i @>>\partial'_i> D_{i-1}
 \end{equation}
 
 Now, in order to check that a chain map $f$ induces a map $f_*$
-on homology, we need to check that $f_*(Im(\partial))\subseteq
-Im(\partial')$ and $f_*(\ker(\partial))\subseteq
+on homology, we need to check that $f_*(Im(\partial))\subset
+Im(\partial')$ and $f_*(\ker(\partial))\subset
 \ker(\partial)$. We first check the condition on images: we want
 to look at $f_i(Im(\partial_{i+1}))$. By commutativity of $f$
 and the boundary maps, this is equal to
 $\partial'_{i+1}(Im(f_{i+1})$. Hence we have
-$f_i(Im(\partial_{i+1}))\subseteq Im(\partial_{i+1}')$. For the
+$f_i(Im(\partial_{i+1}))\subset Im(\partial_{i+1}')$. For the
 condition on kernels, let $x\in \ker(\partial_i)$. Then by
 commutativity, $\partial'_i(f_i(x))=f_{i-1}\partial_i(x)=0$.
 Thus we have that $f$ induces for each $i$ a homomorphism

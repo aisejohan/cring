@@ -279,7 +279,7 @@ For ideals $I, J, K \subset R$, we have the following.
 
 \begin{proof}
 1 and 2 are clear.  For 3, note that $(I + J)(I \cap J) = I(I \cap J)
-+ J(I \cap J) \subseteq IJ$.  Since $IJ \subseteq I \cap J$, the result
++ J(I \cap J) \subset IJ$.  Since $IJ \subset I \cap J$, the result
 follows.
 \end{proof}
 \end{proposition}
@@ -1291,7 +1291,7 @@ contained in associated prime.
 \begin{theorem}[Prime avoidance] \label{primeavoidance}
    Let $I_1,\dots, I_n \subset R$ be ideals. Let $A\subset R$ be a subset which is closed
    under addition and multiplication. Assume that at least $n-2$ of the ideals are
-   prime. If $A\subseteq I_1\cup \cdots \cup I_n$, then $A\subseteq I_j$ for some $j$.
+   prime. If $A\subset I_1\cup \cdots \cup I_n$, then $A\subset I_j$ for some $j$.
  \end{theorem}
 
 The result is frequently used in the following specific case: if an ideal $I$
@@ -1303,10 +1303,10 @@ is contained in a finite union $\bigcup \mathfrak{p}_i$ of primes, then $I
    $a_1\in A\smallsetminus I_1$ and $a_2\in A\smallsetminus I_2$, then $a_1+a_2\in
    A\smallsetminus (I_1\cup I_2)$.
 
-Now assume $n\ge 3$. We may assume that for each $j$, $A\not\subseteq I_1\cup \cdots
+Now assume $n\ge 3$. We may assume that for each $j$, $A\not\subset I_1\cup \cdots
    \cup \hat I_j\cup \cdots I_n$.\footnote{The hat means omit $I_j$.} Fix an element
    $a_j\in A\smallsetminus (I_1\cup \cdots \cup \hat I_j\cup \cdots I_n)$. Then this
-   $a_j$ must be contained in $I_j$ since $A\subseteq \bigcup I_j$. Since $n\ge 3$, one
+   $a_j$ must be contained in $I_j$ since $A\subset \bigcup I_j$. Since $n\ge 3$, one
    of the $I_j$ must be prime. We may assume that $I_1$ is prime. Define
    $x=a_1+a_2a_3\cdots a_n$, which is an element of $A$. Let's show that $x$ avoids
    \emph{all} of the $I_j$. If $x\in I_1$, then $a_2a_3\cdots a_n\in I_1$, which
@@ -1332,11 +1332,11 @@ is an epimorphism with kernel $I_1 \cap \dots \cap I_n$.
 
 \begin{proof} 
 First, note that for any two ideals $I_1$ and $I_2$, we
-have $I_1I_2\subseteq I_1\cap I_2$ and $(I_1+I_2)(I_1\cap I_2)\subseteq
+have $I_1I_2\subset I_1\cap I_2$ and $(I_1+I_2)(I_1\cap I_2)\subset
 I_1I_2$ (because any element of $I_1+I_2$ multiplied by any element of
 $I_1\cap I_2$ will clearly be a sum of products of elements from both $I_1$
 and $I_2$). Thus, if $I_1$ and $I_2$ are coprime, i.e. $I_1+I_2=(1)=R$,
-then $(1)(I_1\cap I_2)=(I_1\cap I_2)\subseteq I_1I_2\subseteq I_1\cap I_2$,
+then $(1)(I_1\cap I_2)=(I_1\cap I_2)\subset I_1I_2\subset I_1\cap I_2$,
 so that $I_1\cap I_2=I_1I_2$. This establishes the result for $n=2$.
 
 If the
@@ -1508,7 +1508,7 @@ In other words, the norm is compatible with division with remainder.
 A euclidean domain is a principal ideal domain.
 \end{theorem}
 \begin{proof}
-Let $R$ be an euclidean domain, $I\subseteq R$ and ideal, and $b$ be the nonzero element of smallest norm in $I$.
+Let $R$ be an euclidean domain, $I\subset R$ and ideal, and $b$ be the nonzero element of smallest norm in $I$.
 Suppose $ a\in I$. Then we can write $ a = qb + r$ with $ 0\leq r < |b|$, but since $ b$ has minimal nonzero absolute value, $ r = 0$ and $ b|a$. Thus $ I=(b)$ is principal.
 \end{proof}
 
