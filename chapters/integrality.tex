@@ -1,16 +1,18 @@
 \chapter{Integrality and valuation rings}
 \label{intchapter}
 
-The notion of integrality is familiar from number theory: it is like
-``algebraic'' but with monic polynomials. In algebraic geometry, integral
+The notion of integrality is familiar from number theory: it is similar to  
+``algebraic'' but with the polynomials involved are required to be monic. In algebraic geometry, integral
 extensions of rings correspond to correspondingly nice morphisms on the
 $\spec$'s---when the extension is finitely generated, it turns out that the
 fibers are finite. That is, there are only finitely many ways to lift a prime
-ideal to the extension.
+ideal to the extension: if $A \to B$ is integral and finitely generated, then
+$\spec B \to \spec A$ has finite fibers.
 
-Rings that are \emph{integrally closed} in their quotient field will play an
+Integral domains that are \emph{integrally closed} in their quotient field will play an
 important role for us. Such ``normal domains'' are, for example, regular in
-codimension one, which means that the theory of Weil divisors (\rref{}) applies
+codimension one, which means that the theory of Weil divisors
+(see \cref{weildivsec}) applies
 to them. It is particularly nice because Weil divisors are sufficient to
 determine whether a function is regular on a normal variety.
 
@@ -21,83 +23,68 @@ see in this chapter that any integrally closed ring is an intersection of such.
 
 \subsection{Fundamentals}
 
-Let us return to the ring $\mathbb{Z}[\sqrt{-5}]$; this is the canonical
-example of a ring where unique factorization fails. This is because, as we
-remember,
-\[ 6 = 2 \times 3 = (1+\sqrt{-5})(1-\sqrt{-5}).  \]
 
-One might ask: what about $\mathbb{Z}[\sqrt{-3}]$? It turns out that
-$\mathbb{Z}[\sqrt{-3}]$ lacks unique factorization as well. Indeed, here we have
-\[ (1 - \sqrt{-3})(1+\sqrt{-3}) = 4 = 2 \times 2.  \]
-These elements can be factored no more, and $1 - \sqrt{-3}$ and $2$ do not
-differ by units.
-So in this ring, we have a failure of unique factorization. Nonetheless, the
-failure of unique factorization in $\mathbb{Z}[\sqrt{-3}]$ is less
-noteworthy. Indeed, it turns out that $\mathbb{Z}[\sqrt{-3}]$ is
-contained in the larger ring
-\( \mathbb{Z}\left[ \frac{1 + \sqrt{-3}}{2}\right],  \)
-which does have unique factorization.
-
-In fact, $\mathbb{Z}[\sqrt{-3}]$ is an index two subgroup of the larger ring, as the ring $\mathbb{Z}[ \frac{1 + \sqrt{-3}}{2}]$
-can be described as the set of elements $a +
-b\sqrt{-3}$ where $a,b$ are either both integers or both integers plus
-$\frac{1}{2}$, as is easily seen: this set is closed under addition and
-multiplication.
-Note that, by contrast, $\mathbb{Z}[ \frac{1 + \sqrt{-5}}{2}]$ does not
-contain $\mathbb{Z}[\sqrt{-5}]$ as a finite index subgroup---it cannot be
-slightly enlarged in the same sense. When one enlarges $\mathbb{Z}[\sqrt{-5}]$,
-one has to add a lot of stuff.
-We will see more formally that $\mathbb{Z}[\sqrt{-5}]$ is \emph{integrally
-closed} in its quotient field, while $\mathbb{Z}[\sqrt{-3}]$ is not. Since
-unique factorization domains are automatically integrally closed, the failure
-of $\mathbb{Z}[\sqrt{-5}]$ to be a UFD is much more significant than that of
-$\mathbb{Z}[\sqrt{-3}]$.
-
+As stated in the introduction to the chapter, integrality is a condition on
+rings parallel to that of algebraicity for field extensions.
 \begin{definition} \label{intdefn}
-Let $R \subset R'$ be an inclusion of rings.  An element $x \in R'$
+Let $R$ be a ring, and $R'$ an $R$-algebra.  An element $x \in R'$
 is said to be \textbf{integral} over $R$ if $x$ satisfies a monic polynomial
 equation in $R[X]$, say
 \[ x^n + r_1 x^{n-1} + \dots + r_n = 0.  \]
 We can say that $R'$ is \textbf{integral} over $R$ if every $x \in R'$ is
 integral over $R$.
-
-Finally, it is convenient to extend this notion to maps of rings that are not
-injections. If $\phi: R \to R'$ is any homomorphism of rings, we say that
-$\phi$ is \textbf{integral} (or that $R'$ is integral over $R$) if $R'$ is
-integral over $\phi(R) \subset R'$.
 \end{definition}
+
+Note that in the definition, we are not requiring $R$ to be a \emph{subring} of
+$R'$.
 
 \begin{example}
 $\frac{1+\sqrt{-3}}{2}$ is integral over $\mathbb{Z}$; it is in fact a sixth
-root of unity.
-\end{example}
-
-\begin{example}
-$\frac{1+\sqrt{5}}{2}$ is not integral over $\mathbb{Z}$. To explain this,
-however, we
+root of unity, thus satisfying the equation $X^6  -1 = 0$.
+However, $\frac{1+\sqrt{5}}{2}$ is not integral over $\mathbb{Z}$. To explain this,
+however, we will
 need to work a bit more.
 \end{example}
 
+
+\begin{example} 
+Let $L/K$ be a field extension. Then $L/K$ is integral if and only if it is
+algebraic, since $K$ is a field and we can divide polynomial equations by the
+leading coefficient to make them monic.
+\end{example} 
+
+\begin{example} 
+Let $R$ be a graded ring. Then the subring $R^{(d)} \subset R$ was defined in
+\cref{dpowerofring}; recall that this consists of elements of $R$ all of whose
+nonzero homogeneous components live in degrees that are multiples of $d$.
+Then the $d$th power of any homogeneous
+element in $R$ is in $R^{(d)}$. As a result, every homogeneous element of $R$
+is integral over $R^{(d)}$.
+\end{example} 
+
 We shall now interpret the condition of integrality in terms of finite
 generation of certain modules.
-Suppose $R \subset R'$ are rings.  Let $x \in R'$.
+Suppose $R$ is a ring, and $R'$ an $R$-algebra.  Let $x \in R'$.
 
 \begin{proposition}  \label{onegeneratorintegral}
-$x \in R'$ is integral over $R$ if and only if the subalgebra $R[x]$
+$x \in R'$ is integral over $R$ if and only if the subalgebra $R[x] \subset R'$
 (generated by $R, x$) is a finitely generated
 $R$-module.
 \end{proposition}
 
-This for instance lets us show that $\frac{1+\sqrt{-5}}{2}$ is not integral
+This notation is an abuse of notation (usually $R[x]$ refers to a polynomial
+ring), but it should not cause confusion. 
+
+This result for instance lets us show that $\frac{1+\sqrt{-5}}{2}$ is not integral
 over $\mathbb{Z}$, because when you keep taking powers, you get arbitrarily
 large denominators: the arbitrarily large denominators imply that it cannot be
 integral.
 
 \begin{proof}
 If $x  \in R'$ is integral, then $x$ satisfies
-\[ x^n + r_1 x^{n-1}+\dots+r_n = 0.  \]
+\[ x^n + r_1 x^{n-1}+\dots+r_n = 0, \quad r_i \in R.  \]
 Then $R[x]$ is generated as an $R$-module by $1, x, \dots, x^{n-1}$.  This is
-because the submodule generated by $1, x ,\dots, x^{n-1}$ is closed under
+because the submodule of $R'$ generated by $1, x ,\dots, x^{n-1}$ is closed under
 multiplication by $R$ and by multiplication by $x$ (by the above equation).
 
 Now suppose $x$ generates a subalgebra $R[x] \subset R'$ which is a finitely
@@ -113,7 +100,7 @@ can be expressed as a linear combination of smaller powers of $x$. Thus $x$ is
 integral over $R$.
 \end{proof}
 
-So, if $R \subset R'$, we can say that
+So, if $R'$ is an $R$-module, we can say that
 an element $x \in R'$ is \textbf{integral} over $R$ if either of the following
 equivalent conditions are satisfied:
 
@@ -126,47 +113,32 @@ equivalent conditions are satisfied:
 Let $F$ be a field, $V$ a finite-dimensional $F$-vector space, $T: V \to V$ a
 linear transformation. Then the ring generated by $T$ and $F$ inside
 $\mathrm{End}_F(V)$ (which is a noncommutative ring) is finite-dimensional
-over $k$.
-Thus $T$ must satisfy a polynomial equation with coefficients in $F$.
+over $F$.
+Thus, by similar reasoning, $T$ must satisfy a polynomial equation with
+coefficients in $F$ (e.g. the characteristic polynomial).
 \end{example}
 
 Of course, if $R'$ is integral over $R$, $R'$ may not be a finitely generated
-$R$-module. As we shall see, this is always the case if $R'$ is a finitely
+$R$-module. For instance, $\overline{\mathbb{Q}}$ is not a finitely generated
+$\mathbb{Q}$-module, although the extension is integral. As we shall see in
+the next section, this is always the case if $R'$ is a finitely
 generated $R$-\emph{algebra}.
 
-\begin{exercise} Let us say that an $A$-module is \emph{$n$-generated}
-if it is generated by at most $n$ elements. 
-
-Let $A$ and $B$ be two rings such that $A\subset B$, so that $B$ is an
-$A$-module.
-
-Let
-$n\in\mathbb{N}$. Let $u\in B$. Then, the following four assertions
-$\mathcal{A},$ $\mathcal{B},$ $\mathcal{C}$ and $\mathcal{D}$ are pairwise equivalent:
-
-\begin{enumerate}
-\item   There exists a monic polynomial
-$P\in A\left[  X\right]  $ with $\deg P=n$ and $P\left(  u\right)  =0$.
-\item  There exist a $B$-module $C$ and an
-$n$-generated $A$-submodule $U$ of $C$ such that $uU\subset U$ and such that
-every $v\in B$ satisfying $vU=0$ satisfies $v=0$. (Here, $C$ is an $A$-module,
-since $C$ is a $B$-module and $A\subset B$.)
-\item  There exists an $n$-generated
-$A$-submodule $U$ of $B$ such that $1\in U$ and $uU\subset U$.
-\item  As an $A$-module, $A[u]$ is spanned by $1, u, \dots,
-u^{n-1}$.\end{enumerate}
-\end{exercise} 
 \subsection{Integral elements form a ring}
 
-We now will add a third equivalent condition to this idea of ``integrality.''
+We now will add a third equivalent condition to this idea of ``integrality,''
+at least in the case where the structure map is an injection.
 
 \begin{proposition} \label{thirdintegralitycriterion}
+Let $R$ be a ring, and suppose $R$ is a subring of $R'$.
 $x \in R'$ is integral if and only if there exists a
  finitely generated faithful $R$-module $M \subset R'$ such that $R \subset M$ and
  $xM \subset M$.
 \end{proposition}
 A module $M$ is \emph{faithful} if $x M = 0$ implies $x=0$. That is, the map
 from $R$ into the $\mathbb{Z}$-endomorphisms of $M$ is injective.
+If $R$ is a \emph{subring} of $R'$ (i.e. the structure map $R \to R'$ is
+injective), then $R'$ for instance is a faithful $R$-module.
 \begin{proof}
 It's obvious that the second condition above (equivalent to integrality)
 implies the condition of this
@@ -208,6 +180,28 @@ is \emph{integrally closed} if every element of the quotient field $K=K(R)$
 integral over $R$ belongs to $R$ itself. Then if $x \in K$ and $x \mathfrak{m}
 \subset \mathfrak{m}$, we have $x \in R$.
 \end{exercise}
+\begin{exercise} Let us say that an $A$-module is \emph{$n$-generated}
+if it is generated by at most $n$ elements. 
+
+Let $A$ and $B$ be two rings such that $A\subset B$, so that $B$ is an
+$A$-module.
+
+Let
+$n\in\mathbb{N}$. Let $u\in B$. Then, the following four assertions
+ are equivalent:
+
+\begin{enumerate}
+\item   There exists a monic polynomial
+$P\in A\left[  X\right]  $ with $\deg P=n$ and $P\left(  u\right)  =0$.
+\item  There exist a $B$-module $C$ and an
+$n$-generated $A$-submodule $U$ of $C$ such that $uU\subset U$ and such that
+every $v\in B$ satisfying $vU=0$ satisfies $v=0$. (Here, $C$ is an $A$-module,
+since $C$ is a $B$-module and $A\subset B$.)
+\item  There exists an $n$-generated
+$A$-submodule $U$ of $B$ such that $1\in U$ and $uU\subset U$.
+\item  As an $A$-module, $A[u]$ is spanned by $1, u, \dots,
+u^{n-1}$.\end{enumerate}
+\end{exercise} 
 
 
 We proved this to show that the set of integral elements is well behaved.
@@ -246,6 +240,41 @@ follows that
 \[ (x+y) M \subset M, \quad xy M \subset M.  \]
 Thus $x+y, xy$ are integral over $R$.
 \end{proof}
+
+Let us consider the ring $\mathbb{Z}[\sqrt{-5}]$; this is the canonical
+example of a ring where unique factorization fails. This is because \( 6 = 2
+\times 3 = (1+\sqrt{-5})(1-\sqrt{-5}).  \)
+One might ask: what about $\mathbb{Z}[\sqrt{-3}]$? It turns out that
+$\mathbb{Z}[\sqrt{-3}]$ lacks unique factorization as well. Indeed, here we have
+\[ (1 - \sqrt{-3})(1+\sqrt{-3}) = 4 = 2 \times 2.  \]
+These elements can be factored no more, and $1 - \sqrt{-3}$ and $2$ do not
+differ by units.
+So in this ring, we have a failure of unique factorization. Nonetheless, the
+failure of unique factorization in $\mathbb{Z}[\sqrt{-3}]$ is less
+noteworthy, because $\mathbb{Z}[\sqrt{-3}]$ is not \emph{integrally closed}. Indeed, it turns out that $\mathbb{Z}[\sqrt{-3}]$ is
+contained in the larger ring
+\( \mathbb{Z}\left[ \frac{1 + \sqrt{-3}}{2}\right],  \)
+which does have unique factorization, and this larger ring is finite over
+$\mathbb{Z}[\sqrt{-3}]$.\footnote{In fact, $\mathbb{Z}[\sqrt{-3}]$ is an index two subgroup of $\mathbb{Z}\left[
+\frac{1 + \sqrt{-3}}{2}\right]$, as the ring $\mathbb{Z}[ \frac{1 + \sqrt{-3}}{2}]$
+can be described as the set of elements $a +
+b\sqrt{-3}$ where $a,b$ are either both integers or both integers plus
+$\frac{1}{2}$, as is easily seen: this set is closed under addition and
+multiplication.}
+ Since being integrally closed is a
+prerequisite for having unique factorization (see \cref{} below), the failure in
+$\mathbb{Z}[\sqrt{-3}]$ is not particularly surprising.
+
+Note that, by contrast, $\mathbb{Z}[ \frac{1 + \sqrt{-5}}{2}]$ does not
+contain $\mathbb{Z}[\sqrt{-5}]$ as a finite index subgroup---it cannot be
+slightly enlarged in the same sense. When one enlarges $\mathbb{Z}[\sqrt{-5}]$,
+one has to add a lot of stuff.
+We will see more formally that $\mathbb{Z}[\sqrt{-5}]$ is \emph{integrally
+closed} in its quotient field, while $\mathbb{Z}[\sqrt{-3}]$ is not. Since
+unique factorization domains are automatically integrally closed, the failure
+of $\mathbb{Z}[\sqrt{-5}]$ to be a UFD is much more significant than that of
+$\mathbb{Z}[\sqrt{-3}]$.
+
 
 \subsection{Le sorite for integral extensions}
 

@@ -303,6 +303,7 @@ we massage things we can often assure generation by $R_1$. Then the
 next idea comes in handy.
 
 \begin{definition} 
+\label{dpowerofring}
 Let $R$ be a graded ring and $d \in \mathbb{N}$. We set $R^{(d)} = \bigoplus_{k
 \in \mathbb{Z}_{\geq 0}} R_{kd}$; this is a graded ring and $R_0$-algebra.  If $M$ is a graded $R$-module and $l \in
 \left\{0, 1, \dots, d-1\right\}$, we write $M^{(d,l)} = \bigoplus_{k \equiv l
@@ -949,11 +950,11 @@ approaches give the same result.
 \label{artinrees}
 Let $R$ be noetherian, $I \subset R$ an
 ideal. Suppose $M$ is a finitely generated $R$-module and $M' \subset M$ a
-submodule. Then the $I$-adic topology on $M$ induces that on $M'$.
+submodule. Then the $I$-adic topology on $M$ induces the $I$-adic topology on $M'$.
 More precisely,
 there is a  constant $c$ such that
 \[ I^{n+c} M \cap M' \subset I^n M'.  \]
-So the two filtrations $I^n M \cap M', I^n M'$ on $M$ are equivalent up to a
+So the two filtrations $\{I^n M \cap M'\}, \{I^n M'\}$ on $M'$ are equivalent up to a
 shift.
 \end{theorem} 
 \begin{proof} 
@@ -1017,7 +1018,7 @@ Hypotheses as above,  the blowup algebra $R'$ is noetherian.
 \begin{proof} 
 Choose generators $x_1, \dots, x_n \in I$; then there is a map $R[y_1, \dots,
 y_n] \to S$ sending $y_i \to x_i $ (where $x_i$ is in degree one). This is surjective. Hence by the basis
-theorem, $R'$ is noetherian.
+theorem (\cref{hilbbasiscor}), $R'$ is noetherian.
 \end{proof} 
 
 

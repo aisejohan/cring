@@ -216,7 +216,7 @@ Let us now prove something a little less formal. This is, in fact, the biggest
 of the ``stability'' properties of a noetherian ring: we are going to see that  finitely generated
 algebras over noetherian rings are still noetherian.
 
-\begin{theorem}[Hilbert basis theorem]
+\begin{theorem}[Hilbert basis theorem]\label{hilbbasis}
 If $R$ is a noetherian ring, then the polynomial ring $R[X]$ is noetherian.
 \end{theorem} 
 \begin{proof} 
@@ -274,6 +274,16 @@ Hilbert basis theorem and induction on $n$.
 \end{example} 
 
 
+\begin{corollary}  \label{hilbbasiscor}
+If $R$ is a noetherian ring and $R'$ a finitely generated $R$-algebra, then
+$R'$ is noetherian too. 
+\end{corollary} 
+\begin{proof} 
+Each polynomial ring $R[X_1, \dots, X_n]$ is noetherian by \cref{hilbbasis} and an easy
+induction on $n$. Consequently, any quotient of a polynomial ring (i.e. any
+finitely generated $R$-algebra, such as $R'$) is noetherian.
+\end{proof} 
+
 \begin{example} 
 Any finitely generated commutative ring $R$ is noetherian. Indeed, then there
 is a surjection
@@ -303,7 +313,6 @@ $I \subset R$. Using the Hilbert basis theorem, we have shown that $I$ is
 finitely generated. This implies that $V$ can be described by \emph{finitely}
 many polynomial equations. 
 \end{example} 
-
 
 \subsection{Noetherian induction}
 
