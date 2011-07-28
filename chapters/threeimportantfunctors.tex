@@ -123,7 +123,8 @@ isomorphic to $S^{-1}R$, using the universal property.
 
 \begin{exercise} Define a functor $\mathbf{Rings} \to \mathbf{Sets}$ sending
 a ring to
-its set of units, and show that it is representable.
+its set of units, and show that it is corepresentable (use $\mathbb{Z}[X,
+X^{-1}]$).
 \end{exercise}
 \subsection{Local rings}
 
@@ -1625,7 +1626,7 @@ Then the above proposition states that there is a natural isomorphism
 In particular, $F_N$ and $G_N$ are \emph{adjoint functors}. So, in a sense,
 the operations of $\hom$ and $\otimes$ are dual to each other.
 
-\begin{proposition}
+\begin{proposition} \label{tensorcolimit}
 Tensoring commutes with colimits. 
 \end{proposition}
 
@@ -1641,6 +1642,24 @@ This is a formal consequence of the fact that the tensor product is a left
 adjoint and consequently commutes with all colimits.
 \add{proof}
 \end{proof}
+
+In particular,  by \cref{tensorcolimit}, the tensor product commutes with \emph{cokernels.}
+That is, if $A \to B \to C \to 0$ is an exact sequence of $R$-modules and $M$
+is an $R$-module, $A \otimes_R M \to B \otimes_R M \to C \otimes_R M \to 0$ is
+also exact, because exactness of such a sequence is precisely a condition on
+the cokernel.
+
+Indeed:
+\begin{lemma}
+If $M, N$ are finitely generated, then $M \otimes_R N$ is finitely generated.
+\end{lemma}
+\begin{proof}
+Indeed, if we have surjections $R^m \to M, R^n \to N$, we can tensor them; we
+get a surjection since the tensor product is right-exact.
+So have a surjection
+$R^{m n} = R^m \otimes_R R^n \to M \otimes_R N$.
+\end{proof}
+
 
 \subsection{The tensor product as base-change}
 

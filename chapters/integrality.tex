@@ -30,7 +30,7 @@ rings parallel to that of algebraicity for field extensions.
 Let $R$ be a ring, and $R'$ an $R$-algebra.  An element $x \in R'$
 is said to be \textbf{integral} over $R$ if $x$ satisfies a monic polynomial
 equation in $R[X]$, say
-\[ x^n + r_1 x^{n-1} + \dots + r_n = 0.  \]
+\[ x^n + r_1 x^{n-1} + \dots + r_n = 0, \quad r_1, \dots, r_n \in R.  \]
 We can say that $R'$ is \textbf{integral} over $R$ if every $x \in R'$ is
 integral over $R$.
 \end{definition}
@@ -43,7 +43,7 @@ $\frac{1+\sqrt{-3}}{2}$ is integral over $\mathbb{Z}$; it is in fact a sixth
 root of unity, thus satisfying the equation $X^6  -1 = 0$.
 However, $\frac{1+\sqrt{5}}{2}$ is not integral over $\mathbb{Z}$. To explain this,
 however, we will
-need to work a bit more.
+need to work a bit more (see \cref{onegeneratorintegral} below).
 \end{example}
 
 
@@ -124,7 +124,6 @@ $\mathbb{Q}$-module, although the extension is integral. As we shall see in
 the next section, this is always the case if $R'$ is a finitely
 generated $R$-\emph{algebra}.
 
-\subsection{Integral elements form a ring}
 
 We now will add a third equivalent condition to this idea of ``integrality,''
 at least in the case where the structure map is an injection.
@@ -206,33 +205,21 @@ u^{n-1}$.\end{enumerate}
 
 We proved this to show that the set of integral elements is well behaved.
 
-\begin{theorem}
+\begin{proposition}
 Let $R \subset R'$. Let $S = \left\{x \in R': x \text{ is integral over }
 R\right\}$. Then $S$ is a subring of $R'$. In particular, it is closed under
 addition and multiplication.
-\end{theorem}
+\end{proposition}
 \begin{proof}
 Suppose $x,y \in S$.
 We can consider the finitely generated modules $R[x], R[y] \subset R'$
 generated (as algebras) by $x$ over $R$. By assumption, these are finitely
 generated $R$-modules. In particular, the tensor product
 \[ R[x] \otimes_R R[y]  \]
-is a finitely generated $R$-module.
-Indeed:
-\begin{lemma}
-If $M, N$ are finitely generated, then $M \otimes_R N$ is finitely generated.
-\end{lemma}
-\begin{proof}
-Indeed, if we have surjections $R^m \to M, R^n \to N$, we can tensor them; we
-get a surjection since the tensor product is right-exact.
-So have a surjection
-$R^{m n} = R^m \otimes_R R^n \to M \otimes_R N$.
-\end{proof}
+is a finitely generated $R$-module (by \cref{fingentensor}).
 
-Back to the main proof. As stated, $R[x] \otimes_R R[y]$ is finitely generated
-as an $R$-module. We have a ring-homomorphism $R[x]\otimes_R R[y] \to R'$
+We have a ring-homomorphism $R[x]\otimes_R R[y] \to R'$
 which comes from the inclusions $R[x], R[y] \rightarrowtail R'$.
-
 Let $M$ be the image of $R[x] \otimes_R R[y]$ in $R'$. Then $M$ is an
 $R$-submodule of $R'$, indeed an $R$-subalgebra containing $x,y$.  Also, $M$ is
 finitely generated. Since $x+y, xy\in M$ and $M$ is a subalgebra, it
@@ -282,8 +269,7 @@ In commutative algebra and algebraic geometry, there are a lot of standard
 properties that a \emph{morphism} of rings $\phi: R \to S$ can have: it could
 be of \emph{finite type} (that is, $S$ is finitely generated over $\phi(R)$),
 it could be \emph{finite} (that is, $S$ is a finite $R$-module), or it could
-be \emph{integral} (which we have defined in \cref{intdefn}; namely, $S$ is integral over
-the subring $\phi(R$)). There are many more examples
+be \emph{integral} (which we have defined in \cref{intdefn}). There are many more examples
 that we will encounter as we dive deeper into commutative algebra.
 In algebraic geometry, there are corresponding properties of morphisms of
 \emph{schemes,} and there are many more interesting ones here.
@@ -316,7 +302,7 @@ that $t$ satisfies, where each $s_i \in S$.
 In particular, we find that $t$ is integral over $R[s_1, \dots, s_n]$.
 As a result, the module $R[s_1, \dots, s_n, t]$ is finitely generated over the
 ring $R'=R[s_1, \dots, s_n]$.
-By the following \rref{integrallemma}, $R'$ is a finitely generated
+By the following \cref{finitelygeneratedintegral}, $R'$ is a finitely generated
 $R$-module. In
 particular, $R[s_1, \dots, s_n,t]$ is a finitely generated $R$-module (not
 just a
@@ -327,10 +313,13 @@ $R'$ module, finitely generated over $R$, which is preserved under
 multiplication by $t$.
 \end{proof}
 
-\begin{lemma} \label{finitelygeneratedintegral}
+We now prove a result that can equivalently be phrased as ``finite type plus
+integral implies finite'' for a map of rings.
+
+\begin{proposition} \label{finitelygeneratedintegral}
 Let $R'$ be a finitely generated, integral $R$-algebra. Then $R'$ is a
-finitely generated $R$-module.
-\end{lemma}
+finitely generated $R$-module: that is, the map $R \to R'$ is finite.
+\end{proposition}
 \begin{proof}
 Induction on the number of generators of $R'$ as $R$-algebra. For one
 generator, this follows from \rref{onegeneratorintegral}.
@@ -346,84 +335,12 @@ Let $R \to S, S \to T$ be morphisms of rings. Suppose $S$ is a finite
 $R$-module and $T$ a finite $T$-module. Then $T$ is a finite $R$-module.
 \end{exercise}
 
-\subsection{Integrality and noetherianness}
-
-In this optional subsection, we give an application of the preceding ideas to
-show that the ``ring of invariants'' of a noetherian ring under the action of a
-finite group is noetherian.
-
-In general, it is \textbf{not} true  that a subring of a noetherian ring
-is noetherian.  For instance, let $A := k[X_1, X_2, \dots]$ be the polynomial
-ring in infinitely many variables over a field $k$.  Then $A$ is not noetherian
-because of the ascending chain
-\[ (X_0) \subset (X_0, X_1) \subset (X_0, X_1, X_2) \subset \dots.\]
-However, the quotient field of $A$ is noetherian.  This applies to any
-non-noetherian integral domain.
-
-There are special cases where we can conclude a subring of a noetherian ring
-is noetherian.
-For instance, if integrality holds:
-
-\begin{theorem} Let $A_0$ be  a noetherian ring and $A$ a finitely generated
-$A_0$-algebra.\footnote{So $A$ is noetherian by Hilbert's basis theorem.}  Let $B \subset A$ be a subalgebra such that $A$ is integral
-over $B$.  Then $B$ is finitely generated over $A_0$, hence noetherian.
-\end{theorem}
-
-\begin{proof}
-We know that $A$ is finitely generated over $A_0$, say $A=A_0[x_1, \dots, x_n]$.  Then,
- to say that $A$ is integral over $B$ is to say that each
-$x_i$ satisfies an integral equation $P_i(x_i)=0$ with each $P_i \in B[X]$ monic.
-But there are finitely many $P_i$ and each has finitely many coefficients,
-all in $B$.  We can take the subring $C \subset B \subset A$ generated
-by all these coefficients.  Then $C$ is finitely generated over $A_0$,
-hence noetherian.  Also $A$ is integral over $C$.
-  
- Thus, $A$ is a finitely generated \emph{module} over $C$.
- But $C$
-is noetherian, so the submodule $B \subset A$ is a finitely generated $C$-module too.
-Taking the generators of $C$ and the $C$ module-generators of $B$, we find
-$B$ finitely generated over $A_0$.
-\end{proof}
-
-
-This result provides a quick application to ``invariant theory.''  The idea
-here is that if we have a finite group $G$  acting
-on an algebra $A$ by algebra automorphisms, then the subset $A^G$ of fixed
-points is actually an algebra, so it is  of interest to check whether, say,
-$A$ finitely generated implies $A^G$ finitely generated.
-
-\begin{example} 
-As an example, if we fix a field $k$, we can make the symmetric group $S_n$
-act on $k[x_1, \dots, x_n]$ by permuting variables; explicitly
-\[ \sigma f(x_1, \dots, x_n) := f( x_{\sigma^{-1} 1}, \dots,
-x_{\sigma^{-1}n}).\]
-The $S_n$ invariants in this case are just \textbf{symmetric polynomials}.
-There is a theorem that these are generated in the \textbf{elementary
-symmetric functions} which are the coefficients of $T$ in
-\[ \prod_i (T - x_i)  \in k[x_1, \dots, x_n, T].\]
-So in this case, the ring of invariants is finitely generated.
-
-\end{example} 
-
-In general:
-\begin{corollary} If $A_0$ is a noetherian ring and $A$ a finitely generated
-$A_0$-algebra acted on by $G$ (by $A_0$-algebra automorphisms), then $A^G$
-is a finitely generated $A_0$-algebra too.
-\end{corollary}
-\begin{proof} 
-This follows because $A$ is \textbf{integral} over $A^G$; indeed, $x \in A$
-satisfies the polynomial equation
-\[ \prod_{g \in G} (T - \sigma x);\]
-this polynomial is $G$-invariant, and consequently so are the coefficients
-of $T$.
-Now apply the previous theorem.
-
-\end{proof} 
 
 
 
+\subsection{Integral closure}
 
-\section{Integral closure}
+Let $R, R'$ be rings.
 \begin{definition}
 If $R \subset R'$, then the set $S = \left\{x \in R': x \ \mathrm{is \
 integral  }\right\}$ is called the \textbf{integral closure} of $R$ in $R'$. We
@@ -440,10 +357,8 @@ Alternatively, some people say that $R$ is \textbf{normal} in this case.
 The integers $\mathbb{Z} \subset \mathbb{C}$ have as integral closure the set
 of complex numbers $x$ satisfying a monic polynomial with integral
 coefficients.  This set is called the set of \textbf{algebraic integers}.
-\end{example}
 
-\begin{example}
-$i$ is an algebraic integer because it satisfies the equation $X^2 +1 = 0$.
+For instance, $i$ is an algebraic integer because it satisfies the equation $X^2 +1 = 0$.
 $\frac{1 - \sqrt{-3}}{2}$ is an algebraic integer, as we talked about last
 time; it is a sixth root of unity.  On the other hand, $\frac{1+\sqrt{-5}}{2}$
 is not an algebraic integer.
@@ -457,13 +372,13 @@ closed.
 \begin{proof}
 We will build on this proof later. Here is the point. Suppose $\frac{a}{b}
 \in \mathbb{Q}$ satisfying an equation
-\[ p(a/b) = 0, \quad p(t) = t^n + c_1 t^{n-1} + \dots + c_0 , \ \forall c_i \in
+\[ P(a/b) = 0, \quad P(t) = t^n + c_1 t^{n-1} + \dots + c_0 , \ \forall c_i \in
 \mathbb{Z}.\]
 Assume that $a,b$ have no common factors; we must prove that $b$ has no prime
 factors, so is $\pm 1$.
 If $b$ had a prime factor, say $q$, then we must obtain a contradiction.
 
-We interrupt with a fancy definition.
+We interrupt with a definition.
 \begin{definition}
 The \textbf{valuation at $q$} (or \textbf{$q$-adic valuation}) is the map
 $v_q: \mathbb{Q}^* \to \mathbb{Z}$ is the
@@ -474,38 +389,57 @@ In general, this just counts the number of factors of $q$ in the expression.
 
 
 Note the general property that
-\[ v_q(x+y) \geq \min( v_q(x), v_q(y)) . \]
+\begin{equation} \label{val1} v_q(x+y) \geq \min( v_q(x), v_q(y)) .
+\end{equation}
 If $x,y$ are both divisible by some power of $q$, so is $x+y$; this is the
 statement above. We also have the useful property
-\[ v_q(xy) = v_q(x) + v_q(y).  \]
+\begin{equation} \label{val2} v_q(xy) = v_q(x) + v_q(y).  \end{equation}
 
 
 
 
 Now return to the proof that $\mathbb{Z}$ is normal. We would like to show that
-\[ v_q(a/b) \geq 0.  \]
-This will prove that $b$ is not divisible by $q$.
+\( v_q(a/b) \geq 0.  \)
+This will prove that $b$ is not divisible by $q$. When we show this for all
+$q$, it will follow that $a/b \in \mathbb{Z}$.
 
-We are assuming that $p(a/b) = 0$. In particular,
+We are assuming that $P(a/b) = 0$. In particular,
 \[ \left( \frac{a}{b}  \right)^n = -c_1 \left( \frac{a}{b}  \right)^{n-1} -
 \dots - c_0.  \]
 Apply $v_q$ to both sides:
-\[ n v_q ( a/b) \geq \min_i v_q( c_i (a/b)^{n-i}).  \]
+\[ n v_q ( a/b) \geq \min_{i>0} v_q( c_i (a/b)^{n-i}).  \]
 Since the $c_i \in \mathbb{Z}$, their valuations are nonnegative. In
 particular, the right hand side is at least
-\[ \min_i  (n-i) v_q(a/b). \]
-This cannot happen if $v_q(a/b)<0$, because $n-i < n$ for each $i$.
+\[ \min_{i>0}  (n-i) v_q(a/b). \]
+This cannot happen if $v_q(a/b)<0$, because $n-i < n$ for each $i>0$.
 \end{proof}
 
-This argument applies more generally. If $R \subset K$ is a subring ``defined
-by valuations,'' then $R$ is integrally closed in $K$.  We will talk more about
-this, and about valuation rings, next time.
-$\mathbb{Z}$ is defined by valuations in the sense that it consists of the
-elements of $\mathbb{Q}$ which have all nonnegative valuations.
+This argument applies more generally. If  $K$ is a field, and $R \subset K$ is
+a subring  ``defined
+by valuations,'' such as the $v_q$, then $R$ is integrally closed in its
+quotient field.
+More precisely, 
+note the reasoning of the previous example: the key idea was that $\mathbb{Z}
+\subset \mathbb{Q}$ was characterized by the rational numbers $x$ such that
+$v_q(x) \geq 0$ for all primes $q$.
+We can abstract this idea as follows. If there exists a family of functions $\mathcal{V}$ from $K^*
+\to \mathbb{Z}$ (such as
+$\left\{v_q: \mathbb{Q}^* \to \mathbb{Z}\right\}$) satisfying \eqref{val1} and
+\eqref{val2} above such that $R$ is
+the set of elements such that $v(x) \geq 0, v \in \mathcal{V}$ (along with
+$0$), then $R$ is integrally closed in $K$.
+We will talk more about
+this, and about valuation rings, below.
 
-We will finish this lecture by discussing what it means to be integrally closed
-geometrically.
 
+\subsection{Geometric examples}
+
+Let us now describe the geometry of a non-integrally closed ring.
+Recall that finitely generated (reduced) $\mathbb{C}$-algebras are supposed to
+correspond to affine algebraic varieties. A \emph{smooth} variety (i.e., one
+that is a complex manifold) will always correspond to an integrally closed
+ring (though this relies on a deep result that a regular local ring is a
+factorization domain, and consequently integrally closed): non-normality is a sign of singularities.
 \begin{example}
 Here is a ring which is not integrally closed. Take  $\mathbb{C}[x, y]/(x^2
 - y^3)$.
@@ -548,7 +482,7 @@ Assume that $0 \in X$, i.e. each $f_i$ vanishes at the origin.
 Let $R$ be the ring of germs of holomorphic functions $0$, in other words
 holomorphic functions from small open neighborhoods of zero.  Each of these
 $f_i$ becomes an  element of $R$.  The ring
-\[ R/(\left\{f_i\right\} ) \]
+\( R/(\left\{f_i\right\} ) \)
 is called the ring of germs of holomorphic functions on $X$ at zero.
 
 Assume that $R$ is a domain.  This assumption, geometrically, means that near
@@ -585,13 +519,17 @@ We shall see that under conditions of integrality, more can be said.
 
 \subsection{Lying over}
 
+In general, given a morphism of algebraic varieties $f: X \to Y$, the image of
+a closed subset $Z \subset X$ is far from closed.  For instance, a regular function $f: X \to \mathbb{C}$ 
+that is a closed map would have to be either surjective or constant (if $X$ is
+connected, say).
+Nonetheless, under integrality hypotheses, we can say more.
+
 \begin{proposition}[Lying over]
-If $\phi: R \to R'$ is an injective integral morphism, then the induced map
-\[ \spec R' \to \spec R  \]
-is surjective.
-If $\phi$ is only assumed integral, then the morphism $\spec R'\to \spec R$ is
-still closed.
-\end{proposition}
+If $\phi: R \to R'$ is an integral morphism, then the induced map
+\[  \spec R' \to \spec R  \]
+is a closed map; it is surjective if $\phi$ is injective.
+ \end{proposition}
 
 Another way to state this, without mentioning $\spec R'$, is that if
 $\mathfrak{p} \subset R$ is prime, then there exists $\mathfrak{q} \subset R'$
