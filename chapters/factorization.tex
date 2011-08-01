@@ -33,14 +33,20 @@ A nonzero element $x \in R$ is \textbf{prime} if $(x)$ is a prime ideal.
 In other words, $x$ is not a unit, and if $x \mid ab$, then either $x \mid a$
 or $x \mid b$. 
 
+We restate the earlier \cref{earlyUFD} slightly.
 \begin{definition} 
-A domain $R$ is \textbf{factorial} if every nonzero noninvertible element $x \in R$ factors as a
+A domain $R$ is \textbf{factorial} (or a \textbf{unique factorization domain},
+or a \textbf{UFD}) if every nonzero noninvertible element $x \in R$ factors as a
 product $ x_1 \dots x_n$ where each $x_i$ is prime. 
 \end{definition}
 
-A simple observation:
-\begin{proposition} 
-This factorization is essentially unique, that is up to multiplication by units.
+Recall that a \emph{principal ideal domain} is a UFD (\cref{PIDUFD}), as is a
+\emph{euclidean} domain (\cref{EDPID}); actually, a euclidean domain is  a PID.
+Previously, we imposed something seemingly slightly stronger: that the
+factorization be unique. We next show that we get that for free.
+
+\begin{proposition}[The fundamental theorem of arithmetic]
+This factorization is essentially unique, that is, up to multiplication by units.
 \end{proposition} 
 \begin{proof} Let $x \in R$ be a nonunit. 
 Say $x = x_1 \dots x_n = y_1 \dots y_m$ were two different prime
@@ -56,25 +62,182 @@ and then we can induct on the number of factors.
 
 The motivating example is of course:
 \begin{example} 
-$\mathbb{Z}$ is factorial. This is the fundamental theorem of arithmetic. 
+$\mathbb{Z}$ is factorial. This is the fundamental theorem of arithmetic, and
+follows because $\mathbb{Z}$ is a euclidean domain.  The same observation
+applies to a polynomial ring over a field by \cref{polyringED}.
 \end{example} 
 
 \subsection{Gauss's lemma}
 
-\begin{theorem} 
+We now show that factorial rings are closed under the operation of forming
+polynomial rings.
+
+\begin{theorem}[Gauss's lemma]
 If $R$ is factorial, so is the polynomial ring $R[X]$.
 \end{theorem} 
+In general, if $R$ is a PID, $R[X]$ will \emph{not} be a PID. For instance,
+$\mathbb{Z}[X]$ is not a PID: the prime ideal $(2, X)$ is not principal.
+
 \begin{proof} 
-\add{proof}
+In the course of this proof, we shall identify the prime elements in $R[X]$.
+We start with a lemma that allows us to compare factorizations in $K[X]$ (for
+$K$ the quotient field) and $R[X]$; the advantage is that we already know the
+polynomial ring over a \emph{field} to be  a UFD.
+\begin{lemma} Suppose $R$ is a unique factorization domain with
+quotient field $K$.
+Suppose $f \in R[X]$ is irreducible in $R[X]$ and there is no nontrivial common divisor of
+the coefficients of $f$. Then $f$ is irreducible in $K[X]$.
+\end{lemma} 
+With this in mind, we say that a polynomial in $R[X]$ is \textbf{primitive} if
+the coefficients have no common divisor in $R$.
+
+\begin{proof} Indeed, suppose we had a factorization
+\[ f = gh,  \quad g, h \in K[X], \]
+where $g,h$ have degree $\geq 1$. 
+Then we can clear denominators to find a factorization
+\[ rf  = g' h'  \]
+where $r \in R - \left\{0\right\}$ and $g', h' \in R[X]$. By clearing
+denominators as little as possible, we may assume that $g',h'$ are primitive. 
+To be precise, we divide $g', h'$ by their \emph{contents.} Let us define:
+
+\begin{definition} 
+The \textbf{content} $\cont (f)$ of a polynomial $f \in R[X]$ is the greatest common
+divisor of its coefficients.  The content of an element $f$ in $K[X]$ is defined
+by considering $r \in R$ such that $rf \in R[X]$, and taking $\cont(rf)/r$.
+This is well-defined, modulo elements of $R^*$, and we have $\cont(sf) = s \cont f$ if $s \in K$.
+\end{definition}
+
+To say that the content lies in $R$ is to say that the polynomial is in $R[X]$;
+to say that the content is a unit is to say that the polynomial is primitive. 
+Note that a monic polynomial in $R[X]$ is primitive.
+
+So we have:
+\begin{lemma} 
+Any element of $K[X]$ is a product of $\cont(f)$ and something primitive in
+$R[X]$.
+\end{lemma} 
+\begin{proof} 
+Indeed, $f/\cont(f)$ has content a unit.  It therefore cannot have anything in the
+denominator. Indeed, if it had a term $r/p^i X^n$ where $r ,p \in R$ and $p
+\nmid r$ is prime, then the content would divide $r/p^i$. It thus could not be
+in $R$. 
+\end{proof} 
+
+\begin{lemma} 
+$\cont(fg) = \cont(f) \cont(g)$ if $f,g \in K[X]$. 
+\end{lemma} 
+\begin{proof} 
+By dividing $f,g$ by their contents, it suffices to show that the product of
+two primitive polynomials in $R[X]$ (i.e. those with no common divisor of all
+their coefficients) is itself primitive. Indeed, suppose $f,g$ are primitive
+and $p \in R$ is a prime. Then $\overline{f}, \overline{g} \in R/(p)[X]$ are
+nonzero. Their product $\overline{f}\overline{g}$ is also not zero because
+$R/(p)[X]$ is a domain, $p$ being prime. In particular, $p$ is not a common
+factor of the coefficients of $fg$. Since $p$ was arbitrary, this completes the
+proof.
+\end{proof} 
+
+So return to the main proof. We know that $f =  gh$. We divided $g,h$ by their
+contents to get $g', h' \in R[X]$. We had then
+\[ r f = g' h', \quad r \in K^*.  \]
+Taking the contents, and using the fact that $f, g', h'$ are primitive, we have then:
+\[ r = \cont(g') \cont(h') = 1 \quad \mathrm{(modulo \ } R^*).  \]
+But then $f = r^{-1} g' h'$ shows that $f$ is not irreducible in $R[X]$,
+contradiction. 
+\end{proof} 
+
+
+Let $R$ be a ring. Recall that an element is \textbf{irreducible} if it admits
+no nontrivial factorization. The product of an irreducible element and a unit
+is irreducible.
+Call a ring \textbf{finitely irreducible} if every element in the ring admits a
+factorization into finitely many irreducible elements. 
+
+\begin{lemma} 
+A ring $R$ is finitely irreducible if every ascending sequence of
+\emph{principal} ideals in $R$ stabilizes.
+\end{lemma} 
+A ring such that every ascending sequence  of ideals (not necessarily
+principal) stabilizes is said to be \emph{noetherian;} this is a highly useful
+finiteness condition on a ring.
+\begin{proof} 
+Suppose  $R$ satisfies the ascending chain condition on principal ideals. Then
+let $x \in R$. We would like to show it can be factored as a product of
+irreducibles. 
+So suppose $x$ is not the product of finitely many irreducibles. In particular,
+it is reducible: $x = x_1 x_1'$, where neither factor is a unit. One of this
+cannot be written as a finite product of irreducibles. Say it is $x_1$.
+Similarly, we can write $x_1 = x_2 x_2''$ where one of the factors, wlog $x_2$,
+is not the product of finitely many irreducibles. Repeating inductively gives
+the ascending sequence
+\[ (x) \subset (x_1) \subset (x_2) \subset \dots,  \]
+and since each factorization is nontrivial, the inclusions are each nontrivial.
+This is a contradiction.
+\end{proof} 
+
+\begin{lemma} 
+Suppose $R$ is a UFD. Then every ascending sequence of principal ideals in
+$R[X]$ stabilizes.  In particular, $R[X]$ is finitely irreducible.
+\end{lemma} 
+\begin{proof} 
+Suppose $(f_1) \subset (f_2) \subset \dots \in R[X]$. Then each $f_{i+1} \mid
+f_{i}$. In particular, the degrees of $f_i$ are nonincreasing, and consequently
+stabilize. Thus for $i \gg 0$, we have $\deg f_{i+1} = \deg f_i$.
+We can thus assume that all the degrees are the same. In this case, if $i \gg
+0$ and $k>0$, 
+$f_{i}/f_{i+k} \in R[X]$ must actually lie in $R$ as $R$ is a domain. 
+In particular, throwing out the first few elements in the sequence if
+necessary, it follows that our sequence looks like
+\[ f, f/r_1, f/(r_1r_2), \dots \]
+where the $r_i \in R$. However, we can only continue this a finite amount of
+time before the $r_i$'s will have to become units since $R$ is a UFD. (Or $f
+ = 0$.) 
+So the sequence of ideals stabilizes. 
+\end{proof} 
+
+\begin{lemma} 
+Every element in $R[X]$ can be factored into a product of irreducibles.
+\end{lemma} 
+\begin{proof} Now evident from the preceding lemmata.
+\end{proof} 
+Suppose $P$ is an irreducible element in $R[X]$. I claim that $P$ is prime.
+There are two cases:
+\begin{enumerate}
+\item $P \in R$ is a prime in $R$. Then we know that $P \mid f$ if and only if
+the coefficients of $f$ are divisible by $P$. In particular, $P \mid f$ iff $P
+\mid \cont (f)$. It is now clear that $P \mid fg$ if and only if $P$ divides
+one of $\cont(f), \cont(g)$ (since $\cont(fg) = \cont(f) \cont(g)$). 
+\item $P$ does not belong to $R$. Then $P$ must have content a unit or it would
+be divisible by its content. 
+So $P$ is irreducible in $K[X]$ by the above reasoning. 
+
+Say we have an expression
+\[ P \mid fg, \quad f,g \in R[X].  \]
+Since $P$ is irreducible, hence prime, in the UFD (even PID) $K[X]$, we have
+that $P $ divides one of $f,g$ in $K[X]$. Say we can write
+\[ f = q P , q \in K[X].  \]
+Then taking the content shows that $\cont(q) = \cont(f) \in R$, so $q \in
+R[X]$. It follows that $P \mid f$ in $R[X]$. 
+\end{enumerate}
+
+We have shown that every element in $R[X]$ factors into a product of prime
+elements. From this, it is clear that $R[X]$ is a UFD.
 \end{proof} 
 
 
 \begin{corollary} 
 The polynomial ring $k[X_1, \dots, X_n]$ for $k$ a field is factorial.
 \end{corollary} 
+\begin{proof} 
+Induction on $n$.
+\end{proof} 
 
 \subsection{Factoriality and height one primes}
 
+We now want to give a fancier criterion for a ring to be a UFD, in terms of the
+lattice 
+structure on $\spec R$. This will require a notion from dimension theory (to be
+developed more fully later).
 \begin{definition} 
 Let $R$ be a domain. A prime ideal $\mathfrak{p} \subset R$ is said to be of
 \textbf{height one} if $\mathfrak{p}$ is minimal among ideals
