@@ -1544,7 +1544,21 @@ polynomial function is algebraic, and such polynomials separate points.
 \end{proof}
 
 \section{Serre's criterion and its variants}
+
+We are going to now prove a useful criterion for a noetherian ring to be a
+product of 
+normal domains, due to Serre: it states that a (noetherian) ring is normal if
+and only if most of the localizations at prime ideals are discrete valuation
+rings (this corresponds to the ring being \emph{regular} in codimension one,
+though we have not defined regularity yet) and a more technical condition that
+we will later interpret in terms of \emph{depth.} One advantage of this
+criterion is that it does \emph{not} require the ring to be a product of
+domains a priori.
+
 \subsection{Reducedness}
+
+There is a ``baby'' version of Serre's criterion for testing whether a ring is
+reduced, which we star with.
 
 Recall:
 
@@ -1679,9 +1693,6 @@ $K(R) = \prod_{\mathfrak{p}_i \ \mathrm{minimal}} R_{\mathfrak{p}_i}$.
 \end{proposition}
 
 So $K(R)$ is the product of fields into which $R$ embeds.
-We will give a proof of this next time.
-\lecture{10/18}
-\subsection{Total rings of fractions}
 
 We now continue the discussion begun last time. Let $R$ be noetherian and $M$ a
 finitely generated $R$-module. We would like to understand very rough features
@@ -1817,7 +1828,7 @@ So to check that something belongs to $R$, we just have to check that in a
 \emph{certain set of localizations}.
 
 Let us state this as a result:
-\begin{theorem}[Krull intersection theorem, preliminary version]
+\begin{theorem} \label{notreallykrullthm}
 If $R$ is a noetherian domain
 \[ R = \bigcap_{\mathfrak{p} \in \ass(R/s), s \in R - 0}
 R_{\mathfrak{p}}  \]
@@ -1837,14 +1848,14 @@ associated primes of $R/s$ are height one).
 \end{theorem}
 
 Here is the non-preliminary version of the Krull theorem.
-\begin{theorem}[Krull]
+\begin{theorem}[Algebraic Hartogs]
 Let $R$ be a noetherian integrally closed ring. Then
 \[ R = \bigcap_{\mathfrak{p} \ \mathrm{height \ one}} R_{\mathfrak{p}},  \]
 where each $R_{\mathfrak{p}}$ is a DVR.
 \end{theorem}
 
 \begin{proof}
-Now evident from the earlier Krull theorem and Serre's criterion.
+Now evident from the earlier result \cref{notreallykrullthm} and Serre's criterion.
 \end{proof}
 Earlier in the class, we proved that a domain was integrally closed if and only
 if it could be described as an intersection of valuation rings. We have now

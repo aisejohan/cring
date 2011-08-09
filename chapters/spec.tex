@@ -481,7 +481,8 @@ Actually, we will do the opposite: the following condition will guarantee that
 the ideals maximal at \emph{not} being in $\mathcal{F}$ are prime. 
 
 \begin{definition} \label{okafamily}
-$\mathcal{F}$ is called an \textbf{Oka family} if whenever $I \subset R$ is an
+The family $\mathcal{F}$ is called an \textbf{Oka family} if $R \notin
+\mathcal{F}$ (where $R$ is considered as an ideal) and whenever $I \subset R$ is an
 ideal and $(I:a), (I,a) \in \mathcal{F}$ (for some $a \in R$), then $I \in
 \mathcal{F}$.
 \end{definition} 
@@ -522,7 +523,7 @@ ideals, then any maximal element of the complement of $\mathcal{F}$ is prime.
 \begin{proof} 
 Suppose $I \notin \mathcal{F}$ is maximal with respect 
 to not being in $\mathcal{F}$
-but $I$ is  not prime.
+but $I$ is  not prime. Note that $I \neq R$ by hypothesis.
 Then there is $a \in R$ such that $(I:a), (I,a)$ both strictly contain $I$,
 so they must belong to $\mathcal{F}$.
 Indeed, we can find $a,b \in R - I$ with $ab \in I$; it follows that $(I,a)
