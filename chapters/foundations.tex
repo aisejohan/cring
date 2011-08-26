@@ -19,7 +19,7 @@ $\mathbb{Z}[\zeta]$ is still a \emph{ring} where we have notions of primes and
 factorization, just as in $\mathbb{Z}$, we will see that prime factorization
 is not always unique in $\mathbb{Z}[\zeta]$. (If it were always unique, then we
 could at least one important case of Fermat's last theorem rather easily; see
-\cref{}.)
+the introductory chapter of \cite{Wa97} for an argument.)
 
 For instance, consider the ring
 $\mathbb{Z}[\sqrt{-5}]$ of complex numbers of the form $a + b\sqrt{-5}$, where
@@ -29,8 +29,9 @@ Both of these are factorizations of 6 into irreducible factors, but they
 are fundamentally different.
 
 In part, commutative algebra grew out of the need to understand this failure
-of unique factorization more generally.
-The most natural context for this is that of a \emph{ring}, which we now
+of unique factorization more generally. We shall have more to say on
+factorization in the future, but here we just focus on the formalism.
+The basic definition for studying this problem is that of a \emph{ring}, which we now
 introduce. 
 
 \section{Commutative rings and their ideals}
@@ -60,7 +61,8 @@ element and is closed under addition and multiplication.
 
 A \emph{noncommutative} (i.e. not necessarily commutative) ring is one
 satisfying the above conditions, except possibly for the commutativity
-requirement $xy = yx$. We shall not work too much with noncommutative rings in
+requirement $xy = yx$. For instance, there is a noncommutative ring of
+$2$-by-$2$ matrices over $\mathbb{C}$. We shall not work too much with noncommutative rings in
 the sequel, though many of the basic results (e.g. on modules) do generalize.
 
 
@@ -91,6 +93,10 @@ that there exists $v \in R$ with $uv = 1$. Prove that $v$ is necessarily
 unique.
 \end{exercise}
 
+\begin{exercise} \label{ringoffns}
+Let $X$ be a set and $R$ a ring. The set $R^X$ of functions $f:X \to R$ is a
+ring. \end{exercise}
+
 \subsection{The category of rings}
 The class of rings forms a category. Its morphisms are called ring homomorphisms.
 
@@ -117,7 +123,7 @@ this, we introduce:
 \begin{definition} 
 Given a ring $A$, an \textbf{$A$-algebra} is a ring $R$ together with a
 morphism of rings (a \textbf{structure morphism}) $A \to R$. There is a category of $A$-algebras, where a
-morphism between $A$-algebras is required to commute with the structure
+morphism between $A$-algebras is a ring-homomorphism that is required to commute with the structure
 morphisms. 
 \end{definition} 
 
@@ -125,6 +131,14 @@ So if $R$ is an $A$-algebra, then $R$ is not only a ring, but there is a way
 to multiply elements of $R$ by elements of $A$ (namely, to multiply $a \in A$
 with $r \in R$, take the image of $a $ in $R$, and multiply that by $r$).
 For instance, any ring is an algebra over any subring.
+
+We can think of an $A$-algebra as an arrow $A \to R$, and a morphism from $A
+\to R$ to $A \to S$ as a commutative diagram
+\[ \xymatrix{
+R \ar[rr] & & S \\
+& \ar[lu] A \ar[ru]
+}\]
+This is a special case of the \emph{undercategory} construction.
 
 If $B$ is an $A$-algebra and $C$ a $B$-algebra, then $C$ is an $A$-algebra in a
 natural way. Namely, by assumption we are given morphisms of rings $A \to B$
@@ -136,46 +150,57 @@ as an $A$-algebra.
 Every ring is a $\mathbb{Z}$-algebra in a natural and unique way. There is a
 unique map (of rings) $\mathbb{Z} \to R$ for any ring $R$ because a
 ring-homomorphism is required to preserve the identity. 
+In fact, $\mathbb{Z}$ is the \emph{initial object} in the category of rings:
+this is a restatement of the preceding discussion.
 \end{example}
 
 \begin{example} 
 If $R$ is a ring, the polynomial ring $R[x]$ is an $R$-algebra in a natural
-manner.
+manner. Each element of $R$ is naturally viewed as a ``constant polynomial.''
 \end{example} 
 
 \begin{example} 
 $\mathbb{C}$ is an $\mathbb{R}$-algebra.
 \end{example} 
 
-
-After this series of technical definitions, we shall give several more  examples.
+Here is an example that generalizes the case of the polynomial ring.
 \begin{example} 
 \label{groupring}
 If $R$ is a ring and $G$ a commutative monoid,\footnote{That is, there is a
 commutative multiplication on $G$ with an identity element, but not
 necessarily with inverses.} then the set
 $R[G]$ of formal finite sums $\sum r_i g_i$ with $r_i \in R, g_i \in G$ is a
-commutative ring, called the \textbf{group ring}. The case of $G =
+commutative ring, called the \textbf{moniod ring} or \textbf{group ring} when
+$G$ is a group.
+Alternatively, we can think of elements of $R[G]$ as infinite sums $\sum_{g \in
+G} r_g g$ with $R$-coefficients, such that almost all the $r_g$ are zero.
+We can define the multiplication law such that 
+\[ \left(\sum r_g g\right)\left( \sum s_g g\right) = 
+\sum_h \left( \sum_{g g' = h} r_g s_{g'}  \right) h.
+\]
+This process is called \emph{convolution.} We can think of the multiplication
+law as extended the group multiplication law (because the product of the
+ring-elements corresponding to $g, g'$ is the ring element corresponding to
+$gg' \in G$).
+
+The case of $G =
 \mathbb{Z}_{\geq 0}$ is the polynomial ring. 
+In some cases, we can extend this notion to formal infinite sums, as in the
+case of the formal power series ring; see \cref{powerseriesring} below.
 \end{example} 
 
 \begin{exercise}
 \label{integersinitial}
 The ring $\mathbb{Z}$ is an \emph{initial object} in the category of rings.
 That is, for any ring $R$, there is a \emph{unique} morphism of rings
-$\mathbb{Z} \to R$.
+$\mathbb{Z} \to R$. We discussed this briefly earlier; show more generally that
+$A$ is the initial object in the category of $A$-algebras for any ring $A$.
 \end{exercise} 
 
 \begin{exercise} 
 The ring where $0=1$ (the \textbf{zero ring}) is a \emph{final object} in the category of rings. That
 is, every ring admits a unique map to the zero ring.	
 \end{exercise} 
-
-\begin{exercise} 
-Let $X$ be a set and $R$ a ring. The set $R^X$ of functions $f:X \to R$ is a
-ring. If $S \subset X$, then the set of functions $f: X \to R$ that vanish on
-$S$ is an ideal.
-\end{exercise}
 
 \begin{exercise}
 \label{corepresentable}
@@ -191,6 +216,56 @@ representable. (Hint: use a suitable polynomial ring.)
 \end{exercise} 
 
 
+The category of rings is both complete and cocomplete. To show this in full
+will take more work, but we can here describe what 
+certain cases (including all limits) look like.
+As we saw in \cref{corepresentable}, the forgetful functor $\mathbf{Rings} \to
+\mathbf{Sets}$ is corepresentable. Thus, if we want to look for limits in the
+category of rings, here is the approach we should follow: we should take the
+limit first of the underlying sets, and then place a ring structure on it in
+some natural way.
+
+\begin{example}[Products]
+The \textbf{product} of two rings $R_1, R_2$ is the set-theoretic product $R_1
+\times R_2$ with the multiplication law $(r_1, r_2)(s_1, s_2) = (r_1 s_1, r_2
+s_2)$. It is easy to see that this is a product in the category of rings. More
+generally, we can easily define the product of any collection of rings.
+\end{example} 
+
+To describe the coproduct is more difficult: this will be given by the
+\emph{tensor product} to be developed in the sequel.
+
+\begin{example}[Equalizers]
+Let $f, g: R \rightrightarrows S$ be two ring-homomorphisms. Then we can
+construct the \textbf{equalizer} of $f,g$ as the subring of $R$ consisting of
+elements $x \in R$ such that $f(x) = g(x)$. This is clearly a subring, and one
+sees quickly that it is the equalizer in the category of rings.
+\end{example} 
+
+As a result, we find:
+\begin{proposition} 
+$\mathbf{Rings}$ is complete.
+\end{proposition} 
+
+As we said, we will not yet show that $\mathbf{Rings}$ is cocomplete. But we
+can describe filtered colimits.  In fact, filtered colimits will be constructed
+just as in the set-theoretic fashion. That is, the forgetful functor
+$\mathbf{Rings} \to \mathbf{Sets}$ commutes with \emph{filtered} colimits
+(though not with general colimits). 
+\begin{example}[Filtered colimits]
+Let $I$ be a filtering category, $F: I \to \mathbf{Rings}$ a functor. We can
+construct $\varinjlim_I F$ as follows. An object is an element $(x,i)$ for $i
+\in I$ and $x \in F(i)$, modulo equivalence; we say that $(x, i)$ and $(y, j)$
+are equivalent if there is a $k \in I$ with maps $i \to k, j \to k$ sending
+$x,y$ to the same thing in the ring $F(k)$.
+
+To multiply $(x, i)$ and $(y,j)$, we find
+some $k \in I$ receiving maps from $i, j$, and replace $x,y$ with elements of
+$F(k)$. Then we multiply those two in $F(k)$. One easily sees that this is a
+well-defined multiplication law that induces a ring structure, and that what we
+have described is in fact the filtered colimit.
+
+\end{example} 
 \subsection{Ideals}
 
 An \emph{ideal} in a ring is  analogous to a normal subgroup of a
@@ -222,9 +297,24 @@ called the ideal \textbf{generated} by $x_1, \ldots, x_n$.  A
 \begin{example}
 Ideals generalize the notion of divisibility.  Note that
 in $\mathbb{Z}$, the set of elements divisible by $n \in \mathbb{Z}$ forms the
-ideal $I = n\mathbb{Z} = (n)$.
+ideal $I = n\mathbb{Z} = (n)$. We shall see that every ideal in $\mathbb{Z}$ is
+of this form: $\mathbb{Z}$ is a \emph{principal ideal domain.}
 \end{example}
 
+Indeed, one can think of an ideal as axiomatizing the notions that
+``divisibility'' ought to satisfy. Clearly, if two elements are divisible by
+something, then their sum and product should also be divisible by it. More
+generally, if an element is divisible by something, then the product of that
+element with anything else should also be divisible. In general, we will extend
+(in the chapter on Dedekind domains) much of the ordinary arithmetic with
+$\mathbb{Z}$ to arithmetic with \emph{ideals} (e.g. unique factorization).
+
+\begin{example}
+We saw in \cref{ringoffns}
+that if $X$ is a set and $R$ a ring, then the set $R^X$ of functions $X \to R$
+is naturally a ring. If $Y \subset X$ is a subset, then the subset of functions
+vanishing on $Y$ is an ideal.
+\end{example}
 \begin{exercise} 
 Show that the ideal $(2, 1 + \sqrt{-5}) \subset \mathbb{Z}[\sqrt{-5}]$ is not
 principal.
@@ -284,6 +374,18 @@ follows.
 \end{proof}
 \end{proposition}
 
+\begin{exercise} 
+There is a \emph{contravariant} functor $\mathbf{Rings} \to \mathbf{Sets}$ that
+sends each ring to its set of ideals. Given a map $f: R \to S$ and an ideal $I
+\subset S$, we define an ideal $f^{-1}(I) \subset R$; this defines the
+functoriality. 
+This functor is not representable, as it does not send the initial object
+in $\mathbf{Rings} $ to the 
+one-element set. We will later use a \emph{subfunctor} of this functor, the
+$\spec$ construction.
+\end{exercise} 
+
+
 \subsection{Quotient rings}
 
 We next describe a procedure for producing new rings from old ones. 
@@ -302,6 +404,11 @@ In particular, $R/I$ is a ring, under multiplication $(a+I)(b+I) = ab+I$.
 \begin{definition} 
 $R/I$ is called the \textbf{quotient ring} by the ideal $I$.
 \end{definition} 
+
+The process is analogous to quotienting a group by a normal subgroup: again,
+the point is that the equivalence relation induced on the algebraic
+structure---either the group or the ring---by the subgroup (or ideal)---is
+compatible with the algebraic structure, which thus descends to the quotient.
 
 The
 reduction map $\phi \colon R \to R/I$ is a ring-homomorphism with a
