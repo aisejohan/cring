@@ -1286,13 +1286,48 @@ other.
 The reason this result is so important is that, as we shall see, it will imply
 that in categories such as the category of $R$-modules, filtered colimits
 preserve \emph{exactness}. 
+\begin{proof} 
+Let us show that filtered colimits commute with (finite) products in the
+category of sets. The case of an equalizer is similar, and finite limits can be
+generated from products and equalizers.
 
-\add{proofs of these}
+So let $I$ be a filtered category, and $\left\{A_i\right\}_{i \in I},
+\left\{B_i\right\}_{i \in I}$
+be functors from $I \to \mathbf{Sets}$. 
+We want to show that 
+\[ \varinjlim_I (A_i \times B_i) = \varinjlim_I A_i \times \varinjlim_I B_i . \]
+To do this, note first that there is a map in the direction $\to$ because of
+the natural maps $\varinjlim_I (A_i \times B_i) \to \varinjlim_I A_i$ and
+$\varinjlim_I (A_i \times B_i) \to \varinjlim_I B_i$.
+We want to show that this is an isomorphism.
+
+Now we can write the left side as the disjoint union $\bigsqcup_I (A_i \times
+B_i)$ modulo the equivalence relation that $(a_i, b_i)$ is related to $(a_j,
+b_j)$ if there exist morphisms $i \to k, j \to k$ sending $(a_i, b_i), (a_j,
+b_j)$ to the same object in $A_k \times B_k$.
+For the left side, we have to work with pairs: that is, an element of 
+ $\varinjlim_I A_i \times \varinjlim_I B_i$ consists of a pair $(a_{i_1},
+ b_{i_2})$
+ with two pairs $(a_{i_1}, b_{i_2}), (a_{j_1}, b_{j_2})$ equivalent if there exist
+ morphisms $i_1,j_1 \to k_1 $ and $i_2,  j_2 \to k_2$ such that both have the
+ same image in $A_{k_1} \times A_{k_2}$. It is easy to see that these amount to
+ the same thing, because of the filtering condition: we can always modify an
+ element of $A_{i} \times B_{j}$ to some $A_{k} \times B_k$ for $k$ receiving
+ maps from $i, j$.
+\end{proof} 
+
+\begin{exercise} 
+Let $A$ be an abelian group, $e: A \to A$ an \emph{idempotent} operator, i.e.
+one such that $e^2 = e$. Show that $eA$ can be obtained as the filtered colimit
+of 
+\[ A \stackrel{e}{\to} A \stackrel{e}{\to} A \dots.  \]
+\end{exercise} 
 
 \subsection{The initial object theorem}
 
 We now prove a fairly nontrivial result, due to Freyd. This gives a sufficient
 condition for the existence of initial objects.
+We shall use it in proving the adjoint functor theorem below.
 
 Let $\mathcal{C}$ be a category. Then we recall that $A \in \mathcal{C}$ if
 for each $X \in \mathcal{C}$, there is a \emph{unique} $A \to X$.
@@ -1360,7 +1395,7 @@ i$ as maps $A' \to A$. But $i$ being a monomorphism, it follows that $si  =
 \end{proof}
 \end{proof}
 
-\begin{theorem}[Freyd]
+\begin{theorem}[Freyd] \label{initialobjectthm}
 Let $\mathcal{C}$ be a category admitting all small limits.\footnote{We shall
 later call such a category \textbf{complete}.} Then $\mathcal{C}$ has an initial
 object if and only if the following \textbf{solution set condition holds:}
@@ -1505,6 +1540,8 @@ where $h_X, h_{X'}$ lie in the category of contravariant functors $\mathcal{C}
 \to \mathbf{Sets}$.
 In other words, we have defined a \emph{covariant functor}
 \[ \mathcal{C} \to \mathbf{Fun}(\mathcal{C}^{op}, \mathbf{Sets}).  \]
+This is called the \emph{Yoneda embedding.} The next result states that the
+embedding is fully faithful.
 
 \begin{theorem}[Yoneda's lemma] If $X, X' \in \mathcal{C}$, then the map
 $\hom_{\mathcal{C}}(X, X') \to \hom(h_X, h_{X'})$ is a bijection. That is,
@@ -1518,6 +1555,10 @@ from a morphism $X \to X'$.
 
 \subsection{Representable functors}
 
+We use  the same notation of the preceding section: for a category
+$\mathcal{C}$ and $X \in \mathcal{C}$, we let $h_X$ be the contravariant
+functor $\mathcal{C} \to \mathbf{Sets}$ given by $Y \mapsto
+\hom_{\mathcal{C}}(Y, X)$.
 \begin{definition}
 A contravariant functor $F: \mathcal{C} \to \mathbf{Sets}$ is
 \textbf{representable} if it is naturally isomorphic to some $h_X$.
@@ -1596,6 +1637,41 @@ Eilenberg-MacLane spaces  $K(G,n)$.  See \cite{Ha02}.
 
 \subsection{Criteria for representability}
 
+Let $\mathcal{C}$ be a category.
+We saw in the previous subsection that a representable functor must send
+colimits to limits. 
+We shall now see that there is a converse under certain set-theoretic
+conditions.
+For simplicity, we start by stating the result for corepresentable functors.
+
+\begin{theorem}[(Co)representability theorem]
+Let $\mathcal{C}$ be a complete category, and let $F: \mathcal{C} \to
+\mathbf{Sets}$ be a covariant functor. Suppose $F$ preserves limits and satisfies the solution set condition: 
+there is a set of objects $\left\{Y_\alpha\right\}$ such that, for any $X \in
+\mathcal{C}$ and $x \in F(X)$, there is a morphism
+\[ Y_\alpha \to X  \]
+carrying some element of $F(Y_\alpha)$ onto $x$.
+
+Then $F$ is corepresentable.
+\end{theorem} 
+\begin{proof} 
+To $F$, we associate the following \emph{category} $\mathcal{D}$. An object of
+$\mathcal{D}$ is a pair $(x, X)$ where $x \in F(X)$ and $X \in \mathcal{C}$.
+A morphism between $(x, X)$ and $(y, Y)$ is a map
+\[ f:X \to Y  \]
+that sends $x$ into $y$ (via $F(f): F(X) \to F(Y)$).
+It is easy to see that $F$ is corepresentable if and only if there is an initla
+object in this category; this initial object is the ``universal object.''
+
+We shall apply the initial object theorem, \cref{initialobjectthm}. Let us first verify that
+$\mathcal{D}$ is complete; this follows because $\mathcal{C}$ is and $F$
+preserves limits. So, for instance, the product of $(x, X)$ and $(y, Y)$ is
+$((x,y), X \times Y)$; here $(x,y)$ is the element of $F(X) \times F(Y) = F(X
+\times Y)$.
+The solution set condition states that there is a weakly 
+initial family of objects, and the initial object theorem now implies that
+there is an initial object. 
+\end{proof} 
 \section{Adjoint functors}
 
 According to MacLane, ``Adjoint functors arise everywhere.'' We shall see
@@ -1816,4 +1892,16 @@ isomorphism, as abelianizing an abelian group does nothing.
 \subsection{Adjoints and (co)limits}
 One very pleasant property of functors that are left (resp. right) adjoints is
 that they preserve all colimits (resp. limits).
+
+\begin{proposition} \label{adjlimits}
+A left adjoint $F: \mathcal{C} \to \mathcal{D}$ preserves colimits. A right
+adjoint $G: \mathcal{D} \to \mathcal{C}$ preserves limits.
+\end{proposition} 
+
+As an example, the free functor from $\mathbf{Sets}$ to $\mathbf{AbGrp}$ is a
+left adjoint, so it preserves colimits. For instance, it preserves coproducts.
+This corresponds to the fact that if $A_1, A_2$ are sets, then $\mathbb{Z}[A_1
+\sqcup A_2]$ is naturally isomorphic to $\mathbb{Z}[A_1] \oplus
+\mathbb{Z}[A_2]$.
+
 

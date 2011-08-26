@@ -751,14 +751,19 @@ submodule of the direct product.
 \end{definition} 
 
 
-\begin{exercise} \label{productcoproduct}
+\begin{example} \label{productcoproduct}
 The direct product is a product in the category of modules, and the direct sum
-is a coproduct.
-\end{exercise} 
+is a coproduct. This is easy to verify: given maps $f_i: M \to M_i$, then we
+get get a unique map $f: M \to \prod M_i$ by taking the product in the category
+of sets. The case of a coproduct is dual: given maps $g_i: M_i \to N$, then we
+get a map $\bigoplus M_i \to N$ by taking the \emph{sum} $g$ of the $g_i$: on a
+family $(m_i) \in \bigoplus M_i$, we take $g(m_i) = \sum_I g_i(m_i)$; this is
+well-defined as almost all the $m_i$ are zero.
+\end{example} 
 
 \cref{productcoproduct} shows that the category of modules over a fixed
 commutative ring has products and coproducts. In fact, the category of modules
-is both complete and cocomplete (\cref{completecat}).
+is both complete and cocomplete (see \cref{completecat} for the definition).
 To see this, it suffices to show that (by
 \cref{coprodcoequalsufficeforcocomplete} and its dual) that this category
 admits equalizers and coequalizers.
@@ -776,6 +781,13 @@ Thus:
 If $R$ is a ring, the category of $R$-modules is complete and cocomplete.
 \end{proposition} 
 
+\begin{example} 
+Note that limits in the category of $R$-modules are calculated in the same way
+as they are for sets, but colimits are not. That is, the functor from
+$R$-modules to $\mathbf{Sets}$, the forgetful functor, preserves limits but not
+colimits. Indeed, we will see that the forgetful functor is a right adjoint
+(\cref{freeadj}), which implies it preserves limits (by \cref{adjlimits}).
+\end{example} 
 \subsection{Exactness}
 Finally, we introduce the notion of \emph{exactness}. 
 \begin{definition} \label{exactness}
@@ -1601,6 +1613,21 @@ index set $I$. The cardinality of $I$ is called the \textbf{rank}.
 \begin{example} 
 $R$ is the simplest example of a free module.
 \end{example} 
+
+Free modules have a \emph{universal property}.
+Namely, recall that if $M$ is an $R$-module, then to give a homomorphism 
+\[ R \to M  \]
+is equivalent to giving an element $m \in M$ (the image of $1$).
+By the universal product of the direct sum (which is the coproduct in the
+category of modules), it follows that to give a map
+\[ \bigoplus_I \to M  \]
+is the same as giving a map of \emph{sets} $I \to M$.
+In particular:
+\begin{proposition} \label{freeadj}
+The functor $I \mapsto \bigoplus_I R$ from $\mathbf{Sets}$ to
+$R$-modules is the \emph{left adjoint} to the forgetful functor from
+$R$-modules to $\mathbf{Sets}$.
+\end{proposition}
 
 The claim now is that the notion of ``rank'' is well-defined for a free
 module. To see this, we will have to use the notion 
