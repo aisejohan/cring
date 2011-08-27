@@ -473,37 +473,43 @@ fails to be regular.
 \subsection{Derivations and K\"ahler differentials} Let $R$ be a ring with the maximal ideal
 $\mathfrak{m}$. Then there is a $R/\mathfrak{m}$-vector space
 $\mathfrak{m}/\mathfrak{m}^2$. This is what we would like to think of as the
-``\textbf{cotangent space}'' of $\spec R$ at $\mathfrak{m}$. Intuitively, the
+``{cotangent space}'' of $\spec R$ at $\mathfrak{m}$. Intuitively, the
 cotangent space is what you get by differentiating functions which vanish at
 the point, but
 differentiating functions that vanish twice should give zero. This is the moral
 justification.
+(Recall that on a smooth manifold $M$, if $\mathcal{O}_p$ is the local ring of
+smooth functions defined in a neighborhood of $p \in M$, and $\mathfrak{m}_p
+\subset \mathcal{O}_p$ is the maximal ideal consisting of ``germs'' vanishing
+at $p$, then the cotangent space $T_p^* M$ is naturally
+$\mathfrak{m}_p/\mathfrak{m}_p^2$.)
 
 A goal might be to generalize this. What if you wanted to think about all
 points at once? We'd like to describe the ``cotangent bundle'' to $\spec R$ in
 an analogous way. Let's try and describe what would be a section to this
-cotangent bundle. Morally, a section of $\Omega^*_{\spec R}$ should be the same
+cotangent bundle. A section of $\Omega^*_{\spec R}$ should be the same
 thing as a ``1-form'' on $\spec R$. We don't know what a 1-form is yet, but at
 least we can give some examples. If $f \in R$, then $f$ is a ``function'' on
 $\spec R$, and its ``differential'' should be a 1-form. So there should be a
 ``$df$'' which should be a 1-form. 
+This is analogous to the fact that if $g$ is a real-valued function on the
+smooth manifold $M$, then there is a 1-form $dg$.
 
 We should expect the rules $d(fg)= df+dg$ and $d(fg) = f(dg) + g(df)$ as the
 usual rules of differentiation. For this to make sense, 1-forms should be an
 $R$-module. 
+Before defining the appropriate object, we start with:
 
 \begin{definition} 
 Let $R$ be a commutative ring, $M$ an $R$-module. A \textbf{derivation} from
-$R$ to $M$ is a map $D: R \to M$ such that the two identities
-\[ D(fg)= Df + Dg  \]
-and
-\[ D(fg) = f(Dg) + g(Df)  \]
-hold.
+$R$ to $M$ is a map $D: R \to M$ such that the two identities below hold:
+\begin{gather} D(fg)= Df + Dg  \\
+ D(fg) = f(Dg) + g(Df).  \end{gather}
 \end{definition} 
 These equations make sense as $M$ is an $R$-module.
 
-Whatever a 1-form might be, there should be a derivation
-\[ R \to \left\{\mathrm{1-forms}\right\}.  \]
+Whatever a 1-form on $\spec R$ might be, there should be a derivation
+\[ d: R \to \left\{\text{1--forms}\right\}.  \]
 An idea would be to \emph{define} the 1-forms or the ``cotangent bundle''
 $\Omega_R$ by a
 universal property. It should be universal among $R$-modules with a derivation.
@@ -518,8 +524,9 @@ given by composing the universal $d_{\mathrm{univ}}$ with a map $\Omega_R \to M$
 \end{proposition} 
 
 That is, any derivation $d: R \to M$ factors through this universal derivation
-in a unique way. Given $d: R \to M$, we can make the following diagram
-commutative in a natural way:
+in a unique way. Given the derivation $d: R \to M$, we can make the following diagram
+commutative in a unique way such that $\Omega_R \to M$ is a morphism of
+$R$-modules:
 \[ 
 \xymatrix{
 R \ar[r]^d \ar[d]  &  M \\
@@ -543,13 +550,21 @@ $da$ for $a \in R$ by enforcing the relations
 \item $d(ab) = adb + bda$.
 \end{enumerate}
 By construction, the map $a \to da$ is a derivation $R \to \Omega_R$. 
-It is easy to see that is universal. Given a derivation $d: R \to M$, we get a
-map $\Omega_R \to M$ sending $da \to d(a), a \in R$.
+It is easy to see that it is universal. Given a derivation $d': R \to M$, we get a
+map $\Omega_R \to M$ sending $da \to d'(a), a \in R$.
 \end{proof} 
 
-We are going to need a slight variant.
+The philosophy of Grothendieck says that we should do this, as with everything,
+in a relative context.
+Indeed, we are going to need a slight variant, for the case of a \emph{morphism} of
+rings.
 
 \subsection{Relative differentials}
+
+On a smooth manifold $M$, the derivation $d$ from smooth functions to 1-forms
+satisfies an additional property: it maps the constant functions to zero. 
+This is the motivation for the next definition:
+
 \begin{definition} 
 Let $f: R \to R'$ be a ring-homomorphism. Let $M$ be an $R'$-module. A
 derivation $d: R' \to M$ is \textbf{$R$-linear if $d(f(a)) = 0, a \in R$.}
@@ -557,42 +572,52 @@ This is equivalent to saying that $d$ is an $R$-homomorphism by the Leibnitz
 rule.
 \end{definition} 
 
+Now we want to construct an analog of the ``cotangent bundle'' taking into
+account linearity. 
+
 \begin{proposition} 
-There is a universal $R$-linear derivation $R'
+Let $R'$ be an $R$-algebra.
+Then there is a universal $R$-linear derivation $R'
 \stackrel{d_{\mathrm{univ}}}{\to} \Omega_{R'/R}$.
 \end{proposition} 
 \begin{proof} 
 Use the same construction as in the absolute case. We get a map $R' \to
-\Omega_{R'}$ as before. This is not generally $R$-linear, so you have to
-quotient out by the images of $d(f(b)), b \in R$.
+\Omega_{R'}$ as before. This is not generally $R$-linear, so one has to
+quotient out by the images of $d(f(r)), r \in R$.
+In other words, $\Omega_{R'/R}$ is the quotient of the free $R'$-module on
+symbols $\left\{dr', r' \in R'\right\}$ with the relations:
+\begin{enumerate}
+\item $d(r_1' r_2') = r'_1 d(r_2') + d(r'_1) r_2'$. 
+\item $d(r_1' + r_2') = dr_1' + dr_2'$.
+\item  $dr = 0$ for $r \in R$ (where we identify $r$ with its image $f(r)$ in
+$R'$, by abuse of notation).
+\end{enumerate}
 \end{proof} 
-
-\begin{remark} 
-We see that $\Omega_{R'/R}$ as in the proposition is obtained by killing the
-images of $d(f(b)), b \in R$. 
-\end{remark} 
 
 \begin{definition} 
-This is called the module of \textbf{relative K\"ahler differentials.}
+$\Omega_{R'/R}$ is called the module of \textbf{relative K\"ahler
+differentials,} or simply K\"ahler differentials.
 \end{definition} 
 
-\begin{theorem} 
-There is a canonical exact sequence of $R'$-modules
-\[ R' \otimes_R \Omega_R \to \Omega_{R'} \to \Omega_{R'/R} \to 0.  \]
-\end{theorem} 
-This is generally not exact on the left.
-\begin{proof} 
-This follows from the remark. 
-\end{proof} 
+Here $\Omega_{R'/R}$ also corepresents a simple functor on the category of
+$R'$-modules: given an $R'$-module $M$, we have
+\[ \hom_{R'}(\Omega_{R'/R}, M) = \mathrm{Der}_R(R', M),  \]
+where $\mathrm{Der}_R$ denotes $R$-derivations.
+This is a \emph{subfunctor} of the functor $\mathrm{Der}_R(R', \cdot)$, and so
+by Yoneda's lemma there is a natural map $\Omega_{R'} \to \Omega_{R'/R}$.
+We shall expand on this in the future.
 
-\subsection{Examples} Let us do some examples to make this more concrete.
+\subsection{The case of a polynomial ring}
+Let us do an example to make this more concrete.
 
-\begin{example} 
+\begin{example} \label{polynomialringdiff}
 Let $R' = \mathbb{C}[x_1, \dots, x_n], R = \mathbb{C}$. In this case, the claim
 is that there is an isomorphism
 \[ \Omega_{R'/R} \simeq R'^n.  \]
 More precisely, $\Omega_{R'/R}$ is free on $dx_1, \dots,dx_n$. So the cotangent
-bundle is ``free.''
+bundle is ``free.'' In general, the module $\Omega_{R'/R}$ will not be free, or
+even projective, so the intuition that it is a vector bundle will be rather
+loose. (The projectivity will be connected to \emph{smoothness} of $R'/R$.)
 
 \begin{proof} 
 The construction $f \to \left( \frac{\partial f}{\partial x_i}  \right)$ gives
@@ -615,36 +640,72 @@ coincide on monomials of degree one, so they are equal.
 \end{proof} 
 
 \end{example} 
-\lecture{11/12}
 
-\subsection{Formal properties of K\"ahler differentials}
-So we were talking about K\"ahler differentials yesterday. Recall that if
+\subsection{Exact sequences of K\"ahler differentials}
+We now want to prove a few basic properties of K\"ahler differentials, which
+can be seen either from the explicit construction or in terms of the functors
+they represent, by formal nonsense.
+These results will be useful in computation.
+
+ Recall that if
 $\phi: A \to B$ is a map of rings, we can define a $B$-module
-\[ \Omega_{B/A} = \mathrm{generated \ by } \ dx|_{x \in
-B}/\left\{d(x+y) = dx+dy, d(a)=0 \ \forall a \in A, d(xy) = xdy + ydx\right\}. \]
+\( \Omega_{B/A}\)  which is generated by formal symbols $ dx|_{x \in
+B}$ and subject to the relations $d(x+y) = dx+dy$, $d(a)=0, a \in A$,
+and $d(xy) = xdy + ydx$.
 By construction, $\Omega_{B/A}$ is the receptacle from the universal $A$-linear
 derivation into a $B$-module.
 
-Let $A \to B \to C$ be a map of rings. There is an obvious map $dx \to dx$
+Let $A \to B \to C$ be a triple of maps of rings. There is an obvious map $dx \to dx$
 \[ \Omega_{C/A} \to \Omega_{C/B}  \]
 where both sides have the same generators, except with a few additional
 relations on $\Omega_{C/B}$. We have to quotient by $db, b \in B$. In
 particular, there is a map $\Omega_{B/A} \to \Omega_{C/A}$, $dx \to dx$, whose images
-generates the kernel. This induces a map
+generate the kernel. This induces a map
 \[ C \otimes_B \Omega_{B/A} \to \Omega_{C/A}.  \]
+The image is the $C$-module generated by $db|_{b \in B}$, and this is the
+kernel of the previous map.
 We have proved:
-\begin{proposition} Given a sequence $A \to B \to C$ of rings, there is an exact sequence 
+\begin{proposition}[First exact sequence] Given a sequence $A \to B \to C$ of rings, there is an exact sequence 
 \[  C \otimes_B \Omega_{B/A} \to \Omega_{C/A} \to \Omega_{C/B} \to 0 .\]
 \end{proposition} 
-Let us list another property. Last time, we showed:
-\begin{proposition} 
-If $R$ is a ring, then 
-\[ \Omega_{R[x_1, \dots, x_n]/R} = R[x_1, \dots,x_n]^n.  \]
-\end{proposition} 
+\begin{proof}[Second proof]
+There is, however, a more functorial means of seeing this sequence, which we
+now describe. 
+Namely, let us consider the category of $C$-modules, and the functors
+corepresented by these three objects. We have, for a $C$-module $M$:
+\begin{gather*} 
+\hom_C(\Omega_{C/B}, M) = \mathrm{Der}_B(C, M) \\
+\hom_C(\Omega_{C/A}, M) = \mathrm{Der}_A(C, M) \\
+\hom_C(C \otimes_B \Omega_{B/A}, M) = \hom_B(\Omega_{B/A}, M) = \mathrm{Der}_A(B, M).
+\end{gather*} 
+By Yoneda's lemma, we know that a map of modules is the same thing as a natural
+transformation between the corresponding corepresentable functors, in the
+reverse direction. 
+It is easy to see that there are natural transformations
+\[ \mathrm{Der}_B(C, M) \to \mathrm{Der}_A(C, M), \quad \mathrm{Der}_A(C, M) \to \mathrm{Der}_A(B, M)  \]
+obtained by restriction in the second case, and by doing nothing in the first
+case (a $B$-derivation is automatically an $A$-derivation). 
+The induced maps on the modules of differentials are precisely those described
+before; this is easy to check (and we could have defined the maps by these
+functors if we wished). Now to say that the sequence is right exact is to say
+that for each $M$, there is an exact sequence of abelian groups
+\[ 0 \to \mathrm{Der}_B(C, M) \to \mathrm{Der}_A(C, M) \to \mathrm{Der}_A(B, M).  \]
+But this is obvious from the definitions: an $A$-derivation is a $B$-derivation
+if and only if the restriction to $B$ is trivial.
+This establishes the claim. 
+\end{proof} 
 
-Finally, let us look at the K\"ahler differentials for quotient rings. Let $A
+
+
+Next, we are interested in a second exact sequence. In the past
+(\cref{polynomialringdiff}), we computed the module of K\"ahler differentials
+of a \emph{polynomial} algebra. While this was a special case, any algebra is a
+quotient of a polynomial algebra. As a result, it will be useful to know how
+$\Omega_{B/A}$ behaves with respect to quotienting $B$.
+
+ Let $A
 \to  B$ be a  homomorphism of rings and $I \subset B $ an ideal. We would like
-to describe $\Omega_{B/I/A} $. There is a map
+to describe $\Omega_{B/I/A}$. There is a map
 \[ \Omega_{B/A} \to \Omega_{B/I/A}  \]
 sending $dx$ to $d \overline{x}$ for $\overline{x}$ the reduction of $x$ in
 $B/I$. This is surjective on generators, so it is surjective. It is not
@@ -669,7 +730,7 @@ defined. Its image is the submodule of $\Omega_{B/A}/I \Omega_{B/A}$ generated
 by $dx, x \in I$. This is precisely what one has to quotient out by to get
 $\Omega_{B/I/A}$. In particular:
 
-\begin{proposition} Let $B$ be an $A$-algebra and $I \subset B$ an ideal.
+\begin{proposition}[Second exact sequence] Let $B$ be an $A$-algebra and $I \subset B$ an ideal.
 There is an exact sequence
 \[ I/I^2 \to \Omega_{B/A} \otimes_B B/I \to \Omega_{B/I/A} \to 0.  \]
 \end{proposition} 
@@ -717,6 +778,123 @@ The upshot is that $\Omega_{R/\mathbb{C}} \otimes_R R/\mathfrak{m}$ is a
 quotient of $\mathfrak{m}/\mathfrak{m}^2$. Let's leave it there for now.
 \end{example} 
 
+\subsection{K\"ahler differentials and base change}
+
+We now want to show that the formation of $\Omega$ is compatible with base
+change. Namely, let $B$ be an $A$-algebra, visualized by a morphism $ A \to B$.
+If $A \to A'$ is any morphism of rings, we can think of the \emph{base-change}
+$A' \to A' \otimes_A B$; we often write $B' =  A' \otimes_A B$.
+
+\begin{proposition} \label{basechangediff} With the above notation, there is a canonical isomorphism
+of $B'$-modules:
+\[ \Omega_{B/A} \otimes_A A' \simeq \Omega_{B'/A'}.  \]
+\end{proposition} 
+Note that, for a $B$-module, the functors $\otimes_A A'$ and $\otimes_B B'$ are
+the same. So we could have as well written $\Omega_{B/A} \otimes_B B' \simeq
+\Omega_{B'/A'}$.
+\begin{proof} 
+We will use the functorial approach. Namely, for a $B'$-module $M$, we will
+show that there is a canonical isomorphism
+\[ \hom_{B'}( \Omega_{B/A} \otimes_A A', M) \simeq 
+\hom_{B'}( \Omega_{B'/A'}, M) .
+\]
+The right side represents $A'$-derivations $B' \to M$, or $\mathrm{Der}_{A'}(B', M)$.
+The left side represents $\hom_B(\Omega_{B/A}, M)$, or $\mathrm{Der}_A(B, M)$.
+Here the natural map of modules corresponds by Yoneda's lemma to the restriction
+\[ \mathrm{Der}_{A'}(B', M) \to \mathrm{Der}_A(B, M).  \]
+We need to see that this restriction map is an isomorphism. But given an
+$A$-derivation $B \to M$, this is to say that extends in a \emph{unique} way to
+an $A'$-linear derivation $B' \to M$. This is easy to verify directly.
+\end{proof} 
+
+
+\subsection{Differentials and localization}
+We now show that localization behaves \emph{extremely} nicely with respect to
+the formation of K\"ahler differentials. This is important in algebraic
+geometry for knowing that the ``cotangent bundle'' can be defined locally.
+
+\begin{proposition} \label{localizationdiff}
+Let $f: A \to B$ be a map of rings. Let $S \subset  B$ be multiplicatively
+closed. Then the natural map
+\[ S^{-1}\Omega_{B/A} \to \Omega_{S^{-1}B/A}  \]
+is an isomorphism.
+\end{proposition} 
+So the formation of K\"ahler differentials commutes with localization.
+
+\begin{proof} 
+We could prove this by the calculational definition, but perhaps it is better
+to prove it via the universal property. If $M$ is any $S^{-1}B$-module, then 
+we can look at 
+\[ \hom_{S^{-1}B}( \Omega_{S^{-1}B/A}, M)  \]
+which is given by the group of $A$-linear derivations $S^{-1}B \to M$, by the
+universal property. 
+
+On the other hand, 
+\[ \hom_{S^{-1}B}( S^{-1} \Omega_{B/A}, M)  \]
+is the same thing as the set of $B$-linear maps $\Omega_{B/A} \to M$, i.e. the
+set of $A$-linear derivations $B \to M$. 
+
+We want to show that these two are the same thing. Given an $A$-derivation
+$S^{-1}B \to M$, we get an $A$-derivation $B \to M$ by pulling back. We want to
+show that any $A$-linear derivation $B \to M$ arises in this way. So we need to
+show that any $A$-linear derivation $d: B \to M$ extends uniquely to an $A$-linear
+$\overline{d}: S^{-1}B \to M$.
+Here are two proofs:
+\begin{enumerate}
+\item (Lowbrow proof.) For $x/s \in S^{-1}B$, with $x \in B, s \in S$, we
+define $\overline{d}(x/s) = dx/s - xds/s^2$ as in calculus. The claim is that
+this works, and is the only thing that works. One should check
+this---\textbf{exercise}.
+\item (Highbrow proof.) We start with a digression. Let $B$ be a commutative
+ring, $M$ a $B$-module. Consider $B \oplus M$, which is a  $B$-module. We can
+make it into a ring (via \textbf{square zero multiplication}) by multiplying
+\[ (b,x)(b',x') = (bb', bx'+b'x).  \]
+This is compatible with the $B$-module structure on $M \subset B \oplus
+M$. Note that $M$ is an ideal in this ring with square zero.  Then the
+projection $\pi: B \oplus M \to B$ is a ring-homomorphism as well.
+There is also a ring-homomorphism in the other direction $b \to (b,0)$, which
+is a section of $\pi$. There may be other homomorphisms $B \to B \oplus M$.
+
+You might ask what all the right inverses to $\pi$ are, i.e. ring-homomorphisms
+$\phi:  B \to B \oplus M $ such that $\pi \circ \phi = 1_{B}$. This must be of
+the form $\phi: b \to (b, db)$ where $d: B \to M$ is some map. It is easy to check
+that $\phi$ is a homomorphism precisely when $d$ is a derivation.
+
+Suppose now $A \to B$ is a morphism of rings making $B$ an $A$-algebra. Then
+$B \oplus M$ is an $A$-algebra via the inclusion $a \to (a, 0)$. Then
+you might ask when $\phi: b \to (b, db), B \to B \oplus M$ is an
+$A$-homomorphism. The answer is clear: when $d$ is an $A$-derivation.
+
+Recall that we were in the situation of $f: A \to B$  a morphism of rings, $S
+\subset B$ a multiplicatively closed subset, and $M$ an $S^{-1}B$-module. The
+claim was that any $A$-linear derivation $d: B \to M$ extends uniquely to
+$\overline{d}: S^{-1} B \to M$.
+We can draw a diagram
+\[ \xymatrix{
+& B \oplus M \ar[d] \ar[r] &  S^{-1}B \oplus M \ar[d] \\
+A \ar[r] &  B \ar[r] &  S^{-1}B
+}.\]
+This is a cartesian diagram. So given a section of $A$-algebras $B \to B \oplus M$, we have to
+construct a section of $A$-algebras $S^{-1}B \to S^{-1}B \oplus M$. We can do this by the
+universal property of localization, since $S$ acts by invertible elements on
+$S^{-1}B \oplus M$. (To see this, note that $S$ acts by invertible elements on
+$S^{-1}B$, and $M$ is a nilpotent ideal.)
+\end{enumerate}
+\end{proof} 
+
+Finally, we note that there is an even slicker argument. (We learned this from
+\cite{Qu}.) 
+Namely, it suffices to show that $\Omega_{S^{-1}B/B} =0 $, by the exact
+sequences.
+But this is a $S^{-1}B$-module, so we have
+\[  \Omega_{S^{-1}B/B} = \Omega_{S^{-1}B/B} \otimes_B S^{-1}B, \]
+because tensoring with $S^{-1}B$ localizes at $S$, but this does nothing to a
+$S^{-1}B$-module! By the base change formula (\cref{basechangediff}), we have
+\[ \Omega_{S^{-1}B/B} \otimes_B S^{-1}B = \Omega_{S^{-1}B/S^{-1}B} = 0,  \]
+where we again use the fact that $S^{-1} B \otimes_B S^{-1} B \simeq S^{-1}B$.
+
+
+\section{Introduction to smoothness}
 \subsection{K\"ahler differentials for fields}
 
 Let us start with the simplest examples---fields.
@@ -787,102 +965,17 @@ $x_1, \dots, x_n$.
 If $k' = k(x_1, \dots, x_n)$, then $\Omega_{k'/k}$ is a free $k'$-module on the
 generators $dx_i$.
 \end{proposition} 
+This extends to an \emph{infinitely generated} purely transcendental extension,
+because K\"ahler differentials commute with filtered colimits. 
 \begin{proof} 
 We already know this for the polynomial ring $k[x_1, \dots, x_n]$. However, the
 rational function field is just a localization of the polynomial ring at the
-zero ideal.  So the result will follow from:
+zero ideal.  So the result will follow from \cref{localizationdiff}.
 \end{proof} 
 
-\begin{proposition} 
-Let $f: A \to B$ be a map of rings. Let $S \subset  B$ be multiplicatively
-closed. Then the natural map
-\[ S^{-1}\Omega_{B/A} \to \Omega_{S^{-1}B/A}  \]
-is an isomorphism.
-\end{proposition} 
-So the formation of K\"ahler differentials commutes with localization.
-
-\begin{proof} 
-We could prove this by the calculational definition, but perhaps it is better
-to prove it via the universal property. If $M$ is any $S^{-1}B$-module, then 
-we can look at 
-\[ \hom_{S^{-1}B}( \Omega_{S^{-1}B/A}, M)  \]
-which is given by the group of $A$-linear derivations $S^{-1}B \to M$, by the
-universal property. 
-
-On the other hand, 
-\[ \hom_{S^{-1}B}( S^{-1} \Omega_{B/A}, M)  \]
-is the same thing as the set of $B$-linear maps $\Omega_{B/A} \to M$, i.e. the
-set of $A$-linear derivations $B \to M$. 
-
-We want to show that these two are the same thing. Given an $A$-derivation
-$S^{-1}B \to M$, we get an $A$-derivation $B \to M$ by pulling back. We want to
-show that any $A$-linear derivation $B \to M$ arises in this way. So we need to
-show that any $A$-linear derivation $d: B \to M$ extends uniquely to an $A$-linear
-$\overline{d}: S^{-1}B \to M$.
-Here are two proofs:
-\begin{enumerate}
-\item (Lowbrow proof.) For $x/s \in S^{-1}B$, with $x \in B, s \in S$, we
-define $\overline{d}(x/s) = dx/s - xds/s^2$ as in calculus. The claim is that
-this works, and is the only thing that works. One should check
-this---\textbf{exercise}.
-\item (Highbrow proof.) We start with a digression. Let $B$ be a commutative
-ring, $M$ a $B$-module. Consider $B \oplus M$, which is a  $B$-module. We can
-make it into a ring (via \textbf{square zero multiplication}) by multiplying
-\[ (b,x)(b',x') = (bb', bx'+b'x).  \]
-This is compatible with the $B$-module structure on $M \subset B \oplus
-M$. Note that $M$ is an ideal in this ring with square zero.  Then the
-projection $\pi: B \oplus M \to B$ is a ring-homomorphism as well.
-There is also a ring-homomorphism in the other direction $b \to (b,0)$, which
-is a section of $\pi$. There may be other homomorphisms $B \to B \oplus M$.
-
-You might ask what all the right inverses to $\pi$ are, i.e. ring-homomorphisms
-$\phi:  B \to B \oplus M $ such that $\pi \circ \phi = 1_{B}$. This must be of
-the form $\phi: b \to (b, db)$ where $d: B \to M$ is some map. It is easy to check
-that $\phi$ is a homomorphism precisely when $d$ is a derivation.
-
-Suppose now $A \to B$ is a morphism of rings making $B$ an $A$-algebra. Then
-$B \oplus M$ is an $A$-algebra via the inclusion $a \to (a, 0)$. Then
-you might ask when $\phi: b \to (b, db), B \to B \oplus M$ is an
-$A$-homomorphism. The answer is clear: when $d$ is an $A$-derivation.
-
-Recall that we were in the situation of $f: A \to B$  a morphism of rings, $S
-\subset B$ a multiplicatively closed subset, and $M$ an $S^{-1}B$-module. The
-claim was that any $A$-linear derivation $d: B \to M$ extends uniquely to
-$\overline{d}: S^{-1} B \to M$.
-We can draw a diagram
-\[ \xymatrix{
-& B \oplus M \ar[d] \ar[r] &  S^{-1}B \oplus M \ar[d] \\
-A \ar[r] &  B \ar[r] &  S^{-1}B
-}.\]
-This is a cartesian diagram. So given a section of $A$-algebras $B \to B \oplus M$, we have to
-construct a section of $A$-algebras $S^{-1}B \to S^{-1}B \oplus M$. We can do this by the
-universal property of localization, since $S$ acts by invertible elements on
-$S^{-1}B \oplus M$. (To see this, note that $S$ acts by invertible elements on
-$S^{-1}B$, and $M$ is a nilpotent ideal.)
-\end{enumerate}
-\end{proof} 
-\lecture{11/15}
-
-\subsection{Continuation of field theory}
-
-We have been talking about the theory of regular local rings, and more recently
-about K\"ahler differentials. Last time, we showed:
-
-\begin{proposition} 
-If $L/K$ is a separable algebraic field extension, then $\Omega_{L/K} = 0$.
-\end{proposition} 
-
-Furthermore:
-
-\begin{proposition} 
-If $L/K$ is a finitely generated purely transcendental extension $K(x_1, \dots, x_n)$, then 
-\[ \Omega_{L/K} = L^n = \bigoplus L dx_i.  \]
-More generally, this is true for an infinitely generated transcendental
-extension. In this case, $\Omega_{L/K}$ is a free vector space on a
-transcendence basis.
-\end{proposition} 
-The only thing we did not already prove is the infinite case, which follows as
-K\"ahler differentials are compatible with filtered colimits.
+We have shown that separable algebraic extensions have no K\"ahler
+differentials, but that purely transcendental extensions have a free module of
+rank equal to the transcendence degree.
 
 We can deduce from this:
 \begin{corollary} 
@@ -1066,12 +1159,11 @@ zero, or really any field of characteristic zero.
 (Nothing goes wrong for \textbf{algebraically closed fields} of characteristic
 $p$.)
 \begin{example} 
-Here is a dumb example. Say $R = k[y]/(y^p-x)$ where $x \in K$ has no $p$th
+Here is a silly example. Say $R = k[y]/(y^p-x)$ where $x \in K$ has no $p$th
 root. We know that $\Omega_{R/k}$ is free of rank one. However, the rank is
 wrong: the variety has dimension zero.
 \end{example} 
 \end{remark} 
-\lecture{11/17}
 
 Last time, were trying to show that $\Omega_{L/K}$ is free on a transcendence
 basis if $L/K$ is an extension in characteristic zero. So we had a tower of fields
