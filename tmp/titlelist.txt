@@ -10,7 +10,7 @@ Unique factorization and the class group
 Dedekind domains
 Dimension theory
 Completions
-Differentials and smoothness
+Regularity, differentials, and smoothness
 Various topics
 Homological Algebra
 Flatness revisited
