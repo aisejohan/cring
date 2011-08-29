@@ -204,6 +204,14 @@ A one-dimensional regular local ring is the same thing as a DVR.
 \end{proposition} 
 
 
+Finally, we extend the notion to general noetherian rings:
+\begin{definition} 
+A general noetherian ring is called \textbf{regular} if every localization at a
+maximal ideal is a regular local ring.
+\end{definition} 
+In fact, it turns out that if a noetherian ring is regular, then so are
+\emph{all} its localizations. This fact relies on a fact, to be proved in the
+distant future, that the localization of a regular local ring at a prime ideal is regular.
 \subsection{Quotients of regular local rings}
 
 We now study quotients of regular local rings. 
@@ -250,16 +258,18 @@ obtain the inequality \eqref{randombnd}.
 
 
 
-\begin{corollary}  Consider elements $f_1, \ldots f_m$ in $\mathfrak{m}$ such
+\begin{corollary} \label{quotientreg44} Consider elements $f_1, \ldots f_m$ in $\mathfrak{m}$ such
 that $\bar{f_1}, \ldots \bar{f_m} \in \mathfrak{m}/\mathfrak{m}^2$ are linearly independent. Then $A/(f_1, \ldots f_m)$ is regular with $\dim(A/(f_1, \ldots f_m))=\dim(A)-m$
 \label{reg local mod fs still reg loc}
 \end{corollary}
 \begin{proof} This follows from \cref{reg loc mod f still reg loc} by induction. One just needs to check that in $A_1=A/(f_1)$, $\mathfrak{m}_1=\mathfrak{m}/(f_1)$, we have that $f_2, \ldots f_m$ are still linearly independent in $\mathfrak{m}_1/\mathfrak{m}_1^2$. This is easy to check.
 \end{proof}
 
+\begin{remark}
 In fact, note in the above result that each $f_i$ is a \emph{nonzerodivisor} on $A/(f_1, \dots,
 f_{i-1})$, because a regular local ring is a domain. We will later say that the
 $\left\{f_i\right\}$ form a \emph{regular sequence.}
+\end{remark}
 
 We can now obtain a full characterization of when a quotient of a regular local
 ring is still regular; it essentially states that the above situation is the
