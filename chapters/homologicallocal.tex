@@ -16,7 +16,12 @@ It should be added.}
 
 \section{Depth}
 
-
+In this section, we first introduce the notion of \emph{depth} for local rings
+via the $\ext$ functor, and then show that depth can be measured as the length
+of a maximal \emph{regular sequence}. After this, we study the theory of
+regular sequences in general (on not-necessarily-local rings), and show that
+the depth of a module can be bounded in terms of both its dimension and its
+associated primes. 
 \subsection{Depth over local rings}
 
 Throughout, let $(R, \mathfrak{m})$ be  a noetherian
@@ -739,7 +744,9 @@ of primes in $\mathrm{Spec} R$ that starts at an associated prime of $M$ and
 ends at a prime containing $I$.
 \end{proposition} 
 
-\begin{proof} Consider a chain of primes $\mathfrak{p}_0 \subset \dots \subset
+\begin{proof} Currently omitted. 
+\begin{comment}
+Consider a chain of primes $\mathfrak{p}_0 \subset \dots \subset
 \mathfrak{p}_k$ where $\mathfrak{p}_0$ is an associated prime and
 $\mathfrak{p}_k$ contains $I$. 
 The goal is to show that 
@@ -749,7 +756,9 @@ $R$; recall that localization can only increase the depth.
 We can also assume $I$ is this maximal ideal, by increasing it.
 
 In this case, the result follows from the local version
-(\cref{localdepthassbound}). \end{proof}
+(\cref{localdepthassbound}). 
+\end{comment}
+\end{proof}
 
 
 \section{Cohen-Macaulayness}
@@ -1038,21 +1047,6 @@ In particular, since a polynomial ring over a field is regular, we find:
 Any affine ring is catenary. 
 \end{proposition} 
 
-
-\begin{theorem}[Auslander-Buchsbaum formula] Let $(R,
-\mathfrak{m})$ be a
-noetherian local ring and $M$ a finite $R$-module. Suppose $M$
-has a finite
-projective resolution of length $d$, where $d$ is minimal.
-
-Then
-\[ d = \depth(R) - \depth(M).  \]
-\end{theorem}
-So in a sense, depth measures how far $M$ is from being a free
-module. If the
-depth is large, then you need a lot of projective modules to
-resolve $M$.
-
 \subsection{Reformulation of Serre's criterion}
 
 Much earlier, we proved criteria for a noetherian ring to be reduced and (more
@@ -1159,6 +1153,19 @@ codimension.
 
 \section{Projective dimension and free resolutions}
 
+We shall introduce the notion of \emph{projective dimension} of a module; this
+will be the smallest projective resolution it admits (if there is none such,
+the dimension is $\infty$). We can think of it as measuring how far a module is
+from being projective. Over a noetherian \emph{local} ring, we will show that
+the projective dimension can be calculated very simply using the $\tor$ functor
+(which is an elaboration of the story that a projective module over a local
+ring is free).
+
+Ultimately we want to show that a noetherian local ring is regular if and only
+if every finitely generated module admits a finite free resolution. Although we
+shall not get to that result until the next section, we will at least relate
+projective dimension to a more familiar invariant of a module: \emph{depth.}
+
 \subsection{Introduction}
 \newcommand{\pr}{\mathrm{pd}}
 Let $R$ be a commutative ring, $M$ an $R$-module.
@@ -1168,20 +1175,20 @@ The \textbf{projective dimension} of $M$ is the largest integer
 $n$ such that
 there exists  a module $N$ with
 \[ \ext^n(M,N) \neq 0.  \]
-(If no such $n,N$ exist, then we say that the projective
-dimension is $\infty$.)
-We write $\pr(M)$ for the projective dimension.
+We allow $\infty$, if arbitrarily large such $n$ exist. 
+We write $\pr(M)$ for the projective dimension. For convenience, we set $\pr(0)
+= - \infty$.
 \end{definition}
 
-\begin{remark}
-$\pr(M) = 0$ iff $M$ is projective. Indeed, we have seen that
+So, if $m> n = \pr(M)$, then we have $\ext^m(M, N) = 0$ for \emph{all} modules $N$, and
+$n$ is the smallest integer with this property.
+As an example, note that $\pr(M) = 0$ if and only if $M$ is projective and
+nonzero. Indeed, we have seen that
 the $\ext$ groups
 $\ext^i(M,N), i >0$
-vanish always.
-\end{remark}
+vanish always for $M$ projective, and conversely.
 
-If you wanted to compute the projective dimension, you could go
-as follows.
+To compute $\pr(M)$ in general, one can proceed as follows.
 Take any $M$. Choose a surjection $P \twoheadrightarrow M$ with
 $P$ projective;
 call the kernel $K$ and draw a short exact sequence
@@ -1202,16 +1209,16 @@ particular, $\pr(M)
 \leq d+1$.
 This argument is completely reversible if $d >0$.
 Then we see from these isomorphisms that
-\[ \boxed{\pr(M) = \pr(K)+1}, \quad \mathrm{unless} \ \pr(M)=0
-\]
+\begin{equation} \label{pdeq} \boxed{\pr(M) = \pr(K)+1}, \quad \mathrm{unless} \ \pr(M)=0
+\end{equation}
 If $M$ is projective, the sequence $0 \to K \to P \to M \to 0$
 splits, and
 $\pr(K)=0$ too.
 
-The upshot is that \textbf{we can compute projective dimension
+The upshot is that {we can compute projective dimension
 by choosing a
 projective resolution.}
-\begin{proposition}
+\begin{proposition}\label{pdprojectiveresolution}
 Let $M$ be an $R$-module. Then $\pr(M) \leq n$ iff there exists
 a finite
 projective resolution of $M$ having $n+1$ terms,
@@ -1225,7 +1232,7 @@ resolution $0 \to M \to M \to 0$.
 Suppose $\pr(M) \leq n$, where $n >0$. We can get a short exact
 sequence
 \[ 0 \to K \to P_0 \to M \to 0  \]
-with $P_0$ projective, so $\pr(K) \leq n-1$. The inductive
+with $P_0$ projective, so $\pr(K) \leq n-1$ by \eqref{pdeq}. The inductive
 hypothesis implies
 that there is a projective resolution of $K$ of length $\leq
 n-1$. We can
@@ -1235,18 +1242,15 @@ $M$ of length $n$.
 
 The argument is reversible. Choose any projective resolution
 \[  0 \to P_n \to \dots \to P_1 \to P_0 \to M \to 0 \]
-and split into short exact sequences, and argue inductively.
+and split into short exact sequences, and then one argue inductively to show
+that $\pr(M) \leq n$.
 \end{proof}
 
-
-Let $\pr(M) = n$. Choose any projective resolution $\dots \to
-P_2 \to P_1 \to
-P_0 \to M$. Choose $K_i = \ker(P_i \to P_{i-1})$ for each $i$.
-Then there is a short exact sequence $0 \to K_0 \to P_0 \to M
+Let $\pr(M) = n$. Choose any projective resolution $\dots \to P_2 \to P_1 \to P_0 \to M$. Choose $K_i = \ker(P_i \to P_{i-1})$ for each $i$.  Then there is a short exact sequence $0 \to K_0 \to P_0 \to M
 \to 0$. Moreover,
 there are exact sequences
 \[ 0 \to K_i \to P_i \to K_{i-1} \to 0  \]
-for each $i$. From these, we see that the projective dimensions
+for each $i$. From these, and from \eqref{pdeq}, we see that the projective dimensions
 of the $K_i$
 drop by one as $i$ increments. So $K_{n-1}$ is projective if
 $\pr(M) = n$ as
@@ -1254,19 +1258,66 @@ $\pr(K_{n-1})=0$. In particular, we can get a projective
 resolution
 \[ 0 \to K_{n-1} \to P_{n-1} \to \dots \to P_0 \to M \to 0  \]
 which is of length $n$.
-In particular, if you ever start trying to write a projective
-resolution of
-$M$, you can stop after going out $n$ terms, because the kernels
+In particular, if one has a (possibly infinite) projective resolution $M$, one can stop after going out $n$ terms, because the kernels
 will become
+projective. In other words, the projective resolution can be made to
+\emph{break off} at the $n$th term. 
+This applies to \emph{any} projective resolution. 
+Conversely, since any module has a (possibly infinite) projective resolution,
+we find:
+
+\begin{proposition} 
+We have $\pr(M) \leq n$ if any projective resolution
+\[ \dots \to P_1 \to P_0 \to M \to 0  \]
+breaks off at the $n$th stage: that is, the kernel of $P_{n-1} \to P_{n-2}$ is
 projective.
+\end{proposition} 
+
+
+If $\pr(M) \leq n$, then by definition we have $\ext^{n+1}(M, N) = 0$ for
+\emph{any} module $N$. By itself, this does not say anything about the $\tor$
+functors.
+However, the criterion for projective dimension enables us to show:
+
+\begin{proposition} \label{pdfd}
+If $\pr(M) \leq n$, then $\tor_m(M, N) = 0$ for $m > n$.
+\end{proposition} 
+One can define an analog of projective dimension with the $\tor$ functors,
+called \emph{flat dimension}, and it follows that the flat dimension is at most
+the projective dimension.
+
+In fact, we have more generally:
+\begin{proposition} 
+Let $F$ be a right-exact functor on the category of $R$-modules, and let $\{L_i
+F\}$ be its left derived functors. 
+If $\pr(M) \leq n$, then $L_i F(M) = 0$ for $i > n$.
+\end{proposition} 
+
+Clearly this implies the claim about $\tor$ functors.
+\begin{proof} 
+Recall how $L_i F(M)$ can be computed. Namely, one chooses a projective
+resolution $P_\bullet \to M$ (any will do), and compute the homology of the
+complex 
+$F(P_\bullet)$. However, we can choose $P_\bullet \to M$ such that $P_i = 0$
+for $i > n$ by \cref{pdprojectiveresolution}. Thus $F(P_\bullet)$ is
+concentrated in degrees between $0$ and $n$, and the result becomes clear when
+one takes the homology.
+\end{proof} 
+
+In general, flat modules are not projective (e.g. $\mathbb{Q}$ is flat, but not
+projective, over $\mathbb{Z}$), and while one can use projective dimension to
+bound ``flat dimension'' (the analog for $\tor$-vanishing), one cannot use the
+flat dimension to bound the projective dimension. For a local ring, we will see
+that it is possible in the next subsection. 
 
 \subsection{$\tor$ and projective dimension}
 
-Over  a noetherian local ring, there is a much simpler way to test whether a
-finitely generated module is projective. (This will be generalized in \cref{}
-extensively.)
+Over  a noetherian \emph{local} ring, there is a much simpler way to test whether a
+finitely generated module is projective. This is a special case of the very
+general flatness criterion \cref{bigflatcriterion}, but we can give a simple
+direct proof. So we prefer to keep things self-contained. 
 
-\begin{theorem} 
+\begin{theorem} \label{localflateasy}
 Let $M$ be a finitely generated module over the noetherian local ring $(R,
 \mathfrak{m})$, with residue field $k = R/\mathfrak{m}$. Then, if $\tor_1(M, k)
 = 0$, $M$ is free.
@@ -1296,38 +1347,77 @@ As a result, we can compute the projective dimension of a module in terms of
 $\tor$.
 \begin{corollary} 
 Let $M$ be a finitely generated module over the noetherian local ring $R$ with
-residue field $k$. Then the projective dimension $M$ is the largest integer $n$
+residue field $k$. Then $\pr(M)$ is the largest integer $n$
 such that 
 $\tor_n(M, k) \neq 0$.
+It is also the smallest integer $n$ such that $\tor_{n+1}(M, k) = 0$.
 \end{corollary} 
 There is a certain symmetry: if $\ext$ replaces $\tor$, then one has the
 definition of depth. We will show later that there is indeed a useful connection
 between projective dimension and depth.
 \begin{proof} 
-Induction on the largest such integer. 
+We will show that if
+$\tor_{n+1}(M, k) = 0$, then $\pr(M) \leq n$. 
+This implies the claim, in view of \cref{pdfd}. Choose a (possibly infinite)
+projective resolution
+\[ \dots \to P_1 \to P_0 \to M \to 0.  \]
+Since $R$ is noetherian, we can assume that each $P_i$ is \emph{finitely
+generated.}
+
+Write $K_i = \ker(P_i \to P_{i-1})$, as before; these are finitely generated
+$R$-modules. We want to show that $K_{n-1}$
+is projective, which will establish the claim, as then the projective
+resolution will ``break off.''
+But we have an exact sequence
+\[ 0 \to K_0 \to P_0 \to M \to 0,  \]
+which shows that $\tor_n(K_0, k) = \tor_{n+1}(M, k)= 0$. 
+Using the exact sequencese $0 \to K_{i} \to P_i \to K_{i-1} \to 0$, we
+inductively work downwards to get that $\tor_1(K_{n-1}, k) =0$. So $K_{n-1}$ is
+projective by \cref{localflateasy}.
 \end{proof} 
 
-
+In particular, we find that if $\pr(k) \leq n$, then $\pr(M) \leq n$ for all
+$M$. This is because if $\pr(k) \leq n$, then $\tor_{n+1}(M, k) = 0$ by using
+the relevant resolution of $k$ (see \cref{pdfd}, but for $k$).
 \begin{corollary} 
 Suppose there exists $n$ such that $\tor_{n+1}(k, k) = 0$. 
 Then every finitely generated $R$-module has a finite free resolution of length
 at most $n$.
 \end{corollary} 
+
+We have thus seen that $k$ is in some sense the ``worst'' $R$-module, in that it is
+as far from being projective, or that it has the largest projective dimension.
+We can describe this worst-case behavior with the next concept:
+
+\begin{definition} 
+Given a ring $R$, the \textbf{global dimension} is the $\sup$ of the projective
+dimensions of all finitely generated $R$-modules. 
+\end{definition} 
+
+So, to recapitulate: the global dimension of a noetherian local ring $R$ is the
+projective dimension of its residue field $k$, or even the \emph{flat}
+dimension of the residue field. 
 \subsection{Minimal projective resolutions}
-Usually projective resolutions are non-unique. But sometimes
-they kind of are.
-Let $(R, \mathfrak{m})$ be a local noetherian ring, $M$ a
+Usually projective resolutions are non-unique; they are only unique up to
+chain homotopy. We will introduce a certain restriction that enforces
+uniqueness. These ``minimal'' projective resolutions will make it extremely
+easy to compute the groups $\tor_{\bullet}(\cdot, k)$.
+
+Let $(R, \mathfrak{m})$ be a local noetherian ring with residue field $k$, $M$ a
 finitely generated $R$-module.
+All tensor products will be over $R$.
 
 \begin{definition}
-A projective resolution $P_* \to M$ of finitely generated
+A projective resolution $P_\bullet \to M$ of finitely generated
 modules is \textbf{minimal} if for each $i$, the
-induced map $P_i \otimes R/\mathfrak{m} \to P_{i-1} \otimes
-R/\mathfrak{m}$ is
-zero, and same for $P_0 \otimes R/\mathfrak{m} \to
-M/\mathfrak{m}M$.
+induced map $P_i \otimes k \to P_{i-1} \otimes
+k$ is
+zero, and the map $P_0 \otimes k \to
+M/\mathfrak{m}M$ is an isomorphism.
 \end{definition}
 
+In other words, the complex $P_\bullet \otimes k$ is isomorphic to $M \otimes
+k$.
 This is equivalent to saying that for each $i$, the map $P_i
 \to\ker(P_{i-1}
 \to P_{i-2})$ is an isomorphism modulo $\mathfrak{m}$.
@@ -1339,7 +1429,7 @@ projective resolution.
 \begin{proof}
 Start with a module $M$. Then $M/\mathfrak{m}M$ is a
 finite-dimensional vector
-space over $R/\mathfrak{m}$, of dimension say $d_0$. We can
+space over $k$, of dimension say $d_0$. We can
 choose a basis for that vector space, which
 we can lift to $M$. That determines a map of free modules
 \[ R^{d_0} \to M,  \]
@@ -1544,6 +1634,15 @@ is zero. In particular, the map on the $\ext$ groups is zero,
 because it is
 annihilated by $\mathfrak{m}$.
 \end{proof}
+
+\begin{example} 
+Consider the case of a \emph{regular} local ring $R$ of dimension $n$. Then
+$\depth(R) = n$, so we have
+\[ \pr(M) + \depth(M) = n,  \]
+for every finitely generated $R$-module $M$.
+In particular, $\depth(M) = n$ if and only if $M$ is free.
+\end{example} 
+
 
 \begin{example}
 Let $R = \mathbb{C}[x_1, \dots, x_n]/\mathfrak{p}$ for

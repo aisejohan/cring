@@ -547,6 +547,7 @@ This is now clear by induction.
 \end{proof} 
 
 \subsection{The main result}
+
 \begin{theorem}[EGA IV 17.5.1] Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be
 a morphism of local noetherian rings such that $B$ is the localization of a f.p. $A$-algebra at a prime
 ideal, $B = (A[X_1, \dots, X_n])_{\mathfrak{q}}/I$. Then if $A \to B$ is formally smooth, $B$ is a flat $A$-algebra.
@@ -688,6 +689,97 @@ asymptotically like $k^n$. It follows that $\dim R \geq n$, and since $\dim R$
 is always at most the embedding dimension, we are done.
 \end{proof} 
 
+\subsection{Application: the Cohen structure theorem}
+
+We want now a classification of complete local rings containing a field; it
+states that they are the homomorphic images of power series rings:
+
+\begin{theorem}[Cohen structure theorem] 
+Let $(R, \mathfrak{m})$ be a complete local noetherian ring, which contains a field. Then $R
+\simeq K[[x_1, \dots, x_n]/I$ for some ideal $I \subset K[[x_1, \dots, x_n]]$
+and some field $K$.
+\end{theorem} 
+
+We have already shown that this result is true when $R$ contains a copy of its
+own residue field; that is, when the map $R \to R/\mathfrak{m}$ admits a
+section.
+We are going to show that this is the case if $R$ contains a field.
+
+\begin{remark} The condition that $R$ should contain a field means that if
+$R/\mathfrak{m}$ is of characteristic $p$, then $pR = 0$. For, if $p > 0$, then
+$R$ contains a copy of $\mathbb{Z}/p\mathbb{Z}$. If $p = 0$, $R$ automatically
+contains a copy of $\mathbb{Q}$, as each $n \in \mathbb{Z} - \left\{0\right\}$
+is automatically invertible in $R$.
+\end{remark}
+
+\begin{proof} 
+We just need to show that $R$ contains a copy of its own residue field.
+To do this, let $\kappa$ be the prime field contained in $R$, so $\kappa = \mathbb{Q}$ or
+$\mathbb{F}_p$. 
+Let $k$ be the residue field $R/\mathfrak{m}$. We have a diagram:
+\[ \xymatrix{
+& R \ar[d]  \\
+R/\mathfrak{m}  \ar@{-->}[ru]\ar[r]^{\mathrm{id}} &  R/\mathfrak{m},
+}\]
+in which we seek a lift; then we can apply \cref{}, because $R$ will contain a
+copy of its residue field.
+
+Now, $R$ is complete, so $R = \varprojlim R/\mathfrak{m}^i$. So it suffices to
+give  a compatible sequence of lifts
+\[ \xymatrix{
+& R/\mathfrak{m}^{i}\ar[d]  \\
+R/\mathfrak{m}  \ar@{-->}[ru]\ar[r]^{\mathrm{id}} &  R/\mathfrak{m},
+},\]
+which we will show exists. That is, given a section $R/\mathfrak{m} \to
+R/\mathfrak{m}^i$, we will lift it to a section $R/\mathfrak{m} \to
+R/\mathfrak{m}^{i+1}$, and these will glue to give the desired section
+$R/\mathfrak{m} \to R$.
+
+Now, everything here is a $\kappa$-algebra, and we are looking at a nilpotent
+lifting property for $\kappa$-algebras. It follows that if we can prove that
+$R/\mathfrak{m}$ is \emph{formally smooth} over $\kappa$, then we will be able
+to do the lifting at each stage, and $R$ will contain a copy of its residue
+field. 
+Thus, 
+we must show:
+
+\begin{proposition} 
+Let $\kappa$ be a perfect field, and let $K/\kappa$ be any field extension.
+Then  $K$ is formally smooth over $\kappa$.
+\end{proposition} 
+\begin{proof} 
+To see this, we will use the fact that $K/\kappa$ is \emph{separably generated.}
+Namely, there is a transcendence basis $T \subset K$ such that $K/\kappa(\{T\})$ is a
+separable \emph{algebraic} extension. We will show that $K/\kappa(\{T\})$ and
+$\kappa(\{T\})/\kappa$ are each formally smooth, which will imply the result.
+
+Now, we know that $\kappa(\{T\})/\kappa$ is formally smooth: it is the
+localization of a formally smooth $\kappa$-algebra (the polynomial algebra
+$\kappa[\left\{T\right\}]$), and localization is always formally smooth.
+
+Similarly, $K/\kappa(\left\{T\right\})$ is formally smooth because any
+separable algebraic extension is in fact formally \'etale. 
+We have shown this for finite algebraic extensions (\cref{}), and a limiting
+argument establishes it for infinite algebraic extensions.
+Namely, if $A$ is a $\kappa(\left\{T\right\})$-algebra and $I$ a square-zero
+ideal, then if we have a map $K \to A/I$, the restriction to each finite
+subextension lifts \emph{uniquely} to $A$. As a result of this uniqueness, we
+can glue the liftings to get a lift of $K \to A/I$ to $K \to A$.
+\end{proof} 
+\end{proof} 
+
+\begin{comment}
+\begin{corollary} 
+Let $(R, \mathfrak{m})$ be a local ring containing a copy of its residue field
+$k$. Then $R$ is formally smooth over $k$ if and only if $R$ is geometrically regular:
+that is, all the localizations of $R \otimes_k \overline{k}$ are regular.
+\end{corollary} 
+\begin{proof} 
+If $R$ is formally smooth over $k$, then $R \otimes_k \overline{k}$ is formally
+smooth over $\overline{k}$ and consequently all the localizations are regular. 
+\end{proof} 
+Ok, need to think some more about this...I am currently leaving it as a comment.
+\end{comment}
 \section{Conormal modules and universal thickenings}
 \label{section-conormal}
 
