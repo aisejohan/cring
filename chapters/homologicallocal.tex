@@ -1157,7 +1157,7 @@ Again, for a Cohen-Macaulay ring, the last condition is automatic, as
 the depth is the
 codimension.
 
-\section{Projective dimension over local rings}
+\section{Projective dimension and free resolutions}
 
 \subsection{Introduction}
 \newcommand{\pr}{\mathrm{pd}}
@@ -1260,7 +1260,59 @@ $M$, you can stop after going out $n$ terms, because the kernels
 will become
 projective.
 
+\subsection{$\tor$ and projective dimension}
 
+Over  a noetherian local ring, there is a much simpler way to test whether a
+finitely generated module is projective. (This will be generalized in \cref{}
+extensively.)
+
+\begin{theorem} 
+Let $M$ be a finitely generated module over the noetherian local ring $(R,
+\mathfrak{m})$, with residue field $k = R/\mathfrak{m}$. Then, if $\tor_1(M, k)
+= 0$, $M$ is free.
+\end{theorem} 
+In particular, projective---or even flat---modules which are of finite type
+over $R$ are automatically free.
+This is a strengthening of the earlier theorem (\cref{}) that a finitely
+generated projective
+module over a local ring is free.
+\begin{proof} 
+Indeed, we can find a free module $F$ and a surjection $F \to M$ such that $F
+\otimes_R k \to M \otimes_R k$ is an isomorphism. To do this, choose elements
+of $M$ that form a basis of $M \otimes_R k$, and then define a map $F \to M$
+via these elements; it is a surjection by Nakayama's lemma.
+
+Let $K$ be the kernel of $F \twoheadrightarrow M$, so there is an exact sequence 
+\[ 0 \to K \to F \to M \to 0.  \]
+We want to show that $K = 0$, which will imply that $M = 0$. By Nakayama's
+lemma, it suffices to show that $K \otimes_R k = 0$. But we have an exact
+sequence
+\[ \tor_1(M, k) \to K \otimes_R k \to F \otimes_R k \to M \otimes_R k \to 0.  \]
+The last map is an isomorphism, and $\tor_1(M, k) = 0$, which implies that $K
+\otimes_R k = 0$. The result is now proved.
+\end{proof} 
+
+As a result, we can compute the projective dimension of a module in terms of
+$\tor$.
+\begin{corollary} 
+Let $M$ be a finitely generated module over the noetherian local ring $R$ with
+residue field $k$. Then the projective dimension $M$ is the largest integer $n$
+such that 
+$\tor_n(M, k) \neq 0$.
+\end{corollary} 
+There is a certain symmetry: if $\ext$ replaces $\tor$, then one has the
+definition of depth. We will show later that there is indeed a useful connection
+between projective dimension and depth.
+\begin{proof} 
+Induction on the largest such integer. 
+\end{proof} 
+
+
+\begin{corollary} 
+Suppose there exists $n$ such that $\tor_{n+1}(k, k) = 0$. 
+Then every finitely generated $R$-module has a finite free resolution of length
+at most $n$.
+\end{corollary} 
 \subsection{Minimal projective resolutions}
 Usually projective resolutions are non-unique. But sometimes
 they kind of are.
@@ -1392,17 +1444,6 @@ Immediate from the proposition. In fact, the ranks are the
 dimensions (as
 $R/\mathfrak{m}$-vector spaces) of $\ext^i(M, R/\mathfrak{m})$.
 \end{proof}
-
-Let us advertise the goal for next time. We would like to prove
-Serre's
-criterion for regularity.
-
-\begin{theorem}
-Let $(R, \mathfrak{m})$ be a local noetherian ring. Then $R$ is
-regular iff
-$R/\mathfrak{m}$ has finite projective dimension. In this case,
-$\pr(R/\mathfrak{m}) = \dim R$.
-\end{theorem}
 
 \subsection{The Auslander-Buchsbaum formula}
 
@@ -1686,3 +1727,245 @@ in some sense.
 
 \end{proof}
 \end{comment}
+
+\section{Serre's criterion and its consequences}
+
+
+ We would like to prove
+Serre's
+criterion for regularity.
+
+\begin{theorem}
+Let $(R, \mathfrak{m})$ be a local noetherian ring. Then $R$ is
+regular iff
+$R/\mathfrak{m}$ has finite projective dimension. In this case,
+$\pr(R/\mathfrak{m}) = \dim R$.
+\end{theorem}
+
+\add{proof}
+
+
+\subsection{First consequences}
+
+
+\begin{proposition} 
+Let $(R, \mathfrak{m}) \to (S, \mathfrak{n})$ be a flat, local homomorphism of noetherian local
+rings. If $S$ is regular, so is $R$.
+\end{proposition} 
+\begin{proof} 
+Let $n = \dim S$.
+Let $M$ be a finitely generated $R$-module, and consider a resolution
+\[ P_n \to P_{n-1} \to \dots \to P_0 \to M \to 0,  \]
+where all the $\left\{P_i\right\}$ are finite free $R$-modules. If we can show
+that the kernel of $P_n \to P_{n-1}$ is projective, then it will follow that
+$M$ has finite projective dimension. Since $M$ was arbitrary, it will follow
+that $R$ is regular too, by Serre's criterion.
+
+Let $K$ be the kernel, so there is an exact sequence
+\[ 0 \to K \to  P_n \to P_{n-1} \to \dots \to P_0 \to M \to 0, \]
+which we can tensor with $S$, by flatness:
+\[ 0 \to K \otimes_R S \to  P_n \otimes_R S  \to P_{n-1} \otimes_R S \to \dots
+\to P_0 \otimes_R S  \to M \otimes_R S\to 0. \]
+Because any finitely generated $S$-module has projective dimension $\leq n$, it
+follows that $K \otimes_R S$ is projective, and in particular flat.
+
+But now $S$ is \emph{faithfully flat} over $R$ (see \cref{}), and it follows
+that $K $ is $R$-flat. Thus $K$ is projective over $R$, proving the claim. 
+\end{proof} 
+
+\begin{theorem} 
+The localization of a regular local ring at a prime ideal is regular. 
+\end{theorem} 
+Geometrically, this means that  to test whether a nice scheme (e.g. a variety) is regular
+(i.e., all the local rings are regular), one only has to test the \emph{closed}
+points.
+\begin{proof} 
+Let $(R, \mathfrak{m})$ be a regular local ring. Let $\mathfrak{p} \in \spec R$
+be a prime ideal; we wish to show that $R_{\mathfrak{p}}$ is regular. 
+To do this, let $M$ be a finitely generated $R_{\mathfrak{p}}$-module. Then we
+can find a finitely generated $R$-submodule $N \subset M$ such that 
+the natural map $N_{\mathfrak{p}} \to M$ is an isomorphism.
+If we take a finite free resolution of $N$ by $R$-modules and localize at
+$\mathfrak{p}$, we get a finite free resolution of $M$ by
+$R_{\mathfrak{p}}$-modules. 
+
+It now follows that $M$ has finite projective dimension as an
+$R_{\mathfrak{p}}$-module. By Serre's criterion, this implies that
+$R_{\mathfrak{p}}$ is regular. 
+\end{proof} 
+
+\subsection{Regular local rings are factorial}
+
+We now aim to prove that a regular local ring is factorial.
+
+First, we need:
+\begin{definition} 
+Let $R$ be a noetherian ring and $M$ a f.gen. $R$-module.  Then $M$ is
+\textbf{stably free} if $M \oplus R^k$ is free for some $k$.
+\end{definition} 
+
+Stably free obviously implies ``projective.'' 
+Free implies stably free, clearly---take $k=0$. Over a local ring, a finitely
+generated projective module is free, so all three notions are equivalent. Over a
+general ring, these notions are generally different.
+
+We will need the following lemma:
+
+\begin{lemma} 
+Let $M$ be an $R$-module with a finite free resolution. If $M$ is projective,
+it is stably free.
+\end{lemma} 
+\begin{proof} 
+There is an exact sequence
+\[ 0 \to F_k \to F_{k-1} \to \dots \to F_1 \to F_0 \to M \to 0  \]
+with the $F_i$ free and finitely generated, by assumption. 
+
+We induct on the length $k$ of the resolution. We know that if $N$ is the
+kernel of $F_0 \to M$, then $N$ is projective (as the sequence $0 \to N \to
+F_0 \to M \to 0$ splits) so there is a resolution
+\[ 0 \to F_k \to \dots \to F_1 \to N \to 0.  \]
+By the inductive hypothesis, $N$ is stably free. 
+So there is a free module $R^d$ such that $N \oplus R^d$ is free.
+
+We know that $M \oplus N=F_0$ is
+free. Thus $M \oplus N \oplus R^d = F_0 \oplus R^d$ is free and $N \oplus R^d$
+is free. Thus $M$ is stably free.
+\end{proof} 
+
+
+\begin{remark} 
+Stably freeness does \textbf{not} generally imply freeness, though it does
+over a local noetherian ring.
+\end{remark} 
+
+Nonetheless,
+
+\begin{proposition} 
+Stably free does imply free for invertible modules. 
+\end{proposition} 
+\begin{proof} 
+Let $I$ be stably free and invertible. We must show that $I \simeq R$.
+Without loss of generality, we can assume that $\spec R$ is connected, i.e.
+$R$ has no nontrivial idempotents. We will assume this in order to talk about
+the \textbf{rank} of a projective module.
+
+We know that $I \oplus R^n \simeq R^m$ for some $m$. We know that $m=n+1$ by
+localization. So $I \oplus R^n \simeq R^{n+1}$ for some $n$.
+We will now need to construct the \textbf{exterior powers}, for which we
+digress:
+
+\begin{definition} 
+Let $R$ be a commutative ring and $M$ an $R$-module. Then $\wedge M$, the
+\textbf{exterior algebra on $M$}, is the free (noncommutative) graded $R$-algebra
+generated by $M$ (with product $\wedge$) with just enough relations such that
+$\wedge$ is anticommutative (and, \emph{more strongly}, $x \wedge x=0$ for
+$x$ degree one).
+\end{definition} 
+
+Clearly $\wedge M$ is a quotient of the \textbf{tensor algebra} $T(M)$, which is by
+definition $R
+\oplus M \oplus M \otimes M \oplus \dots \oplus M^{\otimes n} \oplus \dots$.
+The tensor algebra is a graded $R$-algebra in an obvious way: $(x_1 \otimes
+\dots \otimes x_a) . (y_1 \otimes \dots \otimes y_b) = x_1 \otimes \dots
+\otimes x_a \otimes y_1 \otimes \dots \otimes y_b$. This is an associative
+$R$-algebra. 
+Then 
+\[ \wedge M = T(M)/( x \otimes x, \ x,y \in M).  \]
+The grading on $\wedge M$ comes from the grading of $T(M)$. 
+
+We are interested in basically one example:
+\begin{example} 
+Say $M = R^m$. Then $\wedge^m M = R$. If $e_1, \dots, e_m \in M$ are
+generators, then $e_1 \wedge \dots \wedge e_m$ is a generator. More generally,
+$\wedge^k M$ is free on $e_{i_1} \wedge \dots \wedge e_{i_k}$ for $i_1 < \dots <
+i_k$.
+\end{example} 
+
+We now make:
+
+\begin{definition} 
+If $M$ is a projective $R$-module of rank $n$, then 
+\[ \det(M) = \wedge^n M.  \]
+\end{definition} 
+If $M$ is free, then $\det(M)$ is free of rank one. So, as we see by
+localization, $\det(M)$ is always an
+invertible module for $M$ locally free (i.e. projective) and $\wedge^{n+1}M = 0$.
+
+\begin{lemma} 
+$\det(M \oplus N) = \det M \otimes \det N$.
+\end{lemma} 
+\begin{proof} 
+This isomorphism is given by wedging $\wedge^{\mathrm{top}} M \otimes
+\wedge^{\mathrm{top}} N \to \wedge^{\mathrm{top}}(M \oplus N)$. This is easily
+checked for oneself.
+\end{proof} 
+
+Anyway, let us finally go back to the proof. If $I \oplus R^n = R^{n+1}$, then
+taking determinants shows that
+\[ \det I \otimes R = R,  \]
+so $\det I = R$. But this is $I$ as $I$ is of rank one. So $I$ is free.
+
+\end{proof} 
+
+\begin{theorem} 
+A regular local ring is factorial.
+\end{theorem} 
+
+Let $R$ be a regular local ring of dimension $n$. We want to show that $R$ is factorial. 
+Choose a prime ideal $\mathfrak{p}$ of height one. 
+We'd like to show that $\mathfrak{p}$ is principal. 
+
+\begin{proof} 
+Induction on $n$. If $n=0$, then we are done---we have a field. 
+
+If $n=1$, then a height one prime is maximal, hence principal, because
+regularity is equivalent to the ring's being a DVR. 
+
+Assume $n>1$.  The prime ideal $\mathfrak{p}$ has height one, so it is
+contained in  a maximal ideal $\mathfrak{m}$. Note that $\mathfrak{m}^2
+\subset \mathfrak{m}$ as well. I claim that there is an element $x$ of
+$\mathfrak{m} - \mathfrak{p} - \mathfrak{m}^2$. This follows as an argument
+like prime avoidance. To see that $x$ exists, choose $x_1 \in \mathfrak{m} - \mathfrak{p}$ and $x_2
+\in \mathfrak{m} - \mathfrak{m}^2$. We are done unless $x_1 \in
+\mathfrak{m}^2$ and $x_2 \in \mathfrak{p}$ (or we could take $x$ to be $x_1$
+or $x_2$). In this case, we just take $x = x_1 + x_2$.
+
+So choose $x \in \mathfrak{m} - \mathfrak{p} - \mathfrak{m}^2$. Let us examine
+the ring $R_{x} = R[1/x]$, which contains an ideal $\mathfrak{p}[x^{-1}]$.
+This is a proper ideal as $x \notin \mathfrak{p}$. Now $R[1/x]$ is regular
+(i.e. its localizations at primes are regular local). The dimension, however,
+is of dimension less than $n$ since by inverting $x$ we have removed
+$\mathfrak{m}$. By induction we can assume that $R_x$ is locally factorial.
+
+Now $\mathfrak{p}R_{x}$ is prime and of height one, so it is invertible as
+$R_x$ is locally factorial.
+In particular it is projective.
+
+But $\mathfrak{p}$ has a finite resolution by $R$-modules (by regularity), so
+$\mathfrak{p}R_x$ has a finite free resolution. In particular,
+$\mathfrak{p}R_{x}$ is stably free and invertible, hence free. 
+Thus $\mathfrak{p}R_x$ is \textbf{principal}.
+
+We want to show that $\mathfrak{p}$ is principal, not just after localization.
+We know that there is a $y \in \mathfrak{p}$ such that $y$ generates
+$\mathfrak{p}R_x$. Choose $y$ such that $(y) \subset \mathfrak{p}$ is as large
+as possible. We can do this since $R$ is noetherian. This implies that $x
+\nmid y$ because otherwise we could use $y/x$ instead of $y$. 
+
+We shall now show that
+\[ \mathfrak{p} = (y).  \]
+So suppose $z \in \mathfrak{p}$. We know that $y$ generates $\mathfrak{p}$
+\textbf{after $x$ is inverted.} In particular, $z \in \mathfrak{p}R_x$. That
+is, $zx^a \in (y)$ for $a$ large.  That is, we can write
+\[ zx^a = yw, \quad \mathrm{for \ some} \ w \in R . \]
+We chose $x$ such that $x \notin \mathfrak{m}^2$. In particular, $R/(x)$ is
+regular, hence an integral domain; i.e. $x$ is a prime element. We find that
+$x$ must divide one of $y,w$ if $a>0$. But we know that $x \nmid y$, so $x
+\mid w$.  Thus $w = w'x$ for some $x$. We find that, cancelling $x$,
+\[ zx^{a-1} = yw'  \]
+and we can repeat this argument over and over until we find that 
+\[ z \in (y).  \]
+\end{proof} 
+
+
+
