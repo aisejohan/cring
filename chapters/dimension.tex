@@ -1697,3 +1697,64 @@ If $R$ is noetherian, $\spec R$ is noetherian as a topological space.
 \end{exercise} 
 
 
+\subsection{The dimension of a tensor product of fields}
+
+The following very clear result  gives us the dimension of the tensor product
+of fields.
+\begin{theorem}[Grothendieck-Sharp] 
+Let $K, L$ be field extensions of a field $k$. Then
+\[ \dim K \otimes_k L = \mathrm{min}(\mathrm{tr.deg.} K, \mathrm{tr.deg.} L).  \]
+\end{theorem} 
+This result is stated in the errata of \cite{EGA}, vol IV (4.2.1.5), but that
+did not make it
+ well-known; apparently it was independently discovered and published again by R. Y. Sharp, ten years
+ later.\footnote{Thanks to Georges Elencwajg for a helpful discussion at 
+\url{http://math.stackexchange.com/questions/56669/a-tensor-product-of-a-power-series/56794}.}
+Note that in general, this tensor product is \emph{not} noetherian.
+
+\begin{proof} 
+We start by assuming $K$ is a finitely generated, purely transcendental extension of $k$.
+Then $K $ is the quotient field of a polynomial ring $k[x_1, \dots, x_n]$.
+It follows that $K \otimes_k L$ is a localization of $L[x_1, \dots, x_n]$, and
+consequently of dimension at most $n = \mathrm{tr.deg.} K$.
+
+Now the claim is that if $\mathrm{tr.deg.} L > n$, then we have equality
+\[ \dim K \otimes_k L = n.  \]
+To see this, we have to show that $K \otimes_k L$ admits an $L$-homomorphism to
+$L$. For then there will be a maximal ideal $\mathfrak{m}$ of $K \otimes_k L$ which comes from
+a maximal ideal $\mathfrak{M}$ of $L[x_1, \dots, x_n]$ (corresponding to this
+homomorphism). Consequently, we will have $(K \otimes_k L)_{\mathfrak{m}}  =
+(L[x_1, \dots, x_n])_{\mathfrak{M}},$ which has dimension $n$.
+
+So we need to produce this homomorphism $K \otimes_k L \to L$. Since $K =
+k(x_1, \dots, x_n)$ and $L$ has transcendence degree more than $n$, we just choose $n$ 
+algebraically independent elements of $L$, and use that to define a map of
+$k$-algebras $K \to L$. By the universal property of the tensor product, we get
+a section $K \otimes_k L \to L$.
+This proves the result in the case where $K$ is a finitely generated, purely
+transcendental extension.
+
+Now we assume that $K$ has 
+finite transcendence degree over $k$, but is not necessarily purely
+transcendental. Then $K$ contains a subfield $E$ which is purely transcendental
+over $k$ and such that $E/K$ is algebraic. Then $K \otimes_k L$ is
+\emph{integral} over its subring $E \otimes_k L$. The previous analysis applies
+to $E \otimes_k L$, and by integrality the dimensions of the two objects are
+the same.
+
+Finally, we need to consider the case when $K$ is allowed to have infinite
+transcendence degree over $k$. Again, we may assume that $K$ is the quotient
+field of the polynomial ring $k[\left\{x_\alpha\right\}]$ (by the integrality
+argument above). 
+We need to show that if $L$ has \emph{larger} transcendence degree than $K$,
+then $\dim K \otimes_k L = \infty$. As before, there is a section $K \otimes_k
+L \to L$, and $K \otimes_k L$ is a localization of  the
+polynomial ring $L[\left\{x_\alpha\right\}]$.
+If we take the maximal ideal in $L[\left\{x_\alpha\right\}]$ corresponding to
+this section $K \otimes_k L \to L$, it is of the form $(x_\alpha -
+t_\alpha)_\alpha$
+for the $t_\alpha \in L$. It is easy to check that the localization of
+$L[\left\{x_\alpha\right\}]$ at this maximal ideal, which is a localization of
+$K \otimes_k L$, has infinite dimension.
+\end{proof} 
+
