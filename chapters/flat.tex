@@ -1164,9 +1164,9 @@ Let $M$ be a finitely generated $B$-module.
 Then the following are equivalent:
 \begin{enumerate}
 \item $M$ is $A$-flat. 
-\item[Local criterion] $M/IM$ is $A/I$-flat and $\tor_1^A(M, A/I) = 0$.
-\item[Infinitesimal criterion]  $M/I^n M$ is $A/I^n$-flat for each $n$.
-\item[Associated graded criterion]  $M/IM$ is $A/I$-flat and $M/IM \otimes_{A/I} I^n/I^{n+1} \to I^n
+\item (Local criterion) $M/IM$ is $A/I$-flat and $\tor_1^A(M, A/I) = 0$.
+\item (Infinitesimal criterion)  $M/I^n M$ is $A/I^n$-flat for each $n$.
+\item (Associated graded criterion)  $M/IM$ is $A/I$-flat and $M/IM \otimes_{A/I} I^n/I^{n+1} \to I^n
 M/I^{n+1}M$ is an isomorphism for each $n$.
 \end{enumerate}
 \end{theorem} 
@@ -1218,6 +1218,7 @@ hypothesis.
 
 Here is an example of the above techniques:
 \begin{proposition} 
+\label{fiberwiseflat}
 Let $(A, \mathfrak{m}), (B, \mathfrak{n}), (C, \mathfrak{n}')$ be noetherian
 local rings. Suppose given a commutative diagram of local homomorphisms
 \[ \xymatrix{
@@ -1229,7 +1230,7 @@ is a flat morphism. Then $B \to C$ is flat.
 \end{proposition} 
 Geometrically, this means that flatness can be checked fiberwise if both
 objects are flat over the base.
-
+This will be  a useful technical fact.
 \begin{proof} 
 We will use the associated graded criterion for flatness with the ideal
 $I = \mathfrak{m}B \subset B$. (Note that we are \emph{not} using the criterion

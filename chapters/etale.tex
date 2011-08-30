@@ -420,6 +420,251 @@ above results, so the fibers are finite.
 \end{comment} 
 
 
+\subsection{Conormal modules and universal thickenings}
+\label{section-conormal}
+
+It turns out that one can define the first infinitesimal neighbourhood
+not just for a closed immersion of schemes, but already for any formally
+unramified morphism. This is based on the following algebraic fact.
+
+\begin{lemma}
+\label{lemma-universal-thickening}
+Let $R \to S$ be a formally unramified ring map. There exists a surjection of
+$R$-algebras $S' \to S$ whose kernel is an ideal of square zero with the
+following universal property: Given any commutative diagram
+$$
+\xymatrix{
+S \ar[r]_{a} & A/I \\
+R \ar[r]^b \ar[u] & A \ar[u]
+}
+$$
+where $I \subset A$ is an ideal of square zero, there is a unique $R$-algebra
+map $a' : S' \to A$ such that $S' \to A \to A/I$ is equal to $S' \to S \to A$.
+\end{lemma}
+
+\begin{proof}
+Choose a set of generators $z_i \in S$, $i \in I$ for $S$ as an $R$-algebra.
+Let $P = R[\{x_i\_{i \in I}]$ denote the polynomial ring on generators
+$x_i$, $i \in I$. Consider the $R$-algebra map $P \to S$ which maps
+$x_i$ to $z_i$. Let $J = \text{Ker}(P \to S)$. Consider the map
+$$
+\text{d} : J/J^2 \longrightarrow \Omega_{P/R} \otimes_P S
+$$
+see
+\rref{lemma-differential-seq}.
+This is surjective since $\Omega_{S/R} = 0$ by assumption, see
+\rref{lemma-characterize-formally-unramified}.
+Note that $\Omega_{P/R}$ is free on $\text{d}x_i$, and hence the module
+$\Omega_{P/R} \otimes_P S$ is free over $S$. Thus we may choose a splitting
+of the surjection above and write
+$$
+J/J^2 = K \oplus \Omega_{P/R} \otimes_P S
+$$
+Let $J^2 \subset J' \subset J$ be the ideal of $P$ such that
+$J'/J^2$ is the second summand in the decomposition above.
+Set $S' = P/J'$. We obtain a short exact sequence
+$$
+0 \to J/J' \to S' \to S \to 0
+$$
+and we see that $J/J' \cong K$ is a square zero ideal in $S'$. Hence
+$$
+\xymatrix{
+S \ar[r]_1 & S \\
+R \ar[r] \ar[u] & S' \ar[u]
+}
+$$
+is a diagram as above. In fact we claim that this is an initial object in
+the category of diagrams. Namely, let $(I \subset A, a, b)$ be an arbitrary
+diagram. We may choose an $R$-algebra map $\beta : P \to A$ such that
+$$
+\xymatrix{
+S \ar[r]_1 & S \ar[r]_a & A/I \\
+R \ar[r] \ar@/_/[rr]_b \ar[u] & P \ar[u] \ar[r]^\beta & A \ar[u]
+}
+$$
+is commutative. Now it may not be the case that $\beta(J') = 0$, in other
+words it may not be true that $\beta$ factors through $S' = P/J'$.
+But what is clear is that $\beta(J') \subset I$ and
+since $\beta(J) \subset I$ and $I^2 = 0$ we have $\beta(J^2) = 0$.
+Thus the ``obstruction'' to finding a morphism from
+$(J/J' \subset S', 1, R \to S')$ to $(I \subset A, a, b)$ is
+the corresponding $S$-linear map $\overline{\beta} : J'/J^2 \to I$.
+The choice in picking $\beta$ lies in the choice of $\beta(x_i)$.
+A different choice of $\beta$, say $\beta'$, is gotten by taking
+$\beta'(x_i) = \beta(x_i) + \delta_i$ with $\delta_i \in I$.
+In this case, for $g \in J'$, we obtain
+$$
+\beta'(g) =
+\beta(g) + \sum\nolimits_i \delta_i \frac{\partial g}{\partial x_i}.
+$$
+Since the map $\text{d}|_{J'/J^2} : J'/J^2 \to \Omega_{P/R} \otimes_P S$
+given by $g \mapsto \frac{\partial g}{\partial x_i}\text{d}x_i$
+is an isomorphism by construction, we see that there is a unique choice
+of $\delta_i \in I$ such that $\beta'(g) = 0$ for all $g \in J'$.
+(Namely, $\delta_i$ is $-\overline{\beta}(g)$ where $g \in J'/J^2$
+is the unique element with $\frac{\partial g}{\partial x_j} = 1$ if
+$i = j$ and $0$ else.) The uniqueness of the solution implies the
+uniqueness required in the lemma.
+\end{proof}
+
+\noindent
+In the situation of
+\rref{lemma-universal-thickening}
+the $R$-algebra map $S' \to S$ is unique up to unique isomorphism.
+
+\begin{definition}
+\label{definition-universal-thickening}
+Let $R \to S$ be a formally unramified ring map.
+\begin{enumerate}
+\item The {\it universal first order thickening} of $S$ over $R$ is
+the surjection of $R$-algebras $S' \to S$ of
+\rref{lemma-universal-thickening}.
+\item The {\it conormal module} of $R \to S$ is the kernel $I$ of the
+universal first order thickening $S' \to S$, seen as a $S$-module.
+\end{enumerate}
+We often denote the conormal module {\it $C_{S/R}$} in this situation.
+\end{definition}
+
+\begin{lemma}
+\label{lemma-universal-thickening-quotient}
+Let $I \subset R$ be an ideal of a ring.
+The universal first order thickening of $R/I$ over $R$
+is the surjection $R/I^2 \to R/I$. The conormal module
+of $R/I$ over $R$ is $C_{(R/I)/R} = I/I^2$.
+\end{lemma}
+
+\begin{proof}
+Omitted.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-universal-thickening-localize}
+Let $A \to B$ be a formally unramified ring map.
+Let $\varphi : B' \to B$ be the universal first order thickening of
+$B$ over $A$.
+\begin{enumerate}
+\item Let $S \subset A$ be a multiplicative subset.
+Then $S^{-1}B' \to S^{-1}B$ is the universal first order thickening of
+$S^{-1}B$ over $S^{-1}A$. In particular $S^{-1}C_{B/A} = C_{S^{-1}B/S^{-1}A}$.
+\item Let $S \subset B$ be a multiplicative subset.
+Then $S' = \varphi^{-1}(S)$ is a multiplicative subset in $B'$
+and $(S')^{-1}B' \to S^{-1}B$ is the universal first order thickening
+of $S^{-1}B$ over $A$. In particular $S^{-1}C_{B/A} = C_{S^{-1}B/A}$.
+\end{enumerate}
+Note that the lemma makes sense by
+\rref{lemma-formally-unramified-localize}.
+\end{lemma}
+
+\begin{proof}
+With notation and assumptions as in (1). Let $(S^{-1}B)' \to S^{-1}B$
+be the universal first order thickening of $S^{-1}B$ over $S^{-1}A$.
+Note that $S^{-1}B' \to S^{-1}B$ is a surjection of $S^{-1}A$-algebras
+whose kernel has square zero. Hence by definition we obtain a map
+$(S^{-1}B)' \to S^{-1}B'$ compatible with the maps towards $S^{-1}B$.
+Consider any commutative diagram
+$$
+\xymatrix{
+B \ar[r] & S^{-1}B \ar[r] & D/I \\
+A \ar[r] \ar[u] & S^{-1}A \ar[r] \ar[u] & D \ar[u]
+}
+$$
+where $I \subset D$ is an ideal of square zero. Since $B'$ is the universal
+first order thickening of $B$ over $A$ we obtain an $A$-algebra map
+$B' \to D$. But it is clear that the image of $S$ in $D$ is mapped to
+invertible elements of $D$, and hence we obtain a compatible map
+$S^{-1}B' \to D$. Applying this to $D = (S^{-1}B)'$ we see that we get
+a map $S^{-1}B' \to (S^{-1}B)'$. We omit the verification that this map
+is inverse to the map described above.
+
+\medskip\noindent
+With notation and assumptions as in (2). Let $(S^{-1}B)' \to S^{-1}B$
+be the universal first order thickening of $S^{-1}B$ over $A$.
+Note that $(S')^{-1}B' \to S^{-1}B$ is a surjection of $A$-algebras
+whose kernel has square zero. Hence by definition we obtain a map
+$(S^{-1}B)' \to (S')^{-1}B'$ compatible with the maps towards $S^{-1}B$.
+Consider any commutative diagram
+$$
+\xymatrix{
+B \ar[r] & S^{-1}B \ar[r] & D/I \\
+A \ar[r] \ar[u] & A \ar[r] \ar[u] & D \ar[u]
+}
+$$
+where $I \subset D$ is an ideal of square zero. Since $B'$ is the universal
+first order thickening of $B$ over $A$ we obtain an $A$-algebra map
+$B' \to D$. But it is clear that the image of $S'$ in $D$ is mapped to
+invertible elements of $D$, and hence we obtain a compatible map
+$(S')^{-1}B' \to D$. Applying this to $D = (S^{-1}B)'$ we see that we get
+a map $(S')^{-1}B' \to (S^{-1}B)'$. We omit the verification that this map
+is inverse to the map described above.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-differentials-universal-thickening}
+Let $R \to A  \to B$ be ring maps. Assume $A \to B$ formally unramified.
+Let $B' \to B$ be the universal first order thickening of $B$ over $A$.
+Then $B'$ is formally unramified over $A$, and the canonical map
+$\Omega_{A/R} \otimes_A B \to \Omega_{B'/R} \otimes_{B'} B$ is an
+isomorphism.
+\end{lemma}
+
+\begin{proof}
+We are going to use the construction of $B'$ from the proof of
+\rref{lemma-universal-thickening}
+allthough in principle it should be possible to deduce these results
+formally from the definition. Namely, we choose a presentation
+$B = P/J$, where $P = A[x_i]$ is a polynomial ring over $A$.
+Next, we choose elements $f_i \in J$ such that
+$\text{d}f_i = \text{d}x_i \otimes 1$ in $\Omega_{P/A} \otimes_P B$.
+Having made these choices we have
+$B' = P/J'$ with $J' = (f_i) + J^2$, see proof of
+\rref{lemma-universal-thickening}.
+
+\medskip\noindent
+Consider the canonical exact sequence
+$$
+J'/(J')^2 \to \Omega_{P/A} \otimes_P B' \to \Omega_{B'/A} \to 0
+$$
+see
+\rref{lemma-differential-seq}.
+By construction the classes of the $f_i \in J'$ map to elements of
+the module $\Omega_{P/A} \otimes_P B'$ which generate it modulo
+$J'/J^2$ by construction. Since $J'/J^2$ is a nilpotent ideal, we see
+that these elements generate the module alltogether (by
+Nakayama's \rref{lemma-NAK}). This proves that $\Omega_{B'/A} = 0$
+and hence that $B'$ is formally unramified over $A$, see
+\rref{lemma-characterize-formally-unramified}.
+
+\medskip\noindent
+Since $P$ is a polynomial ring over $A$ we have
+$\Omega_{P/R} = \Omega_{A/R} \otimes_A P \oplus \bigoplus P\text{d}x_i$.
+We are going to use this decomposition.
+Consider the following exact sequence
+$$
+J'/(J')^2 \to
+\Omega_{P/R} \otimes_P B' \to
+\Omega_{B'/R} \to 0
+$$
+see
+\rref{lemma-differential-seq}.
+We may tensor this with $B$ and obtain the exact sequence
+$$
+J'/(J')^2 \otimes_{B'} B \to
+\Omega_{P/R} \otimes_P B \to
+\Omega_{B'/R} \otimes_{B'} B \to 0
+$$
+If we remember that $J' = (f_i) + J^2$
+then we see that the first arrow annihilates the submodule $J^2/(J')^2$.
+In terms of the direct sum decomposition
+$\Omega_{P/R} \otimes_P B =
+\Omega_{A/R} \otimes_A B \oplus \bigoplus B\text{d}x_i $ given
+we see that the submodule $(f_i)/(J')^2 \otimes_{B'} B$ maps
+isomorphically onto the summand $\bigoplus B\text{d}x_i$. Hence what is
+left of this exact sequence is an isomorphism
+$\Omega_{A/R} \otimes_A B \to \Omega_{B'/R} \otimes_{B'} B$
+as desired.
+\end{proof}
+
+
 \section{Smooth morphisms}
 
 \subsection{Definition}
@@ -614,7 +859,7 @@ Consequently this factors through $C$ and gives the desired lifting $C \to E$.
 
 \end{proof} 
 
-\begin{corollary} 
+\begin{corollary} \label{fsOmegaprojective}
 If $A \to B$ is formally smooth, then 
 $\Omega_{B/A}$ is a projective $B$-module.
 \end{corollary} 
@@ -631,6 +876,77 @@ Then we know that there is a split exact sequence
 But the middle term is free as $D/A$ is a polynomial ring; hence the last term
 is projective.
 \end{proof} 
+
+In particular, we can rewrite the criterion for formal smoothness of $C= B/I$,
+if $B$ is formally smooth over $A$:
+\begin{enumerate}
+\item $\Omega_{C/A} $ is a projective $C$-module.
+\item $I/I^2 \to \Omega_{B/A} \otimes_B C$ is a monomorphism.
+\end{enumerate}
+Indeed, these two are equivalent to the splitting of the conormal sequence
+(since the middle term is always projective by \cref{fsOmegaprojective}).
+
+In particular, we can check that smoothness is \emph{local}:
+\begin{corollary} \label{fsislocal}
+Let $A$ be a ring, $B$ a finitely presented $A$-algebra. Then $B$ is smooth
+over $A$ if and only if for each $\mathfrak{q} \in \spec B$ with $\mathfrak{p}
+\in \spec A$ the inverse image, the map $A_{\mathfrak{p}} \to B_{\mathfrak{q}}$
+is formally smooth.
+\end{corollary} 
+\begin{proof} 
+Indeed, we see that $B = D/I$ for a polynomial ring $D = A[x_1,\dots, x_n]$ in finitely many
+variables, and $I \subset D$ a finitely generated ideal.
+We have just seen that we just need to check that the conormal map $I/I^2 \to
+\Omega_{D/A} \otimes_D B$ is injective, and that $\Omega_{B/A}$ is a projective
+$B$-module, if and only if the analogs hold over the localizations. This
+follows by the criterion for formal smoothness just given above.
+
+But both can be checked locally. Namely, the conormal map is an injection if
+and only if, for all $\mathfrak{q} \in \spec B$ corresponding to $\mathfrak{Q}
+\in \spec D$, the map $(I/I^2)_{\mathfrak{q}} \to
+\Omega_{D_{\mathfrak{Q}}/A_{\mathfrak{p}}} \otimes_{D_{\mathfrak{Q}}}
+B_{\mathfrak{q}}$ is an injection.
+Moreover, we know that for a finitely presented module over a  ring,
+like $\Omega_{B/A}$, projectivity is equivalent to projectivity (or freeness) of all the stalks
+(\cref{}). So we can check projectivity on the localizations too. 
+\end{proof} 
+
+In fact, the method of proof of \cref{fsislocal} yields the following
+observation: \emph{formal} smoothness ``descends'' under faithfully flat base change.
+That is:
+\begin{corollary} 
+If $B$ is an $A$-algebra, and $A'$ a faithfully flat algebra, then $B$ is
+formally smooth over $A$ if and only if $B \otimes_A A'$ is formally smooth
+over $A'$.
+\end{corollary} 
+We shall not give a complete proof, except in the case when $B$ is finitely
+presented over $A$ (so that the question is of smoothness).
+\begin{proof} 
+One direction is  just the ``sorite'' (see \cref{}). We want to show that
+formal smoothness ``descends.'' 
+The claim is that the two conditions for formal smoothness above (that
+$\Omega_{B/A}$ be projective and the conormal map be a monomorphism) descend
+under faithfully flat base-change. Namely, the fact about the conormal maps is
+clear (by faithful flatness). 
+
+Now let $B' = B \otimes_A A'$.
+So we need to argue that if $\Omega_{B'/A'} = \Omega_{B/A} \otimes_B
+B'$ is projective as a $B'$-module, then so is $\Omega_{B/A}$. Here we use the
+famous result of Raynaud-Gruson (see \cite{RG71}), which states that
+projectivity descends under faithfully flat extensions, to complete the proof.
+
+If $B$ is finitely presented over $A$, then $\Omega_{B/A}$ is finitely
+presented as a $B$-module. 
+We can run most of the same proof as before, but we want to avoid using the
+Raynaud-Gruson theorem: we must give a separate argument that $\Omega_{B/A}$ is
+projective if $\Omega_{B'/A'}$ is. However, for a finitely presented module,
+projectivity is \emph{equivalent} to flatness, by \cref{fpflatmeansprojective}. Moreover, since $\Omega_{B'/A'}$
+is $B'$-flat, faithful flatness enables us to conclude that $\Omega_{B/A}$ is
+$B$-flat, and hence projective.
+\end{proof} 
+
+
+
 \subsection{The Jacobian criterion}
 
 
@@ -977,6 +1293,28 @@ term of \eqref{thisexact1} is finitely generated and projective over $B$, we can
 splitting modulo the maximal ideal (see \cref{splitinjreduce}).
 \end{proof} 
 
+In particular, we get the global version of the fiberwise criterion:
+
+\begin{theorem} 
+Let $A \to B$ be a finitely presented morphism of rings. Then $B$ is a smooth
+$A$-algebra if and only if $B$ is a flat $A$-algebra and, for each
+$\mathfrak{p} \in \spec A$, the morphism $k(\mathfrak{p}) \to B \otimes_A
+k(\mathfrak{p})$ is  smooth.
+\end{theorem} 
+Here $k(\mathfrak{p})$ denotes the residue field of $A_{\mathfrak{p}}$, as
+usual.
+\begin{proof} 
+One direction is clear. For the other, we recall 
+that smoothness is \emph{local}: $A \to B$ is smooth if and only if, for each
+$\mathfrak{q} \in \spec B$ with image $\mathfrak{p} \in \spec A$, we have $A_{\mathfrak{p}} \to B_{\mathfrak{q}}$
+formally smooth (see \cref{fsislocal}).
+But, by \cref{fiberwisesmooth}, this is the case if and only if, for each such
+pair $(\mathfrak{p}, \mathfrak{q})$, the morphism $k(\mathfrak{p}) \to
+B_{\mathfrak{q}} \otimes_{A_{\mathfrak{p}}} k(\mathfrak{p})$ is formally smooth.
+Now if $k(\mathfrak{p}) \to B \otimes_A k(\mathfrak{p})$ is smooth for each
+$\mathfrak{p}$, then this condition is clearly satisfied.
+\end{proof} 
+
 \subsection{Formal smoothness and regularity}
 
 We now want to explore the connection between formal smoothness and regularity.
@@ -1020,257 +1358,76 @@ asymptotically like $m^n$. It follows that $\dim R \geq n$, and since $\dim R$
 is always at most the embedding dimension, we are done.
 \end{proof} 
 
-\section{Conormal modules and universal thickenings}
-\label{section-conormal}
 
-\noindent
-It turns out that one can define the first infinitesimal neighbourhood
-not just for a closed immersion of schemes, but already for any formally
-unramified morphism. This is based on the following algebraic fact.
+\subsection{A counterexample}
 
-\begin{lemma}
-\label{lemma-universal-thickening}
-Let $R \to S$ be a formally unramified ring map. There exists a surjection of
-$R$-algebras $S' \to S$ whose kernel is an ideal of square zero with the
-following universal property: Given any commutative diagram
-$$
-\xymatrix{
-S \ar[r]_{a} & A/I \\
-R \ar[r]^b \ar[u] & A \ar[u]
-}
-$$
-where $I \subset A$ is an ideal of square zero, there is a unique $R$-algebra
-map $a' : S' \to A$ such that $S' \to A \to A/I$ is equal to $S' \to S \to A$.
-\end{lemma}
+It is in fact true that a formally smooth morphism between \emph{arbitrary} noetherian rings is
+smooth, although we have only proved this in the case of a morphism of finite
+type.
+This is false if we do not assume noetherian hypotheses.
+A formally smooth morphism need not be flat.
 
-\begin{proof}
-Choose a set of generators $z_i \in S$, $i \in I$ for $S$ as an $R$-algebra.
-Let $P = R[\{x_i\_{i \in I}]$ denote the polynomial ring on generators
-$x_i$, $i \in I$. Consider the $R$-algebra map $P \to S$ which maps
-$x_i$ to $z_i$. Let $J = \text{Ker}(P \to S)$. Consider the map
-$$
-\text{d} : J/J^2 \longrightarrow \Omega_{P/R} \otimes_P S
-$$
-see
-\rref{lemma-differential-seq}.
-This is surjective since $\Omega_{S/R} = 0$ by assumption, see
-\rref{lemma-characterize-formally-unramified}.
-Note that $\Omega_{P/R}$ is free on $\text{d}x_i$, and hence the module
-$\Omega_{P/R} \otimes_P S$ is free over $S$. Thus we may choose a splitting
-of the surjection above and write
-$$
-J/J^2 = K \oplus \Omega_{P/R} \otimes_P S
-$$
-Let $J^2 \subset J' \subset J$ be the ideal of $P$ such that
-$J'/J^2$ is the second summand in the decomposition above.
-Set $S' = P/J'$. We obtain a short exact sequence
-$$
-0 \to J/J' \to S' \to S \to 0
-$$
-and we see that $J/J' \cong K$ is a square zero ideal in $S'$. Hence
-$$
-\xymatrix{
-S \ar[r]_1 & S \\
-R \ar[r] \ar[u] & S' \ar[u]
-}
-$$
-is a diagram as above. In fact we claim that this is an initial object in
-the category of diagrams. Namely, let $(I \subset A, a, b)$ be an arbitrary
-diagram. We may choose an $R$-algebra map $\beta : P \to A$ such that
-$$
-\xymatrix{
-S \ar[r]_1 & S \ar[r]_a & A/I \\
-R \ar[r] \ar@/_/[rr]_b \ar[u] & P \ar[u] \ar[r]^\beta & A \ar[u]
-}
-$$
-is commutative. Now it may not be the case that $\beta(J') = 0$, in other
-words it may not be true that $\beta$ factors through $S' = P/J'$.
-But what is clear is that $\beta(J') \subset I$ and
-since $\beta(J) \subset I$ and $I^2 = 0$ we have $\beta(J^2) = 0$.
-Thus the ``obstruction'' to finding a morphism from
-$(J/J' \subset S', 1, R \to S')$ to $(I \subset A, a, b)$ is
-the corresponding $S$-linear map $\overline{\beta} : J'/J^2 \to I$.
-The choice in picking $\beta$ lies in the choice of $\beta(x_i)$.
-A different choice of $\beta$, say $\beta'$, is gotten by taking
-$\beta'(x_i) = \beta(x_i) + \delta_i$ with $\delta_i \in I$.
-In this case, for $g \in J'$, we obtain
-$$
-\beta'(g) =
-\beta(g) + \sum\nolimits_i \delta_i \frac{\partial g}{\partial x_i}.
-$$
-Since the map $\text{d}|_{J'/J^2} : J'/J^2 \to \Omega_{P/R} \otimes_P S$
-given by $g \mapsto \frac{\partial g}{\partial x_i}\text{d}x_i$
-is an isomorphism by construction, we see that there is a unique choice
-of $\delta_i \in I$ such that $\beta'(g) = 0$ for all $g \in J'$.
-(Namely, $\delta_i$ is $-\overline{\beta}(g)$ where $g \in J'/J^2$
-is the unique element with $\frac{\partial g}{\partial x_j} = 1$ if
-$i = j$ and $0$ else.) The uniqueness of the solution implies the
-uniqueness required in the lemma.
-\end{proof}
+\begin{example} \label{fsisn'tflat}
+Consider a field $k$, and consider $R = k[T^{x}]_{x \in \mathbb{Q}_{>0}}$. 
+This is the filtered colimit of the polynomial rings $k[T^{1/n}]$ over all $n$. There is a
+natural map $R \to k$ sending each power of $T$ to zero.
+The claim is that $R \to k$ is a formally smooth morphism which is not flat.
+It is a \emph{surjection}, so it is a lot different from the intuitive idea of
+a smooth map.
 
-\noindent
-In the situation of
-\rref{lemma-universal-thickening}
-the $R$-algebra map $S' \to S$ is unique up to unique isomorphism.
+Yet it turns out to be \emph{formally} smooth. To see this, consider an $R$-algebra $S$ and an ideal $I \subset S$ such that $S^2 =
+0$. The claim is that an $R$-homomorphism $k \to S/I$ lifts to $k \to S$.
+Consider the diagram
+\[ \xymatrix{ \\
+& & S \ar[d]  \\
+R  \ar[rru] \ar[r] & k \ar@{-->}[ru] \ar[r] & S/I,
+}\]
+in which we have to show that a dotted arrow exists.
 
-\begin{definition}
-\label{definition-universal-thickening}
-Let $R \to S$ be a formally unramified ring map.
-\begin{enumerate}
-\item The {\it universal first order thickening} of $S$ over $R$ is
-the surjection of $R$-algebras $S' \to S$ of
-\rref{lemma-universal-thickening}.
-\item The {\it conormal module} of $R \to S$ is the kernel $I$ of the
-universal first order thickening $S' \to S$, seen as a $S$-module.
-\end{enumerate}
-We often denote the conormal module {\it $C_{S/R}$} in this situation.
-\end{definition}
+However, there can be at most one $R$-homomorphism $k \to S/I$, since $k$ is a
+quotient of $R$. It follows that each $T^{x}, x \in \mathbb{Q}_{>0}$ is mapped
+to zero in $S/I$.
+So each $T^x, x \in I$ maps to elements of $I$ (by the map $R \to S$ assumed to
+exist). It follows that $T^x = (T^{x/2})^2$ maps to zero in $S$, as $I^2 =0$.
+Thus the map $R \to S$ annihilates each $T^x$, which means that there is a
+(unique) dotted arrow.
 
-\begin{lemma}
-\label{lemma-universal-thickening-quotient}
-Let $I \subset R$ be an ideal of a ring.
-The universal first order thickening of $R/I$ over $R$
-is the surjection $R/I^2 \to R/I$. The conormal module
-of $R/I$ over $R$ is $C_{(R/I)/R} = I/I^2$.
-\end{lemma}
+Note that $R \to k$ is not flat. Indeed, multiplication by $T$ is injective on
+$R$, but it acts by zero on $k$.
+\end{example} 
 
-\begin{proof}
-Omitted.
-\end{proof}
+This example was described by Anton Geraschenko on MathOverflow; see
+\cite{MO200}.
+The same reasoning shows more generally:
 
-\begin{lemma}
-\label{lemma-universal-thickening-localize}
-Let $A \to B$ be a formally unramified ring map.
-Let $\varphi : B' \to B$ be the universal first order thickening of
-$B$ over $A$.
-\begin{enumerate}
-\item Let $S \subset A$ be a multiplicative subset.
-Then $S^{-1}B' \to S^{-1}B$ is the universal first order thickening of
-$S^{-1}B$ over $S^{-1}A$. In particular $S^{-1}C_{B/A} = C_{S^{-1}B/S^{-1}A}$.
-\item Let $S \subset B$ be a multiplicative subset.
-Then $S' = \varphi^{-1}(S)$ is a multiplicative subset in $B'$
-and $(S')^{-1}B' \to S^{-1}B$ is the universal first order thickening
-of $S^{-1}B$ over $A$. In particular $S^{-1}C_{B/A} = C_{S^{-1}B/A}$.
-\end{enumerate}
-Note that the lemma makes sense by
-\rref{lemma-formally-unramified-localize}.
-\end{lemma}
+\begin{proposition} 
+Let $R$ be a ring, $I \subset R$ an ideal such that $I = I^2$. Then the
+projection $R \to R/I$ is formally \'etale.
+\end{proposition} 
 
-\begin{proof}
-With notation and assumptions as in (1). Let $(S^{-1}B)' \to S^{-1}B$
-be the universal first order thickening of $S^{-1}B$ over $S^{-1}A$.
-Note that $S^{-1}B' \to S^{-1}B$ is a surjection of $S^{-1}A$-algebras
-whose kernel has square zero. Hence by definition we obtain a map
-$(S^{-1}B)' \to S^{-1}B'$ compatible with the maps towards $S^{-1}B$.
-Consider any commutative diagram
-$$
-\xymatrix{
-B \ar[r] & S^{-1}B \ar[r] & D/I \\
-A \ar[r] \ar[u] & S^{-1}A \ar[r] \ar[u] & D \ar[u]
-}
-$$
-where $I \subset D$ is an ideal of square zero. Since $B'$ is the universal
-first order thickening of $B$ over $A$ we obtain an $A$-algebra map
-$B' \to D$. But it is clear that the image of $S$ in $D$ is mapped to
-invertible elements of $D$, and hence we obtain a compatible map
-$S^{-1}B' \to D$. Applying this to $D = (S^{-1}B)'$ we see that we get
-a map $S^{-1}B' \to (S^{-1}B)'$. We omit the verification that this map
-is inverse to the map described above.
+For a noetherian ring, if $I = I^2$, then we know that $I$ is generated by an
+idempotent in $R$ (see \cref{idempotentideal}), and the projection $R \to R/I$ is projection on the
+corresponding direct factor (actually, the complementary one).
+In this case, the projection is flat, and this is to be expected: as stated
+earlier, formally \'etale implies flat for noetherian rings.
+But in the non-noetherian case, we can get interesting examples. 
 
-\medskip\noindent
-With notation and assumptions as in (2). Let $(S^{-1}B)' \to S^{-1}B$
-be the universal first order thickening of $S^{-1}B$ over $A$.
-Note that $(S')^{-1}B' \to S^{-1}B$ is a surjection of $A$-algebras
-whose kernel has square zero. Hence by definition we obtain a map
-$(S^{-1}B)' \to (S')^{-1}B'$ compatible with the maps towards $S^{-1}B$.
-Consider any commutative diagram
-$$
-\xymatrix{
-B \ar[r] & S^{-1}B \ar[r] & D/I \\
-A \ar[r] \ar[u] & A \ar[r] \ar[u] & D \ar[u]
-}
-$$
-where $I \subset D$ is an ideal of square zero. Since $B'$ is the universal
-first order thickening of $B$ over $A$ we obtain an $A$-algebra map
-$B' \to D$. But it is clear that the image of $S'$ in $D$ is mapped to
-invertible elements of $D$, and hence we obtain a compatible map
-$(S')^{-1}B' \to D$. Applying this to $D = (S^{-1}B)'$ we see that we get
-a map $(S')^{-1}B' \to (S^{-1}B)'$. We omit the verification that this map
-is inverse to the map described above.
-\end{proof}
+\begin{example} We shall now give an example showing that formally \'etale
+morphisms do not necessarily preserve reducedness. We shall later see that this
+is true in the \emph{\'etale} case (see \cref{reducedetale}).
 
-\begin{lemma}
-\label{lemma-differentials-universal-thickening}
-Let $R \to A  \to B$ be ring maps. Assume $A \to B$ formally unramified.
-Let $B' \to B$ be the universal first order thickening of $B$ over $A$.
-Then $B'$ is formally unramified over $A$, and the canonical map
-$\Omega_{A/R} \otimes_A B \to \Omega_{B'/R} \otimes_{B'} B$ is an
-isomorphism.
-\end{lemma}
-
-\begin{proof}
-We are going to use the construction of $B'$ from the proof of
-\rref{lemma-universal-thickening}
-allthough in principle it should be possible to deduce these results
-formally from the definition. Namely, we choose a presentation
-$B = P/J$, where $P = A[x_i]$ is a polynomial ring over $A$.
-Next, we choose elements $f_i \in J$ such that
-$\text{d}f_i = \text{d}x_i \otimes 1$ in $\Omega_{P/A} \otimes_P B$.
-Having made these choices we have
-$B' = P/J'$ with $J' = (f_i) + J^2$, see proof of
-\rref{lemma-universal-thickening}.
-
-\medskip\noindent
-Consider the canonical exact sequence
-$$
-J'/(J')^2 \to \Omega_{P/A} \otimes_P B' \to \Omega_{B'/A} \to 0
-$$
-see
-\rref{lemma-differential-seq}.
-By construction the classes of the $f_i \in J'$ map to elements of
-the module $\Omega_{P/A} \otimes_P B'$ which generate it modulo
-$J'/J^2$ by construction. Since $J'/J^2$ is a nilpotent ideal, we see
-that these elements generate the module alltogether (by
-Nakayama's \rref{lemma-NAK}). This proves that $\Omega_{B'/A} = 0$
-and hence that $B'$ is formally unramified over $A$, see
-\rref{lemma-characterize-formally-unramified}.
-
-\medskip\noindent
-Since $P$ is a polynomial ring over $A$ we have
-$\Omega_{P/R} = \Omega_{A/R} \otimes_A P \oplus \bigoplus P\text{d}x_i$.
-We are going to use this decomposition.
-Consider the following exact sequence
-$$
-J'/(J')^2 \to
-\Omega_{P/R} \otimes_P B' \to
-\Omega_{B'/R} \to 0
-$$
-see
-\rref{lemma-differential-seq}.
-We may tensor this with $B$ and obtain the exact sequence
-$$
-J'/(J')^2 \otimes_{B'} B \to
-\Omega_{P/R} \otimes_P B \to
-\Omega_{B'/R} \otimes_{B'} B \to 0
-$$
-If we remember that $J' = (f_i) + J^2$
-then we see that the first arrow annihilates the submodule $J^2/(J')^2$.
-In terms of the direct sum decomposition
-$\Omega_{P/R} \otimes_P B =
-\Omega_{A/R} \otimes_A B \oplus \bigoplus B\text{d}x_i $ given
-we see that the submodule $(f_i)/(J')^2 \otimes_{B'} B$ maps
-isomorphically onto the summand $\bigoplus B\text{d}x_i$. Hence what is
-left of this exact sequence is an isomorphism
-$\Omega_{A/R} \otimes_A B \to \Omega_{B'/R} \otimes_{B'} B$
-as desired.
-\end{proof}
-
-
-
-
-
-
-
+Let $k$ be a field of characteristic $\neq 2$.
+Consider the ring $R = k[T^x]_{x \in \mathbb{Q}_{>0}}$ as before. 
+Take $S = R[X]/(X^2 - T)$, and consider the ideal $I$ generated by all the positive
+powers $T^x, x > 0$. As before, clearly $I=I^2$, and thus $S \to S/I$ is
+formally \'etale.
+The claim is that $S$ is reduced; clearly $S/I = k[X]/(X^2)$ is not. 
+Indeed, an element of $S$ can be  uniquely described by $\alpha = P(T) + Q(T)X$ where $P, Q$ are
+``polynomials'' in $T$---in actuality, they are allowed to have terms $T^x, x
+\in \mathbb{Q}_{>0}$.
+Then $\alpha^2 = P(T)^2 + Q(T)^2 T + 2 P(T) Q(T) X$. It is thus easy to see
+that if $\alpha^2 = 0$, then $\alpha = 0$.
+\end{example} 
 
 
 \section{\'Etale morphisms}
@@ -1323,7 +1480,8 @@ Let $(S_i, \varphi_{ii'})$ be a system of $R$-algebras
 over $I$. If each $R \to S_i$ is formally \'etale, then
 $S = \text{colim}_{i \in I}\ S_i$ is formally \'etale over $R$
 \end{lemma}
-
+The idea is that we can make the lifts on each piece, and glue them
+automatically.
 \begin{proof}
 Consider a diagram as in \rref{definition-formally-etale}.
 By assumption we get unique $R$-algebra maps $S_i \to A$ lifting
@@ -1388,11 +1546,22 @@ In particular, any unramified extension of a field is \'etale, in view of the
 structure theory for unramified extensions of fields (\cref{unrfield}).
 \end{example} 
 
-We also want a slightly different characterization of an \'etale morphism.
+
+\begin{example} 
+The example of \cref{fsisn'tflat} is a formally \'etale morphism, because we
+showed the map was formally smooth and it was clearly surjective. 
+It follows that a formally \'etale morphism is not necessarily flat!
+\end{example} 
+
+
+We also want a slightly different characterization of an \'etale morphism. This
+criterion will be of extreme importance for us in the sequel.
 \begin{theorem} 
 An $R$-algebra $S$ of finite presentation is \'etale if and only if
 it is flat and unramified.
 \end{theorem} 
+This is in fact how \'etale morphisms are defined in \cite{SGA1} and in
+\cite{Ha77}.
 \begin{proof} 
 An \'etale morphism is smooth, hence flat (\cref{smoothflat}). Conversely,
 suppose $S$ is flat and unramified over $R$. We just need to show that $S$ is
@@ -1401,6 +1570,51 @@ smooth over $R$. But this follows by the fiberwise criterion for smoothness,
 field is automatically \'etale, by \cref{etalefield}.
 \end{proof} 
 
+
+Finally, we would like a criterion for when a morphism of \emph{smooth}
+algebras is \'etale.
+We state it in the local case first.
+\begin{proposition} \label{etalecotangent}
+Let $B, C$ be local, formally smooth, essentially of finite presentation
+$A$-algebras and let $f: B \to C$ be a local $A$-morphism.
+Then $f$ is formally \'etale if and only if and only if the map $\Omega_{B/A}\otimes_B C \to \Omega_{C/A}$ is an isomorphism.
+\end{proposition} 
+The intuition is that $f$ induces an isomorphism on the cotangent spaces; this
+is analogous to the definition of an \emph{\'etale} morphism of smooth
+manifolds (i.e. one that induces an isomorphism on each tangent space, so is a
+local isomorphism at each point).
+\begin{proof} 
+We prove this for $A$ noetherian. 
+
+We just need to check that $f$ is flat if the map on differentials is an
+isomorphism.
+Since $B, C$ are flat $A$-algebras, it suffices (by the general criterion,
+\cref{fiberwiseflat}), to show that $B
+\otimes_A k \to C \otimes_A k$ is flat for $k$ the residue field of $A$. 
+We will also be done if we show that $B \otimes_A \overline{k} \to C \otimes_A
+\overline{k}$ is flat. Note that the same hypotheses (that 
+
+So we have reduced to a question about rings essentially of finite type over a
+\emph{field}. Namely, we have local rings $\overline{B}, \overline{C}$ which
+are both formally smooth, essentially of finite-type $k$-algebras, and a map $\overline{B} \to \overline{C}$ that
+induces an isomorphism on the K\"ahler differentials as above.
+
+The claim is that $\overline{B} \to \overline{C}$ is flat (even local-\'etale). 
+Note that both $\overline{B}, \overline{C}$ are \emph{regular} local rings, and
+the condition about K\"ahler differentials implies that they of the same
+dimension. Consequently, $\overline{B} \to \overline{C}$ is \emph{injective}:
+if it were not injective, then the dimension of $\im(\overline{B} \to
+\overline{C})$ would be \emph{less} than $\dim \overline{B} = \dim \overline{C}$.
+But since $\overline{C}$ is unramified over $\im(\overline{B} \to
+\overline{C})$, the dimension can only drop: $\dim \overline{C} \leq \dim
+\im(\overline{B} \to \overline{C})$.\footnote{This follows by the surjection of
+modules of K\"ahler differentials, in view of \cref{}.}
+This contradicts $\dim \overline{B} = \dim\overline{C}$. It follows that
+$\overline{B} \to \overline{C}$ is injective, and hence flat by \cref{} below
+(one can check that there is no circularity).
+
+
+\end{proof} 
 
 \subsection{The local structure theory}
 We know two easy ways of getting an unramified morphism out of a ring $R$.
@@ -1641,15 +1855,20 @@ properties that an \'etale extension $A \to B$ has. An \'etale extension is
 not supposed to make $B$ differ too much from $A$, so we might expect some of
 the same properties to be satisfied.
 
-We might not necessarily expect global properties to be preserved (e.g. an
-open immersion might not preserve dimension if the scheme had multiple
-components), but local ones should be.
+We might not necessarily expect global properties to be preserved
+(geometrically, an open imbedding of schemes is \'etale, and that does
+not necessarily preserve global properties), but local ones should be.
 
 Thus the right definition for us will be the following:
 \begin{definition} 
+A morphism of local rings $(A, \mathfrak{m}_A) \to (B, \mathfrak{m}_B)$ is \textbf{local-unramified}
+$\mathfrak{m}_A B$ is the maximal ideal of $B$ and $B/\mathfrak{m}_B$ is a
+finite separable extension of $A/\mathfrak{m}_A$.
+
 A morphism of local rings $A \to B$ is \textbf{local-\'etale} if it is flat
 and local-unramified.
 \end{definition} 
+
 
 
 \begin{proposition}  \label{dimpreserved}
@@ -1704,12 +1923,9 @@ For regularity, we use \eqref{thisiso} with $n=1$ to see at once that the
 embedding dimensions of $R$ and $S$ are the same.
 \end{proof} 
 
-
-\begin{corollary} 
-Let $f: X \to Y$ be an \'etale morphism of noetherian schemes. Then if $Y$ is
-regular (resp. Cohen-Macaulay), so is $X$. The converse implication holds if
-$f$ is surjective.
-\end{corollary} 
+Recall, however, that regularity of $S$ implies that of $R$ if we just assume
+that $R \to S$ is \emph{flat} (by Serre's characterization of regular
+local rings as those having finite global dimension).
 
 
 We shall next show that reducedness is preserved
@@ -1717,9 +1933,10 @@ under \'etale extensions.
 We shall need another hypothesis, though, that the map of local rings 
 be essentially of finite type.
 This will always be the case in situations of interest, when we are looking at
-the map on local rings induced by a morphism of schemes of finite type.
+the map on local rings induced by a morphism of rings of finite type.
 
 \begin{proposition} 
+\label{reducedetale}
 Let $(R, \mathfrak{m}) \to (S, \mathfrak{n})$ be a local-\'etale morphism of noetherian local
 rings. 
 Suppose $S$ is essentially of finite type over $R$.
@@ -1820,46 +2037,37 @@ $\depth S_{\mathfrak{q}} = \depth R_{\mathfrak{p}} \geq 2$.
 We mention a harder result:
 
 \begin{theorem} 
+\label{injunrflat}
 If $(R, \mathfrak{m}) \to (S, \mathfrak{n})$ is local-unramified, injective,
-and essentially of finite type, with $R$ normal, then $R \to S$ is
+and essentially of finite type, with $R$ normal and noetherian, then $R \to S$ is
 local-\'etale.
+Thus, an injective unramified morphism of finite type between noetherian rings,
+whose source is a normal domain, is \'etale.
 \end{theorem} 
+A priori, it is not obvious at all that $R \to S$ should be flat.
 \begin{proof} 
-We follow \cite{Mi67} in the proof.
+\add{This proof}
+\begin{comment}
+We essentially follow \cite{Mi67} in the proof.
+Clearly, only the local statement needs to be proved.
 
-We shall start by proving a lemma about \'etale extensions of a \emph{normal}
-local domain.
-\begin{lemma} 
-Let $(R, \mathfrak{m})$ be a normal local domain. Let $(S, \mathfrak{n})$ be a
-local-\'etale extension, essentially of finite type.
-Then $S$ is a localization of $R[X]/(P(X))$ for $P$ a monic polynomial
-irreducible in the quotient field of $R$.
-\end{lemma} 
-\begin{proof} 
-The local structure theory of \'etale morphisms shows that the statement
-without irreducibility is true.
-Namely, we can write 
-$S$ as a localization of $R[X]/(Q(X))$ for $Q(X)$ a monic polynomial in $R[X]$. 
-Say for instance 
-\[ S = R[X]_{\mathfrak{q}}/(Q(X)), \quad \mathfrak{q} \in \spec R[X[.  \]
-Let us construct a factorization into irreducible components
-\[ Q(X) = Q_1(X) \dots Q_k(X) , \quad Q_i(X) \in R[X]. \]
-As $R$ is normal, each $Q_i$ is irreducible in the quotient field as well.
-
-Now under the map $R[X] \to S$, we know that $Q(X)$ maps to zero (obviously). Since we know that $S$ is a domain (by
-\cref{normalitypreserved}), it follows that one of the $Q_i$, say $Q_1$, maps
-to zero in $S$.
-Let $P(X) = Q_1(X), T(X) = Q_2(X) \dots Q_k(X)$.
-
-We know that $S/\mathfrak{n} = S/\mathfrak{m}S  =
-(R/\mathfrak{m})[X]_{\mathfrak{q}}/(Q(X))$.
-The images of $P, T$ in $(R/\mathfrak{m}[X])_{\mathfrak{q}}$ are relatively
-prime (by unramifiedness), for otherwise 
+Let $K$ be the quotient field of $R$.
+We have an injection $K \to S \otimes_R K$, which is  formally unramified and
+essentially of finite type; thus $S
+\otimes_R K$ is itself a product of finite separable extensions of $K$.
+Since the map $R \to S$ is injective, so is $K \to S \otimes_R K$; in
+particular, the latter is a nonzero product of field extensions of $K$. 
+Now $R \to S \to S \otimes_R K$ is thus injective, by the diagram
+\[ \xymatrix{
+R \ar[d] \ar[r] & S \ar[d] \\
+K \ar[r] &  S \otimes_R K,
+}\]
+where we have just seen the bottom horizontal arrow is injective, and $R
+\to K$ is clearly injective. 
+\end{comment}
 \end{proof} 
 
-\end{proof} 
-
-Note that this \emph{fails} if $Y$ is not normal.
+Note that this \emph{fails} if the source is not normal.
 \begin{example} 
 Consider a nodal cubic $C$ given by $y^2 = x^2 (x-1)$ in $\mathbb{A}^2_k$ over an
 algebraically closed field $k$. As is well-known, this curve is smooth except
@@ -1888,5 +2096,54 @@ at $1$ (or $-1$).
 It follows that the maximal ideal $\mathfrak{m}_{C,0}$ generates the maximal
 ideal of $\mathcal{O}_{\mathbb{A}^1_k, 1}$ (and similarly for $-1$).
 \end{example} 
+
+\subsection{Application to smooth morphisms}
+
+We now want to show that the class of \'etale morphisms essentially determines
+the class of smooth morphisms. Namely, we are going to show that 
+smooth morphisms are those that look \'etale-locally like \'etale morphisms
+followed by projection from affine space. (Here ``projection from affine
+space'' is the geometric picture: in terms of commutative rings, this is the
+embedding $A \hookrightarrow A[x_1, \dots, x_n]$.)
+
+Here is the first goal:
+\begin{theorem} 
+Let $f: (A, \mathfrak{m}) \to (B, \mathfrak{n})$ be an essentially of finite
+presentation, local morphism of local rings.
+Then $f$ is formally smooth
+if and only if there exists a factorization
+\[ A \to C \to B  \]
+where $(C, \mathfrak{q})$ is a localization of the polynomial ring $A[X_1,
+\dots, X_n]$ at a prime ideal with $A \to C$ the natural embedding, and $C \to
+B$ a formally \'etale morphism.
+\end{theorem} 
+
+For convenience, we have stated this result for local rings, but we can get a
+more general criterion as well (see below). This states that smooth
+morphisms, \'etale locally, look like the imbedding of a ring into a
+polynomial ring.
+
+\begin{proof} First assume $f$ smooth.
+We know then that $\Omega_{B/A}$ is a finitely generated projective $B$-module,
+hence free, say of rank $n$. 
+There are $t_1, \dots, t_n \in B$ such that $\left\{dt_i\right\}$ forms a basis
+for $\Omega_{B/A}$: namely, just choose a set of such elements that forms a
+basis for $\Omega_{B/A} \otimes_B B/\mathfrak{n}$ (since these elements
+generate $\Omega_{B/A}$).
+
+Now these elements $\left\{t_i\right\}$ give a map of rings $A[X_1, \dots, X_n]
+\to B$. We let $\mathfrak{q}$ be the pre-image of $\mathfrak{n}$ (so
+$\mathfrak{n}$ contains the image of $\mathfrak{m} \subset A$), and take $C =
+C = A[X_1,\dots, X_n]_{\mathfrak{q}}$. This gives local homomorphisms $A \to C,
+C \to B$. We only need to check that $C \to B$ is \'etale. 
+But the map
+\[ \Omega_{C/A} \otimes_C B \to \Omega_{B/A}  \]
+is an isomorphism, by construction. Since $C, B$ are both formally smooth over
+$A$, we find that $C \to B$ is \'etale by the characterization of \'etaleness
+(\cref{etalecotangent}).
+
+\end{proof} 
+
+
 
 
