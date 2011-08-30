@@ -3,15 +3,22 @@
 
 In this chapter, we shall introduce three classes of morphisms of rings
 defined by lifting properties and study their properties.
+Although in the case of morphisms of finite presentation, the three types of
+morphisms (unramified, smooth, and \'etale) can be defined directly (without
+lifting properties), in practice, in algebraic geometry, the functorial
+criterion given by lifts matter: if one wants to show an algebra is
+representable, then one can just study the \emph{corepresentable functor},
+which may be more accessible.
 
-\section{Formally unramified maps}
+\section{Unramified morphisms}
 \label{section-formally-unramified}
 
 
 \subsection{Definition}
-It turns out to be logically more efficient to define
-the notion of a formally unramified map before introducing
-the notion of a formally \'etale one.
+
+Formal \'etaleness, smoothness, and unramifiedness all deal with the existence
+or uniqueness of liftings under nilpotent extensions. We start with formal
+unramifiedness. 
 
 \begin{definition}
 \label{definition-formally-unramified}
@@ -26,6 +33,9 @@ R \ar[r] \ar[u] & A \ar[u]
 \end{equation}
 where $I \subset A$ is an ideal of square zero, there exists
 at most one dotted arrow making the diagram commute.
+
+We say that $S$ is \textbf{unramified over $R$} if $S$ is formally unramified
+over $R$ and is a finitely generated $R$-algebra.
 \end{definition}
 
 In other words, an $R$-algebra $S$ is formally unramified if and only if
@@ -33,18 +43,44 @@ whenever $A$ is an $R$-algebra and $I \subset A$ an ideal of square zero, the
 map of sets
 \[ \hom_R(S, A) \to \hom_R(S, A/I)  \]
 is injective.
+Restated again, for such $A, I$, there is \emph{at most one}  lift of a given
+$R$-homomorphism $S \to A/I$ to $S \to A$.
+This is a statement purely about the associated ``functor of points.''
+Namely, let $S$ be an $R$-algebra, and consider the functor $F:
+R\text{--}\mathbf{alg}
+\to \mathbf{Sets}$ given by $F(X) = \hom_R(S, X)$.
+This is the ``functor of points.''
+Then $S$ is formally unramified over $R$ if $F(A) \to F(A/I)$ is injective for each
+$A, I$ as above. 
 
+The intuition is that maps from $S$ into $T$ are like ``tangent vectors,'' and
+consequently the condition geometrically means something like that tangent
+vectors can be lifted uniquely: that is, the associated map is an immersion.
+More formally, if $R\to  S$ is a morphism of algebras of finite type
+over $\mathbb{C}$, which corresponds to a map $\spec S \to \spec R$ of
+\emph{smooth} varieties (this is a condition on $R, S$!), then $R \to S$ is
+unramified if and only if the  associated map of complex manifolds is an
+immersion. (We are not proving this, just stating it for intuition.)
 
-\begin{proposition} 
-The following are equivalent for a $R$-algebra $S$:
-\begin{enumerate}
-\item  $\Omega_{S/R}=0$.
-\item $S$ is formally unramified over $R$.
-\end{enumerate}
+We now show that the module of K\"ahler differentials provides a simple
+criterion for an extension to be formally unramified.
+\begin{proposition} \label{formalunrmeansomegazero}
+An $R$-algebra $S$ is formally unramified if and only if $\Omega_{S/R} = 0$.
 \end{proposition} 
+
+Suppose $R, S$ are both algebras over some smaller ring $k$. 
+Then there is an exact sequence
+\[ \Omega_{R/k}\otimes_R S \to \Omega_{S/k} \to \Omega_{S/R} \to 0,  \]
+and consequently, we see that formal unramifiedness corresponds to surjectivity
+of the map on ``cotangent spaces'' $\Omega_{R/k} \otimes_R S \to \Omega_{S/k}$. 
+This is part of the intuition that formally unramified maps are geometrically
+like immersions (since surjectivity on the cotangent spaces corresponds to
+injectivity on the tangent spaces).
+
 \begin{proof} 
 Suppose first $\Omega_{S/R}=0$. This is equivalent to the statement that
-\emph{any} $R$-derivation of $S$ into an $S$-module is trivial.
+\emph{any} $R$-derivation of $S$ into an $S$-module is trivial, because
+$\Omega_{S/R}$ is the recipient of the ``universal'' $R$-derivation.
 If given an $R$-algebra $T$ with an ideal $I \subset T$ of square zero and a
 morphism 
 \[ S \to T/I,  \]
@@ -73,7 +109,27 @@ $\Omega_{S/R}=0$.
 
 \end{proof} 
 
+Here is the essential point of the above argument. Let $I \subset T$ be an
+ideal of square zero in the $R$-algebra $T$. 
+Suppose given a homomorphism $g: S \to T/I$.
+Then the set of lifts $S \to T$ of $g$ (which are $R$-algebra morphisms)
+is either empty or a torsor over 
+$\mathrm{Der}_R(S, I)$ (by adding a derivation to
+a homomorphism). 
+Note that $I$ is naturally a $T/I$-module (because $I^2 = 0$), and hence an
+$S$-module by $g$.
+
+This means that if the object $\mathrm{Der}_R(S, I)$ is trivial, then
+injectivity of the above map must hold. 
+Conversely, if injectivity of the above map always holds (i.e. $S$ is formally
+unramified),
+then we must have $\mathrm{Der}_R(S, I) = 0$ for all such $I \subset T$; since
+we can obtain any $S$-module in this manner, it follows that there is no such
+thing as  a nontrivial $R$-derivation out of $S$.
 %most of the code below was contributed by the Stacks project authors
+
+
+We next show that formal unramifiedness is a local property.
 \begin{lemma}
 \label{lemma-formally-unramified-local}
 Let $R \to S$ be a ring map.
@@ -89,82 +145,102 @@ for all primes $\mathfrak q$ of $S$ with $\mathfrak p = R \cap \mathfrak q$.
 
 \begin{proof}
 We have seen in
-\rref{lemma-characterize-formally-unramified}
+\cref{formalunrmeansomegazero}
 that (1) is equivalent to
-$\Omega_{S/R} = 0$. Similarly, by
-\rref{lemma-differentials-localize}
-we see that (2) and (3)
+$\Omega_{S/R} = 0$. Similarly, since K\"ahler differentials localize, we see that (2) and (3)
 are equivalent to $(\Omega_{S/R})_{\mathfrak q} = 0$ for all
-$\mathfrak q$. Hence the equivalence follows from
-\rref{lemma-characterize-zero-local}.
+$\mathfrak q$. 
+As a result, the statement of this lemma is simply the fact that an $S$-module
+is zero if and only if all its localizations at prime ideals are zero. 
 \end{proof}
 
 We shall now give the typical list of properties (``le sorite'') of unramified morphisms.
 
 \begin{proposition} \label{locunramified}
 Any map $R \to R_f$ for $f \in  R$ is unramified.
-\end{proposition} 
 More generally, a map from a ring to any localization is \emph{formally}
 unramified, but not necessarily unramified. 
+\end{proposition} 
 \begin{proof} 
 Indeed, we know that $\Omega_{R/R}  = 0$ and $\Omega_{R_f/R } =
-(\Omega_{R/R})_f=0$, and the amp is clearly of finite type.
+(\Omega_{R/R})_f=0$, and the map is clearly of finite type.
 \end{proof} 
 
-\begin{proposition} 
+\begin{proposition} \label{epiunr}
 A surjection of rings is unramified.
+More generally, a categorical epimorphism of rings is formally unramified.
 \end{proposition} 
 \begin{proof} 
-Obvious.
+Obvious from the lifting property: if $R \to S$ is a categorical epimorphism,
+then given any $R$-algebra $T$, there can be \emph{at most one} map of
+$R$-algebras $S \to T$ (regardless of anything involving square-zero ideals).
 \end{proof} 
 
-In the language of schemes, one can define the notion of an \emph{unramified
-morphism,} and it then follows that any immersion is unramified.
+In the proof of \cref{epiunr}, we could have alternatively argued as follows. If $R \to S$ is an epimorphism
+in the category of rings, then $S \otimes_R S \to S$ is an isomorphism. 
+This is a general categorical fact, the dual of which for monomorphisms is
+perhaps simpler: if $X \to Y$ is a monomorphism of objects in any category,
+then $X \to X \times_Y X$ is an isomorphism. See \cref{}. By the alternate
+construction of $\Omega_{S/R}$ (\cref{alternateOmega}), it follows that this must vanish.
+
 
 \begin{proposition} 
-If $R \to S$ and $S \to T$ are unramified, so is $R \to T$.
+\label{sorite1unr}
+If $R \to S$ and $S \to T$ are unramified (resp. formally unramified), so is $R \to T$.
 \end{proposition} 
 \begin{proof} 
-It is clear that $R \to T$ is of finite type. We need to check that
-$\Omega_{T/R}  = 0$. However, we have a standard exact sequence (cf.
-\cite{Ei95})
+Since morphisms of finite type are preserved under composition, we only need
+to prove the result about formally unramified maps. So let $R \to S, S \to T$
+be formally unramified. We need to check that
+$\Omega_{T/R}  = 0$. However, we have an exact sequence (see
+\cref{firstexactseq}):
 \[ \Omega_{S/R}\otimes_S T \to \Omega_{T/R} \to \Omega_{T/S} \to 0,  \]
 and since $\Omega_{S/R} = 0, \Omega_{T/S} = 0$, we find that $\Omega_{T/R}  =
-0$.
+0$. This shows that $R \to T$ is formally unramified.
 \end{proof} 
-
+More elegantly, we could have proved this by using the lifting property (and
+this is what we will do for formal \'etaleness and smoothness).
+Then this is simply a formal argument.
 
 \begin{proposition}  \label{unrbasechange}
-If $R \to S$ is unramified, so is $R' \to S' = S \otimes_R R'$ for any $R$-algebra
+If $R \to S$ is unramified (resp. formally unramified), so is $R' \to S' = S \otimes_R R'$ for any $R$-algebra
 $R'$.
 \end{proposition} 
 \begin{proof} 
-This follows from the fact that $\Omega_{S'/R'} = \Omega_{S/R} \otimes_S S'$.
+This follows from the fact that $\Omega_{S'/R'} = \Omega_{S/R} \otimes_S S'$
+(see \cref{basechangediff}).
 Alternatively, it can be checked easily using the lifting criterion.
+For instance, suppose given an $R'$-algebra $T$ and an ideal $I \subset T$ of
+square zero. We want to show that a morphism of $R'$-algebras
+$S' \to T/I$ lifts in at most one way to a map $S' \to T$. But if we had two
+distinct liftings, then we could restrict to $S$ to get two liftings  of $S \to
+S' \to T/I$. These are easily seen to be distinct, a contradiction as $R \to
+S$ was assumed formally unramified. 
 \end{proof} 
 
 
 In fact, the question of what unramified morphisms look like can be reduced to
 the case where the ground ring is a \emph{field} in view of the previous and
 the following result.
-
 Given $\mathfrak{p} \in \spec R$, we let $k(\mathfrak{p})$ to be the residue
 field of $R_{\mathfrak{p}}$.
 
 
-\begin{corollary} \label{reduceunrtofield} 
+\begin{proposition} \label{reduceunrtofield} 
 Let $\phi: R \to S$ be a morphism of finite type. Then $\phi$ is unramified if
 and only if for every $\mathfrak{p} \in \spec R$, we have
-\[ k(\mathfrak{p}) \to S \otimes_R k(\mathfrak{p})  \]
+\( k(\mathfrak{p}) \to S \otimes_R k(\mathfrak{p})  \)
 unramified.
-\end{corollary} 
+\end{proposition} 
+The classification of unramified extensions of a field is very simple, so this
+will be useful.
 \begin{proof} 
 One direction is clear by \cref{unrbasechange}. For the other, suppose
 $k(\mathfrak{p}) \to S \otimes_R k(\mathfrak{p})$ unramified for all $\mathfrak{p} \subset R$.
 We then know that 
-\[ \Omega_{S/R} \otimes_R k(\mathfrak{p}) = \Omega_{S \otimes_R
-k(\mathfrak{p})/k(\mathfrak{p})} = 0  \]
-for all such $\mathfrak{p}$. By localization, it follows that
+\( \Omega_{S/R} \otimes_R k(\mathfrak{p}) = \Omega_{S \otimes_R
+k(\mathfrak{p})/k(\mathfrak{p})} = 0  \)
+for all $\mathfrak{p}$. By localization, it follows that
 \begin{equation} \label{auxdiff} \mathfrak{p}
 \Omega_{S_{\mathfrak{q}}/R_{\mathfrak{p}}} =
 \Omega_{S_{\mathfrak{q}}/R_{\mathfrak{p}}} = \Omega_{S_{\mathfrak{q}}/R}  \end{equation}
@@ -174,19 +250,19 @@ Let $\mathfrak{q} \in \spec S$. We will now show that
 $(\Omega_{S/R})_{\mathfrak{q}} = 0$. 
 Given this, we will find that $\Omega_{S/R} =0$, which will prove the
 assertion of the corollary. 
-
-
 Indeed, let $\mathfrak{p} \in \spec R$ be
 the image of $\mathfrak{q}$, so that there is a \emph{local} homomorphism 
-$R_{\mathfrak{p}} \to S_{\mathfrak{q}}$. By \cref{auxdiff}, we find that
+$R_{\mathfrak{p}} \to S_{\mathfrak{q}}$. By \eqref{auxdiff}, we find that
 \[ \mathfrak{q} \Omega_{S_{\mathfrak{q}}/R} = \Omega_{S_{\mathfrak{q}}/R}.  \]
-and since $\Omega_{S_{\mathfrak{q}}/R}$ is a finite $S_{\mathfrak{q}}$-module,
+and since $\Omega_{S_{\mathfrak{q}}/R}$ is a finite $S_{\mathfrak{q}}$-module
+(\cref{finitelygeneratedOmega}),
 Nakayama's lemma now implies that $\Omega_{S_{\mathfrak{q}}/R}=0$, proving
 what we wanted. 
 \end{proof} 
 
 
-\begin{lemma}
+The following is simply a combination of the various results proved:
+\begin{corollary}
 \label{lemma-formally-unramified-localize}
 Let $A \to B$ be a formally unramified ring map.
 \begin{enumerate}
@@ -195,21 +271,158 @@ $S^{-1}A \to S^{-1}B$ is formally unramified.
 \item For $S \subset B$ a multiplicative subset,
 $A \to S^{-1}B$ is formally unramified.
 \end{enumerate}
-\end{lemma}
+\end{corollary}
 
-\begin{proof}
-Follows from
-\rref{lemma-formally-unramified-local}.
-(You can also deduce it from
-\rref{lemma-characterize-formally-unramified}
-combined with
-\rref{lemma-differentials-localize}.)
-\end{proof}
+\subsection{Unramified extensions of a field}
+Motivated by \cref{reduceunrtofield}, we classify unramified morphisms out of a
+field; we are going to see that these are just finite products of separable
+extensions. Let us first consider the case when the field is \emph{algebraically
+closed.}
+
+\begin{proposition} \label{unrextalgclosedfld}
+Suppose $k$ is algebraically closed. If $A$ is an unramified $k$-algebra, then
+$A$ is a product of copies of $k$.
+\end{proposition} 
+\begin{proof} 
+Let us
+show first that $A$ is necessarily finite-dimensional. 
+If not, 
 
 
-\section{Formal smoothness}
+So let us now assume that $A$ is finite-dimensional over $k$, hence \emph{artinian}. 
+Then $A$ is a direct product of artinian local $k$-algebras.
+Each of these is unramified over $k$. So we need to study what local,
+artinian, unramified extensions of $k$ look like; we shall show that any such
+is isomorphic to $k$ with:
 
-\subsection{Introduction}
+\begin{lemma} 
+A finite-dimensional, local $k$-algebra which is unramified over $k$ (for $k$ 
+algebraically closed) is isomorphic to $k$.
+\end{lemma} 
+\begin{proof} 
+First, if $\mathfrak{m} \subset A$ is the maximal ideal, then $\mathfrak{m}$
+is nilpotent, and $A/\mathfrak{m}\simeq k$ by the Hilbert Nullstellensatz. Thus the ideal
+$\mathfrak{M}=\mathfrak{m}
+\otimes A + A \otimes \mathfrak{m} \subset A \otimes_k A$ is nilpotent and
+$(A \otimes_k A)/\mathfrak{M} = k \otimes_k k = k$. In particular, $\mathfrak{M}$ is maximal and
+$A \otimes_k A$ is also local.
+(We could see this as follows: $A$ is associated to a one-point variety, so the
+fibered product $\spec A \times_k \spec A$ is also associated to a one-point
+variety. It really does matter that we are working  over an
+algebraically closed field here!)
+
+By assumption, $\Omega_{A/k} = 0$. So if $I = \ker(A \otimes_k A \to A)$, then
+$I = I^2$.
+ But from \cref{idemlemma}, we find that if  we had $I \neq 0$, then $\spec A \otimes_k A$
+would be disconnected. This is clearly false (a local ring has no nontrivial
+idempotents), so $I  = 0$ and 
+$A \otimes_k A \simeq A$. Since $A$ is finite-dimensional over $k$,
+necessarily $A \simeq k$.
+\end{proof} 
+\end{proof} 
+
+Now let us drop the assumption of algebraic closedness to get:
+
+\begin{theorem} \label{unrfield} 
+An unramified $k$-algebra for $k$ any field is isomorphic to a product $\prod
+k_i$ of finite separable extensions $k_i$ of $k$.
+\end{theorem} 
+\begin{proof} 
+Let $k$ be a field, and $\overline{k}$ its algebraic closure. Let $A$ be an
+unramified $k$-algebra. Then $A \otimes_k \overline{k}$ is an unramified
+$\overline{k}$-algebra by \cref{unrbasechange}, so is a  finite product of copies of
+$\overline{k}$.
+It is thus natural that we need to study tensor products of fields to
+understand this problem.
+
+\begin{lemma} \label{productoffields}
+Let $E/k$ be a finite extension, and $L/k$ any extension.
+If $E/k$ is separable, then $L \otimes_k E$ is isomorphic (as a $L$-algebra) to a product of
+copies of separable extensions of $L$.
+\end{lemma} 
+\begin{proof} 
+By the primitive element theorem, we have $E = k(\alpha)$ for some $\alpha \in
+E$ satisfying a separable irreducible polynomial $P \in k[X]$.
+Thus 
+\[ E = k[X]/(P),  \]
+so
+\[ E \otimes_k L = L[X]/(P).  \]
+But $P$ splits into several irreducible factors $\left\{P_i\right\}$ in
+$L[X]$, no two of which are the same by separability. 
+Thus by the Chinese remainder theorem,
+\[ E \otimes_k L = L(X)/(\prod P_i) = \prod L[X]/(P_i),  \]
+and each $L[X]/(P_i)$ is a finite separable extension of $L$.
+\end{proof} 
+
+As a result of this, we can easily deduce that any $k$-algebra of the form
+$A=\prod k_i$ for the $k_i$ separable over $k$ is unramified.
+Indeed, we have
+\[ \Omega_{A/k}\otimes_k \overline{k} = \Omega_{A \otimes_k
+\overline{k}/\overline{k}}, \]
+so it suffices to prove that $A \otimes_k \overline{k}$ is unramified over
+$\overline{k}$. However, from \cref{productoffields}, $A \otimes_k
+\overline{k}$ is isomorphic as a $\overline{k}$-algebra to a product of copies
+of $\overline{k}$. Thus $A \otimes_k \overline{k}$ is obviously unramified
+over $\overline{k}$.
+
+On the other hand, suppose $A/k$ is unramified. We shall show it is of the
+form given as in the theorem. Then $A \otimes_k
+\overline{k}$ is unramified over $\overline{k}$, so it follows by
+\cref{unrextalgclosedfld} that $A$ is finite-dimensional over $k$. In
+particular, $A$ is \emph{artinian}, and thus decomposes as a product of
+finite-dimensional unramified $k$-algebras.
+
+We are thus reduced to showing that a local, finite-dimensional $k$-algebra
+that is unramified is a separable extension of $k$. Let $A$ be one such. Then
+$A$ can have no nilpotents because then $A \otimes_k \overline{k}$ would have
+nilpotents, and could not be isomorphic to a product of copies of
+$\overline{k}$. 
+Thus the unique maximal ideal of $A$ is zero, and $A$ is a field.
+We need only show that $A$ is separable over $k$. This is accomplished by:
+
+\begin{lemma} 
+Let $E/k$ be a finite inseparable extension. Then $E \otimes_k \overline{k}$
+contains nonzero nilpotents. 
+\end{lemma} 
+
+\begin{proof} There exists an $\alpha \in E$ which is inseparable over $k$,
+i.e. whose minimal polynomial has multiple roots. 
+Let $E' = k(\alpha)$. We will show that $E' \otimes_k \overline{k}$ has
+nonzero nilpotents; since the map $E' \otimes_k \overline{k} \to E \otimes_k
+\overline{k}$ is an injection, we will be done. 
+Let $P$ be the minimal polynomial of $\alpha$, so that $E' = k[X]/(P)$. 
+Let $P = \prod P_i^{e_i}$ be the factorization of $P$ in $\overline{k}$ for
+the $P_i \in \overline{k}[X]$ irreducible (i.e. linear). By
+assumption, one of the $e_i$ is greater than one.
+It follows that 
+\[ E' \otimes_k \overline{k} = \overline{k}[X]/(P) = \prod
+\overline{k}[X]/(P_i^{e_i})  \]
+has nilpotents corresponding to the $e_i$'s that are greater than one.
+\end{proof} 
+
+\end{proof} 
+\begin{comment}
+We now come to the result that explains why the present theory is connected
+with Zariski's Main Theorem.
+\begin{corollary} \label{unrisqf} 
+An unramified morphism $A \to B$ is quasi-finite.
+\end{corollary} 
+\begin{proof} 
+Recall that a morphism of rings is \emph{quasi-finite} if the associated map
+on spectra is. Equivalently, the morphism must be of finite type and have
+finite fibers. But by assumption $A \to B$ is of finite type. Moreover, if
+$\mathfrak{p} \in \spec A$ and $k(\mathfrak{p})$ is the residue field, then
+$k(\mathfrak{p}) \to B \otimes_A k(\mathfrak{p})$ is \emph{finite} by the
+above results, so the fibers are finite. 
+\end{proof} 
+
+
+\end{comment} 
+
+
+\section{Smooth morphisms}
+
+\subsection{Definition}
 The idea of a \emph{smooth} morphism in algebraic geometry is one that is
 surjective on the tangent space, at least if one is working with smooth
 varieties over an algebraically closed field. So this means that one should be
@@ -219,53 +432,80 @@ $k[\epsilon]/\epsilon^2$.
 This makes the following definition seem more plausible:
 
 \begin{definition} 
-Let $B$ be an $A$-algebra. Then $B$ is \textbf{formally smooth} if given any
-$A$-algebra $D$ and ideal $I \subset D $ of square zero, the map
-\[ \hom_A(B, D) \to \hom_A(B, D/I)\]
+Let $S$ be an $R$-algebra. Then $S$ is \textbf{formally smooth} over $R$ (or
+the map $R \to S$ is formally smooth) if given any
+$R$-algebra $A$ and ideal $I \subset A $ of square zero, the map
+\[ \hom_R(S, A) \to \hom_R(S, A/I)\]
 is a surjection.
+We shall say that $S$ is \textbf{smooth} (over $R$) if it is formally smooth and of finite
+presentation.
 \end{definition} 
 
-So this means that in any diagram
-\[ \xymatrix{
-B \ar@{-->}[r] \ar[rd] & D \ar[d]  \\
-& D/J
-}\]
-there exists a dotted arrow making the diagram commute.
-
-\begin{definition} 
-If the above lifting problem has a \textbf{unique solution} for every pair $(D,
-J)$, then $B$ is called \textbf{formally etale} as an $A$-algebra. If there is
-at most one solution, then $B$ is called \textbf{formally unramified.}
-\end{definition} 
-
-
-It's not too hard to check that formally unramified is equivalent to
-$\Omega_{B/A} = 0$. See for instance my notes on the subject. (Ultimately, we
-are going to show that formal smoothness is equivalent to the cotangent complex
-being homotopy equivalent to the homology in dimension zero (which is
-$\Omega_{B/A}$) and the module $\Omega_{B/A}$ being projective.)
+So this means that in any diagram 
+$$
+\xymatrix{
+S \ar[r] \ar@{-->}[rd] & A/I \\
+R \ar[r] \ar[u] & A, \ar[u]
+}
+$$
+with $I$ an ideal of square zero in $A$, there exists a dotted arrow making the diagram commute.
+As with formal unramifiedness, this is a purely functorial statement: if $F$ is
+the corepresentable functor associated to $S$, then we want $F(A) \to F(A/I)$
+to be a \emph{surjection} for each $I \subset A$ of square zero and each
+$R$-algebra $A$.
 
 
-The basic example of a formally smooth $A$-algebra is the polynomial ring
-$A[x_1, \dots, x_n]$. For to give a map $A[x_1, \dots, x_n] \to D/J$ is to give
-$n$ elements of $D/J$; each of these elements can clearly be lifted to $D$.
+\begin{example}
+The basic example of a formally smooth $R$-algebra is the polynomial ring
+$R[x_1, \dots, x_n]$. For to give a map $R[x_1, \dots, x_n] \to A/I$ is to give
+$n$ elements of $A/I$; each of these elements can clearly be lifted to $A$.
 This is analogous to the statement that a free module is projective.
 
-Now, ultimately, we want to show that this somewhat abstract definition of
-formal smoothness will give us something nice and geometric when $B$ is in
-addition of finite presentation. In particular, in this case we want to show
-that $B$ is \emph{flat.} 
-To do this, we will need to do a bit of work, but we can argue in a fairly
-elementary manner. On the one hand, we will need to give a criterion for when a
-quotient of a formally smooth ring is formally smooth.
+More generally, if $P$ is a projective $R$-module (not necessarily of finite
+type), then the symmetric algebra $\Sym P$ is a formally smooth $R$-algebra.
+This follows by the same reasoning. 
+\end{example}
 
+We can state the usual list of properties of formally smooth morphisms:
+
+\begin{proposition}
+\label{smoothsorite}
+Smooth (resp. formally smooth) morphisms are preserved under base extension and
+composition.
+If $R$ is a ring, then any localization  is formally smooth over $R$.
+\end{proposition} 
+\begin{proof}  As usual, only the statements about \emph{formal} smoothness are
+interesting.
+The statements about base extension and composition will be mostly left to the reader:
+they are an exercise in diagram-chasing. (Note that we cannot argue as we did
+for formally unramified morphisms, where we had a simple criterion in terms of
+the module of K\"ahler differentials and various properties of them.) 
+For example, let $R \to S, S \to T$ be formally smooth. 
+Given a diagram (with $I \subset A$ an ideal of square zero)
+\[ \xymatrix{
+T \ar[r]  \ar@{-->}[rdd]  & A/I \\
+S  \ar[u] \ar@{-->}[rd] & \\
+R \ar[r] \ar[u] & A, \ar[uu]
+}\]
+we start by finding a dotted arrow $S \to A$ by using formal smoothness of $R
+\to S$. Then we find a dotted arrow $T \to A$ making the top quadrilateral
+commute. This proves that the composite is formally smooth. 
+\end{proof} 
 \subsection{Quotients of formally smooth rings}
 
+Now, ultimately, we want to show that this somewhat abstract definition of
+smoothness will give us something nice and geometric. In particular, in this case we want to show
+that $B$ is \emph{flat,} and the fibers are smooth varieties (in the old sense).
+To do this, we will need to do a bit of work, but we can argue in a fairly
+elementary manner. On the one hand, we will first need to give a criterion for when a
+quotient of a formally smooth ring is formally smooth.
 
-\begin{theorem}[EGA 0-IV, 22.6.1]
+
+
+\begin{theorem}
+\label{smoothconormal}
 Let $A$ be a ring, $B$ an $A$-algebra. Suppose $B$ is formally smooth over $A$,
 and let $I \subset B$ be an ideal. 
-
 Then $C = B/I$ is a formally smooth $A$-algebra if and only if the canonical map
 \[ I/I^2 \to \Omega_{B/A} \otimes_B C  \]
 has a section.
@@ -274,28 +514,27 @@ In other words, $C$ is formally smooth precisely when the conormal sequence
 is split exact.
 \end{theorem} 
 
-EGA states this in more generality for \emph{topological} rings, and uses
-some functors on ring extensions. 
+This result is stated in more generality  for \emph{topological} rings, and uses
+some functors on ring extensions, in \cite{EGA}, 0-IV, 22.6.1. 
 
 \begin{proof} 
 Suppose first $C$ is formally smooth over $A$.
 Then we have a map
-\[ B/I^2 \to C  \]
-given by the quotient. 
+\( B/I^2 \to C  \)
+given by the quotient. The claim is that there is a section of this map.
 There is a diagram of $A$-algebras
 \[ \xymatrix{
 B/I & \ar[l] B/I^2 \\
-C \ar[u] \ar@{-->}[ru]
+C \ar[u]^{=} \ar@{-->}[ru]
 }\]
-and the lifting $C \to B/I^2$ exists by formal smoothness. 
-This is a section of the natural projection $B/I^2 \to C = B/I$, which is a
-morphism of $A$-algebras.
-In particular, we get a splitting 
-\[ B/I^2 = B/I \oplus I/I^2  \]
-from the exact sequence
-\[ 0 \to I/I^2 \to B/I^2 \to C \to 0.  \]
-Since the section of $B/I^2 \to C$ was a section of \emph{rings}, we see that
-the splitting is a splitting of $A$-algebras, where $I/I^2$ squares to zero.
+and the lifting $s: C \to B/I^2$ exists by formal smoothness. 
+This is a section of the natural projection $B/I^2 \to C = B/I$.
+
+
+In particular, the combination of the natural inclusion $I/I^2 \to B/I^2$ and
+the section $s$ gives an isomorphism  of \emph{rings} (even $A$-algebras)
+\( B/I^2 \simeq C \oplus I/I^2 . \)
+Here $I/I^2$ squares to zero.
 
 We are interested in showing that $I/I^2 \to \Omega_{B/A} \otimes_B C$ is a
 split injection of $C$-modules. To see this, we will show that any map out of the former
@@ -304,7 +543,7 @@ Now suppose given a map
 of $C$-modules
 \[ \phi:  I/I^2 \to M \]
 into a $C$-module $M$.
-Then we get a derivation
+Then we get an $A$-derivation
 \[ \delta:  B/I^2 \to M  \]
 by using the splitting $B/I^2 = C \oplus I/I^2$.
 (Namely, we just extend the map by zero on $C$.)
@@ -320,18 +559,21 @@ M$ that restricts on $I$ to the map $I \to I/I^2 \stackrel{\phi}{\to} M$.
 By the universal property of the differentials, this is the same thing as a
 homomorphism $\Omega_{B/A} \to M$, or equivalently $\Omega_{B/A} \otimes_B C
 \to M$ since $M$ is a $C$-module.
+Pulling back this derivation to $I/I^2$ corresponds to pulling back via $I/I^2
+\to \Omega_{B/A} \otimes_B C$.
 
 It follows that the map
 \[ \hom_C(\Omega_{B/A} \otimes_B C, M) \to \hom_C(I/I^2, M)  \]
 is a surjection. This proves one half of the result.
 
 Now for the other.
-Suppose that there is a section.
+Suppose that there is a section of the conormal map.
 This translates, as above, to saying that
 any map $I/I^2 \to M$  (of $C$-modules) for a $C$-module $M$
  can be extended to an $A$-derivation $B \to M$.
+We must deduce from this formal smoothness.
 
-Now let $E$ be any $A$-algebra, and $J \subset E$
+Let $E$ be any $A$-algebra, and $J \subset E$
 an ideal of square zero.
 We suppose given an $A$-homomorphism $C \to E/J$
 and would like to lift it to $C \to E$; in other words, we must 
@@ -343,7 +585,7 @@ E \ar[r] & E/J
 Let us pull this map back by the surjection 
 $B \twoheadrightarrow C$; we get a diagram
 \[ \xymatrix{
-& B \ar@{-->}[ldd] \ar[d] \\
+& B \ar@{-->}[ldd]^{\phi}\ar[d] \\
 & C \ar@{-->}[ld] \ar[d]  \\
 E \ar[r] & E/J
 }.\]
@@ -351,8 +593,9 @@ In this diagram, we know that a lifting $\phi: B \to E$ does exist because $B$ i
 formally smooth over $A$.
 So we can find a dotted arrow from $B \to E$ in the diagram.
 The problem is that it might not send
-$I = \ker(C \to B) $ into zero.
-If it does, then we're golden.
+$I = \ker(B \to C) $ into zero.
+If we can show that there \emph{exists} a lifting that does factor through $C$
+(i.e. sends $I$ to zero), then we are done.
 
 In any event, we have a morphism of $A$-modules
 $  I \to E$  given by restricting $\phi: B \to E$.
@@ -375,6 +618,11 @@ Consequently this factors through $C$ and gives the desired lifting $C \to E$.
 If $A \to B$ is formally smooth, then 
 $\Omega_{B/A}$ is a projective $B$-module.
 \end{corollary} 
+The intuition is that projective modules correspond to vector bundles
+over the $\spec$ (unlike general modules, the rank is locally constant,
+which should happen in a vector bundle). But a smooth algebra is like a
+manifold, and for a manifold the cotangent bundle is very much a vector
+bundle, whose dimension is locally constant. 
 \begin{proof} 
 Indeed, we can write $B$ as a quotient of a polynomial ring $D$ over $A$; this
 is formally smooth. Suppose $B = D/I$.
@@ -386,7 +634,7 @@ is projective.
 \subsection{The Jacobian criterion}
 
 
-So now we want  a characterization of when a morphism is smooth. Let us
+Now we want  a characterization of when a morphism is smooth. Let us
 motivate this with an analogy from standard differential topology. 
 Consider real-valued functions $f_1, \dots, f_p \in C^{\infty}(\mathbb{R}^n)$.
 Now, if $f_1, f_2, \dots, f_p$ are such that their gradients $\nabla f_i$ form a
@@ -400,7 +648,7 @@ Recall that a map of rings $A \to B$ is \emph{essentially of finite
 presentation} if $B$ is the localization of a finitely presented $A$-algebra.
 
 
-\begin{proposition} 
+\begin{proposition} \label{smoothjac}
 Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be a local homomorphism of local
 rings such that $B$ is essentially of finite presentation.
 Suppose $B = (A[X_1, \dots, X_n])_{\mathfrak{q}}/I$ for some finitely generated
@@ -408,27 +656,50 @@ ideal $I \subset A[X_1, \dots, X_n]_{\mathfrak{q}}$, where $\mathfrak{q}$ is a
 prime ideal in the polynomial ring.
 
 Then $I/I^2$ is generated as a $B$-module by polynomials
-$f_1, \dots, f_k \in A[X_1, \dots, X_n]$ whose Jacobian matrix has maximal rank
-in $B/\mathfrak{n}$ if and only if $B$ is formally smooth over $A$.
+$f_1, \dots, f_k \in I \subset A[X_1, \dots, X_n]$ whose Jacobian matrix has maximal rank
+in $C/\mathfrak{q} = B/\mathfrak{n}$ if and only if $B$ is formally smooth over $A$.
 In this case, $I/I^2$ is even freely generated by the $f_i$.
 \end{proposition} 
+
+The Jacobian matrix $\frac{\partial f_i}{\partial X_j}$ is a matrix of
+elements of $A[X_1, \dots, X_n]$, and we can take the associated images in
+$B/\mathfrak{n}$. 
+
+\begin{example} 
+Suppose $A$ is an algebraically closed field $k$. 
+Then $I$ corresponds to some ideal in the polynomial ring $k[X_1, \dots,
+X_n]$, which cuts out a variety $X$.
+Suppose $\mathfrak{q}$ is a maximal ideal in the polynomial ring.
+
+Then $B$ is the  local 
+ring of the  algebraic variety $X$ at $\mathfrak{q}$. 
+Then \cref{smoothjac} states that $\mathfrak{q}$ is  a ``smooth point''
+of the variety (i.e., the Jacobian matrix has maximal rank) if and only if
+$B$ is formally smooth over $k$. 
+We will expand on this later. 
+\end{example} 
+
+
 \begin{proof} 
 Indeed, we know that polynomial rings are formally smooth. 
 In particular $D = A[X_1, \dots, X_n]_{\mathfrak{q}}$ is formally smooth over
-$A$, because localization preserves formal smoothness. (This is
-straightforward.) Note also that $\Omega_{D/A}$ is a free $D$-module, because
+$A$, because localization preserves formal smoothness.  Note also that $\Omega_{D/A}$ is a free $D$-module, because
 this is true for a polynomial ring and K\"ahler differentials commute with
 localization.
 
-So the previous result implies that
+So \cref{smoothconormal} implies that
 \[ I/I^2 \to \Omega_{D/A} \otimes_D B  \]
 is a split injection precisely when $B$ is formally smooth over $A$. Suppose
 that this holds.
 Now $I/I^2$ is then a summand of the free module $\Omega_{D/A} \otimes_D B$, so it
 is projective, hence free as $B$ is local.
 Let $K = B/\mathfrak{n}$. It follows that the map
-\[ I/I^2 \otimes K \to \Omega_{D/A} \otimes_D  K = K^n \]
-is an injection. This map sends $f \mapsto df$. Hence the assertion is clear.
+\[ I/I^2 \otimes_D K \to \Omega_{D/A} \otimes_D  K = K^n \]
+is an injection. This map sends a polynomial to its gradient (reduced
+modulo $\mathfrak{q}$, or $\mathfrak{n}$). Hence the assertion is
+clear: choose polynomials $f_1, \dots, f_k \in I$ that generate
+$(I/I^2)_{\mathfrak{q}}$, and their gradients in $B/\mathfrak{n}$ must be
+linearly independent.
 
 Conversely, suppose that $I/I^2$ has such generators. 
 Then the map 
@@ -442,15 +713,15 @@ injection. In view
 of the criterion for formal smoothness, we find that $B$ is formally smooth.
 \end{proof} 
 
-\subsection{A minor lemma on modules over local rings}
-
+Here is the promised lemma necessary to complete the proof:
 \begin{lemma} 
+\label{splitinjreduce}
 If $(A, \mathfrak{m})$ is a local ring with residue field $k$, $M$ a finitely
 generated $A$-module, $N$ a finitely
 generated projective $A$-module, then a map
-\[ \phi: M \to N  \]
+\( \phi: M \to N  \)
 is a split injection if and only if
-\[ M \otimes k \to N \otimes k  \]
+\(M \otimes_A k \to N \otimes_A k  \)
 is an injection.
 \end{lemma} 
 \begin{proof} 
@@ -467,58 +738,79 @@ $L \to N$ is a split injection (by an elementary criterion).
 It follows that we can find a splitting $N \to L$, which when composed with $L
 \to M$ is a splitting of $M \to N$.
 \end{proof}
-\section{Formal smoothness implies flatness}
+
+\subsection{The fiberwise criterion for smoothness}
+
+We shall now prove that a smooth morphism is flat. In fact, we will get
+a general ``fiberwise'' criterion for smoothness (i.e., a morphism is smooth
+if and only if it is flat and the fibers are smooth), which will enable
+us to reduce smoothness questions, in some cases, to the situation where the
+base is a field. 
+
+We shall need some lemmas on regular sequences. 
+The first will give a useful criterion for checking $M$-regularity of an
+element by checking on the fiber.
+For our purposes, it will also give a criterion for when quotienting by a
+regular element preserves flatness over a smaller ring.
 
 \begin{lemma} 
-Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be a local homomorphism of local
+Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be a local homomorphism
+of local noetherian 
 rings.
 Let $M$ be a finitely generated $B$-module, which is flat over $A$. 
 
 Let $f \in B$. Then the following are equivalent:
 \begin{enumerate}
 \item $M/fM$ is flat over $A$ and $f: M \to M$ is injective.
-\item $f: M \otimes k \to M \otimes k$ is injective where $k = A/\mathfrak{m}$.
+\item $f: M \otimes_A k \to M \otimes_A k$ is injective where $k = A/\mathfrak{m}$.
 \end{enumerate}
 \end{lemma} 
 
-This is  a useful criterion of checking when an element is $M$-regular by
-checking on the fiber.
+For instance, let us consider the case $M = B$. The lemma states that if
+multiplication by $f$ is regular on $B \otimes_A k$, then the hypersurface cut
+out by $f$ (i.e., corresponding to the ring $B/fB$) is flat over $A$. 
+
 \begin{proof} All $\tor$ functors here will be over $A$. 
 If $M/fM$ is $A$-flat and $f: M \to M$ is injective, then the sequence
 \[ 0 \to M \stackrel{f}{\to} M \to M/fM \to 0 \]
 leads to a long exact sequence
-\[ \tor_1(k, M/fM) \to M \otimes k \stackrel{f}{\to} M \otimes k \to (M/fM)
-\otimes k \to 0. \]
-But since $M/fM$ is flat, it follows that $M \otimes k \stackrel{f}{\to} M
+\[ \tor_1(k, M/fM) \to M \otimes_A k \stackrel{f}{\to} M \otimes_A k \to (M/fM)
+\otimes_A k \to 0. \]
+But since $M/fM$ is flat, the first term is zero, and  it follows that $M \otimes k \stackrel{f}{\to} M
 \otimes k$ is injective.
 
 The other direction is more subtle. Suppose multiplication by $f$ is a
-monomorphism on $M \otimes k$. Now write the exact sequence
+monomorphism on $M \otimes_A k$. Now write the exact sequence
 \[ 0 \to P \to M \stackrel{f}{\to} M \to Q \to 0 \]
-where $P, Q$ are the kernel and cokernel. 
+where $P, Q$ are the kernel and cokernel. We want to show that $P = 0$
+and $Q$ is flat over $A$.
+
 We can also consider the image $I = fM \subset M$, to split this into two
 exact sequences
 \[ 0 \to P \to M \to I \to 0  \]
 and 
 \[ 0 \to I \to M \to Q \to 0.  \]
-Here the map $M \otimes k \to I \otimes k \to M \otimes k$ is given by
-multiplication by $f$, so it is injective by hypothesis. This implies that $M \otimes k \to I
-\otimes k$ is injective. So $M \otimes k \to I \otimes k$ is actually an isomorphism because it
+Here the map $M \otimes_A k \to I \otimes_A k \to M \otimes_A k$ is given by
+multiplication by $f$, so it is injective by hypothesis. This implies
+that $M \otimes_A k \to I
+\otimes_A k$ is injective. So $M \otimes k \to I \otimes k$ is actually an isomorphism because it
 is obviously surjective, and we have just seen it is injective.
-Next, since $M \to I$ is surjective, $I \otimes k \to M
-\otimes k$ is also injective.
-
-(Given a sequence $X \to Y \to Z$ such that $A
-\to Y$ is surjective, $X \to Z$ is injective, it follows that $B \to C$ is
-itself injective: for if a nonzero $b \in Y$ mapped to zero in $Z$, then $b$ is hit by
-something in $X$, nonzero. Then that would go to zero in $Z$, contradiction.)
+Moreover, $I \otimes_A k \to M \otimes_A k$ is isomorphic to the
+homothety $f: M \otimes_A k \to M \otimes_A k$, and consequently is
+injective.
+To summarize:
+\begin{enumerate}
+\item $M \otimes_A k \to I \otimes_A k$ is an isomorphism. 
+\item $I \otimes_A k \to M \otimes_A k$ is an injection.
+\end{enumerate}
 
 Let us tensor these two exact sequences with $k$. We get
-\[ 0 \to  \tor_1(k, I) \to P \otimes k \to M  \otimes k \to I \otimes k \to 0   \]
+\[ 0 \to  \tor_1(k, I) \to P \otimes_A k \to M  \otimes_A k \to I \otimes_A k \to 0   \]
 because $M$ is flat. We also get
-\[ 0 \to  \tor_1(k, Q) \to I \otimes k \to M  \otimes k \to Q \otimes k \to 0
+\[ 0 \to  \tor_1(k, Q) \to I \otimes_A k \to M  \otimes_A k \to Q \otimes_A k \to 0
 .\]
-We'll start by using the second sequence. Now $I \otimes k \to M \otimes k$
+We'll start by using the second sequence. Now $I \otimes_A k \to M
+\otimes_A k$
 was just said to be injective, so that $\tor_1(k, Q) = 0$. By the local
 criterion for flatness, it follows that $Q$ is a flat 
 $A$-module as well. 
@@ -528,41 +820,56 @@ Now, we want to show finally that $P = 0$.
 Now, $I$ is flat; indeed, it is the kernel of a surjection of flat maps $M \to
 Q$, so the long exact sequence shows that it is flat. So we have a short exact
 sequence
-\[ 0 \to P \otimes k \to M \otimes k \to I \otimes k \to 0,  \]
-which shows now that $P \otimes k  = 0$ (as $M \otimes k \to I \otimes k$ was
-just shown to be injective earlier). By Nakayama $P = 0$.
+\[ 0 \to P \otimes_A k \to M \otimes_A k \to I \otimes_A k \to 0,  \]
+which shows now that $P \otimes_A k  = 0$ (as $M \otimes_A k \to I \otimes_A k$ was
+just shown to be an isomorphism earlier). By Nakayama $P = 0$.
 This implies that $f$ is $M$-regular.
 \end{proof}
 
-\begin{corollary} Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be a morphism
+\begin{corollary} \label{regseqflat} Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be a morphism
 of noetherian local rings.
 Suppose $M$ is a finitely generated $B$-module, which is flat over $A$.
 
 Let $f_1, \dots, f_k \in \mathfrak{n}$. Suppose that $f_1, \dots, f_k$ is a
-regular sequence on $M \otimes k$. Then it is a regular sequence on $M$ and,
+regular sequence on $M \otimes_A k$. Then it is a regular sequence on $M$ and,
 in fact, $M/(f_1, \dots, f_k ) M$ is flat over $A$.
 \end{corollary} 
 \begin{proof} 
 This is now clear by induction. 
 \end{proof} 
 
-\subsection{The main result}
 
-\begin{theorem}[EGA IV 17.5.1] Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be
-a morphism of local noetherian rings such that $B$ is the localization of a f.p. $A$-algebra at a prime
+\begin{theorem}\label{smoothflat1} Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be
+a morphism of local  rings such that $B$ is the localization of
+a finitely presented $A$-algebra at a prime
 ideal, $B = (A[X_1, \dots, X_n])_{\mathfrak{q}}/I$. Then if $A \to B$ is formally smooth, $B$ is a flat $A$-algebra.
 \end{theorem} 
+
+The strategy is that $B$ is going to be written as the quotient of a
+localization of a  polynomial
+ring by a sequence $\left\{f_i\right\}$
+whose gradients are independent (modulo the maximal ideal), i.e. modulo
+$B/\mathfrak{n}$. 
+If we were working modulo a field, then we could use arguments about regular
+local rings to argue that the $\left\{f_i\right\}$ formed a regular
+sequence. We will use \cref{regseqflat} to bootstrap from this case to the
+general situation.
+
 \begin{proof} 
+Let us first assume that $A$ is \emph{noetherian.}
+
 Let $C = (A[X_1, \dots, X_n])_{\mathfrak{q}}$. Then $C$ is a local ring,
-essentially of finite type over $A$, and we have morphisms of local rings
+smooth over $A$, and we have morphisms of local rings
 \[ (A, \mathfrak{m}) \to (C, \mathfrak{q}) \twoheadrightarrow (B,
 \mathfrak{n}).  \]
 Moroever, $C$ is a \emph{flat} $A$-module, and we are going to apply the
-fiberwise criterion for regularity to $C$.
+fiberwise criterion for regularity to $C$ and a suitable sequence.
 
-Now we know that $I/I^2$ is a $B$-module generated by polynomials $f_1, \dots, f_n
+Now we know that $I/I^2$ is a $B$-module generated by polynomials $f_1,
+\dots, f_m
 \in A[X_1, \dots, X_n]$
-whose Jacobian matrix has maximal rank in $B/\mathfrak{n}$.
+whose Jacobian matrix has maximal rank in $B/\mathfrak{n}$ (by the Jacobian
+criterion, \cref{smoothjac}).
 The claim is that the $f_i$ are linearly independent in
 $\mathfrak{q}/\mathfrak{q}^2$. This will be the first key step in the proof.
 In other words, if $\left\{u_i\right\}$ is a family of elements of $C$, not all
@@ -576,7 +883,8 @@ independent in $B/\mathfrak{n} = C/\mathfrak{q}$.
 
 Now we want to show that the $\left\{f_i\right\}$ form a regular sequence in
 $C$. To do this, we shall reduce to the case where $A$ is a field. Indeed, let
-us make the base-change $A \to k, B \to \overline{B} = B \otimes k, C \to \overline{C}=C \otimes k$ where $k  =
+us make the base-change $A \to k = A/\mathfrak{m}, B \to \overline{B} = B
+\otimes_A k, C \to \overline{C}=C \otimes_A k$ where $k  =
 A/\mathfrak{m}$ is the residue field.
 Then $\overline{B},\overline{C}$ are  formally smooth local rings over a
 field $k$. We also know that $\overline{C}$ is a \emph{regular} local ring,
@@ -593,18 +901,40 @@ independent
 in $\overline{\mathfrak{q}}/\overline{\mathfrak{q}}^2 =
 \mathfrak{q}/\mathfrak{q}^2$. It follows that the $\left\{f_i\right\}$ form a
 regular sequence in $\overline{C}$, by general facts about regular local
-rings; indeed, each of the successive quotients $\overline{C}/(f_1, \dots,
-f_k)$ will then be regular.
+rings (see, e.g. \cref{quotientreg44}); indeed, each of the successive quotients $\overline{C}/(f_1, \dots,
+f_i)$ will then be regular.
 It follows from the fiberwise criterion ($C$ being flat) that the
 $\left\{f_i\right\}$ form a regular sequence in $C$ itself, and that the
 quotient $C/(f_i) = B$ is $A$-flat.
 \end{proof} 
 
+The proof in fact showed a bit more: we expressed $B$ as the quotient of a
+localized 
+polynomial ring by a regular sequence. 
+In other words:
+
+\begin{corollary}[Smooth maps are local complete intersections]
+Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be an essentially of
+finite presentation, formally smooth map. Then there exists a localization
+of a polynomial ring, $C$, such that $B$ can be expressed as
+$C/(f_1, \dots, f_n)$ for the $\left\{f_i\right\}$ forming  a regular
+sequence in the maximal ideal of $C$.
+\end{corollary} 
+
+We also get the promised result:
+\begin{theorem} \label{smoothflat}
+Let $A \to B$ be a smooth morphism of rings. Then $B$ is flat over $A$.
+\end{theorem} 
+\begin{proof} 
+Indeed, we immediately reduce to \cref{smoothflat1} by checking locally at each
+prime (which gives formally smooth maps).
+\end{proof} 
+
 In fact, we can get a general criterion now:
 
-\begin{theorem} 
-Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be a morphism of local
-noetherian rings such that $B$ is the localization of a f.p. $A$-algebra at a prime
+\begin{theorem} \label{fiberwisesmooth}
+Let $(A, \mathfrak{m}) \to (B, \mathfrak{n})$ be a (local) morphism of local
+noetherian rings such that $B$ is the localization of a finitely presented $A$-algebra at a prime
 ideal, $B = (A[X_1, \dots, X_n])_{\mathfrak{q}}/I$. Then $B$ is formally
 smooth over $A$ if $B$ is $A$-flat and $B/\mathfrak{m}B$ is formally smooth
 over $A/\mathfrak{m}$.
@@ -614,9 +944,12 @@ over $A/\mathfrak{m}$.
 One direction is immediate from what we have already shown. Now we need to
 show that if $B$ is $A$-flat, and $B/\mathfrak{m}B$ is formally smooth over
 $A/\mathfrak{m}$, then $B$ is itself formally smooth over $A$.
+This will be comparatively easy, with all the machinery developed.
+This will be comparatively easy, with all the machinery developed.
 
 As before, write the sequence
-\[ (A, \mathfrak{m}) \to (C, \mathfrak{q}) \twoheadrightarrow (B,\mathfrak{n})
+\[ (A, \mathfrak{m}) \to (C, \mathfrak{q}) \twoheadrightarrow
+(B,\mathfrak{n}),
 \]
 where $C$ is a localization of a polynomial ring at a prime ideal, and in
 particular is formally smooth over $A$. 
@@ -624,7 +957,8 @@ We know that $B = C/I$, where $I \subset \mathfrak{q}$.
 
 To check that $B$ is formally smooth over $A$, we need to show ($C$ being
 formally smooth) that the conormal sequence
-\[ I/I^2 \to  \Omega_{C/A} / I \Omega_{C/A} \to \Omega_{C/B} \to 0. \]
+\begin{equation} \label{thisexact1} I/I^2 \to  \Omega_{C/A} \otimes_C B \to
+\Omega_{C/B} \to 0. \end{equation}
 is split exact. 
 
 Let $\overline{A}, \overline{C}, \overline{B}$ be the base changes of $A, B,
@@ -632,19 +966,15 @@ C$ to $k = A/\mathfrak{m}$; let $\overline{I}$ be the kernel of $\overline{C}
 \twoheadrightarrow \overline{B}$.
 Note that $\overline{I} = I/\mathfrak{m}I$ by flatness of $B$.
 Then we know that the sequence
-\[ \overline{I}/\overline{I}^2 \to  \Omega_{\overline{C}/k} / \overline{I}
-\Omega_{\overline{C}/k} \to \Omega_{\overline{C}/\overline{B}} \to 0\]
-is split exact, because $\overline{C}$ is a formally smooth $k$-algebra.
+\begin{equation} \label{thisexact2} \overline{I}/\overline{I}^2 \to  \Omega_{\overline{C}/k} / \overline{I}
+\Omega_{\overline{C}/k} \to \Omega_{\overline{C}/\overline{B}} \to
+0\end{equation}
+is split exact, because $\overline{C}$ is a formally smooth $k$-algebra (in
+view of \cref{smoothconormal}).
 
-In particular, there are polynomials $\overline{P}_1, \dots, \overline{P}_r
-\in \overline{C}$ (which is the localization of a polynomial ring over $k$)
-which generate $\overline{I}/\overline{I}^2$ and
-whose gradients are linearly independent in
-$\overline{C}/\mathfrak{\overline{q}}$. These lift to polynomials in $I$
-which generate (by Nakayama) $I/I^2$ and whose gradients are linearly
-independent in the residue field $C/\mathfrak{q} =
-\overline{C}/\overline{\mathfrak{q}}$.
-Now by the Jacobian criterion, we are done.
+But \eqref{thisexact2} is the reduction of \eqref{thisexact1}. Since the middle
+term of \eqref{thisexact1} is finitely generated and projective over $B$, we can check
+splitting modulo the maximal ideal (see \cref{splitinjreduce}).
 \end{proof} 
 
 \subsection{Formal smoothness and regularity}
@@ -663,13 +993,13 @@ residue field $A/\mathfrak{m}= k$. Then if $A$ is formally smooth over $k$, $A$
 is regular.
 \end{theorem} 
 \begin{proof} 
-We are going to compare the quotients $A/\mathfrak{m}^n$ to the quotients of
+We are going to compare the quotients $A/\mathfrak{m}^m$ to the quotients of
 $R= k[x_1, \dots, x_n]$ where  $n$ is the \emph{embedding dimension} of
 $A$.
 Let $\mathfrak{n} \subset k[x_1, \dots, x_n]$ be the ideal $(x_1, \dots, x_n)$. 
 We are going to give surjections
-\[ A/\mathfrak{m}^k \twoheadrightarrow R/\mathfrak{n}^k  \]
-for each $k \geq 2$.
+\[ A/\mathfrak{m}^m \twoheadrightarrow R/\mathfrak{n}^m  \]
+for each $m \geq 2$.
 
 Let $t_1, \dots, t_n \in \mathfrak{m}$ be a $k$-basis for
 $\mathfrak{m}/\mathfrak{m}^2$.
@@ -678,108 +1008,18 @@ $A  \twoheadrightarrow A/\mathfrak{m}^2 \simeq  k \oplus
 \mathfrak{m}/\mathfrak{m}^2 \simeq R/\mathfrak{n}^2$, where $t_i$ is sent to
 $x_i$. This is well-defined, and gives a surjection $A \twoheadrightarrow
 R/\mathfrak{n}^2$.
-Using the infinitesimal lifting property, we can lift this map to maps
-\[ A \to R/\mathfrak{n}^k  \]
-for each $k$, which necessarily factor through $A/\mathfrak{m}^k$ (as they send
+Using the infinitesimal lifting property, we can lift this map to
+$k$-algebra maps
+\[ A \to R/\mathfrak{n}^m  \]
+for each $k$, which necessarily factor through $A/\mathfrak{m}^m$ (as they send
 $\mathfrak{m}$ into $\mathfrak{n}$). They are surjective by Nakayama's lemma.
 It follows that
-\[ \dim_k R/\mathfrak{m}^k \geq \dim_k R/\mathfrak{n}^k,  \]
+\[ \dim_k A/\mathfrak{m}^m \geq \dim_k R/\mathfrak{n}^m,  \]
 and since $R_{\mathfrak{n}}$ is a regular local ring, the last term grows
-asymptotically like $k^n$. It follows that $\dim R \geq n$, and since $\dim R$
+asymptotically like $m^n$. It follows that $\dim R \geq n$, and since $\dim R$
 is always at most the embedding dimension, we are done.
 \end{proof} 
 
-\subsection{Application: the Cohen structure theorem}
-
-We want now a classification of complete local rings containing a field; it
-states that they are the homomorphic images of power series rings:
-
-\begin{theorem}[Cohen structure theorem] 
-Let $(R, \mathfrak{m})$ be a complete local noetherian ring, which contains a field. Then $R
-\simeq K[[x_1, \dots, x_n]/I$ for some ideal $I \subset K[[x_1, \dots, x_n]]$
-and some field $K$.
-\end{theorem} 
-
-We have already shown that this result is true when $R$ contains a copy of its
-own residue field; that is, when the map $R \to R/\mathfrak{m}$ admits a
-section.
-We are going to show that this is the case if $R$ contains a field.
-
-\begin{remark} The condition that $R$ should contain a field means that if
-$R/\mathfrak{m}$ is of characteristic $p$, then $pR = 0$. For, if $p > 0$, then
-$R$ contains a copy of $\mathbb{Z}/p\mathbb{Z}$. If $p = 0$, $R$ automatically
-contains a copy of $\mathbb{Q}$, as each $n \in \mathbb{Z} - \left\{0\right\}$
-is automatically invertible in $R$.
-\end{remark}
-
-\begin{proof} 
-We just need to show that $R$ contains a copy of its own residue field.
-To do this, let $\kappa$ be the prime field contained in $R$, so $\kappa = \mathbb{Q}$ or
-$\mathbb{F}_p$. 
-Let $k$ be the residue field $R/\mathfrak{m}$. We have a diagram:
-\[ \xymatrix{
-& R \ar[d]  \\
-R/\mathfrak{m}  \ar@{-->}[ru]\ar[r]^{\mathrm{id}} &  R/\mathfrak{m},
-}\]
-in which we seek a lift; then we can apply \cref{}, because $R$ will contain a
-copy of its residue field.
-
-Now, $R$ is complete, so $R = \varprojlim R/\mathfrak{m}^i$. So it suffices to
-give  a compatible sequence of lifts
-\[ \xymatrix{
-& R/\mathfrak{m}^{i}\ar[d]  \\
-R/\mathfrak{m}  \ar@{-->}[ru]\ar[r]^{\mathrm{id}} &  R/\mathfrak{m},
-},\]
-which we will show exists. That is, given a section $R/\mathfrak{m} \to
-R/\mathfrak{m}^i$, we will lift it to a section $R/\mathfrak{m} \to
-R/\mathfrak{m}^{i+1}$, and these will glue to give the desired section
-$R/\mathfrak{m} \to R$.
-
-Now, everything here is a $\kappa$-algebra, and we are looking at a nilpotent
-lifting property for $\kappa$-algebras. It follows that if we can prove that
-$R/\mathfrak{m}$ is \emph{formally smooth} over $\kappa$, then we will be able
-to do the lifting at each stage, and $R$ will contain a copy of its residue
-field. 
-Thus, 
-we must show:
-
-\begin{proposition} 
-Let $\kappa$ be a perfect field, and let $K/\kappa$ be any field extension.
-Then  $K$ is formally smooth over $\kappa$.
-\end{proposition} 
-\begin{proof} 
-To see this, we will use the fact that $K/\kappa$ is \emph{separably generated.}
-Namely, there is a transcendence basis $T \subset K$ such that $K/\kappa(\{T\})$ is a
-separable \emph{algebraic} extension. We will show that $K/\kappa(\{T\})$ and
-$\kappa(\{T\})/\kappa$ are each formally smooth, which will imply the result.
-
-Now, we know that $\kappa(\{T\})/\kappa$ is formally smooth: it is the
-localization of a formally smooth $\kappa$-algebra (the polynomial algebra
-$\kappa[\left\{T\right\}]$), and localization is always formally smooth.
-
-Similarly, $K/\kappa(\left\{T\right\})$ is formally smooth because any
-separable algebraic extension is in fact formally \'etale. 
-We have shown this for finite algebraic extensions (\cref{}), and a limiting
-argument establishes it for infinite algebraic extensions.
-Namely, if $A$ is a $\kappa(\left\{T\right\})$-algebra and $I$ a square-zero
-ideal, then if we have a map $K \to A/I$, the restriction to each finite
-subextension lifts \emph{uniquely} to $A$. As a result of this uniqueness, we
-can glue the liftings to get a lift of $K \to A/I$ to $K \to A$.
-\end{proof} 
-\end{proof} 
-
-\begin{comment}
-\begin{corollary} 
-Let $(R, \mathfrak{m})$ be a local ring containing a copy of its residue field
-$k$. Then $R$ is formally smooth over $k$ if and only if $R$ is geometrically regular:
-that is, all the localizations of $R \otimes_k \overline{k}$ are regular.
-\end{corollary} 
-\begin{proof} 
-If $R$ is formally smooth over $k$, then $R \otimes_k \overline{k}$ is formally
-smooth over $\overline{k}$ and consequently all the localizations are regular. 
-\end{proof} 
-Ok, need to think some more about this...I am currently leaving it as a comment.
-\end{comment}
 \section{Conormal modules and universal thickenings}
 \label{section-conormal}
 
@@ -1033,13 +1273,23 @@ as desired.
 
 
 
-\section{Formally \'etale maps}
+\section{\'Etale morphisms}
 \label{section-formally-etale}
 
+\subsection{Definition}
+The definition is just another nilpotent lifting property:
 \begin{definition}
 \label{definition-formally-etale}
-Let $R \to S$ be a ring map.
-We say $S$ is {\it formally \'etale over $R$} if for every
+Let $S$ be an $R$-algebra. Then $S$ is \textbf{formally \'etale} over $R$ (or
+the map $R \to S$ is formally \'etale) if given any
+$R$-algebra $A$ and ideal $I \subset A $ of square zero, the map
+\[ \hom_R(S, A) \to \hom_R(S, A/I)\]
+is a bijection.
+A ring homomorphism is \textbf{\'etale} if and only if it is formally \'etale
+and of finite presentation. 
+\end{definition}
+
+So $S$ is {\it formally \'etale over $R$} if for every
 commutative solid diagram
 $$
 \xymatrix{
@@ -1048,38 +1298,24 @@ R \ar[r] \ar[u] & A \ar[u]
 }
 $$
 where $I \subset A$ is an ideal of square zero, there exists
-a unique dotted arrow making the diagram commute.
-\end{definition}
+a unique dotted arrow making the diagram commute. As before, the functor
+of points can be used to test formal \'etaleness.
+Moreover, clearly a ring map is formally \'etale if and only if
+it is both formally smooth and formally unramified.
 
-\noindent
-Clearly a ring map is formally \'etale if and only if
-it is booth formally smooth and formally unramified.
+We have the usual:
+\begin{proposition} 
+\'Etale (resp. formally \'etale) morphisms are closed under composition
+and base change.
+\end{proposition} 
+\begin{proof} 
+Either a combination of the corresponding results for formal
+smoothness and formal unramifiedness (i.e.  \cref{sorite1unr}, 
+\cref{unrbasechange}, and  \cref{smoothsorite}), or easy to verify
+directly.
+\end{proof} 
 
-\begin{lemma}
-\label{lemma-formally-etale-etale}
-Let $R \to S$ be a ring map of finite presentation.
-The following are equivalent:
-\begin{enumerate}
-\item $R \to S$ is formally \'etale,
-\item $R \to S$ is \'etale.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-Assume that $R \to S$ is formally \'etale.
-Then $R \to S$ is smooth by \rref{lemma-formally-smooth-smooth}.
-By \rref{lemma-characterize-formally-unramified}
-we have $\Omega_{S/R} = 0$.
-Hence $R \to S$ is \'etale by definition.
-
-\medskip\noindent
-Assume that $R \to S$ is \'etale.
-Then $R \to S$ is formally smooth by
-\rref{lemma-smooth-formally-smooth}.
-By \rref{lemma-characterize-formally-unramified}
-it is formally unramified. Hence $R \to S$ is formally \'etale.
-\end{proof}
-
+Filtered colimits preserve formal \'etaleness:
 \begin{lemma}
 \label{lemma-colimit-formally-etale}
 Let $R$ be a ring. Let $I$ be a directed partially ordered set.
@@ -1113,551 +1349,545 @@ $A \to A/I$.
 \end{proof}
 
 
+We now want to give the standard example of an \'etale morphism;
+geometrically, this corresponds to a hypersurface in affine 1-space given by
+a nonsingular equation. We will eventually show that any \'etale
+morphism looks like this, locally. 
+
+
+\begin{example} 
+Let $R$ be a ring, $P \in R[X]$ a polynomial. Suppose $Q \in R[X]/P$ is such that in the
+localization $(R[X]/P)_Q$, the image of the derivative $P' \in R[X]$ is a unit. Then the map
+\[ R \to (R[X]/P)_Q  \]
+is called a \textbf{standard \'etale morphism.}
+\end{example} 
 
 
 
-\section{Unramified ring maps}
-\label{section-unramified}
+The name is justified by:
+\begin{proposition} 
+A standard \'etale morphism is \'etale.
+\end{proposition} 
+\begin{proof} 
+It is sufficient to check the condition on the K\"ahler differentials, since a
+standard \'etale morphism is evidently flat and of finite presentation. 
+Indeed, we have that
+\[ \Omega_{(R[X]/P)_Q/R} = Q^{-1} \Omega_{(R[X]/P)/R} = Q^{-1}
+\frac{R[X]}{(P'(X), P(X)) R[X]}  \]
+by basic properties of K\"ahler differentials. Since $P'$ is a unit after
+localization at $Q$, this last object is clearly zero. 
+\end{proof} 
 
-\noindent
-The definition of a G-unramified ring map is the one from EGA.
-The definition of an unramified ring map is the one from \cite{Henselian}.
+\begin{example} \label{etalefield}
+A separable algebraic extension of a field  $k$ is formally \'etale. 
+Indeed, we just need to check this 
+for a finite separable extension $L/k$, in view of \cref{lemma-colimit-formally-etale}, and then we can write $L = k[X]/(P(X))$
+for $P$ a separable polynomial. But it is easy to see that this is a special
+case of a standard \'etale morphism.
+In particular, any unramified extension of a field is \'etale, in view of the
+structure theory for unramified extensions of fields (\cref{unrfield}).
+\end{example} 
 
-\begin{definition}
-\label{definition-unramified}
-Let $R \to S$ be a ring map.
+We also want a slightly different characterization of an \'etale morphism.
+\begin{theorem} 
+An $R$-algebra $S$ of finite presentation is \'etale if and only if
+it is flat and unramified.
+\end{theorem} 
+\begin{proof} 
+An \'etale morphism is smooth, hence flat (\cref{smoothflat}). Conversely,
+suppose $S$ is flat and unramified over $R$. We just need to show that $S$ is
+smooth over $R$. But this follows by the fiberwise criterion for smoothness,
+\cref{fiberwisesmooth}, and the fact that an unramified extension of a
+field is automatically \'etale, by \cref{etalefield}.
+\end{proof} 
+
+
+\subsection{The local structure theory}
+We know two easy ways of getting an unramified morphism out of a ring $R$.
+First, we can take a standard \'etale morphism, which is necessarily
+unramified; next we can take a quotient of that. The local structure theory
+states that this is all we can have, locally.
+
+\textbf{Warning: this section will use Zariski's Main Theorem, which is not in
+this book yet.}
+
+
+For this we introduce a definition.
+
+\begin{definition} 
+Let $R$ be a commutative ring, $S$ an $R$-algebra of finite type. Let $\mathfrak{q} \in \spec
+S$ and $\mathfrak{p} \in \spec R$ be the image. Then $S$ is called
+\textbf{unramified at $\mathfrak{q}$} (resp. \textbf{\'etale at
+$\mathfrak{p}$}) if $\Omega_{S_{\mathfrak{q}}/R_{\mathfrak{p}}} = 0$ (resp.
+that and $S_{\mathfrak{q}}$ is $R_{\mathfrak{p}}$-flat).
+\end{definition} 
+
+Now when works with finitely generated algebras, the module of K\"ahler
+differentials is always finitely generated over the top ring. 
+In particular, if 
+$\Omega_{S_{\mathfrak{q}}/R_{\mathfrak{p}}} = (\Omega_{S/R} )_{\mathfrak{q}} =
+0$, then there is $f \in S - \mathfrak{q}$ with $\Omega_{S_f/R} = 0$.
+So being unramified at $\mathfrak{q}$ is equivalent to the existence of $f \in
+S-\mathfrak{q}$ such that $S_f$ is unramified over $R$.
+Clearly if $S$ is unramified over $R$, then it is unramified at all primes,
+and conversely.
+
+
+\begin{theorem} 
+Let $\phi: R \to S$ be  morphism of finite type, and $\mathfrak{q} \subset S$ prime
+with $\mathfrak{p} = \phi^{-1}(\mathfrak{q})$. Suppose $\phi$ is unramified at
+$\mathfrak{q}$.
+Then there is $f \in R- \mathfrak{p}$ and $g \in S - \mathfrak{q}$ (divisible
+by $\phi(f)$) such that
+the morphism
+\[ R_f \to S_g  \]
+factors as a composite
+\[ R_f \to (R_f[x]/P)_{h} \twoheadrightarrow S_g  \]
+where the first is a standard \'etale morphism and the second is a
+surjection. Moreover, we can arrange things such that the fibers above
+$\mathfrak{p}$ are isomorphic.
+\end{theorem} 
+
+
+\begin{proof}We shall assume that $R$ is \emph{local} with maximal ideal
+$\mathfrak{p}$. Then the question reduces to finding
+$g \in S$ such that $S_g$ is a quotient of an algebra standard \'etale over $R$. 
+This reduction is justified by the following argument: if $R$ is 
+not necessarily local, then the morphism $R_{\mathfrak{p}} \to
+S_{\mathfrak{p}}$ is still unramified. If we can show that there is $g \in
+S_{\mathfrak{p}} - \mathfrak{q}S_{\mathfrak{p}}$ such
+that $(S_{\mathfrak{p}})_g$ is a quotient of a standard \'etale
+$R_{\mathfrak{p}}$-algebra, it 
+will follow that there is $f \notin \mathfrak{p}$ such that the same works
+with $R_f \to S_{gf}$.
+
+\emph{We shall now reduce to the case where $S$ is a finite $R$-algebra.}
+Let $R$ be local, and let $R \to S$ be unramified at $\mathfrak{q}$. By assumption, $S$ is finitely generated over $R$.
+We have seen by \cref{unrisqf} that $S$ is quasi-finite over $R$ at
+$\mathfrak{q}$.
+By Zariski's Main Theorem (\cref{zmtCA}), there is a finite
+$R$-algebra $S'$ and $\mathfrak{q} ' \in \spec S'$ such that $S$ near
+$\mathfrak{q}$ and $S'$ near $\mathfrak{q}'$ are isomorphic (in
+the sense that there are $g \in S-\mathfrak{q}$, $h \in S' -
+\mathfrak{q}'$ with $S_g \simeq S'_h$). 
+Since $S'$ must be unramified at $\mathfrak{q}'$, we can assume at
+the outset, by
+replacing $S$ by $S'$, that $R
+\to S$ is finite and unramified at $\mathfrak{q}$.
+
+
+\emph{We shall now reduce to the case where $S$ is generated by one element as
+$R$-algebra}. This will occupy us for a few paragraphs.
+
+We have assumed that $R$ is a local ring with maximal ideal $\mathfrak{p} \subset R$; the
+maximal ideals of $S$ are finite, say, $\mathfrak{q},\mathfrak{q}_1, \dots,
+\mathfrak{q}_r$ because $S$ is finite over $R$; these all contain $\mathfrak{p}$ by Nakayama. 
+These are no inclusion relations among $\mathfrak{q}$ and the $\mathfrak{q}_i$
+as $S/\mathfrak{p}S$ is an artinian ring.
+
+Now $S/\mathfrak{q}$ is a finite separable field extension of
+$R/\mathfrak{p}$ by \cref{unrfield}; indeed, the morphism $R/\mathfrak{p}
+\to S/\mathfrak{p}S \to S/\mathfrak{q}$ is a composite of
+unramified extensions and is thus unramified. In particular, by the primitive element theorem, there is $x \in S$ such that $x$ is a
+generator of the field extension $R/\mathfrak{p} \to S/\mathfrak{q}$.
+We can also choose $x$ to lie in the other $\mathfrak{q}_i$ by the Chinese
+remainder theorem. 
+Consider the subring $C=R[x] \subset S$.
+It has a maximal ideal $\mathfrak{s}$ which is the intersection of
+$\mathfrak{q}$ with $C$.
+We are going to show that locally, $C$ and $S$ look the same.
+
+\begin{lemma} 
+Let $(R, \mathfrak{p})$ be a local ring and $S$ a finite $R$-algebra. Let
+$\mathfrak{q}, \mathfrak{q}_1, \dots, \mathfrak{q}_r \in \spec S$ be the prime ideals
+lying above $\mathfrak{p}$. Suppose $S$ is unramified at $\mathfrak{q}$.
+
+Then there is $x \in S$ such that the rings $R[x] \subset S$ and $S$ are
+isomorphic near $\mathfrak{q}$: more precisely, there is $g \in R[x] -
+\mathfrak{q}$ with $R[x]_g = S_g$.
+\end{lemma} 
+\begin{proof} Choose $x$ as in the paragraph preceding the statement of
+the lemma.
+We have  morphisms
+\[ R \to C_{\mathfrak{s}} \to S_{\mathfrak{s}}  \]
+where $S_{\mathfrak{s}}$ denotes $S$ localized at $C-\mathfrak{s}$, as usual.
+The second morphism here is finite. 
+However, we claim that $S_{\mathfrak{s}}$ is in fact a local ring with maximal
+ideal $\mathfrak{q} S_{\mathfrak{s}}$; in particular, $S_{\mathfrak{s}} =
+S_{\mathfrak{q}}$.
+Indeed, $S$ can have no maximal ideals other than
+$\mathfrak{q}$ lying above $\mathfrak{s}$; for, 
+if $\mathfrak{q}_i$ lay over $\mathfrak{s}$ for some $i$, then $x \in
+\mathfrak{q}_i \cap C = \mathfrak{s}$. But $x \notin\mathfrak{s}$ because $x$
+is not zero in $S/\mathfrak{q}$.
+
+
+It thus follows that $S_{\mathfrak{s}}$ is a local ring with maximal ideal
+$\mathfrak{q}S_{\mathfrak{s}}$. In particular, it is
+equal to $S_{\mathfrak{q}}$, which is a localization of
+$S_{\mathfrak{s}}$ at the maximal ideal.
+In particular, the morphism 
+\[ C_{\mathfrak{s}} \to S_{\mathfrak{s}} = S_{\mathfrak{q}}  \]
+is finite. Moreover, we have $\mathfrak{s} S_{\mathfrak{q}} =
+\mathfrak{q}S_{\mathfrak{q}}$ by unramifiedness of $R \to S$.
+So since the residue fields are the same by choice of $x$, we have
+$\mathfrak{s}S_{\mathfrak{q}} + C_{\mathfrak{s}} = S_{\mathfrak{q}}$.
+Thus by Nakyama's lemma, we find that $S_{\mathfrak{s}} = S_{\mathfrak{q}} = C_{\mathfrak{s}}$.
+
+
+There is thus an element $g \in C - \mathfrak{r}$ such that $S_g = C_g$.
+In particular, $S$ and $C$ are isomorphic near $\mathfrak{q}$.
+\end{proof} 
+
+We can thus replace $S$ by $C$ and assume that $C$ has one generator. 
+
+\emph{With this reduction now made, we proceed.} We are now considering the
+case where $S$ is generated by one element, so a quotient $S = R[X]$ for
+some monic polynomial $P$. 
+Now $\overline{S} = S/\mathfrak{p}S$ is thus a quotient of $k[X]$, where $k =
+R/\mathfrak{p}$ is the residue field.
+It thus follows that
+\[ \overline{S} = k[X]/(\overline{P})  \]
+for $\overline{P}$ a monic polynomial, as $\overline{S}$ is a finite
+$k$-vector space. 
+
+Suppose $\overline{P}$ has degree $n$.
+Let $x \in S$ be a generator of $S/R$.
+We know that $1, x, \dots, x^{n-1}$ has reductions that form a $k$-basis for
+$S \otimes_R k$, so by Nakayama they generate $S$ as an $R$-module.
+In particular, we can find a monic polynomial $P$ of degree $n$ such that
+$P(x) = 0$. 
+It follows that the reduction of $P$ is necessarily $\overline{P}$.
+So we have a surjection
+\[ R[X]/(P) \twoheadrightarrow S  \]
+which induces an isomorphism modulo $\mathfrak{p}$ (i.e. on the fiber).
+
+Finally, we claim that we can modify $R[X]/P$ to make a standard \'etale
+algebra. Now, 
+if we let $\mathfrak{q}'$ be the preimage of $\mathfrak{q}$ in
+$R[X]/P$, then we have morphisms of local rings
+\[ R \to (R[X]/P)_{\mathfrak{q}'} \to S_{\mathfrak{q}}. \]
+The claim is that $R[X]/(P)$ is unramified
+over $R$ at $\mathfrak{q}'$.
+
+
+To see this, let $T = (R[X]/P)_{\mathfrak{q}'}$. Then, since the fibers of $T$ and $S_{\mathfrak{q}}$ are the same at
+$\mathfrak{p}$,  we have that
+\[ \Omega_{T/R} \otimes_R k(\mathfrak{p}) = \Omega_{T \otimes_R
+k(\mathfrak{p})/k(\mathfrak{p})} = 
+\Omega_{(S_{\mathfrak{q}}/\mathfrak{p}S_{\mathfrak{q}})/k(\mathfrak{p})} = 0   \]
+as $S$ is $R$-unramified at $\mathfrak{q}$.
+It follows that $\Omega_{T/R} = \mathfrak{p} \Omega_{T/R}$, so a fortiori
+$\Omega_{T/R} = \mathfrak{q} \Omega_{T/R}$; since this is a finitely generated
+$T$-module, Nakayama's lemma implies that is zero. 
+ We conclude
+that $R[X]/P$ is unramified at $\mathfrak{q}'$; in particular, by the
+K\"ahler differential criterion, the image of the derivative $P'$ is not in
+$\mathfrak{q}'$. If we localize at the image of $P'$, we then get what we
+wanted in the theorem.
+\end{proof} 
+
+We now want to deduce a corresponding (stronger) result for \emph{\'etale}
+morphisms. Indeed, we prove:
+
+\begin{theorem} 
+If $R \to S$ is \'etale at $\mathfrak{q} \in \spec S$ (lying over
+$\mathfrak{p} \in \spec R$), then there are $f \in R-\mathfrak{p}, g \in S -
+\mathfrak{q}$ such that the morphism $R_f \to S_g$ is a standard \'etale
+morphism.
+\end{theorem} 
+\begin{proof} 
+By localizing suitably, we can assume that   $(R, \mathfrak{p})$ is local,
+and  (in view of \cref{}),
+$R \to S$ is a quotient of a standard \'etale morphism 
+\[ (R[X]/P)_h \twoheadrightarrow S  \]
+with the kernel some ideal $I$. We may assume that the surjection is an
+isomorphism modulo $\mathfrak{p}$, moreover.
+By localizing $S$ enough\footnote{We are not assuming $S$ finite over $R$ here,}
+we may suppose that $S$ is a \emph{flat} $R$-module as well.
+
+Consider the exact sequence of $(R[X]/P)_h$-modules
+\[ 0 \to I \to  (R[X]/P)_h/I \to S \to 0. \]
+
+Let $\mathfrak{q}'$ be the image of $\mathfrak{q}$ in $\spec (R[X]/P)_h$.
+We are going to show that the first term vanishes upon localization at
+$\mathfrak{q}'$.
+Since everything here is finitely generated, 
+it will follow that after further localization by some element in
+$(R[X]/P)_h - \mathfrak{q}'$, the first term will vanish. In particular, we
+will then be done.
+
+Everything here is a module over $(R[X]/P)_h$, and certainly a module over
+$R$. Let us tensor everything over $R$ with
+$R/\mathfrak{p}$; we find an exact sequence
+\[  I \to  S/\mathfrak{p}S \to S/\mathfrak{p}S \to 0 ;\]
+we have used the fact that the morphism $(R[X]/P)_h \to S$ was assumed to
+induce an isomorphism modulo $\mathfrak{p}$.
+
+However, by \'etaleness we assumed that $S$ was \emph{$R$-flat}, so we find that exactness holds at the left too. 
+It follows that 
+\[ I  = \mathfrak{p}I,  \]
+so a fortiori
+\[ I = \mathfrak{q}'I,  \]
+which implies by Nakayama that $I_{\mathfrak{q}'} = 0$. Localizing at a
+further element of $(R[X]/P)_h - \mathfrak{q}'$, we can assume that $I=0$;
+after this localization, we find that $S$ looks \emph{precisely} a standard
+\'etale algebra.
+\end{proof} 
+
+\subsection{Permanence properties of \'etale morphisms}
+We shall now return to (more elementary) commutative algebra, and discuss the
+properties that an \'etale extension $A \to B$ has. An \'etale extension is
+not supposed to make $B$ differ too much from $A$, so we might expect some of
+the same properties to be satisfied.
+
+We might not necessarily expect global properties to be preserved (e.g. an
+open immersion might not preserve dimension if the scheme had multiple
+components), but local ones should be.
+
+Thus the right definition for us will be the following:
+\begin{definition} 
+A morphism of local rings $A \to B$ is \textbf{local-\'etale} if it is flat
+and local-unramified.
+\end{definition} 
+
+
+\begin{proposition}  \label{dimpreserved}
+Let $(R, \mathfrak{m}) \to (S, \mathfrak{n})$ be a local-\'etale morphism of noetherian local
+rings. Then $\dim R = \dim S$. 
+\end{proposition} 
+\begin{proof} 
+Indeed, we know that $\mathfrak{m}S = \mathfrak{n}$ because $R \to S$ is
+local-unramified.
+Also $R/\mathfrak{m}\to S/\mathfrak{n}$ is a finite separable extension.
+We have a natural morphism
+\[ \mathfrak{m} \otimes_R S \to \mathfrak{n}  \]
+which is injective (as the map $\mathfrak{m} \otimes_R S \to S$ is injective by
+flatness) and consequently is an isomorphism.
+More generally, $\mathfrak{m}^n \otimes_R S \simeq \mathfrak{n}^n$ for each $n$.
+By flatness again, it follows that
+\begin{equation} \label{thisiso} \mathfrak{m}^n/\mathfrak{m}^{n+1} \otimes_{R/\mathfrak{m}}
+(S/\mathfrak{n}) =  \mathfrak{m}^n/\mathfrak{m}^{n+1} \otimes_R S \simeq
+\mathfrak{n}^n/\mathfrak{n}^{n+1}. \end{equation}
+Now if we take the dimensions of these vector spaces, we get polynomials in
+$n$; these polynomials are the dimensions of $R, S$, respectively. It follows
+that $\dim R = \dim S$.
+\end{proof} 
+
+
+
+\newcommand{\depth}{\mathrm{depth}}
+\begin{proposition} \label{depthpreserved}
+Let $(R, \mathfrak{m}) \to (S, \mathfrak{n})$ be a local-\'etale morphism of noetherian local
+rings. 
+Then $\depth R = \depth S$.
+\end{proposition} 
+\begin{proof} 
+We know that a nonzerodivisor in $R$ maps to a nonzerodivisor in $S$. Thus by
+an easy induction we reduce to the case where $\depth R = 0$. 
+This means that $\mathfrak{m}$ is an associated prime of $R$; there is thus
+some $x \in R$, nonzero (and necessarily a non-unit) such that the annihilator
+of $x$ is all of $\mathfrak{m}$. Now $x$ is a nonzero element of $S$, too, as
+the map $R \to S$ is an inclusion by flatness. 
+It is then clear that $\mathfrak{n} = \mathfrak{m}S$ is the annilhilator of
+$x$ in $S$, so $\mathfrak{n}$ is an associated prime of $S$ too.
+\end{proof} 
+
+\begin{corollary} 
+Let $(R, \mathfrak{m}) \to (S, \mathfrak{n})$ be a local-\'etale morphism of noetherian local
+rings. 
+Then $R$ is regular (resp. Cohen-Macaulay) if and only if $S$ is.
+\end{corollary} 
+\begin{proof} 
+The  results \cref{depthpreserved} and \cref{dimpreserved} immediately give
+the result about Cohen-Macaulayness.
+For regularity, we use \eqref{thisiso} with $n=1$ to see at once that the
+embedding dimensions of $R$ and $S$ are the same.
+\end{proof} 
+
+
+\begin{corollary} 
+Let $f: X \to Y$ be an \'etale morphism of noetherian schemes. Then if $Y$ is
+regular (resp. Cohen-Macaulay), so is $X$. The converse implication holds if
+$f$ is surjective.
+\end{corollary} 
+
+
+We shall next show that reducedness is preserved
+under \'etale extensions.
+We shall need another hypothesis, though, that the map of local rings 
+be essentially of finite type.
+This will always be the case in situations of interest, when we are looking at
+the map on local rings induced by a morphism of schemes of finite type.
+
+\begin{proposition} 
+Let $(R, \mathfrak{m}) \to (S, \mathfrak{n})$ be a local-\'etale morphism of noetherian local
+rings. 
+Suppose $S$ is essentially of finite type over $R$.
+Then $S$ is reduced if and only if $R$ is reduced.
+\end{proposition} 
+\begin{proof} 
+As $R \to S$ is injective by (faithful) flatness, it suffices to show that if
+$R$ is reduced, so is $S$.
+Now there is an imbedding $R \to \prod_{\mathfrak{p} \ \mathrm{minimal}}
+R/\mathfrak{p}$ of $R$ into a product of local domains. We get an imbedding of
+$S$ into a product of local rings $\prod S/\mathfrak{p}S$.
+Each $S/\mathfrak{p}S$ is essentially of finite type over $R/\mathfrak{p}$,
+and local-\'etale over it too.
+
+We are reduced to showing that each $S/\mathfrak{p}S$ is reduced. So we need
+only show that a local-\'etale, essentially of finite type local ring over a
+local noetherian domain is reduced. 
+
+So suppose $A$ is a local noetherian domain, $B$ a 
+local-\'etale, essentially of finite type local $A$-algebra.
+We want to show that $B$ is reduced, and then we will be done. Now $A$ imbeds into its field of
+fractions $K$; thus $B$ imbeds into $B \otimes_A K$. 
+Then $B \otimes_A K$ is formally unramified over $K$ and is essentially of
+finite type over $K$. This means that $B \otimes_A K$ is a product of fields
+by the usual classification, and is in particular reduced. Thus $B$ was itself
+reduced.
+\end{proof} 
+
+
+To motivate the proof that normality is preserved, though, we indicate another
+proof of this fact, which does not even use the essentially of finite type
+hypothesis.
+Recall that a noetherian ring $A$ is reduced if and only if
+for every prime $\mathfrak{p} \in \spec A$ of height zero,
+$A_{\mathfrak{p}}$ is regular (i.e., a field), and for every 
+prime $\mathfrak{p}$ of height $>0$, $R_{\mathfrak{p}}$ has depth
+at least one. See \cref{reducedserrecrit}.
+
+So suppose $R \to S$ is a local-\'etale and suppose $R$ is reduced.
+We are going to apply the above criterion, together with the results already
+proved, to show that $S$ is reduced.
+
+Let $\mathfrak{q} \in \spec S$ be a minimal prime, whose image in 
+$\spec R$ is $\mathfrak{p}$.
+Then we have a morphism
+\[ R_{\mathfrak{p}} \to S_{\mathfrak{q}}  \]
+which is locally of finite type, flat, and indeed local-\'etale, as it is
+formally unramified (as $R \to S$ was).
+We know that $\dim R_{\mathfrak{p}}  = \dim S_{\mathfrak{q}}$
+by \cref{dimpreserved}, and consequently 
+since $R_{\mathfrak{p}}$ is regular, so is $S_{\mathfrak{q}}$.
+Thus the localization of $S$ at any minimal prime is regular.
+
+Next, if $\mathfrak{q} \in \spec S$ is such that $S_{\mathfrak{q}}$ has height
+has positive dimension, then $R_{\mathfrak{p}} \to S_{\mathfrak{q}}$ (where
+$\mathfrak{p}$ is as above) is local-\'etale and consequently $\dim
+R_{\mathfrak{q}} = \dim S_{\mathfrak{q}} > 0$. 
+Thus, 
+$\depth R_{\mathfrak{p}} = \depth S_{\mathfrak{q}} >0$ because $R$ was reduced.
+It follows that the above criterion is valid for $S$.
+
+
+Recall that a noetherian ring is a \emph{normal} domain if it is integrally closed 
+in its quotient field, and simply \emph{normal} if all its localizations are
+normal domains; this equates to the ring being a product of normal domains.
+We want to show that this is preserved under \'etaleness.
+To do this, we shall use a criterion similar to that used at the end of the
+last section.
+We have the following important criterion for normality.
+
+\begin{theorem*}[Serre] Let $A$ be a noetherian ring. Then $A$ is normal if
+and only if for all $\mathfrak{p} \in \spec R$:
 \begin{enumerate}
-\item We say $R \to S$ is {\it unramified} if $R \to S$ is of
-finite type and $\Omega_{S/R} = 0$.
-\item We say $R \to S$ is {\it G-unramified} if $R \to S$ is of finite
-presentation and $\Omega_{S/R} = 0$.
-\item Given a prime $\mathfrak q$ of $S$ we say that $S$ is
-{\it unramified at $\mathfrak q$} if there exists a
-$g \in S$, $g \not \in \mathfrak q$ such that $R \to S_g$ is unramified.
-\item Given a prime $\mathfrak q$ of $S$ we say that $S$ is
-{\it G-unramified at $\mathfrak q$} if there exists a
-$g \in S$, $g \not \in \mathfrak q$ such that $R \to S_g$ is G-unramified.
+\item  If $\dim A_{\mathfrak{p}} \leq 1$, then $A_{\mathfrak{p}}$ is regular.
+\item If $\dim A_{\mathfrak{p}} \geq 2$, then $\depth A_{\mathfrak{p}} \geq 2$.
 \end{enumerate}
-\end{definition}
+\end{theorem*} 
+This is discussed in \cref{realserrecrit}.
 
-\noindent
-Of course a G-unramified map is unramified.
+From this, we will be able to prove without difficulty the next result.
+\begin{proposition} \label{normalitypreserved}
+Let $(R, \mathfrak{m}) \to (S, \mathfrak{n})$ be a local-\'etale morphism of noetherian local
+rings. 
+Suppose $S$ is essentially of finite type over $R$.
+Then $S$ is normal if and only if $R$ is normal.
+\end{proposition} 
+\begin{proof} 
+This is proved in the same manner as the result for reducedness was proved at
+the end of the previous subsection.
+For instance, suppose $R$ normal. Let $\mathfrak{q} \in \spec S$ be arbitrary,
+contracting to $\mathfrak{p} \in \spec R$. If $\dim S_{\mathfrak{q}} \leq 1$,
+then $\dim R_{\mathfrak{p}} \leq 1$ so that $R_{\mathfrak{p}}$, hence
+$S_{\mathfrak{q}}$ is regular. If $\dim S_{\mathfrak{q}} \geq 2$, then $\dim
+R_{\mathfrak{p}} \geq 2$, so 
+$\depth S_{\mathfrak{q}} = \depth R_{\mathfrak{p}} \geq 2$.
+\end{proof} 
 
-\begin{lemma}
-\label{lemma-formally-unramified-unramified}
-Let $R \to S$ be a ring map. The following are equivalent
-\begin{enumerate}
-\item $R \to S$ is formally unramified and of finite type, and
-\item $R \to S$ is unramified.
-\end{enumerate}
-Moreover, also the following are equivalent
-\begin{enumerate}
-\item $R \to S$ is formally unramified and of finite presentation, and
-\item $R \to S$ is G-unramified.
-\end{enumerate}
-\end{lemma}
+We mention a harder result:
 
-\begin{proof}
-Follows from \rref{lemma-characterize-formally-unramified}
-and the definitions.
-\end{proof}
+\begin{theorem} 
+If $(R, \mathfrak{m}) \to (S, \mathfrak{n})$ is local-unramified, injective,
+and essentially of finite type, with $R$ normal, then $R \to S$ is
+local-\'etale.
+\end{theorem} 
+\begin{proof} 
+We follow \cite{Mi67} in the proof.
 
-\begin{lemma}
-\label{lemma-unramified}
-Properties of unramified and G-unramified ring maps.
-\begin{enumerate}
-\item The base change of an unramified ring map is unramified.
-The base change of a G-unramified ring map is G-unramified.
-\item The composition of unramified ring maps is unramified.
-The composition of G-unramified ring maps is G-unramified.
-\item Any principal localization $R \to R_f$ is G-unramified and
-unramified.
-\item If $I \subset R$ is an ideal, then $R \to R/I$ is unramified.
-If $I \subset R$ is a finitely generated ideal, then $R \to R/I$ is
-G-unramified.
-\item An \'etale ring map is G-unramified and unramified.
-\item If $R \to S$ is of finite type (resp.\ finite presentation),
-$\mathfrak q \subset S$ is a prime and $(\Omega_{S/R})_{\mathfrak q} = 0$,
-then $R \to S$ is unramified (resp.\ G-unramified) at $\mathfrak q$.
-\item If $R \to S$ is of finite type (resp.\ finite presentation),
-$\mathfrak q \subset S$ is a prime and
-$\Omega_{S/R} \otimes_S \kappa(\mathfrak q) = 0$, then
-$R \to S$ is unramified (resp.\ G-unramified) at $\mathfrak q$.
-\item If $R \to S$ is of finite type (resp.\ finite presentation),
-$\mathfrak q \subset S$ is a prime lying over $\mathfrak p \subset R$ and
-$(\Omega_{S \otimes_R \kappa(\mathfrak p)/\kappa(\mathfrak p)})_{\mathfrak q}
-= 0$, then $R \to S$ is unramified (resp.\ G-unramified) at $\mathfrak q$.
-\item If $R \to S$ is of finite type (resp.\ presentation),
-$\mathfrak q \subset S$ is a prime lying over $\mathfrak p \subset R$ and
-$(\Omega_{S \otimes_R \kappa(\mathfrak p)/\kappa(\mathfrak p)})
-\otimes_{S \otimes_R \kappa(\mathfrak p)} \kappa(\mathfrak q) = 0$,
-then $R \to S$ is unramified (resp.\ G-unramified) at $\mathfrak q$.
-\item If $R \to S$ is a ring map, $g_1, \ldots, g_m \in S$ generate
-the unit ideal and $R \to S_{g_j}$ is unramified (resp.\ G-unramified) for
-$j = 1, \ldots, m$, then $R \to S$ is unramified (resp.\ G-unramified).
-\item If $R \to S$ is a ring map which is unramified (resp.\ G-unramified)
-at every prime of $S$, then $R \to S$ is unramified (resp.\ G-unramified).
-\item If $R \to S$ is G-unramified, then there exists a finite type
-$\mathbf{Z}$-algebra $R_0$ and a G-unramified ring map $R_0 \to S_0$
-and a ring map $R_0 \to R$ such that $S = R \otimes_{R_0} S_0$.
-\item If $R \to S$ is unramified, then there exists a finite type
-$\mathbf{Z}$-algebra $R_0$ and an unramified ring map $R_0 \to S_0$
-and a ring map $R_0 \to R$ such that $S$ is a quotient of
-$R \otimes_{R_0} S_0$.
-\end{enumerate}
-\end{lemma}
+We shall start by proving a lemma about \'etale extensions of a \emph{normal}
+local domain.
+\begin{lemma} 
+Let $(R, \mathfrak{m})$ be a normal local domain. Let $(S, \mathfrak{n})$ be a
+local-\'etale extension, essentially of finite type.
+Then $S$ is a localization of $R[X]/(P(X))$ for $P$ a monic polynomial
+irreducible in the quotient field of $R$.
+\end{lemma} 
+\begin{proof} 
+The local structure theory of \'etale morphisms shows that the statement
+without irreducibility is true.
+Namely, we can write 
+$S$ as a localization of $R[X]/(Q(X))$ for $Q(X)$ a monic polynomial in $R[X]$. 
+Say for instance 
+\[ S = R[X]_{\mathfrak{q}}/(Q(X)), \quad \mathfrak{q} \in \spec R[X[.  \]
+Let us construct a factorization into irreducible components
+\[ Q(X) = Q_1(X) \dots Q_k(X) , \quad Q_i(X) \in R[X]. \]
+As $R$ is normal, each $Q_i$ is irreducible in the quotient field as well.
 
-\begin{proof}
-We prove each point, in order.
+Now under the map $R[X] \to S$, we know that $Q(X)$ maps to zero (obviously). Since we know that $S$ is a domain (by
+\cref{normalitypreserved}), it follows that one of the $Q_i$, say $Q_1$, maps
+to zero in $S$.
+Let $P(X) = Q_1(X), T(X) = Q_2(X) \dots Q_k(X)$.
 
-\medskip\noindent
-Ad (1). Follows from Lemmas \rref{lemma-differentials-base-change}
-and \rref{lemma-base-change-finiteness}.
+We know that $S/\mathfrak{n} = S/\mathfrak{m}S  =
+(R/\mathfrak{m})[X]_{\mathfrak{q}}/(Q(X))$.
+The images of $P, T$ in $(R/\mathfrak{m}[X])_{\mathfrak{q}}$ are relatively
+prime (by unramifiedness), for otherwise 
+\end{proof} 
 
-\medskip\noindent
-Ad (2). Follows from Lemmas \rref{lemma-exact-sequence-differentials}
-and \rref{lemma-base-change-finiteness}.
+\end{proof} 
 
-\medskip\noindent
-Ad (3). Follows by direct computation of $\Omega_{R_f/R}$ which we omit.
+Note that this \emph{fails} if $Y$ is not normal.
+\begin{example} 
+Consider a nodal cubic $C$ given by $y^2 = x^2 (x-1)$ in $\mathbb{A}^2_k$ over an
+algebraically closed field $k$. As is well-known, this curve is smooth except
+at the origin. There is a map $\overline{C} \to C$ where $\overline{C}$ is
+the normalization; this is a finite map, and a local isomorphism outside of
+the origin. 
 
-\medskip\noindent
-Ad (4). We have $\Omega_{(R/I)/R} = 0$, see
-\rref{lemma-trivial-differential-surjective},
-and the ring map $R \to R/I$
-is of finite type. If $I$ is a finitely generated ideal then $R \to R/I$
-is of finite presentation.
+The claim is that $\overline{C} \to C$ is unramified but not \'etale. If it
+were \'etale, then $C$ would be smooth since $\overline{C}$ is. So it is not
+\'etale. We just need to see that it is unramified, and for this we need only
+see that the map is unramified at the origin.
 
-\medskip\noindent
-Ad (5). See discussion following \rref{definition-etale}.
-
-\medskip\noindent
-Ad (6). In this case $\Omega_{S/R}$ is a finite $S$-module (see
-\rref{lemma-differentials-finitely-generated}) and hence there
-exists a $g \in S$, $g \not \in \mathfrak q$ such that
-$(\Omega_{S/R})_g = 0$. By \rref{lemma-differentials-localize}
-this means that $\Omega_{S_g/R} = 0$ and hence $R \to S_g$ is
-unramified as desired.
-
-\medskip\noindent
-Ad (7). Use Nakayama's lemma (\rref{lemma-NAK}) to see that
-the condition is equivalent to the condition of (6).
-
-\medskip\noindent
-Ad (8) \& (9). These are equivalent in the same manner that (6) and (7)
-are equivalent. Moreover
-$\Omega_{S \otimes_R \kappa(\mathfrak p)/\kappa(\mathfrak p)} =
-\Omega_{S/R} \otimes_S (S \otimes_R \kappa(\mathfrak p))$ by
-\rref{lemma-differentials-base-change}.
-Hence we see that (9) is equivalent to (7) since
-the $\kappa(\mathfrak q)$ vector spaces in both are canonically
-isomorphic.
-
-\medskip\noindent
-Ad (10). Follows from from Lemmas \rref{lemma-cover}
-and \rref{lemma-differentials-localize}.
-
-\medskip\noindent
-Ad (11). Follows from (6) and (7) and the fact that the spectrum of $S$
-is quasi-compact.
-
-\medskip\noindent
-Ad (12). Write $S = R[x_1, \ldots, x_n]/(g_1, \ldots, g_m)$.
-As $\Omega_{S/R} = 0$ we can write
-$$
-\text{d}x_i = \sum h_{ij}\text{d}g_j + \sum a_{ijk}g_j\text{d}x_k
-$$
-in $\Omega_{R[x_1, \ldots, x_n]/R}$
-for some $h_{ij}, a_{ijk} \in R[x_1, \ldots, x_n]$.
-Choose a finitely generated
-$\mathbf{Z}$-subalgebra $R_0 \subset R$ containing all the coefficients of the
-polynomials $g_i, h_{ij}, a_{ijk}$. Set
-$S_0 = R_0[x_1, \ldots, x_n]/(g_1, \ldots, g_m)$. This works.
-
-\medskip\noindent
-Ad (13). Write $S = R[x_1, \ldots, x_n]/I$.
-As $\Omega_{S/R} = 0$ we can write
-$$
-\text{d}x_i = \sum h_{ij}\text{d}g_{ij} + \sum g'_{ik}\text{d}x_k
-$$
-in $\Omega_{R[x_1, \ldots, x_n]/R}$
-for some $h_{ij} \in R[x_1, \ldots, x_n]$ and $g_{ij}, g'_{ik} \in I$.
-Choose a finitely generated $\mathbf{Z}$-subalgebra $R_0 \subset R$
-containing all the coefficients of the
-polynomials $g_{ij}, h_{ij}, g'_{ik}$. Set
-$S_0 = R_0[x_1, \ldots, x_n]/(g_{ij}, g'_{ik})$. This works.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-diagonal-unramified}
-Let $R \to S$ be a ring map.
-If $R \to S$ is unramified, then there exists an idempotent
-$e \in S \otimes_R S$ such that $S \otimes_R S \to S$ is isomorphic
-to $S \otimes_R S \to (S \otimes_R S)_e$.
-\end{lemma}
-
-\begin{proof}
-Let $J = \text{Ker}(S \otimes_R S \to S)$. By assumption
-$J/J^2 = 0$, see
-\rref{lemma-differentials-diagonal}.
-Since $S$ is of finite type over $R$ we
-see that $J$ is finitely generated, namely by
-$x_i \otimes 1 - 1 \otimes x_i$, where $x_i$ generate $S$ over $R$.
-We win by \rref{lemma-ideal-is-squared-union-connected}.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-unramified-at-prime}
-Let $R \to S$ be a ring map.
-Let $\mathfrak q \subset S$ be
-a prime lying over $\mathfrak p$ in $R$.
-If $S/R$ is unramified at $\mathfrak q$ then
-\begin{enumerate}
-\item we have $\mathfrak p S_{\mathfrak q} = \mathfrak qS_{\mathfrak q}$
-is the maximal ideal of the local ring $S_{\mathfrak q}$, and
-\item the field extension $\kappa(\mathfrak p) \subset \kappa(\mathfrak q)$
-is finite separable.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-We may first replace $S$ by $S_g$ for some $g \in S$, $g \not \in \mathfrak q$
-and assume that $R \to S$ is unramified.
-The base change $S \otimes_R \kappa(\mathfrak p)$
-is unramified over $\kappa(\mathfrak p)$ by
-\rref{lemma-unramified}.
-By
-\rref{lemma-characterize-smooth-over-field}
-it is smooth hence \'etale over $\kappa(\mathfrak p)$.
-Hence we see that
-$S \otimes_R \kappa(\mathfrak p) =
-(R \setminus \mathfrak p)^{-1} S/\mathfrak pS$
-is a product of finite separable field extensions of
-$\kappa(\mathfrak p)$ by \rref{lemma-etale-over-field}.
-This implies the lemma.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-unramified-quasi-finite}
-Let $R \to S$ be a finite type ring map.
-Let $\mathfrak q$ be a prime of $S$.
-If $R \to S$ is unramified at $\mathfrak q$ then
-$R \to S$ is quasi-finite at $\mathfrak q$.
-In particular, an unramified ring map is quasi-finite.
-\end{lemma}
-
-\begin{proof}
-An unramified ring map is of finite type.
-Thus it is clear that the second statement follows from the first.
-To see the first statement apply the characterization of
-\rref{lemma-isolated-point-fibre} part (2) using
-\rref{lemma-unramified-at-prime}.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-characterize-unramified}
-Let $R \to S$ be a ring map. Let $\mathfrak q$ be a prime of $S$
-lying over a prime $\mathfrak p$ of $R$. If
-\begin{enumerate}
-\item $R \to S$ is of finite type,
-\item $\mathfrak p S_{\mathfrak q}$ is the maximal ideal
-of the local ring $S_{\mathfrak q}$, and
-\item the field extension $\kappa(\mathfrak p) \subset \kappa(\mathfrak q)$
-is finite separable,
-\end{enumerate}
-then $R \to S$ is unramified at $\mathfrak q$.
-\end{lemma}
-
-\begin{proof}
-By \rref{lemma-unramified} (8) it suffices to show that
-$\Omega_{S \otimes_R \kappa(\mathfrak p) / \kappa(\mathfrak p)}$
-is zero when localized at $\mathfrak q$. Hence we may replace $S$
-by $S \otimes_R \kappa(\mathfrak p)$ and $R$ by $\kappa(\mathfrak p)$.
-In other words, we may assume that $R = k$ is a field and $S$
-is a finite type $k$-algebra.
-In this case the hypotheses imply that
-$S_{\mathfrak q} \cong \kappa(\mathfrak q)$
-and hence $S = \kappa(\mathfrak q) \times S'$ (see
-\rref{lemma-isolated-point}).
-Hence $(\Omega_{S/k})_{\mathfrak q} = \Omega_{\kappa(\mathfrak q)/k}$
-which is zero as desired.
-\end{proof}
-
-\begin{proposition}
-\label{proposition-unramified-locally-standard}
-Let $R \to S$ be a ring map. Let $\mathfrak q \subset S$ be a prime.
-If $R \to S$ is unramified at $\mathfrak q$, then there exist
-\begin{enumerate}
-\item a $g \in S$, $g \not \in \mathfrak q$,
-\item a standard \'etale ring map $R \to S'$, and
-\item a surjective $R$-algebra map $S' \to S_g$.
-\end{enumerate}
-\end{proposition}
-
-\begin{proof}
-This proof is the ``same'' as the proof of
-\rref{proposition-etale-locally-standard}.
-The proof is a little roundabout and there may be ways to
-shorten it.
-
-\medskip\noindent
-Step 1. By \rref{definition-unramified}
-there exists a $g \in S$, $g \not \in \mathfrak q$
-such that $R \to S_g$ is unramified. Thus we may assume that $S$ is
-unramified over $R$.
-
-\medskip\noindent
-Step 2. By \rref{lemma-unramified}
-there exists an unramified ring map $R_0 \to S_0$
-with $R_0$ of finite type over $\mathbf{Z}$, and a ring map
-$R_0 \to R$ such that $S$ is a quotient of $R \otimes_{R_0} S_0$. Denote
-$\mathfrak q_0$ the prime of $S_0$ corresponding to $\mathfrak q$.
-If we show the result for $(R_0 \to S_0, \mathfrak q_0)$ then the
-result follows for $(R \to S, \mathfrak q)$ by base change. Hence
-we may assume that $R$ is Noetherian.
-
-\medskip\noindent
-Step 3.
-Note that $R \to S$ is quasi-finite by
-\rref{lemma-unramified-quasi-finite}.
-By \rref{lemma-quasi-finite-open-integral-closure}
-there exists a finite ring map $R \to S'$, an $R$-algebra map
-$S' \to S$, an element $g' \in S'$ such that
-$g' \not \in \mathfrak q$ such that $S' \to S$ induces
-an isomorphism $S'_{g'} \cong S_{g'}$.
-(Note that $S'$ may not unramified over $R$.)
-Thus we may assume that (a) $R$ is Noetherian, (b) $R \to S$ is finite
-and (c) $R \to S$ is unramified at $\mathfrak q$
-(but no longer necessarily unramified at all primes).
-
-\medskip\noindent
-Step 4. Let $\mathfrak p \subset R$ be the prime corresponding
-to $\mathfrak q$. Consider the fibre ring
-$S \otimes_R \kappa(\mathfrak p)$. This is a finite algebra over
-$\kappa(\mathfrak p)$. Hence it is Artinian
-(see \rref{lemma-finite-dimensional-algebra}) and
-so a finite product of local rings
-$$
-S \otimes_R \kappa(\mathfrak p) = \prod\nolimits_{i = 1}^n A_i
-$$
-see \rref{proposition-dimension-zero-ring}. One of the factors,
-say $A_1$, is the local ring $S_{\mathfrak q}/\mathfrak pS_{\mathfrak q}$
-which is isomorphic to $\kappa(\mathfrak q)$,
-see \rref{lemma-unramified-at-prime}. The other factors correspond to
-the other primes, say $\mathfrak q_2, \ldots, \mathfrak q_n$ of
-$S$ lying over $\mathfrak p$.
-
-\medskip\noindent
-Step 5. We may choose a nonzero element $\alpha \in \kappa(\mathfrak q)$ which
-generates the finite separable field extension
-$\kappa(\mathfrak p) \subset \kappa(\mathfrak q)$ (so even if the
-field extension is trivial we do not allow $\alpha = 0$).
-Note that for any $\lambda \in \kappa(\mathfrak p)^*$ the
-element $\lambda \alpha$ also generates $\kappa(\mathfrak q)$
-over $\kappa(\mathfrak p)$. Consider the element
-$$
-\overline{t} =
-(\alpha, 0, \ldots, 0) \in
-\prod\nolimits_{i = 1}^n A_i =
-S \otimes_R \kappa(\mathfrak p).
-$$
-After possibly replacing $\alpha$ by $\lambda \alpha$ as above
-we may assume that $\overline{t}$ is the image of $t \in S$.
-Let $I \subset R[x]$ be the kernel of the $R$-algebra
-map $R[x] \to S$ which maps $x$ to $t$. Set $S' = R[x]/I$,
-so $S' \subset S$. Here is a diagram
-$$
-\xymatrix{
-R[x] \ar[r] & S' \ar[r] & S \\
-R \ar[u] \ar[ru] \ar[rru] & &
-}
-$$
-By construction the primes $\mathfrak q_j$, $j \geq 2$ of $S$ all
-lie over the prime $(\mathfrak p, x)$ of $R[x]$, whereas
-the prime $\mathfrak q$ lies over a different prime of $R[x]$
-because $\alpha \not = 0$.
-
-\medskip\noindent
-Step 6. Denote $\mathfrak q' \subset S'$ the prime of $S'$
-corresponding to $\mathfrak q$. By the above $\mathfrak q$ is
-the only prime of $S$ lying over $\mathfrak q'$. Thus we see that
-$S_{\mathfrak q} = S_{\mathfrak q'}$, see
-\rref{lemma-unique-prime-over-localize-below} (we have
-going up for $S' \to S$ by \rref{lemma-integral-going-up}
-since $S' \to S$ is finite as $R \to S$ is finite).
-It follows that $S'_{\mathfrak q'} \to S_{\mathfrak q}$ is finite
-and injective as the localization of the finite injective ring map
-$S' \to S$. Consider the maps of local rings
-$$
-R_{\mathfrak p} \to S'_{\mathfrak q'} \to S_{\mathfrak q}
-$$
-The second map is finite and injective. We have
-$S_{\mathfrak q}/\mathfrak pS_{\mathfrak q} = \kappa(\mathfrak q)$,
-see \rref{lemma-unramified-at-prime}.
-Hence a fortiori
-$S_{\mathfrak q}/\mathfrak q'S_{\mathfrak q} = \kappa(\mathfrak q)$.
-Since
-$$
-\kappa(\mathfrak p) \subset \kappa(\mathfrak q') \subset \kappa(\mathfrak q)
-$$
-and since $\alpha$ is in the image of $\kappa(\mathfrak q')$ in
-$\kappa(\mathfrak q)$
-we conclude that $\kappa(\mathfrak q') = \kappa(\mathfrak q)$.
-Hence by Nakayama's \rref{lemma-NAK} applied to the
-$S'_{\mathfrak q'}$-module map $S'_{\mathfrak q'} \to S_{\mathfrak q}$,
-the map $S'_{\mathfrak q'} \to S_{\mathfrak q}$ is surjective.
-In other words,
-$S'_{\mathfrak q'} \cong S_{\mathfrak q}$.
-
-\medskip\noindent
-Step 7. By \rref{lemma-local-isomorphism} there exists a $g' \in S'$,
-$g' \not \in \mathfrak q'$ such that $S'_{g'} \cong S_{g'}$.
-As $R$ is Noetherian the ring $S'$ is finite over $R$ as it is an $R$-submodule
-of the finite $R$-module $S$. Hence after replacing $S$ by $S'$ we may
-assume that (a) $R$ is Noetherian, (b) $S$ finite over $R$, (c)
-$S$ is unramified over $R$ at $\mathfrak q$, and (d) $S = R[x]/I$.
-
-\medskip\noindent
-Step 8. Consider the ring
-$S \otimes_R \kappa(\mathfrak p) = \kappa(\mathfrak p)[x]/\overline{I}$
-where $\overline{I} = I \cdot \kappa(\mathfrak p)[x]$ is the ideal generated
-by $I$ in $\kappa(\mathfrak p)[x]$. As $\kappa(\mathfrak p)[x]$ is a PID
-we know that $\overline{I} = (\overline{h})$ for some monic
-$\overline{h} \in \kappa(\mathfrak p)$. After replacing $\overline{h}$
-by $\lambda \cdot \overline{h}$ for some $\lambda \in \kappa(\mathfrak p)$
-we may assume that $\overline{h}$ is the image of some $h \in R[x]$.
-(The problem is that we do not know if we may choose $h$ monic.)
-Also, as in Step 4 we know that
-$S \otimes_R \kappa(\mathfrak p) = A_1 \times \ldots \times A_n$ with
-$A_1 = \kappa(\mathfrak q)$ a finite separable extension of
-$\kappa(\mathfrak p)$ and $A_2, \ldots, A_n$ local. This implies
-that
-$$
-\overline{h} = \overline{h}_1 \overline{h}_2^{e_2} \ldots \overline{h}_n^{e_n}
-$$
-for certain pairwise coprime irreducible monic polynomials
-$\overline{h}_i \in \kappa(\mathfrak p)[x]$ and certain
-$e_2, \ldots, e_n \geq 1$. Here the numbering is chosen so that
-$A_i = \kappa(\mathfrak p)[x]/(\overline{h}_i^{e_i})$ as
-$\kappa(\mathfrak p)[x]$-algebras. Note that $\overline{h}_1$ is
-the minimal polynomial of $\alpha \in \kappa(\mathfrak q)$ and hence
-is a separable polynomial (its derivative is prime to itself).
-
-\medskip\noindent
-Step 9. Let $m \in I$ be a monic element; such an element exists
-because the ring extension $R \to R[x]/I$ is finite hence integral.
-Denote $\overline{m}$ the image in $\kappa(\mathfrak p)[x]$.
-We may factor
-$$
-\overline{m} = \overline{k}
-\overline{h}_1^{d_1} \overline{h}_2^{d_2} \ldots \overline{h}_n^{d_n}
-$$
-for some $d_1 \geq 1$, $d_j \geq e_j$, $j = 2, \ldots, n$ and
-$\overline{k} \in \kappa(\mathfrak p)[x]$ prime to all the $\overline{h}_i$.
-Set $f = m^l + h$ where $l \deg(m) > \deg(h)$, and $l \geq 2$.
-Then $f$ is monic as a polynomial over $R$. Also, the image $\overline{f}$
-of $f$ in $\kappa(\mathfrak p)[x]$ factors as
-$$
-\overline{f} =
-\overline{h}_1 \overline{h}_2^{e_2} \ldots \overline{h}_n^{e_n}
-+
-\overline{k}^l \overline{h}_1^{ld_1} \overline{h}_2^{ld_2}
-\ldots \overline{h}_n^{ld_n}
-=
-\overline{h}_1(\overline{h}_2^{e_2} \ldots \overline{h}_n^{e_n}
-+
-\overline{k}^l
-\overline{h}_1^{ld_1 - 1} \overline{h}_2^{ld_2} \ldots \overline{h}_n^{ld_n})
-= \overline{h}_1 \overline{w}
-$$
-with $\overline{w}$ a polynomial relatively prime to $\overline{h}_1$.
-Set $g = f'$ (the derivative with respect to $x$).
-
-\medskip\noindent
-Step 10. The ring map $R[x] \to S = R[x]/I$ has the properties:
-(1) it maps $f$ to zero, and
-(2) it maps $g$ to an element of $S \setminus \mathfrak q$.
-The first assertion is clear since $f$ is an element of $I$.
-For the second assertion we just have to show that $g$ does
-not map to zero in
-$\kappa(\mathfrak q) = \kappa(\mathfrak p)[x]/(\overline{h}_1)$.
-The image of $g$ in $\kappa(\mathfrak p)[x]$ is the derivative
-of $\overline{f}$. Thus (2) is clear because
-$$
-\overline{g} =
-\frac{\text{d}\overline{f}}{\text{d}x} =
-\overline{w}\frac{\text{d}\overline{h}_1}{\text{d}x} +
-\overline{h}_1\frac{\text{d}\overline{w}}{\text{d}x},
-$$
-$\overline{w}$ is prime to $\overline{h}_1$ and
-$\overline{h}_1$ is separable.
-
-\medskip\noindent
-Step 11.
-We conclude that $\varphi : R[x]/(f) \to S$ is a surjective ring map,
-$R[x]_g/(f)$ is \'etale over $R$ (because it is standard \'etale,
-see \rref{lemma-standard-etale}) and $\varphi(g) \not \in \mathfrak q$.
-Thus the map $(R[x]/(f))_g \to S_{\varphi(g)}$ is the desired
-surjection.
-\end{proof}
+We may compute: the normalization of $C$ is given by $\overline{C} =
+\mathbb{A}^1_k$, with the map
+\[ t \mapsto (t^2+1, t (t^2 + 1)).  \]
+Now the two points $\pm 1$ are both mapped to $0$.
+We will show that
+\[ \mathcal{O}_{C, 0} \to \mathcal{O}_{\mathbb{A}^1_k, 1}  \]
+is local-unramified; the other case is similar.
+Indeed, any line through the origin which is not a tangent direction will be
+something in $\mathfrak{m}_{C, 0}$ that is mapped to a uniformizer in $
+\mathcal{O}_{\mathbb{A}^1_k, 1}$.
+For instance, the local function $x \in \mathcal{O}_{C,0}$ is mapped to 
+the function $t \mapsto t^2 + 1$ on $\mathbb{A}^1_k$, which has a simple zero
+at $1$ (or $-1$).
+It follows that the maximal ideal $\mathfrak{m}_{C,0}$ generates the maximal
+ideal of $\mathcal{O}_{\mathbb{A}^1_k, 1}$ (and similarly for $-1$).
+\end{example} 
 
 
-
-\begin{lemma}
-\label{lemma-etale-makes-unramfied-closed-at-prime}
-Let $R \to S$ be a ring map.
-Let $\mathfrak q$ be a prime of $S$ lying over $\mathfrak p \subset R$.
-Assume that $R \to S$ is of finite type and unramified at $\mathfrak q$.
-Then there exist
-\begin{enumerate}
-\item an \'etale ring map $R \to R'$,
-\item a prime $\mathfrak p' \subset R'$ lying over $\mathfrak p$.
-\item a product decomposition
-$$
-R' \otimes_R S = A \times B
-$$
-\end{enumerate}
-with the following properties
-\begin{enumerate}
-\item $R' \to A$ is surjective, and
-\item $\mathfrak p'A$ is a prime of $A$ lying over $\mathfrak p'$ and
-over $\mathfrak q$.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-We may replace $(R \to S, \mathfrak p, \mathfrak q)$
-with any base change $(R' \to R'\otimes_R S, \mathfrak p', \mathfrak q')$
-by a \'etale ring map $R \to R'$ with a prime $\mathfrak p'$
-lying over $\mathfrak p$, and a choice of $\mathfrak q'$ lying over
-both $\mathfrak q$ and $\mathfrak p'$. Note also that given
-$R \to R'$ and $\mathfrak p'$ a suitable $\mathfrak q'$ can always
-be found.
-
-\medskip\noindent
-The assumption that $R \to S$ is of finite type means that we may apply
-\rref{lemma-etale-makes-quasi-finite-finite-variant}. Thus we may
-assume that $S = A_1 \times \ldots \times A_n \times B$, that
-each $R \to A_i$ is finite with exactly one prime $\mathfrak r_i$
-lying over $\mathfrak p$ such that
-$\kappa(\mathfrak p) \subset \kappa(\mathfrak r_i)$ is purely inseparable
-and that $R \to B$ is not quasi-finite at any prime lying over $\mathfrak p$.
-Then clearly $\mathfrak q = \mathfrak r_i$ for some $i$, since
-an unramified morphism is quasi-finite
-(see \rref{lemma-unramified-quasi-finite}).
-Say $\mathfrak q = \mathfrak r_1$.
-By \rref{lemma-unramified-at-prime} we see that
-$\kappa(\mathfrak p) \subset \kappa(\mathfrak r_1)$
-is separable hence the trivial field extension, and that
-$\mathfrak p(A_1)_{\mathfrak r_1}$ is the maximal ideal.
-Also, by \rref{lemma-unique-prime-over-localize-below}
-(which applies to $R \to A_1$ because a finite ring map satisfies going up by
-\rref{lemma-integral-going-up})
-we have $(A_1)_{\mathfrak r_1} = (A_1)_{\mathfrak p}$.
-It follows from Nakayama's \rref{lemma-NAK}
-that the map of local rings
-$R_{\mathfrak p} \to (A_1)_{\mathfrak p} = (A_1)_{\mathfrak r_1}$
-is surjective. Since $A_1$ is finite over $R$ we see that there
-exists a $f \in R$, $f \not \in \mathfrak p$ such that
-$R_f \to (A_1)_f$ is surjective. After replacing $R$ by $R_f$ we win.
-\end{proof}
