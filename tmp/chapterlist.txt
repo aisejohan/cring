@@ -16,5 +16,6 @@ homological
 flat
 homologicallocal
 etale
+completelocal
 homotopical
 license

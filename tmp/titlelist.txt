@@ -16,5 +16,6 @@ Homological Algebra
 Flatness revisited
 Homological theory of local rings
 \'Etale, unramified, and smooth morphisms
+Complete local rings
 Homotopical algebra
 GNU Free Documentation License
