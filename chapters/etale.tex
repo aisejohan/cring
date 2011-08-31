@@ -62,6 +62,13 @@ over $\mathbb{C}$, which corresponds to a map $\spec S \to \spec R$ of
 unramified if and only if the  associated map of complex manifolds is an
 immersion. (We are not proving this, just stating it for intuition.)
 
+Note also that we can replace ``$I$ of square zero'' with the weaker condition
+``$I$ nilpotent.'' That is, the map $R \to S$ (if it is formally unramified)
+still has the same lifting property. This follows because one can factor $A \to
+A/I$ into the \emph{finite} sequence $\dots \to A/I^{n+1} \to A/I^{n} \to \dots
+\to A/I$, and each step is a square-zero extension.
+
+
 We now show that the module of K\"ahler differentials provides a simple
 criterion for an extension to be formally unramified.
 \begin{proposition} \label{formalunrmeansomegazero}
@@ -697,7 +704,8 @@ with $I$ an ideal of square zero in $A$, there exists a dotted arrow making the 
 As with formal unramifiedness, this is a purely functorial statement: if $F$ is
 the corepresentable functor associated to $S$, then we want $F(A) \to F(A/I)$
 to be a \emph{surjection} for each $I \subset A$ of square zero and each
-$R$-algebra $A$.
+$R$-algebra $A$. Also, again we can replace ``$I$ of square zero'' with ``$I$
+nilpotent.''
 
 
 \begin{example}
@@ -1711,7 +1719,7 @@ It has a maximal ideal $\mathfrak{s}$ which is the intersection of
 $\mathfrak{q}$ with $C$.
 We are going to show that locally, $C$ and $S$ look the same.
 
-\begin{lemma} 
+\begin{lemma}[Reduction to the monogenic case]
 Let $(R, \mathfrak{p})$ be a local ring and $S$ a finite $R$-algebra. Let
 $\mathfrak{q}, \mathfrak{q}_1, \dots, \mathfrak{q}_r \in \spec S$ be the prime ideals
 lying above $\mathfrak{p}$. Suppose $S$ is unramified at $\mathfrak{q}$.
@@ -1722,6 +1730,7 @@ isomorphic near $\mathfrak{q}$: more precisely, there is $g \in R[x] -
 \end{lemma} 
 \begin{proof} Choose $x$ as in the paragraph preceding the statement of
 the lemma.
+Define $\mathfrak{s}$ in the same way.
 We have  morphisms
 \[ R \to C_{\mathfrak{s}} \to S_{\mathfrak{s}}  \]
 where $S_{\mathfrak{s}}$ denotes $S$ localized at $C-\mathfrak{s}$, as usual.
@@ -2038,33 +2047,60 @@ We mention a harder result:
 
 \begin{theorem} 
 \label{injunrflat}
-If $(R, \mathfrak{m}) \to (S, \mathfrak{n})$ is local-unramified, injective,
+If $f:(R, \mathfrak{m}) \to (S, \mathfrak{n})$ is local-unramified, injective,
 and essentially of finite type, with $R$ normal and noetherian, then $R \to S$ is
 local-\'etale.
 Thus, an injective unramified morphism of finite type between noetherian rings,
 whose source is a normal domain, is \'etale.
 \end{theorem} 
-A priori, it is not obvious at all that $R \to S$ should be flat.
+
+A priori, it is not obvious at all that $R \to S$ should be flat. In fact,
+proving flatness directly seems to be difficult, and we will have to use the
+local structure theory for \emph{unramified} morphisms together with nontrivial
+facts about \'etale morphisms to establish this result.
 \begin{proof} 
-\add{This proof}
-\begin{comment}
 We essentially follow \cite{Mi67} in the proof.
 Clearly, only the local statement needs to be proved.
 
+We shall use the (non-elementary, relying on ZMT) structure theory of unramified morphisms, 
+which implies that there is a factorization of $R \to S$ via
+\[ (R, \mathfrak{m}) \stackrel{g}{\to} (T, \mathfrak{q}) \stackrel{h}{\to} (S, \mathfrak{n}),  \]
+where all morphisms are local homomorphisms of local rings, $g: R \to T$ is
+local-\'etale and essentially of finite type, and $h:T \to S$ is surjective.
+This was established in \cref{}.
+
+We are going to show that $h$ is an isomorphism, which will complete the proof.
 Let $K$ be the quotient field of $R$.
-We have an injection $K \to S \otimes_R K$, which is  formally unramified and
-essentially of finite type; thus $S
-\otimes_R K$ is itself a product of finite separable extensions of $K$.
-Since the map $R \to S$ is injective, so is $K \to S \otimes_R K$; in
-particular, the latter is a nonzero product of field extensions of $K$. 
-Now $R \to S \to S \otimes_R K$ is thus injective, by the diagram
+Consider the diagram
 \[ \xymatrix{
-R \ar[d] \ar[r] & S \ar[d] \\
-K \ar[r] &  S \otimes_R K,
+R \ar[d] \ar[r]^g &  T \ar[r]^h \ar[d]  &  S \ar[d] \\
+K \ar[r]^{g \otimes 1} & T \otimes_R K \ar[r]^{h \otimes 1}&   S
+\otimes_R K.
 }\]
-where we have just seen the bottom horizontal arrow is injective, and $R
-\to K$ is clearly injective. 
-\end{comment}
+Now the strategy is to show that $h$ is injective.
+We will prove this by chasing around the diagram.
+
+Here $R \to S$ is formally unramified and essentially of finite type, so $K \to S
+\otimes_R K$ is too, and $S \otimes_R K$ is in particular a finite product of
+separable extensions of $K$. The claim is that it is nonzero; this follows
+because $f: R \to S$ is injective, and $S \to S \otimes_R K$ is injective
+because localization is exact. Consequently $R \to S \otimes_R K$ is injective,
+and the target must be nonzero.
+
+As a result, the surjective map $h \otimes 1: T \otimes_R K \to S \otimes_R K$
+is nonzero. Now we claim that  $T \otimes_R K$ is a field. Indeed, it is an \'etale extension
+of $K$ (by base-change), so it is a product of fields.  Moreover, $T$ is a
+normal domain since $R$ is (by \cref{normalitypreserved}) and $R \to T$ is injective by flatness,
+so the localization $T \otimes_R K$ is a domain as well.
+Thus it must be a field. In particular, the map $h \otimes 1: T \otimes_R K \to
+S \otimes_R K$ is a surjection from a field to a product of fields. It is thus
+an \emph{isomorphism.}
+
+Finally, we can show that $h$ is injective. Indeed, it suffices to show that
+the composite $T \to T \otimes_R K \to S \otimes_R K$ is injective. But the
+first map is injective as it is a map from a domain to a localization, and the
+second is an isomorphism (as we have just seen). So $h$ is injective, hence an
+isomorphism. Thus $T \simeq S$, and we are done.
 \end{proof} 
 
 Note that this \emph{fails} if the source is not normal.
@@ -2122,6 +2158,7 @@ For convenience, we have stated this result for local rings, but we can get a
 more general criterion as well (see below). This states that smooth
 morphisms, \'etale locally, look like the imbedding of a ring into a
 polynomial ring.
+In \cite{SGA1}, this is in fact how smooth morphisms are \emph{defined.}
 
 \begin{proof} First assume $f$ smooth.
 We know then that $\Omega_{B/A}$ is a finitely generated projective $B$-module,
@@ -2140,10 +2177,91 @@ But the map
 \[ \Omega_{C/A} \otimes_C B \to \Omega_{B/A}  \]
 is an isomorphism, by construction. Since $C, B$ are both formally smooth over
 $A$, we find that $C \to B$ is \'etale by the characterization of \'etaleness
+via cotangent vectors
 (\cref{etalecotangent}).
+
+The other direction, that $f$ is formally smooth if it admits such a
+factorization, is clear because the localization of a polynomial algebra is
+formally smooth, and a formally \'etale map is clearly formally smooth.
+\end{proof} 
+
+\begin{corollary} 
+Let $(R, \mathfrak{m}) \to (S, \mathfrak{n})$ be a formally smooth, essentially
+of finite type morphism of noetherian rings. Then if $R$ is normal, so is $S$.
+Ditto for reduced.
+\end{corollary} 
+\begin{proof} 
 
 \end{proof} 
 
+\subsection{Lifting under nilpotent extensions}
+
+In this subsection, we consider the following question. Let $A$ be a ring, $I
+\subset A$ an ideal of square zero, and let $A_0 = A/I$. Suppose $B_0$ is a
+flat $A_0$-algebra (possibly satisfying other conditions).
+Then, we ask if there exists a flat $A$-algebra $B$ such that $B_0 \simeq B
+\otimes_A A_0 = B/IB$.
+If there is, we say that $B$ can be \emph{lifted} along the nilpotent
+thickening from $B_0$ to $B$---we think of $B$ as the mostly the same as $B_0$,
+but with some additional ``fuzz'' (given by the additional nilpotents).
+
+We are going to show that this can \emph{always} be done for \'etale
+algebras, and that this always can be done \emph{locally} for smooth
+algebras. As a result, we will get a very simple characterization of what
+finite\'etale algebras over a complete (and later, henselian) local ring look like:
+they are the same as \'etale extensions of the residue field (which we have
+classified completely).
+
+In algebraic geometry, one spectacular application of these ideas is
+Grothendieck's proof in \cite{SGA1} that a smooth projective curve over a field
+of characteristic $p$ can be ``lifted'' to characteristic zero. The idea is to
+lift it successively along nilpotent thickenings of the base field, bit by bit
+(for instance, $\mathbb{Z}/p^n \mathbb{Z}$ of $\mathbb{Z}/p\mathbb{Z}$),
+by using the techniques of this subsection; then, he uses hard existence
+results in formal geometry to show that this compatible system of nilpotent
+thickenings comes from a curve over a DVR (e.g. the $p$-adic numbers). The
+application in mind is the (partial) computation of the \'etale fundamental
+group of a smooth projective curve over a field of positive characteristic.
+We will only develop some of the more basic ideas in commutative algebra. 
+
+Namely, here is the main result.
+For a ring $A$, let $\et(A)$ denote the category of \'etale $A$-algebras (and
+$A$-morphisms). Given $A \to A'$, there is  a natural functor $\et(A) \to
+\et(A')$  given by base-change.
+\begin{theorem} 
+Let $A \to A_0$ be a surjective morphism whose kernel is nilpotent. Then
+$\et(A) \to \et(A_0)$ is an equivalence of categories.
+\end{theorem} 
+
+$\spec A$ and $\spec A_0$ are identical topologically, so this result is
+sometimes called the topological invariance of the \'etale site.
+Let us sketch the idea before giving the proof. Full faithfulness is the easy
+part, and is essentially a restatement of the nilpotent lifting property.
+The essential surjectivity is the non-elementary part, and relies on the local
+structure theory. Namely, we will show that a standard \'etale morphism can be
+lifted (this is essentially trivial). Since an \'etale morphism is locally
+standard \'etale, we can \emph{locally} lift an \'etale $A_0$-algebra to an
+\'etale $A$-algebra. 
+We next ``glue'' the local liftings using the full faithfulness.
+\begin{proof} Without loss of generality, we can assume that the ideal defining
+$A_0$ has square zero.
+Let $B, B'$ be \'etale $A$-algebras. We need to show that
+\[ \hom_A(B, B') = \hom_{A_0}(B_0, B_0'),  \]
+where $B_0, B_0'$ denote the reductions to $A_0$ (i.e. the base change).
+But $\hom_{A_0}(B_0, B_0') = \hom_{A}(B, B_0')$, and this is clearly the same
+as $\hom_A(B, B')$ by the definition of an \'etale morphism. So full
+faithfulness is automatic.
+
+The trickier part is to show that any \'etale $A_0$-algebra can be lifted 
+to an \'etale $A$-algebra.
+First, note that  a standard \'etale $A_0$-algebra of the form
+$(A_0[X]/(P(X))_{Q}$ can be lifted to $A$---just lift $P$ and $Q$. The condition
+that it be standard \'etale is invertibility of $P'$, which is unaffected by
+nilpotents.
+
+Now the strategy is to glue these appropriately.
+The details should be added at some point, but they are not. \add{details}
+\end{proof} 
 
 
 
