@@ -1634,12 +1634,61 @@ because it is
 annihilated by $\mathfrak{m}$.
 \end{proof}
 
-\begin{example} 
+\begin{example} \label{abregularloc}
 Consider the case of a \emph{regular} local ring $R$ of dimension $n$. Then
 $\depth(R) = n$, so we have
 \[ \pr(M) + \depth(M) = n,  \]
 for every finitely generated $R$-module $M$.
 In particular, $\depth(M) = n$ if and only if $M$ is free.
+\end{example} 
+
+\begin{example}[The Cohen-Macaulay locus is open]
+Let $R$ be a regular noetherian ring (i.e. one all of whose localizations are
+regular). Let $M$ be a finitely generated $R$-module. 
+We consider the locus $Z \subset \spec R$ consisting of prime ideals
+$\mathfrak{p} \in \spec R$ such that $M_{\mathfrak{p}}$ is a Cohen-Macaulay
+$R$-module. 
+We want to show that this is an \emph{open} subset. 
+
+\newcommand{\codp}{\mathrm{codepth}}
+Namely, over a local ring $(A, \mathfrak{m})$, define the \emph{codepth} of a
+finitely generated $A$-module $N$ as $\codp N = \dim N - \depth N \geq 0$; we
+have that $\codp N = 0$ if and only if $N$ is Cohen-Macaulay.
+We are going to show that the function $\mathfrak{p} \mapsto
+\codp_{R_{\mathfrak{p}}}
+M_{\mathfrak{p}}$ is  upper semicontinuous on $\spec R$.
+To do this, we use  the Auslander-Buchsbaum formula $\depth_{R_{\mathfrak{p}}} M_{\mathfrak{p}} = \dim
+R_{\mathfrak{p}} - \pr_{R_{\mathfrak{p}}} M_{\mathfrak{p}}$ (see
+\cref{abregularloc}). We will show below
+that $\mathfrak{p} \mapsto \pr_{R_{\mathfrak{p}}} M_{\mathfrak{p}}$ is upper
+semi-continuous on $\spec R$. 
+Thus, we have
+\[ \codp_{R_{\mathfrak{p}}} M_{\mathfrak{p}} =  -\left( \dim R_{\mathfrak{p}} -
+\dim_{R_{\mathfrak{p}}} M_{\mathfrak{p}}\right) + \pr_{R_{\mathfrak{p}}}
+M_{\mathfrak{p}},   \]
+where the second term is upper semi-continuous. 
+The claim is that the first term is upper semi-continuous. If we consider
+$\supp M \subset \spec R$, then the bracketed difference measures the
+\emph{local codimension} of $\supp M \subset \spec R$. 
+Namely, $\dim R_{\mathfrak{p}} - \dim \supp M_{\mathfrak{p}}$ is the local
+codimension because $R_{\mathfrak{p}}$ is regular, and consequently $\spec
+R_{\mathfrak{p}}$ is biequidimensional (\add{argument}).
+The local codimension of any set is always lower semi-continuous
+(\add{reference in the section on topological dim}). 
+As a result, the codepth is upper semi-continuous. 
+
+We just need to prove the assertion that 
+$\mathfrak{p} \mapsto \pr_{R_{\mathfrak{p}}} M_{\mathfrak{p}}$ is upper
+semi-continuous. That is, we need to show that if $M_{\mathfrak{p}}$ admits a
+projective resolution of length $n$ by finitely generated modules, then there is a projective resolution of
+length $n$ of $M_{\mathfrak{q}}$ for $\mathfrak{q}$ in some Zariski
+neighborhood. But a projective resolution of $M_{\mathfrak{p}}$ ``descends'' to
+a projective (even free) resolution of $M_g$ for some $g \notin \mathfrak{p}$,
+which gives the result by localization. 
+
+If $R$ is the \emph{quotient} of a regular ring, the same result holds (because
+the Cohen-Macaulay locus behaves properly with respect to quotients). In
+particular, this result holds for $R$ an affine ring.
 \end{example} 
 
 
