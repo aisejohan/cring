@@ -1255,6 +1255,66 @@ $A$, so their associated gradeds with respect to $\mathfrak{m} \subset A$
 behave nicely. It follows that \eqref{monkey} is an isomorphism, completing the
 proof.
 \end{proof} 
+
+\subsection{Flatness over regular local rings}
+
+Here we shall prove a result that implies geometrically, for instance, that a
+finite morphism between smooth varieties is always flat.
+
+\begin{theorem}[``Miracle'' flatness theorem]
+Let $(A, \mathfrak{m})$  be a regular local (noetherian) ring. Let $(B,
+\mathfrak{n})$ be a Cohen-Macaulay, local $A$-algebra such that 
+\[ \dim B = \dim A + \dim B/\mathfrak{m}B . \]
+Then $B$ is flat over $A$.
+\end{theorem} 
+Recall that \emph{inequality} $\leq$ always holds in the above for any
+morphism of noetherian local rings (\cref{}), and
+equality always holds with flatness supposed. 
+We get a partial converse.
+
+\begin{proof} 
+We shall work by induction on $\dim A$. 
+Let $x \in \mathfrak{m}$ be a non-zero divisor, so the first element in a
+regular sequence of parameters. 
+We are going to show that $(A/(x), B/(x))$ satisfies the same hypotheses. 
+Indeed, note that 
+\[ \dim B/(x) \leq \dim A/(x) + \dim B/\mathfrak{m}B  \]
+by the usual inequality. Since $\dim A/(x) = \dim A - 1$, 
+we find that quotienting by $x$ drops the dimension of $B$ by at least one: that is,
+$\dim B/(x) \leq \dim B - 1$. By the principal ideal theorem, we have equality,
+\[ \dim B/(x) = \dim B - 1.  \]
+
+The claim is that $x$ is a non-zero divisor in $B$, and consequently we can
+argue by induction.
+Indeed, but $B$ is \emph{Cohen-Macaulay}. Thus, any zero-divisor in $B$ lies in a
+\emph{minimal} prime (since all associated primes of $B$ are minimal); thus
+quotienting by a zero-divisor would not bring down the degree. So $x$ is a
+nonzerodivisor in $B$.
+
+In other words, we have found $x \in A$ which is both $A$-regular and
+$B$-regular (i.e. nonzerodivisors on both), and such that the hypotheses of the theorem apply to the pair
+$(A/(x), B/(x))$. It follows that $B/(x)$ is flat over $A/(x)$ by the 
+inductive hypothesis. The next lemma will complete the proof.
+\end{proof} 
+
+
+\begin{lemma} 
+Suppose $(A, \mathfrak{m})$ is a noetherian local ring, $(B, \mathfrak{n})$ a
+noetherian local $A$-algebra, and $M$ a finite $B$-module. Suppose $x \in A$ is
+a regular element of $A$ which is also regular on $M$.
+Suppose moreover $M/xM$ is $A/(x)$-flat. Then $M$ is flat over $A$.
+\end{lemma} 
+\begin{proof} 
+This follows from the associated graded criterion for flatness (see the
+omnibus result \cref{bigflatcriterion}).
+Indeed, if we use the notation of that result, we take $I = (x)$.
+We are given that $M/xM$ is $A/(x)$-flat. So we need to show that
+\[ M/xM \otimes_{A/(x)}  (x^n)/(x^{n+1}) \to x^n M/x^{n+1}M \]
+is an isomorphism for each $n$. This, however, is implied because
+$(x^n)/(x^{n+1})$ is isomorphic to $A/(x)$ by regularity, and multiplication 
+\[ M \stackrel{x^n}{\to} x^n M, \quad xM \stackrel{x^n}{\to} x^{n+1}M \]
+are isomorphisms by $M$-regularity. 
+\end{proof} 
 \subsection{Example: construction of flat extensions}
 
 As an illustration of several of the techniques in this chapter and previous
