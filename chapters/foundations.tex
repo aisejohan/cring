@@ -895,6 +895,7 @@ $R$-modules to $\mathbf{Sets}$, the forgetful functor, preserves limits but not
 colimits. Indeed, we will see that the forgetful functor is a right adjoint
 (\cref{freeadj}), which implies it preserves limits (by \cref{adjlimits}).
 \end{example} 
+
 \subsection{Exactness}
 Finally, we introduce the notion of \emph{exactness}. 
 \begin{definition} \label{exactness}
@@ -1713,6 +1714,7 @@ We now describe a simple way of constructing modules over a ring, and an
 important class of modules.
 
 \begin{definition} 
+\label{freemoduledef}
 A module $M$ is \textbf{free} if it is isomorphic to $\bigoplus_I R$ for some
 index set $I$. The cardinality of $I$ is called the \textbf{rank}.
 \end{definition} 
@@ -1807,6 +1809,52 @@ $\det A$ must be a unit in $R$.
 Suppose instead that an $n \times n$ matrix $A$ over a ring $R$ has an
 invertible determinant. Then, using Cramer's rule, we can actually construct
 the inverse of $A$.
+\end{example} 
+
+
+We next show that if $R$ is a commutative ring, the category of modules over
+$R$ contains enough information to reconstruct $R$. This is a small part of the
+story of \emph{Morita equivalence,} which we shall not enter into here.
+\begin{example}
+Suppose $R$ is a commutative ring, and let $\mathcal{C}$ be the category of
+$R$-modules. The claim is that $\mathcal{C}$, as an \emph{abstract} category,
+determines $R$. Indeed, the claim is that $R$ is canonically the ring of
+endomorphisms of the identity functor $1_{\mathcal{C}}$. 
+
+Such an \emph{endomorphism} is given by a natural transformation
+$\phi: 1_{\mathcal{C}} \to 1_{\mathcal{C}}$. In other words, one requires for
+each $R$-module $M$, a homomorphism of $R$-modules $\phi_M : M \to M$ such that
+if $f: M \to N$ is any homomorphism of modules, then there is a commutative 
+square
+\[ \xymatrix{
+M \ar[d]^f \ar[r]^{\phi_M} &  M \ar[d] \\
+N \ar[r]^{\phi_N} & N.
+}\]
+
+Here is a simple way of obtaining such endomorphisms. Given $r \in R$, we
+consider the map $r: M \to m$ which just multiplies each element by $r$. This
+is a homomorphism, and it is clear that it is natural in the above sense. There
+is thus a map $R \to \mathrm{End}(1_\mathcal{C})$ (note that multiplication
+corresponds to composition of natural transformations). 
+This map is clearly injective; different $r, s \in R$ lead to different natural
+transformations (e.g. on the $R$-module $R$).
+
+The claim is that \emph{any} natural transformation of $1_{\mathcal{C}}$ is
+obtained in this way. 
+Namely, let $\phi: 1_{\mathcal{C}} \to 1_{\mathcal{C}}$ be such a natural
+transformation. On the $R$-module $R$, $\phi$ must be multiplication by some
+element $r \in R$
+(because $\hom_R(R, R)$ is given by such homotheties).
+Consequently, one sees by drawing commutative diagrams that $\phi: R^{\oplus S}
+\to R^{\oplus S}$ is of this form for any set $S$. So $\phi$ is multiplication
+by $r$ on any free $R$-module.
+Since any module $M$ is a quotient of a free module $F$, we can draw a diagram
+\[ \xymatrix{
+F\ar[d] \ar[r]^{\phi_F} & F \ar[d] \\
+M \ar[r]^{\phi_M} &  M.
+}\]
+Since the vertical arrows are surjective, we find that $\phi_F$ must be given
+by multiplication by $r$ too.
 \end{example} 
 
 

@@ -43,14 +43,17 @@ $\ob \mathcal{C}$.
 of \textbf{morphisms} $\hom_{\mathcal{C}}(X, Y)$ (abbreviated $\hom(X,Y)$).
 \item For each object $X \in \ob\mathcal{C}$, there is an \textbf{identity
 morphism}
-$1 \in \hom_{\mathcal{C}}(X, X)$.
+$1_X \in \hom_{\mathcal{C}}(X, X)$ (often just abbreviated to $1$).
 \item There is a \textbf{composition law}
-$\hom_{\mathcal{C}}(X, Y) \times \hom_{\mathcal{C}}(Y, Z) \to
+$\circ: \hom_{\mathcal{C}}(X, Y) \times \hom_{\mathcal{C}}(Y, Z) \to
 \hom_{\mathcal{C}}(X, Z), (g, f) \to g
 \circ f$ for every
 triple $X, Y, Z$ of objects.
-\item  The composition law is unital (that is, left or right composition with
-the identity has no effect) and associative.
+\item  The composition law is unital  and associative.
+In other words, if $f \in \hom_{\mathcal{C}}(X, Y)$, then $1_Y \circ f = f
+\circ 1_X = f$. Moreover, if $g \in \hom_{\mathcal{C}}(Y, Z)$ and $h \in
+\hom_{\mathcal{\mathcal{C}}}(Z, W)$ for objects $Z, Y, W$, then
+\[ h \circ (g \circ f) = (h \circ g) \circ f \in \hom_{\mathcal{C}}(X, W).   \]
 \end{enumerate}
 \end{definition}
 
@@ -62,7 +65,7 @@ Here is a simple list of examples.
 \begin{example}[Categories of structured sets]
 \begin{enumerate}
 \item $\mathcal{C}  = \mathbf{Sets}$; the objects are sets, and the morphisms
-are maps of sets.
+are functions.
 \item $\mathcal{C} = \mathbf{Grps}$; the objects are groups, and the morphisms
 are maps of groups (i.e. homomorphisms).
 \item $\mathcal{C} = \mathbf{LieAlg}$; the objects are Lie algebras, and the
@@ -97,18 +100,19 @@ other examples that are not of this form.
 
 \begin{example}[Groups as categories] \label{BG}
 Let $G$ be a finite group. Then we can make a category $B_G$ where the objects
-just consist of one point $\ast$ and the maps $\ast \to \ast$ are the elements
-of $G$. The identity is the identity of $G$ and composition is multiplication
+just consist of one element $\ast$ and the maps $\ast \to \ast$ are the elements
+ $g \in G$. The identity is the identity of $G$ and composition is multiplication
 in the group.
 
-In this case, the category doesn't represent  a class of objects, but
+In this case, the category does not represent much of  a class of objects, but
 instead we think of the composition law as the key thing. So a group is a
 special kind of (small) category.
 \end{example}
 
 \begin{example}[Monoids as categories]
 A monoid is precisely a category with one object. Recall that a \textbf{monoid}
-has an associative and unital multiplication (not necessarily inverses).
+is a set together with  an associative and unital multiplication (but which
+need not have inverses).
 \end{example}
 
 
@@ -130,7 +134,8 @@ understand $X$ is
 to understand the ways one can map into and out of $X$.
 Even if one is working with  a category of ``structured sets,'' the underlying
 set of an object in this category is not part of the categorical data.
-
+However, there are instances in which the ``underlying set'' can be recovered
+as a $\hom$-set.
 
 \begin{example}
 In the category $\mathbf{Top}$ of topological spaces, one can in fact recover the
@@ -144,6 +149,33 @@ where $\ast$ is the one-point space.
 Later we will say that the functor assigning to each
 space its underlying set is \emph{corepresentable.}
 \end{example}
+
+\begin{example} 
+Let $\mathbf{Ab}$ be the category of abelian groups and group-homomorphisms. Again, the claim is that
+using only this category, one can recover the underlying set of a given abelian
+group $A$. This is because the elements of $A$ can be canonically identified
+with \emph{morphisms} $\mathbb{Z} \to A$ (based on where $1 \in \mathbb{Z}$
+maps). 
+\end{example} 
+
+
+\begin{definition} 
+We say that $\mathcal{C}$ is a \textbf{subcategory} of the category
+$\mathcal{D}$ if the collection of objects of $\mathcal{C}$ is a subclass of
+the collection of objects of $\mathcal{D}$, and if whenever
+$X, Y \in \mathcal{C}$, we have
+\[ \hom_{\mathcal{C}}(X, Y) \subset \hom_{\mathcal{D}}(X, Y)  \]
+with the laws of composition in $\mathcal{C}$ induced by that in $\mathcal{D}$.
+
+$\mathcal{C}$ is called a \textbf{full subcategory} if $\hom_{\mathcal{C}}(X,
+Y) = \hom_{\mathcal{D}}(X, Y)$ whenever $X, Y \in \mathcal{C}$.
+\end{definition} 
+
+
+\begin{example} 
+The category of abelian groups is a full subcategory of the category of groups.
+\end{example} 
+
 
 \subsection{The language of commutative diagrams}
 
@@ -164,6 +196,7 @@ composition $g \circ f: X \to Z$ can be visualized by the picture
 
 Finally, when we work with several objects, we shall often draw collections of
 morphisms into diagrams, where arrows indicate morphisms between two objects.
+\begin{definition}
 A diagram will be said to \textbf{commute} if whenever one goes from one
 object in the diagram to another by following the arrows in the right order,
 one obtains the same morphism.
@@ -174,8 +207,21 @@ Y \ar[r]^{g'} &  Z
 }\]
 is equivalent to the assertion that
 \[ g \circ f' = g' \circ f \in \hom(X, Z).  \]
+\end{definition}
 
 
+As an example, the assertion that the associative law holds in a category
+$\mathcal{C}$ can be stated as follows. For every quadruple $X, Y, Z, W \in
+\mathcal{C}$, the following diagram (of \emph{sets}) commutes:
+\[ \xymatrix{
+\hom(X, Y) \times \hom(Y, Z) \times \hom(Z, W) \ar[r] \ar[d]  & \hom(X, Z)
+\times \hom(Z, W) \ar[d]  \\
+\hom(X,Y) \times \hom(Y, W) \ar[r] &  \hom(X, W).
+}\]
+Here the maps are all given by the composition laws in $\mathcal{C}$. 
+For instance, the downward map to the left is the product of the identity on
+$\hom(X, Y)$ with the composition law $\hom(Y, Z) \times \hom(Z, W) \to \hom(Y,
+W)$. 
 \subsection{Isomorphisms}
 
 Classically, one can define an isomorphism of groups as a bijection that
@@ -184,7 +230,7 @@ we do not have a notion of ``bijection,'' as there is no way (in general) to
 talk about the ``underlying set'' of an object.
 Moreover, this definition does not generalize well to topological spaces:
 there, an isomorphism should not just be a bijection, but something which
-preserves the topology (in a strong sense).
+preserves the topology (in a strong sense), i.e. a homeomorphism.
 
 
 Thus we make:
@@ -194,11 +240,16 @@ An \textbf{isomorphism} between objects $X, Y$ in a category $\mathcal{C}$ is a
 map $f: X \to Y$ such that there exists $g: Y \to X$ with
 \[ g \circ f = 1_X, \quad f \circ g = 1_Y.  \]
 
-Such a $g$ is called an \emph{inverse} to $f$; it is easy to check that $g$ is
-unique.
-\end{definition}
+Such a $g$ is called an \textbf{inverse} to $f$. \end{definition}
 
-This is more correct than the idea of being one-to-one and onto. A bijection of
+\begin{remark}
+It is easy to check that the inverse $g$ is
+unique. Indeed, suppose $g, g'$ both were inverses to $f$. Then 
+\[ g' = g' \circ 1_Y = g' \circ (f \circ g) = (g' \circ f) \circ g = 1_X
+\circ g = g.  \]
+\end{remark}
+
+This notion is isomorphism is more correct than the idea of being one-to-one and onto. A bijection of
 topological spaces is not necessarily a homeomorphism.
 
 
@@ -217,6 +268,11 @@ Then we can define a map
 \[ \hom_{\mathcal{C}}(Z, X) \to \hom_{\mathcal{C}}(Z, Y)  \]
 given by post-composition with $f$. This is a \emph{bijection} if $f$ is an
 isomorphism (the inverse is given by postcomposition with the inverse to $f$).
+Similarly, one can easily see that mapping \emph{out of} $X$ is essentially the
+same as mapping out of $Y$. 
+Anything in general category theory that is true for $X$ should be true for $Y$
+(as general category theory can only try to understand $X$ in terms of maps
+into or out of it!). 
 
 \begin{exercise} 
 The relation ``$X, Y$ are isomorphic'' is an equivalence relation on the class
@@ -229,10 +285,15 @@ Let $P$ be a preordered set, and make $P$ into a category as in
 are equal.
 \end{exercise} 
 
+For the next exercise, we need:
+\begin{definition}
+A \textbf{groupoid} is a category where every morphism is an isomorphism.
+\end{definition}
 \begin{exercise} 
-A \textbf{groupoid} is a category where every morphism is an isomorphism. The
+ The
 sets $\hom_{\mathcal{C}}(A, A)$ are \emph{groups} if $\mathcal{C}$ is a
-groupoid and $A \in \mathcal{C}$.
+groupoid and $A \in \mathcal{C}$. A group is essentially the same as a groupoid
+with one object. 
 \end{exercise}
 
 \begin{exercise}
@@ -248,25 +309,6 @@ composition is associative.)
 $\Pi_1(X)$ is called the \textbf{fundamental groupoid} of $X$. Note that
 $\hom_{\Pi_1(X)}(x, x)$ is the \textbf{fundamental group} $\pi_1(X, x)$.
 \end{exercise} 
-
-\subsection{Subcategories}
-
-\begin{definition} 
-We say that $\mathcal{C}$ is a \textbf{subcategory} of the category
-$\mathcal{D}$ if the collection of objects of $\mathcal{C}$ is a subclass of
-the collection of objects of $\mathcal{D}$, and if whenever
-$X, Y \in \mathcal{C}$, we have
-\[ \hom_{\mathcal{C}}(X, Y) \subset \hom_{\mathcal{D}}(X, Y)  \]
-with the laws of composition in $\mathcal{C}$ induced by that in $\mathcal{D}$.
-
-$\mathcal{C}$ is called a \textbf{full subcategory} if $\hom_{\mathcal{C}}(X,
-Y) = \hom_{\mathcal{D}}(X, Y)$ whenever $X, Y \in \mathcal{C}$.
-\end{definition} 
-
-
-\begin{example} 
-The category of abelian groups is a subcategory of the category of groups.
-\end{example} 
 
 \section{Functors}
 
@@ -286,7 +328,8 @@ are categories of structured sets (of possibly different types), there may be a
 way to associate objects in $\mathcal{D}$ to objects in $\mathcal{C}$. For
 instance, to every group $G$ we can associate its \emph{group ring}
 $\mathbb{Z}[G]$
- (which we do not define here).
+ (which we do not define here); to each topological space we can associate its
+ \emph{singular chain complex}, and so on.
 In many cases, given a map between objects in $\mathcal{C}$ preserving the
 relevant structure, there will be an induced map on the corresponding objects
 in $\mathcal{D}$. It is from here that we define a \emph{functor.}
@@ -313,12 +356,28 @@ Alternatively, we can say that $F$ \emph{preserves commutative diagrams.}
 \end{enumerate}
 \end{definition}
 
+In the last statement of the definition, note that if 
+\[ \xymatrix{
+X \ar[rd]^h \ar[r]^f &  Y \ar[d]^g \\
+ & Z
+}\]
+is a commutative diagram in $\mathcal{C}$, then the diagram obtained by
+applying the functor $F$, namely
+\[ \xymatrix{
+F(X) \ar[rd]^{F(h)} \ar[r]^{F(f)} &  F(Y) \ar[d]^{F(g)} \\
+ & F(Z)
+}\]
+also commutes. It follows that applying $F$ to more complicated commutative
+diagrams also yields new commutative diagrams. 
+
+
 Let us give a few examples of functors.
 
 \begin{example}
 There is a functor from $\mathbf{Sets} \to \mathbf{AbelianGrp}$ sending a set
 $S$ to the free abelian group on the set. (For the definition of a free abelian
-group, or more generally a free $R$-module over a ring $R$, see \cref{}.)
+group, or more generally a free $R$-module over a ring $R$, see
+\cref{freemoduledef}.)
 \end{example}
 
 \begin{example} \label{pi0}
@@ -334,18 +393,19 @@ homotopic maps induce the same maps on $\pi_0$.
 \end{example} 
 
 
-\begin{example}[For readers that know some algebraic topology]
+\begin{example}
 Fix $n$.
 There is a functor from $\mathbf{Top} \to \mathbf{AbGrp}$
 (categories of topological spaces and abelian groups) sending a
-space $X$ to its homology groups $H_n(X)$. We know that given a map of spaces
+space $X$ to its  $n$th homology group $H_n(X)$. We know that given a map of spaces
 $f: X \to Y$,
 we get a map of abelian groups $f_*: H_n(X) \to H_n(Y)$. See \cite{Ha02}, for
 instance.
 \end{example}
 
 We shall often need to compose functors. For instance, we will want to see, for
-instance, that the \emph{tensor product} (to be defined later, \cref{}) is
+instance, that the \emph{tensor product} (to be defined later, see
+\cref{sec:tensorprod}) is
 associative, which is really a statement about composing functors. The
 following (mostly self-explanatory) definition elucidates this.
 
@@ -370,7 +430,7 @@ morphisms as functors. Composition is defined as in \cref{composefunctors}.
 
 
 \begin{example}[Group actions] \label{groupact} Fix a group $G$. 
-Let us understand what is a functor $B_G \stackrel{}{\to} \mathbf{Sets}$. Here $B_G$ is the
+Let us understand what  a functor $B_G \stackrel{}{\to} \mathbf{Sets}$ is. Here $B_G$ is the
 category  of \cref{BG}.
 
 The unique object $\ast$ of $B_G$ goes to some set $X$. For each element $g \in G$, we
@@ -378,7 +438,7 @@ get a map $g: \ast \to \ast$ and thus a map $X \to X$. This is supposed to
 preserve the composition law (which in $G$ is just multiplication), as well as
 identities.
 
-In particular, we get maps $i_G: X \to X$ corresponding to each $g \in G$, such
+In particular, we get maps $i_g: X \to X$ corresponding to each $g \in G$, such
 that the following diagram commutes for each $g_1, g_2 \in G$:
 \[ \xymatrix{
 X \ar[r]^{i_{g_1}} \ar[rd]_{i_{g_1g_2}} & X \ar[d]^{i_{g_2}} \\ & X.
@@ -386,6 +446,19 @@ X \ar[r]^{i_{g_1}} \ar[rd]_{i_{g_1g_2}} & X \ar[d]^{i_{g_2}} \\ & X.
 Moreover, if $e \in G$ is the identity, then $i_e = 1_X$.
 So a functor $B_G \to \mathbf{Sets}$ is just a left $G$-action on a set $X$.
 \end{example}
+
+
+
+An important example of functors is given by the following. Let $\mathcal{C}$
+be a category of ``structured sets.'' Then, there is a functor $F: \mathcal{C}
+\to \textbf{Sets}$ that sends  a structured set to the underlying set. For
+instance, there is a functor from groups to sets that forgets the group
+structure.
+More generally, suppose given two categories $\mathcal{C}, \mathcal{D}$, such
+that $\mathcal{C}$ can be regarded as ``structured objects in $\mathcal{D}$.''
+Then there is a functor $\mathcal{C} \to \mathcal{D}$ that forgets the
+structure.
+Such examples are called \emph{forgetful functors.}
 
 \subsection{Contravariant functors}
 Sometimes what we have described above are called \textit{covariant functors}.
@@ -396,8 +469,9 @@ arrows, such as duality functors:
 A \textbf{contravariant functor}  $\mathcal{C}
 \stackrel{F}{\to}\mathcal{D}$ (between categories $\mathcal{C}, \mathcal{D}$)
 is similar
-data as in \cref{covfunc} except that now a map $X \stackrel{f}{\to} Y$ now goes to a map $FY
-\stackrel{F(f)}{\to} FX$. Composites
+data as in \cref{covfunc} except that now a map $X \stackrel{f}{\to} Y$ now
+goes to a map $F(Y)
+\stackrel{F(f)}{\to} F(X)$. Composites
 are required to be preserved, albeit in the other direction.
 In other words, if $X \stackrel{f}{\to} Y, Y \stackrel{g}{\to} Z$ are
 morphisms, then we require
@@ -459,22 +533,25 @@ get a
 contravariant functor.
 \end{example}
 
-\begin{example}[The opposite category] \label{oppositecategory}
+We now give a useful (linguistic) device for translating between covariance and
+contravariance. 
+
+\begin{definition}[The opposite category] \label{oppositecategory}
 Let $\mathcal{C}$ be a category. Define the \textbf{opposite category}
 $\mathcal{C}^{op}$ of $\mathcal{C}$ to have the same objects as
 $\mathcal{C}$  but such that the morphisms between $X,Y$ in
 $\mathcal{C}^{op}$
 are those between $Y$ and $X$ in $\mathcal{C}$.
+\end{definition}
+
 There is a contravariant functor $\mathcal{C} \to
 \mathcal{C}^{op}$.
-
 In fact, contravariant functors out of $\mathcal{C}$ are the \emph{same} as
 covariant functors out of $\mathcal{C}^{op}$.
 
 As a result, when results are often stated for both covariant and contravariant
 functors, for instance, we can often reduce to the covariant case by using the
 opposite category.
-\end{example}
 
 \begin{exercise} 
 A map that is an isomorphism in $\mathcal{C}$ corresponds to an isomorphism in
@@ -497,10 +574,10 @@ If we have maps $f: X \to Y$ and $g : Y \to X$ such that the composites both
 ways are identities, then we can apply the functor $F$ to this, and we find
 that since
 \[ f \circ g = 1_Y, \quad g \circ f = 1_X,   \]
-that
+it must hold that
 \[ F(f) \circ F(g) = 1_{F(Y)}, \quad F(g) \circ F(f) = 1_{F(X)}.  \]
 We have used the fact that functors preserve composition and identities. This
-implies that $F(f)$ is an isomorphism.
+implies that $F(f)$ is an isomorphism, with inverse $F(g)$.
 \end{proof}
 
 Categories have a way of making things so general that are trivial. Hence,
@@ -554,6 +631,9 @@ If $TX$ is an isomorphism for each $X$, then we shall say that $T$ is a
 \textbf{natural isomorphism.}
 \end{definition}
 
+It is similarly possible to define the notion of a natural transformation
+between \emph{contravariant} functors. 
+
 When we say that things are ``natural'' in the future, we will mean that the
 transformation between functors is natural in this sense.
 We shall use this language to state theorems conveniently.
@@ -593,8 +673,9 @@ Indeed, fix $d>1$, and choose $V = k^d$.
 Identify $V^{\vee}$ with $k^d$, and so the map $T_V$ is a $d$-by-$d$ matrix $M$
 with coefficients in $k$. The requirement is that for each \emph{invertible}
 $d$-by-$d$ matrix $N$, we have
-\[ NM = MN,  \]
-by considering the above diagram with $V = W = k^d$.
+\[ (N^t)^{-1}M = MN,  \]
+by considering the above diagram with $V = W = k^d$, and $f$ corresponding to
+the matrix $N$.
 This is impossible unless $M = 0$, by elementary linear algebra.
 
 Nonetheless, it \emph{is} possible to choose a natural isomorphism
@@ -605,7 +686,7 @@ giving linear functions $l_v, v \in V$ such that $l_v: V \to k$ is linear in
 $v$. We can do this by letting $l_v$ be ``evaluation at $v$.''
 That is, $l_v$ sends a linear functional $\ell: V \to k$ to $\ell(v) \in k$. We
 leave it to the reader to check (easily) that this defines a homomorphism $V
-\to V^{\vee}$, and that everything is natural.
+\to V^{\vee \vee}$, and that everything is natural.
 \end{example}
 
 
@@ -616,6 +697,20 @@ leave it to the reader to check (easily) that this defines a homomorphism $V
  Suppose there are  two functors $B_G \to
 \mathbf{Sets}$, i.e. $G$-sets. What is a natural transformation between them?
 \end{exercise}
+
+
+Natural transformations can be \emph{composed}. Suppose given functors $F, G,
+H: \mathcal{C} \to \mathcal{D}$ a natural
+transformation $T: F \to G$ and a natural transformation $U: G \to H$. 
+Then, for each $X \in \mathcal{C}$, we have maps $TX: FX \to GX, UX: GX \to
+HY$. We can compose $U$ with $T$ to get a natural transformation $U \circ T: F
+\to H$. 
+
+In fact, we can thus define a \emph{category} of functors
+$\mathrm{Fun}(\mathcal{C}, \mathcal{D})$ (at least if $\mathcal{C},
+\mathcal{D}$ are small). The objects of this category are the functors $F:
+\mathcal{C} \to \mathcal{D}$. The morphisms are natural transformations between
+functors. Composition of morphisms is as above. 
 
 \subsection{Equivalences of categories}
 
@@ -643,6 +738,26 @@ there are functors
 and natural isomorphisms
 \[ F G \simeq 1_{\mathcal{D}}, \quad GF \simeq 1_{\mathcal{C}}.  \]
 \end{definition} 
+
+For instance, the category of all vector spaces of the form $k^n$ is equivalent
+to the category of all finite-dimensional vector spaces. 
+One functor is the inclusion from vector spaces of the form $k^n$; the other
+functor maps a finite-dimensional vector space $V$ to $k^{\dim V}$. Defining
+the second functor properly is, however, a little more subtle. 
+The next criterion will be useful.
+
+\begin{definition} 
+A functor $F: \mathcal{C} \to \mathcal{D}$ is \textbf{fully faithful} if $F:
+\hom_{\mathcal{C}}(X, Y) \to \hom_{\mathcal{D}}(FX, FY)$ is a bijection for each pair of objects $X, Y \in
+\mathcal{C}$.
+$F$ is called \textbf{essentially surjective} if every element of $\mathcal{D}$
+is isomorphic to an object in the image of $F$. 
+\end{definition} 
+
+So, for instance, the inclusion of a full subcategory is fully faithful (by
+definition). The forgetful functor from groups to sets is not fully faithful,
+because not all functions between groups are automatically homomorphisms. 
+
 
 \begin{proposition} 
 A functor $F: \mathcal{C} \to \mathcal{D}$ induces an equivalence of categories
@@ -686,7 +801,7 @@ properties.''
 
 \begin{definition} Let $\{X_i\}_{i\in I}$ be a collection of objects in some
 category $\mathcal{C}$. Then an object $P \in \mathcal{C}$ with projections $p_i: P\rightarrow X_i$
-is said to be the product $\prod_{i\in I} X_i$ if the following ``universal
+is said to be the \textbf{product} $\prod_{i\in I} X_i$ if the following ``universal
 property'' holds:
 let $S$ be any other object in $\mathcal{C}$ with maps $f_i:S\rightarrow X_i$.
 Then there is a unique morphism $f:S\rightarrow P$ such that $p_i f = f_i$.
@@ -696,6 +811,13 @@ In other words, to map into $X$ is the same as mapping into all the
 $\left\{X_i\right\}$ at once. We have thus given a precise description of how
 to map into $X$.
 Note that, however, the product need not exist! 
+If it does, however, we can express the above formalism by the following
+natural isomorphism
+of contravariant functors
+\[ \hom(\cdot, \prod_I X_i) \simeq \prod_I \hom(\cdot, X_i).  \]
+This is precisely the meaning of the last part of the definition. Note that
+this observation shows that products in the category of \emph{sets} are really
+fundamental to the idea of products in any category.
 
 \begin{example} One of the benefits of this construction is that an actual
 category is not specified; thus when we take $\mathcal{C}$ to be
@@ -704,18 +826,22 @@ recover the cartesian product notion of sets, but if we take $\mathcal{C}$ to
 be $\mathbf{Grp}$, we achieve the regular notion of the product of groups (the reader is
 invited to check these statements). \end{example}
 
-\begin{proposition}[Uniqueness of products]
+The categorical product is not unique, but it is as close to being so as
+possible.
+
+\begin{proposition}[Uniqueness of products]\label{produnique}
 Any two products of the collection $\left\{X_i\right\}$ in $\mathcal{C}$ are
 isomorphic by a unique isomorphism commuting with the projections.
 \end{proposition} 
+
 This is a special case of a general ``abstract nonsense'' type result that we
 shall see many more of in the sequel.
 The precise statement is the following: let $X$ be a product of the
 $\left\{X_i\right\}$ with projections $p_i : X \to X_i$, and let $Y$ be a
 product of them too, with projections $q_i: Y \to X_i$. 
-Then the claim is that there is a \emph{unique} isomorphisms
+Then the claim is that there is a \emph{unique} isomorphism
 \[ f: X \to Y  \]
-such that the diagrams below commute:
+such that the diagrams below commute for each $i \in I$:
 \begin{equation} \label{prodcommutative} \xymatrix{
 X \ar[rd]^{p_i}  \ar[rr]^f &  & Y \ar[ld]_{q_i} \\
 & X_i. 
@@ -831,15 +957,17 @@ The one point set is a terminal object in $\mathbf{Sets}$.
 
 The important thing about the next ``theorems'' is the conceptual framework.
 \begin{proposition}[Uniqueness of the initial (or terminal) object]
+\label{initialunique}
 Any two initial (resp. terminal) objects in $\mathcal{C}$ are isomorphic by a
 unique isomorphism.
 \end{proposition}
 \begin{proof}
-The proof is really easy. We do it for terminal objects. Say $Y, Y'$ are
-terminal objects. Then $\mathcal{C}(Y, Y')$ and $\mathcal{C}(Y', Y)$ are one
-point sets. So there are unique maps $Y \to Y', Y' \to Y$, whose composites
-must be the identities: we know that $\mathcal{C}(Y, Y) , \mathcal{C}(Y', Y')$
-are one-point sets. This means that the maps $Y \to Y', Y' \to Y$ are
+The proof is easy. We do it for terminal objects. Say $Y, Y'$ are
+terminal objects. Then $\hom(Y, Y')$ and $\hom(Y', Y)$ are one
+point sets. So there are unique maps $f: Y \to Y', g: Y' \to Y$, whose composites
+must be the identities: we know that $\hom(Y, Y) , \hom(Y', Y')$
+are one-point sets, so the composites have no other choice to be the
+identities. This means that the maps $f: Y \to Y', g: Y' \to Y$ are
 isomorphisms.
 \end{proof}
 
@@ -850,33 +978,42 @@ in mathematics. Two sets are not generally the ``same,'' but they may be
 isomorphic up to unique isomorphism. They are different,
 but the sets are isomorphic up
 to unique isomorphism.
+Note also that the argument was essentially similar to that of \cref{produnique}.
+
+In fact, we could interpret  \cref{produnique} as a special case of
+\cref{initialunique}.
+If $\mathcal{C}$ is a category and $\left\{X_i\right\}_{i \in I}$ is a family
+of objects in $\mathcal{C}$, then we can define a category $\mathcal{D}$ as
+follows. An object of $\mathcal{D}$ is the data of an object $Y \in
+\mathcal{C}$ and morphisms $f_i: Y \to X_i$ for all $i \in I$. 
+A morphism between objects $(Y, \left\{f_i: Y \to X_i\right\})$ and $(Z,
+\left\{g_i: Z \to X_i\right\})$ is 
+a map $Y \to Z$ making the obvious diagrams commute. Then a product $\prod X_i$
+in $\mathcal{C}$ is the same thing as a terminal object in $\mathcal{D}$, as
+one easily checks from the definitions. 
 
 \subsection{Push-outs and pull-backs}
 
+Let $\mathcal{C}$ be a category.
+
 Now we are going to talk about more  examples of universal constructions, which can all be
 phrased via initial or terminal objects in some category. This,
-therefore, is the proof for \emph{everything} we will do in this
+therefore, is the proof for the uniqueness up to unique
+isomorphism of \emph{everything} we will do in this
 section. Later we will present these in more generality.
 
-Throughout, we work inside a fixed category $\mathcal{C}$.
 
-Suppose we have a diagram
-\[
-\xymatrix{
-A \ar[d] \ar[r] &  B \ar[d] \\
-C \ar[r] &  X}
-\]
-We can say what it means for this to be a \textbf{push-out}.
+Suppose we have objects $A, B, C, X \in \mathcal{C}$. 
 
 \begin{definition}
-A square 
+A commutative square 
 \[
 \xymatrix{
 A \ar[d] \ar[r] &  B \ar[d] \\
 C \ar[r] &  X}.
 \]
 is a \textbf{pushout square} (and $X$ is called the \textbf{push-out}) if,
-given a diagram
+given a commutative diagram
 \[ \xymatrix{
 A \ar[r] \ar[d]  &  B \ar[d] \\
 C \ar[r] & Y  \\
@@ -891,6 +1028,9 @@ C \ar[r] \ar[rrd] &  X \ar[rd] \\
 Sometimes push-outs are also called \textbf{fibered coproducts}.
 We shall also write $X = C \sqcup_A B$.
 \end{definition}
+
+In other words, to map out of $X = C \sqcup_A B$ into some object $Y$ is to
+give maps $B \to Y, C \to Y$ whose restrictions to $A$ are the same.
 
 
 The next few examples will rely on notions to be introduced later.
@@ -1954,5 +2094,33 @@ left adjoint, so it preserves colimits. For instance, it preserves coproducts.
 This corresponds to the fact that if $A_1, A_2$ are sets, then $\mathbb{Z}[A_1
 \sqcup A_2]$ is naturally isomorphic to $\mathbb{Z}[A_1] \oplus
 \mathbb{Z}[A_2]$.
+
+\begin{proof} 
+Indeed, this is mostly formal. 
+Let $F: \mathcal{C}\to \mathcal{D}$ be a left adjoint functor, with right
+adjoint $G$.
+Let $f: I \to \mathcal{C}$ be a ``diagram'' where $I$ is a small category. 
+Suppose $\colim_I f$ exists as an object of $\mathcal{C}$. The result states
+that $\colim_I F \circ f$ exists as an object of $\mathcal{D}$ and can be
+computed as 
+$F(\colim_I f)$.
+To see this, we need to show that mapping out of $F(\colim_I f)$ is what we
+want---that is, mapping out of $F(\colim_I f)$ into some $d \in \mathcal{D}$---amounts to
+giving compatible $F(f(i)) \to d$ for each $i \in I$.
+In other words, we need to show that $\hom_{\mathcal{D}}( F(\colim_I f), d) =
+\lim_I \hom_{\mathcal{D}}(
+F(f(i)), d)$; this is precisely the defining property of the colimit.
+
+But we have
+\[ \hom_{\mathcal{D}}( F(\colim_I f  ), d) = \hom_{\mathcal{C}}(\colim_I f, Gd)
+= \lim_I \hom_{\mathcal{C}}(fi, Gd) = \lim_I \hom_{\mathcal{D}}(F(fi), d),
+\]
+by using adjointness twice. 
+This verifies the claim we wanted.
+\end{proof} 
+
+The idea is that one can easily map \emph{out} of the value of a left adjoint
+functor, just as one can map out of a colimit.
+
 
 
